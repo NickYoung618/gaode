@@ -1,6 +1,6 @@
 # gaode-1：当前迁移与开发入口（2026-10-06）
 
-GitHub 主仓库：https://github.com/NickYoung618/gaode 。首个迁移基线标签为 `migration-20261006`，此前没有可恢复的 Git 提交历史。完整迁移、现场接续开发与版本回退见[迁移与版本回退](迁移与版本回退.txt)。SDK、原型原始 ZIP、现场数据及详细运行证据随迁移包交付，不存入源码 Git。
+GitHub 主仓库：https://github.com/NickYoung618/gaode 。本次完整交付标签为 `migration-20261006-r1`，初始标签 `migration-20261006` 保留；r1 修复迁移打包的历史证据长路径问题，不改变业务实现。此前没有可恢复的 Git 提交历史。完整迁移、现场接续开发与版本回退见[迁移与版本回退](迁移与版本回退.txt)。SDK、原型原始 ZIP、现场数据及详细运行证据随迁移包交付，不存入源码 Git。
 
 当前主目录已包含 011/012/013/014 及 `016-public-preparation-tray-check-unload` 的集成，以及 [017 确定地址合入](specs/017-confirmed-plc-addresses/validation.md)。当前地址唯一来源为 `configuration/plc/confirmed-20261006/sources/PC.xls` 和 `PLC(2).xls`，共 85 项；PLC 心跳在 MB6038。完整地址目录已接入联调工具，正式业务合同仍有缺项，真实相机/光源/算法接入仍在现场完成，不能把迁移基线当作整机实测通过。
 

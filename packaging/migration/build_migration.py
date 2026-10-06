@@ -15,7 +15,7 @@ import subprocess
 import sys
 import zipfile
 
-TAG = "migration-20261006"
+TAG = "migration-20261006-r1"
 NAME = "Gaode-Migration-20261006"
 URL = "https://github.com/NickYoung618/gaode.git"
 SKIP_DIRS = {"bin", "obj", "node_modules", "dist", "__pycache__", ".venv", ".git",
@@ -67,7 +67,10 @@ def main():
     run("git", "config", "core.longpaths", "true", cwd=repo)
     run("git", "bundle", "create", str(stage / "gaode-repository.bundle"), "--all", cwd=source)
     write_json(repo / ".specify/feature.json", {"feature_directory": "specs/017-confirmed-plc-addresses"})
-    exclusions, mappings = [], []
+    exclusions, mappings, evidence_files = [], [], []
+    evidence_path = stage / "evidence/development-evidence.zip"
+    evidence_path.parent.mkdir(parents=True)
+    evidence_archive = zipfile.ZipFile(evidence_path, "x", compression=zipfile.ZIP_DEFLATED, compresslevel=3)
 
     def copy_file(src, dst):
         if not src.is_file():
@@ -77,7 +80,13 @@ def main():
         if src.stat().st_size != dst.stat().st_size or digest(src) != digest(dst):
             raise RuntimeError(f"Copy changed: {src}")
 
-    def copy_tree(src, dst):
+    def archive_file(src, name):
+        checksum = digest(src)
+        method = zipfile.ZIP_STORED if src.suffix.lower() in {".zip", ".7z"} else zipfile.ZIP_DEFLATED
+        evidence_archive.write(src, name, compress_type=method)
+        evidence_files.append({"path": name, "source": str(src), "bytes": src.stat().st_size, "sha256": checksum})
+
+    def archive_tree(src, prefix):
         if not src.is_dir():
             raise FileNotFoundError(src)
         print(f"Collecting {src} ...", flush=True)
@@ -93,9 +102,9 @@ def main():
                 if path.suffix.lower() in SKIP_SUFFIXES or path.is_symlink() or name.lower() in {"auth.json", "credentials.json"}:
                     exclusions.append({"path": str(path), "reason": "trace/lock/incomplete/credential/link"})
                     continue
-                copy_file(path, dst / path.relative_to(src))
+                archive_file(path, prefix + "/" + path.relative_to(src).as_posix())
                 count += 1
-        mappings.append({"source": str(src), "packagePath": dst.relative_to(stage).as_posix(), "files": count})
+        mappings.append({"source": str(src), "packagePath": "evidence/development-evidence.zip!/" + prefix, "files": count})
 
     for name in ("原型.zip", "软件开发SDK.zip"):
         src = source.parent / "gaode" / name
@@ -108,22 +117,38 @@ def main():
                         "recipe-authoring-012", "plc-polling-013", "017-confirmed-plc-addresses",
                         "migration-readiness-20261006", "github-migration-20261006"]
     for name in evidence_folders:
-        copy_tree(source / "artifacts" / name, repo / "artifacts" / name)
+        archive_tree(source / "artifacts" / name, "repo-artifacts/" + name)
     boundary = "recipe-execution-008/009-isolation/017-confirmed-addresses-final-3-20261006"
-    copy_tree(source / "artifacts" / boundary, repo / "artifacts" / boundary)
-    copy_tree(Path("E:/dzk-delivery/016-integration-20261006"), stage / "E-drive/dzk-delivery/016-integration-20261006")
-    copy_tree(Path("C:/gd14v20261005/artifacts"), stage / "evidence/C-origin/gd14v20261005/artifacts")
+    archive_tree(source / "artifacts" / boundary, "repo-artifacts/" + boundary)
+    archive_tree(Path("E:/dzk-delivery/016-integration-20261006"), "dzk-delivery/016-integration-20261006")
+    archive_tree(Path("C:/gd14v20261005/artifacts"), "C-origin/gd14v20261005/artifacts")
     for number in (16, 17, 18, 19):
         src = Path(f"C:/dzk-work/013-20261005-run{number}/attempt")
-        dst = stage / f"evidence/C-origin/dzk-work/013-20261005-run{number}/attempt"
+        prefix = f"C-origin/dzk-work/013-20261005-run{number}/attempt"
         # Final audit and reassessment files suffice here; underlying run evidence
         # is already collected from artifacts/plc-polling-013 above.
         for path in src.iterdir():
             if path.is_file():
-                copy_file(path, dst / path.name)
+                archive_file(path, prefix + "/" + path.name)
             else:
                 exclusions.append({"path": str(path), "reason": "historical audit working copy/cache; top-level audit retained"})
-        mappings.append({"source": str(src), "packagePath": dst.relative_to(stage).as_posix(), "scope": "top-level files"})
+        mappings.append({"source": str(src), "packagePath": "evidence/development-evidence.zip!/" + prefix, "scope": "top-level files"})
+    evidence_archive.close()
+    print("Verifying the nested historical evidence archive...", flush=True)
+    with zipfile.ZipFile(evidence_path) as bundle:
+        if len(bundle.namelist()) != len(evidence_files):
+            raise RuntimeError("Historical evidence archive entry count differs.")
+        for entry in evidence_files:
+            with bundle.open(entry["path"]) as stream:
+                if hashlib.file_digest(stream, "sha256").hexdigest() != entry["sha256"]:
+                    raise RuntimeError("Historical evidence changed: " + entry["path"])
+    write_json(stage / "evidence/EVIDENCE-MANIFEST.json", {"files": evidence_files, "hashVerification": "Passed"})
+    # Keep short handoff/index files directly readable by onsite Codex. Deep run
+    # evidence stays in the nested ZIP until restored to its original short root.
+    for name in ("017-confirmed-plc-addresses", "migration-readiness-20261006", "github-migration-20261006"):
+        for path in (source / "artifacts" / name).iterdir():
+            if path.is_file() and path.suffix.lower() in {".txt", ".md", ".json"}:
+                copy_file(path, repo / "artifacts" / name / path.name)
 
     plc_name = "Gaode-PlcProbe-0.4.0-20261006.zip"
     for name in (plc_name, plc_name + ".sha256.txt"):

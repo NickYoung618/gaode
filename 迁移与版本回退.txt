@@ -3,7 +3,7 @@
 一、这次交付是什么
 
 GitHub 主仓库：https://github.com/NickYoung618/gaode
-首个版本标签：migration-20261006
+本次交付标签：migration-20261006-r1（初始标签 migration-20261006 保留，r1 只修复迁移打包的长路径问题）
 这是完整开发迁移包，包含源码、Git 历史、Spec Kit、设备 SDK、原型原始归档、PLC/相机联调工具及必要验证资料。它不是已经完成真实设备接入的一键生产安装器。中控机可以继续开发、联调、提交及回退版本。
 本次才建立 Git 历史，此前旧 ZIP 和历史证据不会自动变成旧提交。GitHub 当前为公开仓库；账号凭据、SDK 原始 ZIP、现场数据库/配置和运行日志不提交到源码仓库。
 
@@ -16,12 +16,11 @@ GitHub 主仓库：https://github.com/NickYoung618/gaode
 3. 包中 E-drive 代表推荐恢复到 E: 的目录树：
    E-drive\dzk\gaode-1       → E:\dzk\gaode-1（完整源码，务必包含隐藏 .git/.agents/.specify）
    E-drive\dzk\gaode         → E:\dzk\gaode（原型.zip、软件开发SDK.zip，保持原件不变）
-   E-drive\dzk-delivery      → E:\dzk-delivery（016 最终集成与恢复证据）
    tools                    → 任意独立联调工具目录，分别解压，不覆盖原现场配置
-   evidence                 → 保留历史 C: 来源证据，路径对应见 evidence/relocation-map.json
+   evidence                 → development-evidence.zip 保存完整选定历史证据，路径对应见 relocation-map.json
    data-snapshots            → 一致性数据库备份，仅保留待核对，不自动安装到业务目录
 4. 如果中控机已有 E:\dzk\gaode-1 或现场 Codex 正在修改它，请保留它，先将本包项目放到新目录，交给 Codex 按基线比较合并。不要整目录覆盖正在开发的代码、现场 site.json 或数据库。没有 E: 也可以先用其他盘；少数历史验证脚本含 E:/C: 绝对路径，按 relocation-map 和实际脚本单独调整配置，不全局改写原始证据。
-5. 源码中的 artifacts 是迁来的历史验证资料；运行数据快照位于包外层 data-snapshots。不会把源机 PID、进程锁、浏览器登录状态或 Codex 账号状态恢复成中控机运行状态。
+5. 源码 artifacts 中直接保留简短交接说明和索引；深层测试记录、016 集成/恢复资料及 C: 来源证据在 evidence/development-evidence.zip，附逐文件摘要。此内层 ZIP 不必全部解压；需要某次证据时，按 relocation-map 定向展开到短路径，避免 Windows 长路径限制。repo-artifacts 下内容对应主工程 artifacts，dzk-delivery 下内容对应 E:\dzk-delivery。运行数据快照在包外层 data-snapshots，不把源机 PID、进程锁、浏览器登录状态或 Codex 账号状态恢复成运行状态。
 
 三、第一次启动与依赖
 
@@ -58,7 +57,7 @@ Modbus PDU 起点、UnitId、字节/字序、单位、握手和机械范围要�
 Codex 的项目技能可按对应 SKILL.md 继续使用。dev.ps1 自动 Workflow 额外依赖 uv、兼容本项目内部接口的 specify-cli（原记录为 1.0.5.dev0）和 PyYAML；源机目前这些命令不齐，包不会伪称已安装。中控机先检查依赖与 scripts/workflow 的要求，不盲目更新至不兼容最新版；自动入口未就绪时仍可按项目技能分步开发。中控机 Codex 使用自己的登录，不复制源机认证文件。
 
 可直接交给中控机 Codex：
-“请接续当前 GitHub 仓库 NickYoung618/gaode 的 migration-20261006 基线。先校验迁移包、Git 提交、依赖和已存在的现场改动，阅读根目录迁移与版本回退.txt、AGENTS.md、017 验证记录，以及 artifacts/017-confirmed-plc-addresses/迁移补充说明.txt。建立 field/integration 分支，保留现场配置和数据库。用户已决定正式 PLC 业务合同与真实相机/光源/算法接入在这里解决，沿用 Spec Kit，先更新对应规格与合同后实施。与独立联调包按 Git 基线比较合并，不覆盖已有修改，不编造缺失信号，不更改客户原型。先验证环境和虚拟主流程，再按现场操作逐项联调。每个可用阶段提交代码和规格，测试通过后加标签、推送；回传配置摘要、TX/RX、动作反馈、图像与失败记录，不只回传 exe。”
+“请接续当前 GitHub 仓库 NickYoung618/gaode 的 migration-20261006-r1 基线。先校验迁移包、Git 提交、依赖和已存在的现场改动，阅读根目录迁移与版本回退.txt、AGENTS.md、017 验证记录，以及 artifacts/017-confirmed-plc-addresses/迁移补充说明.txt。建立 field/integration 分支，保留现场配置和数据库。用户已决定正式 PLC 业务合同与真实相机/光源/算法接入在这里解决，沿用 Spec Kit，先更新对应规格与合同后实施。与独立联调包按 Git 基线比较合并，不覆盖已有修改，不编造缺失信号，不更改客户原型。先验证环境和虚拟主流程，再按现场操作逐项联调。每个可用阶段提交代码和规格，测试通过后加标签、推送；回传配置摘要、TX/RX、动作反馈、图像与失败记录，不只回传 exe。”
 
 六、日常保存与回传
 
@@ -79,7 +78,7 @@ Codex 的项目技能可按对应 SKILL.md 继续使用。dev.ps1 自动 Workflo
 回退前停止相关软件对设备的控制，保存现场配置，并对已停止的数据库或用 SQLite backup API 作一致性备份。先提交当前代码或保留现有工作目录；不要用 reset --hard、clean -fd 或覆盖目录丢掉未提交改动。
 推荐另开一份旧版本目录：
    git fetch origin --tags
-   git worktree add -b rollback/migration-20261006 E:/dzk/gaode-rollback-20261006 migration-20261006
+   git worktree add -b rollback/migration-20261006-r1 E:/dzk/gaode-rollback-20261006 migration-20261006-r1
    git -C E:/dzk/gaode-rollback-20261006 log -1 --oneline
 标签已随包带来；断网时省略 fetch，也可执行 worktree。目录与分支已经存在时选一个新的名称。原目录不受影响；在旧版本目录按它自身的依赖、配置及数据版本重新构建和验证，再决定切换运行目录。不能同时运行两套程序写同一 PLC。
 若只需撤销一个错误提交，可在开发分支使用 git revert <提交号>，解决冲突并验证后推送。这会生成新的撤销提交并保留历史，不强推公共分支。
