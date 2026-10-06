@@ -1,0 +1,172 @@
+{
+  "schemaVersion": "station01-fixture/2.0",
+  "caseId": "014-special",
+  "purpose": "Test",
+  "scenarioId": "011-joint",
+  "occupiedSlots": [
+    "s1",
+    "s2"
+  ],
+  "fCode": "011-TEST-TRAY-2",
+  "configRoot": "config",
+  "recipeInputPath": "catalog.json",
+  "recipeInputSha256": "5FA7A1E447B8BDC3D498E60F5E314ADD0A73BF7D327993FC55C3D03F2987CB6A",
+  "imageManifestPath": "images-special.json",
+  "workerManifestPath": "worker.json",
+  "workerScriptPath": "scripts/010-content-sample-worker.py",
+  "plcMechanicsPath": "mechanics.json",
+  "publicConfigRef": {
+    "id": "s01-public-011-joint",
+    "version": "1"
+  },
+  "budgetRef": {
+    "id": "s01-budget-011-joint",
+    "version": "2"
+  },
+  "simulationRef": {
+    "id": "s01-sim-011-joint",
+    "version": "2"
+  },
+  "simulation": {
+    "putBackDurationMs": 150,
+    "flipPutBackSafeZ": 150
+  },
+  "expected": {
+    "cameraOrder": [
+      "A",
+      "B",
+      "A",
+      "B",
+      "A",
+      "B",
+      "A",
+      "B"
+    ],
+    "flipCount": 0,
+    "putBackCount": 0,
+    "poseObservationCount": 1,
+    "productMediaCount": 8,
+    "totalMediaCount": 10,
+    "algorithmFactCount": 14,
+    "disposition": "OK",
+    "physicalSlotIndex": 1,
+    "fLocation": {
+      "x": 125,
+      "y": 100
+    },
+    "workerVersion": "ContentSampleWorker/1",
+    "detectionTargets": [
+      {
+        "x": 210,
+        "y": 100,
+        "z": 51
+      },
+      {
+        "x": 211,
+        "y": 101,
+        "z": 51
+      },
+      {
+        "x": 212,
+        "y": 102,
+        "z": 51
+      },
+      {
+        "x": 213,
+        "y": 103,
+        "z": 51
+      },
+      {
+        "x": 214,
+        "y": 104,
+        "z": 51
+      },
+      {
+        "x": 215,
+        "y": 105,
+        "z": 51
+      },
+      {
+        "x": 216,
+        "y": 106,
+        "z": 51
+      },
+      {
+        "x": 217,
+        "y": 107,
+        "z": 51
+      }
+    ],
+    "cameraDispositions": [
+      "OK",
+      "OK",
+      "OK",
+      "OK",
+      "OK",
+      "OK",
+      "OK",
+      "OK"
+    ],
+    "faceDispositions": [
+      "OK",
+      "OK",
+      "OK",
+      "OK"
+    ],
+    "captureParameters": [
+      {
+        "exposureUs": 500,
+        "gain": 1.0,
+        "brightnessPercent": 30
+      },
+      {
+        "exposureUs": 510,
+        "gain": 1.1,
+        "brightnessPercent": 31
+      },
+      {
+        "exposureUs": 520,
+        "gain": 1.2,
+        "brightnessPercent": 32
+      },
+      {
+        "exposureUs": 530,
+        "gain": 1.3,
+        "brightnessPercent": 33
+      },
+      {
+        "exposureUs": 540,
+        "gain": 1.4,
+        "brightnessPercent": 34
+      },
+      {
+        "exposureUs": 550,
+        "gain": 1.5,
+        "brightnessPercent": 35
+      },
+      {
+        "exposureUs": 560,
+        "gain": 1.6,
+        "brightnessPercent": 36
+      },
+      {
+        "exposureUs": 570,
+        "gain": 1.7,
+        "brightnessPercent": 37
+      }
+    ]
+  },
+  "restrictions": [
+    "014 explicitly qualified software input; original Worker threshold/media processing, TCP virtual PLC, real SQLite; no hardware/production approval",
+    "Two distinct physical slots originate in the declared virtual 3D sample, not inferred from numbering; hardware mappings remain unverified"
+  ],
+  "saveIsolation": {
+    "beforeBindQualityProfile": "011-quality-saved-before-F",
+    "afterBindQualityProfile": "011-quality-saved-after-freeze",
+    "afterBindEdit": {
+      "exposureUs": 900,
+      "sortingGripperId": 2,
+      "rotationLoadingGripperId": 1
+    }
+  }
+}

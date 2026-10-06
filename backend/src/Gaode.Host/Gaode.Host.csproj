@@ -1,0 +1,7 @@
+<Project Sdk="Microsoft.NET.Sdk.Web">
+  <ItemGroup>
+    <ProjectReference Include="../Gaode.Application/Gaode.Application.csproj" />
+    <ProjectReference Include="../Gaode.Infrastructure/Gaode.Infrastructure.csproj" />
+    <PackageReference Include="Microsoft.Extensions.TimeProvider.Testing" />
+  </ItemGroup>
+</Project>

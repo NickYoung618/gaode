@@ -1,0 +1,11 @@
+{
+  "schemaVersion": "010-script-boundary-cases/1",
+  "cases": [
+    {"caseId":"SCRIPT-N-Continuation","path":"moved/helper.py","role":"adapter","source":"def run(service):\n    service.RunNextStageAsync()\n","rejectRule":"B02"},
+    {"caseId":"SCRIPT-N-CompletionWrite","path":"scripts/driver.py","role":"business-script","source":"def run(db):\n    db.execute(\"UPDATE Runs SET State='Completed'\")\n","rejectRule":"B02"},
+    {"caseId":"SCRIPT-P-FormalApi","path":"scripts/driver.py","role":"business-script","source":"def run(api, request):\n    receipt = api.post('/api/v1/station01/runs', json=request)\n    return receipt\n"},
+    {"caseId":"SCRIPT-P-Origin","path":"scripts/driver.py","role":"business-script","source":"def observe(result):\n    return {'source': result['source'], 'purpose': 'Test'}\n"},
+    {"caseId":"SCRIPT-N-PowerShellContinuation","path":"moved/driver.ps1","role":"adapter","source":"$service.RunNextStageAsync()","rejectRule":"B02"},
+    {"caseId":"SCRIPT-P-PowerShellApi","path":"moved/driver.ps1","role":"business-script","source":"Invoke-RestMethod -Method Post -Uri $startUri -Body $request"}
+  ]
+}

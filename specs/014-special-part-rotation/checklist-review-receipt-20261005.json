@@ -1,0 +1,827 @@
+{
+  "kind": "ChecklistDesignReview/NoSoftwareValidation",
+  "workspace": "E:\\dzk\\gaode-1",
+  "featureDirectories": [
+    "specs/014-special-part-rotation",
+    "specs/012-recipe-authoring"
+  ],
+  "setup": "check-prerequisites -Json -Template checklist-template; in-memory NoPersist guard; original script and feature.json unchanged",
+  "baseline": {
+    "specs/012-recipe-authoring/contracts/recipe-authoring-api.md": "1db0eea270f043ada18b9f4b03a3bf1090354c181d479fae2a980e3b82389d26",
+    "specs/012-recipe-authoring/data-model.md": "eae01b16ad9e084142f32db3aa3d2c862e163a98609fcf42c4237cffc0155205",
+    "specs/012-recipe-authoring/layout-design-20261005.md": "c77b81d17737f5c6fac3194253b861ce3853345491f2b62879cba9e3a7751bc3",
+    "specs/012-recipe-authoring/contracts/capture-and-gripper.md": "750a3bfd2c527c8b323ba01816c5202d8f2482f6bfaddb65c0d693ec1b7c0509",
+    "specs/012-recipe-authoring/contracts/editor-ui.md": "02a354171c09aa7a9e43d974edfc8006da03a56ec79ad1a5284adc4cc1804c62",
+    "specs/012-recipe-authoring/contracts/shared-integration.md": "419c037d893561efeaa5731dde0e43439794364446c7ebed0871066bea1e4380",
+    "specs/012-recipe-authoring/plan-handoff.md": "0b290c8864a1e080f13e64a3993499237eabf1f80d904da16d2c9332150d9bbb",
+    "specs/012-recipe-authoring/checklists/architecture.md": "c491d6644bb1d5bcf81df174af529f31f5228b9f8f6584f5fb31bfc4244c515b",
+    "specs/014-special-part-rotation/contracts/verification.md": "ab0018b0e026460a50977053d1caf700c437c4df360509077f9ae10df77bb9c6",
+    "specs/014-special-part-rotation/quickstart.md": "14123c3f4bc264b37cf491e6a93a705a314bae891cfad8af47377b6fdd883b85",
+    "specs/014-special-part-rotation/plan.md": "5d7e45e5111e9d98207e0ea22a533c1c76bb89c748830a6680604e6f3504cb6e",
+    "specs/014-special-part-rotation/research.md": "8c2481a947019090999e8b1de06738296e359b3626751deb5e5fc2fd4a86623b",
+    "specs/014-special-part-rotation/cleanup-and-consumers.md": "71156df7df7b766b4fc9f501eaf88a17d3719ae38e4d9acdb0bbbcd1f7aa5538",
+    "specs/014-special-part-rotation/plan-handoff-20261005.md": "e842991f3a8c3d7afc53beb2ee3262acf35a05cb81561ad7ab7041129f9ed71e",
+    "specs/011-plc-interaction-update/contracts/recipe-contract.md": "7cc1e35f39c47ea2c430e8c1c1d54f6d60151bd5e8f1bb873bc45ebfb2408410"
+  },
+  "modified": [
+    {
+      "path": "specs/012-recipe-authoring/contracts/recipe-authoring-api.md",
+      "beforeSha256": "1db0eea270f043ada18b9f4b03a3bf1090354c181d479fae2a980e3b82389d26",
+      "afterSha256": "d9352bfc310c32c9bee8eb4d0631673d8ad41589bbf75bc5d5c6594dae332a7f"
+    },
+    {
+      "path": "specs/012-recipe-authoring/data-model.md",
+      "beforeSha256": "eae01b16ad9e084142f32db3aa3d2c862e163a98609fcf42c4237cffc0155205",
+      "afterSha256": "a71a50253351375e43781d612cf826ddc5b8990c875910b4ea6b94cb18a374e6"
+    },
+    {
+      "path": "specs/012-recipe-authoring/contracts/capture-and-gripper.md",
+      "beforeSha256": "750a3bfd2c527c8b323ba01816c5202d8f2482f6bfaddb65c0d693ec1b7c0509",
+      "afterSha256": "40ff690fc26fb081323f04077dd41f1751ed24bc63fad9a5f1d60fd7c5dcbf6c"
+    },
+    {
+      "path": "specs/011-plc-interaction-update/contracts/recipe-contract.md",
+      "beforeSha256": "7cc1e35f39c47ea2c430e8c1c1d54f6d60151bd5e8f1bb873bc45ebfb2408410",
+      "afterSha256": "89eb9a6b65cc6bc14fce32f234b4b9ce8a6a8bc18c7eb5b0855705a0783b9373"
+    },
+    {
+      "path": "specs/012-recipe-authoring/layout-design-20261005.md",
+      "beforeSha256": "c77b81d17737f5c6fac3194253b861ce3853345491f2b62879cba9e3a7751bc3",
+      "afterSha256": "e68440e95dbdee998208dfd4c88adf9dff6786aeb0cef1b57d01dfbd25229b0c"
+    },
+    {
+      "path": "specs/012-recipe-authoring/contracts/editor-ui.md",
+      "beforeSha256": "02a354171c09aa7a9e43d974edfc8006da03a56ec79ad1a5284adc4cc1804c62",
+      "afterSha256": "4e24b67f33d50ef044723083eb9b83f74ad76d46419655404833a4d6a39289de"
+    },
+    {
+      "path": "specs/014-special-part-rotation/contracts/verification.md",
+      "beforeSha256": "ab0018b0e026460a50977053d1caf700c437c4df360509077f9ae10df77bb9c6",
+      "afterSha256": "4c05921a76de044b7eb3cab71318fc9ee2928dd396e481848ffeb2f8c49b1cc4"
+    },
+    {
+      "path": "specs/014-special-part-rotation/quickstart.md",
+      "beforeSha256": "14123c3f4bc264b37cf491e6a93a705a314bae891cfad8af47377b6fdd883b85",
+      "afterSha256": "987e66216d7af7607b9796eaa7565860773cb1041f1d8da8f26d7d94ffd0c010"
+    },
+    {
+      "path": "specs/014-special-part-rotation/plan.md",
+      "beforeSha256": "5d7e45e5111e9d98207e0ea22a533c1c76bb89c748830a6680604e6f3504cb6e",
+      "afterSha256": "4340105af6cccdd86d29b274f0d379dd049159e56c6c8021d7d457e6077a6059"
+    },
+    {
+      "path": "specs/014-special-part-rotation/research.md",
+      "beforeSha256": "8c2481a947019090999e8b1de06738296e359b3626751deb5e5fc2fd4a86623b",
+      "afterSha256": "379dbdb23636d937ca71b8a0133d64f7f9500e5b065aec7597420058b35efbe5"
+    },
+    {
+      "path": "specs/014-special-part-rotation/cleanup-and-consumers.md",
+      "beforeSha256": "71156df7df7b766b4fc9f501eaf88a17d3719ae38e4d9acdb0bbbcd1f7aa5538",
+      "afterSha256": "4794da2fcd3631f7e4ba05c00a3401d39d62e9e8a36d9ef13ba7bc4415f9a5bc"
+    },
+    {
+      "path": "specs/014-special-part-rotation/checklists/architecture.md",
+      "beforeSha256": null,
+      "afterSha256": "78101c8d14ee555b29c05e75cee06176833bb0f30bc4918883f434da77d8d76a"
+    },
+    {
+      "path": "specs/012-recipe-authoring/checklists/architecture.md",
+      "beforeSha256": "c491d6644bb1d5bcf81df174af529f31f5228b9f8f6584f5fb31bfc4244c515b",
+      "afterSha256": "9a3d114d5bcaee8db5eef152d731cf6864de90dad5c4be2813100419350d1ec4"
+    },
+    {
+      "path": "specs/014-special-part-rotation/design-review-20261005.md",
+      "beforeSha256": null,
+      "afterSha256": "8464f9591a218bafc79a5f879f1b7b5ea552ba6074f81515bd31eb87e43083ca"
+    },
+    {
+      "path": "specs/012-recipe-authoring/contracts/shared-integration.md",
+      "beforeSha256": "419c037d893561efeaa5731dde0e43439794364446c7ebed0871066bea1e4380",
+      "afterSha256": "5348fdf2f5045e1a7b15b50034bfa49190ab4544f0bd2337cf66eb0d05804825"
+    },
+    {
+      "path": "specs/012-recipe-authoring/plan-handoff.md",
+      "beforeSha256": "0b290c8864a1e080f13e64a3993499237eabf1f80d904da16d2c9332150d9bbb",
+      "afterSha256": "4604ecabe7217acb1b163e3abd64f5c2f1a6cd39043ac0546e7b62a3405fd815"
+    },
+    {
+      "path": "specs/014-special-part-rotation/plan-handoff-20261005.md",
+      "beforeSha256": "e842991f3a8c3d7afc53beb2ee3262acf35a05cb81561ad7ab7041129f9ed71e",
+      "afterSha256": "13dcc7c6922af6a9412e2198011cba491a10a5522dd7cf107d25a8e013bc9cd3"
+    }
+  ],
+  "protectedBaseline": [
+    {
+      "path": "backend/src/Gaode.Application/Recipes/CommittedRecipePlanReader.cs",
+      "sha256": "5db9cfdfb0269ff139b2f1e58d6b32e4567cef5c439c31740654639f7c18fdb0"
+    },
+    {
+      "path": "backend/src/Gaode.Application/Recipes/CoordinateResolver.cs",
+      "sha256": "af4f3ebba347d69a8f589dc70109dcfa47edd241edf50eecb6f384c2109238f6"
+    },
+    {
+      "path": "backend/src/Gaode.Application/Recipes/ExecutionInputs.cs",
+      "sha256": "f9f8bf13226128c4b2b19e6aa5294c77b5dde239c101e3cedeca801c087f1d96"
+    },
+    {
+      "path": "backend/src/Gaode.Application/Recipes/IndependentBindingEventWriter.cs",
+      "sha256": "ae7166e388bdf4d7e02fb25cda7c6fcd41e7cd3ac6a63ed553cb795aba9430ac"
+    },
+    {
+      "path": "backend/src/Gaode.Application/Recipes/IndependentRecipeApplication.cs",
+      "sha256": "4b5358752a8eeaba8ccd223a39593885af7fc74eee322a4e4bda5c2b8a28f723"
+    },
+    {
+      "path": "backend/src/Gaode.Application/Recipes/RecipeAdmission.cs",
+      "sha256": "29a6d403bf2a6d6f05a21e43f967c02cc138d2f2f8445c9783e029fb86f435d1"
+    },
+    {
+      "path": "backend/src/Gaode.Application/Recipes/RecipeApplicationCoordinator.cs",
+      "sha256": "6afa7e228840138963ed1c8c5b76a1b683fee6b260b302cbb46ff8fd65ccd0c4"
+    },
+    {
+      "path": "backend/src/Gaode.Application/Recipes/RecipeBindingReceipt.cs",
+      "sha256": "e32d09393bad7dbacc542fcbca9d428e9f08629d93bd36becb7369115e4773df"
+    },
+    {
+      "path": "backend/src/Gaode.Application/Recipes/RecipeCatalogSnapshots.cs",
+      "sha256": "169a1fd67390eb47ca5a6362604987084c6621ce36af0e0e7c8575ac681cf836"
+    },
+    {
+      "path": "backend/src/Gaode.Application/Recipes/RecipeContracts.cs",
+      "sha256": "7cc76e0054c5548547ecc5933458d8f137029f1d435905d3cbb9e0c5b2ca3099"
+    },
+    {
+      "path": "backend/src/Gaode.Application/Recipes/RecipeDefinitionIdentity.cs",
+      "sha256": "5058905cedc7e69ffc69d10148841e383b69754c1a0f195198244a51772027ac"
+    },
+    {
+      "path": "backend/src/Gaode.Application/Recipes/RecipeDefinitionSerialization.cs",
+      "sha256": "85c97ae4d50f0e1b99ae016bce497d1fc39a57ead0019c2d168b56ac9053be4c"
+    },
+    {
+      "path": "backend/src/Gaode.Application/Recipes/RecipeDefinitionValidator.cs",
+      "sha256": "0cafd9bcc026fae2e289e1b5af04ae46ea5de13edeac04fea1fc2ff511f92f4b"
+    },
+    {
+      "path": "backend/src/Gaode.Application/Recipes/RecipeMatcher.cs",
+      "sha256": "c51faf64b8658060906b6765a3099de46cd0f853a19064dd4c5d59cf532e4038"
+    },
+    {
+      "path": "backend/src/Gaode.Application/Recipes/RecipeRunPlanner.cs",
+      "sha256": "8949c847c0f528b77043a31802031b761a67481b3156f5ce595224496b08cd97"
+    },
+    {
+      "path": "backend/src/Gaode.Application/Recipes/RecipeStageIdentity.cs",
+      "sha256": "55818b31c7f5a154c1cda743065a35a6024cc57593d22e98ebfeed0d2ea76979"
+    },
+    {
+      "path": "backend/src/Gaode.Application/Workflow/ControlledRecoveryPolicy.cs",
+      "sha256": "d5b19b1f06fb10cb0d0d7d69132b1a4be136aabb01bcc53e75a4a7520b0f334a"
+    },
+    {
+      "path": "backend/src/Gaode.Application/Workflow/ControlledRecoveryService.cs",
+      "sha256": "aa32f0e8b90398d1bddefdb9089b6322a05174c3b8c1404a4824b0f5dcb18a76"
+    },
+    {
+      "path": "backend/src/Gaode.Application/Workflow/FaceEstablishment.cs",
+      "sha256": "6111ef931f5d020a94e16438345471bb7bdc5a162351de273a991c21eed9af3a"
+    },
+    {
+      "path": "backend/src/Gaode.Application/Workflow/FaceResultAggregator.cs",
+      "sha256": "84a00394c0724e2ea4d66e329d9a01250d74b10eb147e19c676dda4f3ac86bb4"
+    },
+    {
+      "path": "backend/src/Gaode.Application/Workflow/RecipeDetectionExecutor.cs",
+      "sha256": "1785ee27240928412c671f5845856597cc6c701d1899cd915cc4b96615eb9888"
+    },
+    {
+      "path": "backend/src/Gaode.Application/Workflow/RecipeDetectionExecutor.Observation.cs",
+      "sha256": "0dec8879e4dfc14b62e3d3dbfe8810187f7e5a90de22e76984ed79f330f09293"
+    },
+    {
+      "path": "backend/src/Gaode.Application/Workflow/RecipeExecutionBudget.cs",
+      "sha256": "436b6b8c8b39ac21b74918fd77b41830936bdc467d86b9dd06a848eabe8b4fc9"
+    },
+    {
+      "path": "backend/src/Gaode.Application/Workflow/RecipeExecutionCoordinator.cs",
+      "sha256": "a95dbf1d6c89f63e867b22e362eda0b79792ee09915495d38cabd3856ed472fb"
+    },
+    {
+      "path": "backend/src/Gaode.Application/Workflow/RecipeSortingMapper.cs",
+      "sha256": "5d3e7f6601c0b1246a7028e986d7bb6722fd70f39356b75358579e32716cffff"
+    },
+    {
+      "path": "backend/src/Gaode.Application/Workflow/RecipeWorkload.cs",
+      "sha256": "e9ac29b768e79eed8f1df28fa8c8dfc261d7091b5755b89734d3022cb12417c8"
+    },
+    {
+      "path": "backend/src/Gaode.Application/Workflow/SortingTargetAllocator.cs",
+      "sha256": "9aa87b1a77e7f54b61183431dfbe774c0c3d140fa8c01b1244c4a433d897eb06"
+    },
+    {
+      "path": "backend/src/Gaode.Application/Workflow/StageEventing.cs",
+      "sha256": "1b4de717df52700c5b75c5a9404c8e30c5aee70d1aea29dbe39406869388e846"
+    },
+    {
+      "path": "backend/src/Gaode.Application/Workflow/StageRetryPolicy.cs",
+      "sha256": "1a4dd5ece9d6934e4cda3b0f3a42918b5c8479cdd0718b2d559cda56f51a222f"
+    },
+    {
+      "path": "backend/src/Gaode.Application/Workflow/ThreeStageWorkflowExecutor.cs",
+      "sha256": "ceb86a2385bca1982c82518a1eca8a523a94b4b72ac3e4756ff1359ed3998968"
+    },
+    {
+      "path": "backend/src/Gaode.Application/Workflow/WholeTrayCompletionContracts.cs",
+      "sha256": "46e0252954eab39bb1ddaeb6d6490ad805b733e9ea258a83a83ced743227214c"
+    },
+    {
+      "path": "backend/src/Gaode.Application/Workflow/WholeTrayWorkflowOrchestrator.cs",
+      "sha256": "22a884393bce5cf56e33a95424b424e69f27c711d4ed04e306bcb2d7cb5b8b36"
+    },
+    {
+      "path": "backend/src/Gaode.Infrastructure/Devices/Plc/CommunicationEvidenceRecorder.cs",
+      "sha256": "8dc3a607046dab010ddd26b6646aa8a525bda466ba8ad66d41bf87dafb46e9b9"
+    },
+    {
+      "path": "backend/src/Gaode.Infrastructure/Devices/Plc/HeartbeatDiagnosticWindow.cs",
+      "sha256": "d526929f6fa401979a6e9a14dc2eee67b33b9d5c9bc9c4727f1ae904b98b5bb3"
+    },
+    {
+      "path": "backend/src/Gaode.Infrastructure/Devices/Plc/IPlcTransport.cs",
+      "sha256": "f11015ffeeb2313bb8870f549bbece39af15f86566a4fe2f83e8674afddbe148"
+    },
+    {
+      "path": "backend/src/Gaode.Infrastructure/Devices/Plc/LatestProtocolPlcDevice.Acquisition.cs",
+      "sha256": "ce76181990a8782f9ade286e9d7e8daea7a9a83c092d89293187ec804a2971f1"
+    },
+    {
+      "path": "backend/src/Gaode.Infrastructure/Devices/Plc/LatestProtocolPlcDevice.Axes.cs",
+      "sha256": "7824acd59702d2d6f4eaf0fee884380f76183031fdda6987d775c026d5d50362"
+    },
+    {
+      "path": "backend/src/Gaode.Infrastructure/Devices/Plc/LatestProtocolPlcDevice.cs",
+      "sha256": "28f5c3ae52e326b41275acea587db9ed425ebccb14a2f8f2fd6d9d5dd15c4706"
+    },
+    {
+      "path": "backend/src/Gaode.Infrastructure/Devices/Plc/LatestProtocolPlcDevice.FailureEvidence.cs",
+      "sha256": "7afd72eda60e7a1a7f8f84edec7f2d2fed1d427cfff0dda42374ff6ad83dc517"
+    },
+    {
+      "path": "backend/src/Gaode.Infrastructure/Devices/Plc/LatestProtocolPlcDevice.Polling.cs",
+      "sha256": "fa0141121818f0a313afc60a42a8aa02f37e52de335014c3a402b5f50994886c"
+    },
+    {
+      "path": "backend/src/Gaode.Infrastructure/Devices/Plc/LatestProtocolPlcDevice.Semantics.cs",
+      "sha256": "4c1d28c6c12adbeb564d2101516e0a5c4ff140ca6a5e1300ac1029ff1cb4c87b"
+    },
+    {
+      "path": "backend/src/Gaode.Infrastructure/Devices/Plc/LatestProtocolPlcDevice.Stages.cs",
+      "sha256": "8fff68395048683d0ff07ccec4f6b1ead512208fa03f632acd8b5b11ad1186e3"
+    },
+    {
+      "path": "backend/src/Gaode.Infrastructure/Devices/Plc/LatestProtocolStageActionAdapter.cs",
+      "sha256": "8e69537ea8910844712c3592852a251c5a1432936dd704b3e92bc15c91432930"
+    },
+    {
+      "path": "backend/src/Gaode.Infrastructure/Devices/Plc/LatestProtocolStageActionAdapter.Transfer.cs",
+      "sha256": "c209ca1aea7870da2d832cc3739b39774d0980f4147f8572965e9f2271657a39"
+    },
+    {
+      "path": "backend/src/Gaode.Infrastructure/Devices/Plc/ModbusTcpClient.cs",
+      "sha256": "7ed8d4e01db23ccb87b667d93dc636e682ba9008b33cddd2b4f9e61f6b0850f9"
+    },
+    {
+      "path": "backend/src/Gaode.Infrastructure/Devices/Plc/PlcAcquisitionPolicy.cs",
+      "sha256": "51f721249e35f3a824e99a982d6d5eeafbf8d772a06df579f928fdd13e83cacf"
+    },
+    {
+      "path": "backend/src/Gaode.Infrastructure/Devices/Plc/PlcConnectionPump.cs",
+      "sha256": "9ecb36454613586f1a5bc1ff9dc38eb04555e1c930b8a700b38630a0e92e7802"
+    },
+    {
+      "path": "backend/src/Gaode.Infrastructure/Devices/Plc/PlcMechanicalConfiguration.cs",
+      "sha256": "86cd2e6d00275b8bcc2738bee6dbdf14cb500348b78bfd0b18db61880ed3c729"
+    },
+    {
+      "path": "backend/src/Gaode.Infrastructure/Devices/Plc/PlcPoseProgram.cs",
+      "sha256": "109519df2d153197747e408af7fc22212b8e1de203fb38bb688d00adfd6e03fe"
+    },
+    {
+      "path": "backend/src/Gaode.Infrastructure/Devices/Plc/PlcProtocolCodec.cs",
+      "sha256": "ace32b7acba44f7c3fdaf4f48b2374bfc4162c53093ce841a5801ed1acc66a67"
+    },
+    {
+      "path": "backend/src/Gaode.Infrastructure/Devices/Plc/PlcRuntimeOptions.cs",
+      "sha256": "2b92886b92eafe355ad741f879f8fcb5dacebe293a4e1ce6f3e3fffb7c6ade01"
+    },
+    {
+      "path": "backend/src/Gaode.Infrastructure/Devices/Plc/PlcSignalAccessor.cs",
+      "sha256": "000fa0459cd0f8b9320ef64b3b8a679fffbad2539183386061d2b271bb86070b"
+    },
+    {
+      "path": "backend/src/Gaode.Infrastructure/Devices/Plc/PreparedPlcReadPlans.cs",
+      "sha256": "825f255330ee1abc599fd80f7c69c4222fbce40bc8c8cf7be988c179af875ab2"
+    },
+    {
+      "path": "backend/src/Gaode.Infrastructure/Devices/Plc/ProtocolActionState.cs",
+      "sha256": "f8e9c3c211bc25eaa7f05943d8bee77d1b5cfdcccb34258641f078dcfaa05b38"
+    },
+    {
+      "path": "backend/src/Gaode.Infrastructure/Devices/Plc/ThreadPoolRuntimePolicy.cs",
+      "sha256": "507f63757407ad28a2bfb7e3554beaed6616cd1fcb1a2e81f37b04cda6bd20fc"
+    },
+    {
+      "path": "backend/src/Gaode.Infrastructure/Recipes/JsonRecipeCatalog.cs",
+      "sha256": "dc687e1c908bb0f712c547f9cd0f1977337d9273077a06ecb2511965e6410f3d"
+    },
+    {
+      "path": "backend/src/Gaode.Infrastructure/Recipes/RecipeCatalogFactory.cs",
+      "sha256": "1ac1c8c249aaa007b1740897c7abcdea796c8c39620477089787dbc4881d0995"
+    },
+    {
+      "path": "backend/src/Gaode.Infrastructure/Recipes/RecipeEnvironmentDecoder.cs",
+      "sha256": "cbb9c22a5801e064fdbba5d155f2c48c0dd0a36de07f2df9e6cc8d16a7a3c5ce"
+    },
+    {
+      "path": "backend/src/Gaode.Infrastructure/Recipes/RecipeStoreDbContext.cs",
+      "sha256": "cdacf1379952d8250010e12c2031b8d864840f35c0ace86eba67381ddd549990"
+    },
+    {
+      "path": "backend/src/Gaode.Infrastructure/Recipes/RecipeStoreOptions.cs",
+      "sha256": "f7e65a2316be6b8649e60470a3ecef06d4c61eb3f267f1197a7646d45962a04d"
+    },
+    {
+      "path": "backend/src/Gaode.Infrastructure/Recipes/RecipeStoreSchema.cs",
+      "sha256": "0b2f791519d2734b26172614aebf6a2dcd754a0e9e88ac072629c4450ac31327"
+    },
+    {
+      "path": "backend/src/Gaode.Infrastructure/Recipes/SemanticRecipeInputProvider.cs",
+      "sha256": "3c7a933a83a9935b6c51233ae285011576b21881f254ee71ea91846776030248"
+    },
+    {
+      "path": "backend/src/Gaode.Infrastructure/Recipes/SqliteRecipeStore.cs",
+      "sha256": "57c06ce13c45c4e7a40c1fa2b3d77510a3d626a839b7b585f5e7e7357ce43788"
+    },
+    {
+      "path": "backend/src/Gaode.Host/Api/CommittedResultProjection.cs",
+      "sha256": "47a378f6d1b17030f906332d77eca8fc58a356883d412722300cc320333b34ba"
+    },
+    {
+      "path": "backend/src/Gaode.Host/Api/CommunicationDiagnosticEndpoints.cs",
+      "sha256": "026f2962f11c89331638430fe45f1a8bb79cfdace87500daf237220f819ef8e3"
+    },
+    {
+      "path": "backend/src/Gaode.Host/Api/ConfigurationEndpoints.cs",
+      "sha256": "be7865f38945c7dcfb4102c3a6d90825e481d3a0fe01aeb72d1fb4b7f31650f2"
+    },
+    {
+      "path": "backend/src/Gaode.Host/Api/ControlEndpoints.cs",
+      "sha256": "b509e818e5683137b720e69afdfedac4658eb79ac4af96f4fc54a9829295673f"
+    },
+    {
+      "path": "backend/src/Gaode.Host/Api/DeviceSemanticProjection.cs",
+      "sha256": "53f5195860dd23e3f14c0c0d44bf01a46d0e1117f9e3ba909ecc8ff1e6856969"
+    },
+    {
+      "path": "backend/src/Gaode.Host/Api/MediaEndpoints.cs",
+      "sha256": "00dfdc67ae6e91fb29cbd3fe7b1729d4530b0b7a0002f10d7173bc07fe7ffddd"
+    },
+    {
+      "path": "backend/src/Gaode.Host/Api/QueryEndpoints.cs",
+      "sha256": "6f62e918c4222433e0a3b875706b0cdeca599d39956631042513ca2ce6ea6026"
+    },
+    {
+      "path": "backend/src/Gaode.Host/Api/RecipeEndpoints.Authoring.cs",
+      "sha256": "1f471b0882c83d284854bac164eb85ed193bcbaa411190ce77c9d03438676914"
+    },
+    {
+      "path": "backend/src/Gaode.Host/Api/RecipeEndpoints.cs",
+      "sha256": "106fc64babd1fe760615ec383b9960f83737748694ae97b48a6124068162b44e"
+    },
+    {
+      "path": "backend/src/Gaode.Host/Api/RunEndpoints.cs",
+      "sha256": "19b513d9bd8054cb1a610cf7217bc9b6ec543de34c73367863ee163195f60377"
+    },
+    {
+      "path": "backend/src/Gaode.Host/Api/RunMediaCatalog.cs",
+      "sha256": "b69ab0d6e852855896c0ffa92f77180ec3364039443997b2cfdabace7754ffbe"
+    },
+    {
+      "path": "backend/src/Gaode.Host/Api/Station01ApiContracts.cs",
+      "sha256": "53a7f994361bda5ea456bb76a47845a1283360e6e51a5d0af7e30e0ea60d5c49"
+    },
+    {
+      "path": "backend/src/Gaode.Host/Api/Station01Authorization.cs",
+      "sha256": "63b510a90485494dda0e1c97a136a1b668d7138a41a5df66489f18f65ed93d6d"
+    },
+    {
+      "path": "backend/src/Gaode.Host/Api/Station01ErrorMapping.cs",
+      "sha256": "1f08c826479d5e37646a1b26798db44b9301238f46a4d996fb76067ff80d9bfd"
+    },
+    {
+      "path": "backend/src/Gaode.Host/Api/Station01Hub.cs",
+      "sha256": "a011f220cacc36ff2e3eb6407370d51f0d4c498cb42d0ff2071444f6bea9c741"
+    },
+    {
+      "path": "backend/src/Gaode.Host/Api/Station01NotificationService.cs",
+      "sha256": "453c22ac3e28be259d3b2c37d8769698e6e71c974572f04e2856879779e40c3a"
+    },
+    {
+      "path": "backend/src/Gaode.Host/Api/TestAuthenticationHandler.cs",
+      "sha256": "85d59c1c8961745a0f60a225da80edddc7f6d04d50a1a63f5071d0a032f23a42"
+    },
+    {
+      "path": "frontend/src/recipe-authoring.js",
+      "sha256": "ad14a1a9ab3bf94f44f1790e521fd841278b73fc0209edc6e940ce3b0f71bcee"
+    },
+    {
+      "path": "frontend/src/runtime.js",
+      "sha256": "5638ce26e79dc3eb2fba853b6271bc52eeaf882e4ffa3700c4892490fec76aa1"
+    },
+    {
+      "path": "frontend/src/pages/a.html",
+      "sha256": "84a68088999be186fde1d5254fe88ab0772800940d0bb370614a58625fc16d3c"
+    },
+    {
+      "path": ".specify/feature.json",
+      "sha256": "98fa0363d64b9041dc6a24a0f26141a97e5d31afe194244c35bb6aa021d1ac2d"
+    },
+    {
+      "path": "specs/013-plc-polling-optimization/spec.md",
+      "sha256": "6f19e8ca96c7bee9cfe365e78036bb971f1690d8b4f5d68febe44822422b0ca6"
+    },
+    {
+      "path": "specs/013-plc-polling-optimization/plan.md",
+      "sha256": "9cd8dc463eb1891006faf4d4d692027d5b6abff18b569654affeeec964b7c116"
+    },
+    {
+      "path": "specs/013-plc-polling-optimization/tasks.md",
+      "sha256": "fc4d0937ec8a477a289f81354f9d40825c89cb43bb7286a5e820bec01020ad42"
+    },
+    {
+      "path": "specs/013-plc-polling-optimization/contracts/verification.md",
+      "sha256": "81faaf19c09d40c39c5597f3271804ba7040dfd800e397393caf5b4772643099"
+    },
+    {
+      "path": "specs/001-station01-public-preparation/tasks.md",
+      "sha256": "2f3b5977fb8c6826b6af46bcaeb1e7307150efb74efa922e11eb4f6309ed273d",
+      "preserveTaskFile": true
+    },
+    {
+      "path": "specs/002-plc-xyz-recipes/tasks.md",
+      "sha256": "462fe1ea9f39a8c35926698342e2785b2d3495046955369002b07f62c5346f5c",
+      "preserveTaskFile": true
+    },
+    {
+      "path": "specs/003-plc-latest-protocol/tasks.md",
+      "sha256": "699d83cce4034ebdaa3785a90d9581e67db8b71b811ee873fcf5af6fbbb96d93",
+      "preserveTaskFile": true
+    },
+    {
+      "path": "specs/006-frontend-station01-console/tasks.md",
+      "sha256": "efe2d0682c90ea768751bf483fb122b5a14d8fde75f9e2dd32c07179411508a2",
+      "preserveTaskFile": true
+    },
+    {
+      "path": "specs/007-station01-integrated-loop/tasks.md",
+      "sha256": "f231a7befd1b39b0ed95f48eba426e1de9b9337f065b8849173b36b743c892ba",
+      "preserveTaskFile": true
+    },
+    {
+      "path": "specs/008-recipe-driven-inspection/tasks.md",
+      "sha256": "d543b31bba738ac36baf5f521ea99f5b41e0e72b418b36d11fbea43294dfdf72",
+      "preserveTaskFile": true
+    },
+    {
+      "path": "specs/009-plc-protocol-isolation/tasks.md",
+      "sha256": "67c23d17239c5ab5c5d007d7dfa0ece9eaa17075f2997dd5051c3b2788b4a366",
+      "preserveTaskFile": true
+    },
+    {
+      "path": "specs/010-recipe-execution-isolation/tasks.md",
+      "sha256": "effb2b2b0fbc66acc716312fe0dee688f3060c973e5b732ced116c5992427984",
+      "preserveTaskFile": true
+    },
+    {
+      "path": "specs/011-plc-interaction-update/tasks.md",
+      "sha256": "76397358802c8d8e005fff3950e4b8a4a7f83cdbcb420a1d13909b3dde5f68d4",
+      "preserveTaskFile": true
+    },
+    {
+      "path": "specs/012-recipe-authoring/tasks.md",
+      "sha256": "4a879d349a6bb0a0026b8c3ed0c28206471591c9a400c237cfe234e4822a2e00",
+      "preserveTaskFile": true
+    },
+    {
+      "path": "specs/013-plc-polling-optimization/tasks.md",
+      "sha256": "fc4d0937ec8a477a289f81354f9d40825c89cb43bb7286a5e820bec01020ad42",
+      "preserveTaskFile": true
+    },
+    {
+      "path": "backend/tests/Gaode.Contracts.Tests/Recipes/CommittedRecipePlanReaderTests.cs",
+      "sha256": "4d656af1ef7e17fd42e51b694b33f637e75f70d0b1a2379abb6dc6b3e0693784"
+    },
+    {
+      "path": "backend/tests/Gaode.Contracts.Tests/Recipes/RecipeBindingSaveProtectionTests.cs",
+      "sha256": "e6916fcd290e71d29cd018505948e086777913ff194b8dbcac463e75a1faa5c7"
+    },
+    {
+      "path": "backend/tests/Gaode.Contracts.Tests/Recipes/RecipeCatalogTests.cs",
+      "sha256": "892f6f950998662e1e7c3a8752e8f613432ce3d95527c04f09eeb28a0e551d2d"
+    },
+    {
+      "path": "backend/tests/Gaode.Contracts.Tests/Recipes/RecipeCommonFoundationTests.cs",
+      "sha256": "5cae99a6d47faa73e4577618401fcfa6e4204bca6b1be58a0e49d39a158405e4"
+    },
+    {
+      "path": "backend/tests/Gaode.Contracts.Tests/Recipes/RecipeDefinitionSerializationTests.cs",
+      "sha256": "4a06d2ffd5c03752850e101b22da1e7ab04dc50ab482423c3ceb09da6a2c61c1"
+    },
+    {
+      "path": "backend/tests/Gaode.Contracts.Tests/Recipes/RecipeEnvironmentDecoderTests.cs",
+      "sha256": "c8aa3d8216ed19cd6898a1d8740232fa581fa194a3ffc43f6b16fe02d7f1ec93"
+    },
+    {
+      "path": "backend/tests/Gaode.Contracts.Tests/Recipes/RecipeExecutionCoordinatorTests.cs",
+      "sha256": "1b6cc0686a885492245dff6d01d3595c3121a75ac4387ccc2674b78e64bee5fb"
+    },
+    {
+      "path": "backend/tests/Gaode.Contracts.Tests/Recipes/RecipeRunPlannerTests.cs",
+      "sha256": "6bed0cdcd786b7763913d72feefac6dde9e717b87b947631a3540a423bffaede"
+    },
+    {
+      "path": "backend/tests/Gaode.Contracts.Tests/Recipes/SemanticRecipeInputProviderTests.cs",
+      "sha256": "ce24847a95e805afb1d083cd2c9f6acbfc41311a3780fe334055ac7c9a7feab2"
+    },
+    {
+      "path": "backend/tests/Gaode.Contracts.Tests/Station01/RecipeApplicationContractTests.cs",
+      "sha256": "dc73e2adce00b3e8951b68296ef5407448d5d7dfc35f8ef29b139d81fc9eedb9"
+    },
+    {
+      "path": "backend/tests/Gaode.Contracts.Tests/Station01/ThreeDAndFRecipeGateTests.cs",
+      "sha256": "27bbb8c9c3f0b4d1d982dcbb5663d6f1b85ae64f82ed453094c8cdb50fae9893"
+    },
+    {
+      "path": "backend/tests/Gaode.Contracts.Tests/Workflow/RecipeSortingMapperTests.cs",
+      "sha256": "f137a264b594a41f954726554e90948ae350f3976924351edca834667148e521"
+    },
+    {
+      "path": "backend/tests/Gaode.Integration.Tests/Station01/ExpectedRecipeMismatchTests.cs",
+      "sha256": "d85574f23aa86b099da06e3a83dd1caedb5512d1a4246a77b98ba4fccf0a53fc"
+    },
+    {
+      "path": "backend/tests/Gaode.Integration.Tests/Station01/RecipeApplicationDeadlineTests.cs",
+      "sha256": "c40a2e05dcedc51376d2d395f34f9aa05e446067aedf531caa98fc55cc9140c5"
+    },
+    {
+      "path": "backend/tests/Gaode.Integration.Tests/Station01/RecipeAuthoringBindingTests.cs",
+      "sha256": "ca25d672a1e1212c7fb0800e5044a894e667c58c645aa0921d16170a0cbc1d7e"
+    },
+    {
+      "path": "backend/tests/Gaode.Integration.Tests/Station01/RecipeMultiObjectIntegrationTests.cs",
+      "sha256": "bc3352615eda71bd5640ca35048868d55de442de1c9a1ac4680455bd9e22dde8"
+    },
+    {
+      "path": "backend/tests/Gaode.Integration.Tests/Station01/VirtualRecipeAndDetectionGateTests.cs",
+      "sha256": "405bf44d0f336e0dcce2b0988e1ba233b7d599e5051f282dfcb35774a868eeea"
+    },
+    {
+      "path": "backend/tests/Gaode.Integration.Tests/Storage/RecipeApplicationReceiptTests.cs",
+      "sha256": "95d24762529fc0aa9d3500457df9de3937e86af6bc8927e20be120ea62e24b49"
+    },
+    {
+      "path": "backend/tests/Gaode.Integration.Tests/Storage/RecipeAuthoringCreateTests.cs",
+      "sha256": "24da8ca1a84553e93347f1ce8eab5eb9b40096d61f60a7e852f1405d1e2db76a"
+    },
+    {
+      "path": "backend/tests/Gaode.Integration.Tests/Storage/RecipeAuthoringUpdateTests.cs",
+      "sha256": "98fc83b86780efea357bfc4f3617c21f4292414e51862525ff95708b01cc347d"
+    },
+    {
+      "path": "backend/tests/Gaode.Integration.Tests/Storage/RecipeCaptureAdapterTests.cs",
+      "sha256": "599f2d106b80483a4b358fbe6f3bf42126d74c6c8c77f87bb472858844376d0d"
+    },
+    {
+      "path": "backend/tests/Gaode.Integration.Tests/Storage/RecipePerCaptureTests.cs",
+      "sha256": "55fcfd0c91df51326ecd5c136ad81fad1350f9c1e51f3cd1dd034dcd38ac1227"
+    },
+    {
+      "path": "backend/tests/Gaode.Rules.Tests/Architecture/RecipeExecutionBoundaryTests.cs",
+      "sha256": "c703330800da538f294612fefb2559ceb3bf0784275dbc392af89ed742823568"
+    },
+    {
+      "path": "backend/tests/Gaode.Rules.Tests/Configuration/RecipeApplicationPolicyTests.cs",
+      "sha256": "c923146623894e31ac1be3f17c52ba980bda055347065b2cdaeb98e914264f01"
+    },
+    {
+      "path": "frontend/tests/us1/recipe-authoring.test.ts",
+      "sha256": "1dbdd89ff39db66e289db5c9dd7135d8e4182201c2601df50772c103f19cbcc9"
+    },
+    {
+      "path": "specs/012-recipe-authoring/previews/dui-02-group-navigation.html",
+      "sha256": "1c29c1c77c259af28024f5392f9447e51c4371319e1011e4da14de77f2d74c9d"
+    },
+    {
+      "path": "specs/012-recipe-authoring/previews/dui-03-assembly-navigation.html",
+      "sha256": "8dd6ef2fda6bb4a3ec8c2473ea5683f02ad290f8fbaeac7fa9716fa5dab308c6"
+    },
+    {
+      "path": "specs/014-special-part-rotation/plan-design-receipt-20261005.json",
+      "sha256": "97604b8124bb7247be0732380a761fbd689a838c71ff45ef86c634563911678f"
+    },
+    {
+      "path": ".specify/memory/constitution.md",
+      "sha256": "ed0357438285c16d7fcbcdaf5db51092eb6d31519bfe8f0a477b0bfbbef4b575"
+    },
+    {
+      "path": ".specify/scripts/powershell/check-prerequisites.ps1",
+      "sha256": "ef7fe740091441e5aeadccb8dc36b08d840f524513d79e2fcf258133ee6568b4"
+    }
+  ],
+  "architecture012OriginalMarkers": [
+    [
+      " ",
+      "CHK001"
+    ],
+    [
+      " ",
+      "CHK002"
+    ],
+    [
+      " ",
+      "CHK003"
+    ],
+    [
+      " ",
+      "CHK004"
+    ],
+    [
+      " ",
+      "CHK005"
+    ],
+    [
+      " ",
+      "CHK006"
+    ],
+    [
+      " ",
+      "CHK007"
+    ],
+    [
+      " ",
+      "CHK008"
+    ],
+    [
+      " ",
+      "CHK009"
+    ],
+    [
+      " ",
+      "CHK010"
+    ],
+    [
+      " ",
+      "CHK011"
+    ],
+    [
+      " ",
+      "CHK012"
+    ],
+    [
+      " ",
+      "CHK013"
+    ],
+    [
+      " ",
+      "CHK014"
+    ],
+    [
+      " ",
+      "CHK015"
+    ],
+    [
+      " ",
+      "CHK016"
+    ],
+    [
+      " ",
+      "CHK017"
+    ],
+    [
+      " ",
+      "CHK018"
+    ],
+    [
+      " ",
+      "CHK019"
+    ],
+    [
+      " ",
+      "CHK020"
+    ],
+    [
+      " ",
+      "CHK021"
+    ],
+    [
+      " ",
+      "CHK022"
+    ],
+    [
+      " ",
+      "CHK023"
+    ],
+    [
+      " ",
+      "CHK024"
+    ],
+    [
+      " ",
+      "CHK025"
+    ],
+    [
+      " ",
+      "CHK026"
+    ],
+    [
+      " ",
+      "CHK027"
+    ],
+    [
+      " ",
+      "CHK028"
+    ]
+  ],
+  "setupVerified": true,
+  "hooks": "before_checklist/after_checklist empty; skipped",
+  "questions": "not needed: scope, standard depth, reviewer and exclusions explicitly supplied",
+  "architecture012PrefixPreserved": true,
+  "architecture012AppendedRange": "CHK029-CHK042",
+  "actualFileCount": 18,
+  "finalReview": {
+    "kind": "StaticDocumentConsistencyOnly",
+    "checks": {
+      "currentWrite4Only": true,
+      "historicalRead2And3Preserved": true,
+      "explicitTypeAndSourceRelation": true,
+      "partialDraftAndSourceBridge": true,
+      "stageSpecificEditing": true,
+      "twoActualOKOriginsAndRepeatMandatory": true,
+      "gatesRemain": true,
+      "original012PrefixPreserved": true,
+      "no014Tasks": true,
+      "previewAnd013Unchanged": true
+    },
+    "checklists": {
+      "014": {
+        "newCount": 22,
+        "totalCount": 22,
+        "newChecked": 0,
+        "traceabilityCount": 22
+      },
+      "012": {
+        "newCount": 14,
+        "totalCount": 42,
+        "newChecked": 0,
+        "traceabilityCount": 14
+      }
+    },
+    "protectedEntryCount": 129,
+    "findings": [],
+    "linkFindings": [],
+    "sourceOriginals": [
+      {
+        "path": "E:/dzk/gaode-1/高德_文档/new-1/PLC与上位机通信接口协议.docx",
+        "sha256": "0f8e404b0c8a1ca955a96adb6a712cbed7afcefe72af6ad11172f9ba8fa15547",
+        "unchanged": true
+      },
+      {
+        "path": "E:/dzk/gaode-1/高德_文档/new-1/上下位机通讯交互信号表.xlsx",
+        "sha256": "1c3d267ae04b85391fbb13a7096f3b7d2d49e8b10e8364f7476e94d45e86641d",
+        "unchanged": true
+      },
+      {
+        "path": "C:/Users/codexsandboxonline.10_3_0_13/.codex/visualizations/2026/10/05/01a109ca-eecf-74c2-9bfc-0335d8594c5f/recipe-layout-10x10-review.html",
+        "sha256": "5ce8fa6bfeb73561860d2a40119e3d21f065e20e8ba43c934ec291cc8466c2a3",
+        "unchanged": true
+      }
+    ],
+    "softwareExecuted": false,
+    "noBuildNoTestsNoDeviceNoDatabase": true,
+    "DUI02DUI03": "AwaitingUserApproval",
+    "knownDesignIssues": "I01-I05 closed at document level"
+  },
+  "documentAuditHistory": [
+    {
+      "finding": [
+        {
+          "kind": "design consistency item false",
+          "item": "partialDraftAndSourceBridge"
+        }
+      ],
+      "classification": "Initial literal phrase check expected 不是第二保存版本; existing API-L01a explicitly states 不形成第二保存版本规则 and only ETag ExpectedVersion. No requirement changed, no software test executed.",
+      "resolution": "Read exact API-L01a source/ExpectedVersion paragraph and evaluate the written criterion against its actual wording."
+    }
+  ]
+}

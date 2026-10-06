@@ -1,0 +1,156 @@
+{
+  "schemaVersion": "1.0",
+  "id": "s01-public-virtual",
+  "version": "1.0.0",
+  "purpose": "Test",
+  "source": "VirtualPlcIntegration-20260921",
+  "bindings": [
+    {
+      "id": "sim-plc",
+      "provider": "Virtual",
+      "role": "PLC"
+    },
+    {
+      "id": "sim-3d",
+      "provider": "Simulated",
+      "role": "Camera3D"
+    },
+    {
+      "id": "sim-f",
+      "provider": "Simulated",
+      "role": "CameraF"
+    },
+    {
+      "id": "sim-light-3d",
+      "provider": "Simulated",
+      "role": "Light3D"
+    },
+    {
+      "id": "sim-light-f",
+      "provider": "Simulated",
+      "role": "LightF"
+    },
+    {
+      "id": "sim-height",
+      "provider": "Simulated",
+      "role": "HeightAlgorithm"
+    },
+    {
+      "id": "sim-decode",
+      "provider": "Simulated",
+      "role": "FDecode"
+    }
+  ],
+  "motion": {
+    "capability": {
+      "id": "xyz.fixed",
+      "contractVersion": "1.0"
+    },
+    "axes": [
+      "X",
+      "Y",
+      "Z"
+    ],
+    "frame": "SIM_MACHINE",
+    "unit": "mm",
+    "limits": {
+      "xMin": 0,
+      "xMax": 500,
+      "yMin": 0,
+      "yMax": 500,
+      "zMin": 0,
+      "zMax": 500
+    },
+    "points": {
+      "threeD": {
+        "id": "sim-3d-xy",
+        "version": "1.0.0",
+        "x": 100,
+        "y": 100,
+        "unit": "mm",
+        "frame": "SIM_MACHINE",
+        "z": 150
+      },
+      "f": {
+        "id": "sim-f-xy",
+        "version": "1.0.0",
+        "x": 200,
+        "y": 100,
+        "unit": "mm",
+        "frame": "SIM_MACHINE",
+        "z": 90
+      }
+    },
+    "positionTolerance": 0.001,
+    "coordinateDigest": "virtual-coordinates-1",
+    "coordinateSource": "VirtualFixed"
+  },
+  "capture3d": {
+    "capability": {
+      "id": "capture.whole-tray",
+      "contractVersion": "1.0"
+    },
+    "bindingId": "sim-3d",
+    "lightBindingId": "sim-light-3d",
+    "scope": {
+      "id": "sim-whole-tray",
+      "version": "1.0.0",
+      "kind": "WholeTray",
+      "unit": "mm",
+      "frame": "SIM_TRAY",
+      "bounds": {
+        "xMin": 0,
+        "xMax": 200,
+        "yMin": 0,
+        "yMax": 150
+      }
+    },
+    "parameters": {
+      "exposureUs": 1000,
+      "lightLevel": 40
+    },
+    "maxCaptureBytes": 16777216
+  },
+  "captureF": {
+    "capability": {
+      "id": "capture.single-frame",
+      "contractVersion": "1.0"
+    },
+    "bindingId": "sim-f",
+    "lightBindingId": "sim-light-f",
+    "frameCount": 1,
+    "automaticRetry": false,
+    "parameters": {
+      "exposureUs": 500,
+      "lightLevel": 30
+    },
+    "maxCaptureBytes": 4194304
+  },
+  "algorithms": {
+    "height": {
+      "capability": {
+        "id": "height.values",
+        "contractVersion": "1.0"
+      },
+      "bindingId": "sim-height",
+      "parametersVersion": "fixture-1"
+    },
+    "fDecode": {
+      "capability": {
+        "id": "code.raw-candidates",
+        "contractVersion": "1.0"
+      },
+      "bindingId": "sim-decode",
+      "parametersVersion": "fixture-1"
+    }
+  },
+  "parser": {
+    "capability": {
+      "id": "code.test-tray-format",
+      "contractVersion": "1.0"
+    },
+    "parametersVersion": "fixture-1"
+  },
+  "stopAfter": "PublicHandoff",
+  "qualityState": "NotEvaluated"
+}

@@ -1,0 +1,1 @@
+export function errorViewModel(error: any) { return { code: error?.code ?? 'Unknown', message: error?.message ?? '当前状态受限', traceId: error?.traceId ?? '', retryable: error?.retryable === true, httpStatus: error?.httpStatus }; }

@@ -1,0 +1,46 @@
+{
+  "schemaVersion": "plc-mechanics/1",
+  "purpose": "Test",
+  "sourceReference": "011 joint controlled VirtualPlc input; no ASCII/site approval",
+  "posePrograms": [
+    {
+      "model": "011-TestModel",
+      "profileId": "011-motion",
+      "profileVersion": "011-Test-1",
+      "poseKey": "face-two",
+      "targetFaceWord": 23,
+      "modelWords": [
+        101,
+        102,
+        103,
+        104,
+        105,
+        106,
+        107,
+        108,
+        109,
+        110,
+        111,
+        112,
+        113,
+        114,
+        115,
+        116
+      ],
+      "sourceReference": "011 explicit arbitrary Test wire payload, not ASCII",
+      "purpose": "Test"
+    }
+  ],
+  "sortingSafePosition": {
+    "grabZ": 150,
+    "unit": "mm",
+    "frame": "SIM_MACHINE",
+    "purpose": "Test",
+    "sourceReference": "011 explicit Test grab clearance"
+  },
+  "rotationBasis": {
+    "angleToleranceDeg": 0.01,
+    "purpose": "Test",
+    "sourceReference": "014 explicit VirtualPlc R-input/tolerance; not calibrated production value"
+  }
+}

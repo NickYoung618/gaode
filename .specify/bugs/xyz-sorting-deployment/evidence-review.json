@@ -1,0 +1,370 @@
+{
+  "scope": "Existing formal run using shipped backend/PLC binaries; NOT the user local run",
+  "runId": "6333b690-ca2f-4d10-83bf-bce13b8db8fd",
+  "source": "E:\\dzk\\gaode-1\\artifacts\\recipe-execution-008\\t065-formal-q01-20260927T050046932Z\\Q01\\page-api-device-facts.json",
+  "sourceSha256": "f8a31f69685d1e120e7745e07a9a70eee30db378aa07000a8f392aefac8abb0d",
+  "protocolSha256": "405ac9ee2ae2d765951d9f523dc7195cc77f6cd1f38dbc0ad144a0013586c519",
+  "protocolExcerpts": [
+    "为防止PLC程序异常导致误报就绪，上位机在下发命令前需双重校验PLC的XYZ轴是否处于安全位置（通过 Machine_Current_Pos_X/Y/Z 判断）。",
+    "Camera_Target_Y",
+    "Machine_Current_Pos_Y",
+    "Sorting_Cmd",
+    "0=空闲；1=执行中；2=取料成功；3=分拣成功（放料完成）；4=抓取空/失败（锁停）；5=满盘。",
+    "动作含义：料盘是单面承载装置，本身不翻转。产品检测与翻面指令中的XYZ分别对应当前零件的检测位置或翻面位置；“去翻转工位”是动作类型标识。PLC通过抓手完成零件翻面的内部机械闭环，上位机下发当前零件的位置和目标面，并核验完成反馈。",
+    "① 对本阶段仍需检测下一面的零件，上位机将其翻面位置XYZ写入4x0003/4x0005/4x000B，再下发XY_Move_Cmd=3。",
+    "② PLC到位后置XY_Pos_Confirmed=1，并通过4x000D/4x000F/4x0011反馈实际XYZ。上位机确认本次到位反馈有效且实际坐标与目标一致后，将XY_Move_Cmd清为0。",
+    "⑦ 当前阶段全部应翻零件完成后，保留同一料盘、零件身份及历史检测结果，按下一检测面的有效目标XYZ进入检测循环。翻面后不重新采集3D，不以再次3D采集作为进入下一面的条件。仍须校验当前面号、该面目标坐标及本次运动到位反馈，不得将上一面的检测点直接当作当前面的检测点。",
+    "② 上位机将下料位XYZ写入4x0003/4x0005/4x000B，再下发XY_Move_Cmd=4。PLC到位后置XY_Pos_Confirmed=1，并反馈4x000D/4x000F/4x0011的实际XYZ；上位机核验本次到位及实际坐标一致后，将XY_Move_Cmd清为0。",
+    "③ 对当前待分拣零件，上位机从坐标库取得取料点及本盘NG或待判定穴位的放料点。先将取料点XYZ写入4x0003/4x0005/4x000B，再下发Sorting_Cmd=1执行取料。Sorting_Part_Index按下一步规定的时机提交。",
+    "④ PLC到位并取料成功后置Sorting_Exec_Status=2。上位机先将Sorting_Cmd清为0，再提交Sorting_Part_Index（当前分拣零件槽位号）及放料点XYZ至4x0003/4x0005/4x000B，随后下发Sorting_Cmd=2执行放料。",
+    "⑤ PLC放料成功后置Sorting_Exec_Status=3。上位机将Sorting_Cmd清为0，并置Sorting_OK=1；PLC收到后将Sorting_Exec_Status清为0；上位机确认该状态为0后，再将Sorting_OK清为0，记录本次分拣完成。取料成功状态2不得作为整个分拣完成。",
+    "示教功能包含抓取区（1-15号）、NG区（1-5号）及待定放料点的具体ID号及XYZ坐标（详见2.5节）。",
+    "按§3.1.6在同一料盘内执行一次NG或待判定分拣，核对取料坐标、取料成功反馈、随后提交的槽位号与放料坐标。",
+    "取料完成后再提交Sorting_Part_Index；状态2仅为取料成功，状态3及Sorting_OK确认/清零闭环成立后记录分拣完成，目标穴位属于当前料盘。",
+    "对料盘内一个零件执行翻面，随后下发其当前检测面的目标XYZ，并核对实际到位坐标。",
+    "料盘不翻面；上位机使用当前检测面的有效目标XYZ，实际到位及坐标校验通过后才允许拍照，翻面后不触发3D重新采集。"
+  ],
+  "moves": [
+    {
+      "actionSequence": 3,
+      "command": 2,
+      "axis": "DetectionZ",
+      "target": {
+        "x": 100,
+        "y": 100,
+        "z": 150
+      },
+      "actual": {
+        "x": 100,
+        "y": 100,
+        "z": 150
+      },
+      "floatWrites": {
+        "4x0003": 100.0,
+        "4x0005": 100.0,
+        "4x0007": 150.0
+      },
+      "receipts": [
+        {
+          "sequence": 38,
+          "connectionId": "e70274a7-563f-4650-af51-b38ae6650fce",
+          "transactionId": 1488,
+          "requestHex": "05D00000000F0110000200040842C8000042C80000",
+          "responseHex": "05D000000006011000020004",
+          "accepted": true,
+          "documentNumber": 3,
+          "count": 4
+        },
+        {
+          "sequence": 39,
+          "connectionId": "e70274a7-563f-4650-af51-b38ae6650fce",
+          "transactionId": 1488,
+          "requestHex": "05D00000000F0110000200040842C8000042C80000",
+          "responseHex": "05D000000006011000020004",
+          "accepted": true,
+          "documentNumber": 5,
+          "count": 4
+        },
+        {
+          "sequence": 40,
+          "connectionId": "e70274a7-563f-4650-af51-b38ae6650fce",
+          "transactionId": 1489,
+          "requestHex": "05D10000000B0110000600020443160000",
+          "responseHex": "05D100000006011000060002",
+          "accepted": true,
+          "documentNumber": 7,
+          "count": 2
+        },
+        {
+          "sequence": 41,
+          "connectionId": "e70274a7-563f-4650-af51-b38ae6650fce",
+          "transactionId": 1490,
+          "requestHex": "05D200000006010600000002",
+          "responseHex": "05D200000006010600000002",
+          "accepted": true,
+          "documentNumber": 1,
+          "count": 1
+        }
+      ]
+    },
+    {
+      "actionSequence": 5,
+      "command": 5,
+      "axis": "ScanZ",
+      "target": {
+        "x": 200,
+        "y": 100,
+        "z": 90
+      },
+      "actual": {
+        "x": 200,
+        "y": 100,
+        "z": 90
+      },
+      "floatWrites": {
+        "4x0003": 200.0,
+        "4x0005": 100.0,
+        "4x0009": 90.0
+      },
+      "receipts": [
+        {
+          "sequence": 65,
+          "connectionId": "e70274a7-563f-4650-af51-b38ae6650fce",
+          "transactionId": 2648,
+          "requestHex": "0A580000000F011000020004084348000042C80000",
+          "responseHex": "0A5800000006011000020004",
+          "accepted": true,
+          "documentNumber": 3,
+          "count": 4
+        },
+        {
+          "sequence": 66,
+          "connectionId": "e70274a7-563f-4650-af51-b38ae6650fce",
+          "transactionId": 2648,
+          "requestHex": "0A580000000F011000020004084348000042C80000",
+          "responseHex": "0A5800000006011000020004",
+          "accepted": true,
+          "documentNumber": 5,
+          "count": 4
+        },
+        {
+          "sequence": 67,
+          "connectionId": "e70274a7-563f-4650-af51-b38ae6650fce",
+          "transactionId": 2649,
+          "requestHex": "0A590000000B0110000800020442B40000",
+          "responseHex": "0A5900000006011000080002",
+          "accepted": true,
+          "documentNumber": 9,
+          "count": 2
+        },
+        {
+          "sequence": 68,
+          "connectionId": "e70274a7-563f-4650-af51-b38ae6650fce",
+          "transactionId": 2650,
+          "requestHex": "0A5A00000006010600000005",
+          "responseHex": "0A5A00000006010600000005",
+          "accepted": true,
+          "documentNumber": 1,
+          "count": 1
+        }
+      ]
+    },
+    {
+      "actionSequence": 7,
+      "command": 2,
+      "axis": "DetectionZ",
+      "target": {
+        "x": 100,
+        "y": 100,
+        "z": 110.13
+      },
+      "actual": {
+        "x": 100,
+        "y": 100,
+        "z": 110.13
+      },
+      "floatWrites": {
+        "4x0003": 100.0,
+        "4x0005": 100.0,
+        "4x0007": 110.12999725341797
+      },
+      "receipts": [
+        {
+          "sequence": 94,
+          "connectionId": "e70274a7-563f-4650-af51-b38ae6650fce",
+          "transactionId": 3845,
+          "requestHex": "0F050000000F0110000200040842C8000042C80000",
+          "responseHex": "0F0500000006011000020004",
+          "accepted": true,
+          "documentNumber": 3,
+          "count": 4
+        },
+        {
+          "sequence": 95,
+          "connectionId": "e70274a7-563f-4650-af51-b38ae6650fce",
+          "transactionId": 3845,
+          "requestHex": "0F050000000F0110000200040842C8000042C80000",
+          "responseHex": "0F0500000006011000020004",
+          "accepted": true,
+          "documentNumber": 5,
+          "count": 4
+        },
+        {
+          "sequence": 96,
+          "connectionId": "e70274a7-563f-4650-af51-b38ae6650fce",
+          "transactionId": 3846,
+          "requestHex": "0F060000000B0110000600020442DC428F",
+          "responseHex": "0F0600000006011000060002",
+          "accepted": true,
+          "documentNumber": 7,
+          "count": 2
+        },
+        {
+          "sequence": 97,
+          "connectionId": "e70274a7-563f-4650-af51-b38ae6650fce",
+          "transactionId": 3847,
+          "requestHex": "0F0700000006010600000002",
+          "responseHex": "0F0700000006010600000002",
+          "accepted": true,
+          "documentNumber": 1,
+          "count": 1
+        }
+      ]
+    },
+    {
+      "actionSequence": 9,
+      "command": 2,
+      "axis": "DetectionZ",
+      "target": {
+        "x": 110,
+        "y": 100,
+        "z": 110.13
+      },
+      "actual": {
+        "x": 110,
+        "y": 100,
+        "z": 110.13
+      },
+      "floatWrites": {
+        "4x0003": 110.0,
+        "4x0005": 100.0,
+        "4x0007": 110.12999725341797
+      },
+      "receipts": [
+        {
+          "sequence": 121,
+          "connectionId": "e70274a7-563f-4650-af51-b38ae6650fce",
+          "transactionId": 4980,
+          "requestHex": "13740000000F0110000200040842DC000042C80000",
+          "responseHex": "137400000006011000020004",
+          "accepted": true,
+          "documentNumber": 3,
+          "count": 4
+        },
+        {
+          "sequence": 122,
+          "connectionId": "e70274a7-563f-4650-af51-b38ae6650fce",
+          "transactionId": 4980,
+          "requestHex": "13740000000F0110000200040842DC000042C80000",
+          "responseHex": "137400000006011000020004",
+          "accepted": true,
+          "documentNumber": 5,
+          "count": 4
+        },
+        {
+          "sequence": 123,
+          "connectionId": "e70274a7-563f-4650-af51-b38ae6650fce",
+          "transactionId": 4981,
+          "requestHex": "13750000000B0110000600020442DC428F",
+          "responseHex": "137500000006011000060002",
+          "accepted": true,
+          "documentNumber": 7,
+          "count": 2
+        },
+        {
+          "sequence": 124,
+          "connectionId": "e70274a7-563f-4650-af51-b38ae6650fce",
+          "transactionId": 4982,
+          "requestHex": "137600000006010600000002",
+          "responseHex": "137600000006010600000002",
+          "accepted": true,
+          "documentNumber": 1,
+          "count": 1
+        }
+      ]
+    },
+    {
+      "actionSequence": 11,
+      "command": 4,
+      "axis": "GrabZ",
+      "target": {
+        "x": 300,
+        "y": 100,
+        "z": 150
+      },
+      "actual": {
+        "x": 300,
+        "y": 100,
+        "z": 150
+      },
+      "floatWrites": {
+        "4x0003": 300.0,
+        "4x0005": 100.0,
+        "4x000B": 150.0
+      },
+      "receipts": [
+        {
+          "sequence": 157,
+          "connectionId": "e70274a7-563f-4650-af51-b38ae6650fce",
+          "transactionId": 6707,
+          "requestHex": "1A330000000B0110000200020443960000",
+          "responseHex": "1A3300000006011000020002",
+          "accepted": true,
+          "documentNumber": 3,
+          "count": 2
+        },
+        {
+          "sequence": 158,
+          "connectionId": "e70274a7-563f-4650-af51-b38ae6650fce",
+          "transactionId": 6708,
+          "requestHex": "1A340000000B0110000400020442C80000",
+          "responseHex": "1A3400000006011000040002",
+          "accepted": true,
+          "documentNumber": 5,
+          "count": 2
+        },
+        {
+          "sequence": 159,
+          "connectionId": "e70274a7-563f-4650-af51-b38ae6650fce",
+          "transactionId": 6709,
+          "requestHex": "1A350000000B0110000A00020443160000",
+          "responseHex": "1A35000000060110000A0002",
+          "accepted": true,
+          "documentNumber": 11,
+          "count": 2
+        },
+        {
+          "sequence": 160,
+          "connectionId": "e70274a7-563f-4650-af51-b38ae6650fce",
+          "transactionId": 6710,
+          "requestHex": "1A3600000006010600000004",
+          "responseHex": "1A3600000006010600000004",
+          "accepted": true,
+          "documentNumber": 1,
+          "count": 1
+        }
+      ]
+    }
+  ],
+  "auditGap": false,
+  "actionGap": false,
+  "changeDirections": [
+    0,
+    1
+  ],
+  "dashboardRequiresStringDirection": true,
+  "packageCases": {
+    "Q01": "specs/008-recipe-driven-inspection/fixtures/fixture.json",
+    "Q02": "specs/008-recipe-driven-inspection/fixtures/fixture-q02.json",
+    "Q03": "specs/008-recipe-driven-inspection/fixtures/fixture-q03.json",
+    "Q04": "specs/008-recipe-driven-inspection/fixtures/usr-e-1.0.2/fixture-q04.json",
+    "Q05": "specs/008-recipe-driven-inspection/fixtures/usr-e-1.0.2/fixture-q05.json",
+    "Q06": "specs/008-recipe-driven-inspection/fixtures/usr-e-1.0.2/fixture-q06.json",
+    "Q08": "specs/008-recipe-driven-inspection/fixtures/usr-e-1.0.2/fixture-q08.json",
+    "Q09": "specs/008-recipe-driven-inspection/fixtures/usr-e-1.0.2/fixture-q09.json",
+    "Q11": "specs/008-recipe-driven-inspection/fixtures/usr-e-1.0.2/fixture-q11.json",
+    "Q14": "specs/008-recipe-driven-inspection/fixtures/usr-e-1.0.2/fixture-q14.json",
+    "Q15": "specs/008-recipe-driven-inspection/fixtures/usr-e-1.0.2/fixture-q15.json",
+    "Q18": "specs/008-recipe-driven-inspection/fixtures/usr-e-1.0.2/fixture-q18.json",
+    "Q20": "specs/008-recipe-driven-inspection/fixtures/usr-e-1.0.2/fixture-q20.json",
+    "Q21": "specs/008-recipe-driven-inspection/fixtures/usr-e-1.0.2/fixture-q21.json",
+    "GROUP-A-E": "specs/008-recipe-driven-inspection/fixtures/usr-e-1.0.2/fixture-group-a-e.json",
+    "ASSEMBLY-A-E-NOCODE": "specs/008-recipe-driven-inspection/fixtures/fixture-assembly-a-e-no-code.json"
+  },
+  "packageFiles": {
+    "backend/src/Gaode.Host/bin/Debug/net10.0/Gaode.Host.dll": "d7df49ecb4686aeb08293681aecf62dab6ee668a7f706a7d9d6cb1c9229d9678",
+    "VirtualPlc/bin/Debug/net10.0/VirtualPlc.dll": "32e141ba4367137c5512282b2c1a632d5af7ba26bea9f8832c0c844d3e73ee6d",
+    "VirtualPlc/wwwroot/app.js": "cc1590e73f90535258124c2e68870e6d3149dcc5d053e27c38ff6b7d670fb308"
+  },
+  "userLocalRunReceived": false
+}

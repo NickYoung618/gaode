@@ -1,0 +1,34 @@
+{
+  "schemaVersion": "station01-fixture/1.0",
+  "caseId": "ROT-PART-PENDING",
+  "purpose": "Test",
+  "scenarioId": "S1",
+  "occupiedSlots": [
+    "P01"
+  ],
+  "recipeRef": {
+    "recipeId": "R008-ROT-PART",
+    "version": "1.0.0-test",
+    "catalogDigest": "013D98C305D800E9BBEFBBB19AED49A3BF619257E7A211E9E491F29E7AD37A27"
+  },
+  "fCode": "TEST-TRAY-0205",
+  "availability": "Available",
+  "configRoot": "E:\\dzk\\gaode-1\\specs\\007-station01-integrated-loop\\examples",
+  "recipeCatalogPath": "E:\\dzk\\gaode-1\\specs\\008-recipe-driven-inspection\\fixtures\\recipes-rot-part.json",
+  "imageManifestPath": "E:\\dzk\\gaode-1\\specs\\008-recipe-driven-inspection\\fixtures\\media-manifest-rot-part.json",
+  "workerManifestPath": "E:\\dzk\\gaode-1\\specs\\008-recipe-driven-inspection\\fixtures\\worker-manifest-rot-part-pending.json",
+  "workerScriptPath": "E:\\dzk\\gaode-1\\scripts\\virtual-station01-algorithm.py",
+  "publicConfigRef": {
+    "id": "s01-public-virtual-loop",
+    "version": "1.2.0"
+  },
+  "budgetRef": {
+    "id": "s01-budget-virtual-loop",
+    "version": "2.0.0"
+  },
+  "simulationRef": {
+    "id": "s01-sim-virtual-loop",
+    "version": "2.0.0"
+  },
+  "restrictions": []
+}

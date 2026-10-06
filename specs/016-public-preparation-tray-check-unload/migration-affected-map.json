@@ -1,0 +1,2164 @@
+{
+  "schema": "016-affected-obligations/1",
+  "initialRegistrationIntegrity": "7a1a2e771518b310959b7ee540b623e78e76fec7e3b3b3cb4abefa08b79b2932",
+  "scope": "Current directly changed contracts/shared executor and explicitly migrated automatic T44 duties; not full historical migration admission",
+  "active": [
+    {
+      "originalObligation": "T01/DetectionResultMustCorrelateOperationAndExposeStableObjects",
+      "requiredMethods": [
+        "DetectionResultMustCorrelateOperationAndExposeStableObjects"
+      ],
+      "level": "Same original component level; explicit current semantic and current protocol split",
+      "originalCaseIdsRetained": [
+        "MIG-EXEC/StagePortContractTests-DetectionResultMustCorrelateOperationAndExposeStableObjects/0"
+      ],
+      "sourceComparison": [
+        {
+          "path": "backend/tests/Gaode.Contracts.Tests/Ports/StagePortContractTests.cs",
+          "changedBy016": true,
+          "baselineSha": "27fe0feecbb87de0a60881469171e88f13f19e503096ebc412b10249da47a053",
+          "currentSha": "9c7a8bba8cf3218458aa24960cd1d3ee0f72e0ae7ea081e25f8a85c13091b06c",
+          "reviewSha": "9c7a8bba8cf3218458aa24960cd1d3ee0f72e0ae7ea081e25f8a85c13091b06c",
+          "baselineMatch": false,
+          "currentMatch": true,
+          "baselineMissingAssertions": [],
+          "currentMissingAssertions": []
+        },
+        {
+          "path": "backend/tests/Gaode.Contracts.Tests/Ports/StagePortContractTests.cs",
+          "changedBy016": true,
+          "baselineSha": "27fe0feecbb87de0a60881469171e88f13f19e503096ebc412b10249da47a053",
+          "currentSha": "9c7a8bba8cf3218458aa24960cd1d3ee0f72e0ae7ea081e25f8a85c13091b06c",
+          "reviewSha": null,
+          "baselineMatch": true,
+          "currentMatch": true,
+          "baselineMissingAssertions": [],
+          "currentMissingAssertions": []
+        }
+      ],
+      "reviewedCurrentSources": {
+        "backend/tests/Gaode.Contracts.Tests/Ports/StagePortContractTests.cs": "9c7a8bba8cf3218458aa24960cd1d3ee0f72e0ae7ea081e25f8a85c13091b06c"
+      }
+    },
+    {
+      "originalObligation": "T01/FailureAndSimulatedResultsCannotBecomeRealCompletionEvidence",
+      "requiredMethods": [
+        "FailureAndSimulatedResultsCannotBecomeRealCompletionEvidence"
+      ],
+      "level": "Same original component level; explicit current semantic and current protocol split",
+      "originalCaseIdsRetained": [
+        "MIG-EXEC/StagePortContractTests-FailureAndSimulatedResultsCannotBecomeRealCompletionEvidence/0"
+      ],
+      "sourceComparison": [
+        {
+          "path": "backend/tests/Gaode.Contracts.Tests/Ports/StagePortContractTests.cs",
+          "changedBy016": true,
+          "baselineSha": "27fe0feecbb87de0a60881469171e88f13f19e503096ebc412b10249da47a053",
+          "currentSha": "9c7a8bba8cf3218458aa24960cd1d3ee0f72e0ae7ea081e25f8a85c13091b06c",
+          "reviewSha": "9c7a8bba8cf3218458aa24960cd1d3ee0f72e0ae7ea081e25f8a85c13091b06c",
+          "baselineMatch": false,
+          "currentMatch": true,
+          "baselineMissingAssertions": [],
+          "currentMissingAssertions": []
+        },
+        {
+          "path": "backend/tests/Gaode.Contracts.Tests/Ports/StagePortContractTests.cs",
+          "changedBy016": true,
+          "baselineSha": "27fe0feecbb87de0a60881469171e88f13f19e503096ebc412b10249da47a053",
+          "currentSha": "9c7a8bba8cf3218458aa24960cd1d3ee0f72e0ae7ea081e25f8a85c13091b06c",
+          "reviewSha": null,
+          "baselineMatch": true,
+          "currentMatch": true,
+          "baselineMissingAssertions": [],
+          "currentMissingAssertions": []
+        }
+      ],
+      "reviewedCurrentSources": {
+        "backend/tests/Gaode.Contracts.Tests/Ports/StagePortContractTests.cs": "9c7a8bba8cf3218458aa24960cd1d3ee0f72e0ae7ea081e25f8a85c13091b06c"
+      }
+    },
+    {
+      "originalObligation": "T01/AcceptedAndExecutingResultsDoNotRequireFailureCodes",
+      "requiredMethods": [
+        "AcceptedAndExecutingResultsDoNotRequireFailureCodes"
+      ],
+      "level": "Same original component level; explicit current semantic and current protocol split",
+      "originalCaseIdsRetained": [
+        "MIG-EXEC/StagePortContractTests-AcceptedAndExecutingResultsDoNotRequireFailureCodes/0"
+      ],
+      "sourceComparison": [
+        {
+          "path": "backend/tests/Gaode.Contracts.Tests/Ports/StagePortContractTests.cs",
+          "changedBy016": true,
+          "baselineSha": "27fe0feecbb87de0a60881469171e88f13f19e503096ebc412b10249da47a053",
+          "currentSha": "9c7a8bba8cf3218458aa24960cd1d3ee0f72e0ae7ea081e25f8a85c13091b06c",
+          "reviewSha": "9c7a8bba8cf3218458aa24960cd1d3ee0f72e0ae7ea081e25f8a85c13091b06c",
+          "baselineMatch": false,
+          "currentMatch": true,
+          "baselineMissingAssertions": [],
+          "currentMissingAssertions": []
+        },
+        {
+          "path": "backend/tests/Gaode.Contracts.Tests/Ports/StagePortContractTests.cs",
+          "changedBy016": true,
+          "baselineSha": "27fe0feecbb87de0a60881469171e88f13f19e503096ebc412b10249da47a053",
+          "currentSha": "9c7a8bba8cf3218458aa24960cd1d3ee0f72e0ae7ea081e25f8a85c13091b06c",
+          "reviewSha": null,
+          "baselineMatch": true,
+          "currentMatch": true,
+          "baselineMissingAssertions": [],
+          "currentMissingAssertions": []
+        }
+      ],
+      "reviewedCurrentSources": {
+        "backend/tests/Gaode.Contracts.Tests/Ports/StagePortContractTests.cs": "9c7a8bba8cf3218458aa24960cd1d3ee0f72e0ae7ea081e25f8a85c13091b06c"
+      }
+    },
+    {
+      "originalObligation": "T02/PlcStageContractFixesSortingAndUnloadMappingsAndEpochCorrelation",
+      "requiredMethods": [
+        "StageCompletionRequiresCurrentActionAndSemanticTransferEvidence",
+        "CurrentAxesAndMechanicalFeedbackMatchIndependentLiteralOracle"
+      ],
+      "level": "Same original component level; explicit current semantic and current protocol split",
+      "originalCaseIdsRetained": [
+        "MIG-EXEC/LatestPlcProtocolTests-AddressesDirectionsAndWidthsMatchLatestDocument/0",
+        "MIG-EXEC/StagePortContractTests-StageCompletionRequiresCurrentActionAndSemanticTransferEvidence/0"
+      ],
+      "sourceComparison": [
+        {
+          "path": "backend/tests/Gaode.Contracts.Tests/Ports/StagePortContractTests.cs",
+          "changedBy016": true,
+          "baselineSha": "27fe0feecbb87de0a60881469171e88f13f19e503096ebc412b10249da47a053",
+          "currentSha": "9c7a8bba8cf3218458aa24960cd1d3ee0f72e0ae7ea081e25f8a85c13091b06c",
+          "reviewSha": "9c7a8bba8cf3218458aa24960cd1d3ee0f72e0ae7ea081e25f8a85c13091b06c",
+          "baselineMatch": false,
+          "currentMatch": true,
+          "baselineMissingAssertions": [],
+          "currentMissingAssertions": []
+        },
+        {
+          "path": "backend/tests/Gaode.Contracts.Tests/Ports/StagePortContractTests.cs",
+          "changedBy016": true,
+          "baselineSha": "27fe0feecbb87de0a60881469171e88f13f19e503096ebc412b10249da47a053",
+          "currentSha": "9c7a8bba8cf3218458aa24960cd1d3ee0f72e0ae7ea081e25f8a85c13091b06c",
+          "reviewSha": null,
+          "baselineMatch": true,
+          "currentMatch": true,
+          "baselineMissingAssertions": [],
+          "currentMissingAssertions": []
+        },
+        {
+          "path": "backend/tests/Gaode.Communication.Tests/Devices/LatestPlcProtocolTests.cs",
+          "changedBy016": false,
+          "baselineSha": "3e23a608591b5b55cf7c55fe27e48b25653b380ca37042dea4ab7f96b23da2a7",
+          "currentSha": "3e23a608591b5b55cf7c55fe27e48b25653b380ca37042dea4ab7f96b23da2a7",
+          "reviewSha": "0d86bee47d1cdbbe893e0ef97984e5d71b4ac40c93d17556333e456335b9a460",
+          "baselineMatch": false,
+          "currentMatch": false,
+          "baselineMissingAssertions": [],
+          "currentMissingAssertions": []
+        },
+        {
+          "path": "backend/tests/Gaode.Communication.Tests/Devices/LatestPlcProtocolTests.cs",
+          "changedBy016": false,
+          "baselineSha": "3e23a608591b5b55cf7c55fe27e48b25653b380ca37042dea4ab7f96b23da2a7",
+          "currentSha": "3e23a608591b5b55cf7c55fe27e48b25653b380ca37042dea4ab7f96b23da2a7",
+          "reviewSha": null,
+          "baselineMatch": true,
+          "currentMatch": true,
+          "baselineMissingAssertions": [
+            "Assert.Equal(\"plc-upper-20260925-partitioned-ack\", PlcAddressMap.Contract);",
+            "Assert.Equal(pcCoils.Contains(point) ? PlcDirection.PcToPlc : PlcDirection.PlcToPc, entry.Direction);",
+            "Assert.Equal(PlcValueType.Bool, entry.ValueType);",
+            "Assert.Equal(point - 1, PlcAddressMap.ToPduOffset(point));",
+            "Assert.Equal(PlcValueType.Float32, entry.ValueType);",
+            "Assert.Equal(2, entry.RegisterCount);",
+            "Assert.Same(entry, PlcAddressMap.RegisterAt(point + 1));",
+            "foreach (var (declared, plc) in points) Assert.Equal(plc - 1, PlcAddressMap.ToPduOffset(declared));",
+            "Assert.Equal(PlcDirection.PcToPlc, PlcAddressMap.HoldingRegisterPoints[0x52].Direction);",
+            "Assert.Equal(PlcDirection.PlcToPc, PlcAddressMap.HoldingRegisterPoints[0x53].Direction);",
+            "Assert.Equal(PlcValueType.Int16, PlcAddressMap.HoldingRegisterPoints[0x40].ValueType);"
+          ],
+          "currentMissingAssertions": [
+            "Assert.Equal(\"plc-upper-20260925-partitioned-ack\", PlcAddressMap.Contract);",
+            "Assert.Equal(pcCoils.Contains(point) ? PlcDirection.PcToPlc : PlcDirection.PlcToPc, entry.Direction);",
+            "Assert.Equal(PlcValueType.Bool, entry.ValueType);",
+            "Assert.Equal(point - 1, PlcAddressMap.ToPduOffset(point));",
+            "Assert.Equal(PlcValueType.Float32, entry.ValueType);",
+            "Assert.Equal(2, entry.RegisterCount);",
+            "Assert.Same(entry, PlcAddressMap.RegisterAt(point + 1));",
+            "foreach (var (declared, plc) in points) Assert.Equal(plc - 1, PlcAddressMap.ToPduOffset(declared));",
+            "Assert.Equal(PlcDirection.PcToPlc, PlcAddressMap.HoldingRegisterPoints[0x52].Direction);",
+            "Assert.Equal(PlcDirection.PlcToPc, PlcAddressMap.HoldingRegisterPoints[0x53].Direction);",
+            "Assert.Equal(PlcValueType.Int16, PlcAddressMap.HoldingRegisterPoints[0x40].ValueType);"
+          ]
+        }
+      ],
+      "reviewedCurrentSources": {
+        "backend/tests/Gaode.Communication.Tests/Devices/LatestPlcProtocolTests.cs": "3e23a608591b5b55cf7c55fe27e48b25653b380ca37042dea4ab7f96b23da2a7",
+        "backend/tests/Gaode.Contracts.Tests/Ports/StagePortContractTests.cs": "9c7a8bba8cf3218458aa24960cd1d3ee0f72e0ae7ea081e25f8a85c13091b06c",
+        "backend/tests/Gaode.Communication.Tests/ProtocolOracle/ProductionDefinitionTests.cs": "11402193c21be46f76a41343e88ddc53076c0b1eb492edd540f08bfe8ff9b11d"
+      },
+      "basis": "Legacy address assertion method already removed before copy; current independent literal protocol oracle validates actual current widths/writers/directions/status codes. Current semantic stage protection is separate. No old protocol is reactivated."
+    },
+    {
+      "originalObligation": "T03/UnlockObservationRequiresWholeTrayReference",
+      "requiredMethods": [
+        "UnlockObservationRequiresWholeTrayReference"
+      ],
+      "level": "Same original component level; explicit current semantic and current protocol split",
+      "originalCaseIdsRetained": [
+        "MIG-EXEC/StagePortContractTests-UnlockObservationRequiresWholeTrayReference/0"
+      ],
+      "sourceComparison": [
+        {
+          "path": "backend/tests/Gaode.Contracts.Tests/Ports/StagePortContractTests.cs",
+          "changedBy016": true,
+          "baselineSha": "27fe0feecbb87de0a60881469171e88f13f19e503096ebc412b10249da47a053",
+          "currentSha": "9c7a8bba8cf3218458aa24960cd1d3ee0f72e0ae7ea081e25f8a85c13091b06c",
+          "reviewSha": "9c7a8bba8cf3218458aa24960cd1d3ee0f72e0ae7ea081e25f8a85c13091b06c",
+          "baselineMatch": false,
+          "currentMatch": true,
+          "baselineMissingAssertions": [],
+          "currentMissingAssertions": []
+        },
+        {
+          "path": "backend/tests/Gaode.Contracts.Tests/Ports/StagePortContractTests.cs",
+          "changedBy016": true,
+          "baselineSha": "27fe0feecbb87de0a60881469171e88f13f19e503096ebc412b10249da47a053",
+          "currentSha": "9c7a8bba8cf3218458aa24960cd1d3ee0f72e0ae7ea081e25f8a85c13091b06c",
+          "reviewSha": null,
+          "baselineMatch": true,
+          "currentMatch": true,
+          "baselineMissingAssertions": [],
+          "currentMissingAssertions": []
+        }
+      ],
+      "reviewedCurrentSources": {
+        "backend/tests/Gaode.Contracts.Tests/Ports/StagePortContractTests.cs": "9c7a8bba8cf3218458aa24960cd1d3ee0f72e0ae7ea081e25f8a85c13091b06c"
+      }
+    },
+    {
+      "originalObligation": "T03/UnknownHeldIsNonRetryableAndRetainsDeviceOwnership",
+      "requiredMethods": [
+        "UnknownHeldIsNonRetryableAndRetainsDeviceOwnership"
+      ],
+      "level": "Same original component level; explicit current semantic and current protocol split",
+      "originalCaseIdsRetained": [
+        "MIG-EXEC/StagePortContractTests-UnknownHeldIsNonRetryableAndRetainsDeviceOwnership/0"
+      ],
+      "sourceComparison": [
+        {
+          "path": "backend/tests/Gaode.Contracts.Tests/Ports/StagePortContractTests.cs",
+          "changedBy016": true,
+          "baselineSha": "27fe0feecbb87de0a60881469171e88f13f19e503096ebc412b10249da47a053",
+          "currentSha": "9c7a8bba8cf3218458aa24960cd1d3ee0f72e0ae7ea081e25f8a85c13091b06c",
+          "reviewSha": "9c7a8bba8cf3218458aa24960cd1d3ee0f72e0ae7ea081e25f8a85c13091b06c",
+          "baselineMatch": false,
+          "currentMatch": true,
+          "baselineMissingAssertions": [],
+          "currentMissingAssertions": []
+        },
+        {
+          "path": "backend/tests/Gaode.Contracts.Tests/Ports/StagePortContractTests.cs",
+          "changedBy016": true,
+          "baselineSha": "27fe0feecbb87de0a60881469171e88f13f19e503096ebc412b10249da47a053",
+          "currentSha": "9c7a8bba8cf3218458aa24960cd1d3ee0f72e0ae7ea081e25f8a85c13091b06c",
+          "reviewSha": null,
+          "baselineMatch": true,
+          "currentMatch": true,
+          "baselineMissingAssertions": [],
+          "currentMissingAssertions": []
+        }
+      ],
+      "reviewedCurrentSources": {
+        "backend/tests/Gaode.Contracts.Tests/Ports/StagePortContractTests.cs": "9c7a8bba8cf3218458aa24960cd1d3ee0f72e0ae7ea081e25f8a85c13091b06c"
+      }
+    },
+    {
+      "originalObligation": "T03/WorkflowAndPlcStageEnumsRemainSeparate",
+      "requiredMethods": [
+        "WorkflowAndPlcStageEnumsRemainSeparate"
+      ],
+      "level": "Same original component level; explicit current semantic and current protocol split",
+      "originalCaseIdsRetained": [
+        "MIG-EXEC/StagePortContractTests-WorkflowAndPlcStageEnumsRemainSeparate/0"
+      ],
+      "sourceComparison": [
+        {
+          "path": "backend/tests/Gaode.Contracts.Tests/Ports/StagePortContractTests.cs",
+          "changedBy016": true,
+          "baselineSha": "27fe0feecbb87de0a60881469171e88f13f19e503096ebc412b10249da47a053",
+          "currentSha": "9c7a8bba8cf3218458aa24960cd1d3ee0f72e0ae7ea081e25f8a85c13091b06c",
+          "reviewSha": "9c7a8bba8cf3218458aa24960cd1d3ee0f72e0ae7ea081e25f8a85c13091b06c",
+          "baselineMatch": false,
+          "currentMatch": true,
+          "baselineMissingAssertions": [],
+          "currentMissingAssertions": []
+        },
+        {
+          "path": "backend/tests/Gaode.Contracts.Tests/Ports/StagePortContractTests.cs",
+          "changedBy016": true,
+          "baselineSha": "27fe0feecbb87de0a60881469171e88f13f19e503096ebc412b10249da47a053",
+          "currentSha": "9c7a8bba8cf3218458aa24960cd1d3ee0f72e0ae7ea081e25f8a85c13091b06c",
+          "reviewSha": null,
+          "baselineMatch": true,
+          "currentMatch": true,
+          "baselineMissingAssertions": [],
+          "currentMissingAssertions": []
+        }
+      ],
+      "reviewedCurrentSources": {
+        "backend/tests/Gaode.Contracts.Tests/Ports/StagePortContractTests.cs": "9c7a8bba8cf3218458aa24960cd1d3ee0f72e0ae7ea081e25f8a85c13091b06c"
+      }
+    },
+    {
+      "originalObligation": "T10/UnlockRequiresCommittedWholeTrayReferenceAndObservesZero",
+      "requiredMethods": [
+        "RemovedUnlockStageCannotDispatchLegacyDeviceCommands",
+        "UnlockObservationRequiresWholeTrayReference"
+      ],
+      "level": "Same original component level; explicit current semantic and current protocol split",
+      "originalCaseIdsRetained": [
+        "MIG-EXEC/ActionHandshakeTests-UnlockCompletionCarriesDurableEvidenceOfObservedRelease/0",
+        "MIG-EXEC/StagePortContractTests-UnlockObservationRequiresWholeTrayReference/0"
+      ],
+      "sourceComparison": [
+        {
+          "path": "backend/tests/Gaode.Communication.Tests/Devices/ActionHandshakeTests.cs",
+          "changedBy016": false,
+          "baselineSha": "d10948968c4fe35781c6b8219825c74bc8f17a500f6f05602070e28b1b0136e6",
+          "currentSha": "d10948968c4fe35781c6b8219825c74bc8f17a500f6f05602070e28b1b0136e6",
+          "reviewSha": "e0a7f8c979dbe2affe4b787054d3c2089de38ab1d4d556974e85a1952af6b953",
+          "baselineMatch": false,
+          "currentMatch": false,
+          "baselineMissingAssertions": [],
+          "currentMissingAssertions": []
+        },
+        {
+          "path": "backend/tests/Gaode.Communication.Tests/Devices/ActionHandshakeTests.cs",
+          "changedBy016": false,
+          "baselineSha": "d10948968c4fe35781c6b8219825c74bc8f17a500f6f05602070e28b1b0136e6",
+          "currentSha": "d10948968c4fe35781c6b8219825c74bc8f17a500f6f05602070e28b1b0136e6",
+          "reviewSha": null,
+          "baselineMatch": true,
+          "currentMatch": true,
+          "baselineMissingAssertions": [
+            "var completed = Assert.Single(events, e => e.Kind == DeviceEventKind.Completed);",
+            "Assert.Equal(DeviceCompletionMeaning.Unlocked, completed.Evidence?.Meaning);",
+            "Assert.True(completed.Evidence?.IsCorrelated);",
+            "Assert.Equal(actionId, completed.Evidence!.Correlation.ActionId);",
+            "Assert.Equal(ClampState.Released, device.Observe().Clamp);",
+            "Assert.Contains(plc.Store.GetWriteAudit(), w => w.Accepted && w.Area == Gaode.Plc.Protocol.PlcArea.HoldingRegister &&"
+          ],
+          "currentMissingAssertions": [
+            "var completed = Assert.Single(events, e => e.Kind == DeviceEventKind.Completed);",
+            "Assert.Equal(DeviceCompletionMeaning.Unlocked, completed.Evidence?.Meaning);",
+            "Assert.True(completed.Evidence?.IsCorrelated);",
+            "Assert.Equal(actionId, completed.Evidence!.Correlation.ActionId);",
+            "Assert.Equal(ClampState.Released, device.Observe().Clamp);",
+            "Assert.Contains(plc.Store.GetWriteAudit(), w => w.Accepted && w.Area == Gaode.Plc.Protocol.PlcArea.HoldingRegister &&"
+          ]
+        },
+        {
+          "path": "backend/tests/Gaode.Contracts.Tests/Ports/StagePortContractTests.cs",
+          "changedBy016": true,
+          "baselineSha": "27fe0feecbb87de0a60881469171e88f13f19e503096ebc412b10249da47a053",
+          "currentSha": "9c7a8bba8cf3218458aa24960cd1d3ee0f72e0ae7ea081e25f8a85c13091b06c",
+          "reviewSha": "9c7a8bba8cf3218458aa24960cd1d3ee0f72e0ae7ea081e25f8a85c13091b06c",
+          "baselineMatch": false,
+          "currentMatch": true,
+          "baselineMissingAssertions": [],
+          "currentMissingAssertions": []
+        },
+        {
+          "path": "backend/tests/Gaode.Contracts.Tests/Ports/StagePortContractTests.cs",
+          "changedBy016": true,
+          "baselineSha": "27fe0feecbb87de0a60881469171e88f13f19e503096ebc412b10249da47a053",
+          "currentSha": "9c7a8bba8cf3218458aa24960cd1d3ee0f72e0ae7ea081e25f8a85c13091b06c",
+          "reviewSha": null,
+          "baselineMatch": true,
+          "currentMatch": true,
+          "baselineMissingAssertions": [],
+          "currentMissingAssertions": []
+        }
+      ],
+      "reviewedCurrentSources": {
+        "backend/tests/Gaode.Communication.Tests/Devices/ActionHandshakeTests.cs": "d10948968c4fe35781c6b8219825c74bc8f17a500f6f05602070e28b1b0136e6",
+        "backend/tests/Gaode.Contracts.Tests/Ports/StagePortContractTests.cs": "9c7a8bba8cf3218458aa24960cd1d3ee0f72e0ae7ea081e25f8a85c13091b06c"
+      }
+    },
+    {
+      "originalObligation": "T23/CompleteMappingExecutesOnlyDetectionSortingAndUnloadPreparationInOrder",
+      "requiredMethods": [
+        "CompleteMappingExecutesOnlyDetectionSortingAndUnloadPreparationInOrder"
+      ],
+      "level": "Same original component level; explicit current semantic and current protocol split",
+      "originalCaseIdsRetained": [
+        "MIG-EXEC/ThreeStageWorkflowExecutorTests-CompleteMappingExecutesOnlyDetectionSortingAndUnloadPreparationInOrder/0"
+      ],
+      "sourceComparison": [
+        {
+          "path": "backend/tests/Gaode.Contracts.Tests/Workflow/ThreeStageWorkflowExecutorTests.cs",
+          "changedBy016": true,
+          "baselineSha": "45a57f96b38b30ebfc7c27e3a5df19954c175c9722c8a62ece30dd7b99695576",
+          "currentSha": "bd0008724a2afec2dd8b14eb1ec6b7cd5ecc430a8aca2358b7b1936bce756889",
+          "reviewSha": "90ef5e780b9437a3dad5c49879e2dd2cf00d63de7c43196c21e7fa8201953aff",
+          "baselineMatch": false,
+          "currentMatch": false,
+          "baselineMissingAssertions": [],
+          "currentMissingAssertions": []
+        },
+        {
+          "path": "backend/tests/Gaode.Contracts.Tests/Workflow/ThreeStageWorkflowExecutorTests.cs",
+          "changedBy016": true,
+          "baselineSha": "45a57f96b38b30ebfc7c27e3a5df19954c175c9722c8a62ece30dd7b99695576",
+          "currentSha": "bd0008724a2afec2dd8b14eb1ec6b7cd5ecc430a8aca2358b7b1936bce756889",
+          "reviewSha": null,
+          "baselineMatch": true,
+          "currentMatch": true,
+          "baselineMissingAssertions": [
+            "Assert.Equal([PlcWorkflowStage.UnloadPreparation, PlcWorkflowStage.Sorting],",
+            "Assert.Equal([PlcWorkflowStage.UnloadPreparation, PlcWorkflowStage.Sorting],",
+            "Assert.Equal([WholeTrayWorkflowStage.UnloadPreparation, WholeTrayWorkflowStage.Sorting],"
+          ],
+          "currentMissingAssertions": [
+            "Assert.Equal([PlcWorkflowStage.UnloadPreparation, PlcWorkflowStage.Sorting],",
+            "Assert.Equal([PlcWorkflowStage.UnloadPreparation, PlcWorkflowStage.Sorting],",
+            "Assert.Equal([WholeTrayWorkflowStage.UnloadPreparation, WholeTrayWorkflowStage.Sorting],"
+          ]
+        }
+      ],
+      "reviewedCurrentSources": {
+        "backend/tests/Gaode.Contracts.Tests/Workflow/ThreeStageWorkflowExecutorTests.cs": "8202e405d716d70ea82773396580b357fd8f48a0941268f60becd840a91e1820"
+      }
+    },
+    {
+      "originalObligation": "T23/MappingFailedPausesDetectionAndNeverCallsPlcPort",
+      "requiredMethods": [
+        "MappingFailedPausesDetectionAndNeverCallsPlcPort"
+      ],
+      "level": "Same original component level; explicit current semantic and current protocol split",
+      "originalCaseIdsRetained": [
+        "MIG-EXEC/ThreeStageWorkflowExecutorTests-MappingFailedPausesDetectionAndNeverCallsPlcPort/0"
+      ],
+      "sourceComparison": [
+        {
+          "path": "backend/tests/Gaode.Contracts.Tests/Workflow/ThreeStageWorkflowExecutorTests.cs",
+          "changedBy016": true,
+          "baselineSha": "45a57f96b38b30ebfc7c27e3a5df19954c175c9722c8a62ece30dd7b99695576",
+          "currentSha": "bd0008724a2afec2dd8b14eb1ec6b7cd5ecc430a8aca2358b7b1936bce756889",
+          "reviewSha": "90ef5e780b9437a3dad5c49879e2dd2cf00d63de7c43196c21e7fa8201953aff",
+          "baselineMatch": false,
+          "currentMatch": false,
+          "baselineMissingAssertions": [],
+          "currentMissingAssertions": []
+        },
+        {
+          "path": "backend/tests/Gaode.Contracts.Tests/Workflow/ThreeStageWorkflowExecutorTests.cs",
+          "changedBy016": true,
+          "baselineSha": "45a57f96b38b30ebfc7c27e3a5df19954c175c9722c8a62ece30dd7b99695576",
+          "currentSha": "bd0008724a2afec2dd8b14eb1ec6b7cd5ecc430a8aca2358b7b1936bce756889",
+          "reviewSha": null,
+          "baselineMatch": true,
+          "currentMatch": true,
+          "baselineMissingAssertions": [],
+          "currentMissingAssertions": []
+        }
+      ],
+      "reviewedCurrentSources": {
+        "backend/tests/Gaode.Contracts.Tests/Workflow/ThreeStageWorkflowExecutorTests.cs": "8202e405d716d70ea82773396580b357fd8f48a0941268f60becd840a91e1820"
+      }
+    },
+    {
+      "originalObligation": "T23/MissingSortingTargetBlocksBeforeUnloadMotion",
+      "requiredMethods": [
+        "MissingSortingTargetBlocksBeforeUnloadMotion"
+      ],
+      "level": "Same original component level; explicit current semantic and current protocol split",
+      "originalCaseIdsRetained": [
+        "MIG-EXEC/ThreeStageWorkflowExecutorTests-MissingSortingTargetBlocksBeforeUnloadMotion/0"
+      ],
+      "sourceComparison": [
+        {
+          "path": "backend/tests/Gaode.Contracts.Tests/Workflow/ThreeStageWorkflowExecutorTests.cs",
+          "changedBy016": true,
+          "baselineSha": "45a57f96b38b30ebfc7c27e3a5df19954c175c9722c8a62ece30dd7b99695576",
+          "currentSha": "bd0008724a2afec2dd8b14eb1ec6b7cd5ecc430a8aca2358b7b1936bce756889",
+          "reviewSha": "90ef5e780b9437a3dad5c49879e2dd2cf00d63de7c43196c21e7fa8201953aff",
+          "baselineMatch": false,
+          "currentMatch": false,
+          "baselineMissingAssertions": [],
+          "currentMissingAssertions": []
+        },
+        {
+          "path": "backend/tests/Gaode.Contracts.Tests/Workflow/ThreeStageWorkflowExecutorTests.cs",
+          "changedBy016": true,
+          "baselineSha": "45a57f96b38b30ebfc7c27e3a5df19954c175c9722c8a62ece30dd7b99695576",
+          "currentSha": "bd0008724a2afec2dd8b14eb1ec6b7cd5ecc430a8aca2358b7b1936bce756889",
+          "reviewSha": null,
+          "baselineMatch": true,
+          "currentMatch": true,
+          "baselineMissingAssertions": [],
+          "currentMissingAssertions": []
+        }
+      ],
+      "reviewedCurrentSources": {
+        "backend/tests/Gaode.Contracts.Tests/Workflow/ThreeStageWorkflowExecutorTests.cs": "8202e405d716d70ea82773396580b357fd8f48a0941268f60becd840a91e1820"
+      }
+    },
+    {
+      "originalObligation": "T23/TwoProblemEntitiesCannotReserveTheSameTargetCell",
+      "requiredMethods": [
+        "TwoProblemEntitiesCannotReserveTheSameTargetCell"
+      ],
+      "level": "Same original component level; explicit current semantic and current protocol split",
+      "originalCaseIdsRetained": [
+        "MIG-EXEC/ThreeStageWorkflowExecutorTests-TwoProblemEntitiesCannotReserveTheSameTargetCell/0"
+      ],
+      "sourceComparison": [
+        {
+          "path": "backend/tests/Gaode.Contracts.Tests/Workflow/ThreeStageWorkflowExecutorTests.cs",
+          "changedBy016": true,
+          "baselineSha": "45a57f96b38b30ebfc7c27e3a5df19954c175c9722c8a62ece30dd7b99695576",
+          "currentSha": "bd0008724a2afec2dd8b14eb1ec6b7cd5ecc430a8aca2358b7b1936bce756889",
+          "reviewSha": "90ef5e780b9437a3dad5c49879e2dd2cf00d63de7c43196c21e7fa8201953aff",
+          "baselineMatch": false,
+          "currentMatch": false,
+          "baselineMissingAssertions": [],
+          "currentMissingAssertions": []
+        },
+        {
+          "path": "backend/tests/Gaode.Contracts.Tests/Workflow/ThreeStageWorkflowExecutorTests.cs",
+          "changedBy016": true,
+          "baselineSha": "45a57f96b38b30ebfc7c27e3a5df19954c175c9722c8a62ece30dd7b99695576",
+          "currentSha": "bd0008724a2afec2dd8b14eb1ec6b7cd5ecc430a8aca2358b7b1936bce756889",
+          "reviewSha": null,
+          "baselineMatch": true,
+          "currentMatch": true,
+          "baselineMissingAssertions": [],
+          "currentMissingAssertions": []
+        }
+      ],
+      "reviewedCurrentSources": {
+        "backend/tests/Gaode.Contracts.Tests/Workflow/ThreeStageWorkflowExecutorTests.cs": "8202e405d716d70ea82773396580b357fd8f48a0941268f60becd840a91e1820"
+      }
+    },
+    {
+      "originalObligation": "T23/OccupiedSourceCellCannotBeAssignedAsSortingDestination",
+      "requiredMethods": [
+        "OccupiedSourceCellCannotBeAssignedAsSortingDestination"
+      ],
+      "level": "Same original component level; explicit current semantic and current protocol split",
+      "originalCaseIdsRetained": [
+        "MIG-EXEC/ThreeStageWorkflowExecutorTests-OccupiedSourceCellCannotBeAssignedAsSortingDestination/0"
+      ],
+      "sourceComparison": [
+        {
+          "path": "backend/tests/Gaode.Contracts.Tests/Workflow/ThreeStageWorkflowExecutorTests.cs",
+          "changedBy016": true,
+          "baselineSha": "45a57f96b38b30ebfc7c27e3a5df19954c175c9722c8a62ece30dd7b99695576",
+          "currentSha": "bd0008724a2afec2dd8b14eb1ec6b7cd5ecc430a8aca2358b7b1936bce756889",
+          "reviewSha": "90ef5e780b9437a3dad5c49879e2dd2cf00d63de7c43196c21e7fa8201953aff",
+          "baselineMatch": false,
+          "currentMatch": false,
+          "baselineMissingAssertions": [],
+          "currentMissingAssertions": []
+        },
+        {
+          "path": "backend/tests/Gaode.Contracts.Tests/Workflow/ThreeStageWorkflowExecutorTests.cs",
+          "changedBy016": true,
+          "baselineSha": "45a57f96b38b30ebfc7c27e3a5df19954c175c9722c8a62ece30dd7b99695576",
+          "currentSha": "bd0008724a2afec2dd8b14eb1ec6b7cd5ecc430a8aca2358b7b1936bce756889",
+          "reviewSha": null,
+          "baselineMatch": true,
+          "currentMatch": true,
+          "baselineMissingAssertions": [],
+          "currentMissingAssertions": []
+        }
+      ],
+      "reviewedCurrentSources": {
+        "backend/tests/Gaode.Contracts.Tests/Workflow/ThreeStageWorkflowExecutorTests.cs": "8202e405d716d70ea82773396580b357fd8f48a0941268f60becd840a91e1820"
+      }
+    },
+    {
+      "originalObligation": "T23/ReservationSaveFailurePreventsEvenUnloadDispatch",
+      "requiredMethods": [
+        "ReservationSaveFailurePreventsEvenUnloadDispatch"
+      ],
+      "level": "Same original component level; explicit current semantic and current protocol split",
+      "originalCaseIdsRetained": [
+        "MIG-EXEC/ThreeStageWorkflowExecutorTests-ReservationSaveFailurePreventsEvenUnloadDispatch/0"
+      ],
+      "sourceComparison": [
+        {
+          "path": "backend/tests/Gaode.Contracts.Tests/Workflow/ThreeStageWorkflowExecutorTests.cs",
+          "changedBy016": true,
+          "baselineSha": "45a57f96b38b30ebfc7c27e3a5df19954c175c9722c8a62ece30dd7b99695576",
+          "currentSha": "bd0008724a2afec2dd8b14eb1ec6b7cd5ecc430a8aca2358b7b1936bce756889",
+          "reviewSha": "90ef5e780b9437a3dad5c49879e2dd2cf00d63de7c43196c21e7fa8201953aff",
+          "baselineMatch": false,
+          "currentMatch": false,
+          "baselineMissingAssertions": [],
+          "currentMissingAssertions": []
+        },
+        {
+          "path": "backend/tests/Gaode.Contracts.Tests/Workflow/ThreeStageWorkflowExecutorTests.cs",
+          "changedBy016": true,
+          "baselineSha": "45a57f96b38b30ebfc7c27e3a5df19954c175c9722c8a62ece30dd7b99695576",
+          "currentSha": "bd0008724a2afec2dd8b14eb1ec6b7cd5ecc430a8aca2358b7b1936bce756889",
+          "reviewSha": null,
+          "baselineMatch": true,
+          "currentMatch": true,
+          "baselineMissingAssertions": [],
+          "currentMissingAssertions": []
+        }
+      ],
+      "reviewedCurrentSources": {
+        "backend/tests/Gaode.Contracts.Tests/Workflow/ThreeStageWorkflowExecutorTests.cs": "8202e405d716d70ea82773396580b357fd8f48a0941268f60becd840a91e1820"
+      }
+    },
+    {
+      "originalObligation": "T23/MixedTrayCommitsNormalMemberRetentionWithoutAnotherSortingAction",
+      "requiredMethods": [
+        "MixedTrayCommitsNormalMemberRetentionWithoutAnotherSortingAction"
+      ],
+      "level": "Same original component level; explicit current semantic and current protocol split",
+      "originalCaseIdsRetained": [
+        "MIG-EXEC/ThreeStageWorkflowExecutorTests-MixedTrayCommitsNormalMemberRetentionWithoutAnotherSortingAction/0"
+      ],
+      "sourceComparison": [
+        {
+          "path": "backend/tests/Gaode.Contracts.Tests/Workflow/ThreeStageWorkflowExecutorTests.cs",
+          "changedBy016": true,
+          "baselineSha": "45a57f96b38b30ebfc7c27e3a5df19954c175c9722c8a62ece30dd7b99695576",
+          "currentSha": "bd0008724a2afec2dd8b14eb1ec6b7cd5ecc430a8aca2358b7b1936bce756889",
+          "reviewSha": "90ef5e780b9437a3dad5c49879e2dd2cf00d63de7c43196c21e7fa8201953aff",
+          "baselineMatch": false,
+          "currentMatch": false,
+          "baselineMissingAssertions": [],
+          "currentMissingAssertions": []
+        },
+        {
+          "path": "backend/tests/Gaode.Contracts.Tests/Workflow/ThreeStageWorkflowExecutorTests.cs",
+          "changedBy016": true,
+          "baselineSha": "45a57f96b38b30ebfc7c27e3a5df19954c175c9722c8a62ece30dd7b99695576",
+          "currentSha": "bd0008724a2afec2dd8b14eb1ec6b7cd5ecc430a8aca2358b7b1936bce756889",
+          "reviewSha": null,
+          "baselineMatch": true,
+          "currentMatch": true,
+          "baselineMissingAssertions": [],
+          "currentMissingAssertions": []
+        }
+      ],
+      "reviewedCurrentSources": {
+        "backend/tests/Gaode.Contracts.Tests/Workflow/ThreeStageWorkflowExecutorTests.cs": "8202e405d716d70ea82773396580b357fd8f48a0941268f60becd840a91e1820"
+      }
+    },
+    {
+      "originalObligation": "T24/CommunicationFailuresUseInitialAttemptPlusThreeRetriesAndOneTwoFourBackoff",
+      "requiredMethods": [
+        "CommunicationFailuresUseInitialAttemptPlusThreeRetriesAndOneTwoFourBackoff"
+      ],
+      "level": "Same original component level; explicit current semantic and current protocol split",
+      "originalCaseIdsRetained": [
+        "MIG-EXEC/ThreeStageWorkflowExecutorTests-CommunicationFailuresUseInitialAttemptPlusThreeRetriesAndOneTwoFourBackoff/0"
+      ],
+      "sourceComparison": [
+        {
+          "path": "backend/tests/Gaode.Contracts.Tests/Workflow/ThreeStageWorkflowExecutorTests.cs",
+          "changedBy016": true,
+          "baselineSha": "45a57f96b38b30ebfc7c27e3a5df19954c175c9722c8a62ece30dd7b99695576",
+          "currentSha": "bd0008724a2afec2dd8b14eb1ec6b7cd5ecc430a8aca2358b7b1936bce756889",
+          "reviewSha": "90ef5e780b9437a3dad5c49879e2dd2cf00d63de7c43196c21e7fa8201953aff",
+          "baselineMatch": false,
+          "currentMatch": false,
+          "baselineMissingAssertions": [],
+          "currentMissingAssertions": []
+        },
+        {
+          "path": "backend/tests/Gaode.Contracts.Tests/Workflow/ThreeStageWorkflowExecutorTests.cs",
+          "changedBy016": true,
+          "baselineSha": "45a57f96b38b30ebfc7c27e3a5df19954c175c9722c8a62ece30dd7b99695576",
+          "currentSha": "bd0008724a2afec2dd8b14eb1ec6b7cd5ecc430a8aca2358b7b1936bce756889",
+          "reviewSha": null,
+          "baselineMatch": true,
+          "currentMatch": true,
+          "baselineMissingAssertions": [],
+          "currentMissingAssertions": []
+        }
+      ],
+      "reviewedCurrentSources": {
+        "backend/tests/Gaode.Contracts.Tests/Workflow/ThreeStageWorkflowExecutorTests.cs": "8202e405d716d70ea82773396580b357fd8f48a0941268f60becd840a91e1820"
+      }
+    },
+    {
+      "originalObligation": "T24/AlgorithmTimeoutsUseInitialAttemptPlusTwoRetriesAndTwoFiveBackoff",
+      "requiredMethods": [
+        "AlgorithmTimeoutsUseInitialAttemptPlusTwoRetriesAndTwoFiveBackoff"
+      ],
+      "level": "Same original component level; explicit current semantic and current protocol split",
+      "originalCaseIdsRetained": [
+        "MIG-EXEC/ThreeStageWorkflowExecutorTests-AlgorithmTimeoutsUseInitialAttemptPlusTwoRetriesAndTwoFiveBackoff/0"
+      ],
+      "sourceComparison": [
+        {
+          "path": "backend/tests/Gaode.Contracts.Tests/Workflow/ThreeStageWorkflowExecutorTests.cs",
+          "changedBy016": true,
+          "baselineSha": "45a57f96b38b30ebfc7c27e3a5df19954c175c9722c8a62ece30dd7b99695576",
+          "currentSha": "bd0008724a2afec2dd8b14eb1ec6b7cd5ecc430a8aca2358b7b1936bce756889",
+          "reviewSha": "90ef5e780b9437a3dad5c49879e2dd2cf00d63de7c43196c21e7fa8201953aff",
+          "baselineMatch": false,
+          "currentMatch": false,
+          "baselineMissingAssertions": [],
+          "currentMissingAssertions": []
+        },
+        {
+          "path": "backend/tests/Gaode.Contracts.Tests/Workflow/ThreeStageWorkflowExecutorTests.cs",
+          "changedBy016": true,
+          "baselineSha": "45a57f96b38b30ebfc7c27e3a5df19954c175c9722c8a62ece30dd7b99695576",
+          "currentSha": "bd0008724a2afec2dd8b14eb1ec6b7cd5ecc430a8aca2358b7b1936bce756889",
+          "reviewSha": null,
+          "baselineMatch": true,
+          "currentMatch": true,
+          "baselineMissingAssertions": [],
+          "currentMissingAssertions": []
+        }
+      ],
+      "reviewedCurrentSources": {
+        "backend/tests/Gaode.Contracts.Tests/Workflow/ThreeStageWorkflowExecutorTests.cs": "8202e405d716d70ea82773396580b357fd8f48a0941268f60becd840a91e1820"
+      }
+    },
+    {
+      "originalObligation": "T24/SharedStageDeadlineStopsRetryBeforeItCanCrossOneHundredTwentySeconds",
+      "requiredMethods": [
+        "SharedStageDeadlineStopsRetryBeforeItCanCrossOneHundredTwentySeconds"
+      ],
+      "level": "Same original component level; explicit current semantic and current protocol split",
+      "originalCaseIdsRetained": [
+        "MIG-EXEC/ThreeStageWorkflowExecutorTests-SharedStageDeadlineStopsRetryBeforeItCanCrossOneHundredTwentySeconds/0"
+      ],
+      "sourceComparison": [
+        {
+          "path": "backend/tests/Gaode.Contracts.Tests/Workflow/ThreeStageWorkflowExecutorTests.cs",
+          "changedBy016": true,
+          "baselineSha": "45a57f96b38b30ebfc7c27e3a5df19954c175c9722c8a62ece30dd7b99695576",
+          "currentSha": "bd0008724a2afec2dd8b14eb1ec6b7cd5ecc430a8aca2358b7b1936bce756889",
+          "reviewSha": "90ef5e780b9437a3dad5c49879e2dd2cf00d63de7c43196c21e7fa8201953aff",
+          "baselineMatch": false,
+          "currentMatch": false,
+          "baselineMissingAssertions": [],
+          "currentMissingAssertions": []
+        },
+        {
+          "path": "backend/tests/Gaode.Contracts.Tests/Workflow/ThreeStageWorkflowExecutorTests.cs",
+          "changedBy016": true,
+          "baselineSha": "45a57f96b38b30ebfc7c27e3a5df19954c175c9722c8a62ece30dd7b99695576",
+          "currentSha": "bd0008724a2afec2dd8b14eb1ec6b7cd5ecc430a8aca2358b7b1936bce756889",
+          "reviewSha": null,
+          "baselineMatch": true,
+          "currentMatch": true,
+          "baselineMissingAssertions": [
+            "Assert.Equal([PlcWorkflowStage.UnloadPreparation, PlcWorkflowStage.Sorting],"
+          ],
+          "currentMissingAssertions": [
+            "Assert.Equal([PlcWorkflowStage.UnloadPreparation, PlcWorkflowStage.Sorting],"
+          ]
+        }
+      ],
+      "reviewedCurrentSources": {
+        "backend/tests/Gaode.Contracts.Tests/Workflow/ThreeStageWorkflowExecutorTests.cs": "8202e405d716d70ea82773396580b357fd8f48a0941268f60becd840a91e1820"
+      }
+    },
+    {
+      "originalObligation": "T24/DetectionExecutionAtStageDeadlineCannotDispatchSorting",
+      "requiredMethods": [
+        "DetectionExecutionAtStageDeadlineCannotDispatchSorting"
+      ],
+      "level": "Same original component level; explicit current semantic and current protocol split",
+      "originalCaseIdsRetained": [
+        "MIG-EXEC/ThreeStageWorkflowExecutorTests-DetectionExecutionAtStageDeadlineCannotDispatchSorting/0"
+      ],
+      "sourceComparison": [
+        {
+          "path": "backend/tests/Gaode.Contracts.Tests/Workflow/ThreeStageWorkflowExecutorTests.cs",
+          "changedBy016": true,
+          "baselineSha": "45a57f96b38b30ebfc7c27e3a5df19954c175c9722c8a62ece30dd7b99695576",
+          "currentSha": "bd0008724a2afec2dd8b14eb1ec6b7cd5ecc430a8aca2358b7b1936bce756889",
+          "reviewSha": "90ef5e780b9437a3dad5c49879e2dd2cf00d63de7c43196c21e7fa8201953aff",
+          "baselineMatch": false,
+          "currentMatch": false,
+          "baselineMissingAssertions": [],
+          "currentMissingAssertions": []
+        },
+        {
+          "path": "backend/tests/Gaode.Contracts.Tests/Workflow/ThreeStageWorkflowExecutorTests.cs",
+          "changedBy016": true,
+          "baselineSha": "45a57f96b38b30ebfc7c27e3a5df19954c175c9722c8a62ece30dd7b99695576",
+          "currentSha": "bd0008724a2afec2dd8b14eb1ec6b7cd5ecc430a8aca2358b7b1936bce756889",
+          "reviewSha": null,
+          "baselineMatch": true,
+          "currentMatch": true,
+          "baselineMissingAssertions": [
+            "Assert.Equal([PlcWorkflowStage.UnloadPreparation, PlcWorkflowStage.Sorting],"
+          ],
+          "currentMissingAssertions": [
+            "Assert.Equal([PlcWorkflowStage.UnloadPreparation, PlcWorkflowStage.Sorting],"
+          ]
+        }
+      ],
+      "reviewedCurrentSources": {
+        "backend/tests/Gaode.Contracts.Tests/Workflow/ThreeStageWorkflowExecutorTests.cs": "8202e405d716d70ea82773396580b357fd8f48a0941268f60becd840a91e1820"
+      }
+    },
+    {
+      "originalObligation": "T25/PlcUnknownHeldKeepsAssociationAndNeverRetriesOrAdvances",
+      "requiredMethods": [
+        "PlcUnknownHeldKeepsAssociationAndNeverRetriesOrAdvances"
+      ],
+      "level": "Same original component level; explicit current semantic and current protocol split",
+      "originalCaseIdsRetained": [
+        "MIG-EXEC/ThreeStageWorkflowExecutorTests-PlcUnknownHeldKeepsAssociationAndNeverRetriesOrAdvances/0"
+      ],
+      "sourceComparison": [
+        {
+          "path": "backend/tests/Gaode.Contracts.Tests/Workflow/ThreeStageWorkflowExecutorTests.cs",
+          "changedBy016": true,
+          "baselineSha": "45a57f96b38b30ebfc7c27e3a5df19954c175c9722c8a62ece30dd7b99695576",
+          "currentSha": "bd0008724a2afec2dd8b14eb1ec6b7cd5ecc430a8aca2358b7b1936bce756889",
+          "reviewSha": "90ef5e780b9437a3dad5c49879e2dd2cf00d63de7c43196c21e7fa8201953aff",
+          "baselineMatch": false,
+          "currentMatch": false,
+          "baselineMissingAssertions": [],
+          "currentMissingAssertions": []
+        },
+        {
+          "path": "backend/tests/Gaode.Contracts.Tests/Workflow/ThreeStageWorkflowExecutorTests.cs",
+          "changedBy016": true,
+          "baselineSha": "45a57f96b38b30ebfc7c27e3a5df19954c175c9722c8a62ece30dd7b99695576",
+          "currentSha": "bd0008724a2afec2dd8b14eb1ec6b7cd5ecc430a8aca2358b7b1936bce756889",
+          "reviewSha": null,
+          "baselineMatch": true,
+          "currentMatch": true,
+          "baselineMissingAssertions": [
+            "Assert.Equal([PlcWorkflowStage.UnloadPreparation, PlcWorkflowStage.Sorting],",
+            "Assert.Equal(fixture.Plc.Calls[1].OperationId, sortingAction.OperationId);",
+            "Assert.Equal(fixture.Plc.Calls[1].ConnectionEpoch, sortingAction.ConnectionEpoch);"
+          ],
+          "currentMissingAssertions": [
+            "Assert.Equal([PlcWorkflowStage.UnloadPreparation, PlcWorkflowStage.Sorting],",
+            "Assert.Equal(fixture.Plc.Calls[1].OperationId, sortingAction.OperationId);",
+            "Assert.Equal(fixture.Plc.Calls[1].ConnectionEpoch, sortingAction.ConnectionEpoch);"
+          ]
+        }
+      ],
+      "reviewedCurrentSources": {
+        "backend/tests/Gaode.Contracts.Tests/Workflow/ThreeStageWorkflowExecutorTests.cs": "8202e405d716d70ea82773396580b357fd8f48a0941268f60becd840a91e1820"
+      }
+    },
+    {
+      "originalObligation": "T25/StaleOperationOrEpochFeedbackBecomesUnknownHeldAndCannotCompleteCurrentAction",
+      "requiredMethods": [
+        "StaleOperationOrEpochFeedbackBecomesUnknownHeldAndCannotCompleteCurrentAction"
+      ],
+      "level": "Same original component level; explicit current semantic and current protocol split",
+      "originalCaseIdsRetained": [
+        "MIG-EXEC/ThreeStageWorkflowExecutorTests-StaleOperationOrEpochFeedbackBecomesUnknownHeldAndCannotCompleteCurrentAction/0"
+      ],
+      "sourceComparison": [
+        {
+          "path": "backend/tests/Gaode.Contracts.Tests/Workflow/ThreeStageWorkflowExecutorTests.cs",
+          "changedBy016": true,
+          "baselineSha": "45a57f96b38b30ebfc7c27e3a5df19954c175c9722c8a62ece30dd7b99695576",
+          "currentSha": "bd0008724a2afec2dd8b14eb1ec6b7cd5ecc430a8aca2358b7b1936bce756889",
+          "reviewSha": "90ef5e780b9437a3dad5c49879e2dd2cf00d63de7c43196c21e7fa8201953aff",
+          "baselineMatch": false,
+          "currentMatch": false,
+          "baselineMissingAssertions": [],
+          "currentMissingAssertions": []
+        },
+        {
+          "path": "backend/tests/Gaode.Contracts.Tests/Workflow/ThreeStageWorkflowExecutorTests.cs",
+          "changedBy016": true,
+          "baselineSha": "45a57f96b38b30ebfc7c27e3a5df19954c175c9722c8a62ece30dd7b99695576",
+          "currentSha": "bd0008724a2afec2dd8b14eb1ec6b7cd5ecc430a8aca2358b7b1936bce756889",
+          "reviewSha": null,
+          "baselineMatch": true,
+          "currentMatch": true,
+          "baselineMissingAssertions": [],
+          "currentMissingAssertions": []
+        }
+      ],
+      "reviewedCurrentSources": {
+        "backend/tests/Gaode.Contracts.Tests/Workflow/ThreeStageWorkflowExecutorTests.cs": "8202e405d716d70ea82773396580b357fd8f48a0941268f60becd840a91e1820"
+      }
+    },
+    {
+      "originalObligation": "T25/DetectionDisconnectedRemainsDetectionFailureInsteadOfPlcUnknownHeld",
+      "requiredMethods": [
+        "DetectionDisconnectedRemainsDetectionFailureInsteadOfPlcUnknownHeld"
+      ],
+      "level": "Same original component level; explicit current semantic and current protocol split",
+      "originalCaseIdsRetained": [
+        "MIG-EXEC/ThreeStageWorkflowExecutorTests-DetectionDisconnectedRemainsDetectionFailureInsteadOfPlcUnknownHeld/0"
+      ],
+      "sourceComparison": [
+        {
+          "path": "backend/tests/Gaode.Contracts.Tests/Workflow/ThreeStageWorkflowExecutorTests.cs",
+          "changedBy016": true,
+          "baselineSha": "45a57f96b38b30ebfc7c27e3a5df19954c175c9722c8a62ece30dd7b99695576",
+          "currentSha": "bd0008724a2afec2dd8b14eb1ec6b7cd5ecc430a8aca2358b7b1936bce756889",
+          "reviewSha": "90ef5e780b9437a3dad5c49879e2dd2cf00d63de7c43196c21e7fa8201953aff",
+          "baselineMatch": false,
+          "currentMatch": false,
+          "baselineMissingAssertions": [],
+          "currentMissingAssertions": []
+        },
+        {
+          "path": "backend/tests/Gaode.Contracts.Tests/Workflow/ThreeStageWorkflowExecutorTests.cs",
+          "changedBy016": true,
+          "baselineSha": "45a57f96b38b30ebfc7c27e3a5df19954c175c9722c8a62ece30dd7b99695576",
+          "currentSha": "bd0008724a2afec2dd8b14eb1ec6b7cd5ecc430a8aca2358b7b1936bce756889",
+          "reviewSha": null,
+          "baselineMatch": true,
+          "currentMatch": true,
+          "baselineMissingAssertions": [],
+          "currentMissingAssertions": []
+        }
+      ],
+      "reviewedCurrentSources": {
+        "backend/tests/Gaode.Contracts.Tests/Workflow/ThreeStageWorkflowExecutorTests.cs": "8202e405d716d70ea82773396580b357fd8f48a0941268f60becd840a91e1820"
+      }
+    },
+    {
+      "originalObligation": "T25/RecoveryBlocksUnknownPlcActionAndPreservesItsOperationAndEpoch",
+      "requiredMethods": [
+        "RecoveryBlocksUnknownPlcActionAndPreservesItsOperationAndEpoch"
+      ],
+      "level": "Same original component level; explicit current semantic and current protocol split",
+      "originalCaseIdsRetained": [
+        "MIG-EXEC/ThreeStageWorkflowExecutorTests-RecoveryBlocksUnknownPlcActionAndPreservesItsOperationAndEpoch/0"
+      ],
+      "sourceComparison": [
+        {
+          "path": "backend/tests/Gaode.Contracts.Tests/Workflow/ThreeStageWorkflowExecutorTests.cs",
+          "changedBy016": true,
+          "baselineSha": "45a57f96b38b30ebfc7c27e3a5df19954c175c9722c8a62ece30dd7b99695576",
+          "currentSha": "bd0008724a2afec2dd8b14eb1ec6b7cd5ecc430a8aca2358b7b1936bce756889",
+          "reviewSha": "90ef5e780b9437a3dad5c49879e2dd2cf00d63de7c43196c21e7fa8201953aff",
+          "baselineMatch": false,
+          "currentMatch": false,
+          "baselineMissingAssertions": [],
+          "currentMissingAssertions": []
+        },
+        {
+          "path": "backend/tests/Gaode.Contracts.Tests/Workflow/ThreeStageWorkflowExecutorTests.cs",
+          "changedBy016": true,
+          "baselineSha": "45a57f96b38b30ebfc7c27e3a5df19954c175c9722c8a62ece30dd7b99695576",
+          "currentSha": "bd0008724a2afec2dd8b14eb1ec6b7cd5ecc430a8aca2358b7b1936bce756889",
+          "reviewSha": null,
+          "baselineMatch": true,
+          "currentMatch": true,
+          "baselineMissingAssertions": [],
+          "currentMissingAssertions": []
+        }
+      ],
+      "reviewedCurrentSources": {
+        "backend/tests/Gaode.Contracts.Tests/Workflow/ThreeStageWorkflowExecutorTests.cs": "8202e405d716d70ea82773396580b357fd8f48a0941268f60becd840a91e1820"
+      }
+    },
+    {
+      "originalObligation": "T44/TwoGroupsKeepCompletedMembersAndRunIndependentTargetsThroughRealPorts",
+      "originalDataRows": [
+        {
+          "row": 1,
+          "literal": "false, false"
+        },
+        {
+          "row": 2,
+          "literal": "true, false"
+        }
+      ],
+      "originalAssertions": [
+        {
+          "line": 76,
+          "text": "Assert.Equal(\"Available\", Assert.Single(catalog.Items).Availability);"
+        },
+        {
+          "line": 83,
+          "text": "Assert.Equal(HttpStatusCode.Accepted, accepted.StatusCode);"
+        },
+        {
+          "line": 93,
+          "text": "var frozen = Assert.Single(committed, x => x.PayloadJson.Contains(\"\\\"kind\\\":\\\"RecipeExecutionDeadlinesFrozen\\\"\"));"
+        },
+        {
+          "line": 99,
+          "text": "Assert.True(wait > TimeSpan.Zero);"
+        },
+        {
+          "line": 118,
+          "text": "Assert.Equal(RunState.AwaitingManualRemoval, final.State);"
+        },
+        {
+          "line": 119,
+          "text": "Assert.Equal(1, algorithm.CallCount(AlgorithmRole.Height));"
+        },
+        {
+          "line": 120,
+          "text": "Assert.Equal(1, algorithm.CallCount(AlgorithmRole.FDecode));"
+        },
+        {
+          "line": 121,
+          "text": "Assert.Equal(fourFaceModel ? 42 : 18, algorithm.CallCount(AlgorithmRole.Detection));"
+        },
+        {
+          "line": 122,
+          "text": "Assert.Equal(fourFaceModel ? 2 : 0, algorithm.CallCount(AlgorithmRole.EDecode));"
+        },
+        {
+          "line": 129,
+          "text": "Assert.Equal(fourFaceModel ? 6 : 2, flips.Length);"
+        },
+        {
+          "line": 130,
+          "text": "Assert.All(flips, p => Assert.EndsWith(\":M01\", p.RootElement.GetProperty(\"entity\").GetString()));"
+        },
+        {
+          "line": 132,
+          "text": "Assert.Equal(fourFaceModel ? 30 : 12, captures.Length);"
+        },
+        {
+          "line": 133,
+          "text": "Assert.Equal(fourFaceModel ? 8 : 4, captures.Select(p => p.RootElement.GetProperty(\"objectId\").GetString()).Distinct().Count());"
+        },
+        {
+          "line": 134,
+          "text": "Assert.All(captures.Where(p => p.RootElement.GetProperty(\"objectId\").GetString()!.EndsWith(\":M02\")),"
+        },
+        {
+          "line": 135,
+          "text": "p => Assert.Equal(1, p.RootElement.GetProperty(\"localFace\").GetInt32()));"
+        },
+        {
+          "line": 139,
+          "text": "Assert.Equal(fourFaceModel ? 8 : 4, decisions.Length);"
+        },
+        {
+          "line": 140,
+          "text": "Assert.Equal(mixedResults ? 1 : 0, decisions.Count(x => x.GetProperty(\"Disposition\").GetString() == \"NG\"));"
+        },
+        {
+          "line": 141,
+          "text": "Assert.Equal(fourFaceModel ? 8 : mixedResults ? 3 : 4, decisions.Count(x => x.GetProperty(\"Disposition\").GetString() == \"OK\"));"
+        },
+        {
+          "line": 144,
+          "text": "Assert.EndsWith(\":G:P01:M01\", Assert.Single(decisions, x =>"
+        },
+        {
+          "line": 147,
+          "text": "Assert.Contains(\"Pending\", facts);"
+        },
+        {
+          "line": 152,
+          "text": "Assert.Equal(2, queried!.Results.Count(x => x.Kind == \"Group\"));"
+        },
+        {
+          "line": 153,
+          "text": "Assert.Equal(fourFaceModel ? 8 : 4, queried.Results.Count(x => x.Kind == \"Member\"));"
+        },
+        {
+          "line": 154,
+          "text": "Assert.Equal(fourFaceModel ? 14 : 6, queried.Results.Count(x => x.Kind == \"Face\"));"
+        },
+        {
+          "line": 157,
+          "text": "Assert.Contains(queried.Results, x => x.Kind == \"Face\" && x.Disposition == \"Pending\");"
+        },
+        {
+          "line": 158,
+          "text": "Assert.Contains(queried.Results, x => x.Kind == \"Member\" && x.Disposition == \"NG\");"
+        },
+        {
+          "line": 166,
+          "text": "Assert.Equal(HttpStatusCode.Accepted, removal.StatusCode);"
+        },
+        {
+          "line": 168,
+          "text": "Assert.Equal(TerminalOutcome.Completed, completed.FinalOutcome);"
+        }
+      ],
+      "requiredDisplayNames": [
+        "Gaode.Integration.Tests.Station01.RecipeMigration016Tests.GroupsAndAssemblyRetainIndependentResultsThroughActualFinalAndRestart(input: \"group-normal\")",
+        "Gaode.Integration.Tests.Station01.RecipeMigration016Tests.GroupsAndAssemblyRetainIndependentResultsThroughActualFinalAndRestart(input: \"group-mixed\")"
+      ],
+      "level": "FullRun independent Host/Worker/TCP/SQLite, per member/face/physical target, explicit confirmation and restart",
+      "preparation": "Explicit current /5 source composition and occupied slots, current TrayPose capability; source originals retained",
+      "scopeBasis": "016 independent physical members and shared configured detection directly affect these automatic obligations",
+      "reviewedCurrentSources": {
+        "backend/tests/Gaode.Integration.Tests/Station01/RecipeMigration016Tests.cs": "0bd7e30882e4bd65ef1a2e03111bffc18b52c01c5756e91f1f4688b70fddd96a",
+        "backend/tests/Gaode.Integration.Tests/CommunicationFixtures/RecipeMultiObjectIntegrationTests.Wire.cs": "e0b3b59da586a98d60a848bce6d67d2abbf4579d4770604031883242bc265301",
+        "backend/tests/Gaode.Integration.Tests/Station01/RecipeMultiObjectIntegrationTests.cs": "bc3352615eda71bd5640ca35048868d55de442de1c9a1ac4680455bd9e22dde8",
+        "backend/tests/Gaode.Integration.Tests/Station01/ThreeStageMainFlowIntegrationTests.cs": "37a7948390244b23d326bd4e079d5475b40c002c7aa49b428542bb8e9d17a11f",
+        "backend/tests/Gaode.Integration.Tests/Support/AssemblyComponentExecution.cs": "de25a853f68ef7964daa6b63b4086b3132057e99030d9659000567843cf6772f",
+        "backend/tests/Gaode.Integration.Tests/Support/RecipeExecution010Expectations.cs": "b4b46f138d6418b2adce43a9d86a586252db5d5625e0dc8e208d0f495e56b0df",
+        "backend/tests/Gaode.Integration.Tests/Support/RecipeExecution010RunHarness.cs": "2a2b61cdd9fe9cd5a9a9c2842789575b7a4092d6c77b8a7c9f7a1c27fab5a94e"
+      },
+      "originalCaseIdsRetained": [
+        "MIG-EXEC/RecipeMultiObjectIntegrationTests-AssemblySharesOneFlipAndRetainsPartsWhenECodeIsPresentOrMissing/0",
+        "MIG-EXEC/RecipeMultiObjectIntegrationTests-AssemblySharesOneFlipAndRetainsPartsWhenECodeIsPresentOrMissing/1",
+        "MIG-EXEC/RecipeMultiObjectIntegrationTests-TwoGroupsKeepCompletedMembersAndRunIndependentTargetsThroughRealPorts/0",
+        "MIG-EXEC/RecipeMultiObjectIntegrationTests-TwoGroupsKeepCompletedMembersAndRunIndependentTargetsThroughRealPorts/1",
+        "MIG-EXEC/ThreeStageMainFlowIntegrationTests-CommittedV2HandoffContinuesThroughThreeStagesOverFormalTcpAndSqlite/0"
+      ],
+      "sourceComparison": [
+        {
+          "path": "backend/tests/Gaode.Integration.Tests/Station01/RecipeMultiObjectIntegrationTests.cs",
+          "changedBy016": false,
+          "baselineSha": "bc3352615eda71bd5640ca35048868d55de442de1c9a1ac4680455bd9e22dde8",
+          "currentSha": "bc3352615eda71bd5640ca35048868d55de442de1c9a1ac4680455bd9e22dde8",
+          "reviewSha": "f4ec11db585df4215aaab89e39f050cf5255ef19f2fb97d61967570dce812266",
+          "baselineMatch": false,
+          "currentMatch": false,
+          "baselineMissingAssertions": [],
+          "currentMissingAssertions": []
+        },
+        {
+          "path": "backend/tests/Gaode.Integration.Tests/Station01/RecipeMultiObjectIntegrationTests.cs",
+          "changedBy016": false,
+          "baselineSha": "bc3352615eda71bd5640ca35048868d55de442de1c9a1ac4680455bd9e22dde8",
+          "currentSha": "bc3352615eda71bd5640ca35048868d55de442de1c9a1ac4680455bd9e22dde8",
+          "reviewSha": "f4ec11db585df4215aaab89e39f050cf5255ef19f2fb97d61967570dce812266",
+          "baselineMatch": false,
+          "currentMatch": false,
+          "baselineMissingAssertions": [
+            "Assert.Equal(\"Available\", Assert.Single(catalog.Items).Availability);"
+          ],
+          "currentMissingAssertions": [
+            "Assert.Equal(\"Available\", Assert.Single(catalog.Items).Availability);"
+          ]
+        },
+        {
+          "path": "backend/tests/Gaode.Integration.Tests/CommunicationFixtures/RecipeMultiObjectIntegrationTests.Wire.cs",
+          "changedBy016": false,
+          "baselineSha": "e0b3b59da586a98d60a848bce6d67d2abbf4579d4770604031883242bc265301",
+          "currentSha": "e0b3b59da586a98d60a848bce6d67d2abbf4579d4770604031883242bc265301",
+          "reviewSha": "e6dd33f3612fcd9baa26f81fabd497419d4d76ca3132d9634749948668447fc1",
+          "baselineMatch": false,
+          "currentMatch": false,
+          "baselineMissingAssertions": [],
+          "currentMissingAssertions": []
+        },
+        {
+          "path": "backend/tests/Gaode.Integration.Tests/Station01/ThreeStageMainFlowIntegrationTests.cs",
+          "changedBy016": false,
+          "baselineSha": "37a7948390244b23d326bd4e079d5475b40c002c7aa49b428542bb8e9d17a11f",
+          "currentSha": "37a7948390244b23d326bd4e079d5475b40c002c7aa49b428542bb8e9d17a11f",
+          "reviewSha": "b2aedfe6ba10c83afec972c90b6a44eb79681092f6aaa1c3658b1607e7aba5da",
+          "baselineMatch": false,
+          "currentMatch": false,
+          "baselineMissingAssertions": [],
+          "currentMissingAssertions": []
+        },
+        {
+          "path": "backend/tests/Gaode.Integration.Tests/Support/RecipeExecution010RunHarness.cs",
+          "changedBy016": true,
+          "baselineSha": "26193c244be94f2d5e637ba3fcc8b067e937fd83ad04d2dfb504f42e03ea7628",
+          "currentSha": "fd1c9f6eff0f12c79b505474d63bc5c42fd73a7c686e49fba02a7a684e1735de",
+          "reviewSha": "16ba10dfbb5e837e7f596b69828ed6940fd5a40c4e2410b2cc54f6404b4faa46",
+          "baselineMatch": false,
+          "currentMatch": false,
+          "baselineMissingAssertions": [
+            "Assert.Equal(\"SoftwareLoopOnly\", ready.ReadyForUnlockSourceMatrix!.Scope);",
+            "Assert.Empty(ready.ReadyForUnlockSourceMatrix.BlockedComponents);",
+            "Assert.Equal(ComponentEvidenceSource.Virtual, Assert.Single(ready.ReadyForUnlockSourceMatrix.Components,",
+            "Assert.Equal(ComponentEvidenceSource.Test, Assert.Single(ready.ReadyForUnlockSourceMatrix.Components,"
+          ],
+          "currentMissingAssertions": [
+            "Assert.Equal(\"SoftwareLoopOnly\", ready.ReadyForUnlockSourceMatrix!.Scope);",
+            "Assert.Empty(ready.ReadyForUnlockSourceMatrix.BlockedComponents);",
+            "Assert.Equal(ComponentEvidenceSource.Virtual, Assert.Single(ready.ReadyForUnlockSourceMatrix.Components,",
+            "Assert.Equal(ComponentEvidenceSource.Test, Assert.Single(ready.ReadyForUnlockSourceMatrix.Components,"
+          ]
+        },
+        {
+          "path": "backend/tests/Gaode.Integration.Tests/Support/RecipeExecution010Expectations.cs",
+          "changedBy016": false,
+          "baselineSha": "b4b46f138d6418b2adce43a9d86a586252db5d5625e0dc8e208d0f495e56b0df",
+          "currentSha": "b4b46f138d6418b2adce43a9d86a586252db5d5625e0dc8e208d0f495e56b0df",
+          "reviewSha": "5ed6139ac1d7f5196d2c81167f4a8f7d5ca12b043fe867f799f1784d1c1f89f8",
+          "baselineMatch": false,
+          "currentMatch": false,
+          "baselineMissingAssertions": [
+            "Assert.Equal(8, facts.Length);",
+            "Assert.Equal(8, facts.Select(f => f.Fact.CallId).Distinct().Count());",
+            "Assert.Equal(6, media.Length); Assert.All(media, m => Assert.Equal(\"FileCompleted\", m.State));",
+            "Assert.Equal(6, captureFacts.Length);",
+            "Assert.Equal(f.Fact.Origin.Source, handoff.Source);",
+            "var threeDMedia = Assert.Single(media, m => handoff.ThreeDMediaReferences.Contains($\"media://{m.MediaId:D}\"));",
+            "Assert.Single(facts, fact => fact.Fact.CaptureId == threeDMedia.CaptureId && fact.Fact.DecodedCode is null);",
+            "Assert.NotEqual(threeDMedia.CaptureId, f.Fact.CaptureId);",
+            "var receiptWrite = Assert.Single(writes, w => Kind(w.PayloadJson) == \"RecipeApplicationReceiptObserved\");",
+            "Assert.True(receipt.WasCompletedInWindow);",
+            "Assert.Equal(runId, receipt.Correlation.RunId); Assert.Equal(handoff.Identity.TrayId, receipt.Correlation.TrayId);",
+            "Assert.Equal(handoff.PlanRevision, receipt.Correlation.PlanRevision);",
+            "Assert.Contains(receipt.RequiredCommits, c => c.WriteId == handoff.WriteId && c.PersistedRevision == handoff.CommittedRevision);",
+            "var intentWrite = Assert.Single(writes, w => w.WriteId == receipt.IntentCommit!.WriteId);",
+            "Assert.Equal(receipt.Correlation.OperationId,",
+            "Assert.Equal(receipt.Correlation, receipt.IntentCommit!.Correlation);",
+            "Assert.Equal(new[] { \"C\", \"C\", \"D\", \"D\" }, images.Select(i => i.GetProperty(\"camera\").GetString()).ToArray());",
+            "Assert.All(images, i => Assert.Equal(\"OK\", Field(i, \"detectionDisposition\").GetString()));",
+            "Assert.Equal(2, fusions.Length);",
+            "Assert.All(fusions, fusion => Assert.Equal(\"OK\", fusion.GetProperty(\"disposition\").GetString()));",
+            "Assert.Equal(4, movement.Length);",
+            "Assert.Equal(xy[index].Item1, Field(point, \"x\").GetDouble());",
+            "Assert.Equal(xy[index].Item2, Field(point, \"y\").GetDouble()); Assert.Equal(111, Field(point, \"z\").GetDouble());",
+            "Assert.Single(stages.Where(e => e.Stage is \"Sorting\" or \"UnloadPreparation\" or \"UnlockObservation\").Select(e => e.ConnectionEpoch).Distinct());",
+            "Assert.Equal(8, results.Length);",
+            "Assert.Equal(10, audit.Count(r => r.GetProperty(\"event\").GetString() == \"InputReleased\"));",
+            "Assert.Equal(10, audit.Count(r => r.GetProperty(\"event\").GetString() == \"MediaRead\"));"
+          ],
+          "currentMissingAssertions": [
+            "Assert.Equal(8, facts.Length);",
+            "Assert.Equal(8, facts.Select(f => f.Fact.CallId).Distinct().Count());",
+            "Assert.Equal(6, media.Length); Assert.All(media, m => Assert.Equal(\"FileCompleted\", m.State));",
+            "Assert.Equal(6, captureFacts.Length);",
+            "Assert.Equal(f.Fact.Origin.Source, handoff.Source);",
+            "var threeDMedia = Assert.Single(media, m => handoff.ThreeDMediaReferences.Contains($\"media://{m.MediaId:D}\"));",
+            "Assert.Single(facts, fact => fact.Fact.CaptureId == threeDMedia.CaptureId && fact.Fact.DecodedCode is null);",
+            "Assert.NotEqual(threeDMedia.CaptureId, f.Fact.CaptureId);",
+            "var receiptWrite = Assert.Single(writes, w => Kind(w.PayloadJson) == \"RecipeApplicationReceiptObserved\");",
+            "Assert.True(receipt.WasCompletedInWindow);",
+            "Assert.Equal(runId, receipt.Correlation.RunId); Assert.Equal(handoff.Identity.TrayId, receipt.Correlation.TrayId);",
+            "Assert.Equal(handoff.PlanRevision, receipt.Correlation.PlanRevision);",
+            "Assert.Contains(receipt.RequiredCommits, c => c.WriteId == handoff.WriteId && c.PersistedRevision == handoff.CommittedRevision);",
+            "var intentWrite = Assert.Single(writes, w => w.WriteId == receipt.IntentCommit!.WriteId);",
+            "Assert.Equal(receipt.Correlation.OperationId,",
+            "Assert.Equal(receipt.Correlation, receipt.IntentCommit!.Correlation);",
+            "Assert.Equal(new[] { \"C\", \"C\", \"D\", \"D\" }, images.Select(i => i.GetProperty(\"camera\").GetString()).ToArray());",
+            "Assert.All(images, i => Assert.Equal(\"OK\", Field(i, \"detectionDisposition\").GetString()));",
+            "Assert.Equal(2, fusions.Length);",
+            "Assert.All(fusions, fusion => Assert.Equal(\"OK\", fusion.GetProperty(\"disposition\").GetString()));",
+            "Assert.Equal(4, movement.Length);",
+            "Assert.Equal(xy[index].Item1, Field(point, \"x\").GetDouble());",
+            "Assert.Equal(xy[index].Item2, Field(point, \"y\").GetDouble()); Assert.Equal(111, Field(point, \"z\").GetDouble());",
+            "Assert.Single(stages.Where(e => e.Stage is \"Sorting\" or \"UnloadPreparation\" or \"UnlockObservation\").Select(e => e.ConnectionEpoch).Distinct());",
+            "Assert.Equal(8, results.Length);",
+            "Assert.Equal(10, audit.Count(r => r.GetProperty(\"event\").GetString() == \"InputReleased\"));",
+            "Assert.Equal(10, audit.Count(r => r.GetProperty(\"event\").GetString() == \"MediaRead\"));"
+          ]
+        },
+        {
+          "path": "backend/tests/Gaode.Integration.Tests/Support/AssemblyComponentExecution.cs",
+          "changedBy016": false,
+          "baselineSha": "de25a853f68ef7964daa6b63b4086b3132057e99030d9659000567843cf6772f",
+          "currentSha": "de25a853f68ef7964daa6b63b4086b3132057e99030d9659000567843cf6772f",
+          "reviewSha": "d5b1a5598a4c96f6898a39aa817e99a20083b883a9b8cf0b29ce2b698b6f28f5",
+          "baselineMatch": false,
+          "currentMatch": false,
+          "baselineMissingAssertions": [
+            "var selected = Assert.Single(catalog.Items);"
+          ],
+          "currentMissingAssertions": [
+            "var selected = Assert.Single(catalog.Items);"
+          ]
+        }
+      ],
+      "mappingCorrection": "One original obligation, its two declared migrated actual rows. The legacy method name is retained history, not a second mandatory invocation of the same branch."
+    },
+    {
+      "originalObligation": "T44/AssemblySharesOneFlipAndRetainsPartsWhenECodeIsPresentOrMissing",
+      "originalDataRows": [
+        {
+          "row": 1,
+          "literal": "false, false, false"
+        },
+        {
+          "row": 2,
+          "literal": "true, false, false"
+        }
+      ],
+      "originalAssertions": [
+        {
+          "line": 182,
+          "text": "Assert.Equal(\"Available\", Assert.Single(catalog.Items).Availability);"
+        },
+        {
+          "line": 189,
+          "text": "Assert.Equal(HttpStatusCode.Accepted, accepted.StatusCode);"
+        },
+        {
+          "line": 197,
+          "text": "Assert.Equal(RunState.AwaitingManualRemoval, final.State);"
+        },
+        {
+          "line": 198,
+          "text": "Assert.Equal(1, algorithm.CallCount(AlgorithmRole.Height));"
+        },
+        {
+          "line": 199,
+          "text": "Assert.Equal(1, algorithm.CallCount(AlgorithmRole.FDecode));"
+        },
+        {
+          "line": 200,
+          "text": "Assert.Equal(9, algorithm.CallCount(AlgorithmRole.Detection));"
+        },
+        {
+          "line": 201,
+          "text": "Assert.Equal(1, algorithm.CallCount(AlgorithmRole.EDecode));"
+        },
+        {
+          "line": 208,
+          "text": "Assert.Single(flips);"
+        },
+        {
+          "line": 209,
+          "text": "Assert.EndsWith(\":A:P01\", flips[0].RootElement.GetProperty(\"entity\").GetString());"
+        },
+        {
+          "line": 210,
+          "text": "var binding = Assert.Single(payloads, p => p.RootElement.TryGetProperty(\"kind\", out var k) && k.GetString() == \"ECodeBinding\");"
+        },
+        {
+          "line": 211,
+          "text": "Assert.EndsWith(\":M01\", binding.RootElement.GetProperty(\"objectId\").GetString());"
+        },
+        {
+          "line": 212,
+          "text": "if (workerError) Assert.Equal(\"ControlledEDecodeFailure\", binding.RootElement.GetProperty(\"issue\").GetString());"
+        },
+        {
+          "line": 213,
+          "text": "else if (missingCode) Assert.Equal(\"ECodeNoResult\", binding.RootElement.GetProperty(\"issue\").GetString());"
+        },
+        {
+          "line": 214,
+          "text": "else Assert.StartsWith(\"TEST-BASE-A:\", binding.RootElement.GetProperty(\"externalCode\").GetString());"
+        },
+        {
+          "line": 216,
+          "text": "Assert.Equal(7, captures.Length);"
+        },
+        {
+          "line": 217,
+          "text": "Assert.All(captures.Where(p => p.RootElement.GetProperty(\"objectId\").GetString()!.EndsWith(\":M02\")),"
+        },
+        {
+          "line": 218,
+          "text": "p => Assert.Equal(1, p.RootElement.GetProperty(\"localFace\").GetInt32()));"
+        },
+        {
+          "line": 222,
+          "text": "var eMedia = Assert.Single(media.GetProperty(\"items\").EnumerateArray(), x => x.GetProperty(\"role\").GetString() == \"E\");"
+        },
+        {
+          "line": 223,
+          "text": "Assert.EndsWith(\":M01\", eMedia.GetProperty(\"objectId\").GetString());"
+        },
+        {
+          "line": 224,
+          "text": "Assert.Equal(1, eMedia.GetProperty(\"localFace\").GetInt32());"
+        },
+        {
+          "line": 226,
+          "text": "Assert.Equal(2, queried!.Results.Count(x => x.Kind == \"Part\"));"
+        },
+        {
+          "line": 227,
+          "text": "Assert.Equal(3, queried.Results.Count(x => x.Kind == \"Face\"));"
+        },
+        {
+          "line": 228,
+          "text": "Assert.Equal(ngParts ? \"NG\" : \"OK\", Assert.Single(queried.Results, x => x.Kind == \"Assembly\").Disposition);"
+        },
+        {
+          "line": 231,
+          "text": "Assert.Contains(queried.Results, x => x.Kind == \"Face\" && x.Disposition == \"Pending\");"
+        },
+        {
+          "line": 232,
+          "text": "Assert.Equal(1, rig.AcceptedWriteCount(ProtocolLatestMap.SortCommand, 1));"
+        },
+        {
+          "line": 233,
+          "text": "Assert.Equal(1, rig.AcceptedWriteCount(ProtocolLatestMap.SortCommand, 2));"
+        }
+      ],
+      "requiredDisplayNames": [
+        "Gaode.Integration.Tests.Station01.RecipeMigration016Tests.GroupsAndAssemblyRetainIndependentResultsThroughActualFinalAndRestart(input: \"assembly-code\")",
+        "Gaode.Integration.Tests.Station01.RecipeMigration016Tests.GroupsAndAssemblyRetainIndependentResultsThroughActualFinalAndRestart(input: \"assembly-missing\")"
+      ],
+      "level": "FullRun independent Host/Worker/TCP/SQLite, per member/face/physical target, explicit confirmation and restart",
+      "preparation": "Explicit current /5 source composition and occupied slots, current TrayPose capability; source originals retained",
+      "scopeBasis": "016 independent physical members and shared configured detection directly affect these automatic obligations",
+      "reviewedCurrentSources": {
+        "backend/tests/Gaode.Integration.Tests/Station01/RecipeMigration016Tests.cs": "0bd7e30882e4bd65ef1a2e03111bffc18b52c01c5756e91f1f4688b70fddd96a"
+      }
+    },
+    {
+      "originalObligation": "T44/FourFaceGroupsUseSourceCompositionAndDistinctETargets",
+      "originalDataRows": [
+        {
+          "row": 0,
+          "literal": "Fact"
+        }
+      ],
+      "originalAssertions": [],
+      "requiredDisplayNames": [
+        "Gaode.Integration.Tests.Station01.RecipeMigration016Tests.GroupsAndAssemblyRetainIndependentResultsThroughActualFinalAndRestart(input: \"group-four\")"
+      ],
+      "level": "FullRun independent Host/Worker/TCP/SQLite, per member/face/physical target, explicit confirmation and restart",
+      "preparation": "Explicit current /5 source composition and occupied slots, current TrayPose capability; source originals retained",
+      "scopeBasis": "016 independent physical members and shared configured detection directly affect these automatic obligations",
+      "reviewedCurrentSources": {
+        "backend/tests/Gaode.Integration.Tests/Station01/RecipeMigration016Tests.cs": "0bd7e30882e4bd65ef1a2e03111bffc18b52c01c5756e91f1f4688b70fddd96a"
+      }
+    },
+    {
+      "originalObligation": "T44/EWorkerFailureLeavesIssueAndContinuesWholeAssembly",
+      "originalDataRows": [
+        {
+          "row": 0,
+          "literal": "Fact"
+        }
+      ],
+      "originalAssertions": [],
+      "requiredDisplayNames": [
+        "Gaode.Integration.Tests.Station01.RecipeMigration016Tests.GroupsAndAssemblyRetainIndependentResultsThroughActualFinalAndRestart(input: \"assembly-error\")"
+      ],
+      "level": "FullRun independent Host/Worker/TCP/SQLite, per member/face/physical target, explicit confirmation and restart",
+      "preparation": "Explicit current /5 source composition and occupied slots, current TrayPose capability; source originals retained",
+      "scopeBasis": "016 independent physical members and shared configured detection directly affect these automatic obligations",
+      "reviewedCurrentSources": {
+        "backend/tests/Gaode.Integration.Tests/Station01/RecipeMigration016Tests.cs": "0bd7e30882e4bd65ef1a2e03111bffc18b52c01c5756e91f1f4688b70fddd96a"
+      }
+    },
+    {
+      "originalObligation": "T44/AssemblyNgPriorityRetainsPendingDetailAndMovesWholeEntityOnce",
+      "originalDataRows": [
+        {
+          "row": 0,
+          "literal": "Fact"
+        }
+      ],
+      "originalAssertions": [],
+      "requiredDisplayNames": [
+        "Gaode.Integration.Tests.Station01.RecipeMigration016Tests.GroupsAndAssemblyRetainIndependentResultsThroughActualFinalAndRestart(input: \"assembly-ng-pending\")"
+      ],
+      "level": "FullRun independent Host/Worker/TCP/SQLite, per member/face/physical target, explicit confirmation and restart",
+      "preparation": "Explicit current /5 source composition and occupied slots, current TrayPose capability; source originals retained",
+      "scopeBasis": "016 independent physical members and shared configured detection directly affect these automatic obligations",
+      "reviewedCurrentSources": {
+        "backend/tests/Gaode.Integration.Tests/Station01/RecipeMigration016Tests.cs": "0bd7e30882e4bd65ef1a2e03111bffc18b52c01c5756e91f1f4688b70fddd96a"
+      }
+    },
+    {
+      "originalObligation": "T39/CommittedV2HandoffContinuesThroughThreeStagesOverFormalTcpAndSqlite",
+      "requiredMethods": [
+        "ReceivedTwoSpecialUnitsKeepOriginalSlotsAndDistinctEventsThroughActualFinalAndRestart"
+      ],
+      "level": "FullRun exact received014 content-worker input, original expectations, original slots, two event identities, one final unload and restart",
+      "reviewedCurrentSources": {
+        "backend/tests/Gaode.Integration.Tests/Station01/RecipeMigration016Tests.cs": "0bd7e30882e4bd65ef1a2e03111bffc18b52c01c5756e91f1f4688b70fddd96a",
+        "backend/tests/Gaode.Integration.Tests/Support/RecipeExecution010Expectations.cs": "b4b46f138d6418b2adce43a9d86a586252db5d5625e0dc8e208d0f495e56b0df",
+        "backend/tests/Gaode.Integration.Tests/Support/RecipeExecution010RunHarness.cs": "2a2b61cdd9fe9cd5a9a9c2842789575b7a4092d6c77b8a7c9f7a1c27fab5a94e",
+        "scripts/014-012-joint-page.mjs": "b0aa5f59feed9e168a9f3a7f57bc26a38572b7a7f857886f0e7964fd948935aa",
+        "backend/tests/Gaode.Integration.Tests/Station01/ThreeStageMainFlowIntegrationTests.cs": "37a7948390244b23d326bd4e079d5475b40c002c7aa49b428542bb8e9d17a11f"
+      },
+      "originalCaseIdsRetained": [
+        "MIG-EXEC/ThreeStageMainFlowIntegrationTests-CommittedV2HandoffContinuesThroughThreeStagesOverFormalTcpAndSqlite/0"
+      ],
+      "sourceComparison": [
+        {
+          "path": "backend/tests/Gaode.Integration.Tests/Station01/ThreeStageMainFlowIntegrationTests.cs",
+          "changedBy016": false,
+          "baselineSha": "37a7948390244b23d326bd4e079d5475b40c002c7aa49b428542bb8e9d17a11f",
+          "currentSha": "37a7948390244b23d326bd4e079d5475b40c002c7aa49b428542bb8e9d17a11f",
+          "reviewSha": "b2aedfe6ba10c83afec972c90b6a44eb79681092f6aaa1c3658b1607e7aba5da",
+          "baselineMatch": false,
+          "currentMatch": false,
+          "baselineMissingAssertions": [],
+          "currentMissingAssertions": []
+        },
+        {
+          "path": "backend/tests/Gaode.Integration.Tests/Station01/ThreeStageMainFlowIntegrationTests.cs",
+          "changedBy016": false,
+          "baselineSha": "37a7948390244b23d326bd4e079d5475b40c002c7aa49b428542bb8e9d17a11f",
+          "currentSha": "37a7948390244b23d326bd4e079d5475b40c002c7aa49b428542bb8e9d17a11f",
+          "reviewSha": "b2aedfe6ba10c83afec972c90b6a44eb79681092f6aaa1c3658b1607e7aba5da",
+          "baselineMatch": false,
+          "currentMatch": false,
+          "baselineMissingAssertions": [],
+          "currentMissingAssertions": []
+        },
+        {
+          "path": "backend/tests/Gaode.Integration.Tests/Support/RecipeExecution010RunHarness.cs",
+          "changedBy016": true,
+          "baselineSha": "26193c244be94f2d5e637ba3fcc8b067e937fd83ad04d2dfb504f42e03ea7628",
+          "currentSha": "fd1c9f6eff0f12c79b505474d63bc5c42fd73a7c686e49fba02a7a684e1735de",
+          "reviewSha": "16ba10dfbb5e837e7f596b69828ed6940fd5a40c4e2410b2cc54f6404b4faa46",
+          "baselineMatch": false,
+          "currentMatch": false,
+          "baselineMissingAssertions": [
+            "Assert.Equal(\"SoftwareLoopOnly\", ready.ReadyForUnlockSourceMatrix!.Scope);",
+            "Assert.Empty(ready.ReadyForUnlockSourceMatrix.BlockedComponents);",
+            "Assert.Equal(ComponentEvidenceSource.Virtual, Assert.Single(ready.ReadyForUnlockSourceMatrix.Components,",
+            "Assert.Equal(ComponentEvidenceSource.Test, Assert.Single(ready.ReadyForUnlockSourceMatrix.Components,"
+          ],
+          "currentMissingAssertions": [
+            "Assert.Equal(\"SoftwareLoopOnly\", ready.ReadyForUnlockSourceMatrix!.Scope);",
+            "Assert.Empty(ready.ReadyForUnlockSourceMatrix.BlockedComponents);",
+            "Assert.Equal(ComponentEvidenceSource.Virtual, Assert.Single(ready.ReadyForUnlockSourceMatrix.Components,",
+            "Assert.Equal(ComponentEvidenceSource.Test, Assert.Single(ready.ReadyForUnlockSourceMatrix.Components,"
+          ]
+        },
+        {
+          "path": "backend/tests/Gaode.Integration.Tests/Support/RecipeExecution010Expectations.cs",
+          "changedBy016": false,
+          "baselineSha": "b4b46f138d6418b2adce43a9d86a586252db5d5625e0dc8e208d0f495e56b0df",
+          "currentSha": "b4b46f138d6418b2adce43a9d86a586252db5d5625e0dc8e208d0f495e56b0df",
+          "reviewSha": "5ed6139ac1d7f5196d2c81167f4a8f7d5ca12b043fe867f799f1784d1c1f89f8",
+          "baselineMatch": false,
+          "currentMatch": false,
+          "baselineMissingAssertions": [
+            "Assert.Equal(8, facts.Length);",
+            "Assert.Equal(8, facts.Select(f => f.Fact.CallId).Distinct().Count());",
+            "Assert.Equal(6, media.Length); Assert.All(media, m => Assert.Equal(\"FileCompleted\", m.State));",
+            "Assert.Equal(6, captureFacts.Length);",
+            "Assert.Equal(f.Fact.Origin.Source, handoff.Source);",
+            "var threeDMedia = Assert.Single(media, m => handoff.ThreeDMediaReferences.Contains($\"media://{m.MediaId:D}\"));",
+            "Assert.Single(facts, fact => fact.Fact.CaptureId == threeDMedia.CaptureId && fact.Fact.DecodedCode is null);",
+            "Assert.NotEqual(threeDMedia.CaptureId, f.Fact.CaptureId);",
+            "var receiptWrite = Assert.Single(writes, w => Kind(w.PayloadJson) == \"RecipeApplicationReceiptObserved\");",
+            "Assert.True(receipt.WasCompletedInWindow);",
+            "Assert.Equal(runId, receipt.Correlation.RunId); Assert.Equal(handoff.Identity.TrayId, receipt.Correlation.TrayId);",
+            "Assert.Equal(handoff.PlanRevision, receipt.Correlation.PlanRevision);",
+            "Assert.Contains(receipt.RequiredCommits, c => c.WriteId == handoff.WriteId && c.PersistedRevision == handoff.CommittedRevision);",
+            "var intentWrite = Assert.Single(writes, w => w.WriteId == receipt.IntentCommit!.WriteId);",
+            "Assert.Equal(receipt.Correlation.OperationId,",
+            "Assert.Equal(receipt.Correlation, receipt.IntentCommit!.Correlation);",
+            "Assert.Equal(new[] { \"C\", \"C\", \"D\", \"D\" }, images.Select(i => i.GetProperty(\"camera\").GetString()).ToArray());",
+            "Assert.All(images, i => Assert.Equal(\"OK\", Field(i, \"detectionDisposition\").GetString()));",
+            "Assert.Equal(2, fusions.Length);",
+            "Assert.All(fusions, fusion => Assert.Equal(\"OK\", fusion.GetProperty(\"disposition\").GetString()));",
+            "Assert.Equal(4, movement.Length);",
+            "Assert.Equal(xy[index].Item1, Field(point, \"x\").GetDouble());",
+            "Assert.Equal(xy[index].Item2, Field(point, \"y\").GetDouble()); Assert.Equal(111, Field(point, \"z\").GetDouble());",
+            "Assert.Single(stages.Where(e => e.Stage is \"Sorting\" or \"UnloadPreparation\" or \"UnlockObservation\").Select(e => e.ConnectionEpoch).Distinct());",
+            "Assert.Equal(8, results.Length);",
+            "Assert.Equal(10, audit.Count(r => r.GetProperty(\"event\").GetString() == \"InputReleased\"));",
+            "Assert.Equal(10, audit.Count(r => r.GetProperty(\"event\").GetString() == \"MediaRead\"));"
+          ],
+          "currentMissingAssertions": [
+            "Assert.Equal(8, facts.Length);",
+            "Assert.Equal(8, facts.Select(f => f.Fact.CallId).Distinct().Count());",
+            "Assert.Equal(6, media.Length); Assert.All(media, m => Assert.Equal(\"FileCompleted\", m.State));",
+            "Assert.Equal(6, captureFacts.Length);",
+            "Assert.Equal(f.Fact.Origin.Source, handoff.Source);",
+            "var threeDMedia = Assert.Single(media, m => handoff.ThreeDMediaReferences.Contains($\"media://{m.MediaId:D}\"));",
+            "Assert.Single(facts, fact => fact.Fact.CaptureId == threeDMedia.CaptureId && fact.Fact.DecodedCode is null);",
+            "Assert.NotEqual(threeDMedia.CaptureId, f.Fact.CaptureId);",
+            "var receiptWrite = Assert.Single(writes, w => Kind(w.PayloadJson) == \"RecipeApplicationReceiptObserved\");",
+            "Assert.True(receipt.WasCompletedInWindow);",
+            "Assert.Equal(runId, receipt.Correlation.RunId); Assert.Equal(handoff.Identity.TrayId, receipt.Correlation.TrayId);",
+            "Assert.Equal(handoff.PlanRevision, receipt.Correlation.PlanRevision);",
+            "Assert.Contains(receipt.RequiredCommits, c => c.WriteId == handoff.WriteId && c.PersistedRevision == handoff.CommittedRevision);",
+            "var intentWrite = Assert.Single(writes, w => w.WriteId == receipt.IntentCommit!.WriteId);",
+            "Assert.Equal(receipt.Correlation.OperationId,",
+            "Assert.Equal(receipt.Correlation, receipt.IntentCommit!.Correlation);",
+            "Assert.Equal(new[] { \"C\", \"C\", \"D\", \"D\" }, images.Select(i => i.GetProperty(\"camera\").GetString()).ToArray());",
+            "Assert.All(images, i => Assert.Equal(\"OK\", Field(i, \"detectionDisposition\").GetString()));",
+            "Assert.Equal(2, fusions.Length);",
+            "Assert.All(fusions, fusion => Assert.Equal(\"OK\", fusion.GetProperty(\"disposition\").GetString()));",
+            "Assert.Equal(4, movement.Length);",
+            "Assert.Equal(xy[index].Item1, Field(point, \"x\").GetDouble());",
+            "Assert.Equal(xy[index].Item2, Field(point, \"y\").GetDouble()); Assert.Equal(111, Field(point, \"z\").GetDouble());",
+            "Assert.Single(stages.Where(e => e.Stage is \"Sorting\" or \"UnloadPreparation\" or \"UnlockObservation\").Select(e => e.ConnectionEpoch).Distinct());",
+            "Assert.Equal(8, results.Length);",
+            "Assert.Equal(10, audit.Count(r => r.GetProperty(\"event\").GetString() == \"InputReleased\"));",
+            "Assert.Equal(10, audit.Count(r => r.GetProperty(\"event\").GetString() == \"MediaRead\"));"
+          ]
+        }
+      ],
+      "mappingCorrection": "Original generic method calls the same RunToFinalAsync and RecipeExecution010Expectations.VerifyAsync on the selected owned input; actual received014 method executes those exact helpers/expectations plus event/restart guards. Explicit current /5/PNG preparation is documented, original source preserved."
+    }
+  ],
+  "independentRetainedHistory": [
+    {
+      "originalObligation": "T39/PersistedHandoffRecordsPendingMappingFailedAndUnknownHeldWithoutFalseCompletion",
+      "status": "RetainedOriginalObligation_NotCountedPassed",
+      "sourceChecks": [
+        {
+          "path": "backend/tests/Gaode.Integration.Tests/Station01/ThreeStageMainFlowIntegrationTests.cs",
+          "originalCopySha256": "37a7948390244b23d326bd4e079d5475b40c002c7aa49b428542bb8e9d17a11f",
+          "currentSha256": "37a7948390244b23d326bd4e079d5475b40c002c7aa49b428542bb8e9d17a11f",
+          "sameAsCopyBaseline": true
+        },
+        {
+          "path": "backend/tests/Gaode.Integration.Tests/Station01/ThreeStageMainFlowIntegrationTests.cs",
+          "originalCopySha256": "37a7948390244b23d326bd4e079d5475b40c002c7aa49b428542bb8e9d17a11f",
+          "currentSha256": "37a7948390244b23d326bd4e079d5475b40c002c7aa49b428542bb8e9d17a11f",
+          "sameAsCopyBaseline": true
+        }
+      ],
+      "basis": "Current acceptance scope is automatic public preparation and shared configured execution. This original unexecuted obligation is retained, with exact original-copy/current/review comparison; neither source comparison nor the current representative chain counts as its execution. Its old register review is not closed by this acceptance. Current directly modified automatic T44 duties have separate mandatory actual process rows.",
+      "baselineReviewFacts": [
+        {
+          "path": "backend/tests/Gaode.Integration.Tests/Station01/ThreeStageMainFlowIntegrationTests.cs",
+          "changedBy016": false,
+          "baselineSha": "37a7948390244b23d326bd4e079d5475b40c002c7aa49b428542bb8e9d17a11f",
+          "currentSha": "37a7948390244b23d326bd4e079d5475b40c002c7aa49b428542bb8e9d17a11f",
+          "reviewSha": "b2aedfe6ba10c83afec972c90b6a44eb79681092f6aaa1c3658b1607e7aba5da",
+          "baselineMatch": false,
+          "currentMatch": false,
+          "baselineMissingAssertions": [],
+          "currentMissingAssertions": []
+        },
+        {
+          "path": "backend/tests/Gaode.Integration.Tests/Station01/ThreeStageMainFlowIntegrationTests.cs",
+          "changedBy016": false,
+          "baselineSha": "37a7948390244b23d326bd4e079d5475b40c002c7aa49b428542bb8e9d17a11f",
+          "currentSha": "37a7948390244b23d326bd4e079d5475b40c002c7aa49b428542bb8e9d17a11f",
+          "reviewSha": "b2aedfe6ba10c83afec972c90b6a44eb79681092f6aaa1c3658b1607e7aba5da",
+          "baselineMatch": false,
+          "currentMatch": false,
+          "baselineMissingAssertions": [],
+          "currentMissingAssertions": []
+        }
+      ]
+    },
+    {
+      "originalObligation": "T39/FailedFirstThreeDMotionNeverGuessesSafeZOrStartsF",
+      "status": "RetainedOriginalObligation_NotCountedPassed",
+      "sourceChecks": [
+        {
+          "path": "backend/tests/Gaode.Integration.Tests/Station01/VirtualRecipeAndDetectionGateTests.cs",
+          "originalCopySha256": "405bf44d0f336e0dcce2b0988e1ba233b7d599e5051f282dfcb35774a868eeea",
+          "currentSha256": "405bf44d0f336e0dcce2b0988e1ba233b7d599e5051f282dfcb35774a868eeea",
+          "sameAsCopyBaseline": true
+        },
+        {
+          "path": "backend/tests/Gaode.Integration.Tests/Station01/VirtualRecipeAndDetectionGateTests.cs",
+          "originalCopySha256": "405bf44d0f336e0dcce2b0988e1ba233b7d599e5051f282dfcb35774a868eeea",
+          "currentSha256": "405bf44d0f336e0dcce2b0988e1ba233b7d599e5051f282dfcb35774a868eeea",
+          "sameAsCopyBaseline": true
+        }
+      ],
+      "basis": "Current acceptance scope is automatic public preparation and shared configured execution. This original unexecuted obligation is retained, with exact original-copy/current/review comparison; neither source comparison nor the current representative chain counts as its execution. Its old register review is not closed by this acceptance. Current directly modified automatic T44 duties have separate mandatory actual process rows.",
+      "baselineReviewFacts": [
+        {
+          "path": "backend/tests/Gaode.Integration.Tests/Station01/VirtualRecipeAndDetectionGateTests.cs",
+          "changedBy016": false,
+          "baselineSha": "405bf44d0f336e0dcce2b0988e1ba233b7d599e5051f282dfcb35774a868eeea",
+          "currentSha": "405bf44d0f336e0dcce2b0988e1ba233b7d599e5051f282dfcb35774a868eeea",
+          "reviewSha": "405bf44d0f336e0dcce2b0988e1ba233b7d599e5051f282dfcb35774a868eeea",
+          "baselineMatch": true,
+          "currentMatch": true,
+          "baselineMissingAssertions": [],
+          "currentMissingAssertions": []
+        },
+        {
+          "path": "backend/tests/Gaode.Integration.Tests/Station01/VirtualRecipeAndDetectionGateTests.cs",
+          "changedBy016": false,
+          "baselineSha": "405bf44d0f336e0dcce2b0988e1ba233b7d599e5051f282dfcb35774a868eeea",
+          "currentSha": "405bf44d0f336e0dcce2b0988e1ba233b7d599e5051f282dfcb35774a868eeea",
+          "reviewSha": null,
+          "baselineMatch": true,
+          "currentMatch": true,
+          "baselineMissingAssertions": [],
+          "currentMissingAssertions": []
+        }
+      ]
+    },
+    {
+      "originalObligation": "T39/IndependentWorkerUnmatchedFDoesNotReuseOldRecipe",
+      "status": "RetainedOriginalObligation_NotCountedPassed",
+      "sourceChecks": [
+        {
+          "path": "backend/tests/Gaode.Integration.Tests/Station01/VirtualRecipeAndDetectionGateTests.cs",
+          "originalCopySha256": "405bf44d0f336e0dcce2b0988e1ba233b7d599e5051f282dfcb35774a868eeea",
+          "currentSha256": "405bf44d0f336e0dcce2b0988e1ba233b7d599e5051f282dfcb35774a868eeea",
+          "sameAsCopyBaseline": true
+        },
+        {
+          "path": "backend/tests/Gaode.Integration.Tests/Station01/VirtualRecipeAndDetectionGateTests.cs",
+          "originalCopySha256": "405bf44d0f336e0dcce2b0988e1ba233b7d599e5051f282dfcb35774a868eeea",
+          "currentSha256": "405bf44d0f336e0dcce2b0988e1ba233b7d599e5051f282dfcb35774a868eeea",
+          "sameAsCopyBaseline": true
+        }
+      ],
+      "basis": "Current acceptance scope is automatic public preparation and shared configured execution. This original unexecuted obligation is retained, with exact original-copy/current/review comparison; neither source comparison nor the current representative chain counts as its execution. Its old register review is not closed by this acceptance. Current directly modified automatic T44 duties have separate mandatory actual process rows.",
+      "baselineReviewFacts": [
+        {
+          "path": "backend/tests/Gaode.Integration.Tests/Station01/VirtualRecipeAndDetectionGateTests.cs",
+          "changedBy016": false,
+          "baselineSha": "405bf44d0f336e0dcce2b0988e1ba233b7d599e5051f282dfcb35774a868eeea",
+          "currentSha": "405bf44d0f336e0dcce2b0988e1ba233b7d599e5051f282dfcb35774a868eeea",
+          "reviewSha": "405bf44d0f336e0dcce2b0988e1ba233b7d599e5051f282dfcb35774a868eeea",
+          "baselineMatch": true,
+          "currentMatch": true,
+          "baselineMissingAssertions": [],
+          "currentMissingAssertions": []
+        },
+        {
+          "path": "backend/tests/Gaode.Integration.Tests/Station01/VirtualRecipeAndDetectionGateTests.cs",
+          "changedBy016": false,
+          "baselineSha": "405bf44d0f336e0dcce2b0988e1ba233b7d599e5051f282dfcb35774a868eeea",
+          "currentSha": "405bf44d0f336e0dcce2b0988e1ba233b7d599e5051f282dfcb35774a868eeea",
+          "reviewSha": null,
+          "baselineMatch": true,
+          "currentMatch": true,
+          "baselineMissingAssertions": [],
+          "currentMissingAssertions": []
+        }
+      ]
+    },
+    {
+      "originalObligation": "T39/InvalidDetectionWorkerResultStopsWithoutDefaultOk",
+      "status": "RetainedOriginalObligation_NotCountedPassed",
+      "sourceChecks": [
+        {
+          "path": "backend/tests/Gaode.Integration.Tests/Station01/VirtualRecipeAndDetectionGateTests.cs",
+          "originalCopySha256": "405bf44d0f336e0dcce2b0988e1ba233b7d599e5051f282dfcb35774a868eeea",
+          "currentSha256": "405bf44d0f336e0dcce2b0988e1ba233b7d599e5051f282dfcb35774a868eeea",
+          "sameAsCopyBaseline": true
+        },
+        {
+          "path": "backend/tests/Gaode.Integration.Tests/Station01/VirtualRecipeAndDetectionGateTests.cs",
+          "originalCopySha256": "405bf44d0f336e0dcce2b0988e1ba233b7d599e5051f282dfcb35774a868eeea",
+          "currentSha256": "405bf44d0f336e0dcce2b0988e1ba233b7d599e5051f282dfcb35774a868eeea",
+          "sameAsCopyBaseline": true
+        }
+      ],
+      "basis": "Current acceptance scope is automatic public preparation and shared configured execution. This original unexecuted obligation is retained, with exact original-copy/current/review comparison; neither source comparison nor the current representative chain counts as its execution. Its old register review is not closed by this acceptance. Current directly modified automatic T44 duties have separate mandatory actual process rows.",
+      "baselineReviewFacts": [
+        {
+          "path": "backend/tests/Gaode.Integration.Tests/Station01/VirtualRecipeAndDetectionGateTests.cs",
+          "changedBy016": false,
+          "baselineSha": "405bf44d0f336e0dcce2b0988e1ba233b7d599e5051f282dfcb35774a868eeea",
+          "currentSha": "405bf44d0f336e0dcce2b0988e1ba233b7d599e5051f282dfcb35774a868eeea",
+          "reviewSha": "405bf44d0f336e0dcce2b0988e1ba233b7d599e5051f282dfcb35774a868eeea",
+          "baselineMatch": true,
+          "currentMatch": true,
+          "baselineMissingAssertions": [],
+          "currentMissingAssertions": []
+        },
+        {
+          "path": "backend/tests/Gaode.Integration.Tests/Station01/VirtualRecipeAndDetectionGateTests.cs",
+          "changedBy016": false,
+          "baselineSha": "405bf44d0f336e0dcce2b0988e1ba233b7d599e5051f282dfcb35774a868eeea",
+          "currentSha": "405bf44d0f336e0dcce2b0988e1ba233b7d599e5051f282dfcb35774a868eeea",
+          "reviewSha": null,
+          "baselineMatch": true,
+          "currentMatch": true,
+          "baselineMissingAssertions": [],
+          "currentMissingAssertions": []
+        }
+      ]
+    },
+    {
+      "originalObligation": "T39/LateIndependentDetectionWorkerBecomesFinitePendingAndSorts",
+      "status": "RetainedOriginalObligation_NotCountedPassed",
+      "sourceChecks": [
+        {
+          "path": "backend/tests/Gaode.Integration.Tests/Station01/VirtualRecipeAndDetectionGateTests.cs",
+          "originalCopySha256": "405bf44d0f336e0dcce2b0988e1ba233b7d599e5051f282dfcb35774a868eeea",
+          "currentSha256": "405bf44d0f336e0dcce2b0988e1ba233b7d599e5051f282dfcb35774a868eeea",
+          "sameAsCopyBaseline": true
+        },
+        {
+          "path": "backend/tests/Gaode.Integration.Tests/Station01/VirtualRecipeAndDetectionGateTests.cs",
+          "originalCopySha256": "405bf44d0f336e0dcce2b0988e1ba233b7d599e5051f282dfcb35774a868eeea",
+          "currentSha256": "405bf44d0f336e0dcce2b0988e1ba233b7d599e5051f282dfcb35774a868eeea",
+          "sameAsCopyBaseline": true
+        }
+      ],
+      "basis": "Current acceptance scope is automatic public preparation and shared configured execution. This original unexecuted obligation is retained, with exact original-copy/current/review comparison; neither source comparison nor the current representative chain counts as its execution. Its old register review is not closed by this acceptance. Current directly modified automatic T44 duties have separate mandatory actual process rows.",
+      "baselineReviewFacts": [
+        {
+          "path": "backend/tests/Gaode.Integration.Tests/Station01/VirtualRecipeAndDetectionGateTests.cs",
+          "changedBy016": false,
+          "baselineSha": "405bf44d0f336e0dcce2b0988e1ba233b7d599e5051f282dfcb35774a868eeea",
+          "currentSha": "405bf44d0f336e0dcce2b0988e1ba233b7d599e5051f282dfcb35774a868eeea",
+          "reviewSha": "405bf44d0f336e0dcce2b0988e1ba233b7d599e5051f282dfcb35774a868eeea",
+          "baselineMatch": true,
+          "currentMatch": true,
+          "baselineMissingAssertions": [],
+          "currentMissingAssertions": []
+        },
+        {
+          "path": "backend/tests/Gaode.Integration.Tests/Station01/VirtualRecipeAndDetectionGateTests.cs",
+          "changedBy016": false,
+          "baselineSha": "405bf44d0f336e0dcce2b0988e1ba233b7d599e5051f282dfcb35774a868eeea",
+          "currentSha": "405bf44d0f336e0dcce2b0988e1ba233b7d599e5051f282dfcb35774a868eeea",
+          "reviewSha": null,
+          "baselineMatch": true,
+          "currentMatch": true,
+          "baselineMissingAssertions": [],
+          "currentMissingAssertions": []
+        }
+      ]
+    },
+    {
+      "originalObligation": "T39/Current007AmbiguousDetectionMappingBlocksBeforeSorting",
+      "status": "RetainedOriginalObligation_NotCountedPassed",
+      "sourceChecks": [
+        {
+          "path": "backend/tests/Gaode.Integration.Tests/Station01/ThreeStageMainFlowIntegrationTests.cs",
+          "originalCopySha256": "37a7948390244b23d326bd4e079d5475b40c002c7aa49b428542bb8e9d17a11f",
+          "currentSha256": "37a7948390244b23d326bd4e079d5475b40c002c7aa49b428542bb8e9d17a11f",
+          "sameAsCopyBaseline": true
+        },
+        {
+          "path": "backend/tests/Gaode.Integration.Tests/Station01/ThreeStageMainFlowIntegrationTests.cs",
+          "originalCopySha256": "37a7948390244b23d326bd4e079d5475b40c002c7aa49b428542bb8e9d17a11f",
+          "currentSha256": "37a7948390244b23d326bd4e079d5475b40c002c7aa49b428542bb8e9d17a11f",
+          "sameAsCopyBaseline": true
+        }
+      ],
+      "basis": "Current acceptance scope is automatic public preparation and shared configured execution. This original unexecuted obligation is retained, with exact original-copy/current/review comparison; neither source comparison nor the current representative chain counts as its execution. Its old register review is not closed by this acceptance. Current directly modified automatic T44 duties have separate mandatory actual process rows.",
+      "baselineReviewFacts": [
+        {
+          "path": "backend/tests/Gaode.Integration.Tests/Station01/ThreeStageMainFlowIntegrationTests.cs",
+          "changedBy016": false,
+          "baselineSha": "37a7948390244b23d326bd4e079d5475b40c002c7aa49b428542bb8e9d17a11f",
+          "currentSha": "37a7948390244b23d326bd4e079d5475b40c002c7aa49b428542bb8e9d17a11f",
+          "reviewSha": "b2aedfe6ba10c83afec972c90b6a44eb79681092f6aaa1c3658b1607e7aba5da",
+          "baselineMatch": false,
+          "currentMatch": false,
+          "baselineMissingAssertions": [],
+          "currentMissingAssertions": []
+        },
+        {
+          "path": "backend/tests/Gaode.Integration.Tests/Station01/ThreeStageMainFlowIntegrationTests.cs",
+          "changedBy016": false,
+          "baselineSha": "37a7948390244b23d326bd4e079d5475b40c002c7aa49b428542bb8e9d17a11f",
+          "currentSha": "37a7948390244b23d326bd4e079d5475b40c002c7aa49b428542bb8e9d17a11f",
+          "reviewSha": null,
+          "baselineMatch": true,
+          "currentMatch": true,
+          "baselineMissingAssertions": [],
+          "currentMissingAssertions": []
+        }
+      ]
+    },
+    {
+      "originalObligation": "T39/Current007UnknownUnlockHoldsAfterWholeTrayWithoutReplayOrFinalCompletion",
+      "status": "RetainedOriginalObligation_NotCountedPassed",
+      "sourceChecks": [
+        {
+          "path": "backend/tests/Gaode.Integration.Tests/CommunicationFixtures/VirtualPlcSafetyGateTests.Wire.cs",
+          "originalCopySha256": null,
+          "currentSha256": null,
+          "sameAsCopyBaseline": true
+        },
+        {
+          "path": "backend/tests/Gaode.Integration.Tests/CommunicationFixtures/VirtualPlcSafetyGateTests.Wire.cs",
+          "originalCopySha256": null,
+          "currentSha256": null,
+          "sameAsCopyBaseline": true
+        },
+        {
+          "path": "backend/tests/Gaode.Integration.Tests/Station01/VirtualPlcSafetyGateTests.cs",
+          "originalCopySha256": null,
+          "currentSha256": null,
+          "sameAsCopyBaseline": true
+        }
+      ],
+      "basis": "Current acceptance scope is automatic public preparation and shared configured execution. This original unexecuted obligation is retained, with exact original-copy/current/review comparison; neither source comparison nor the current representative chain counts as its execution. Its old register review is not closed by this acceptance. Current directly modified automatic T44 duties have separate mandatory actual process rows.",
+      "baselineReviewFacts": [
+        {
+          "path": "backend/tests/Gaode.Integration.Tests/CommunicationFixtures/VirtualPlcSafetyGateTests.Wire.cs",
+          "changedBy016": false,
+          "baselineSha": null,
+          "currentSha": null,
+          "reviewSha": "acd6b9274e9107f8ba0fac132d8e074d88b8f34cb68b986e74f266c5921e7052",
+          "baselineMatch": false,
+          "currentMatch": false,
+          "baselineMissingAssertions": [],
+          "currentMissingAssertions": []
+        },
+        {
+          "path": "backend/tests/Gaode.Integration.Tests/CommunicationFixtures/VirtualPlcSafetyGateTests.Wire.cs",
+          "changedBy016": false,
+          "baselineSha": null,
+          "currentSha": null,
+          "reviewSha": null,
+          "baselineMatch": false,
+          "currentMatch": false,
+          "baselineMissingAssertions": [
+            "Assert.Equal(1,await RecipeWireAssertions.Count(await RunUnknownUnlockAsync(),0x23,0));"
+          ],
+          "currentMissingAssertions": [
+            "Assert.Equal(1,await RecipeWireAssertions.Count(await RunUnknownUnlockAsync(),0x23,0));"
+          ]
+        },
+        {
+          "path": "backend/tests/Gaode.Integration.Tests/Station01/VirtualPlcSafetyGateTests.cs",
+          "changedBy016": false,
+          "baselineSha": null,
+          "currentSha": null,
+          "reviewSha": "45b558d5c69f1922c40278459924e8d4c7edc0972062c32866b198ca4db47495",
+          "baselineMatch": false,
+          "currentMatch": false,
+          "baselineMissingAssertions": [],
+          "currentMissingAssertions": []
+        }
+      ]
+    },
+    {
+      "originalObligation": "T44/SameBuildLoadsBaseAndParamAndPreservesActualAbCdNoncontiguousBatchOrder",
+      "status": "RetainedOriginalObligation_NotCountedPassed",
+      "sourceChecks": [
+        {
+          "path": "backend/tests/Gaode.Integration.Tests/Station01/CurrentConfigRegressionTests.cs",
+          "originalCopySha256": "748add42a4c32ef92c42b0408c4016b1115e040da04b6ad12c8cdd849b67c2ab",
+          "currentSha256": "748add42a4c32ef92c42b0408c4016b1115e040da04b6ad12c8cdd849b67c2ab",
+          "sameAsCopyBaseline": true
+        },
+        {
+          "path": "backend/tests/Gaode.Integration.Tests/Station01/CurrentConfigRegressionTests.cs",
+          "originalCopySha256": "748add42a4c32ef92c42b0408c4016b1115e040da04b6ad12c8cdd849b67c2ab",
+          "currentSha256": "748add42a4c32ef92c42b0408c4016b1115e040da04b6ad12c8cdd849b67c2ab",
+          "sameAsCopyBaseline": true
+        }
+      ],
+      "basis": "Current acceptance scope is automatic public preparation and shared configured execution. This original unexecuted obligation is retained, with exact original-copy/current/review comparison; neither source comparison nor the current representative chain counts as its execution. Its old register review is not closed by this acceptance. Current directly modified automatic T44 duties have separate mandatory actual process rows.",
+      "baselineReviewFacts": [
+        {
+          "path": "backend/tests/Gaode.Integration.Tests/Station01/CurrentConfigRegressionTests.cs",
+          "changedBy016": false,
+          "baselineSha": "748add42a4c32ef92c42b0408c4016b1115e040da04b6ad12c8cdd849b67c2ab",
+          "currentSha": "748add42a4c32ef92c42b0408c4016b1115e040da04b6ad12c8cdd849b67c2ab",
+          "reviewSha": "748add42a4c32ef92c42b0408c4016b1115e040da04b6ad12c8cdd849b67c2ab",
+          "baselineMatch": true,
+          "currentMatch": true,
+          "baselineMissingAssertions": [],
+          "currentMissingAssertions": []
+        },
+        {
+          "path": "backend/tests/Gaode.Integration.Tests/Station01/CurrentConfigRegressionTests.cs",
+          "changedBy016": false,
+          "baselineSha": "748add42a4c32ef92c42b0408c4016b1115e040da04b6ad12c8cdd849b67c2ab",
+          "currentSha": "748add42a4c32ef92c42b0408c4016b1115e040da04b6ad12c8cdd849b67c2ab",
+          "reviewSha": null,
+          "baselineMatch": true,
+          "currentMatch": true,
+          "baselineMissingAssertions": [],
+          "currentMissingAssertions": []
+        }
+      ]
+    },
+    {
+      "originalObligation": "T44/ManualFlipRequiresObservedOccupancyAndAuthenticatedConfirmationThenClearsBeforeNextFace",
+      "status": "RetainedOriginalObligation_NotCountedPassed",
+      "sourceChecks": [
+        {
+          "path": "backend/tests/Gaode.Integration.Tests/CommunicationFixtures/RecipeMultiObjectIntegrationTests.Wire.cs",
+          "originalCopySha256": "e0b3b59da586a98d60a848bce6d67d2abbf4579d4770604031883242bc265301",
+          "currentSha256": "e0b3b59da586a98d60a848bce6d67d2abbf4579d4770604031883242bc265301",
+          "sameAsCopyBaseline": true
+        },
+        {
+          "path": "backend/tests/Gaode.Integration.Tests/CommunicationFixtures/RecipeMultiObjectIntegrationTests.Wire.cs",
+          "originalCopySha256": "e0b3b59da586a98d60a848bce6d67d2abbf4579d4770604031883242bc265301",
+          "currentSha256": "e0b3b59da586a98d60a848bce6d67d2abbf4579d4770604031883242bc265301",
+          "sameAsCopyBaseline": true
+        },
+        {
+          "path": "backend/tests/Gaode.Integration.Tests/Station01/RecipeMultiObjectIntegrationTests.cs",
+          "originalCopySha256": "bc3352615eda71bd5640ca35048868d55de442de1c9a1ac4680455bd9e22dde8",
+          "currentSha256": "bc3352615eda71bd5640ca35048868d55de442de1c9a1ac4680455bd9e22dde8",
+          "sameAsCopyBaseline": true
+        }
+      ],
+      "basis": "Current acceptance scope is automatic public preparation and shared configured execution. This original unexecuted obligation is retained, with exact original-copy/current/review comparison; neither source comparison nor the current representative chain counts as its execution. Its old register review is not closed by this acceptance. Current directly modified automatic T44 duties have separate mandatory actual process rows.",
+      "baselineReviewFacts": [
+        {
+          "path": "backend/tests/Gaode.Integration.Tests/CommunicationFixtures/RecipeMultiObjectIntegrationTests.Wire.cs",
+          "changedBy016": false,
+          "baselineSha": "e0b3b59da586a98d60a848bce6d67d2abbf4579d4770604031883242bc265301",
+          "currentSha": "e0b3b59da586a98d60a848bce6d67d2abbf4579d4770604031883242bc265301",
+          "reviewSha": "e6dd33f3612fcd9baa26f81fabd497419d4d76ca3132d9634749948668447fc1",
+          "baselineMatch": false,
+          "currentMatch": false,
+          "baselineMissingAssertions": [],
+          "currentMissingAssertions": []
+        },
+        {
+          "path": "backend/tests/Gaode.Integration.Tests/CommunicationFixtures/RecipeMultiObjectIntegrationTests.Wire.cs",
+          "changedBy016": false,
+          "baselineSha": "e0b3b59da586a98d60a848bce6d67d2abbf4579d4770604031883242bc265301",
+          "currentSha": "e0b3b59da586a98d60a848bce6d67d2abbf4579d4770604031883242bc265301",
+          "reviewSha": null,
+          "baselineMatch": true,
+          "currentMatch": true,
+          "baselineMissingAssertions": [],
+          "currentMissingAssertions": []
+        },
+        {
+          "path": "backend/tests/Gaode.Integration.Tests/Station01/RecipeMultiObjectIntegrationTests.cs",
+          "changedBy016": false,
+          "baselineSha": "bc3352615eda71bd5640ca35048868d55de442de1c9a1ac4680455bd9e22dde8",
+          "currentSha": "bc3352615eda71bd5640ca35048868d55de442de1c9a1ac4680455bd9e22dde8",
+          "reviewSha": "f4ec11db585df4215aaab89e39f050cf5255ef19f2fb97d61967570dce812266",
+          "baselineMatch": false,
+          "currentMatch": false,
+          "baselineMissingAssertions": [],
+          "currentMissingAssertions": []
+        }
+      ]
+    },
+    {
+      "originalObligation": "T44/ManualAssemblyWithEUsesSameOccupancyAndFaceConfirmation",
+      "status": "RetainedOriginalObligation_NotCountedPassed",
+      "sourceChecks": [
+        {
+          "path": "backend/tests/Gaode.Integration.Tests/CommunicationFixtures/RecipeMultiObjectIntegrationTests.Wire.cs",
+          "originalCopySha256": "e0b3b59da586a98d60a848bce6d67d2abbf4579d4770604031883242bc265301",
+          "currentSha256": "e0b3b59da586a98d60a848bce6d67d2abbf4579d4770604031883242bc265301",
+          "sameAsCopyBaseline": true
+        },
+        {
+          "path": "backend/tests/Gaode.Integration.Tests/CommunicationFixtures/RecipeMultiObjectIntegrationTests.Wire.cs",
+          "originalCopySha256": "e0b3b59da586a98d60a848bce6d67d2abbf4579d4770604031883242bc265301",
+          "currentSha256": "e0b3b59da586a98d60a848bce6d67d2abbf4579d4770604031883242bc265301",
+          "sameAsCopyBaseline": true
+        },
+        {
+          "path": "backend/tests/Gaode.Integration.Tests/Station01/RecipeMultiObjectIntegrationTests.cs",
+          "originalCopySha256": "bc3352615eda71bd5640ca35048868d55de442de1c9a1ac4680455bd9e22dde8",
+          "currentSha256": "bc3352615eda71bd5640ca35048868d55de442de1c9a1ac4680455bd9e22dde8",
+          "sameAsCopyBaseline": true
+        }
+      ],
+      "basis": "Current acceptance scope is automatic public preparation and shared configured execution. This original unexecuted obligation is retained, with exact original-copy/current/review comparison; neither source comparison nor the current representative chain counts as its execution. Its old register review is not closed by this acceptance. Current directly modified automatic T44 duties have separate mandatory actual process rows.",
+      "baselineReviewFacts": [
+        {
+          "path": "backend/tests/Gaode.Integration.Tests/CommunicationFixtures/RecipeMultiObjectIntegrationTests.Wire.cs",
+          "changedBy016": false,
+          "baselineSha": "e0b3b59da586a98d60a848bce6d67d2abbf4579d4770604031883242bc265301",
+          "currentSha": "e0b3b59da586a98d60a848bce6d67d2abbf4579d4770604031883242bc265301",
+          "reviewSha": "e6dd33f3612fcd9baa26f81fabd497419d4d76ca3132d9634749948668447fc1",
+          "baselineMatch": false,
+          "currentMatch": false,
+          "baselineMissingAssertions": [],
+          "currentMissingAssertions": []
+        },
+        {
+          "path": "backend/tests/Gaode.Integration.Tests/CommunicationFixtures/RecipeMultiObjectIntegrationTests.Wire.cs",
+          "changedBy016": false,
+          "baselineSha": "e0b3b59da586a98d60a848bce6d67d2abbf4579d4770604031883242bc265301",
+          "currentSha": "e0b3b59da586a98d60a848bce6d67d2abbf4579d4770604031883242bc265301",
+          "reviewSha": null,
+          "baselineMatch": true,
+          "currentMatch": true,
+          "baselineMissingAssertions": [],
+          "currentMissingAssertions": []
+        },
+        {
+          "path": "backend/tests/Gaode.Integration.Tests/Station01/RecipeMultiObjectIntegrationTests.cs",
+          "changedBy016": false,
+          "baselineSha": "bc3352615eda71bd5640ca35048868d55de442de1c9a1ac4680455bd9e22dde8",
+          "currentSha": "bc3352615eda71bd5640ca35048868d55de442de1c9a1ac4680455bd9e22dde8",
+          "reviewSha": "f4ec11db585df4215aaab89e39f050cf5255ef19f2fb97d61967570dce812266",
+          "baselineMatch": false,
+          "currentMatch": false,
+          "baselineMissingAssertions": [],
+          "currentMissingAssertions": []
+        }
+      ]
+    },
+    {
+      "originalObligation": "T44/SpecialDeviceRunsPoseAndExitWithoutOrdinarySortingReplay",
+      "status": "RetainedOriginalObligation_NotCountedPassed",
+      "sourceChecks": [
+        {
+          "path": "backend/tests/Gaode.Integration.Tests/CommunicationFixtures/RecipeRotationIntegrationTests.Wire.cs",
+          "originalCopySha256": null,
+          "currentSha256": null,
+          "sameAsCopyBaseline": true
+        },
+        {
+          "path": "backend/tests/Gaode.Integration.Tests/CommunicationFixtures/RecipeRotationIntegrationTests.Wire.cs",
+          "originalCopySha256": null,
+          "currentSha256": null,
+          "sameAsCopyBaseline": true
+        },
+        {
+          "path": "backend/tests/Gaode.Integration.Tests/Station01/RecipeRotationIntegrationTests.cs",
+          "originalCopySha256": null,
+          "currentSha256": null,
+          "sameAsCopyBaseline": true
+        }
+      ],
+      "basis": "Current acceptance scope is automatic public preparation and shared configured execution. This original unexecuted obligation is retained, with exact original-copy/current/review comparison; neither source comparison nor the current representative chain counts as its execution. Its old register review is not closed by this acceptance. Current directly modified automatic T44 duties have separate mandatory actual process rows.",
+      "baselineReviewFacts": [
+        {
+          "path": "backend/tests/Gaode.Integration.Tests/CommunicationFixtures/RecipeRotationIntegrationTests.Wire.cs",
+          "changedBy016": false,
+          "baselineSha": null,
+          "currentSha": null,
+          "reviewSha": "4684ce099a411c9d0b7f3a9273740e807ccdc3ff3f2ccebe81968dd285c3f344",
+          "baselineMatch": false,
+          "currentMatch": false,
+          "baselineMissingAssertions": [],
+          "currentMissingAssertions": []
+        },
+        {
+          "path": "backend/tests/Gaode.Integration.Tests/CommunicationFixtures/RecipeRotationIntegrationTests.Wire.cs",
+          "changedBy016": false,
+          "baselineSha": null,
+          "currentSha": null,
+          "reviewSha": null,
+          "baselineMatch": false,
+          "currentMatch": false,
+          "baselineMissingAssertions": [
+            "Assert.Equal(2,values.Length);",
+            "Assert.All(values,x=>Assert.NotEqual(JsonValueKind.Null,x.GetProperty(\"OccupiedEntityId\").ValueKind));",
+            "Assert.Equal(4, values.Length);",
+            "Assert.All(values, x => Assert.Equal(\"Completed\", x.GetProperty(\"Status\").GetString()));",
+            "Assert.Equal(2, values.Count(x => x.GetProperty(\"Request\").GetProperty(\"Kind\").GetString() == \"Rotate\"));",
+            "var exit = Assert.Single(values, x => x.GetProperty(\"Request\").GetProperty(\"Kind\").GetString() == \"Exit\");",
+            "Assert.Equal(quality, exit.GetProperty(\"Request\").GetProperty(\"PoseId\").GetString());",
+            "Assert.Equal(JsonValueKind.Null, exit.GetProperty(\"OccupiedEntityId\").ValueKind);",
+            "if(assembly) Assert.EndsWith(\":A:P01\",exit.GetProperty(\"Request\").GetProperty(\"EntityId\").GetString());"
+          ],
+          "currentMissingAssertions": [
+            "Assert.Equal(2,values.Length);",
+            "Assert.All(values,x=>Assert.NotEqual(JsonValueKind.Null,x.GetProperty(\"OccupiedEntityId\").ValueKind));",
+            "Assert.Equal(4, values.Length);",
+            "Assert.All(values, x => Assert.Equal(\"Completed\", x.GetProperty(\"Status\").GetString()));",
+            "Assert.Equal(2, values.Count(x => x.GetProperty(\"Request\").GetProperty(\"Kind\").GetString() == \"Rotate\"));",
+            "var exit = Assert.Single(values, x => x.GetProperty(\"Request\").GetProperty(\"Kind\").GetString() == \"Exit\");",
+            "Assert.Equal(quality, exit.GetProperty(\"Request\").GetProperty(\"PoseId\").GetString());",
+            "Assert.Equal(JsonValueKind.Null, exit.GetProperty(\"OccupiedEntityId\").ValueKind);",
+            "if(assembly) Assert.EndsWith(\":A:P01\",exit.GetProperty(\"Request\").GetProperty(\"EntityId\").GetString());"
+          ]
+        },
+        {
+          "path": "backend/tests/Gaode.Integration.Tests/Station01/RecipeRotationIntegrationTests.cs",
+          "changedBy016": false,
+          "baselineSha": null,
+          "currentSha": null,
+          "reviewSha": "efd457c43a494145d8d708c3768ef9c6f945ac1e75d0186f45f4c35da089af8a",
+          "baselineMatch": false,
+          "currentMatch": false,
+          "baselineMissingAssertions": [],
+          "currentMissingAssertions": []
+        }
+      ]
+    }
+  ],
+  "receiptHistory": "Two FullSimulation receipt rows source/config/algorithm same original copy; NotConfigured before target, not target negative success",
+  "fixtureOnlyCanSatisfyProductObligation": false,
+  "mappingCorrection": {
+    "oldEntries": 31,
+    "distinctOriginalObligations": 29,
+    "businessTestsCodeInputsBuildChanged": false,
+    "oldRegistryOriginalIntegrityChanged": false,
+    "reason": "Duplicate original-name/current-replacement records erroneously treated as additional independent executions"
+  }
+}

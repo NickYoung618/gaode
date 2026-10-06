@@ -1,0 +1,1038 @@
+{
+  "schemaVersion": "009-independent-oracle/1",
+  "protocolIdentity": "plc-upper-20260925-partitioned-ack",
+  "source": {
+    "path": "高德_文档/PLC与上位机通信接口协议_最新版_上下位机信号分区版.docx",
+    "sha256": "405ac9ee2ae2d765951d9f523dc7195cc77f6cd1f38dbc0ad144a0013586c519",
+    "sections": [
+      "1.7",
+      "2.1-2.8",
+      "3.1.1-3.1.7"
+    ],
+    "transcription": "Manual literal transcription; no production map, codec or VirtualPlc generation",
+    "reviewer": "Codex /root protocol and test perspectives; not an independent person/customer approval"
+  },
+  "testConvention": {
+    "addressing": "HexOneBased",
+    "coilCapacity": 64,
+    "holdingRegisterCapacity": 128,
+    "basis": "Existing explicit VirtualPlc Test store capacities, not a physical PLC claim",
+    "float32": "ABCD baseline; physical byte/word order remains OPEN-009-01"
+  },
+  "signals": [
+    {
+      "id": "PLC_Heartbeat_Req",
+      "area": "Coil",
+      "documentHex": "0001",
+      "pduOffset": 0,
+      "type": "Bool",
+      "width": 1,
+      "direction": "PLCToPC",
+      "writer": "PLC",
+      "clearResponsibility": "PLC owns value; no extra clear handshake invented",
+      "source": "confirmed Word §2.1",
+      "values": {
+        "0": "False",
+        "1": "True"
+      },
+      "byteOrder": null,
+      "scope": "MainFlow"
+    },
+    {
+      "id": "PC_Heartbeat_Resp",
+      "area": "Coil",
+      "documentHex": "0002",
+      "pduOffset": 1,
+      "type": "Bool",
+      "width": 1,
+      "direction": "PCToPLC",
+      "writer": "PC",
+      "clearResponsibility": "PC owns value; no extra clear handshake invented",
+      "source": "confirmed Word §2.1",
+      "values": {
+        "0": "False",
+        "1": "True"
+      },
+      "byteOrder": null,
+      "scope": "MainFlow"
+    },
+    {
+      "id": "PC_System_Ready",
+      "area": "Coil",
+      "documentHex": "0003",
+      "pduOffset": 2,
+      "type": "Bool",
+      "width": 1,
+      "direction": "PCToPLC",
+      "writer": "PC",
+      "clearResponsibility": "PC owns value; no extra clear handshake invented",
+      "source": "confirmed Word §2.1",
+      "values": {
+        "0": "False",
+        "1": "True"
+      },
+      "byteOrder": null,
+      "scope": "MainFlow"
+    },
+    {
+      "id": "PLC_System_Fault",
+      "area": "Coil",
+      "documentHex": "0004",
+      "pduOffset": 3,
+      "type": "Bool",
+      "width": 1,
+      "direction": "PLCToPC",
+      "writer": "PLC",
+      "clearResponsibility": "PLC owns value; no extra clear handshake invented",
+      "source": "confirmed Word §2.1",
+      "values": {
+        "0": "False",
+        "1": "True"
+      },
+      "byteOrder": null,
+      "scope": "MainFlow"
+    },
+    {
+      "id": "PLC_Mode_Auto",
+      "area": "Coil",
+      "documentHex": "0005",
+      "pduOffset": 4,
+      "type": "Bool",
+      "width": 1,
+      "direction": "PLCToPC",
+      "writer": "PLC",
+      "clearResponsibility": "PLC owns value; no extra clear handshake invented",
+      "source": "confirmed Word §2.1",
+      "values": {
+        "0": "False",
+        "1": "True"
+      },
+      "byteOrder": null,
+      "scope": "MainFlow"
+    },
+    {
+      "id": "Soft_Stop_Cmd",
+      "area": "Coil",
+      "documentHex": "0006",
+      "pduOffset": 5,
+      "type": "Bool",
+      "width": 1,
+      "direction": "PCToPLC",
+      "writer": "PC",
+      "clearResponsibility": "PC owns value; no extra clear handshake invented",
+      "source": "confirmed Word §2.1",
+      "values": {
+        "0": "False",
+        "1": "True"
+      },
+      "byteOrder": null,
+      "scope": "MainFlow"
+    },
+    {
+      "id": "System_Reset_Cmd",
+      "area": "Coil",
+      "documentHex": "0007",
+      "pduOffset": 6,
+      "type": "Bool",
+      "width": 1,
+      "direction": "PCToPLC",
+      "writer": "PC",
+      "clearResponsibility": "PC owns value; no extra clear handshake invented",
+      "source": "confirmed Word §2.1",
+      "values": {
+        "0": "False",
+        "1": "True"
+      },
+      "byteOrder": null,
+      "scope": "MainFlow"
+    },
+    {
+      "id": "PLC_Ready_State",
+      "area": "Coil",
+      "documentHex": "0008",
+      "pduOffset": 7,
+      "type": "Bool",
+      "width": 1,
+      "direction": "PLCToPC",
+      "writer": "PLC",
+      "clearResponsibility": "PLC owns value; no extra clear handshake invented",
+      "source": "confirmed Word §2.1",
+      "values": {
+        "0": "False",
+        "1": "True"
+      },
+      "byteOrder": null,
+      "scope": "MainFlow"
+    },
+    {
+      "id": "PC_Start_Cmd",
+      "area": "Coil",
+      "documentHex": "0009",
+      "pduOffset": 8,
+      "type": "Bool",
+      "width": 1,
+      "direction": "PCToPLC",
+      "writer": "PC",
+      "clearResponsibility": "PC owns value; no extra clear handshake invented",
+      "source": "confirmed Word §2.1",
+      "values": {
+        "0": "False",
+        "1": "True"
+      },
+      "byteOrder": null,
+      "scope": "MainFlow"
+    },
+    {
+      "id": "Manual_Zone_Occupied",
+      "area": "Coil",
+      "documentHex": "0010",
+      "pduOffset": 15,
+      "type": "Bool",
+      "width": 1,
+      "direction": "PLCToPC",
+      "writer": "PLC",
+      "clearResponsibility": "PLC observes physical clear; PC never writes feedback",
+      "source": "confirmed Word §2.3",
+      "values": {
+        "0": "False",
+        "1": "True"
+      },
+      "byteOrder": null,
+      "scope": "MainFlow"
+    },
+    {
+      "id": "Manual_Flip_Complete",
+      "area": "Coil",
+      "documentHex": "0011",
+      "pduOffset": 16,
+      "type": "Bool",
+      "width": 1,
+      "direction": "PCToPLC",
+      "writer": "PC",
+      "clearResponsibility": "PC clears after PLC Manual_Zone_Occupied=0",
+      "source": "confirmed Word §2.3",
+      "values": {
+        "0": "False",
+        "1": "True"
+      },
+      "byteOrder": null,
+      "scope": "MainFlow"
+    },
+    {
+      "id": "Teach_Mode_Cmd",
+      "area": "Coil",
+      "documentHex": "0020",
+      "pduOffset": 31,
+      "type": "Bool",
+      "width": 1,
+      "direction": "PCToPLC",
+      "writer": "PC",
+      "clearResponsibility": "PC owns value; no extra clear handshake invented",
+      "source": "confirmed Word §2.5",
+      "values": {
+        "0": "False",
+        "1": "True"
+      },
+      "byteOrder": null,
+      "scope": "DefinitionOnly"
+    },
+    {
+      "id": "Teach_Confirm",
+      "area": "Coil",
+      "documentHex": "0021",
+      "pduOffset": 32,
+      "type": "Bool",
+      "width": 1,
+      "direction": "PCToPLC",
+      "writer": "PC",
+      "clearResponsibility": "PC owns value; no extra clear handshake invented",
+      "source": "confirmed Word §2.5",
+      "values": {
+        "0": "False",
+        "1": "True"
+      },
+      "byteOrder": null,
+      "scope": "DefinitionOnly"
+    },
+    {
+      "id": "XY_Move_Cmd",
+      "area": "HoldingRegister",
+      "documentHex": "0001",
+      "pduOffset": 0,
+      "type": "Int16",
+      "width": 1,
+      "direction": "PCToPLC",
+      "writer": "PC",
+      "clearResponsibility": "PC after reliable arrival; scan/detect begins before clear per3.1.7",
+      "source": "confirmed Word §2.2",
+      "values": {
+        "0": "Clear",
+        "1": "Load",
+        "2": "Detect",
+        "3": "Flip",
+        "4": "Unload",
+        "5": "Scan"
+      },
+      "byteOrder": null,
+      "scope": "MainFlow"
+    },
+    {
+      "id": "XY_Pos_Confirmed",
+      "area": "HoldingRegister",
+      "documentHex": "0002",
+      "pduOffset": 1,
+      "type": "Int16",
+      "width": 1,
+      "direction": "PLCToPC",
+      "writer": "PLC",
+      "clearResponsibility": "PLC owns value; no extra clear handshake invented",
+      "source": "confirmed Word §2.2",
+      "values": {
+        "0": "Moving",
+        "1": "Arrived",
+        "2": "Timeout"
+      },
+      "byteOrder": null,
+      "scope": "MainFlow"
+    },
+    {
+      "id": "Camera_Target_X",
+      "area": "HoldingRegister",
+      "documentHex": "0003",
+      "pduOffset": 2,
+      "type": "Float32",
+      "width": 2,
+      "direction": "PCToPLC",
+      "writer": "PC",
+      "clearResponsibility": "PC owns value; no extra clear handshake invented",
+      "source": "confirmed Word §2.2",
+      "values": null,
+      "byteOrder": "Test ABCD baseline; physical order unconfirmed",
+      "scope": "MainFlow"
+    },
+    {
+      "id": "Camera_Target_Y",
+      "area": "HoldingRegister",
+      "documentHex": "0005",
+      "pduOffset": 4,
+      "type": "Float32",
+      "width": 2,
+      "direction": "PCToPLC",
+      "writer": "PC",
+      "clearResponsibility": "PC owns value; no extra clear handshake invented",
+      "source": "confirmed Word §2.2",
+      "values": null,
+      "byteOrder": "Test ABCD baseline; physical order unconfirmed",
+      "scope": "MainFlow"
+    },
+    {
+      "id": "Camera_Target_Z",
+      "area": "HoldingRegister",
+      "documentHex": "0007",
+      "pduOffset": 6,
+      "type": "Float32",
+      "width": 2,
+      "direction": "PCToPLC",
+      "writer": "PC",
+      "clearResponsibility": "PC owns value; no extra clear handshake invented",
+      "source": "confirmed Word §2.2",
+      "values": null,
+      "byteOrder": "Test ABCD baseline; physical order unconfirmed",
+      "scope": "MainFlow"
+    },
+    {
+      "id": "Scan_Target_Z",
+      "area": "HoldingRegister",
+      "documentHex": "0009",
+      "pduOffset": 8,
+      "type": "Float32",
+      "width": 2,
+      "direction": "PCToPLC",
+      "writer": "PC",
+      "clearResponsibility": "PC owns value; no extra clear handshake invented",
+      "source": "confirmed Word §2.2",
+      "values": null,
+      "byteOrder": "Test ABCD baseline; physical order unconfirmed",
+      "scope": "MainFlow"
+    },
+    {
+      "id": "Grab_Target_Z",
+      "area": "HoldingRegister",
+      "documentHex": "000B",
+      "pduOffset": 10,
+      "type": "Float32",
+      "width": 2,
+      "direction": "PCToPLC",
+      "writer": "PC",
+      "clearResponsibility": "PC owns value; no extra clear handshake invented",
+      "source": "confirmed Word §2.2",
+      "values": null,
+      "byteOrder": "Test ABCD baseline; physical order unconfirmed",
+      "scope": "MainFlow"
+    },
+    {
+      "id": "Machine_Current_Pos_X",
+      "area": "HoldingRegister",
+      "documentHex": "000D",
+      "pduOffset": 12,
+      "type": "Float32",
+      "width": 2,
+      "direction": "PLCToPC",
+      "writer": "PLC",
+      "clearResponsibility": "PLC owns value; no extra clear handshake invented",
+      "source": "confirmed Word §2.2",
+      "values": null,
+      "byteOrder": "Test ABCD baseline; physical order unconfirmed",
+      "scope": "MainFlow"
+    },
+    {
+      "id": "Machine_Current_Pos_Y",
+      "area": "HoldingRegister",
+      "documentHex": "000F",
+      "pduOffset": 14,
+      "type": "Float32",
+      "width": 2,
+      "direction": "PLCToPC",
+      "writer": "PLC",
+      "clearResponsibility": "PLC owns value; no extra clear handshake invented",
+      "source": "confirmed Word §2.2",
+      "values": null,
+      "byteOrder": "Test ABCD baseline; physical order unconfirmed",
+      "scope": "MainFlow"
+    },
+    {
+      "id": "Machine_Current_Pos_Z",
+      "area": "HoldingRegister",
+      "documentHex": "0011",
+      "pduOffset": 16,
+      "type": "Float32",
+      "width": 2,
+      "direction": "PLCToPC",
+      "writer": "PLC",
+      "clearResponsibility": "PLC owns value; no extra clear handshake invented",
+      "source": "confirmed Word §2.2",
+      "values": null,
+      "byteOrder": "Test ABCD baseline; physical order unconfirmed",
+      "scope": "MainFlow"
+    },
+    {
+      "id": "Z_Axis_Move_Status",
+      "area": "HoldingRegister",
+      "documentHex": "0013",
+      "pduOffset": 18,
+      "type": "Int16",
+      "width": 1,
+      "direction": "PLCToPC",
+      "writer": "PLC",
+      "clearResponsibility": "PLC owns value; no extra clear handshake invented",
+      "source": "confirmed Word §2.2",
+      "values": {
+        "0": "Idle",
+        "1": "Moving",
+        "2": "AtHeight",
+        "3": "Failed"
+      },
+      "byteOrder": null,
+      "scope": "MainFlow"
+    },
+    {
+      "id": "Flip_Target_Face",
+      "area": "HoldingRegister",
+      "documentHex": "0015",
+      "pduOffset": 20,
+      "type": "Int16",
+      "width": 1,
+      "direction": "PCToPLC",
+      "writer": "PC",
+      "clearResponsibility": "PC owns value; no extra clear handshake invented",
+      "source": "confirmed Word §2.3",
+      "values": null,
+      "byteOrder": null,
+      "scope": "MainFlow"
+    },
+    {
+      "id": "Flip_Status",
+      "area": "HoldingRegister",
+      "documentHex": "0016",
+      "pduOffset": 21,
+      "type": "Int16",
+      "width": 1,
+      "direction": "PLCToPC",
+      "writer": "PLC",
+      "clearResponsibility": "PLC clears after Flip_OK=1",
+      "source": "confirmed Word §2.3",
+      "values": {
+        "0": "Idle",
+        "1": "Executing",
+        "2": "Completed",
+        "3": "Failed"
+      },
+      "byteOrder": null,
+      "scope": "MainFlow"
+    },
+    {
+      "id": "Flip_Current_Face",
+      "area": "HoldingRegister",
+      "documentHex": "0017",
+      "pduOffset": 22,
+      "type": "Int16",
+      "width": 1,
+      "direction": "PLCToPC",
+      "writer": "PLC",
+      "clearResponsibility": "PLC owns value; no extra clear handshake invented",
+      "source": "confirmed Word §2.3",
+      "values": null,
+      "byteOrder": null,
+      "scope": "MainFlow"
+    },
+    {
+      "id": "Sorting_Part_Index",
+      "area": "HoldingRegister",
+      "documentHex": "0020",
+      "pduOffset": 31,
+      "type": "Int16",
+      "width": 1,
+      "direction": "PCToPLC",
+      "writer": "PC",
+      "clearResponsibility": "PC owns value; no extra clear handshake invented",
+      "source": "confirmed Word §2.4",
+      "values": null,
+      "byteOrder": null,
+      "scope": "MainFlow"
+    },
+    {
+      "id": "Sorting_Cmd",
+      "area": "HoldingRegister",
+      "documentHex": "0021",
+      "pduOffset": 32,
+      "type": "Int16",
+      "width": 1,
+      "direction": "PCToPLC",
+      "writer": "PC",
+      "clearResponsibility": "PC clears after current picked/placed feedback",
+      "source": "confirmed Word §2.4",
+      "values": {
+        "0": "Idle",
+        "1": "Pick",
+        "2": "Place",
+        "3": "FullAlarm"
+      },
+      "byteOrder": null,
+      "scope": "MainFlow"
+    },
+    {
+      "id": "Sorting_Exec_Status",
+      "area": "HoldingRegister",
+      "documentHex": "0022",
+      "pduOffset": 33,
+      "type": "Int16",
+      "width": 1,
+      "direction": "PLCToPC",
+      "writer": "PLC",
+      "clearResponsibility": "PLC clears after Sorting_OK=1",
+      "source": "confirmed Word §2.4",
+      "values": {
+        "0": "Idle",
+        "1": "Executing",
+        "2": "Picked",
+        "3": "Placed",
+        "4": "GrabFailed",
+        "5": "Full"
+      },
+      "byteOrder": null,
+      "scope": "MainFlow"
+    },
+    {
+      "id": "Pallet_Lock_Cmd",
+      "area": "HoldingRegister",
+      "documentHex": "0023",
+      "pduOffset": 34,
+      "type": "Int16",
+      "width": 1,
+      "direction": "PCToPLC",
+      "writer": "PC",
+      "clearResponsibility": "PC owns value; no extra clear handshake invented",
+      "source": "confirmed Word §2.4",
+      "values": {
+        "0": "Unlock",
+        "1": "LockDefinedButNotHostStartupAction"
+      },
+      "byteOrder": null,
+      "scope": "MainFlow"
+    },
+    {
+      "id": "Pallet_Lock_Status",
+      "area": "HoldingRegister",
+      "documentHex": "0024",
+      "pduOffset": 35,
+      "type": "Int16",
+      "width": 1,
+      "direction": "PLCToPC",
+      "writer": "PLC",
+      "clearResponsibility": "PLC owns value; no extra clear handshake invented",
+      "source": "confirmed Word §2.4",
+      "values": {
+        "0": "Unlocked",
+        "1": "Locked",
+        "2": "LockFailed"
+      },
+      "byteOrder": null,
+      "scope": "MainFlow"
+    },
+    {
+      "id": "NG_Zone_Count",
+      "area": "HoldingRegister",
+      "documentHex": "0025",
+      "pduOffset": 36,
+      "type": "Int16",
+      "width": 1,
+      "direction": "PCToPLC",
+      "writer": "PC",
+      "clearResponsibility": "PC owns value; no extra clear handshake invented",
+      "source": "confirmed Word §2.4",
+      "values": null,
+      "byteOrder": null,
+      "scope": "MainFlow"
+    },
+    {
+      "id": "Pending_Zone_Count",
+      "area": "HoldingRegister",
+      "documentHex": "0026",
+      "pduOffset": 37,
+      "type": "Int16",
+      "width": 1,
+      "direction": "PCToPLC",
+      "writer": "PC",
+      "clearResponsibility": "PC owns value; no extra clear handshake invented",
+      "source": "confirmed Word §2.4",
+      "values": null,
+      "byteOrder": null,
+      "scope": "MainFlow"
+    },
+    {
+      "id": "Zone_Config_Ready",
+      "area": "HoldingRegister",
+      "documentHex": "0027",
+      "pduOffset": 38,
+      "type": "BoolWord",
+      "width": 1,
+      "direction": "PCToPLC",
+      "writer": "PC",
+      "clearResponsibility": "PC clears then waits current Ack=0 before capacity write; PC sets ready",
+      "source": "confirmed Word §2.4",
+      "values": {
+        "0": "False",
+        "1": "True"
+      },
+      "byteOrder": null,
+      "scope": "MainFlow"
+    },
+    {
+      "id": "Zone_Config_Ack",
+      "area": "HoldingRegister",
+      "documentHex": "0028",
+      "pduOffset": 39,
+      "type": "BoolWord",
+      "width": 1,
+      "direction": "PLCToPC",
+      "writer": "PLC",
+      "clearResponsibility": "PLC follows readiness; PC never writes Ack",
+      "source": "confirmed Word §2.4",
+      "values": {
+        "0": "False",
+        "1": "True"
+      },
+      "byteOrder": null,
+      "scope": "MainFlow"
+    },
+    {
+      "id": "Retry_Cmd",
+      "area": "HoldingRegister",
+      "documentHex": "0029",
+      "pduOffset": 40,
+      "type": "Int16",
+      "width": 1,
+      "direction": "PCToPLC",
+      "writer": "PC",
+      "clearResponsibility": "PC owns value; no extra clear handshake invented",
+      "source": "confirmed Word §2.4",
+      "values": {
+        "1": "Retry",
+        "2": "Skip",
+        "3": "ResetQueue"
+      },
+      "byteOrder": null,
+      "scope": "DefinitionOnly"
+    },
+    {
+      "id": "Teach_Pos_Select",
+      "area": "HoldingRegister",
+      "documentHex": "0030",
+      "pduOffset": 47,
+      "type": "Int16",
+      "width": 1,
+      "direction": "PCToPLC",
+      "writer": "PC",
+      "clearResponsibility": "PC owns value; no extra clear handshake invented",
+      "source": "confirmed Word §2.5",
+      "values": null,
+      "byteOrder": null,
+      "scope": "DefinitionOnly"
+    },
+    {
+      "id": "Teach_Pos_X",
+      "area": "HoldingRegister",
+      "documentHex": "0031",
+      "pduOffset": 48,
+      "type": "Float32",
+      "width": 2,
+      "direction": "PLCToPC",
+      "writer": "PLC",
+      "clearResponsibility": "PLC owns value; no extra clear handshake invented",
+      "source": "confirmed Word §2.5",
+      "values": null,
+      "byteOrder": "Test ABCD baseline; physical order unconfirmed",
+      "scope": "DefinitionOnly"
+    },
+    {
+      "id": "Teach_Pos_Y",
+      "area": "HoldingRegister",
+      "documentHex": "0033",
+      "pduOffset": 50,
+      "type": "Float32",
+      "width": 2,
+      "direction": "PLCToPC",
+      "writer": "PLC",
+      "clearResponsibility": "PLC owns value; no extra clear handshake invented",
+      "source": "confirmed Word §2.5",
+      "values": null,
+      "byteOrder": "Test ABCD baseline; physical order unconfirmed",
+      "scope": "DefinitionOnly"
+    },
+    {
+      "id": "Teach_Pos_Z",
+      "area": "HoldingRegister",
+      "documentHex": "0035",
+      "pduOffset": 52,
+      "type": "Float32",
+      "width": 2,
+      "direction": "PLCToPC",
+      "writer": "PLC",
+      "clearResponsibility": "PLC owns value; no extra clear handshake invented",
+      "source": "confirmed Word §2.5",
+      "values": null,
+      "byteOrder": "Test ABCD baseline; physical order unconfirmed",
+      "scope": "DefinitionOnly"
+    },
+    {
+      "id": "Recipe_ID",
+      "area": "HoldingRegister",
+      "documentHex": "0040",
+      "pduOffset": 63,
+      "type": "Int16",
+      "width": 1,
+      "direction": "PCToPLC",
+      "writer": "PC",
+      "clearResponsibility": "PC owns value; no extra clear handshake invented",
+      "source": "confirmed Word §2.6",
+      "values": null,
+      "byteOrder": null,
+      "scope": "MainFlow"
+    },
+    {
+      "id": "Alarm_Bits",
+      "area": "HoldingRegister",
+      "documentHex": "0050",
+      "pduOffset": 79,
+      "type": "Int16",
+      "width": 1,
+      "direction": "PLCToPC",
+      "writer": "PLC",
+      "clearResponsibility": "PLC owns value; no extra clear handshake invented",
+      "source": "confirmed Word §2.7.1",
+      "values": null,
+      "byteOrder": null,
+      "scope": "MainFlow"
+    },
+    {
+      "id": "Alarm_Severity",
+      "area": "HoldingRegister",
+      "documentHex": "0051",
+      "pduOffset": 80,
+      "type": "Int16",
+      "width": 1,
+      "direction": "PLCToPC",
+      "writer": "PLC",
+      "clearResponsibility": "PLC owns value; no extra clear handshake invented",
+      "source": "confirmed Word §2.7.2",
+      "values": {
+        "1": "Warning",
+        "2": "Fault",
+        "3": "Severe"
+      },
+      "byteOrder": null,
+      "scope": "MainFlow"
+    },
+    {
+      "id": "Inspection_Status",
+      "area": "HoldingRegister",
+      "documentHex": "0052",
+      "pduOffset": 81,
+      "type": "Int16",
+      "width": 1,
+      "direction": "PCToPLC",
+      "writer": "PC",
+      "clearResponsibility": "PC after current PLC Z_Reset_Status=2; not old feedback",
+      "source": "confirmed Word §2.2",
+      "values": {
+        "0": "Waiting",
+        "1": "Detecting",
+        "2": "DetectionEnded",
+        "3": "Scanning",
+        "4": "ScanEnded"
+      },
+      "byteOrder": null,
+      "scope": "MainFlow"
+    },
+    {
+      "id": "Z_Reset_Status",
+      "area": "HoldingRegister",
+      "documentHex": "0053",
+      "pduOffset": 82,
+      "type": "Int16",
+      "width": 1,
+      "direction": "PLCToPC",
+      "writer": "PLC",
+      "clearResponsibility": "PLC clears on next accepted movement",
+      "source": "confirmed Word §2.2",
+      "values": {
+        "0": "Idle",
+        "1": "Resetting",
+        "2": "Reset",
+        "3": "Failed"
+      },
+      "byteOrder": null,
+      "scope": "MainFlow"
+    },
+    {
+      "id": "Sorting_OK",
+      "area": "HoldingRegister",
+      "documentHex": "0054",
+      "pduOffset": 83,
+      "type": "Int16",
+      "width": 1,
+      "direction": "PCToPLC",
+      "writer": "PC",
+      "clearResponsibility": "PC clears after PLC Sorting_Exec_Status=0",
+      "source": "confirmed Word §2.4",
+      "values": {
+        "0": "Idle",
+        "1": "Acknowledged"
+      },
+      "byteOrder": null,
+      "scope": "MainFlow"
+    },
+    {
+      "id": "Flip_OK",
+      "area": "HoldingRegister",
+      "documentHex": "0055",
+      "pduOffset": 84,
+      "type": "Int16",
+      "width": 1,
+      "direction": "PCToPLC",
+      "writer": "PC",
+      "clearResponsibility": "PC clears after PLC Flip_Status=0",
+      "source": "confirmed Word §2.3",
+      "values": {
+        "0": "Idle",
+        "1": "Acknowledged"
+      },
+      "byteOrder": null,
+      "scope": "MainFlow"
+    }
+  ],
+  "alarmBits": [
+    {
+      "bit": 0,
+      "meaning": "LightCurtain",
+      "severity": 3
+    },
+    {
+      "bit": 1,
+      "meaning": "EmergencyStop",
+      "severity": 3
+    },
+    {
+      "bit": 2,
+      "meaning": "SafetyDoor",
+      "severity": 3
+    },
+    {
+      "bit": 3,
+      "meaning": "ServoOverload",
+      "severity": 3
+    },
+    {
+      "bit": 4,
+      "meaning": "ManualFlipOccupied",
+      "severity": 2
+    },
+    {
+      "bit": 5,
+      "meaning": "AirPressure",
+      "severity": 2
+    },
+    {
+      "bit": 6,
+      "meaning": "Communication",
+      "severity": 3
+    },
+    {
+      "bit": 7,
+      "meaning": "PlcInternal",
+      "severity": 3
+    },
+    {
+      "bit": 8,
+      "meaning": "PalletNotLocked",
+      "severity": 2
+    },
+    {
+      "bit": 9,
+      "meaning": "FocusMotionFailure",
+      "severity": 2
+    },
+    {
+      "bit": 10,
+      "meaning": "GrabFailure",
+      "severity": 2
+    },
+    {
+      "bit": 11,
+      "meaning": "ZoneFull",
+      "severity": 1
+    },
+    {
+      "bit": 12,
+      "meaning": "MesOffline",
+      "severity": 1
+    }
+  ],
+  "reservedAlarmBits": [
+    13,
+    14,
+    15
+  ],
+  "float32Vectors": [
+    {
+      "decimal": 123.456,
+      "ieee754Hex": "42F6E979",
+      "words": {
+        "ABCD": [
+          "42F6",
+          "E979"
+        ],
+        "CDAB": [
+          "E979",
+          "42F6"
+        ],
+        "BADC": [
+          "F642",
+          "79E9"
+        ],
+        "DCBA": [
+          "79E9",
+          "F642"
+        ]
+      },
+      "source": "IEEE754 binary32 known value, independently present in legacy LatestPlcProtocolTests; literal unchanged"
+    }
+  ],
+  "handshakes": {
+    "regionA": "Ready0 -> Ack0 -> both runtime capacities -> Ready1 -> Ack1; before public3D/F, not recipe binding",
+    "regionB": "both plan capacities present: Ready0/Ack0/write each/Ready1/Ack1; both null: no capacity cycle; then Recipe_ID write/readback",
+    "pickPlace": "source XYZ+Cmd1 -> current source sample+Status2 -> Cmd0 -> real necessary raw and InTransit valid commit receipt -> source slot + target XYZ+Cmd2 -> target sample+Status3 -> Cmd0+OK1 -> Status0 -> OK0",
+    "flip": "target XYZ+Move3 -> current arrival -> Move0 -> target face -> Status2 and matching current face -> OK1 -> Status0 -> OK0",
+    "acquisition": "current target+Move -> reliable arrival/current axis -> Inspection1 or3 -> Move0 -> actual capture and saves -> Inspection2 or4 -> current Reset2 -> Inspection0"
+  },
+  "variants": {
+    "M01": {
+      "source": "009 verification-gates V06 approved Test variant",
+      "documentHexOverrides": {
+        "PLC_Heartbeat_Req": "0030",
+        "Camera_Target_X": "0060",
+        "Camera_Target_Y": "0064",
+        "NG_Zone_Count": "0068",
+        "Pending_Zone_Count": "006A",
+        "Inspection_Status": "006C",
+        "Z_Reset_Status": "006E",
+        "Flip_Status": "0070",
+        "Flip_Current_Face": "0072",
+        "Alarm_Bits": "0074",
+        "Alarm_Severity": "0076"
+      }
+    },
+    "M02": {
+      "alarmMeaning": "GrabFailure",
+      "oldBit": 10,
+      "newBit": 13,
+      "oldBitBecomesUnknown": true,
+      "combineWith": "EmergencyStop"
+    },
+    "M03": {
+      "Sorting_Cmd": {
+        "Pick": 11,
+        "Place": 12
+      },
+      "Sorting_Exec_Status": {
+        "Idle": 0,
+        "Executing": 31,
+        "Picked": 32,
+        "Placed": 33,
+        "GrabFailed": 34,
+        "Full": 35
+      },
+      "Sorting_OK": {
+        "Idle": 0,
+        "Acknowledged": 7
+      }
+    },
+    "M04": {
+      "byteOrder": "CDAB",
+      "independentWords": [
+        "E979",
+        "42F6"
+      ]
+    },
+    "M05": {
+      "extraStep": "After actual Sorting_OK clear, real readback must confirm zero within unchanged window",
+      "productionApproval": false
+    }
+  },
+  "negativeControls": {
+    "MC01": "Keep this oracle unchanged while both production sides share a structurally legal incorrect mapping; independent wire expectation must reject",
+    "MC02": "Frozen business edit must reject even if communication still succeeds"
+  },
+  "limits": [
+    "Test conventions do not confirm production addresses, axes, units or physical observation windows",
+    "Protocol Word alarm/old retry prose does not relax current approved conservative admission or complete-new-run recovery",
+    "No runtime protocol hot switching"
+  ],
+  "status": "Registered; executable comparison and TCP variants pending",
+  "fieldValueRules": {
+    "Int16": "16-bit signed representation per original; defined command/status values are the explicit tables, unknown codes never mean success",
+    "Flip_Target_Face": "Current business target face 1..N, preserve actual input",
+    "Flip_Current_Face": "Actual current face 1..N, compare to current target in communication",
+    "Sorting_Part_Index": "Physical source slot identity; submitted after confirmed pick and valid business save, never sequence index",
+    "NG_Zone_Count/Pending_Zone_Count": "Actual configured capacities, not inferred from adjacent address",
+    "Recipe_ID": "Display only, never selects business recipe",
+    "Alarm_Bits": "16 raw bits; reserved bits are unknown, not a clear alarm",
+    "Pallet_Lock_Cmd": "PLC performs startup locking; formal Host only unlocks with command0 after committed WholeTray"
+  },
+  "review": {
+    "executor": "Codex /root",
+    "sourceCheck": "All48 listed points checked against confirmed Word §2.1-2.7; no formal signal beyond approved definition",
+    "variantCheck": "V06 M01-M05 literals cross-checked; M03 changes Sorting_OK only, not Flip_OK",
+    "status": "Independent expectation registration reviewed; runtime comparison not executed"
+  }
+}

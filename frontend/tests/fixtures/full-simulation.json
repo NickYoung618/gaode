@@ -1,0 +1,13 @@
+{
+  "mode": "FullSimulation",
+  "source": "Test/Simulated",
+  "capabilities": {
+    "camera": "NotIntegrated",
+    "algorithm": "NotReady",
+    "plc": "Unknown",
+    "storage": "Pending",
+    "media": "HandoffNotReady"
+  },
+  "failures": ["AlgorithmFailed", "SaveFailed", "DeviceDisconnected"],
+  "mustNotDisplaySuccess": true
+}

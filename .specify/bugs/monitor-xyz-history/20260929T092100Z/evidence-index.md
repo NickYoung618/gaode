@@ -1,0 +1,11 @@
+# r9 证据入口
+- [本轮评估](assessment.md) / [打包核验补充](assessment-supplement-packaging.md) / [修复](fix.md) / [验证](test.md) / [一致性](alignment.md)
+- 用户原上传：../../../..//Q01-20260929-流程记录与解锁诊断.zip；SHA及事件选取见项目scripts/tests/fixtures/virtual-plc-unlock-audit.json，未改原文件。
+- [imagegen概念图](imagegen-layout-concept.png)、[原提示词](imagegen-prompt.txt)：内置image_gen，仅布局，不作协议/实测证据。
+- [包内历史列表实际截图](browser-package-cdp-final-overview-1366.png)、[解锁关联](browser-package-cdp-final-unlock-proof.png)、[专注记录](browser-package-cdp-final-focused.png)、[真实实例48点位](browser-package-live-idle-1600.png)
+- 源码/包各16项：source-tests-final.log、package-tests-final.log。
+- 实际Edge：browser-source-final-checks.json、browser-package-cdp-final-checks.json、browser-package-live-checks.json；原始历史回放来源/摘要见browser-package-cdp-final-replay.json。
+- 当前DLL与所属资源：compiled-source-smoke.json、compiled-package-smoke.json。
+- 最终包：final-package-verification.json；原345项通用候选差异：package-r8-comparison.json（已弃用，不能当作最终包）。
+- [受保护文件/勾选/DOM一致性](consistency-verification.json)、[汇总证明](verification-proof.json)。
+- 历史r8/原缺陷记录原样保留；原29动作/87轴范围不改写为本次新运行。本次使用用户新增Q01原始审计重放，未运行新业务流程。

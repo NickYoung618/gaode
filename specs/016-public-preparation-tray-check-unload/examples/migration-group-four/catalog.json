@@ -1,0 +1,2812 @@
+{
+  "schemaVersion": "recipe-catalog-snapshot/1",
+  "definitions": [
+    {
+      "schemaVersion": "recipe-definition/5",
+      "recipeId": "",
+      "version": "",
+      "definitionDigest": "",
+      "catalogDigest": "",
+      "releaseStatus": "draft",
+      "scenarioId": "011-joint",
+      "model": "011-TestModel",
+      "fCode": "011-TEST-TRAY-1",
+      "unitKind": "looseGroup",
+      "primaryMaterial": "BASE",
+      "layoutProfile": "011-Test-tray",
+      "capacity": 8,
+      "positions": [
+        {
+          "slotId": "P01",
+          "physicalSlotIndex": 1,
+          "unitPattern": "{TrayRunId}:G:P01",
+          "members": [
+            {
+              "material": "BASE",
+              "memberPattern": "{UnitId}:M01",
+              "handling": "individual",
+              "cellId": "r2:c4",
+              "physicalSlotIndex": 1
+            },
+            {
+              "material": "CAP",
+              "memberPattern": "{UnitId}:M02",
+              "handling": "individual",
+              "cellId": "r2:c5",
+              "physicalSlotIndex": 2
+            },
+            {
+              "material": "MOTOR",
+              "memberPattern": "{UnitId}:M03",
+              "handling": "individual",
+              "cellId": "r2:c6",
+              "physicalSlotIndex": 3
+            },
+            {
+              "material": "PIN",
+              "memberPattern": "{UnitId}:M04",
+              "handling": "individual",
+              "cellId": "r2:c7",
+              "physicalSlotIndex": 4
+            }
+          ],
+          "cellId": "r2:c4"
+        },
+        {
+          "slotId": "P03",
+          "physicalSlotIndex": 5,
+          "unitPattern": "{TrayRunId}:G:P03",
+          "members": [
+            {
+              "material": "BASE",
+              "memberPattern": "{UnitId}:M01",
+              "handling": "individual",
+              "cellId": "r4:c4",
+              "physicalSlotIndex": 5
+            },
+            {
+              "material": "CAP",
+              "memberPattern": "{UnitId}:M02",
+              "handling": "individual",
+              "cellId": "r4:c5",
+              "physicalSlotIndex": 6
+            },
+            {
+              "material": "MOTOR",
+              "memberPattern": "{UnitId}:M03",
+              "handling": "individual",
+              "cellId": "r4:c6",
+              "physicalSlotIndex": 7
+            },
+            {
+              "material": "PIN",
+              "memberPattern": "{UnitId}:M04",
+              "handling": "individual",
+              "cellId": "r4:c7",
+              "physicalSlotIndex": 8
+            }
+          ],
+          "cellId": "r4:c4"
+        }
+      ],
+      "composition": [
+        {
+          "material": "BASE",
+          "localFaces": [
+            1,
+            2,
+            3,
+            4
+          ]
+        },
+        {
+          "material": "CAP",
+          "localFaces": [
+            1
+          ]
+        },
+        {
+          "material": "MOTOR",
+          "localFaces": [
+            1
+          ]
+        },
+        {
+          "material": "PIN",
+          "localFaces": [
+            1
+          ]
+        }
+      ],
+      "route": "ordinaryBatch",
+      "stages": [
+        {
+          "number": 1,
+          "action": "none",
+          "angleDeg": null,
+          "targets": [
+            {
+              "material": "BASE",
+              "localFace": 1,
+              "cameraPair": "CD",
+              "captureProfile": "detect",
+              "algorithmProfile": "defect"
+            },
+            {
+              "material": "CAP",
+              "localFace": 1,
+              "cameraPair": "CD",
+              "captureProfile": "detect",
+              "algorithmProfile": "defect"
+            },
+            {
+              "material": "MOTOR",
+              "localFace": 1,
+              "cameraPair": "CD",
+              "captureProfile": "detect",
+              "algorithmProfile": "defect"
+            },
+            {
+              "material": "PIN",
+              "localFace": 1,
+              "cameraPair": "CD",
+              "captureProfile": "detect",
+              "algorithmProfile": "defect"
+            }
+          ]
+        },
+        {
+          "number": 2,
+          "action": "flipAffectedMembersOneByOne",
+          "angleDeg": null,
+          "targets": [
+            {
+              "material": "BASE",
+              "localFace": 2,
+              "cameraPair": "AB",
+              "captureProfile": "detect",
+              "algorithmProfile": "defect"
+            }
+          ]
+        },
+        {
+          "number": 3,
+          "action": "flipAffectedMembersOneByOne",
+          "angleDeg": null,
+          "targets": [
+            {
+              "material": "BASE",
+              "localFace": 3,
+              "cameraPair": "CD",
+              "captureProfile": "detect",
+              "algorithmProfile": "defect"
+            }
+          ]
+        },
+        {
+          "number": 4,
+          "action": "flipAffectedMembersOneByOne",
+          "angleDeg": null,
+          "targets": [
+            {
+              "material": "BASE",
+              "localFace": 4,
+              "cameraPair": "CD",
+              "captureProfile": "detect",
+              "algorithmProfile": "defect"
+            }
+          ]
+        }
+      ],
+      "eCode": {
+        "enabled": true,
+        "representativeMaterial": "BASE",
+        "bindTo": "GroupId",
+        "requiredForOk": false,
+        "readAt": "firstAccessibleFace",
+        "captureProfile": "detect",
+        "algorithmProfile": "ecode",
+        "scanPointRef": "scan"
+      },
+      "disposition": {
+        "ok": "originalSlot",
+        "ng": "NG",
+        "pending": "Pending",
+        "physicalUnit": "problemMembersOnly"
+      },
+      "motionProfile": "011-motion",
+      "qualityProfile": "011-quality",
+      "captureProfiles": {
+        "detect": {
+          "id": "detect",
+          "version": "011-Test-1",
+          "settings": {
+            "profileId": "detect",
+            "exposureUs": 500,
+            "gain": 1,
+            "roiPixels": [
+              0,
+              0,
+              1,
+              1
+            ],
+            "lightChannel": "detection-light",
+            "brightnessPercent": 30,
+            "settleMs": 0
+          }
+        }
+      },
+      "algorithmRequirements": {
+        "defect": {
+          "id": "defect",
+          "parametersVersion": "011-Test-1",
+          "purpose": "SingleDetection",
+          "inputCount": 1,
+          "resultContract": "image-quality/1"
+        },
+        "defect/fusion": {
+          "id": "defect/fusion",
+          "parametersVersion": "011-Test-1",
+          "purpose": "FaceFusion",
+          "inputCount": 2,
+          "resultContract": "face-quality/1"
+        },
+        "ecode": {
+          "id": "ecode",
+          "parametersVersion": "fixture-1",
+          "purpose": "EntityCode",
+          "inputCount": 1,
+          "resultContract": "decoded-code/1"
+        }
+      },
+      "approval": {
+        "id": "014-explicit-software-input",
+        "version": "1",
+        "digest": "014-software-input-v1",
+        "purpose": "Test",
+        "allowedSlots": [
+          "P01",
+          "P03"
+        ],
+        "evidenceReference": "014 current authorized representative Test input; no site or production approval"
+      },
+      "executionPositions": {
+        "P01": {
+          "slotId": "P01",
+          "physicalEntity": {
+            "source": {
+              "point": {
+                "id": "P01-BASE",
+                "version": "011-Test-1",
+                "x": 125,
+                "y": 100,
+                "unit": "mm",
+                "frame": "SIM_MACHINE",
+                "z": 50
+              },
+              "coordinateEvidenceReference": "Test:016-declared-grab-points/1"
+            },
+            "coordinates": [
+              {
+                "pointRef": "P01-BASE-1-C",
+                "point": {
+                  "id": "P01-BASE-1-A",
+                  "version": "011-Test-1",
+                  "x": 125,
+                  "y": 100,
+                  "unit": "mm",
+                  "frame": "SIM_MACHINE"
+                },
+                "objectPattern": "{UnitId}:M01",
+                "slotId": "P01",
+                "physicalSlotIndex": 1,
+                "localFace": 1,
+                "camera": "C",
+                "stageId": "stage:1",
+                "configurationVersion": "011-Test-1",
+                "sourceFactReference": "Test:016-declared-detection-points/1",
+                "fixed": {
+                  "z": 51,
+                  "unit": "mm",
+                  "datum": "SIM_MACHINE",
+                  "approvalReference": "011-joint-Test-only",
+                  "configurationVersion": "011-Test-1"
+                },
+                "captureProfile": "detect"
+              },
+              {
+                "pointRef": "P01-BASE-1-D",
+                "point": {
+                  "id": "P01-BASE-1-B",
+                  "version": "011-Test-1",
+                  "x": 125,
+                  "y": 100,
+                  "unit": "mm",
+                  "frame": "SIM_MACHINE"
+                },
+                "objectPattern": "{UnitId}:M01",
+                "slotId": "P01",
+                "physicalSlotIndex": 1,
+                "localFace": 1,
+                "camera": "D",
+                "stageId": "stage:1",
+                "configurationVersion": "011-Test-1",
+                "sourceFactReference": "Test:016-declared-detection-points/1",
+                "fixed": {
+                  "z": 51,
+                  "unit": "mm",
+                  "datum": "SIM_MACHINE",
+                  "approvalReference": "011-joint-Test-only",
+                  "configurationVersion": "011-Test-1"
+                },
+                "captureProfile": "detect"
+              },
+              {
+                "pointRef": "P01-BASE-2-A",
+                "point": {
+                  "id": "P01-BASE-2-A",
+                  "version": "011-Test-1",
+                  "x": 125,
+                  "y": 100,
+                  "unit": "mm",
+                  "frame": "SIM_MACHINE"
+                },
+                "objectPattern": "{UnitId}:M01",
+                "slotId": "P01",
+                "physicalSlotIndex": 1,
+                "localFace": 2,
+                "camera": "A",
+                "stageId": "stage:2",
+                "configurationVersion": "011-Test-1",
+                "sourceFactReference": "Test:016-declared-detection-points/1",
+                "fixed": {
+                  "z": 51,
+                  "unit": "mm",
+                  "datum": "SIM_MACHINE",
+                  "approvalReference": "011-joint-Test-only",
+                  "configurationVersion": "011-Test-1"
+                },
+                "captureProfile": "detect"
+              },
+              {
+                "pointRef": "P01-BASE-2-B",
+                "point": {
+                  "id": "P01-BASE-2-B",
+                  "version": "011-Test-1",
+                  "x": 125,
+                  "y": 100,
+                  "unit": "mm",
+                  "frame": "SIM_MACHINE"
+                },
+                "objectPattern": "{UnitId}:M01",
+                "slotId": "P01",
+                "physicalSlotIndex": 1,
+                "localFace": 2,
+                "camera": "B",
+                "stageId": "stage:2",
+                "configurationVersion": "011-Test-1",
+                "sourceFactReference": "Test:016-declared-detection-points/1",
+                "fixed": {
+                  "z": 51,
+                  "unit": "mm",
+                  "datum": "SIM_MACHINE",
+                  "approvalReference": "011-joint-Test-only",
+                  "configurationVersion": "011-Test-1"
+                },
+                "captureProfile": "detect"
+              },
+              {
+                "pointRef": "P01-BASE-3-C",
+                "point": {
+                  "id": "P01-BASE-3-A",
+                  "version": "011-Test-1",
+                  "x": 125,
+                  "y": 100,
+                  "unit": "mm",
+                  "frame": "SIM_MACHINE"
+                },
+                "objectPattern": "{UnitId}:M01",
+                "slotId": "P01",
+                "physicalSlotIndex": 1,
+                "localFace": 3,
+                "camera": "C",
+                "stageId": "stage:3",
+                "configurationVersion": "011-Test-1",
+                "sourceFactReference": "Test:016-declared-detection-points/1",
+                "fixed": {
+                  "z": 51,
+                  "unit": "mm",
+                  "datum": "SIM_MACHINE",
+                  "approvalReference": "011-joint-Test-only",
+                  "configurationVersion": "011-Test-1"
+                },
+                "captureProfile": "detect"
+              },
+              {
+                "pointRef": "P01-BASE-3-D",
+                "point": {
+                  "id": "P01-BASE-3-B",
+                  "version": "011-Test-1",
+                  "x": 125,
+                  "y": 100,
+                  "unit": "mm",
+                  "frame": "SIM_MACHINE"
+                },
+                "objectPattern": "{UnitId}:M01",
+                "slotId": "P01",
+                "physicalSlotIndex": 1,
+                "localFace": 3,
+                "camera": "D",
+                "stageId": "stage:3",
+                "configurationVersion": "011-Test-1",
+                "sourceFactReference": "Test:016-declared-detection-points/1",
+                "fixed": {
+                  "z": 51,
+                  "unit": "mm",
+                  "datum": "SIM_MACHINE",
+                  "approvalReference": "011-joint-Test-only",
+                  "configurationVersion": "011-Test-1"
+                },
+                "captureProfile": "detect"
+              },
+              {
+                "pointRef": "P01-BASE-4-C",
+                "point": {
+                  "id": "P01-BASE-4-A",
+                  "version": "011-Test-1",
+                  "x": 125,
+                  "y": 100,
+                  "unit": "mm",
+                  "frame": "SIM_MACHINE"
+                },
+                "objectPattern": "{UnitId}:M01",
+                "slotId": "P01",
+                "physicalSlotIndex": 1,
+                "localFace": 4,
+                "camera": "C",
+                "stageId": "stage:4",
+                "configurationVersion": "011-Test-1",
+                "sourceFactReference": "Test:016-declared-detection-points/1",
+                "fixed": {
+                  "z": 51,
+                  "unit": "mm",
+                  "datum": "SIM_MACHINE",
+                  "approvalReference": "011-joint-Test-only",
+                  "configurationVersion": "011-Test-1"
+                },
+                "captureProfile": "detect"
+              },
+              {
+                "pointRef": "P01-BASE-4-D",
+                "point": {
+                  "id": "P01-BASE-4-B",
+                  "version": "011-Test-1",
+                  "x": 125,
+                  "y": 100,
+                  "unit": "mm",
+                  "frame": "SIM_MACHINE"
+                },
+                "objectPattern": "{UnitId}:M01",
+                "slotId": "P01",
+                "physicalSlotIndex": 1,
+                "localFace": 4,
+                "camera": "D",
+                "stageId": "stage:4",
+                "configurationVersion": "011-Test-1",
+                "sourceFactReference": "Test:016-declared-detection-points/1",
+                "fixed": {
+                  "z": 51,
+                  "unit": "mm",
+                  "datum": "SIM_MACHINE",
+                  "approvalReference": "011-joint-Test-only",
+                  "configurationVersion": "011-Test-1"
+                },
+                "captureProfile": "detect"
+              }
+            ],
+            "flip": {
+              "stages": {
+                "stage:2": {
+                  "targetPose": {
+                    "profileId": "011-motion",
+                    "profileVersion": "011-Test-1",
+                    "poseKey": "face-two"
+                  },
+                  "pickPointRef": "pick",
+                  "putBackPointRef": "put"
+                },
+                "stage:3": {
+                  "targetPose": {
+                    "profileId": "011-motion",
+                    "profileVersion": "011-Test-1",
+                    "poseKey": "face-two"
+                  },
+                  "pickPointRef": "pick",
+                  "putBackPointRef": "put"
+                },
+                "stage:4": {
+                  "targetPose": {
+                    "profileId": "011-motion",
+                    "profileVersion": "011-Test-1",
+                    "poseKey": "face-two"
+                  },
+                  "pickPointRef": "pick",
+                  "putBackPointRef": "put"
+                }
+              }
+            },
+            "rotation": null,
+            "sorting": {},
+            "purposePoints": {
+              "pick": {
+                "purpose": "FlipPick",
+                "point": {
+                  "id": "pick",
+                  "version": "011-Test-1",
+                  "x": 125,
+                  "y": 100,
+                  "unit": "mm",
+                  "frame": "SIM_MACHINE"
+                },
+                "fixed": {
+                  "z": 50,
+                  "unit": "mm",
+                  "datum": "SIM_MACHINE",
+                  "approvalReference": "011-joint-Test-only",
+                  "configurationVersion": "011-Test-1"
+                },
+                "coordinateEvidenceReference": "011-joint/Test-flip-coordinate"
+              },
+              "put": {
+                "purpose": "FlipPutBack",
+                "point": {
+                  "id": "put",
+                  "version": "011-Test-1",
+                  "x": 125,
+                  "y": 100,
+                  "unit": "mm",
+                  "frame": "SIM_MACHINE"
+                },
+                "fixed": {
+                  "z": 50,
+                  "unit": "mm",
+                  "datum": "SIM_MACHINE",
+                  "approvalReference": "011-joint-Test-only",
+                  "configurationVersion": "011-Test-1"
+                },
+                "coordinateEvidenceReference": "011-joint/Test-flip-coordinate"
+              },
+              "scan": {
+                "purpose": "EScan",
+                "point": {
+                  "id": "pick",
+                  "version": "011-Test-1",
+                  "x": 125,
+                  "y": 100,
+                  "unit": "mm",
+                  "frame": "SIM_MACHINE"
+                },
+                "fixed": {
+                  "z": 50,
+                  "unit": "mm",
+                  "datum": "SIM_MACHINE",
+                  "approvalReference": "011-joint-Test-only",
+                  "configurationVersion": "011-Test-1"
+                },
+                "coordinateEvidenceReference": "011-joint/Test-flip-coordinate",
+                "captureProfile": "detect"
+              }
+            },
+            "sortingCellIds": {
+              "NG": "r1:c1",
+              "Pending": "r10:c1"
+            }
+          },
+          "members": {
+            "BASE": {
+              "source": {
+                "point": {
+                  "id": "P01-BASE",
+                  "version": "011-Test-1",
+                  "x": 125,
+                  "y": 100,
+                  "unit": "mm",
+                  "frame": "SIM_MACHINE",
+                  "z": 50
+                },
+                "coordinateEvidenceReference": "Test:016-declared-grab-points/1"
+              },
+              "coordinates": [
+                {
+                  "pointRef": "P01-BASE-1-C",
+                  "point": {
+                    "id": "P01-BASE-1-A",
+                    "version": "011-Test-1",
+                    "x": 125,
+                    "y": 100,
+                    "unit": "mm",
+                    "frame": "SIM_MACHINE"
+                  },
+                  "objectPattern": "{UnitId}:M01",
+                  "slotId": "P01",
+                  "physicalSlotIndex": 1,
+                  "localFace": 1,
+                  "camera": "C",
+                  "stageId": "stage:1",
+                  "configurationVersion": "011-Test-1",
+                  "sourceFactReference": "Test:016-declared-detection-points/1",
+                  "fixed": {
+                    "z": 51,
+                    "unit": "mm",
+                    "datum": "SIM_MACHINE",
+                    "approvalReference": "011-joint-Test-only",
+                    "configurationVersion": "011-Test-1"
+                  },
+                  "captureProfile": "detect"
+                },
+                {
+                  "pointRef": "P01-BASE-1-D",
+                  "point": {
+                    "id": "P01-BASE-1-B",
+                    "version": "011-Test-1",
+                    "x": 125,
+                    "y": 100,
+                    "unit": "mm",
+                    "frame": "SIM_MACHINE"
+                  },
+                  "objectPattern": "{UnitId}:M01",
+                  "slotId": "P01",
+                  "physicalSlotIndex": 1,
+                  "localFace": 1,
+                  "camera": "D",
+                  "stageId": "stage:1",
+                  "configurationVersion": "011-Test-1",
+                  "sourceFactReference": "Test:016-declared-detection-points/1",
+                  "fixed": {
+                    "z": 51,
+                    "unit": "mm",
+                    "datum": "SIM_MACHINE",
+                    "approvalReference": "011-joint-Test-only",
+                    "configurationVersion": "011-Test-1"
+                  },
+                  "captureProfile": "detect"
+                },
+                {
+                  "pointRef": "P01-BASE-2-A",
+                  "point": {
+                    "id": "P01-BASE-2-A",
+                    "version": "011-Test-1",
+                    "x": 125,
+                    "y": 100,
+                    "unit": "mm",
+                    "frame": "SIM_MACHINE"
+                  },
+                  "objectPattern": "{UnitId}:M01",
+                  "slotId": "P01",
+                  "physicalSlotIndex": 1,
+                  "localFace": 2,
+                  "camera": "A",
+                  "stageId": "stage:2",
+                  "configurationVersion": "011-Test-1",
+                  "sourceFactReference": "Test:016-declared-detection-points/1",
+                  "fixed": {
+                    "z": 51,
+                    "unit": "mm",
+                    "datum": "SIM_MACHINE",
+                    "approvalReference": "011-joint-Test-only",
+                    "configurationVersion": "011-Test-1"
+                  },
+                  "captureProfile": "detect"
+                },
+                {
+                  "pointRef": "P01-BASE-2-B",
+                  "point": {
+                    "id": "P01-BASE-2-B",
+                    "version": "011-Test-1",
+                    "x": 125,
+                    "y": 100,
+                    "unit": "mm",
+                    "frame": "SIM_MACHINE"
+                  },
+                  "objectPattern": "{UnitId}:M01",
+                  "slotId": "P01",
+                  "physicalSlotIndex": 1,
+                  "localFace": 2,
+                  "camera": "B",
+                  "stageId": "stage:2",
+                  "configurationVersion": "011-Test-1",
+                  "sourceFactReference": "Test:016-declared-detection-points/1",
+                  "fixed": {
+                    "z": 51,
+                    "unit": "mm",
+                    "datum": "SIM_MACHINE",
+                    "approvalReference": "011-joint-Test-only",
+                    "configurationVersion": "011-Test-1"
+                  },
+                  "captureProfile": "detect"
+                },
+                {
+                  "pointRef": "P01-BASE-3-C",
+                  "point": {
+                    "id": "P01-BASE-3-A",
+                    "version": "011-Test-1",
+                    "x": 125,
+                    "y": 100,
+                    "unit": "mm",
+                    "frame": "SIM_MACHINE"
+                  },
+                  "objectPattern": "{UnitId}:M01",
+                  "slotId": "P01",
+                  "physicalSlotIndex": 1,
+                  "localFace": 3,
+                  "camera": "C",
+                  "stageId": "stage:3",
+                  "configurationVersion": "011-Test-1",
+                  "sourceFactReference": "Test:016-declared-detection-points/1",
+                  "fixed": {
+                    "z": 51,
+                    "unit": "mm",
+                    "datum": "SIM_MACHINE",
+                    "approvalReference": "011-joint-Test-only",
+                    "configurationVersion": "011-Test-1"
+                  },
+                  "captureProfile": "detect"
+                },
+                {
+                  "pointRef": "P01-BASE-3-D",
+                  "point": {
+                    "id": "P01-BASE-3-B",
+                    "version": "011-Test-1",
+                    "x": 125,
+                    "y": 100,
+                    "unit": "mm",
+                    "frame": "SIM_MACHINE"
+                  },
+                  "objectPattern": "{UnitId}:M01",
+                  "slotId": "P01",
+                  "physicalSlotIndex": 1,
+                  "localFace": 3,
+                  "camera": "D",
+                  "stageId": "stage:3",
+                  "configurationVersion": "011-Test-1",
+                  "sourceFactReference": "Test:016-declared-detection-points/1",
+                  "fixed": {
+                    "z": 51,
+                    "unit": "mm",
+                    "datum": "SIM_MACHINE",
+                    "approvalReference": "011-joint-Test-only",
+                    "configurationVersion": "011-Test-1"
+                  },
+                  "captureProfile": "detect"
+                },
+                {
+                  "pointRef": "P01-BASE-4-C",
+                  "point": {
+                    "id": "P01-BASE-4-A",
+                    "version": "011-Test-1",
+                    "x": 125,
+                    "y": 100,
+                    "unit": "mm",
+                    "frame": "SIM_MACHINE"
+                  },
+                  "objectPattern": "{UnitId}:M01",
+                  "slotId": "P01",
+                  "physicalSlotIndex": 1,
+                  "localFace": 4,
+                  "camera": "C",
+                  "stageId": "stage:4",
+                  "configurationVersion": "011-Test-1",
+                  "sourceFactReference": "Test:016-declared-detection-points/1",
+                  "fixed": {
+                    "z": 51,
+                    "unit": "mm",
+                    "datum": "SIM_MACHINE",
+                    "approvalReference": "011-joint-Test-only",
+                    "configurationVersion": "011-Test-1"
+                  },
+                  "captureProfile": "detect"
+                },
+                {
+                  "pointRef": "P01-BASE-4-D",
+                  "point": {
+                    "id": "P01-BASE-4-B",
+                    "version": "011-Test-1",
+                    "x": 125,
+                    "y": 100,
+                    "unit": "mm",
+                    "frame": "SIM_MACHINE"
+                  },
+                  "objectPattern": "{UnitId}:M01",
+                  "slotId": "P01",
+                  "physicalSlotIndex": 1,
+                  "localFace": 4,
+                  "camera": "D",
+                  "stageId": "stage:4",
+                  "configurationVersion": "011-Test-1",
+                  "sourceFactReference": "Test:016-declared-detection-points/1",
+                  "fixed": {
+                    "z": 51,
+                    "unit": "mm",
+                    "datum": "SIM_MACHINE",
+                    "approvalReference": "011-joint-Test-only",
+                    "configurationVersion": "011-Test-1"
+                  },
+                  "captureProfile": "detect"
+                }
+              ],
+              "flip": {
+                "stages": {
+                  "stage:2": {
+                    "targetPose": {
+                      "profileId": "011-motion",
+                      "profileVersion": "011-Test-1",
+                      "poseKey": "face-two"
+                    },
+                    "pickPointRef": "pick",
+                    "putBackPointRef": "put"
+                  },
+                  "stage:3": {
+                    "targetPose": {
+                      "profileId": "011-motion",
+                      "profileVersion": "011-Test-1",
+                      "poseKey": "face-two"
+                    },
+                    "pickPointRef": "pick",
+                    "putBackPointRef": "put"
+                  },
+                  "stage:4": {
+                    "targetPose": {
+                      "profileId": "011-motion",
+                      "profileVersion": "011-Test-1",
+                      "poseKey": "face-two"
+                    },
+                    "pickPointRef": "pick",
+                    "putBackPointRef": "put"
+                  }
+                }
+              },
+              "rotation": null,
+              "sorting": {},
+              "purposePoints": {
+                "pick": {
+                  "purpose": "FlipPick",
+                  "point": {
+                    "id": "pick",
+                    "version": "011-Test-1",
+                    "x": 125,
+                    "y": 100,
+                    "unit": "mm",
+                    "frame": "SIM_MACHINE"
+                  },
+                  "fixed": {
+                    "z": 50,
+                    "unit": "mm",
+                    "datum": "SIM_MACHINE",
+                    "approvalReference": "011-joint-Test-only",
+                    "configurationVersion": "011-Test-1"
+                  },
+                  "coordinateEvidenceReference": "011-joint/Test-flip-coordinate"
+                },
+                "put": {
+                  "purpose": "FlipPutBack",
+                  "point": {
+                    "id": "put",
+                    "version": "011-Test-1",
+                    "x": 125,
+                    "y": 100,
+                    "unit": "mm",
+                    "frame": "SIM_MACHINE"
+                  },
+                  "fixed": {
+                    "z": 50,
+                    "unit": "mm",
+                    "datum": "SIM_MACHINE",
+                    "approvalReference": "011-joint-Test-only",
+                    "configurationVersion": "011-Test-1"
+                  },
+                  "coordinateEvidenceReference": "011-joint/Test-flip-coordinate"
+                },
+                "scan": {
+                  "purpose": "EScan",
+                  "point": {
+                    "id": "pick",
+                    "version": "011-Test-1",
+                    "x": 125,
+                    "y": 100,
+                    "unit": "mm",
+                    "frame": "SIM_MACHINE"
+                  },
+                  "fixed": {
+                    "z": 50,
+                    "unit": "mm",
+                    "datum": "SIM_MACHINE",
+                    "approvalReference": "011-joint-Test-only",
+                    "configurationVersion": "011-Test-1"
+                  },
+                  "coordinateEvidenceReference": "011-joint/Test-flip-coordinate",
+                  "captureProfile": "detect"
+                }
+              },
+              "sortingCellIds": {
+                "NG": "r1:c1",
+                "Pending": "r10:c1"
+              }
+            },
+            "CAP": {
+              "source": {
+                "point": {
+                  "id": "P01-CAP",
+                  "version": "011-Test-1",
+                  "x": 140,
+                  "y": 100,
+                  "unit": "mm",
+                  "frame": "SIM_MACHINE",
+                  "z": 50
+                },
+                "coordinateEvidenceReference": "Test:016-declared-grab-points/1"
+              },
+              "coordinates": [
+                {
+                  "pointRef": "P01-CAP-1-C",
+                  "point": {
+                    "id": "P01-CAP-1-A",
+                    "version": "011-Test-1",
+                    "x": 140,
+                    "y": 100,
+                    "unit": "mm",
+                    "frame": "SIM_MACHINE"
+                  },
+                  "objectPattern": "{UnitId}:M02",
+                  "slotId": "P01",
+                  "physicalSlotIndex": 2,
+                  "localFace": 1,
+                  "camera": "C",
+                  "stageId": "stage:1",
+                  "configurationVersion": "011-Test-1",
+                  "sourceFactReference": "Test:016-declared-detection-points/1",
+                  "fixed": {
+                    "z": 51,
+                    "unit": "mm",
+                    "datum": "SIM_MACHINE",
+                    "approvalReference": "011-joint-Test-only",
+                    "configurationVersion": "011-Test-1"
+                  },
+                  "captureProfile": "detect"
+                },
+                {
+                  "pointRef": "P01-CAP-1-D",
+                  "point": {
+                    "id": "P01-CAP-1-B",
+                    "version": "011-Test-1",
+                    "x": 140,
+                    "y": 100,
+                    "unit": "mm",
+                    "frame": "SIM_MACHINE"
+                  },
+                  "objectPattern": "{UnitId}:M02",
+                  "slotId": "P01",
+                  "physicalSlotIndex": 2,
+                  "localFace": 1,
+                  "camera": "D",
+                  "stageId": "stage:1",
+                  "configurationVersion": "011-Test-1",
+                  "sourceFactReference": "Test:016-declared-detection-points/1",
+                  "fixed": {
+                    "z": 51,
+                    "unit": "mm",
+                    "datum": "SIM_MACHINE",
+                    "approvalReference": "011-joint-Test-only",
+                    "configurationVersion": "011-Test-1"
+                  },
+                  "captureProfile": "detect"
+                }
+              ],
+              "flip": null,
+              "rotation": null,
+              "sorting": {},
+              "purposePoints": {
+                "pick": {
+                  "purpose": "FlipPick",
+                  "point": {
+                    "id": "pick",
+                    "version": "011-Test-1",
+                    "x": 140,
+                    "y": 100,
+                    "unit": "mm",
+                    "frame": "SIM_MACHINE"
+                  },
+                  "fixed": {
+                    "z": 50,
+                    "unit": "mm",
+                    "datum": "SIM_MACHINE",
+                    "approvalReference": "011-joint-Test-only",
+                    "configurationVersion": "011-Test-1"
+                  },
+                  "coordinateEvidenceReference": "011-joint/Test-flip-coordinate"
+                },
+                "put": {
+                  "purpose": "FlipPutBack",
+                  "point": {
+                    "id": "put",
+                    "version": "011-Test-1",
+                    "x": 140,
+                    "y": 100,
+                    "unit": "mm",
+                    "frame": "SIM_MACHINE"
+                  },
+                  "fixed": {
+                    "z": 50,
+                    "unit": "mm",
+                    "datum": "SIM_MACHINE",
+                    "approvalReference": "011-joint-Test-only",
+                    "configurationVersion": "011-Test-1"
+                  },
+                  "coordinateEvidenceReference": "011-joint/Test-flip-coordinate"
+                },
+                "scan": {
+                  "purpose": "EScan",
+                  "point": {
+                    "id": "pick",
+                    "version": "011-Test-1",
+                    "x": 140,
+                    "y": 100,
+                    "unit": "mm",
+                    "frame": "SIM_MACHINE"
+                  },
+                  "fixed": {
+                    "z": 50,
+                    "unit": "mm",
+                    "datum": "SIM_MACHINE",
+                    "approvalReference": "011-joint-Test-only",
+                    "configurationVersion": "011-Test-1"
+                  },
+                  "coordinateEvidenceReference": "011-joint/Test-flip-coordinate",
+                  "captureProfile": "detect"
+                }
+              },
+              "sortingCellIds": {
+                "NG": "r1:c2",
+                "Pending": "r10:c2"
+              }
+            },
+            "MOTOR": {
+              "source": {
+                "point": {
+                  "id": "P01-MOTOR",
+                  "version": "011-Test-1",
+                  "x": 155,
+                  "y": 100,
+                  "unit": "mm",
+                  "frame": "SIM_MACHINE",
+                  "z": 50
+                },
+                "coordinateEvidenceReference": "Test:016-declared-grab-points/1"
+              },
+              "coordinates": [
+                {
+                  "pointRef": "P01-MOTOR-1-C",
+                  "point": {
+                    "id": "P01-MOTOR-1-A",
+                    "version": "011-Test-1",
+                    "x": 155,
+                    "y": 100,
+                    "unit": "mm",
+                    "frame": "SIM_MACHINE"
+                  },
+                  "objectPattern": "{UnitId}:M03",
+                  "slotId": "P01",
+                  "physicalSlotIndex": 3,
+                  "localFace": 1,
+                  "camera": "C",
+                  "stageId": "stage:1",
+                  "configurationVersion": "011-Test-1",
+                  "sourceFactReference": "Test:016-declared-detection-points/1",
+                  "fixed": {
+                    "z": 51,
+                    "unit": "mm",
+                    "datum": "SIM_MACHINE",
+                    "approvalReference": "011-joint-Test-only",
+                    "configurationVersion": "011-Test-1"
+                  },
+                  "captureProfile": "detect"
+                },
+                {
+                  "pointRef": "P01-MOTOR-1-D",
+                  "point": {
+                    "id": "P01-MOTOR-1-B",
+                    "version": "011-Test-1",
+                    "x": 155,
+                    "y": 100,
+                    "unit": "mm",
+                    "frame": "SIM_MACHINE"
+                  },
+                  "objectPattern": "{UnitId}:M03",
+                  "slotId": "P01",
+                  "physicalSlotIndex": 3,
+                  "localFace": 1,
+                  "camera": "D",
+                  "stageId": "stage:1",
+                  "configurationVersion": "011-Test-1",
+                  "sourceFactReference": "Test:016-declared-detection-points/1",
+                  "fixed": {
+                    "z": 51,
+                    "unit": "mm",
+                    "datum": "SIM_MACHINE",
+                    "approvalReference": "011-joint-Test-only",
+                    "configurationVersion": "011-Test-1"
+                  },
+                  "captureProfile": "detect"
+                }
+              ],
+              "flip": null,
+              "rotation": null,
+              "sorting": {},
+              "purposePoints": {
+                "pick": {
+                  "purpose": "FlipPick",
+                  "point": {
+                    "id": "pick",
+                    "version": "011-Test-1",
+                    "x": 155,
+                    "y": 100,
+                    "unit": "mm",
+                    "frame": "SIM_MACHINE"
+                  },
+                  "fixed": {
+                    "z": 50,
+                    "unit": "mm",
+                    "datum": "SIM_MACHINE",
+                    "approvalReference": "011-joint-Test-only",
+                    "configurationVersion": "011-Test-1"
+                  },
+                  "coordinateEvidenceReference": "011-joint/Test-flip-coordinate"
+                },
+                "put": {
+                  "purpose": "FlipPutBack",
+                  "point": {
+                    "id": "put",
+                    "version": "011-Test-1",
+                    "x": 155,
+                    "y": 100,
+                    "unit": "mm",
+                    "frame": "SIM_MACHINE"
+                  },
+                  "fixed": {
+                    "z": 50,
+                    "unit": "mm",
+                    "datum": "SIM_MACHINE",
+                    "approvalReference": "011-joint-Test-only",
+                    "configurationVersion": "011-Test-1"
+                  },
+                  "coordinateEvidenceReference": "011-joint/Test-flip-coordinate"
+                },
+                "scan": {
+                  "purpose": "EScan",
+                  "point": {
+                    "id": "pick",
+                    "version": "011-Test-1",
+                    "x": 155,
+                    "y": 100,
+                    "unit": "mm",
+                    "frame": "SIM_MACHINE"
+                  },
+                  "fixed": {
+                    "z": 50,
+                    "unit": "mm",
+                    "datum": "SIM_MACHINE",
+                    "approvalReference": "011-joint-Test-only",
+                    "configurationVersion": "011-Test-1"
+                  },
+                  "coordinateEvidenceReference": "011-joint/Test-flip-coordinate",
+                  "captureProfile": "detect"
+                }
+              },
+              "sortingCellIds": {
+                "NG": "r1:c3",
+                "Pending": "r10:c3"
+              }
+            },
+            "PIN": {
+              "source": {
+                "point": {
+                  "id": "P01-PIN",
+                  "version": "011-Test-1",
+                  "x": 170,
+                  "y": 100,
+                  "unit": "mm",
+                  "frame": "SIM_MACHINE",
+                  "z": 50
+                },
+                "coordinateEvidenceReference": "Test:016-declared-grab-points/1"
+              },
+              "coordinates": [
+                {
+                  "pointRef": "P01-PIN-1-C",
+                  "point": {
+                    "id": "P01-PIN-1-A",
+                    "version": "011-Test-1",
+                    "x": 170,
+                    "y": 100,
+                    "unit": "mm",
+                    "frame": "SIM_MACHINE"
+                  },
+                  "objectPattern": "{UnitId}:M04",
+                  "slotId": "P01",
+                  "physicalSlotIndex": 4,
+                  "localFace": 1,
+                  "camera": "C",
+                  "stageId": "stage:1",
+                  "configurationVersion": "011-Test-1",
+                  "sourceFactReference": "Test:016-declared-detection-points/1",
+                  "fixed": {
+                    "z": 51,
+                    "unit": "mm",
+                    "datum": "SIM_MACHINE",
+                    "approvalReference": "011-joint-Test-only",
+                    "configurationVersion": "011-Test-1"
+                  },
+                  "captureProfile": "detect"
+                },
+                {
+                  "pointRef": "P01-PIN-1-D",
+                  "point": {
+                    "id": "P01-PIN-1-B",
+                    "version": "011-Test-1",
+                    "x": 170,
+                    "y": 100,
+                    "unit": "mm",
+                    "frame": "SIM_MACHINE"
+                  },
+                  "objectPattern": "{UnitId}:M04",
+                  "slotId": "P01",
+                  "physicalSlotIndex": 4,
+                  "localFace": 1,
+                  "camera": "D",
+                  "stageId": "stage:1",
+                  "configurationVersion": "011-Test-1",
+                  "sourceFactReference": "Test:016-declared-detection-points/1",
+                  "fixed": {
+                    "z": 51,
+                    "unit": "mm",
+                    "datum": "SIM_MACHINE",
+                    "approvalReference": "011-joint-Test-only",
+                    "configurationVersion": "011-Test-1"
+                  },
+                  "captureProfile": "detect"
+                }
+              ],
+              "flip": null,
+              "rotation": null,
+              "sorting": {},
+              "purposePoints": {
+                "pick": {
+                  "purpose": "FlipPick",
+                  "point": {
+                    "id": "pick",
+                    "version": "011-Test-1",
+                    "x": 170,
+                    "y": 100,
+                    "unit": "mm",
+                    "frame": "SIM_MACHINE"
+                  },
+                  "fixed": {
+                    "z": 50,
+                    "unit": "mm",
+                    "datum": "SIM_MACHINE",
+                    "approvalReference": "011-joint-Test-only",
+                    "configurationVersion": "011-Test-1"
+                  },
+                  "coordinateEvidenceReference": "011-joint/Test-flip-coordinate"
+                },
+                "put": {
+                  "purpose": "FlipPutBack",
+                  "point": {
+                    "id": "put",
+                    "version": "011-Test-1",
+                    "x": 170,
+                    "y": 100,
+                    "unit": "mm",
+                    "frame": "SIM_MACHINE"
+                  },
+                  "fixed": {
+                    "z": 50,
+                    "unit": "mm",
+                    "datum": "SIM_MACHINE",
+                    "approvalReference": "011-joint-Test-only",
+                    "configurationVersion": "011-Test-1"
+                  },
+                  "coordinateEvidenceReference": "011-joint/Test-flip-coordinate"
+                },
+                "scan": {
+                  "purpose": "EScan",
+                  "point": {
+                    "id": "pick",
+                    "version": "011-Test-1",
+                    "x": 170,
+                    "y": 100,
+                    "unit": "mm",
+                    "frame": "SIM_MACHINE"
+                  },
+                  "fixed": {
+                    "z": 50,
+                    "unit": "mm",
+                    "datum": "SIM_MACHINE",
+                    "approvalReference": "011-joint-Test-only",
+                    "configurationVersion": "011-Test-1"
+                  },
+                  "coordinateEvidenceReference": "011-joint/Test-flip-coordinate",
+                  "captureProfile": "detect"
+                }
+              },
+              "sortingCellIds": {
+                "NG": "r1:c4",
+                "Pending": "r10:c4"
+              }
+            }
+          }
+        },
+        "P03": {
+          "slotId": "P03",
+          "physicalEntity": {
+            "source": {
+              "point": {
+                "id": "P03-BASE",
+                "version": "011-Test-1",
+                "x": 185,
+                "y": 100,
+                "unit": "mm",
+                "frame": "SIM_MACHINE",
+                "z": 50
+              },
+              "coordinateEvidenceReference": "Test:016-declared-grab-points/1"
+            },
+            "coordinates": [
+              {
+                "pointRef": "P03-BASE-1-C",
+                "point": {
+                  "id": "P03-BASE-1-A",
+                  "version": "011-Test-1",
+                  "x": 185,
+                  "y": 100,
+                  "unit": "mm",
+                  "frame": "SIM_MACHINE"
+                },
+                "objectPattern": "{UnitId}:M01",
+                "slotId": "P03",
+                "physicalSlotIndex": 5,
+                "localFace": 1,
+                "camera": "C",
+                "stageId": "stage:1",
+                "configurationVersion": "011-Test-1",
+                "sourceFactReference": "Test:016-declared-detection-points/1",
+                "fixed": {
+                  "z": 51,
+                  "unit": "mm",
+                  "datum": "SIM_MACHINE",
+                  "approvalReference": "011-joint-Test-only",
+                  "configurationVersion": "011-Test-1"
+                },
+                "captureProfile": "detect"
+              },
+              {
+                "pointRef": "P03-BASE-1-D",
+                "point": {
+                  "id": "P03-BASE-1-B",
+                  "version": "011-Test-1",
+                  "x": 185,
+                  "y": 100,
+                  "unit": "mm",
+                  "frame": "SIM_MACHINE"
+                },
+                "objectPattern": "{UnitId}:M01",
+                "slotId": "P03",
+                "physicalSlotIndex": 5,
+                "localFace": 1,
+                "camera": "D",
+                "stageId": "stage:1",
+                "configurationVersion": "011-Test-1",
+                "sourceFactReference": "Test:016-declared-detection-points/1",
+                "fixed": {
+                  "z": 51,
+                  "unit": "mm",
+                  "datum": "SIM_MACHINE",
+                  "approvalReference": "011-joint-Test-only",
+                  "configurationVersion": "011-Test-1"
+                },
+                "captureProfile": "detect"
+              },
+              {
+                "pointRef": "P03-BASE-2-A",
+                "point": {
+                  "id": "P03-BASE-2-A",
+                  "version": "011-Test-1",
+                  "x": 185,
+                  "y": 100,
+                  "unit": "mm",
+                  "frame": "SIM_MACHINE"
+                },
+                "objectPattern": "{UnitId}:M01",
+                "slotId": "P03",
+                "physicalSlotIndex": 5,
+                "localFace": 2,
+                "camera": "A",
+                "stageId": "stage:2",
+                "configurationVersion": "011-Test-1",
+                "sourceFactReference": "Test:016-declared-detection-points/1",
+                "fixed": {
+                  "z": 51,
+                  "unit": "mm",
+                  "datum": "SIM_MACHINE",
+                  "approvalReference": "011-joint-Test-only",
+                  "configurationVersion": "011-Test-1"
+                },
+                "captureProfile": "detect"
+              },
+              {
+                "pointRef": "P03-BASE-2-B",
+                "point": {
+                  "id": "P03-BASE-2-B",
+                  "version": "011-Test-1",
+                  "x": 185,
+                  "y": 100,
+                  "unit": "mm",
+                  "frame": "SIM_MACHINE"
+                },
+                "objectPattern": "{UnitId}:M01",
+                "slotId": "P03",
+                "physicalSlotIndex": 5,
+                "localFace": 2,
+                "camera": "B",
+                "stageId": "stage:2",
+                "configurationVersion": "011-Test-1",
+                "sourceFactReference": "Test:016-declared-detection-points/1",
+                "fixed": {
+                  "z": 51,
+                  "unit": "mm",
+                  "datum": "SIM_MACHINE",
+                  "approvalReference": "011-joint-Test-only",
+                  "configurationVersion": "011-Test-1"
+                },
+                "captureProfile": "detect"
+              },
+              {
+                "pointRef": "P03-BASE-3-C",
+                "point": {
+                  "id": "P03-BASE-3-A",
+                  "version": "011-Test-1",
+                  "x": 185,
+                  "y": 100,
+                  "unit": "mm",
+                  "frame": "SIM_MACHINE"
+                },
+                "objectPattern": "{UnitId}:M01",
+                "slotId": "P03",
+                "physicalSlotIndex": 5,
+                "localFace": 3,
+                "camera": "C",
+                "stageId": "stage:3",
+                "configurationVersion": "011-Test-1",
+                "sourceFactReference": "Test:016-declared-detection-points/1",
+                "fixed": {
+                  "z": 51,
+                  "unit": "mm",
+                  "datum": "SIM_MACHINE",
+                  "approvalReference": "011-joint-Test-only",
+                  "configurationVersion": "011-Test-1"
+                },
+                "captureProfile": "detect"
+              },
+              {
+                "pointRef": "P03-BASE-3-D",
+                "point": {
+                  "id": "P03-BASE-3-B",
+                  "version": "011-Test-1",
+                  "x": 185,
+                  "y": 100,
+                  "unit": "mm",
+                  "frame": "SIM_MACHINE"
+                },
+                "objectPattern": "{UnitId}:M01",
+                "slotId": "P03",
+                "physicalSlotIndex": 5,
+                "localFace": 3,
+                "camera": "D",
+                "stageId": "stage:3",
+                "configurationVersion": "011-Test-1",
+                "sourceFactReference": "Test:016-declared-detection-points/1",
+                "fixed": {
+                  "z": 51,
+                  "unit": "mm",
+                  "datum": "SIM_MACHINE",
+                  "approvalReference": "011-joint-Test-only",
+                  "configurationVersion": "011-Test-1"
+                },
+                "captureProfile": "detect"
+              },
+              {
+                "pointRef": "P03-BASE-4-C",
+                "point": {
+                  "id": "P03-BASE-4-A",
+                  "version": "011-Test-1",
+                  "x": 185,
+                  "y": 100,
+                  "unit": "mm",
+                  "frame": "SIM_MACHINE"
+                },
+                "objectPattern": "{UnitId}:M01",
+                "slotId": "P03",
+                "physicalSlotIndex": 5,
+                "localFace": 4,
+                "camera": "C",
+                "stageId": "stage:4",
+                "configurationVersion": "011-Test-1",
+                "sourceFactReference": "Test:016-declared-detection-points/1",
+                "fixed": {
+                  "z": 51,
+                  "unit": "mm",
+                  "datum": "SIM_MACHINE",
+                  "approvalReference": "011-joint-Test-only",
+                  "configurationVersion": "011-Test-1"
+                },
+                "captureProfile": "detect"
+              },
+              {
+                "pointRef": "P03-BASE-4-D",
+                "point": {
+                  "id": "P03-BASE-4-B",
+                  "version": "011-Test-1",
+                  "x": 185,
+                  "y": 100,
+                  "unit": "mm",
+                  "frame": "SIM_MACHINE"
+                },
+                "objectPattern": "{UnitId}:M01",
+                "slotId": "P03",
+                "physicalSlotIndex": 5,
+                "localFace": 4,
+                "camera": "D",
+                "stageId": "stage:4",
+                "configurationVersion": "011-Test-1",
+                "sourceFactReference": "Test:016-declared-detection-points/1",
+                "fixed": {
+                  "z": 51,
+                  "unit": "mm",
+                  "datum": "SIM_MACHINE",
+                  "approvalReference": "011-joint-Test-only",
+                  "configurationVersion": "011-Test-1"
+                },
+                "captureProfile": "detect"
+              }
+            ],
+            "flip": {
+              "stages": {
+                "stage:2": {
+                  "targetPose": {
+                    "profileId": "011-motion",
+                    "profileVersion": "011-Test-1",
+                    "poseKey": "face-two"
+                  },
+                  "pickPointRef": "pick",
+                  "putBackPointRef": "put"
+                },
+                "stage:3": {
+                  "targetPose": {
+                    "profileId": "011-motion",
+                    "profileVersion": "011-Test-1",
+                    "poseKey": "face-two"
+                  },
+                  "pickPointRef": "pick",
+                  "putBackPointRef": "put"
+                },
+                "stage:4": {
+                  "targetPose": {
+                    "profileId": "011-motion",
+                    "profileVersion": "011-Test-1",
+                    "poseKey": "face-two"
+                  },
+                  "pickPointRef": "pick",
+                  "putBackPointRef": "put"
+                }
+              }
+            },
+            "rotation": null,
+            "sorting": {},
+            "purposePoints": {
+              "pick": {
+                "purpose": "FlipPick",
+                "point": {
+                  "id": "pick",
+                  "version": "011-Test-1",
+                  "x": 185,
+                  "y": 100,
+                  "unit": "mm",
+                  "frame": "SIM_MACHINE"
+                },
+                "fixed": {
+                  "z": 50,
+                  "unit": "mm",
+                  "datum": "SIM_MACHINE",
+                  "approvalReference": "011-joint-Test-only",
+                  "configurationVersion": "011-Test-1"
+                },
+                "coordinateEvidenceReference": "011-joint/Test-flip-coordinate"
+              },
+              "put": {
+                "purpose": "FlipPutBack",
+                "point": {
+                  "id": "put",
+                  "version": "011-Test-1",
+                  "x": 185,
+                  "y": 100,
+                  "unit": "mm",
+                  "frame": "SIM_MACHINE"
+                },
+                "fixed": {
+                  "z": 50,
+                  "unit": "mm",
+                  "datum": "SIM_MACHINE",
+                  "approvalReference": "011-joint-Test-only",
+                  "configurationVersion": "011-Test-1"
+                },
+                "coordinateEvidenceReference": "011-joint/Test-flip-coordinate"
+              },
+              "scan": {
+                "purpose": "EScan",
+                "point": {
+                  "id": "pick",
+                  "version": "011-Test-1",
+                  "x": 185,
+                  "y": 100,
+                  "unit": "mm",
+                  "frame": "SIM_MACHINE"
+                },
+                "fixed": {
+                  "z": 50,
+                  "unit": "mm",
+                  "datum": "SIM_MACHINE",
+                  "approvalReference": "011-joint-Test-only",
+                  "configurationVersion": "011-Test-1"
+                },
+                "coordinateEvidenceReference": "011-joint/Test-flip-coordinate",
+                "captureProfile": "detect"
+              }
+            },
+            "sortingCellIds": {
+              "NG": "r1:c5",
+              "Pending": "r10:c5"
+            }
+          },
+          "members": {
+            "BASE": {
+              "source": {
+                "point": {
+                  "id": "P03-BASE",
+                  "version": "011-Test-1",
+                  "x": 185,
+                  "y": 100,
+                  "unit": "mm",
+                  "frame": "SIM_MACHINE",
+                  "z": 50
+                },
+                "coordinateEvidenceReference": "Test:016-declared-grab-points/1"
+              },
+              "coordinates": [
+                {
+                  "pointRef": "P03-BASE-1-C",
+                  "point": {
+                    "id": "P03-BASE-1-A",
+                    "version": "011-Test-1",
+                    "x": 185,
+                    "y": 100,
+                    "unit": "mm",
+                    "frame": "SIM_MACHINE"
+                  },
+                  "objectPattern": "{UnitId}:M01",
+                  "slotId": "P03",
+                  "physicalSlotIndex": 5,
+                  "localFace": 1,
+                  "camera": "C",
+                  "stageId": "stage:1",
+                  "configurationVersion": "011-Test-1",
+                  "sourceFactReference": "Test:016-declared-detection-points/1",
+                  "fixed": {
+                    "z": 51,
+                    "unit": "mm",
+                    "datum": "SIM_MACHINE",
+                    "approvalReference": "011-joint-Test-only",
+                    "configurationVersion": "011-Test-1"
+                  },
+                  "captureProfile": "detect"
+                },
+                {
+                  "pointRef": "P03-BASE-1-D",
+                  "point": {
+                    "id": "P03-BASE-1-B",
+                    "version": "011-Test-1",
+                    "x": 185,
+                    "y": 100,
+                    "unit": "mm",
+                    "frame": "SIM_MACHINE"
+                  },
+                  "objectPattern": "{UnitId}:M01",
+                  "slotId": "P03",
+                  "physicalSlotIndex": 5,
+                  "localFace": 1,
+                  "camera": "D",
+                  "stageId": "stage:1",
+                  "configurationVersion": "011-Test-1",
+                  "sourceFactReference": "Test:016-declared-detection-points/1",
+                  "fixed": {
+                    "z": 51,
+                    "unit": "mm",
+                    "datum": "SIM_MACHINE",
+                    "approvalReference": "011-joint-Test-only",
+                    "configurationVersion": "011-Test-1"
+                  },
+                  "captureProfile": "detect"
+                },
+                {
+                  "pointRef": "P03-BASE-2-A",
+                  "point": {
+                    "id": "P03-BASE-2-A",
+                    "version": "011-Test-1",
+                    "x": 185,
+                    "y": 100,
+                    "unit": "mm",
+                    "frame": "SIM_MACHINE"
+                  },
+                  "objectPattern": "{UnitId}:M01",
+                  "slotId": "P03",
+                  "physicalSlotIndex": 5,
+                  "localFace": 2,
+                  "camera": "A",
+                  "stageId": "stage:2",
+                  "configurationVersion": "011-Test-1",
+                  "sourceFactReference": "Test:016-declared-detection-points/1",
+                  "fixed": {
+                    "z": 51,
+                    "unit": "mm",
+                    "datum": "SIM_MACHINE",
+                    "approvalReference": "011-joint-Test-only",
+                    "configurationVersion": "011-Test-1"
+                  },
+                  "captureProfile": "detect"
+                },
+                {
+                  "pointRef": "P03-BASE-2-B",
+                  "point": {
+                    "id": "P03-BASE-2-B",
+                    "version": "011-Test-1",
+                    "x": 185,
+                    "y": 100,
+                    "unit": "mm",
+                    "frame": "SIM_MACHINE"
+                  },
+                  "objectPattern": "{UnitId}:M01",
+                  "slotId": "P03",
+                  "physicalSlotIndex": 5,
+                  "localFace": 2,
+                  "camera": "B",
+                  "stageId": "stage:2",
+                  "configurationVersion": "011-Test-1",
+                  "sourceFactReference": "Test:016-declared-detection-points/1",
+                  "fixed": {
+                    "z": 51,
+                    "unit": "mm",
+                    "datum": "SIM_MACHINE",
+                    "approvalReference": "011-joint-Test-only",
+                    "configurationVersion": "011-Test-1"
+                  },
+                  "captureProfile": "detect"
+                },
+                {
+                  "pointRef": "P03-BASE-3-C",
+                  "point": {
+                    "id": "P03-BASE-3-A",
+                    "version": "011-Test-1",
+                    "x": 185,
+                    "y": 100,
+                    "unit": "mm",
+                    "frame": "SIM_MACHINE"
+                  },
+                  "objectPattern": "{UnitId}:M01",
+                  "slotId": "P03",
+                  "physicalSlotIndex": 5,
+                  "localFace": 3,
+                  "camera": "C",
+                  "stageId": "stage:3",
+                  "configurationVersion": "011-Test-1",
+                  "sourceFactReference": "Test:016-declared-detection-points/1",
+                  "fixed": {
+                    "z": 51,
+                    "unit": "mm",
+                    "datum": "SIM_MACHINE",
+                    "approvalReference": "011-joint-Test-only",
+                    "configurationVersion": "011-Test-1"
+                  },
+                  "captureProfile": "detect"
+                },
+                {
+                  "pointRef": "P03-BASE-3-D",
+                  "point": {
+                    "id": "P03-BASE-3-B",
+                    "version": "011-Test-1",
+                    "x": 185,
+                    "y": 100,
+                    "unit": "mm",
+                    "frame": "SIM_MACHINE"
+                  },
+                  "objectPattern": "{UnitId}:M01",
+                  "slotId": "P03",
+                  "physicalSlotIndex": 5,
+                  "localFace": 3,
+                  "camera": "D",
+                  "stageId": "stage:3",
+                  "configurationVersion": "011-Test-1",
+                  "sourceFactReference": "Test:016-declared-detection-points/1",
+                  "fixed": {
+                    "z": 51,
+                    "unit": "mm",
+                    "datum": "SIM_MACHINE",
+                    "approvalReference": "011-joint-Test-only",
+                    "configurationVersion": "011-Test-1"
+                  },
+                  "captureProfile": "detect"
+                },
+                {
+                  "pointRef": "P03-BASE-4-C",
+                  "point": {
+                    "id": "P03-BASE-4-A",
+                    "version": "011-Test-1",
+                    "x": 185,
+                    "y": 100,
+                    "unit": "mm",
+                    "frame": "SIM_MACHINE"
+                  },
+                  "objectPattern": "{UnitId}:M01",
+                  "slotId": "P03",
+                  "physicalSlotIndex": 5,
+                  "localFace": 4,
+                  "camera": "C",
+                  "stageId": "stage:4",
+                  "configurationVersion": "011-Test-1",
+                  "sourceFactReference": "Test:016-declared-detection-points/1",
+                  "fixed": {
+                    "z": 51,
+                    "unit": "mm",
+                    "datum": "SIM_MACHINE",
+                    "approvalReference": "011-joint-Test-only",
+                    "configurationVersion": "011-Test-1"
+                  },
+                  "captureProfile": "detect"
+                },
+                {
+                  "pointRef": "P03-BASE-4-D",
+                  "point": {
+                    "id": "P03-BASE-4-B",
+                    "version": "011-Test-1",
+                    "x": 185,
+                    "y": 100,
+                    "unit": "mm",
+                    "frame": "SIM_MACHINE"
+                  },
+                  "objectPattern": "{UnitId}:M01",
+                  "slotId": "P03",
+                  "physicalSlotIndex": 5,
+                  "localFace": 4,
+                  "camera": "D",
+                  "stageId": "stage:4",
+                  "configurationVersion": "011-Test-1",
+                  "sourceFactReference": "Test:016-declared-detection-points/1",
+                  "fixed": {
+                    "z": 51,
+                    "unit": "mm",
+                    "datum": "SIM_MACHINE",
+                    "approvalReference": "011-joint-Test-only",
+                    "configurationVersion": "011-Test-1"
+                  },
+                  "captureProfile": "detect"
+                }
+              ],
+              "flip": {
+                "stages": {
+                  "stage:2": {
+                    "targetPose": {
+                      "profileId": "011-motion",
+                      "profileVersion": "011-Test-1",
+                      "poseKey": "face-two"
+                    },
+                    "pickPointRef": "pick",
+                    "putBackPointRef": "put"
+                  },
+                  "stage:3": {
+                    "targetPose": {
+                      "profileId": "011-motion",
+                      "profileVersion": "011-Test-1",
+                      "poseKey": "face-two"
+                    },
+                    "pickPointRef": "pick",
+                    "putBackPointRef": "put"
+                  },
+                  "stage:4": {
+                    "targetPose": {
+                      "profileId": "011-motion",
+                      "profileVersion": "011-Test-1",
+                      "poseKey": "face-two"
+                    },
+                    "pickPointRef": "pick",
+                    "putBackPointRef": "put"
+                  }
+                }
+              },
+              "rotation": null,
+              "sorting": {},
+              "purposePoints": {
+                "pick": {
+                  "purpose": "FlipPick",
+                  "point": {
+                    "id": "pick",
+                    "version": "011-Test-1",
+                    "x": 185,
+                    "y": 100,
+                    "unit": "mm",
+                    "frame": "SIM_MACHINE"
+                  },
+                  "fixed": {
+                    "z": 50,
+                    "unit": "mm",
+                    "datum": "SIM_MACHINE",
+                    "approvalReference": "011-joint-Test-only",
+                    "configurationVersion": "011-Test-1"
+                  },
+                  "coordinateEvidenceReference": "011-joint/Test-flip-coordinate"
+                },
+                "put": {
+                  "purpose": "FlipPutBack",
+                  "point": {
+                    "id": "put",
+                    "version": "011-Test-1",
+                    "x": 185,
+                    "y": 100,
+                    "unit": "mm",
+                    "frame": "SIM_MACHINE"
+                  },
+                  "fixed": {
+                    "z": 50,
+                    "unit": "mm",
+                    "datum": "SIM_MACHINE",
+                    "approvalReference": "011-joint-Test-only",
+                    "configurationVersion": "011-Test-1"
+                  },
+                  "coordinateEvidenceReference": "011-joint/Test-flip-coordinate"
+                },
+                "scan": {
+                  "purpose": "EScan",
+                  "point": {
+                    "id": "pick",
+                    "version": "011-Test-1",
+                    "x": 185,
+                    "y": 100,
+                    "unit": "mm",
+                    "frame": "SIM_MACHINE"
+                  },
+                  "fixed": {
+                    "z": 50,
+                    "unit": "mm",
+                    "datum": "SIM_MACHINE",
+                    "approvalReference": "011-joint-Test-only",
+                    "configurationVersion": "011-Test-1"
+                  },
+                  "coordinateEvidenceReference": "011-joint/Test-flip-coordinate",
+                  "captureProfile": "detect"
+                }
+              },
+              "sortingCellIds": {
+                "NG": "r1:c5",
+                "Pending": "r10:c5"
+              }
+            },
+            "CAP": {
+              "source": {
+                "point": {
+                  "id": "P03-CAP",
+                  "version": "011-Test-1",
+                  "x": 200,
+                  "y": 100,
+                  "unit": "mm",
+                  "frame": "SIM_MACHINE",
+                  "z": 50
+                },
+                "coordinateEvidenceReference": "Test:016-declared-grab-points/1"
+              },
+              "coordinates": [
+                {
+                  "pointRef": "P03-CAP-1-C",
+                  "point": {
+                    "id": "P03-CAP-1-A",
+                    "version": "011-Test-1",
+                    "x": 200,
+                    "y": 100,
+                    "unit": "mm",
+                    "frame": "SIM_MACHINE"
+                  },
+                  "objectPattern": "{UnitId}:M02",
+                  "slotId": "P03",
+                  "physicalSlotIndex": 6,
+                  "localFace": 1,
+                  "camera": "C",
+                  "stageId": "stage:1",
+                  "configurationVersion": "011-Test-1",
+                  "sourceFactReference": "Test:016-declared-detection-points/1",
+                  "fixed": {
+                    "z": 51,
+                    "unit": "mm",
+                    "datum": "SIM_MACHINE",
+                    "approvalReference": "011-joint-Test-only",
+                    "configurationVersion": "011-Test-1"
+                  },
+                  "captureProfile": "detect"
+                },
+                {
+                  "pointRef": "P03-CAP-1-D",
+                  "point": {
+                    "id": "P03-CAP-1-B",
+                    "version": "011-Test-1",
+                    "x": 200,
+                    "y": 100,
+                    "unit": "mm",
+                    "frame": "SIM_MACHINE"
+                  },
+                  "objectPattern": "{UnitId}:M02",
+                  "slotId": "P03",
+                  "physicalSlotIndex": 6,
+                  "localFace": 1,
+                  "camera": "D",
+                  "stageId": "stage:1",
+                  "configurationVersion": "011-Test-1",
+                  "sourceFactReference": "Test:016-declared-detection-points/1",
+                  "fixed": {
+                    "z": 51,
+                    "unit": "mm",
+                    "datum": "SIM_MACHINE",
+                    "approvalReference": "011-joint-Test-only",
+                    "configurationVersion": "011-Test-1"
+                  },
+                  "captureProfile": "detect"
+                }
+              ],
+              "flip": null,
+              "rotation": null,
+              "sorting": {},
+              "purposePoints": {
+                "pick": {
+                  "purpose": "FlipPick",
+                  "point": {
+                    "id": "pick",
+                    "version": "011-Test-1",
+                    "x": 200,
+                    "y": 100,
+                    "unit": "mm",
+                    "frame": "SIM_MACHINE"
+                  },
+                  "fixed": {
+                    "z": 50,
+                    "unit": "mm",
+                    "datum": "SIM_MACHINE",
+                    "approvalReference": "011-joint-Test-only",
+                    "configurationVersion": "011-Test-1"
+                  },
+                  "coordinateEvidenceReference": "011-joint/Test-flip-coordinate"
+                },
+                "put": {
+                  "purpose": "FlipPutBack",
+                  "point": {
+                    "id": "put",
+                    "version": "011-Test-1",
+                    "x": 200,
+                    "y": 100,
+                    "unit": "mm",
+                    "frame": "SIM_MACHINE"
+                  },
+                  "fixed": {
+                    "z": 50,
+                    "unit": "mm",
+                    "datum": "SIM_MACHINE",
+                    "approvalReference": "011-joint-Test-only",
+                    "configurationVersion": "011-Test-1"
+                  },
+                  "coordinateEvidenceReference": "011-joint/Test-flip-coordinate"
+                },
+                "scan": {
+                  "purpose": "EScan",
+                  "point": {
+                    "id": "pick",
+                    "version": "011-Test-1",
+                    "x": 200,
+                    "y": 100,
+                    "unit": "mm",
+                    "frame": "SIM_MACHINE"
+                  },
+                  "fixed": {
+                    "z": 50,
+                    "unit": "mm",
+                    "datum": "SIM_MACHINE",
+                    "approvalReference": "011-joint-Test-only",
+                    "configurationVersion": "011-Test-1"
+                  },
+                  "coordinateEvidenceReference": "011-joint/Test-flip-coordinate",
+                  "captureProfile": "detect"
+                }
+              },
+              "sortingCellIds": {
+                "NG": "r1:c6",
+                "Pending": "r10:c6"
+              }
+            },
+            "MOTOR": {
+              "source": {
+                "point": {
+                  "id": "P03-MOTOR",
+                  "version": "011-Test-1",
+                  "x": 215,
+                  "y": 100,
+                  "unit": "mm",
+                  "frame": "SIM_MACHINE",
+                  "z": 50
+                },
+                "coordinateEvidenceReference": "Test:016-declared-grab-points/1"
+              },
+              "coordinates": [
+                {
+                  "pointRef": "P03-MOTOR-1-C",
+                  "point": {
+                    "id": "P03-MOTOR-1-A",
+                    "version": "011-Test-1",
+                    "x": 215,
+                    "y": 100,
+                    "unit": "mm",
+                    "frame": "SIM_MACHINE"
+                  },
+                  "objectPattern": "{UnitId}:M03",
+                  "slotId": "P03",
+                  "physicalSlotIndex": 7,
+                  "localFace": 1,
+                  "camera": "C",
+                  "stageId": "stage:1",
+                  "configurationVersion": "011-Test-1",
+                  "sourceFactReference": "Test:016-declared-detection-points/1",
+                  "fixed": {
+                    "z": 51,
+                    "unit": "mm",
+                    "datum": "SIM_MACHINE",
+                    "approvalReference": "011-joint-Test-only",
+                    "configurationVersion": "011-Test-1"
+                  },
+                  "captureProfile": "detect"
+                },
+                {
+                  "pointRef": "P03-MOTOR-1-D",
+                  "point": {
+                    "id": "P03-MOTOR-1-B",
+                    "version": "011-Test-1",
+                    "x": 215,
+                    "y": 100,
+                    "unit": "mm",
+                    "frame": "SIM_MACHINE"
+                  },
+                  "objectPattern": "{UnitId}:M03",
+                  "slotId": "P03",
+                  "physicalSlotIndex": 7,
+                  "localFace": 1,
+                  "camera": "D",
+                  "stageId": "stage:1",
+                  "configurationVersion": "011-Test-1",
+                  "sourceFactReference": "Test:016-declared-detection-points/1",
+                  "fixed": {
+                    "z": 51,
+                    "unit": "mm",
+                    "datum": "SIM_MACHINE",
+                    "approvalReference": "011-joint-Test-only",
+                    "configurationVersion": "011-Test-1"
+                  },
+                  "captureProfile": "detect"
+                }
+              ],
+              "flip": null,
+              "rotation": null,
+              "sorting": {},
+              "purposePoints": {
+                "pick": {
+                  "purpose": "FlipPick",
+                  "point": {
+                    "id": "pick",
+                    "version": "011-Test-1",
+                    "x": 215,
+                    "y": 100,
+                    "unit": "mm",
+                    "frame": "SIM_MACHINE"
+                  },
+                  "fixed": {
+                    "z": 50,
+                    "unit": "mm",
+                    "datum": "SIM_MACHINE",
+                    "approvalReference": "011-joint-Test-only",
+                    "configurationVersion": "011-Test-1"
+                  },
+                  "coordinateEvidenceReference": "011-joint/Test-flip-coordinate"
+                },
+                "put": {
+                  "purpose": "FlipPutBack",
+                  "point": {
+                    "id": "put",
+                    "version": "011-Test-1",
+                    "x": 215,
+                    "y": 100,
+                    "unit": "mm",
+                    "frame": "SIM_MACHINE"
+                  },
+                  "fixed": {
+                    "z": 50,
+                    "unit": "mm",
+                    "datum": "SIM_MACHINE",
+                    "approvalReference": "011-joint-Test-only",
+                    "configurationVersion": "011-Test-1"
+                  },
+                  "coordinateEvidenceReference": "011-joint/Test-flip-coordinate"
+                },
+                "scan": {
+                  "purpose": "EScan",
+                  "point": {
+                    "id": "pick",
+                    "version": "011-Test-1",
+                    "x": 215,
+                    "y": 100,
+                    "unit": "mm",
+                    "frame": "SIM_MACHINE"
+                  },
+                  "fixed": {
+                    "z": 50,
+                    "unit": "mm",
+                    "datum": "SIM_MACHINE",
+                    "approvalReference": "011-joint-Test-only",
+                    "configurationVersion": "011-Test-1"
+                  },
+                  "coordinateEvidenceReference": "011-joint/Test-flip-coordinate",
+                  "captureProfile": "detect"
+                }
+              },
+              "sortingCellIds": {
+                "NG": "r1:c7",
+                "Pending": "r10:c7"
+              }
+            },
+            "PIN": {
+              "source": {
+                "point": {
+                  "id": "P03-PIN",
+                  "version": "011-Test-1",
+                  "x": 230,
+                  "y": 100,
+                  "unit": "mm",
+                  "frame": "SIM_MACHINE",
+                  "z": 50
+                },
+                "coordinateEvidenceReference": "Test:016-declared-grab-points/1"
+              },
+              "coordinates": [
+                {
+                  "pointRef": "P03-PIN-1-C",
+                  "point": {
+                    "id": "P03-PIN-1-A",
+                    "version": "011-Test-1",
+                    "x": 230,
+                    "y": 100,
+                    "unit": "mm",
+                    "frame": "SIM_MACHINE"
+                  },
+                  "objectPattern": "{UnitId}:M04",
+                  "slotId": "P03",
+                  "physicalSlotIndex": 8,
+                  "localFace": 1,
+                  "camera": "C",
+                  "stageId": "stage:1",
+                  "configurationVersion": "011-Test-1",
+                  "sourceFactReference": "Test:016-declared-detection-points/1",
+                  "fixed": {
+                    "z": 51,
+                    "unit": "mm",
+                    "datum": "SIM_MACHINE",
+                    "approvalReference": "011-joint-Test-only",
+                    "configurationVersion": "011-Test-1"
+                  },
+                  "captureProfile": "detect"
+                },
+                {
+                  "pointRef": "P03-PIN-1-D",
+                  "point": {
+                    "id": "P03-PIN-1-B",
+                    "version": "011-Test-1",
+                    "x": 230,
+                    "y": 100,
+                    "unit": "mm",
+                    "frame": "SIM_MACHINE"
+                  },
+                  "objectPattern": "{UnitId}:M04",
+                  "slotId": "P03",
+                  "physicalSlotIndex": 8,
+                  "localFace": 1,
+                  "camera": "D",
+                  "stageId": "stage:1",
+                  "configurationVersion": "011-Test-1",
+                  "sourceFactReference": "Test:016-declared-detection-points/1",
+                  "fixed": {
+                    "z": 51,
+                    "unit": "mm",
+                    "datum": "SIM_MACHINE",
+                    "approvalReference": "011-joint-Test-only",
+                    "configurationVersion": "011-Test-1"
+                  },
+                  "captureProfile": "detect"
+                }
+              ],
+              "flip": null,
+              "rotation": null,
+              "sorting": {},
+              "purposePoints": {
+                "pick": {
+                  "purpose": "FlipPick",
+                  "point": {
+                    "id": "pick",
+                    "version": "011-Test-1",
+                    "x": 230,
+                    "y": 100,
+                    "unit": "mm",
+                    "frame": "SIM_MACHINE"
+                  },
+                  "fixed": {
+                    "z": 50,
+                    "unit": "mm",
+                    "datum": "SIM_MACHINE",
+                    "approvalReference": "011-joint-Test-only",
+                    "configurationVersion": "011-Test-1"
+                  },
+                  "coordinateEvidenceReference": "011-joint/Test-flip-coordinate"
+                },
+                "put": {
+                  "purpose": "FlipPutBack",
+                  "point": {
+                    "id": "put",
+                    "version": "011-Test-1",
+                    "x": 230,
+                    "y": 100,
+                    "unit": "mm",
+                    "frame": "SIM_MACHINE"
+                  },
+                  "fixed": {
+                    "z": 50,
+                    "unit": "mm",
+                    "datum": "SIM_MACHINE",
+                    "approvalReference": "011-joint-Test-only",
+                    "configurationVersion": "011-Test-1"
+                  },
+                  "coordinateEvidenceReference": "011-joint/Test-flip-coordinate"
+                },
+                "scan": {
+                  "purpose": "EScan",
+                  "point": {
+                    "id": "pick",
+                    "version": "011-Test-1",
+                    "x": 230,
+                    "y": 100,
+                    "unit": "mm",
+                    "frame": "SIM_MACHINE"
+                  },
+                  "fixed": {
+                    "z": 50,
+                    "unit": "mm",
+                    "datum": "SIM_MACHINE",
+                    "approvalReference": "011-joint-Test-only",
+                    "configurationVersion": "011-Test-1"
+                  },
+                  "coordinateEvidenceReference": "011-joint/Test-flip-coordinate",
+                  "captureProfile": "detect"
+                }
+              },
+              "sortingCellIds": {
+                "NG": "r1:c8",
+                "Pending": "r10:c8"
+              }
+            }
+          }
+        }
+      },
+      "sortingGripperId": 1,
+      "inspectionKind": "ordinary",
+      "ngCapacity": 8,
+      "pendingCapacity": 8,
+      "trayLayout": {
+        "rows": 10,
+        "columns": 10,
+        "cells": [
+          {
+            "cellId": "r1:c1",
+            "row": 1,
+            "column": 1,
+            "region": "NG"
+          },
+          {
+            "cellId": "r1:c2",
+            "row": 1,
+            "column": 2,
+            "region": "NG"
+          },
+          {
+            "cellId": "r1:c3",
+            "row": 1,
+            "column": 3,
+            "region": "NG"
+          },
+          {
+            "cellId": "r1:c4",
+            "row": 1,
+            "column": 4,
+            "region": "NG"
+          },
+          {
+            "cellId": "r1:c5",
+            "row": 1,
+            "column": 5,
+            "region": "NG"
+          },
+          {
+            "cellId": "r1:c6",
+            "row": 1,
+            "column": 6,
+            "region": "NG"
+          },
+          {
+            "cellId": "r1:c7",
+            "row": 1,
+            "column": 7,
+            "region": "NG"
+          },
+          {
+            "cellId": "r1:c8",
+            "row": 1,
+            "column": 8,
+            "region": "NG"
+          },
+          {
+            "cellId": "r10:c1",
+            "row": 10,
+            "column": 1,
+            "region": "Pending"
+          },
+          {
+            "cellId": "r10:c2",
+            "row": 10,
+            "column": 2,
+            "region": "Pending"
+          },
+          {
+            "cellId": "r10:c3",
+            "row": 10,
+            "column": 3,
+            "region": "Pending"
+          },
+          {
+            "cellId": "r10:c4",
+            "row": 10,
+            "column": 4,
+            "region": "Pending"
+          },
+          {
+            "cellId": "r10:c5",
+            "row": 10,
+            "column": 5,
+            "region": "Pending"
+          },
+          {
+            "cellId": "r10:c6",
+            "row": 10,
+            "column": 6,
+            "region": "Pending"
+          },
+          {
+            "cellId": "r10:c7",
+            "row": 10,
+            "column": 7,
+            "region": "Pending"
+          },
+          {
+            "cellId": "r10:c8",
+            "row": 10,
+            "column": 8,
+            "region": "Pending"
+          },
+          {
+            "cellId": "r2:c4",
+            "row": 2,
+            "column": 4,
+            "region": "OK"
+          },
+          {
+            "cellId": "r2:c5",
+            "row": 2,
+            "column": 5,
+            "region": "OK"
+          },
+          {
+            "cellId": "r2:c6",
+            "row": 2,
+            "column": 6,
+            "region": "OK"
+          },
+          {
+            "cellId": "r2:c7",
+            "row": 2,
+            "column": 7,
+            "region": "OK"
+          },
+          {
+            "cellId": "r4:c4",
+            "row": 4,
+            "column": 4,
+            "region": "OK"
+          },
+          {
+            "cellId": "r4:c5",
+            "row": 4,
+            "column": 5,
+            "region": "OK"
+          },
+          {
+            "cellId": "r4:c6",
+            "row": 4,
+            "column": 6,
+            "region": "OK"
+          },
+          {
+            "cellId": "r4:c7",
+            "row": 4,
+            "column": 7,
+            "region": "OK"
+          }
+        ]
+      },
+      "traySlotMapping": {
+        "id": "014-explicit-software-cell-map",
+        "version": "software-1",
+        "evidenceReference": "configuration/recipe-authoring/source-manifest.json; explicit virtual grid r2:c4 -> physical 1, not hardware mapping",
+        "bindings": [
+          {
+            "cellId": "r2:c4",
+            "physicalSlotIndex": 1
+          },
+          {
+            "cellId": "r2:c5",
+            "physicalSlotIndex": 2
+          },
+          {
+            "cellId": "r2:c6",
+            "physicalSlotIndex": 3
+          },
+          {
+            "cellId": "r2:c7",
+            "physicalSlotIndex": 4
+          },
+          {
+            "cellId": "r4:c4",
+            "physicalSlotIndex": 5
+          },
+          {
+            "cellId": "r4:c5",
+            "physicalSlotIndex": 6
+          },
+          {
+            "cellId": "r4:c6",
+            "physicalSlotIndex": 7
+          },
+          {
+            "cellId": "r4:c7",
+            "physicalSlotIndex": 8
+          }
+        ]
+      },
+      "sortingTargets": {
+        "r1:c1": {
+          "point": {
+            "id": "NG-1",
+            "version": "011-Test-1",
+            "x": 310,
+            "y": 150,
+            "unit": "mm",
+            "frame": "SIM_MACHINE",
+            "z": 50
+          },
+          "coordinateEvidenceReference": "011-joint/Test-configured-coordinate"
+        },
+        "r1:c2": {
+          "point": {
+            "id": "NG-2",
+            "version": "011-Test-1",
+            "x": 320,
+            "y": 150,
+            "unit": "mm",
+            "frame": "SIM_MACHINE",
+            "z": 50
+          },
+          "coordinateEvidenceReference": "011-joint/Test-configured-coordinate"
+        },
+        "r1:c3": {
+          "point": {
+            "id": "NG-3",
+            "version": "011-Test-1",
+            "x": 330,
+            "y": 150,
+            "unit": "mm",
+            "frame": "SIM_MACHINE",
+            "z": 50
+          },
+          "coordinateEvidenceReference": "011-joint/Test-configured-coordinate"
+        },
+        "r1:c4": {
+          "point": {
+            "id": "NG-4",
+            "version": "011-Test-1",
+            "x": 340,
+            "y": 150,
+            "unit": "mm",
+            "frame": "SIM_MACHINE",
+            "z": 50
+          },
+          "coordinateEvidenceReference": "011-joint/Test-configured-coordinate"
+        },
+        "r1:c5": {
+          "point": {
+            "id": "NG-5",
+            "version": "011-Test-1",
+            "x": 350,
+            "y": 150,
+            "unit": "mm",
+            "frame": "SIM_MACHINE",
+            "z": 50
+          },
+          "coordinateEvidenceReference": "011-joint/Test-configured-coordinate"
+        },
+        "r1:c6": {
+          "point": {
+            "id": "NG-6",
+            "version": "011-Test-1",
+            "x": 360,
+            "y": 150,
+            "unit": "mm",
+            "frame": "SIM_MACHINE",
+            "z": 50
+          },
+          "coordinateEvidenceReference": "011-joint/Test-configured-coordinate"
+        },
+        "r1:c7": {
+          "point": {
+            "id": "NG-7",
+            "version": "011-Test-1",
+            "x": 370,
+            "y": 150,
+            "unit": "mm",
+            "frame": "SIM_MACHINE",
+            "z": 50
+          },
+          "coordinateEvidenceReference": "011-joint/Test-configured-coordinate"
+        },
+        "r1:c8": {
+          "point": {
+            "id": "NG-8",
+            "version": "011-Test-1",
+            "x": 380,
+            "y": 150,
+            "unit": "mm",
+            "frame": "SIM_MACHINE",
+            "z": 50
+          },
+          "coordinateEvidenceReference": "011-joint/Test-configured-coordinate"
+        },
+        "r10:c1": {
+          "point": {
+            "id": "Pending-1",
+            "version": "011-Test-1",
+            "x": 310,
+            "y": 180,
+            "unit": "mm",
+            "frame": "SIM_MACHINE",
+            "z": 50
+          },
+          "coordinateEvidenceReference": "011-joint/Test-configured-coordinate"
+        },
+        "r10:c2": {
+          "point": {
+            "id": "Pending-2",
+            "version": "011-Test-1",
+            "x": 320,
+            "y": 180,
+            "unit": "mm",
+            "frame": "SIM_MACHINE",
+            "z": 50
+          },
+          "coordinateEvidenceReference": "011-joint/Test-configured-coordinate"
+        },
+        "r10:c3": {
+          "point": {
+            "id": "Pending-3",
+            "version": "011-Test-1",
+            "x": 330,
+            "y": 180,
+            "unit": "mm",
+            "frame": "SIM_MACHINE",
+            "z": 50
+          },
+          "coordinateEvidenceReference": "011-joint/Test-configured-coordinate"
+        },
+        "r10:c4": {
+          "point": {
+            "id": "Pending-4",
+            "version": "011-Test-1",
+            "x": 340,
+            "y": 180,
+            "unit": "mm",
+            "frame": "SIM_MACHINE",
+            "z": 50
+          },
+          "coordinateEvidenceReference": "011-joint/Test-configured-coordinate"
+        },
+        "r10:c5": {
+          "point": {
+            "id": "Pending-5",
+            "version": "011-Test-1",
+            "x": 350,
+            "y": 180,
+            "unit": "mm",
+            "frame": "SIM_MACHINE",
+            "z": 50
+          },
+          "coordinateEvidenceReference": "011-joint/Test-configured-coordinate"
+        },
+        "r10:c6": {
+          "point": {
+            "id": "Pending-6",
+            "version": "011-Test-1",
+            "x": 360,
+            "y": 180,
+            "unit": "mm",
+            "frame": "SIM_MACHINE",
+            "z": 50
+          },
+          "coordinateEvidenceReference": "011-joint/Test-configured-coordinate"
+        },
+        "r10:c7": {
+          "point": {
+            "id": "Pending-7",
+            "version": "011-Test-1",
+            "x": 370,
+            "y": 180,
+            "unit": "mm",
+            "frame": "SIM_MACHINE",
+            "z": 50
+          },
+          "coordinateEvidenceReference": "011-joint/Test-configured-coordinate"
+        },
+        "r10:c8": {
+          "point": {
+            "id": "Pending-8",
+            "version": "011-Test-1",
+            "x": 380,
+            "y": 180,
+            "unit": "mm",
+            "frame": "SIM_MACHINE",
+            "z": 50
+          },
+          "coordinateEvidenceReference": "011-joint/Test-configured-coordinate"
+        }
+      }
+    }
+  ]
+}

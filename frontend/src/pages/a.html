@@ -1,0 +1,658 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>制冷机零件缺陷检测系统 · 原型</title>
+<script src="https://cdn.tailwindcss.com"></script>
+<link rel="preconnect" href="https://fonts.googleapis.com" />
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+<link href="https://fonts.googleapis.com/css2?family=Noto+Sans+SC:wght@400;500;700&family=Rajdhani:wght@500;600;700&display=swap" rel="stylesheet" />
+<script src="https://unpkg.com/lucide@latest"></script>
+<style>
+  * { box-sizing: border-box; }
+  html, body { font-family: 'Noto Sans SC', system-ui, -apple-system, sans-serif; margin: 0; padding: 0; }
+  body {
+    /* same dark palette as the stage — so any area outside the 16:9 canvas blends in seamlessly */
+    background: linear-gradient(180deg, #0b1220 0%, #0f172a 100%);
+    color: #e2e8f0;
+    min-height: 100vh;
+    overflow: hidden;
+    display: flex; align-items: flex-start; justify-content: flex-start;
+  }
+
+  /* 16:9 canvas — anchors to top-left, scales uniformly so nothing distorts */
+  .stage {
+    width: 1600px; height: 900px;
+    background: transparent;
+    position: relative;
+    overflow: hidden;
+    transform-origin: top left;
+    flex-shrink: 0;
+    display: flex; flex-direction: column;
+  }
+  .num-font { font-family: 'Rajdhani', sans-serif; letter-spacing: .5px; }
+  .panel {
+    background: rgba(15, 23, 42, 0.6);
+    border: 1px solid rgba(148, 163, 184, 0.14);
+    border-radius: 12px;
+  }
+  ::-webkit-scrollbar { width: 6px; height: 6px; }
+  ::-webkit-scrollbar-track { background: transparent; }
+  ::-webkit-scrollbar-thumb { background: rgba(148,163,184,.22); border-radius: 3px; }
+  .btn { transition: filter .15s; }
+  .btn:hover { filter: brightness(1.1); }
+
+  /* camera tile mock */
+  .cam-mock {
+    background:
+      radial-gradient(circle at 50% 50%, rgba(100,116,139,.35) 0%, rgba(30,41,59,.95) 55%, #0b1020 100%);
+    position: relative;
+  }
+  .cam-mock::before {
+    content:''; position:absolute; inset:14%;
+    border-radius:50%;
+    background: radial-gradient(circle at 35% 35%, rgba(226,232,240,.18), rgba(30,41,59,.5) 60%);
+    border: 1px solid rgba(148,163,184,.2);
+  }
+
+  .dot { display:inline-block; width:8px; height:8px; border-radius:50%; }
+  .dot.ok { background:#34d399; box-shadow: 0 0 6px #10b981; }
+  .dot.warn { background:#fbbf24; box-shadow: 0 0 6px #f59e0b; }
+  .dot.err  { background:#fb7185; box-shadow: 0 0 6px #f43f5e; animation: blink 1.4s infinite; }
+  @keyframes blink { 0%,100%{opacity:1} 50%{opacity:.35} }
+
+  .badge-ok   { background: rgba(16,185,129,.15); color:#6ee7b7; border:1px solid rgba(16,185,129,.4); }
+  .badge-ng   { background: rgba(244,63,94,.15); color:#fda4af; border:1px solid rgba(244,63,94,.4); }
+  .badge-pend { background: rgba(251,191,36,.15); color:#fcd34d; border:1px solid rgba(251,191,36,.4); }
+
+  input, select { background: rgba(15,23,42,.7); border:1px solid rgba(148,163,184,.22); color:#e2e8f0; border-radius:6px; padding:4px 8px; font-size:12px; }
+  input:focus, select:focus { outline:none; border-color: rgba(34,211,238,.5); }
+
+  .tab { padding: 5px 12px; border-radius: 6px; font-size: 12px; color: #94a3b8; cursor: pointer; }
+  .tab.active { background: rgba(34,211,238,.12); color: #67e8f9; }
+
+  /* ===== Industrial HMI style · for recipe modal ===== */
+  .hmi-modal {
+    background: #03244b;
+    border: 1px solid #274a7b;
+    color: #e6edf7;
+    border-radius: 0;
+    box-shadow: 0 10px 40px rgba(0,0,0,.55);
+  }
+  .hmi-title {
+    height: 44px;
+    background: linear-gradient(180deg, #08345e 0%, #042446 100%);
+    border-bottom: 1px solid #274a7b;
+    color: #e6edf7;
+  }
+  .hmi-fieldset {
+    border: 1px solid #274a7b;
+    padding: 14px 14px 10px 14px;
+    border-radius: 0;
+  }
+  .hmi-fieldset > legend {
+    color: #dbeafe; font-size: 13px; padding: 0 8px; margin-left: 4px;
+  }
+  .hmi-row {
+    display: flex; align-items: center; margin-bottom: 8px;
+  }
+  .hmi-row > label {
+    width: 150px; text-align: right; font-size: 13px; color: #cbd5e1;
+    padding-right: 6px; flex-shrink: 0;
+  }
+  .hmi-row > .hmi-input,
+  .hmi-row > select.hmi-input {
+    flex: 1;
+  }
+  .hmi-input {
+    background: #ffffff;
+    color: #1f2937;
+    border: 1px solid #5b7aa4;
+    border-radius: 0;
+    height: 28px;
+    padding: 0 8px;
+    font-size: 13px;
+    width: 100%;
+    outline: none;
+  }
+  .hmi-input:focus { border-color: #60a5fa; box-shadow: 0 0 0 1px rgba(96,165,250,.5); }
+  .hmi-input[readonly] { background: #e5e7eb; }
+  select.hmi-input { padding: 0 4px; }
+  .hmi-sep { height: 1px; background: #274a7b; margin: 10px 0; }
+
+  .hmi-table {
+    width: 100%; border-collapse: collapse; font-size: 13px;
+  }
+  .hmi-table th {
+    background: #1a3668;
+    color: #e6edf7;
+    text-align: left;
+    font-weight: 500;
+    padding: 6px 10px;
+    border: 1px solid #274a7b;
+  }
+  .hmi-table td {
+    padding: 4px 8px;
+    border: 1px solid #274a7b;
+    background: #0b2b55;
+    color: #e6edf7;
+  }
+  .hmi-table tr:hover td { background: #12376a; }
+  .hmi-table tr.hmi-tr-hi td { background: #1a3668; }
+  .hmi-table .hmi-sub { font-weight: 600; color: #93c5fd; letter-spacing: 1px; }
+  .hmi-table td .hmi-input { height: 24px; font-size: 12px; }
+
+  .hmi-btn {
+    height: 34px; min-width: 110px;
+    background: #1a3668;
+    color: #e6edf7;
+    border: 1px solid #60a5fa;
+    border-radius: 0;
+    font-size: 14px;
+    letter-spacing: 4px;
+    cursor: pointer;
+    transition: background .15s;
+  }
+  .hmi-btn:hover { background: #254c8a; }
+  .hmi-btn-primary {
+    background: linear-gradient(180deg, #2563eb 0%, #1d4ed8 100%);
+    border-color: #93c5fd;
+  }
+  .hmi-btn-primary:hover { filter: brightness(1.1); }
+  /* 012: scoped to the authorized existing recipe dialog. */
+  .recipe-authoring .hmi-modal { background: #0f172a; border-color: rgba(148,163,184,.22); border-radius: 12px; }
+  .recipe-authoring .hmi-title { height: 52px; background: rgba(30,41,59,.8); border-color: rgba(148,163,184,.22); border-radius: 12px 12px 0 0; }
+  .recipe-authoring .hmi-input { color: #e2e8f0; background: rgba(15,23,42,.7); border: 1px solid rgba(148,163,184,.25); border-radius: 6px; height: 32px; }
+  .recipe-authoring .hmi-input[readonly] { color: #94a3b8; background: rgba(30,41,59,.5); }
+  .recipe-authoring .hmi-btn { background: rgba(30,41,59,.8); border-color: rgba(148,163,184,.3); border-radius: 6px; letter-spacing: normal; }
+  .recipe-authoring .hmi-btn-primary { background: rgba(6,182,212,.2); color: #a5f3fc; border-color: rgba(34,211,238,.5); }
+  .recipe-authoring button:disabled, .recipe-authoring select:disabled { opacity: .5; cursor: not-allowed; }
+  .recipe-authoring .recipe-small-button { min-width: 60px; height: 30px; padding: 0 10px; font-size: 12px; }
+  .recipe-authoring .recipe-setup, .recipe-authoring .recipe-review-layout { display:grid;grid-template-columns:minmax(0,1fr) 320px;gap:16px; }
+  .recipe-authoring .recipe-panel { border:1px solid rgba(148,163,184,.22);border-radius:10px;padding:18px;background:rgba(30,41,59,.35);min-width:0; }
+  .recipe-authoring h2 { font-size:18px;color:#e2e8f0;margin-bottom:16px; }
+  .recipe-authoring h3 { font-size:14px;color:#cbd5e1;margin-bottom:12px; }
+  .recipe-authoring .recipe-basic-grid, .recipe-authoring .recipe-point-grid { display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:18px; }
+  .recipe-authoring .recipe-input { display:flex;flex-direction:column;gap:7px;font-size:12px;color:#94a3b8;margin-bottom:12px; }
+  .recipe-authoring .recipe-input .hmi-input { width:100%;padding:0 10px; }
+  .recipe-authoring .recipe-summary p { padding:12px 0;border-bottom:1px solid rgba(148,163,184,.12);font-size:14px;color:#cbd5e1; }
+  .recipe-authoring .recipe-note { font-size:12px!important;color:#94a3b8!important;line-height:1.8; }
+  .recipe-authoring .recipe-editor-layout { display:grid;grid-template-columns:190px 235px minmax(0,1fr);gap:12px;min-height:440px; }
+  .recipe-authoring .recipe-nav, .recipe-authoring .recipe-slots { padding:14px; }
+  .recipe-authoring .recipe-nav-button { display:block;width:100%;margin:0 0 10px;text-align:left;padding:10px;font-size:12px;height:auto; }
+  .recipe-authoring .active { border-color:rgba(34,211,238,.6);background:rgba(6,182,212,.13);color:#a5f3fc; }
+  .recipe-authoring .recipe-face-rail, .recipe-authoring .recipe-camera-pair { display:flex;gap:8px;align-items:center;flex-wrap:wrap;margin-bottom:18px;font-size:12px; }
+  .recipe-authoring .recipe-point-card { border:1px solid rgba(148,163,184,.2);border-radius:8px;padding:15px;background:rgba(15,23,42,.5); }
+  .recipe-authoring .recipe-point-card .recipe-input { display:flex;flex-direction:column;align-items:stretch;gap:5px;margin:0; }
+  .recipe-authoring .recipe-axis-fields { display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:10px;margin-top:12px; }
+  .recipe-authoring .recipe-axis-fields .recipe-input:last-child { grid-column:1/-1; }
+  .recipe-authoring .recipe-capture-fields { display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:10px;margin-top:12px; }
+  .recipe-authoring .recipe-editor-footer { display:flex;justify-content:flex-end;gap:12px;margin-top:14px; }
+  .recipe-authoring .recipe-review-table { width:100%;border-collapse:collapse;font-size:13px; }
+  .recipe-authoring .recipe-review-table th, .recipe-authoring .recipe-review-table td { padding:14px 8px;border-bottom:1px solid rgba(148,163,184,.18);text-align:left; }
+  .recipe-authoring .recipe-issue { padding:10px 0;color:#fda4af;font-size:13px; }
+  .recipe-authoring .recipe-editor-layout { grid-template-columns:150px 420px minmax(0,1fr); }
+  .recipe-authoring .recipe-matrix-panel { margin-top:16px; padding:12px; border:1px solid rgba(148,163,184,.22);border-radius:10px;background:rgba(30,41,59,.35); }
+  .recipe-authoring .recipe-paint-tools { display:flex;gap:8px;margin-bottom:12px; }
+  .recipe-authoring .recipe-matrix { display:grid;grid-template-columns:20px repeat(10,minmax(24px,1fr));gap:4px;min-width:330px; }
+  .recipe-authoring .recipe-matrix-cell { padding:0;height:34px;border:1px solid #334155;border-radius:4px;background:#141f31;color:#94a3b8;font-size:11px;cursor:pointer; }
+  .recipe-authoring .recipe-matrix-axis { text-align:center;color:#94a3b8;font-size:10px; }
+  .recipe-authoring .recipe-matrix-empty { height:34px;border:1px dashed #33415577;border-radius:4px;background:#101a2a; }
+  .recipe-authoring .recipe-matrix-cell.area-ng { border-color:#fb718588;background:#421d2c99;color:#fecdd3; }
+  .recipe-authoring .recipe-matrix-cell.area-ok { border-color:#34d39988;background:#12352a99;color:#a7f3d0; }
+  .recipe-authoring .recipe-matrix-cell.area-pending { border-color:#fbbf2488;background:#46361a99;color:#fde68a; }
+  .recipe-authoring .recipe-matrix-cell.selected { border-color:#67e8f9;background:#087b98;color:white; }
+  @media(max-width:1100px){ .recipe-authoring .recipe-editor-layout {grid-template-columns:150px minmax(0,1fr);} .recipe-authoring .recipe-detail {grid-column:1/-1;} }
+</style>
+</head>
+<body>
+
+<div class="stage" id="stage">
+
+  <!-- ============== HEADER ============== -->
+  <header class="panel flex items-center justify-between px-4 py-2.5 mx-3 mt-3 shrink-0">
+    <div class="flex items-center gap-3">
+      <div class="w-9 h-9 rounded-lg bg-cyan-500/20 border border-cyan-500/40 flex items-center justify-center">
+        <i data-lucide="scan-search" class="w-5 h-5 text-cyan-300"></i>
+      </div>
+      <div>
+        <div class="text-[15px] font-semibold leading-tight">制冷机零件缺陷检测系统</div>
+        <div class="text-[11px] text-slate-400 flex items-center gap-1.5 mt-0.5">
+          <span id="stationConnectionDot" class="dot"></span><span id="stationOperationalStatus">状态未提供</span>
+        </div>
+      </div>
+    </div>
+    <div class="flex items-center gap-2 text-sm">
+      <div class="flex items-center gap-2 px-3 py-1.5 rounded-md bg-slate-800/60 border border-slate-700/50">
+        <i data-lucide="file-cog" class="w-4 h-4 text-cyan-300"></i>
+        <span class="text-[11px] text-slate-400">当前配方</span>
+        <span id="selectedRecipeName" class="text-xs text-slate-100">未选用配方</span>
+        <span id="selectedRecipeVersion" class="num-font text-[10px] px-1.5 py-0.5 rounded bg-cyan-500/15 text-cyan-300">—</span>
+      </div>
+      <span id="nowTime" class="num-font text-base text-slate-200 px-2"></span>
+      <!-- 当前登录用户 · 仅展示 -->
+      <div class="flex items-center gap-2 px-3 py-1.5 rounded-md bg-slate-800/60 border border-slate-700/50 text-sm">
+        <div class="w-6 h-6 rounded-full bg-gradient-to-br from-cyan-400 to-blue-600 flex items-center justify-center text-[11px] font-bold text-white">张</div>
+        <div class="flex flex-col items-start leading-tight">
+          <span class="text-xs text-slate-100">张工</span>
+          <span class="text-[10px] text-emerald-300">L3 · 管理员</span>
+        </div>
+      </div>
+      <button id="btnPositions" class="btn px-3 py-1.5 rounded-md bg-cyan-500/20 text-cyan-100 border border-cyan-500/50 text-sm">示教／公共位置</button>
+      <button id="btnRecipe" class="btn flex items-center gap-1.5 px-3 py-1.5 rounded-md bg-cyan-500/20 text-cyan-100 border border-cyan-500/50 text-sm">
+        <i data-lucide="sliders-horizontal" class="w-4 h-4"></i>配方配置
+      </button>
+    </div>
+  </header>
+
+  <!-- ============== MAIN ============== -->
+  <p id="trayEndState" class="text-xs px-3 text-slate-300"></p>
+  <main class="grid gap-3 p-3 flex-1 min-h-0" style="grid-template-columns: minmax(0,1fr) 500px;">
+
+    <!-- ====== LEFT ====== -->
+    <section class="grid gap-3 min-h-0 min-w-0" style="grid-template-rows: minmax(320px, 1.5fr) minmax(220px, 1fr);">
+
+      <!-- 7 × 3D 相机 -->
+      <div class="panel p-3 flex flex-col min-h-0 overflow-hidden">
+        <div class="flex items-center justify-between mb-2">
+          <div class="flex items-center gap-2">
+            <i data-lucide="cctv" class="w-4 h-4 text-cyan-300"></i>
+            <h2 class="text-sm font-medium">多模态传感器实时检测画面</h2>
+          </div>
+          <div class="text-[11px] text-slate-400 flex items-center gap-3">
+            <span class="flex items-center gap-1"><span class="dot ok"></span>在线 <b class="num-font text-emerald-300">6</b></span>
+            <span class="flex items-center gap-1"><span class="dot err"></span>告警 <b class="num-font text-rose-300">1</b></span>
+          </div>
+        </div>
+        <div id="camGrid" class="grid gap-2 flex-1 min-h-0"
+             style="grid-template-columns: repeat(4, minmax(0,1fr)); grid-template-rows: repeat(2, minmax(0,1fr));">
+        </div>
+      </div>
+
+      <!-- 控制面板：模块状态 + 故障信息 -->
+      <div class="panel flex min-h-0 overflow-hidden">
+        <div class="flex-1 min-w-0 p-3 border-r border-slate-700/40 flex flex-col">
+          <div class="flex items-center justify-between mb-2">
+            <div class="flex items-center gap-2">
+              <i data-lucide="cpu" class="w-4 h-4 text-cyan-300"></i>
+              <h2 class="text-sm font-medium">功能模块状态</h2>
+            </div>
+            <div class="flex gap-1.5">
+              <button class="btn px-2.5 py-1 rounded bg-emerald-600 text-white text-[11px] flex items-center gap-1"><i data-lucide="play" class="w-3 h-3"></i>启动</button>
+              <button class="btn px-2.5 py-1 rounded bg-slate-700 border border-slate-600/60 text-slate-100 text-[11px] flex items-center gap-1"><i data-lucide="pause" class="w-3 h-3"></i>暂停</button>
+              <button class="btn px-2.5 py-1 rounded bg-rose-700 text-white text-[11px] flex items-center gap-1"><i data-lucide="octagon-alert" class="w-3 h-3"></i>急停</button>
+              <input id="manualRemovalReason" class="hmi-input text-[11px]" style="width:110px;" value="已取盘" aria-label="取盘确认原因" disabled>
+              <button id="manualRemovalButton" class="btn px-2.5 py-1 rounded bg-cyan-700 text-white text-[11px]" disabled>确认已取盘</button>
+            </div>
+          </div>
+          <div id="moduleGrid" class="grid gap-2 flex-1 min-h-0 overflow-y-auto"
+               style="grid-template-columns: repeat(2, minmax(0,1fr)); grid-auto-rows: min-content;">
+          </div>
+        </div>
+        <div class="p-3 flex flex-col min-h-0 overflow-hidden" style="width: 360px;">
+          <div class="flex items-center justify-between mb-2">
+            <div class="flex items-center gap-2">
+              <i data-lucide="triangle-alert" class="w-4 h-4 text-rose-400"></i>
+              <h2 class="text-sm font-medium">故障 / 报警信息</h2>
+            </div>
+            <span class="text-[10px] text-slate-400">共 <b class="num-font text-rose-300" id="faultCount">2</b> 条</span>
+          </div>
+          <div id="faultList" class="flex-1 min-h-0 overflow-y-auto space-y-1.5 pr-1"></div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ====== RIGHT ====== -->
+    <aside class="grid gap-3 min-h-0 min-w-0" style="grid-template-rows: auto auto minmax(0,1fr);">
+
+      <!-- 当前判定 -->
+      <div class="panel p-4">
+        <div class="flex items-center justify-between mb-2">
+          <div class="text-xs text-slate-400 flex items-center gap-1">
+            <i data-lucide="gavel" class="w-3.5 h-3.5"></i>当前零件 · 判定结果
+          </div>
+          <div class="text-[11px] text-slate-400">编号 <span class="num-font text-slate-200">JLB-001847</span></div>
+        </div>
+        <div class="flex items-center gap-4">
+          <div class="num-font text-6xl font-bold leading-none" id="verdictBig" style="color:#fb7185;">NG</div>
+          <div class="flex-1 min-w-0 grid grid-cols-2 gap-2 text-[11px]">
+            <div class="rounded bg-slate-800/50 px-2.5 py-1.5">
+              <div class="text-slate-400">置信度</div>
+              <div class="num-font text-base text-rose-300">96.4%</div>
+            </div>
+            <div class="rounded bg-slate-800/50 px-2.5 py-1.5">
+              <div class="text-slate-400">缺陷数</div>
+              <div class="num-font text-base text-slate-100">15</div>
+            </div>
+            <div class="rounded bg-slate-800/50 px-2.5 py-1.5">
+              <div class="text-slate-400">检测时间</div>
+              <div class="num-font text-slate-100">14:32:18</div>
+            </div>
+            <div class="rounded bg-slate-800/50 px-2.5 py-1.5">
+              <div class="text-slate-400">用时</div>
+              <div class="num-font text-slate-100">4860 ms</div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- 零件基础信息 -->
+      <div class="panel p-3">
+        <div class="flex items-center justify-between mb-2">
+          <h2 class="text-sm font-medium flex items-center gap-2">
+            <i data-lucide="info" class="w-4 h-4 text-cyan-300"></i>零件基础信息
+          </h2>
+          <span class="text-[10px] text-cyan-300 num-font">QR-JLB-0421</span>
+        </div>
+        <div class="grid grid-cols-3 gap-2 text-xs">
+          <div class="rounded bg-slate-800/40 px-2 py-1.5">
+            <div class="text-[10px] text-slate-400">零件名称</div>
+            <div class="text-slate-100 mt-0.5 truncate">大底座</div>
+          </div>
+          <div class="rounded bg-slate-800/40 px-2 py-1.5">
+            <div class="text-[10px] text-slate-400">规格</div>
+            <div class="text-slate-100 num-font mt-0.5 truncate">Φ120 × 38</div>
+          </div>
+          <div class="rounded bg-slate-800/40 px-2 py-1.5">
+            <div class="text-[10px] text-slate-400">检测场景</div>
+            <div class="text-slate-100 mt-0.5 truncate">半成品检测</div>
+          </div>
+          <div class="rounded bg-slate-800/40 px-2 py-1.5">
+            <div class="text-[10px] text-slate-400">批次号</div>
+            <div class="text-slate-100 num-font mt-0.5 truncate">B26042103</div>
+          </div>
+          <div class="rounded bg-slate-800/40 px-2 py-1.5">
+            <div class="text-[10px] text-slate-400">MES 订单</div>
+            <div class="text-slate-100 num-font mt-0.5 truncate">MO-917245</div>
+          </div>
+          <div class="rounded bg-slate-800/40 px-2 py-1.5">
+            <div class="text-[10px] text-slate-400">检测面</div>
+            <div class="text-slate-100 mt-0.5 truncate">检测面 1</div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Tabs：检测项 / 设定参数 / 缺陷类型 -->
+      <div class="panel flex flex-col min-h-0 overflow-hidden">
+        <div class="flex items-center gap-2 px-3 py-2 border-b border-slate-700/40">
+          <button data-tab="items"   class="tab active">检测项</button>
+          <button data-tab="params"  class="tab">设定参数</button>
+          <button data-tab="defects" class="tab">缺陷类型</button>
+        </div>
+
+        <!-- items -->
+        <div id="tabItems" class="flex-1 min-h-0 overflow-y-auto">
+          <div class="grid text-[11px] text-slate-400 bg-slate-800/40 px-3 py-1.5 sticky top-0" style="grid-template-columns: 28px 1fr 80px 56px;">
+            <div>#</div><div>检测项 / 规则</div><div class="text-right">实测</div><div class="text-center">判定</div>
+          </div>
+          <div id="itemList"></div>
+        </div>
+
+        <!-- params -->
+        <div id="tabParams" class="hidden flex-1 min-h-0 overflow-y-auto p-3">
+          <div id="paramList" class="grid grid-cols-2 gap-1.5 text-[11px]"></div>
+        </div>
+
+        <!-- defects -->
+        <div id="tabDefects" class="hidden flex-1 min-h-0 overflow-y-auto">
+          <div class="grid text-[11px] text-slate-400 bg-slate-800/40 px-3 py-1.5 sticky top-0" style="grid-template-columns: 36px 1fr 90px 56px;">
+            <div>#</div><div>缺陷类型 / 位置</div><div class="text-right">尺寸</div><div class="text-center">判定</div>
+          </div>
+          <div id="defectList"></div>
+        </div>
+      </div>
+    </aside>
+  </main>
+
+  <!-- ============== RECIPE MODAL · 012授权弹窗 ============== -->
+  <div id="recipeModal" class="recipe-authoring absolute inset-0 z-50 hidden items-center justify-center bg-black/60" onclick="closeRecipe(event)">
+    <div class="hmi-modal flex flex-col" style="width: 1480px; height: 780px;" onclick="event.stopPropagation()" role="dialog" aria-modal="true" aria-labelledby="recipeAuthoringTitle">
+      <div class="hmi-title flex items-center justify-between px-5">
+        <span id="recipeAuthoringTitle" class="text-base">配方配置</span>
+        <div class="flex items-center gap-3">
+          <label for="recipeAuthoringCatalog" class="text-sm">已保存配方</label>
+          <select id="recipeAuthoringCatalog" class="hmi-input" style="width:320px;"><option value="">选择已保存配方</option></select>
+          <button id="recipeAuthoringNew" class="hmi-btn recipe-small-button" type="button">新建</button>
+          <button onclick="closeRecipe()" class="text-slate-300 hover:text-white" type="button" aria-label="关闭配方配置">✕</button>
+        </div>
+      </div>
+      <div class="flex gap-3 px-5 py-3 border-b border-slate-700/40" role="tablist" aria-label="配方制作">
+        <button type="button" class="tab active" data-authoring-section="basic" role="tab" aria-selected="true">基础信息</button>
+        <button type="button" class="tab" data-authoring-section="points" role="tab" aria-selected="false">坐标配置</button>
+        <button type="button" class="tab" data-authoring-section="review" role="tab" aria-selected="false">检查保存</button>
+      </div>
+      <div id="recipeAuthoringForm" class="flex-1 min-h-0 overflow-y-auto px-5 py-4"></div>
+      <div id="recipeAuthoringNotice" class="text-sm px-5 py-2 text-slate-300" role="status" aria-live="polite"></div>
+      <div class="flex justify-center gap-3 px-4 py-3 border-t border-slate-700/40">
+        <button onclick="closeRecipe()" class="hmi-btn" type="button">关闭</button>
+        <button id="recipeAuthoringCheck" class="hmi-btn" type="button" disabled>检查</button>
+        <button id="recipeAuthoringSave" class="hmi-btn hmi-btn-primary" type="button" disabled>保存</button>
+      </div>
+    </div>
+  </div>
+
+
+</div> <!-- /.stage -->
+
+<script>
+  // uniform scale of 16:9 stage — preserves aspect ratio, no distortion
+  function scaleStage(){
+    const s = Math.min(window.innerWidth / 1600, window.innerHeight / 900);
+    document.getElementById('stage').style.transform = `scale(${s})`;
+  }
+  window.addEventListener('resize', scaleStage);
+  window.addEventListener('load', scaleStage);
+  scaleStage();
+
+  const pad = n => String(n).padStart(2,'0');
+  function tick(){
+    const d = new Date();
+    document.getElementById('nowTime').textContent =
+      `${pad(d.getHours())}:${pad(d.getMinutes())}:${pad(d.getSeconds())}`;
+  }
+  tick(); setInterval(tick, 1000);
+
+  // 7 cameras — multi-modal sensors
+  const cams = [
+    { id:1, name:'密封面环面检测1', status:'ok',    src:'assets/密封面环面检测1.jpg' },
+    { id:2, name:'密封面环面检测2', status:'ok',    src:'assets/密封面环面检测2.jpg' },
+    { id:3, name:'密封面孔底检测1', status:'alarm', src:'assets/密封面孔底检测1.jpg' },
+    { id:4, name:'密封面孔底检测2', status:'ok',    src:'assets/密封面孔底检测2.jpg' },
+    { id:5, name:'来料状态2D检测',  status:'ok',    src:'assets/来料状态2D检测.png' },
+    { id:6, name:'来料状态3D检测',  status:'ok',    src:'assets/来料状态3D检测.png' },
+    { id:7, name:'读码参数',        status:'ok',    src:'assets/读码参数.png' },
+  ];
+  document.getElementById('camGrid').innerHTML = cams.map(c => {
+    const border = c.status==='alarm' ? 'border-rose-500/60' : 'border-slate-700/50';
+    const tag = c.status==='alarm'
+      ? '<span class="dot err"></span><span>ALARM</span>'
+      : '<span class="dot ok"></span><span>LIVE</span>';
+    return `
+      <div class="relative rounded border ${border} overflow-hidden min-h-0 bg-slate-950">
+        <img src="${encodeURI(c.src)}" alt="${c.name}" class="absolute inset-0 w-full h-full object-cover" />
+        <div class="absolute inset-x-0 top-0 px-2 py-1 bg-gradient-to-b from-black/70 to-transparent flex items-center justify-between">
+          <span class="text-[11px] text-white">${c.name}</span>
+          <span class="flex items-center gap-1 text-[10px] text-white">${tag}</span>
+        </div>
+        <div class="absolute bottom-1 right-1 text-[10px] num-font text-white/90 bg-black/50 px-1 rounded">CAM-${pad(c.id)}</div>
+      </div>`;
+  }).join('') + `
+    <div class="rounded border border-slate-700/50 bg-slate-800/40 p-2 flex flex-col justify-center min-h-0">
+      <div class="text-[10px] text-slate-400">综合状态</div>
+      <div class="num-font text-xl text-slate-100 mt-0.5">6 / 7</div>
+      <div class="text-[10px] text-slate-500 mt-auto">节拍 1.8s</div>
+    </div>`;
+
+  // modules
+  const modules = [
+    { name:'PLC',        st:'ok',   info:'TCP 10.1.1.50 · 就绪',     icon:'cpu' },
+    { name:'HID 图像',   st:'ok',   info:'7 路相机采集中',            icon:'camera' },
+    { name:'光源控制',   st:'ok',   info:'5 路 · 平均 72%',           icon:'sun' },
+    { name:'XY 运动',    st:'ok',   info:'X=125.3 Y=68.2',           icon:'move' },
+    { name:'高精度3D成像模组', st:'warn', info:'温漂校准中',           icon:'waves' },
+    { name:'MES 对接',   st:'err',  info:'上传队列阻塞 3',            icon:'database' },
+    { name:'安全光栅',   st:'ok',   info:'无异常闯入状态',            icon:'shield-check' },
+    { name:'柔性仿形抓手', st:'ok', info:'检测面 2 已完成换面',        icon:'grip' },
+  ];
+  document.getElementById('moduleGrid').innerHTML = modules.map(m => {
+    const bd = m.st==='ok'?'border-emerald-500/30':m.st==='warn'?'border-amber-500/30':'border-rose-500/40';
+    const lbl = {ok:'正常',warn:'告警',err:'故障'}[m.st];
+    const clr = m.st==='ok'?'text-emerald-300':m.st==='warn'?'text-amber-300':'text-rose-300';
+    return `
+      <div class="rounded border ${bd} px-3 py-2 bg-slate-800/40">
+        <div class="flex items-center justify-between">
+          <div class="flex items-center gap-2 min-w-0">
+            <i data-lucide="${m.icon}" class="w-4 h-4 text-slate-300 shrink-0"></i>
+            <span class="text-sm text-slate-100 truncate">${m.name}</span>
+          </div>
+          <span class="flex items-center gap-1 text-xs ${clr} shrink-0">
+            <span class="dot ${m.st}"></span>${lbl}
+          </span>
+        </div>
+        <div class="text-xs text-slate-400 mt-1 truncate">${m.info}</div>
+      </div>`;
+  }).join('');
+
+  // faults
+  const faults = [
+    { t:'14:32:18', code:'E-203', lv:'ERR',  msg:'CAM-03 · 检测面 3 检出划伤 0.35mm，判定 NG' },
+    { t:'14:28:02', code:'E-411', lv:'ERR',  msg:'MES 上传队列阻塞 3 条 · 网络重连中' },
+    { t:'14:12:47', code:'W-102', lv:'WARN', msg:'高精度3D成像模组正在自动对焦校准，预计 5 分钟' },
+  ];
+  document.getElementById('faultCount').textContent = faults.filter(f=>f.lv==='ERR').length;
+  document.getElementById('faultList').innerHTML = faults.map(f => {
+    const bg = f.lv==='ERR' ? 'border-rose-500/40 bg-rose-500/5 text-rose-200'
+             : f.lv==='WARN'? 'border-amber-500/40 bg-amber-500/5 text-amber-200'
+             : 'border-slate-600/50 bg-slate-800/40 text-slate-300';
+    return `
+      <div class="rounded border ${bg} px-2 py-1.5 text-xs">
+        <div class="flex items-center justify-between">
+          <span class="num-font text-[10px] font-semibold">${f.code}</span>
+          <span class="num-font text-[10px] text-slate-400">${f.t}</span>
+        </div>
+        <div class="text-[11px] leading-snug mt-0.5">${f.msg}</div>
+      </div>`;
+  }).join('');
+
+  // detection items — 不区分正反面，使用 检测面 1~4 替代；删除平面度、表面粗糙度
+  const items = [
+    ['01','检测面 1 · 点状凹坑',   '直径 ≥ 0.10 mm 判 NG',   'Φ0.18',   'NG'],
+    ['02','检测面 1 · 划伤长度',   '长度 ≥ 0.20 mm 判 NG',   '0.35 mm', 'NG'],
+    ['03','检测面 1 · 机加纹路',   '非同心圆纹路判 NG',       '合规',    'OK'],
+    ['04','检测面 1 · 脏污',       '与加工面颜色差异',        '0.08 mm²','待判定'],
+    ['05','检测面 2 · 点状凹坑',   '直径 ≥ 0.10 mm 判 NG',    '未发现',  'OK'],
+    ['06','检测面 2 · 划伤长度',   '长度 ≥ 0.20 mm 判 NG',    '未发现',  'OK'],
+    ['07','检测面 3 · 点状凹坑',   '直径 ≥ 0.10 mm 判 NG',    '未发现',  'OK'],
+    ['08','检测面 3 · 脏污',       '与加工面颜色差异',        '未发现',  'OK'],
+    ['09','检测面 4 · 点状凹坑',   '直径 ≥ 0.10 mm 判 NG',    '未发现',  'OK'],
+    ['10','检测面 4 · 划伤长度',   '长度 ≥ 0.20 mm 判 NG',    '未发现',  'OK'],
+    ['11','内窥 · 深孔异物',       '存在即 NG',              '未发现',  'OK'],
+    ['12','内窥 · 其他缺陷类型',   '形变 / 毛刺 / 缺料',      '未发现',  'OK'],
+    ['13','二维码识别',            '必须可识别',              'QR-JLB-0421','OK'],
+    ['14','来料 · 姿态识别',       '姿态偏差 ≤ 2°',           '合规',    'OK'],
+    ['15','来料 · 规格匹配',       '与当前配方一致',           '合规',    'OK'],
+  ];
+  document.getElementById('itemList').innerHTML = items.map(([id,name,rule,val,jud]) => {
+    const cls = jud==='OK'?'badge-ok':jud==='NG'?'badge-ng':'badge-pend';
+    return `
+      <div class="grid items-center px-3 py-1.5 text-xs border-b border-slate-700/30" style="grid-template-columns: 28px 1fr 80px 56px;">
+        <div class="num-font text-slate-400">${id}</div>
+        <div class="min-w-0 overflow-hidden">
+          <div class="text-slate-100 truncate">${name}</div>
+          <div class="text-[10px] text-slate-500 truncate">${rule}</div>
+        </div>
+        <div class="num-font text-right text-slate-100 truncate">${val}</div>
+        <div class="text-center"><span class="inline-block text-[10px] px-1.5 py-0.5 rounded ${cls}">${jud}</span></div>
+      </div>`;
+  }).join('');
+
+  // params (设定参数)
+  const params = [
+    ['最小识别点', '0.01 mm'],
+    ['像素比例',   '0.01 mm/px'],
+    ['曝光时间',   '12.5 ms'],
+    ['增益',       '6 dB'],
+    ['光源模式',   '同轴'],
+    ['光源强度',   '75 %'],
+    ['自动对焦',   '开启'],
+    ['线光谱',     '启用'],
+    ['检测模型',   'JLB-Defect-v3.2'],
+    ['置信度阈值', '85 %'],
+  ];
+  document.getElementById('paramList').innerHTML = params.map(([k,v]) => `
+    <div class="rounded bg-slate-800/40 px-2.5 py-1.5 flex justify-between">
+      <span class="text-slate-400">${k}</span>
+      <span class="num-font text-slate-100">${v}</span>
+    </div>`).join('');
+
+  // defects (当前缺陷明细)
+  const defects = [
+    ['D1','点状凹坑', '(42.1, 38.4)', 'Φ0.18 mm', 'NG'],
+    ['D2','划伤',     '(58.0, 56.2)', 'L 0.35 mm','NG'],
+    ['D3','脏污',     '(30.4, 62.5)', '0.08 mm²', '待判定'],
+  ];
+  document.getElementById('defectList').innerHTML = defects.map(([id,type,pos,size,jud]) => {
+    const cls = jud==='OK'?'badge-ok':jud==='NG'?'badge-ng':'badge-pend';
+    return `
+      <div class="grid items-center px-3 py-2 text-xs border-b border-slate-700/30" style="grid-template-columns: 36px 1fr 90px 56px;">
+        <div class="num-font text-slate-400">${id}</div>
+        <div class="min-w-0 overflow-hidden">
+          <div class="text-slate-100 truncate">${type}</div>
+          <div class="text-[10px] text-slate-500 truncate num-font">${pos}</div>
+        </div>
+        <div class="num-font text-right text-slate-100 truncate">${size}</div>
+        <div class="text-center"><span class="inline-block text-[10px] px-1.5 py-0.5 rounded ${cls}">${jud}</span></div>
+      </div>`;
+  }).join('');
+
+  // tabs
+  const tabMap = { items:'tabItems', params:'tabParams', defects:'tabDefects' };
+  document.querySelectorAll('[data-tab]').forEach(b => {
+    b.addEventListener('click', () => {
+      document.querySelectorAll('[data-tab]').forEach(x => x.classList.remove('active'));
+      b.classList.add('active');
+      Object.entries(tabMap).forEach(([k, id]) =>
+        document.getElementById(id).classList.toggle('hidden', k !== b.dataset.tab));
+    });
+  });
+
+  // modal
+  document.getElementById('btnRecipe').addEventListener('click', () => {
+    const m = document.getElementById('recipeModal');
+    m.classList.remove('hidden'); m.classList.add('flex');
+    lucide.createIcons();
+  });
+  function closeRecipe(e){
+    if (e && e.target !== e.currentTarget) return;
+    const m = document.getElementById('recipeModal');
+    m.classList.add('hidden'); m.classList.remove('flex');
+    window.dispatchEvent(new CustomEvent('recipe-authoring:closed'));
+  }
+  document.addEventListener('keydown', e => { if (e.key==='Escape') closeRecipe(); });
+
+  // optional: reflect user/role from login page's query params
+  (function(){
+    const p = new URLSearchParams(location.search);
+    const user = p.get('user');
+    const role = p.get('role');
+    if (user || role) {
+      const chip = document.querySelector('header .bg-slate-800\\/60.border-slate-700\\/50:last-of-type');
+      if (chip) {
+        const nameEl = chip.querySelector('.text-xs.text-slate-100');
+        const roleEl = chip.querySelector('.text-\\[10px\\].text-emerald-300');
+        if (user && nameEl) nameEl.textContent = user;
+        if (role && roleEl) {
+          const map = { L1:'L1 · 操作员', L2:'L2 · 工程师', L3:'L3 · 管理员' };
+          roleEl.textContent = map[role] || role;
+        }
+      }
+    }
+  })();
+
+  lucide.createIcons();
+</script>
+<dialog id="publicPositionsDialog" style="background:#0f172a;color:#e2e8f0;padding:24px;border:1px solid #64748b;border-radius:10px"></dialog>
+<dialog id="trayAnomalyDialog" style="background:#0f172a;color:#e2e8f0;padding:24px;border:1px solid #64748b;border-radius:10px"></dialog>
+</body>
+</html>

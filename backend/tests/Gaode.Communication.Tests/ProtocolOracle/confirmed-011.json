@@ -1,0 +1,17 @@
+{
+  "scope": "Test-only address contract; formal addresses unprovided",
+  "source": "PLC与上位机通信接口协议__20261001-最终版.docx §2.2 and 011 PC02 explicit Test map",
+  "sourceSha256": "B0C30492E31A5C285A7E7397B69F0EBEFF39CC088F14174A38C638C9436D0E51",
+  "byteOrder": "Abcd",
+  "axes": [
+    { "purpose": "X", "target": 3, "start": 34, "confirmed": 128, "actual": 13 },
+    { "purpose": "Y", "target": 5, "start": 35, "confirmed": 129, "actual": 15 },
+    { "purpose": "DetectionZ", "target": 7, "start": 36, "confirmed": 130, "actual": 17 },
+    { "purpose": "ScanZ", "target": 9, "start": 37, "confirmed": 131, "actual": 133 },
+    { "purpose": "GrabZ", "target": 11, "start": 38, "confirmed": 132, "actual": 135 }
+  ],
+  "confirmedCodes": { "moving": 0, "arrived": 1, "timeout": 2 },
+  "flipCodes": { "idle": 0, "executing": 1, "completed": 2, "failed": 3 },
+  "putBackCodes": { "idle": 0, "executing": 1, "completed": 2, "failed": 3 },
+  "sortingCodes": { "idle": 0, "picked": 1, "placed": 2, "failed": 3 }
+}

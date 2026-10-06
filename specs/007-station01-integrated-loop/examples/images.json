@@ -1,0 +1,30 @@
+{
+  "schemaVersion": "station01-images/1.0",
+  "id": "s01-images",
+  "version": "1.0.0",
+  "purpose": "Test",
+  "captureDelayMs": 4000,
+  "images": [
+    {
+      "role": "ThreeD",
+      "relativePath": "../fixtures/images/three-d.png",
+      "sha256": "3e53f61cbf7b61b09f34ff2ef32c7181220517c40430d83e4e7839aa863baeeb",
+      "contentType": "image/png",
+      "source": "Test/FixedImage"
+    },
+    {
+      "role": "F",
+      "relativePath": "../fixtures/images/f.png",
+      "sha256": "5e45b89f4f04eee286aecb3c3384aa7b7fb99e0ee351555dc3b73c1a0bc79f1a",
+      "contentType": "image/png",
+      "source": "Test/FixedImage"
+    },
+    {
+      "role": "Detection",
+      "relativePath": "../fixtures/images/detection.png",
+      "sha256": "ccfe5d6917f42e8828c903b177b2862d9687b92220e98d196a46f588de008907",
+      "contentType": "image/png",
+      "source": "Test/FixedImage"
+    }
+  ]
+}

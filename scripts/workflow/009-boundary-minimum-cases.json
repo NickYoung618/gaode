@@ -1,0 +1,1325 @@
+{
+  "schemaVersion": "009-boundary-minimum-cases/1",
+  "scope": "BoundaryMinimum",
+  "scopeVersion": "009-boundary-minimum/1",
+  "basis": "User 2026-10-02 10:54 timebox; VG BM00. Authored from reviewed source and prior fixed identities before any current discovery. Not the original complete communication acceptance.; 2026-10-06 new016 directed reconciliation from reviewed current source: preserve four required binding cases by current method identities; add two existing architecture cases before discovery. No exclusions.",
+  "requiredFiles": [
+    "scripts/workflow/boundary_minimum.py",
+    "scripts/verify-009-protocol-isolation.ps1",
+    "scripts/workflow/runner.py",
+    "scripts/workflow/test_verify.py",
+    "scripts/check-009-script-boundary.py",
+    "scripts/architecture/check-009-js.cjs",
+    "scripts/architecture/check-009-powershell.ps1",
+    "scripts/architecture/009-script-boundary-cases.json",
+    "backend/tests/Gaode.Rules.Tests/Architecture/ProtocolBoundaryChecker.cs",
+    "backend/tests/Gaode.Rules.Tests/Architecture/ProtocolRepositoryBoundaryTests.cs",
+    "backend/tests/Gaode.Rules.Tests/Architecture/ProtocolBoundaryTests.cs",
+    "backend/tests/Gaode.Rules.Tests/Architecture/009-boundary-inventory.json",
+    "backend/tests/Gaode.Rules.Tests/Architecture/009-public-shapes.json"
+  ],
+  "cases": [
+    {
+      "caseId": "CS-SOURCE-ProductionBusinessSourceBoundary",
+      "scope": "BoundaryMinimum",
+      "kind": "dotnet",
+      "deliveryTask": "T014",
+      "suite": "Gaode.Rules.Tests",
+      "method": "Gaode.Rules.Tests.Architecture.ProtocolRepositoryBoundaryTests.ProductionBusinessSourceBoundary",
+      "dataRow": null,
+      "requiredEvidence": [
+        "trx",
+        "csharp-source"
+      ]
+    },
+    {
+      "caseId": "CS-SOURCE-PublicPortShapesAreReviewed",
+      "scope": "BoundaryMinimum",
+      "kind": "dotnet",
+      "deliveryTask": "T014",
+      "suite": "Gaode.Rules.Tests",
+      "method": "Gaode.Rules.Tests.Architecture.ProtocolRepositoryBoundaryTests.PublicPortShapesAreReviewed",
+      "dataRow": null,
+      "requiredEvidence": [
+        "trx",
+        "csharp-source"
+      ]
+    },
+    {
+      "caseId": "CS-SOURCE-BusinessContractsAndTestsDoNotRequireWireDetails",
+      "scope": "BoundaryMinimum",
+      "kind": "dotnet",
+      "deliveryTask": "T014",
+      "suite": "Gaode.Rules.Tests",
+      "method": "Gaode.Rules.Tests.Architecture.ProtocolRepositoryBoundaryTests.BusinessContractsAndTestsDoNotRequireWireDetails",
+      "dataRow": null,
+      "requiredEvidence": [
+        "trx",
+        "csharp-source"
+      ]
+    },
+    {
+      "caseId": "CS-SOURCE-FormalAdaptersUseNamedSignalAccess",
+      "scope": "BoundaryMinimum",
+      "kind": "dotnet",
+      "deliveryTask": "T014",
+      "suite": "Gaode.Rules.Tests",
+      "method": "Gaode.Rules.Tests.Architecture.ProtocolRepositoryBoundaryTests.FormalAdaptersUseNamedSignalAccess",
+      "dataRow": null,
+      "requiredEvidence": [
+        "trx",
+        "csharp-source"
+      ]
+    },
+    {
+      "caseId": "CS-DEPENDENCY-ProjectReferencesFollowTheFourLayerBoundary",
+      "scope": "BoundaryMinimum",
+      "kind": "dotnet",
+      "deliveryTask": "T014",
+      "suite": "Gaode.Rules.Tests",
+      "method": "Gaode.Rules.Tests.Architecture.DependencyRulesTests.ProjectReferencesFollowTheFourLayerBoundary",
+      "dataRow": null,
+      "requiredEvidence": [
+        "trx"
+      ]
+    },
+    {
+      "caseId": "CS-DEPENDENCY-DomainDoesNotReferenceTransportPersistenceOrDeviceFrameworks",
+      "scope": "BoundaryMinimum",
+      "kind": "dotnet",
+      "deliveryTask": "T014",
+      "suite": "Gaode.Rules.Tests",
+      "method": "Gaode.Rules.Tests.Architecture.DependencyRulesTests.DomainDoesNotReferenceTransportPersistenceOrDeviceFrameworks",
+      "dataRow": null,
+      "requiredEvidence": [
+        "trx"
+      ]
+    },
+    {
+      "caseId": "CS-PARSER",
+      "scope": "BoundaryMinimum",
+      "kind": "dotnet",
+      "deliveryTask": "T014",
+      "suite": "Gaode.Rules.Tests",
+      "method": "Gaode.Rules.Tests.Architecture.ParserAvailabilityTests.PinnedRoslynParsesAndBindsRealSymbols",
+      "dataRow": null,
+      "requiredEvidence": [
+        "trx"
+      ]
+    },
+    {
+      "caseId": "N01-address",
+      "scope": "BoundaryMinimum",
+      "kind": "dotnet",
+      "deliveryTask": "T014",
+      "suite": "Gaode.Rules.Tests",
+      "method": "Gaode.Rules.Tests.Architecture.ProtocolBoundaryTests.NegativeCaseUsesProductionChecker",
+      "dataRow": "N01-address",
+      "requiredEvidence": [
+        "trx"
+      ]
+    },
+    {
+      "caseId": "N02-renamed-state",
+      "scope": "BoundaryMinimum",
+      "kind": "dotnet",
+      "deliveryTask": "T014",
+      "suite": "Gaode.Rules.Tests",
+      "method": "Gaode.Rules.Tests.Architecture.ProtocolBoundaryTests.NegativeCaseUsesProductionChecker",
+      "dataRow": "N02-renamed-state",
+      "requiredEvidence": [
+        "trx"
+      ]
+    },
+    {
+      "caseId": "N02-renamed-state/nested",
+      "scope": "BoundaryMinimum",
+      "kind": "dotnet",
+      "deliveryTask": "T014",
+      "suite": "Gaode.Rules.Tests",
+      "method": "Gaode.Rules.Tests.Architecture.ProtocolBoundaryTests.NegativeCaseUsesProductionChecker",
+      "dataRow": "N02-renamed-state/nested",
+      "requiredEvidence": [
+        "trx"
+      ]
+    },
+    {
+      "caseId": "N02-renamed-state/json",
+      "scope": "BoundaryMinimum",
+      "kind": "dotnet",
+      "deliveryTask": "T014",
+      "suite": "Gaode.Rules.Tests",
+      "method": "Gaode.Rules.Tests.Architecture.ProtocolBoundaryTests.NegativeCaseUsesProductionChecker",
+      "dataRow": "N02-renamed-state/json",
+      "requiredEvidence": [
+        "trx"
+      ]
+    },
+    {
+      "caseId": "N03-cast",
+      "scope": "BoundaryMinimum",
+      "kind": "dotnet",
+      "deliveryTask": "T014",
+      "suite": "Gaode.Rules.Tests",
+      "method": "Gaode.Rules.Tests.Architecture.ProtocolBoundaryTests.NegativeCaseUsesProductionChecker",
+      "dataRow": "N03-cast",
+      "requiredEvidence": [
+        "trx"
+      ]
+    },
+    {
+      "caseId": "N04-bit",
+      "scope": "BoundaryMinimum",
+      "kind": "dotnet",
+      "deliveryTask": "T014",
+      "suite": "Gaode.Rules.Tests",
+      "method": "Gaode.Rules.Tests.Architecture.ProtocolBoundaryTests.NegativeCaseUsesProductionChecker",
+      "dataRow": "N04-bit",
+      "requiredEvidence": [
+        "trx"
+      ]
+    },
+    {
+      "caseId": "N05-offset",
+      "scope": "BoundaryMinimum",
+      "kind": "dotnet",
+      "deliveryTask": "T014",
+      "suite": "Gaode.Rules.Tests",
+      "method": "Gaode.Rules.Tests.Architecture.ProtocolBoundaryTests.NegativeCaseUsesProductionChecker",
+      "dataRow": "N05-offset",
+      "requiredEvidence": [
+        "trx"
+      ]
+    },
+    {
+      "caseId": "N06-handshake",
+      "scope": "BoundaryMinimum",
+      "kind": "dotnet",
+      "deliveryTask": "T014",
+      "suite": "Gaode.Rules.Tests",
+      "method": "Gaode.Rules.Tests.Architecture.ProtocolBoundaryTests.NegativeCaseUsesProductionChecker",
+      "dataRow": "N06-handshake",
+      "requiredEvidence": [
+        "trx"
+      ]
+    },
+    {
+      "caseId": "N07-diagnostics",
+      "scope": "BoundaryMinimum",
+      "kind": "dotnet",
+      "deliveryTask": "T014",
+      "suite": "Gaode.Rules.Tests",
+      "method": "Gaode.Rules.Tests.Architecture.ProtocolBoundaryTests.NegativeCaseUsesProductionChecker",
+      "dataRow": "N07-diagnostics",
+      "requiredEvidence": [
+        "trx"
+      ]
+    },
+    {
+      "caseId": "N08-business-test",
+      "scope": "BoundaryMinimum",
+      "kind": "dotnet",
+      "deliveryTask": "T014",
+      "suite": "Gaode.Rules.Tests",
+      "method": "Gaode.Rules.Tests.Architecture.ProtocolBoundaryTests.NegativeCaseUsesProductionChecker",
+      "dataRow": "N08-business-test",
+      "requiredEvidence": [
+        "trx"
+      ]
+    },
+    {
+      "caseId": "N10-bypass",
+      "scope": "BoundaryMinimum",
+      "kind": "dotnet",
+      "deliveryTask": "T014",
+      "suite": "Gaode.Rules.Tests",
+      "method": "Gaode.Rules.Tests.Architecture.ProtocolBoundaryTests.NegativeCaseUsesProductionChecker",
+      "dataRow": "N10-bypass",
+      "requiredEvidence": [
+        "trx"
+      ]
+    },
+    {
+      "caseId": "N09-business-contract",
+      "scope": "BoundaryMinimum",
+      "kind": "dotnet",
+      "deliveryTask": "T014",
+      "suite": "Gaode.Rules.Tests",
+      "method": "Gaode.Rules.Tests.Architecture.ProtocolBoundaryTests.N09BusinessContractIsRejectedByTheSameDocumentRule",
+      "dataRow": null,
+      "requiredEvidence": [
+        "trx"
+      ]
+    },
+    {
+      "caseId": "P01-business-numbers",
+      "scope": "BoundaryMinimum",
+      "kind": "dotnet",
+      "deliveryTask": "T014",
+      "suite": "Gaode.Rules.Tests",
+      "method": "Gaode.Rules.Tests.Architecture.ProtocolBoundaryTests.PositiveCaseIsActuallyParsedAndChecked",
+      "dataRow": "P01-business-numbers",
+      "requiredEvidence": [
+        "trx"
+      ]
+    },
+    {
+      "caseId": "P02-coordinate-time",
+      "scope": "BoundaryMinimum",
+      "kind": "dotnet",
+      "deliveryTask": "T014",
+      "suite": "Gaode.Rules.Tests",
+      "method": "Gaode.Rules.Tests.Architecture.ProtocolBoundaryTests.PositiveCaseIsActuallyParsedAndChecked",
+      "dataRow": "P02-coordinate-time",
+      "requiredEvidence": [
+        "trx"
+      ]
+    },
+    {
+      "caseId": "P03-semantics",
+      "scope": "BoundaryMinimum",
+      "kind": "dotnet",
+      "deliveryTask": "T014",
+      "suite": "Gaode.Rules.Tests",
+      "method": "Gaode.Rules.Tests.Architecture.ProtocolBoundaryTests.PositiveCaseIsActuallyParsedAndChecked",
+      "dataRow": "P03-semantics",
+      "requiredEvidence": [
+        "trx"
+      ]
+    },
+    {
+      "caseId": "P04-business-payload",
+      "scope": "BoundaryMinimum",
+      "kind": "dotnet",
+      "deliveryTask": "T014",
+      "suite": "Gaode.Rules.Tests",
+      "method": "Gaode.Rules.Tests.Architecture.ProtocolBoundaryTests.PositiveCaseIsActuallyParsedAndChecked",
+      "dataRow": "P04-business-payload",
+      "requiredEvidence": [
+        "trx"
+      ]
+    },
+    {
+      "caseId": "P05-opaque-reference",
+      "scope": "BoundaryMinimum",
+      "kind": "dotnet",
+      "deliveryTask": "T014",
+      "suite": "Gaode.Rules.Tests",
+      "method": "Gaode.Rules.Tests.Architecture.ProtocolBoundaryTests.PositiveCaseIsActuallyParsedAndChecked",
+      "dataRow": "P05-opaque-reference",
+      "requiredEvidence": [
+        "trx"
+      ]
+    },
+    {
+      "caseId": "P06-transport-layout",
+      "scope": "BoundaryMinimum",
+      "kind": "dotnet",
+      "deliveryTask": "T014",
+      "suite": "Gaode.Rules.Tests",
+      "method": "Gaode.Rules.Tests.Architecture.ProtocolBoundaryTests.PositiveCaseIsActuallyParsedAndChecked",
+      "dataRow": "P06-transport-layout",
+      "requiredEvidence": [
+        "trx"
+      ]
+    },
+    {
+      "caseId": "N11-composition-raw",
+      "scope": "BoundaryMinimum",
+      "kind": "dotnet",
+      "deliveryTask": "T014",
+      "suite": "Gaode.Rules.Tests",
+      "method": "Gaode.Rules.Tests.Architecture.ProtocolBoundaryTests.NegativeCaseUsesProductionChecker",
+      "dataRow": "N11-composition-raw",
+      "requiredEvidence": [
+        "trx"
+      ]
+    },
+    {
+      "caseId": "N11-composition-helper",
+      "scope": "BoundaryMinimum",
+      "kind": "dotnet",
+      "deliveryTask": "T014",
+      "suite": "Gaode.Rules.Tests",
+      "method": "Gaode.Rules.Tests.Architecture.ProtocolBoundaryTests.NegativeCaseUsesProductionChecker",
+      "dataRow": "N11-composition-helper",
+      "requiredEvidence": [
+        "trx"
+      ]
+    },
+    {
+      "caseId": "P07-composition-lifecycle",
+      "scope": "BoundaryMinimum",
+      "kind": "dotnet",
+      "deliveryTask": "T014",
+      "suite": "Gaode.Rules.Tests",
+      "method": "Gaode.Rules.Tests.Architecture.ProtocolBoundaryTests.PositiveCaseIsActuallyParsedAndChecked",
+      "dataRow": "P07-composition-lifecycle",
+      "requiredEvidence": [
+        "trx"
+      ]
+    },
+    {
+      "caseId": "P08-composition-options",
+      "scope": "BoundaryMinimum",
+      "kind": "dotnet",
+      "deliveryTask": "T014",
+      "suite": "Gaode.Rules.Tests",
+      "method": "Gaode.Rules.Tests.Architecture.ProtocolBoundaryTests.PositiveCaseIsActuallyParsedAndChecked",
+      "dataRow": "P08-composition-options",
+      "requiredEvidence": [
+        "trx"
+      ]
+    },
+    {
+      "caseId": "N03-protocol-version-literal",
+      "scope": "BoundaryMinimum",
+      "kind": "dotnet",
+      "deliveryTask": "T014/T052",
+      "suite": "Gaode.Rules.Tests",
+      "method": "Gaode.Rules.Tests.Architecture.ProtocolBoundaryTests.NegativeCaseUsesProductionChecker",
+      "dataRow": "N03-protocol-version-literal",
+      "requiredEvidence": [
+        "trx"
+      ]
+    },
+    {
+      "caseId": "P05-producer-version",
+      "scope": "BoundaryMinimum",
+      "kind": "dotnet",
+      "deliveryTask": "T014/T052",
+      "suite": "Gaode.Rules.Tests",
+      "method": "Gaode.Rules.Tests.Architecture.ProtocolBoundaryTests.PositiveCaseIsActuallyParsedAndChecked",
+      "dataRow": "P05-producer-version",
+      "requiredEvidence": [
+        "trx"
+      ]
+    },
+    {
+      "caseId": "N07-qualified-reader",
+      "scope": "BoundaryMinimum",
+      "kind": "dotnet",
+      "deliveryTask": "T052",
+      "suite": "Gaode.Rules.Tests",
+      "method": "Gaode.Rules.Tests.Architecture.ProtocolBoundaryTests.NegativeCaseUsesProductionChecker",
+      "dataRow": "N07-qualified-reader",
+      "requiredEvidence": [
+        "trx"
+      ]
+    },
+    {
+      "caseId": "N07-qualified-exchange",
+      "scope": "BoundaryMinimum",
+      "kind": "dotnet",
+      "deliveryTask": "T052",
+      "suite": "Gaode.Rules.Tests",
+      "method": "Gaode.Rules.Tests.Architecture.ProtocolBoundaryTests.NegativeCaseUsesProductionChecker",
+      "dataRow": "N07-qualified-exchange",
+      "requiredEvidence": [
+        "trx"
+      ]
+    },
+    {
+      "caseId": "P04-semantic-historical-name",
+      "scope": "BoundaryMinimum",
+      "kind": "dotnet",
+      "deliveryTask": "T052",
+      "suite": "Gaode.Rules.Tests",
+      "method": "Gaode.Rules.Tests.Architecture.ProtocolBoundaryTests.PositiveCaseIsActuallyParsedAndChecked",
+      "dataRow": "P04-semantic-historical-name",
+      "requiredEvidence": [
+        "trx"
+      ]
+    },
+    {
+      "caseId": "P04-storage-helper-name",
+      "scope": "BoundaryMinimum",
+      "kind": "dotnet",
+      "deliveryTask": "T052",
+      "suite": "Gaode.Rules.Tests",
+      "method": "Gaode.Rules.Tests.Architecture.ProtocolBoundaryTests.PositiveCaseIsActuallyParsedAndChecked",
+      "dataRow": "P04-storage-helper-name",
+      "requiredEvidence": [
+        "trx"
+      ]
+    },
+    {
+      "caseId": "N06-handshake/automatic-fact",
+      "scope": "BoundaryMinimum",
+      "kind": "dotnet",
+      "deliveryTask": "T014",
+      "suite": "Gaode.Rules.Tests",
+      "method": "Gaode.Rules.Tests.Architecture.ProtocolBoundaryTests.NegativeCaseUsesProductionChecker",
+      "dataRow": "N06-handshake/automatic-fact",
+      "requiredEvidence": [
+        "trx"
+      ]
+    },
+    {
+      "caseId": "N06-handshake/manual-fact",
+      "scope": "BoundaryMinimum",
+      "kind": "dotnet",
+      "deliveryTask": "T014",
+      "suite": "Gaode.Rules.Tests",
+      "method": "Gaode.Rules.Tests.Architecture.ProtocolBoundaryTests.NegativeCaseUsesProductionChecker",
+      "dataRow": "N06-handshake/manual-fact",
+      "requiredEvidence": [
+        "trx"
+      ]
+    },
+    {
+      "caseId": "P03-semantic-face-fact",
+      "scope": "BoundaryMinimum",
+      "kind": "dotnet",
+      "deliveryTask": "T014",
+      "suite": "Gaode.Rules.Tests",
+      "method": "Gaode.Rules.Tests.Architecture.ProtocolBoundaryTests.PositiveCaseIsActuallyParsedAndChecked",
+      "dataRow": "P03-semantic-face-fact",
+      "requiredEvidence": [
+        "trx"
+      ]
+    },
+    {
+      "caseId": "N08-business-wire-helper",
+      "scope": "BoundaryMinimum",
+      "kind": "dotnet",
+      "deliveryTask": "T014",
+      "suite": "Gaode.Rules.Tests",
+      "method": "Gaode.Rules.Tests.Architecture.ProtocolBoundaryTests.NegativeCaseUsesProductionChecker",
+      "dataRow": "N08-business-wire-helper",
+      "requiredEvidence": [
+        "trx"
+      ]
+    },
+    {
+      "caseId": "N06-handshake/acquisition-fact",
+      "scope": "BoundaryMinimum",
+      "kind": "dotnet",
+      "deliveryTask": "T014",
+      "suite": "Gaode.Rules.Tests",
+      "method": "Gaode.Rules.Tests.Architecture.ProtocolBoundaryTests.NegativeCaseUsesProductionChecker",
+      "dataRow": "N06-handshake/acquisition-fact",
+      "requiredEvidence": [
+        "trx"
+      ]
+    },
+    {
+      "caseId": "N08-orchestration-protected",
+      "scope": "BoundaryMinimum",
+      "kind": "dotnet",
+      "deliveryTask": "T014",
+      "suite": "Gaode.Rules.Tests",
+      "method": "Gaode.Rules.Tests.Architecture.ProtocolBoundaryTests.NegativeCaseUsesProductionChecker",
+      "dataRow": "N08-orchestration-protected",
+      "requiredEvidence": [
+        "trx"
+      ]
+    },
+    {
+      "caseId": "P04-actual-storage-fixture",
+      "scope": "BoundaryMinimum",
+      "kind": "dotnet",
+      "deliveryTask": "T014",
+      "suite": "Gaode.Rules.Tests",
+      "method": "Gaode.Rules.Tests.Architecture.ProtocolBoundaryTests.PositiveCaseIsActuallyParsedAndChecked",
+      "dataRow": "P04-actual-storage-fixture",
+      "requiredEvidence": [
+        "trx"
+      ]
+    },
+    {
+      "caseId": "N11-cjs-alarm/alias",
+      "scope": "BoundaryMinimum",
+      "kind": "script-case",
+      "requiredEvidence": [
+        "ast-case"
+      ]
+    },
+    {
+      "caseId": "N12-python-sorting/pick",
+      "scope": "BoundaryMinimum",
+      "kind": "script-case",
+      "requiredEvidence": [
+        "ast-case"
+      ]
+    },
+    {
+      "caseId": "N12-python-sorting/place",
+      "scope": "BoundaryMinimum",
+      "kind": "script-case",
+      "requiredEvidence": [
+        "ast-case"
+      ]
+    },
+    {
+      "caseId": "N12-python-sorting/cleared",
+      "scope": "BoundaryMinimum",
+      "kind": "script-case",
+      "requiredEvidence": [
+        "ast-case"
+      ]
+    },
+    {
+      "caseId": "N13-script-bit/javascript",
+      "scope": "BoundaryMinimum",
+      "kind": "script-case",
+      "requiredEvidence": [
+        "ast-case"
+      ]
+    },
+    {
+      "caseId": "N13-script-bit/python",
+      "scope": "BoundaryMinimum",
+      "kind": "script-case",
+      "requiredEvidence": [
+        "ast-case"
+      ]
+    },
+    {
+      "caseId": "N14-script-escape/dynamic",
+      "scope": "BoundaryMinimum",
+      "kind": "script-case",
+      "requiredEvidence": [
+        "ast-case"
+      ]
+    },
+    {
+      "caseId": "N14-script-escape/helper",
+      "scope": "BoundaryMinimum",
+      "kind": "script-case",
+      "requiredEvidence": [
+        "ast-case"
+      ]
+    },
+    {
+      "caseId": "N16-script-parser/javascript",
+      "scope": "BoundaryMinimum",
+      "kind": "script-case",
+      "requiredEvidence": [
+        "ast-case"
+      ]
+    },
+    {
+      "caseId": "N16-script-parser/python",
+      "scope": "BoundaryMinimum",
+      "kind": "script-case",
+      "requiredEvidence": [
+        "ast-case"
+      ]
+    },
+    {
+      "caseId": "N16-script-parser/powershell",
+      "scope": "BoundaryMinimum",
+      "kind": "script-case",
+      "requiredEvidence": [
+        "ast-case"
+      ]
+    },
+    {
+      "caseId": "N17-ps-raw/where",
+      "scope": "BoundaryMinimum",
+      "kind": "script-case",
+      "requiredEvidence": [
+        "ast-case"
+      ]
+    },
+    {
+      "caseId": "P07-js-semantics/basic",
+      "scope": "BoundaryMinimum",
+      "kind": "script-case",
+      "requiredEvidence": [
+        "ast-case"
+      ]
+    },
+    {
+      "caseId": "P08-python-semantics/basic",
+      "scope": "BoundaryMinimum",
+      "kind": "script-case",
+      "requiredEvidence": [
+        "ast-case"
+      ]
+    },
+    {
+      "caseId": "P09-opaque-orchestration/javascript",
+      "scope": "BoundaryMinimum",
+      "kind": "script-case",
+      "requiredEvidence": [
+        "ast-case"
+      ]
+    },
+    {
+      "caseId": "P09-opaque-orchestration/python",
+      "scope": "BoundaryMinimum",
+      "kind": "script-case",
+      "requiredEvidence": [
+        "ast-case"
+      ]
+    },
+    {
+      "caseId": "P09-opaque-orchestration/powershell",
+      "scope": "BoundaryMinimum",
+      "kind": "script-case",
+      "requiredEvidence": [
+        "ast-case"
+      ]
+    },
+    {
+      "caseId": "P10-wire-oracle/javascript",
+      "scope": "BoundaryMinimum",
+      "kind": "script-case",
+      "requiredEvidence": [
+        "ast-case"
+      ]
+    },
+    {
+      "caseId": "P10-wire-oracle/python",
+      "scope": "BoundaryMinimum",
+      "kind": "script-case",
+      "requiredEvidence": [
+        "ast-case"
+      ]
+    },
+    {
+      "caseId": "N14-script-escape/semantic-dynamic",
+      "scope": "BoundaryMinimum",
+      "kind": "script-case",
+      "requiredEvidence": [
+        "ast-case"
+      ]
+    },
+    {
+      "caseId": "N14-script-escape/unknown-shape",
+      "scope": "BoundaryMinimum",
+      "kind": "script-case",
+      "requiredEvidence": [
+        "ast-case"
+      ]
+    },
+    {
+      "caseId": "N14-script-escape/python-unknown-shape",
+      "scope": "BoundaryMinimum",
+      "kind": "script-case",
+      "requiredEvidence": [
+        "ast-case"
+      ]
+    },
+    {
+      "caseId": "N11-cjs-alarm/destructure",
+      "scope": "BoundaryMinimum",
+      "kind": "script-case",
+      "requiredEvidence": [
+        "ast-case"
+      ]
+    },
+    {
+      "caseId": "N15-script-unclassified/business-as-probe",
+      "scope": "BoundaryMinimum",
+      "kind": "script-case",
+      "requiredEvidence": [
+        "ast-case"
+      ]
+    },
+    {
+      "caseId": "P07-js-semantics/http-capital-status",
+      "scope": "BoundaryMinimum",
+      "kind": "script-case",
+      "requiredEvidence": [
+        "ast-case"
+      ]
+    },
+    {
+      "caseId": "P07-js-semantics/device-schema",
+      "scope": "BoundaryMinimum",
+      "kind": "script-case",
+      "requiredEvidence": [
+        "ast-case"
+      ]
+    },
+    {
+      "caseId": "P08-python-semantics/device-schema",
+      "scope": "BoundaryMinimum",
+      "kind": "script-case",
+      "requiredEvidence": [
+        "ast-case"
+      ]
+    },
+    {
+      "caseId": "P07-js-semantics/startup-current-shape",
+      "scope": "BoundaryMinimum",
+      "kind": "script-case",
+      "requiredEvidence": [
+        "ast-case"
+      ]
+    },
+    {
+      "caseId": "N11-cjs-alarm/startup-obsolete-field",
+      "scope": "BoundaryMinimum",
+      "kind": "script-case",
+      "requiredEvidence": [
+        "ast-case"
+      ]
+    },
+    {
+      "caseId": "N12-python-sorting/audit-get",
+      "scope": "BoundaryMinimum",
+      "kind": "script-case",
+      "requiredEvidence": [
+        "ast-case"
+      ]
+    },
+    {
+      "caseId": "N12-python-sorting/changes-alias",
+      "scope": "BoundaryMinimum",
+      "kind": "script-case",
+      "requiredEvidence": [
+        "ast-case"
+      ]
+    },
+    {
+      "caseId": "P08-python-semantics/business-get",
+      "scope": "BoundaryMinimum",
+      "kind": "script-case",
+      "requiredEvidence": [
+        "ast-case"
+      ]
+    },
+    {
+      "caseId": "N12-handshake-fact/python",
+      "scope": "BoundaryMinimum",
+      "kind": "script-case",
+      "requiredEvidence": [
+        "ast-case"
+      ]
+    },
+    {
+      "caseId": "P09-semantic-action-fact/python",
+      "scope": "BoundaryMinimum",
+      "kind": "script-case",
+      "requiredEvidence": [
+        "ast-case"
+      ]
+    },
+    {
+      "caseId": "N12-handshake-fact/javascript",
+      "scope": "BoundaryMinimum",
+      "kind": "script-case",
+      "requiredEvidence": [
+        "ast-case"
+      ]
+    },
+    {
+      "caseId": "P09-semantic-action-fact/javascript",
+      "scope": "BoundaryMinimum",
+      "kind": "script-case",
+      "requiredEvidence": [
+        "ast-case"
+      ]
+    },
+    {
+      "caseId": "N12-handshake-fact/powershell",
+      "scope": "BoundaryMinimum",
+      "kind": "script-case",
+      "requiredEvidence": [
+        "ast-case"
+      ]
+    },
+    {
+      "caseId": "P09-semantic-action-fact/powershell",
+      "scope": "BoundaryMinimum",
+      "kind": "script-case",
+      "requiredEvidence": [
+        "ast-case"
+      ]
+    },
+    {
+      "caseId": "N15-script-unclassified/new-helper",
+      "scope": "BoundaryMinimum",
+      "kind": "script-case",
+      "requiredEvidence": [
+        "ast-case"
+      ]
+    },
+    {
+      "caseId": "N15-script-unclassified/role-change",
+      "scope": "BoundaryMinimum",
+      "kind": "script-case",
+      "requiredEvidence": [
+        "ast-case"
+      ]
+    },
+    {
+      "caseId": "N16-script-parser/missing",
+      "scope": "BoundaryMinimum",
+      "kind": "script-case",
+      "requiredEvidence": [
+        "ast-case"
+      ]
+    },
+    {
+      "caseId": "N16-script-parser/wrong-version",
+      "scope": "BoundaryMinimum",
+      "kind": "script-case",
+      "requiredEvidence": [
+        "ast-case"
+      ]
+    },
+    {
+      "caseId": "SCRIPT-SOURCE-JS",
+      "scope": "BoundaryMinimum",
+      "kind": "script-source",
+      "requiredEvidence": [
+        "ast-source"
+      ]
+    },
+    {
+      "caseId": "SCRIPT-SOURCE-PY",
+      "scope": "BoundaryMinimum",
+      "kind": "script-source",
+      "requiredEvidence": [
+        "ast-source"
+      ]
+    },
+    {
+      "caseId": "SCRIPT-SOURCE-PS",
+      "scope": "BoundaryMinimum",
+      "kind": "script-source",
+      "requiredEvidence": [
+        "ast-source"
+      ]
+    },
+    {
+      "caseId": "SCRIPT-INVENTORY",
+      "scope": "BoundaryMinimum",
+      "kind": "script-source",
+      "requiredEvidence": [
+        "ast-source"
+      ]
+    },
+    {
+      "caseId": "G01-missing-manifest-scanner",
+      "scope": "BoundaryMinimum",
+      "kind": "ledger-selfcheck",
+      "requiredEvidence": [
+        "runner-selfcheck"
+      ]
+    },
+    {
+      "caseId": "G02-missing-case",
+      "scope": "BoundaryMinimum",
+      "kind": "ledger-selfcheck",
+      "requiredEvidence": [
+        "runner-selfcheck"
+      ]
+    },
+    {
+      "caseId": "G03-filtered",
+      "scope": "BoundaryMinimum",
+      "kind": "ledger-selfcheck",
+      "requiredEvidence": [
+        "runner-selfcheck"
+      ]
+    },
+    {
+      "caseId": "G04-skipped",
+      "scope": "BoundaryMinimum",
+      "kind": "ledger-selfcheck",
+      "requiredEvidence": [
+        "runner-selfcheck"
+      ]
+    },
+    {
+      "caseId": "G05-zero-discovery",
+      "scope": "BoundaryMinimum",
+      "kind": "ledger-selfcheck",
+      "requiredEvidence": [
+        "runner-selfcheck"
+      ]
+    },
+    {
+      "caseId": "G06-stale-report",
+      "scope": "BoundaryMinimum",
+      "kind": "ledger-selfcheck",
+      "requiredEvidence": [
+        "runner-selfcheck"
+      ]
+    },
+    {
+      "caseId": "G07-complete",
+      "scope": "BoundaryMinimum",
+      "kind": "ledger-selfcheck",
+      "requiredEvidence": [
+        "runner-selfcheck"
+      ]
+    },
+    {
+      "caseId": "BIND-SEMANTIC/missing-evidence-receipt",
+      "scope": "BoundaryMinimum",
+      "kind": "dotnet",
+      "deliveryTask": "T040",
+      "suite": "Gaode.Contracts.Tests",
+      "method": "Gaode.Contracts.Tests.Station01.RecipeApplicationContractTests.BoundReceiptCannotAuthorizeBindingWithoutActualRequiredSave",
+      "dataRow": null,
+      "requiredEvidence": [
+        "trx"
+      ]
+    },
+    {
+      "caseId": "MIG-EXEC/StagePortContractTests-DetectionResultMustCorrelateOperationAndExposeStableObjects/0",
+      "scope": "BoundaryMinimum",
+      "kind": "dotnet",
+      "deliveryTask": "T051",
+      "suite": "Gaode.Contracts.Tests",
+      "method": "Gaode.Contracts.Tests.Ports.StagePortContractTests.DetectionResultMustCorrelateOperationAndExposeStableObjects",
+      "dataRow": null,
+      "requiredEvidence": [
+        "trx"
+      ]
+    },
+    {
+      "caseId": "MIG-EXEC/StagePortContractTests-FailureAndSimulatedResultsCannotBecomeRealCompletionEvidence/0",
+      "scope": "BoundaryMinimum",
+      "kind": "dotnet",
+      "deliveryTask": "T051",
+      "suite": "Gaode.Contracts.Tests",
+      "method": "Gaode.Contracts.Tests.Ports.StagePortContractTests.FailureAndSimulatedResultsCannotBecomeRealCompletionEvidence",
+      "dataRow": null,
+      "requiredEvidence": [
+        "trx"
+      ]
+    },
+    {
+      "caseId": "MIG-EXEC/StagePortContractTests-AcceptedAndExecutingResultsDoNotRequireFailureCodes/0",
+      "scope": "BoundaryMinimum",
+      "kind": "dotnet",
+      "deliveryTask": "T051",
+      "suite": "Gaode.Contracts.Tests",
+      "method": "Gaode.Contracts.Tests.Ports.StagePortContractTests.AcceptedAndExecutingResultsDoNotRequireFailureCodes",
+      "dataRow": null,
+      "requiredEvidence": [
+        "trx"
+      ]
+    },
+    {
+      "caseId": "MIG-EXEC/StagePortContractTests-StageCompletionRequiresCurrentActionAndSemanticTransferEvidence/0",
+      "scope": "BoundaryMinimum",
+      "kind": "dotnet",
+      "deliveryTask": "T051",
+      "suite": "Gaode.Contracts.Tests",
+      "method": "Gaode.Contracts.Tests.Ports.StagePortContractTests.StageCompletionRequiresCurrentActionAndSemanticTransferEvidence",
+      "dataRow": null,
+      "requiredEvidence": [
+        "trx"
+      ]
+    },
+    {
+      "caseId": "MIG-EXEC/StagePortContractTests-UnlockObservationRequiresWholeTrayReference/0",
+      "scope": "BoundaryMinimum",
+      "kind": "dotnet",
+      "deliveryTask": "T051",
+      "suite": "Gaode.Contracts.Tests",
+      "method": "Gaode.Contracts.Tests.Ports.StagePortContractTests.UnlockObservationRequiresWholeTrayReference",
+      "dataRow": null,
+      "requiredEvidence": [
+        "trx"
+      ]
+    },
+    {
+      "caseId": "MIG-EXEC/StagePortContractTests-UnknownHeldIsNonRetryableAndRetainsDeviceOwnership/0",
+      "scope": "BoundaryMinimum",
+      "kind": "dotnet",
+      "deliveryTask": "T051",
+      "suite": "Gaode.Contracts.Tests",
+      "method": "Gaode.Contracts.Tests.Ports.StagePortContractTests.UnknownHeldIsNonRetryableAndRetainsDeviceOwnership",
+      "dataRow": null,
+      "requiredEvidence": [
+        "trx"
+      ]
+    },
+    {
+      "caseId": "MIG-EXEC/StagePortContractTests-WorkflowAndPlcStageEnumsRemainSeparate/0",
+      "scope": "BoundaryMinimum",
+      "kind": "dotnet",
+      "deliveryTask": "T051",
+      "suite": "Gaode.Contracts.Tests",
+      "method": "Gaode.Contracts.Tests.Ports.StagePortContractTests.WorkflowAndPlcStageEnumsRemainSeparate",
+      "dataRow": null,
+      "requiredEvidence": [
+        "trx"
+      ]
+    },
+    {
+      "caseId": "MIG-EXEC/PlcStageActionPortContractTests-CompletionRequiresCurrentIdentityMeaningAndDurableEvidence/0",
+      "scope": "BoundaryMinimum",
+      "kind": "dotnet",
+      "deliveryTask": "T051",
+      "suite": "Gaode.Contracts.Tests",
+      "method": "Gaode.Contracts.Tests.Ports.PlcStageActionPortContractTests.CompletionRequiresCurrentIdentityMeaningAndDurableEvidence(stage: Sorting, meaning: MaterialTransferred)",
+      "dataRow": null,
+      "requiredEvidence": [
+        "trx"
+      ]
+    },
+    {
+      "caseId": "MIG-EXEC/PlcStageActionPortContractTests-CompletionRequiresCurrentIdentityMeaningAndDurableEvidence/1",
+      "scope": "BoundaryMinimum",
+      "kind": "dotnet",
+      "deliveryTask": "T051",
+      "suite": "Gaode.Contracts.Tests",
+      "method": "Gaode.Contracts.Tests.Ports.PlcStageActionPortContractTests.CompletionRequiresCurrentIdentityMeaningAndDurableEvidence(stage: UnloadPreparation, meaning: UnloadPrepared)",
+      "dataRow": null,
+      "requiredEvidence": [
+        "trx"
+      ]
+    },
+    {
+      "caseId": "MIG-EXEC/PlcStageActionPortContractTests-CompletionRequiresCurrentIdentityMeaningAndDurableEvidence/2",
+      "scope": "BoundaryMinimum",
+      "kind": "dotnet",
+      "deliveryTask": "T051",
+      "suite": "Gaode.Contracts.Tests",
+      "method": "Gaode.Contracts.Tests.Ports.PlcStageActionPortContractTests.CompletionRequiresCurrentIdentityMeaningAndDurableEvidence(stage: UnlockObservation, meaning: Unlocked)",
+      "dataRow": null,
+      "requiredEvidence": [
+        "trx"
+      ]
+    },
+    {
+      "caseId": "MIG-EXEC/PlcStageActionPortContractTests-WrongPositionAndStaleObservationCannotCompleteTransfer/0",
+      "scope": "BoundaryMinimum",
+      "kind": "dotnet",
+      "deliveryTask": "T051",
+      "suite": "Gaode.Contracts.Tests",
+      "method": "Gaode.Contracts.Tests.Ports.PlcStageActionPortContractTests.WrongPositionAndStaleObservationCannotCompleteTransfer",
+      "dataRow": null,
+      "requiredEvidence": [
+        "trx"
+      ]
+    },
+    {
+      "caseId": "MIG-EXEC/DeviceMessageContractTests-RejectsMissingVersionOldGenerationAndTreatsAckAsNonCompletion/0",
+      "scope": "BoundaryMinimum",
+      "kind": "dotnet",
+      "deliveryTask": "T051",
+      "suite": "Gaode.Contracts.Tests",
+      "method": "Gaode.Contracts.Tests.Devices.DeviceMessageContractTests.RejectsMissingVersionOldGenerationAndTreatsAckAsNonCompletion",
+      "dataRow": null,
+      "requiredEvidence": [
+        "trx"
+      ]
+    },
+    {
+      "caseId": "BIND-SEMANTIC/run-cancellation-token",
+      "scope": "BoundaryMinimum",
+      "kind": "dotnet",
+      "deliveryTask": "T037/T040",
+      "suite": "Gaode.Contracts.Tests",
+      "method": "Gaode.Contracts.Tests.Station01.RecipeApplicationContractTests.RunCancellationClosesRegisteredBindingTokenWithoutTurningPauseIntoCancellation",
+      "dataRow": null,
+      "requiredEvidence": [
+        "trx"
+      ]
+    },
+    {
+      "caseId": "MIN-SEM/target-required/Sorting",
+      "scope": "BoundaryMinimum",
+      "kind": "dotnet",
+      "suite": "Gaode.Contracts.Tests",
+      "method": "Gaode.Contracts.Tests.Ports.PlcStageActionPortContractTests.MissingOrDifferentTargetEvidenceCannotComplete(stage: Sorting, meaning: MaterialTransferred)",
+      "dataRow": null,
+      "requiredEvidence": [
+        "trx"
+      ]
+    },
+    {
+      "caseId": "MIN-SEM/target-required/UnloadPreparation",
+      "scope": "BoundaryMinimum",
+      "kind": "dotnet",
+      "suite": "Gaode.Contracts.Tests",
+      "method": "Gaode.Contracts.Tests.Ports.PlcStageActionPortContractTests.MissingOrDifferentTargetEvidenceCannotComplete(stage: UnloadPreparation, meaning: UnloadPrepared)",
+      "dataRow": null,
+      "requiredEvidence": [
+        "trx"
+      ]
+    },
+    {
+      "caseId": "MIN-SEM/unavailable-origin",
+      "scope": "BoundaryMinimum",
+      "kind": "dotnet",
+      "suite": "Gaode.Contracts.Tests",
+      "method": "Gaode.Contracts.Tests.Ports.PlcStageActionPortContractTests.UnavailableOriginCannotServeAsObservedCompletion",
+      "dataRow": null,
+      "requiredEvidence": [
+        "trx"
+      ]
+    },
+    {
+      "caseId": "MIN-SEM/intent-failure",
+      "scope": "BoundaryMinimum",
+      "kind": "dotnet",
+      "suite": "Gaode.Contracts.Tests",
+      "method": "Gaode.Contracts.Tests.Station01.RecipeApplicationContractTests.FailedIntentNeverRegistersTotalWindowOrCreatesBound",
+      "dataRow": null,
+      "requiredEvidence": [
+        "trx"
+      ]
+    },
+    {
+      "caseId": "MIN-SEM/late-device",
+      "scope": "BoundaryMinimum",
+      "kind": "dotnet",
+      "suite": "Gaode.Contracts.Tests",
+      "method": "Gaode.Contracts.Tests.Station01.RecipeApplicationContractTests.LateOrCancelledBoundReturnDoesNotCreateHandoff(cancelled: False)",
+      "dataRow": null,
+      "requiredEvidence": [
+        "trx"
+      ]
+    },
+    {
+      "caseId": "MIN-SEM/cancelled-device",
+      "scope": "BoundaryMinimum",
+      "kind": "dotnet",
+      "suite": "Gaode.Contracts.Tests",
+      "method": "Gaode.Contracts.Tests.Station01.RecipeApplicationContractTests.LateOrCancelledBoundReturnDoesNotCreateHandoff(cancelled: True)",
+      "dataRow": null,
+      "requiredEvidence": [
+        "trx"
+      ]
+    },
+    {
+      "caseId": "BUILD-BACKEND",
+      "scope": "BoundaryMinimum",
+      "kind": "build",
+      "requiredEvidence": [
+        "build-log"
+      ]
+    },
+    {
+      "caseId": "BUILD-VIRTUAL-PLC",
+      "scope": "BoundaryMinimum",
+      "kind": "build",
+      "requiredEvidence": [
+        "build-log"
+      ]
+    },
+    {
+      "caseId": "N18-protected-path/application",
+      "scope": "BoundaryMinimum",
+      "kind": "dotnet",
+      "deliveryTask": "T015",
+      "suite": "Gaode.Rules.Tests",
+      "method": "Gaode.Rules.Tests.Architecture.ProtocolBoundaryTests.ProtectedClassificationCannotHideWireKnowledge",
+      "dataRow": "N18-protected-path/application",
+      "requiredEvidence": [
+        "trx"
+      ]
+    },
+    {
+      "caseId": "N18-protected-path/domain",
+      "scope": "BoundaryMinimum",
+      "kind": "dotnet",
+      "deliveryTask": "T015",
+      "suite": "Gaode.Rules.Tests",
+      "method": "Gaode.Rules.Tests.Architecture.ProtocolBoundaryTests.ProtectedClassificationCannotHideWireKnowledge",
+      "dataRow": "N18-protected-path/domain",
+      "requiredEvidence": [
+        "trx"
+      ]
+    },
+    {
+      "caseId": "N18-protected-path/host",
+      "scope": "BoundaryMinimum",
+      "kind": "dotnet",
+      "deliveryTask": "T015",
+      "suite": "Gaode.Rules.Tests",
+      "method": "Gaode.Rules.Tests.Architecture.ProtocolBoundaryTests.ProtectedClassificationCannotHideWireKnowledge",
+      "dataRow": "N18-protected-path/host",
+      "requiredEvidence": [
+        "trx"
+      ]
+    },
+    {
+      "caseId": "N18-protected-path/recipe",
+      "scope": "BoundaryMinimum",
+      "kind": "dotnet",
+      "deliveryTask": "T015",
+      "suite": "Gaode.Rules.Tests",
+      "method": "Gaode.Rules.Tests.Architecture.ProtocolBoundaryTests.ProtectedClassificationCannotHideWireKnowledge",
+      "dataRow": "N18-protected-path/recipe",
+      "requiredEvidence": [
+        "trx"
+      ]
+    },
+    {
+      "caseId": "N18-protected-path/state",
+      "scope": "BoundaryMinimum",
+      "kind": "dotnet",
+      "deliveryTask": "T015",
+      "suite": "Gaode.Rules.Tests",
+      "method": "Gaode.Rules.Tests.Architecture.ProtocolBoundaryTests.ProtectedClassificationCannotHideWireKnowledge",
+      "dataRow": "N18-protected-path/state",
+      "requiredEvidence": [
+        "trx"
+      ]
+    },
+    {
+      "caseId": "N18-protected-path/unavailable",
+      "scope": "BoundaryMinimum",
+      "kind": "dotnet",
+      "deliveryTask": "T015",
+      "suite": "Gaode.Rules.Tests",
+      "method": "Gaode.Rules.Tests.Architecture.ProtocolBoundaryTests.ProtectedClassificationCannotHideWireKnowledge",
+      "dataRow": "N18-protected-path/unavailable",
+      "requiredEvidence": [
+        "trx"
+      ]
+    },
+    {
+      "caseId": "N18-protected-path/integrated",
+      "scope": "BoundaryMinimum",
+      "kind": "dotnet",
+      "deliveryTask": "T015",
+      "suite": "Gaode.Rules.Tests",
+      "method": "Gaode.Rules.Tests.Architecture.ProtocolBoundaryTests.ProtectedClassificationCannotHideWireKnowledge",
+      "dataRow": "N18-protected-path/integrated",
+      "requiredEvidence": [
+        "trx"
+      ]
+    },
+    {
+      "caseId": "P09-legitimate-diagnostic",
+      "scope": "BoundaryMinimum",
+      "kind": "dotnet",
+      "deliveryTask": "T015",
+      "suite": "Gaode.Rules.Tests",
+      "method": "Gaode.Rules.Tests.Architecture.ProtocolBoundaryTests.P09LegitimateCommunicationDiagnosticRetainsItsResponsibility",
+      "dataRow": null,
+      "requiredEvidence": [
+        "trx"
+      ]
+    },
+    {
+      "caseId": "MIN-CURRENT/CurrentCompositionOptionsRemainAcceptedWithoutRetiredPollingKnob",
+      "scope": "BoundaryMinimum",
+      "kind": "dotnet",
+      "deliveryTask": "T014",
+      "suite": "Gaode.Rules.Tests",
+      "method": "Gaode.Rules.Tests.Architecture.ProtocolBoundaryTests.CurrentCompositionOptionsRemainAcceptedWithoutRetiredPollingKnob",
+      "dataRow": null,
+      "requiredEvidence": [
+        "trx"
+      ]
+    },
+    {
+      "caseId": "MIN-CURRENT/CommunicationCollectionPolicyCannotEnterTheCommonBusinessLayer",
+      "scope": "BoundaryMinimum",
+      "kind": "dotnet",
+      "deliveryTask": "T014",
+      "suite": "Gaode.Rules.Tests",
+      "method": "Gaode.Rules.Tests.Architecture.ProtocolBoundaryTests.CommunicationCollectionPolicyCannotEnterTheCommonBusinessLayer",
+      "dataRow": null,
+      "requiredEvidence": [
+        "trx"
+      ]
+    }
+  ]
+}

@@ -1,0 +1,6 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+/* The Test runtime removes prototype demo media until Host supplies real media. */
+img:not([src]) { display: none; }

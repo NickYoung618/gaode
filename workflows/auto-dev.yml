@@ -1,0 +1,160 @@
+schema_version: "1.0"
+workflow:
+  id: gaode-auto-dev
+  name: 高德后端开发与接续
+  version: "1.2.0"
+  description: 复用现有文档；结构化报告校验；容量/429/网络有限重试、额度可恢复暂停；验证和审查后最多两轮修复
+  integration: codex
+requires:
+  speckit_version: ">=1.0.5.dev0"
+inputs:
+  request_id:
+    type: string
+    required: true
+  mode:
+    type: string
+    required: true
+    enum: [new, continue]
+steps:
+  - id: preflight
+    type: shell
+    run: 'pwsh -NoProfile -File scripts/workflow/step.ps1 -Action preflight'
+    output_format: json
+    timeout: 60
+  - id: design-new-feature
+    type: if
+    condition: "{{ inputs.mode == 'new' }}"
+    then:
+      - id: begin-specify
+        type: shell
+        run: 'pwsh -NoProfile -File scripts/workflow/step.ps1 -Action begin -Phase specify'
+        output_format: json
+        timeout: 60
+      - id: specify
+        type: shell
+        run: "pwsh -NoProfile -File scripts/workflow/prompt-stage.ps1 -Phase specify"
+        output_format: json
+        timeout: 7200
+      - id: accept-specify
+        type: shell
+        run: 'pwsh -NoProfile -File scripts/workflow/step.ps1 -Action accept -Phase specify'
+        output_format: json
+        timeout: 60
+      - id: begin-plan
+        type: shell
+        run: 'pwsh -NoProfile -File scripts/workflow/step.ps1 -Action begin -Phase plan'
+        output_format: json
+        timeout: 60
+      - id: plan
+        type: shell
+        run: "pwsh -NoProfile -File scripts/workflow/prompt-stage.ps1 -Phase plan"
+        output_format: json
+        timeout: 7200
+      - id: accept-plan
+        type: shell
+        run: 'pwsh -NoProfile -File scripts/workflow/step.ps1 -Action accept -Phase plan'
+        output_format: json
+        timeout: 60
+      - id: begin-tasks
+        type: shell
+        run: 'pwsh -NoProfile -File scripts/workflow/step.ps1 -Action begin -Phase tasks'
+        output_format: json
+        timeout: 60
+      - id: tasks
+        type: shell
+        run: "pwsh -NoProfile -File scripts/workflow/prompt-stage.ps1 -Phase tasks"
+        output_format: json
+        timeout: 7200
+      - id: accept-tasks
+        type: shell
+        run: 'pwsh -NoProfile -File scripts/workflow/step.ps1 -Action accept -Phase tasks'
+        output_format: json
+        timeout: 60
+  - id: stage-analyze
+    type: if
+    condition: "{{ true }}"
+    then:
+      - id: begin-analyze
+        type: shell
+        run: 'pwsh -NoProfile -File scripts/workflow/step.ps1 -Action begin -Phase analyze'
+        output_format: json
+        timeout: 60
+      - id: analyze
+        type: shell
+        run: "pwsh -NoProfile -File scripts/workflow/prompt-stage.ps1 -Phase analyze"
+        output_format: json
+        timeout: 7200
+      - id: accept-analyze
+        type: shell
+        run: 'pwsh -NoProfile -File scripts/workflow/step.ps1 -Action accept -Phase analyze'
+        output_format: json
+        timeout: 60
+  - id: stage-implement
+    type: if
+    condition: "{{ true }}"
+    then:
+      - id: begin-implement
+        type: shell
+        run: 'pwsh -NoProfile -File scripts/workflow/step.ps1 -Action begin -Phase implement'
+        output_format: json
+        timeout: 60
+      - id: implement
+        type: shell
+        run: "pwsh -NoProfile -File scripts/workflow/prompt-stage.ps1 -Phase implement"
+        output_format: json
+        timeout: 7200
+      - id: accept-implement
+        type: shell
+        run: 'pwsh -NoProfile -File scripts/workflow/step.ps1 -Action accept -Phase implement'
+        output_format: json
+        timeout: 60
+  - id: verify-fix-review
+    type: do-while
+    condition: "{{ steps.assess.output.data.needs_fix }}"
+    max_iterations: 3
+    steps:
+      # Feature 010 selects RecipeExecution010 in runner; every profile requires L.
+      - id: verify
+        type: shell
+        run: 'pwsh -NoProfile -File scripts/workflow/step.ps1 -Action verify'
+        output_format: json
+        timeout: 6600
+      - id: begin-review
+        type: shell
+        run: 'pwsh -NoProfile -File scripts/workflow/step.ps1 -Action begin -Phase review'
+        output_format: json
+        timeout: 60
+      - id: converge-review
+        type: shell
+        run: "pwsh -NoProfile -File scripts/workflow/prompt-stage.ps1 -Phase review"
+        output_format: json
+        timeout: 7200
+      - id: assess
+        type: shell
+        run: 'pwsh -NoProfile -File scripts/workflow/step.ps1 -Action assess'
+        output_format: json
+        timeout: 60
+      - id: repair-if-needed
+        type: if
+        condition: "{{ steps.assess.output.data.needs_fix }}"
+        then:
+          - id: begin-fix
+            type: shell
+            run: 'pwsh -NoProfile -File scripts/workflow/step.ps1 -Action begin -Phase fix'
+            output_format: json
+            timeout: 60
+          - id: fix
+            type: shell
+            run: "pwsh -NoProfile -File scripts/workflow/prompt-stage.ps1 -Phase fix"
+            output_format: json
+            timeout: 7200
+          - id: accept-fix
+            type: shell
+            run: 'pwsh -NoProfile -File scripts/workflow/step.ps1 -Action accept -Phase fix'
+            output_format: json
+            timeout: 60
+  - id: finish
+    type: shell
+    run: 'pwsh -NoProfile -File scripts/workflow/step.ps1 -Action finish'
+    output_format: json
+    timeout: 60

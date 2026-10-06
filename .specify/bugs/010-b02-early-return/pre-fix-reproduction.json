@@ -1,0 +1,42 @@
+{
+  "scope": "B02 checker reproduction, not business run",
+  "checkerDigest": "6a8aa2c763fd8ccd5498b2b59c3fb2ec3182383a78257b3b7e1e0bfccf571204",
+  "checkerSnapshot": "original-checker.cs.txt",
+  "testSnapshot": "pre-fix-test-source.cs.txt",
+  "exitCode": 1,
+  "report": "E:\\dzk\\gaode-1\\.specify\\bugs\\010-b02-early-return\\pre-fix\\pre-fix.trx",
+  "reportDigest": "2f5873346e1d0ec3a632b98a00c86719b5270a7521fef8834d8f210b7ea9d178",
+  "total": 2,
+  "failedBecauseB02Missing": 2,
+  "compilationErrors": 0,
+  "semanticBindingValidated": true,
+  "ruleIds": [],
+  "cases": [
+    {
+      "executionId": "7c32a1da-de97-45ec-bc60-b927016736f6",
+      "testId": "cebeb1c0-43c3-cb84-bd43-19104fb95a2b",
+      "testName": "Gaode.Rules.Tests.Architecture.RecipeExecutionBoundaryTests.EnvironmentalEarlyReturnIsRejected(sample: \"N02-return-helper-alias\")",
+      "computerName": "10_3_0_13",
+      "duration": "00:00:02.1306582",
+      "startTime": "2026-10-03T09:18:58.4482597+08:00",
+      "endTime": "2026-10-03T09:19:00.7274728+08:00",
+      "testType": "13cdc9d9-ddb5-4fa4-a97d-d965ccfc6d4b",
+      "outcome": "Failed",
+      "testListId": "8c84fa94-04c1-424b-9868-57a2d4851a1d",
+      "relativeResultsDirectory": "7c32a1da-de97-45ec-bc60-b927016736f6"
+    },
+    {
+      "executionId": "9436ee20-0660-41ac-9ac5-a6dbd1d3599e",
+      "testId": "827c4c2d-13f7-e5ce-09ba-899e58a2ee76",
+      "testName": "Gaode.Rules.Tests.Architecture.RecipeExecutionBoundaryTests.EnvironmentalEarlyReturnIsRejected(sample: \"N02-return-direct\")",
+      "computerName": "10_3_0_13",
+      "duration": "00:00:00.6412537",
+      "startTime": "2026-10-03T09:19:00.8087922+08:00",
+      "endTime": "2026-10-03T09:19:01.4804563+08:00",
+      "testType": "13cdc9d9-ddb5-4fa4-a97d-d965ccfc6d4b",
+      "outcome": "Failed",
+      "testListId": "8c84fa94-04c1-424b-9868-57a2d4851a1d",
+      "relativeResultsDirectory": "9436ee20-0660-41ac-9ac5-a6dbd1d3599e"
+    }
+  ]
+}

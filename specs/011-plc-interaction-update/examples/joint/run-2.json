@@ -1,0 +1,94 @@
+{
+  "schemaVersion": "station01-fixture/2.0",
+  "caseId": "011-2-face",
+  "purpose": "Test",
+  "scenarioId": "011-joint",
+  "occupiedSlots": [
+    "s1"
+  ],
+  "fCode": "011-TEST-TRAY-2",
+  "configRoot": "config",
+  "recipeInputPath": "catalog.json",
+  "recipeInputSha256": "4AA7289A7E36B040FD6C1324FFA648D33EF82BC9D6AF2E628CEED60CAF9F8B85",
+  "imageManifestPath": "images-2.json",
+  "workerManifestPath": "worker.json",
+  "workerScriptPath": "scripts/010-content-sample-worker.py",
+  "plcMechanicsPath": "mechanics.json",
+  "publicConfigRef": {
+    "id": "s01-public-011-joint",
+    "version": "1"
+  },
+  "budgetRef": {
+    "id": "s01-budget-011-joint",
+    "version": "2"
+  },
+  "simulationRef": {
+    "id": "s01-sim-011-joint",
+    "version": "2"
+  },
+  "simulation": {
+    "putBackDurationMs": 150,
+    "flipPutBackSafeZ": 150
+  },
+  "expected": {
+    "cameraOrder": [
+      "C",
+      "D",
+      "A",
+      "B"
+    ],
+    "flipCount": 1,
+    "putBackCount": 1,
+    "poseObservationCount": 2,
+    "productMediaCount": 4,
+    "totalMediaCount": 7,
+    "algorithmFactCount": 9,
+    "disposition": "NG",
+    "physicalSlotIndex": 1,
+    "fLocation": {
+      "x": 125,
+      "y": 100
+    },
+    "workerVersion": "ContentSampleWorker/1",
+    "detectionTargets": [
+      {
+        "x": 110,
+        "y": 100,
+        "z": 51
+      },
+      {
+        "x": 110,
+        "y": 100,
+        "z": 51
+      },
+      {
+        "x": 120,
+        "y": 100,
+        "z": 52
+      },
+      {
+        "x": 120,
+        "y": 100,
+        "z": 52
+      }
+    ],
+    "cameraDispositions": [
+      "NG",
+      "OK",
+      "OK",
+      "OK"
+    ],
+    "faceDispositions": [
+      "NG",
+      "OK"
+    ]
+  },
+  "restrictions": [
+    "Test-only; actual fixed PNG/worker/TCP/SQLite; no live device or production approval",
+    "Current driver source is unbuilt; normal restart, 012 page and actual joint evidence remain required."
+  ],
+  "saveIsolation": {
+    "beforeBindQualityProfile": "011-quality-saved-before-F",
+    "afterBindQualityProfile": "011-quality-saved-after-freeze"
+  }
+}

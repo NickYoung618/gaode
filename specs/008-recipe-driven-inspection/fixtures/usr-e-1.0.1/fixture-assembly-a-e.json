@@ -1,0 +1,34 @@
+{
+  "schemaVersion": "station01-fixture/1.0",
+  "caseId": "ASSEMBLY-A-E",
+  "purpose": "Test",
+  "scenarioId": "S3",
+  "occupiedSlots": [
+    "P01"
+  ],
+  "recipeRef": {
+    "recipeId": "R008-ASSEMBLY-A-E",
+    "version": "1.0.1-test",
+    "catalogDigest": "B5DBC6F05D837866BDC5802A1FD340BCBF7C85B842AB3AAD15F70F0C1AD605E6"
+  },
+  "fCode": "TEST-TRAY-0207",
+  "availability": "Available",
+  "configRoot": "E:\\dzk\\gaode-1\\specs\\007-station01-integrated-loop\\examples",
+  "recipeCatalogPath": "E:\\dzk\\gaode-1\\specs\\008-recipe-driven-inspection\\fixtures\\recipes-assembly-a-e.json",
+  "imageManifestPath": "E:\\dzk\\gaode-1\\specs\\008-recipe-driven-inspection\\fixtures\\media-manifest-assembly-a-e.json",
+  "workerManifestPath": "E:\\dzk\\gaode-1\\specs\\008-recipe-driven-inspection\\fixtures\\worker-manifest-assembly-a-e.json",
+  "workerScriptPath": "E:\\dzk\\gaode-1\\scripts\\virtual-station01-algorithm.py",
+  "publicConfigRef": {
+    "id": "s01-public-virtual-loop",
+    "version": "1.2.0"
+  },
+  "budgetRef": {
+    "id": "s01-budget-virtual-loop",
+    "version": "1.1.0"
+  },
+  "simulationRef": {
+    "id": "s01-sim-virtual-loop",
+    "version": "1.2.0"
+  },
+  "restrictions": []
+}

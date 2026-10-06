@@ -1,0 +1,19 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "s01-test-media-fixture/1.0",
+  "type": "array",
+  "items": {
+    "type": "object",
+    "additionalProperties": false,
+    "required": ["fixtureId", "relativePath", "contentType", "sha256", "enabled", "source", "purpose"],
+    "properties": {
+      "fixtureId": { "type": "string", "minLength": 1 },
+      "relativePath": { "type": "string", "minLength": 1 },
+      "contentType": { "type": "string", "minLength": 1 },
+      "sha256": { "type": "string", "pattern": "^[A-Fa-f0-9]{64}$" },
+      "enabled": { "type": "boolean" },
+      "source": { "const": "Simulated" },
+      "purpose": { "const": "Test" }
+    }
+  }
+}

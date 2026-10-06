@@ -1,0 +1,156 @@
+{
+  "schemaVersion": "010-replacement-coverage/1",
+  "preparedBeforeBaseline": true,
+  "equivalent": [
+    {
+      "boundary": "media-content",
+      "baseline": [
+        {
+          "path": "backend/tests/Gaode.Integration.Tests/Fixtures/RecipeExecution010/baseline-images.json",
+          "sha256": "2E5382B97C5479E34E5AC715EA7650DD5AF751EF9B299D5380B3A2E60A098D3D"
+        }
+      ],
+      "replacement": [
+        {
+          "path": "backend/tests/Gaode.Integration.Tests/Fixtures/RecipeExecution010/content-images.json",
+          "sha256": "D888F685D4E114F9A3DB4EE26C632D39148EB2FC2E79DF2C7F3B18F0758E4930"
+        },
+        {
+          "path": "backend/tests/Gaode.Integration.Tests/Fixtures/RecipeExecution010/media/C.png",
+          "sha256": "DD6C873D54B9E8C5C87C464E894A31002905C20C589A57096110B1781898FF1B"
+        },
+        {
+          "path": "backend/tests/Gaode.Integration.Tests/Fixtures/RecipeExecution010/media/D.png",
+          "sha256": "247880DA9E7E9A42DD649BFA71ACBBB1A4A5E5A2C6A1E223DF54FCC24EEE7DBF"
+        },
+        {
+          "path": "backend/tests/Gaode.Integration.Tests/Fixtures/RecipeExecution010/media/F.png",
+          "sha256": "F786C13FEDF1F7242050FA423A300B29B00657ED281850CBF22AA97C6343AD10"
+        },
+        {
+          "path": "backend/tests/Gaode.Integration.Tests/Fixtures/RecipeExecution010/media/ThreeD.png",
+          "sha256": "303BFEFF22F906E8EAA526E683F0AD8B7BAC94A1799F2747942E75BEA839F468"
+        }
+      ],
+      "proof": "actual CaptureId/current media SHA and sample contents; content differs, not only file names"
+    },
+    {
+      "boundary": "algorithm-implementation",
+      "baseline": [
+        {
+          "path": "scripts/virtual-station01-algorithm.py",
+          "sha256": "082D79314415422556E67A8DF9D99E895653BEE440C4C1CBBDC11C8A71319C44"
+        },
+        {
+          "path": "backend/tests/Gaode.Integration.Tests/Fixtures/RecipeExecution010/baseline-worker.json",
+          "sha256": "1AF7BEECBC69B1930398B6F00B1089C1303FE92CB12BEA806D0C52C51FDFFFE4"
+        }
+      ],
+      "replacement": [
+        {
+          "path": "scripts/010-content-sample-worker.py",
+          "sha256": "C7E0E90AA1A95B871C48EF0B9FB23D50425728DCE6A014E8183B46CAD256D940"
+        },
+        {
+          "path": "backend/tests/Gaode.Integration.Tests/Fixtures/RecipeExecution010/content-worker.json",
+          "sha256": "E9460AFCDD90708F37414322BFE3656929E67BEDF3C93F7A54B098EA30EF16B2"
+        }
+      ],
+      "proof": "independent content computation, Ready PID/script/config identity, eight same-contract results and ten releases"
+    },
+    {
+      "boundary": "coordinate-provider",
+      "baseline": [
+        {
+          "path": "backend/tests/Gaode.Integration.Tests/Fixtures/RecipeExecution010/baseline-catalog.json",
+          "sha256": "D01CAFCD9B7137693270E86C6DE0B30E070BA20FF5E6CCD54C4EB769C6912EBE"
+        }
+      ],
+      "replacement": [
+        {
+          "path": "backend/tests/Gaode.Integration.Tests/Fixtures/RecipeExecution010/coordinates.csv",
+          "sha256": "3F79057500F113CFFFE14ECE8674BC45F661F1C7BD8D089780DDC27CA76E8155"
+        },
+        {
+          "path": "backend/tests/Gaode.Integration.Tests/Fixtures/RecipeExecution010/semantic-catalog.json",
+          "sha256": "2CD09AA2D62F7ACDC97B40D33BA6B0C33B6625CCAF26B600DF049CD05EE18AF6"
+        }
+      ],
+      "proof": "CSV decoding and separate table source; same measurement relation and independent 111 mm targets"
+    },
+    {
+      "boundary": "catalog-and-code-decoding",
+      "baseline": [
+        {
+          "path": "backend/tests/Gaode.Integration.Tests/Fixtures/RecipeExecution010/baseline-catalog.json",
+          "sha256": "D01CAFCD9B7137693270E86C6DE0B30E070BA20FF5E6CCD54C4EB769C6912EBE"
+        }
+      ],
+      "replacement": [
+        {
+          "path": "backend/tests/Gaode.Integration.Tests/Fixtures/RecipeExecution010/semantic-catalog.json",
+          "sha256": "2CD09AA2D62F7ACDC97B40D33BA6B0C33B6625CCAF26B600DF049CD05EE18AF6"
+        },
+        {
+          "path": "backend/tests/Gaode.Integration.Tests/Fixtures/RecipeExecution010/code-map.json",
+          "sha256": "969F54726872E2413F319CF6C4346CE5868D22ACFACF5E43A53B180C9ACE043F"
+        }
+      ],
+      "proof": "different syntax, F raw code and selected recipe identity; common validator/resolver unchanged"
+    },
+    {
+      "boundary": "formal-bindings",
+      "baseline": [
+        {
+          "path": "backend/tests/Gaode.Integration.Tests/Fixtures/RecipeExecution010/baseline.json",
+          "sha256": "39B4510DED16C2AD15EE37DB7DE29CBE22E980E31474465B41ED15EF00A4E928"
+        }
+      ],
+      "replacement": [
+        {
+          "path": "backend/tests/Gaode.Integration.Tests/Fixtures/RecipeExecution010/equivalent.json",
+          "sha256": "0E73502F111C43A4F32F2C6FA7FFB3C0131F41E6A631C3BFF93AB912A84396F1"
+        }
+      ],
+      "proof": "formal Host registers same RecipeDetectionExecutor and binds alternate catalog/parser/coordinates/worker at leaves"
+    }
+  ],
+  "sharedS": {
+    "caseId": "V04-V06-AssemblyNgPending",
+    "dataRowId": "default",
+    "stage": "after-freeze-only",
+    "inputs": [
+      {
+        "path": "specs/008-recipe-driven-inspection/fixtures/recipes-assembly-a-e.json",
+        "sha256": "B5DBC6F05D837866BDC5802A1FD340BCBF7C85B842AB3AAD15F70F0C1AD605E6"
+      },
+      {
+        "path": "specs/008-recipe-driven-inspection/fixtures/media-manifest-assembly-a-e.json",
+        "sha256": "6655DB7F33853CED2BCF269CD607AC6E845D83F9F9CC207830B1BACB0FF3B789"
+      },
+      {
+        "path": "specs/008-recipe-driven-inspection/fixtures/worker-manifest-assembly-a-e-ng.json",
+        "sha256": "3385AF934D18E78F2F517F4A161D9906468AECD0388A60E0DB7621BF8B6A43EF"
+      },
+      {
+        "path": "backend/tests/Gaode.Integration.Tests/Support/AssemblyComponentExecution.cs",
+        "sha256": "D5B1A5598A4C96F6898A39AA817E99A20083B883A9B8CF0B29CE2B698B6F28F5",
+        "meaning": "declared component height11/sample-a,b; actual common executor, no claimed public3D/F"
+      }
+    ],
+    "expected": {
+      "M01face1": "NG",
+      "M01face2": "Pending",
+      "M02face1": "OK",
+      "entityQuality": "NG",
+      "flipCount": 1,
+      "physicalSortCount": 1,
+      "keepPartAndFaceDetail": true
+    }
+  },
+  "independentExpected": {
+    "path": "backend/tests/Gaode.Integration.Tests/Fixtures/RecipeExecution010/independent-expectations.json",
+    "sha256": "733F7FBD6AC7EBFE6151A83E672BEF7880B1175F16F16F04ADBE569D55A4CE3A"
+  },
+  "status": "Prepared_NotExecuted"
+}

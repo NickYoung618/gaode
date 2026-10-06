@@ -1,0 +1,37 @@
+{
+  "schemaVersion": "station01-fixture/1.0",
+  "caseId": "Q01-PARAM",
+  "purpose": "Test",
+  "scenarioId": "S1",
+  "occupiedSlots": [
+    "P01",
+    "P03"
+  ],
+  "recipeRef": {
+    "recipeId": "R008-Q01",
+    "version": "1.2.0-test",
+    "catalogDigest": "C1DC2D242E2597049AD8290181CB48B0427A6018DB850590E0982DC732D20478"
+  },
+  "fCode": "TEST-TRAY-0101",
+  "availability": "Available",
+  "configRoot": "E:\\dzk\\gaode-1\\specs\\007-station01-integrated-loop\\examples",
+  "recipeCatalogPath": "E:\\dzk\\gaode-1\\specs\\008-recipe-driven-inspection\\fixtures\\recipes-q01-param.json",
+  "imageManifestPath": "E:\\dzk\\gaode-1\\specs\\008-recipe-driven-inspection\\fixtures\\media-manifest-q01-param.json",
+  "workerManifestPath": "E:\\dzk\\gaode-1\\specs\\008-recipe-driven-inspection\\fixtures\\worker-manifest-q01-param.json",
+  "workerScriptPath": "E:\\dzk\\gaode-1\\scripts\\virtual-station01-algorithm.py",
+  "publicConfigRef": {
+    "id": "s01-public-virtual-loop",
+    "version": "1.2.0"
+  },
+  "budgetRef": {
+    "id": "s01-budget-virtual-loop",
+    "version": "1.1.0"
+  },
+  "simulationRef": {
+    "id": "s01-sim-virtual-loop",
+    "version": "1.2.0"
+  },
+  "restrictions": [
+    "TestVirtualOnly;ProductionCalibrationNotApproved"
+  ]
+}

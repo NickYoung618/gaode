@@ -1,0 +1,17 @@
+<Project Sdk="Microsoft.NET.Sdk.Web">
+
+  <PropertyGroup>
+    <TargetFramework>net10.0</TargetFramework>
+    <Nullable>enable</Nullable>
+    <ImplicitUsings>enable</ImplicitUsings>
+    <InvariantGlobalization>true</InvariantGlobalization>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <Compile Include="../backend/src/Gaode.Infrastructure/Devices/Plc/ThreadPoolRuntimePolicy.cs" Link="Diagnostics/ThreadPoolRuntimePolicy.cs" />
+    <Compile Include="../backend/src/Gaode.Infrastructure/Devices/Plc/HeartbeatDiagnosticWindow.cs"
+             Link="Diagnostics/HeartbeatDiagnosticWindow.cs" />
+  </ItemGroup>
+
+  <ItemGroup><ProjectReference Include="../backend/src/Gaode.Plc.Protocol/Gaode.Plc.Protocol.csproj" /></ItemGroup>
+</Project>

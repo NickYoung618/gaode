@@ -1,0 +1,518 @@
+{
+  "schemaVersion": "recipe-catalog-snapshot/1",
+  "definitions": [
+    {
+      "schemaVersion": "recipe-definition/5",
+      "recipeId": "",
+      "version": "",
+      "definitionDigest": "",
+      "catalogDigest": "",
+      "releaseStatus": "draft",
+      "scenarioId": "011-joint",
+      "model": "011-TestModel",
+      "fCode": "011-TEST-TRAY-1",
+      "unitKind": "independentPart",
+      "primaryMaterial": "part",
+      "layoutProfile": "011-Test-tray",
+      "capacity": 3,
+      "positions": [
+        {
+          "slotId": "s1",
+          "physicalSlotIndex": 1,
+          "unitPattern": "{TrayRunId}/s1",
+          "members": [
+            {
+              "material": "part",
+              "memberPattern": "{UnitId}/part",
+              "handling": "individual"
+            }
+          ],
+          "cellId": "r2:c4"
+        },
+        {
+          "slotId": "s2",
+          "physicalSlotIndex": 2,
+          "unitPattern": "{TrayRunId}/s2",
+          "members": [
+            {
+              "material": "part",
+              "memberPattern": "{UnitId}/part",
+              "handling": "individual"
+            }
+          ],
+          "cellId": "r2:c5"
+        },
+        {
+          "slotId": "s3",
+          "physicalSlotIndex": 3,
+          "unitPattern": "{TrayRunId}/s3",
+          "members": [
+            {
+              "material": "part",
+              "memberPattern": "{UnitId}/part",
+              "handling": "individual"
+            }
+          ],
+          "cellId": "r2:c6"
+        }
+      ],
+      "composition": [
+        {
+          "material": "part",
+          "localFaces": [
+            1
+          ]
+        }
+      ],
+      "route": "ordinaryBatch",
+      "stages": [
+        {
+          "number": 1,
+          "action": "none",
+          "angleDeg": null,
+          "targets": [
+            {
+              "material": "part",
+              "localFace": 1,
+              "cameraPair": "AB",
+              "captureProfile": "detect",
+              "algorithmProfile": "defect"
+            }
+          ]
+        }
+      ],
+      "eCode": {
+        "enabled": false,
+        "representativeMaterial": null,
+        "bindTo": null,
+        "requiredForOk": false,
+        "readAt": null
+      },
+      "disposition": {
+        "ok": "originalSlot",
+        "ng": "NG",
+        "pending": "Pending",
+        "physicalUnit": "singlePart"
+      },
+      "motionProfile": "011-motion",
+      "qualityProfile": "011-quality",
+      "captureProfiles": {
+        "detect": {
+          "id": "detect",
+          "version": "011-Test-1",
+          "settings": {
+            "profileId": "detect",
+            "exposureUs": 500,
+            "gain": 1,
+            "roiPixels": [
+              0,
+              0,
+              1,
+              1
+            ],
+            "lightChannel": "detection-light",
+            "brightnessPercent": 30,
+            "settleMs": 0
+          }
+        }
+      },
+      "algorithmRequirements": {
+        "defect": {
+          "id": "defect",
+          "parametersVersion": "011-Test-1",
+          "purpose": "SingleDetection",
+          "inputCount": 1,
+          "resultContract": "image-quality/1"
+        },
+        "defect/fusion": {
+          "id": "defect/fusion",
+          "parametersVersion": "011-Test-1",
+          "purpose": "FaceFusion",
+          "inputCount": 2,
+          "resultContract": "face-quality/1"
+        }
+      },
+      "approval": {
+        "id": "014-explicit-software-input",
+        "version": "1",
+        "digest": "014-software-input-v1",
+        "purpose": "Test",
+        "allowedSlots": [
+          "s1",
+          "s2",
+          "s3"
+        ],
+        "evidenceReference": "014 current authorized representative Test input; no site or production approval"
+      },
+      "executionPositions": {
+        "s1": {
+          "slotId": "s1",
+          "physicalEntity": {
+            "source": {
+              "point": {
+                "id": "016-origin-s1",
+                "version": "011-Test-1",
+                "x": 110,
+                "y": 100,
+                "unit": "mm",
+                "frame": "SIM_MACHINE",
+                "z": 50
+              },
+              "coordinateEvidenceReference": "Test:016-declared-grab-points/1"
+            },
+            "coordinates": [
+              {
+                "pointRef": "ordinary-A",
+                "point": {
+                  "id": "016-detection-1-A",
+                  "version": "011-Test-1",
+                  "x": 110,
+                  "y": 100,
+                  "unit": "mm",
+                  "frame": "SIM_MACHINE"
+                },
+                "objectPattern": "{UnitId}/part",
+                "slotId": "s1",
+                "physicalSlotIndex": 1,
+                "localFace": 1,
+                "camera": "A",
+                "stageId": "stage:1",
+                "configurationVersion": "011-Test-1",
+                "sourceFactReference": "Test:016-declared-detection-points/1",
+                "fixed": {
+                  "z": 51,
+                  "unit": "mm",
+                  "datum": "SIM_MACHINE",
+                  "approvalReference": "011-joint-Test-only",
+                  "configurationVersion": "011-Test-1"
+                },
+                "captureProfile": "detect"
+              },
+              {
+                "pointRef": "ordinary-B",
+                "point": {
+                  "id": "016-detection-1-B",
+                  "version": "011-Test-1",
+                  "x": 110,
+                  "y": 100,
+                  "unit": "mm",
+                  "frame": "SIM_MACHINE"
+                },
+                "objectPattern": "{UnitId}/part",
+                "slotId": "s1",
+                "physicalSlotIndex": 1,
+                "localFace": 1,
+                "camera": "B",
+                "stageId": "stage:1",
+                "configurationVersion": "011-Test-1",
+                "sourceFactReference": "Test:016-declared-detection-points/1",
+                "fixed": {
+                  "z": 51,
+                  "unit": "mm",
+                  "datum": "SIM_MACHINE",
+                  "approvalReference": "011-joint-Test-only",
+                  "configurationVersion": "011-Test-1"
+                },
+                "captureProfile": "detect"
+              }
+            ],
+            "flip": null,
+            "rotation": null,
+            "sorting": {},
+            "purposePoints": {},
+            "sortingCellIds": {
+              "NG": "r2:c1",
+              "Pending": "r2:c10"
+            }
+          },
+          "members": {}
+        },
+        "s2": {
+          "slotId": "s2",
+          "physicalEntity": {
+            "source": {
+              "point": {
+                "id": "016-origin-s2",
+                "version": "011-Test-1",
+                "x": 130,
+                "y": 100,
+                "unit": "mm",
+                "frame": "SIM_MACHINE",
+                "z": 50
+              },
+              "coordinateEvidenceReference": "Test:016-declared-grab-points/1"
+            },
+            "coordinates": [
+              {
+                "pointRef": "ordinary-A",
+                "point": {
+                  "id": "016-detection-2-A",
+                  "version": "011-Test-1",
+                  "x": 130,
+                  "y": 100,
+                  "unit": "mm",
+                  "frame": "SIM_MACHINE"
+                },
+                "objectPattern": "{UnitId}/part",
+                "slotId": "s2",
+                "physicalSlotIndex": 2,
+                "localFace": 1,
+                "camera": "A",
+                "stageId": "stage:1",
+                "configurationVersion": "011-Test-1",
+                "sourceFactReference": "Test:016-declared-detection-points/1",
+                "fixed": {
+                  "z": 51,
+                  "unit": "mm",
+                  "datum": "SIM_MACHINE",
+                  "approvalReference": "011-joint-Test-only",
+                  "configurationVersion": "011-Test-1"
+                },
+                "captureProfile": "detect"
+              },
+              {
+                "pointRef": "ordinary-B",
+                "point": {
+                  "id": "016-detection-2-B",
+                  "version": "011-Test-1",
+                  "x": 130,
+                  "y": 100,
+                  "unit": "mm",
+                  "frame": "SIM_MACHINE"
+                },
+                "objectPattern": "{UnitId}/part",
+                "slotId": "s2",
+                "physicalSlotIndex": 2,
+                "localFace": 1,
+                "camera": "B",
+                "stageId": "stage:1",
+                "configurationVersion": "011-Test-1",
+                "sourceFactReference": "Test:016-declared-detection-points/1",
+                "fixed": {
+                  "z": 51,
+                  "unit": "mm",
+                  "datum": "SIM_MACHINE",
+                  "approvalReference": "011-joint-Test-only",
+                  "configurationVersion": "011-Test-1"
+                },
+                "captureProfile": "detect"
+              }
+            ],
+            "flip": null,
+            "rotation": null,
+            "sorting": {},
+            "purposePoints": {},
+            "sortingCellIds": {
+              "NG": "r2:c1",
+              "Pending": "r2:c9"
+            }
+          },
+          "members": {}
+        },
+        "s3": {
+          "slotId": "s3",
+          "physicalEntity": {
+            "source": {
+              "point": {
+                "id": "016-origin-s3",
+                "version": "011-Test-1",
+                "x": 150,
+                "y": 100,
+                "unit": "mm",
+                "frame": "SIM_MACHINE",
+                "z": 50
+              },
+              "coordinateEvidenceReference": "Test:016-declared-grab-points/1"
+            },
+            "coordinates": [
+              {
+                "pointRef": "ordinary-A",
+                "point": {
+                  "id": "016-detection-3-A",
+                  "version": "011-Test-1",
+                  "x": 150,
+                  "y": 100,
+                  "unit": "mm",
+                  "frame": "SIM_MACHINE"
+                },
+                "objectPattern": "{UnitId}/part",
+                "slotId": "s3",
+                "physicalSlotIndex": 3,
+                "localFace": 1,
+                "camera": "A",
+                "stageId": "stage:1",
+                "configurationVersion": "011-Test-1",
+                "sourceFactReference": "Test:016-declared-detection-points/1",
+                "fixed": {
+                  "z": 51,
+                  "unit": "mm",
+                  "datum": "SIM_MACHINE",
+                  "approvalReference": "011-joint-Test-only",
+                  "configurationVersion": "011-Test-1"
+                },
+                "captureProfile": "detect"
+              },
+              {
+                "pointRef": "ordinary-B",
+                "point": {
+                  "id": "016-detection-3-B",
+                  "version": "011-Test-1",
+                  "x": 150,
+                  "y": 100,
+                  "unit": "mm",
+                  "frame": "SIM_MACHINE"
+                },
+                "objectPattern": "{UnitId}/part",
+                "slotId": "s3",
+                "physicalSlotIndex": 3,
+                "localFace": 1,
+                "camera": "B",
+                "stageId": "stage:1",
+                "configurationVersion": "011-Test-1",
+                "sourceFactReference": "Test:016-declared-detection-points/1",
+                "fixed": {
+                  "z": 51,
+                  "unit": "mm",
+                  "datum": "SIM_MACHINE",
+                  "approvalReference": "011-joint-Test-only",
+                  "configurationVersion": "011-Test-1"
+                },
+                "captureProfile": "detect"
+              }
+            ],
+            "flip": null,
+            "rotation": null,
+            "sorting": {},
+            "purposePoints": {},
+            "sortingCellIds": {
+              "NG": "r2:c1",
+              "Pending": "r2:c8"
+            }
+          },
+          "members": {}
+        }
+      },
+      "sortingGripperId": 1,
+      "inspectionKind": "ordinary",
+      "ngCapacity": 1,
+      "pendingCapacity": 3,
+      "trayLayout": {
+        "rows": 10,
+        "columns": 10,
+        "cells": [
+          {
+            "cellId": "r2:c1",
+            "row": 2,
+            "column": 1,
+            "region": "NG"
+          },
+          {
+            "cellId": "r2:c10",
+            "row": 2,
+            "column": 10,
+            "region": "Pending"
+          },
+          {
+            "cellId": "r2:c4",
+            "row": 2,
+            "column": 4,
+            "region": "OK"
+          },
+          {
+            "cellId": "r2:c5",
+            "row": 2,
+            "column": 5,
+            "region": "OK"
+          },
+          {
+            "cellId": "r2:c6",
+            "row": 2,
+            "column": 6,
+            "region": "OK"
+          },
+          {
+            "cellId": "r2:c8",
+            "row": 2,
+            "column": 8,
+            "region": "Pending"
+          },
+          {
+            "cellId": "r2:c9",
+            "row": 2,
+            "column": 9,
+            "region": "Pending"
+          }
+        ]
+      },
+      "traySlotMapping": {
+        "id": "014-explicit-software-cell-map",
+        "version": "software-1",
+        "evidenceReference": "configuration/recipe-authoring/source-manifest.json; explicit virtual grid r2:c4 -> physical 1, not hardware mapping",
+        "bindings": [
+          {
+            "cellId": "r2:c4",
+            "physicalSlotIndex": 1
+          },
+          {
+            "cellId": "r2:c5",
+            "physicalSlotIndex": 2
+          },
+          {
+            "cellId": "r2:c6",
+            "physicalSlotIndex": 3
+          }
+        ]
+      },
+      "sortingTargets": {
+        "r2:c1": {
+          "point": {
+            "id": "NG-1",
+            "version": "011-Test-1",
+            "x": 310,
+            "y": 150,
+            "unit": "mm",
+            "frame": "SIM_MACHINE",
+            "z": 50
+          },
+          "coordinateEvidenceReference": "011-joint/Test-configured-coordinate"
+        },
+        "r2:c10": {
+          "point": {
+            "id": "Pending-1",
+            "version": "011-Test-1",
+            "x": 350,
+            "y": 150,
+            "unit": "mm",
+            "frame": "SIM_MACHINE",
+            "z": 50
+          },
+          "coordinateEvidenceReference": "011-joint/Test-configured-coordinate"
+        },
+        "r2:c8": {
+          "point": {
+            "id": "016-Pending-r2:c8",
+            "version": "011-Test-1",
+            "x": 410,
+            "y": 150,
+            "unit": "mm",
+            "frame": "SIM_MACHINE",
+            "z": 50
+          },
+          "coordinateEvidenceReference": "Test:016-declared-pending-points/1"
+        },
+        "r2:c9": {
+          "point": {
+            "id": "016-Pending-r2:c9",
+            "version": "011-Test-1",
+            "x": 380,
+            "y": 150,
+            "unit": "mm",
+            "frame": "SIM_MACHINE",
+            "z": 50
+          },
+          "coordinateEvidenceReference": "Test:016-declared-pending-points/1"
+        }
+      }
+    }
+  ]
+}

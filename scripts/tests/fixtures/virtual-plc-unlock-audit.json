@@ -1,0 +1,111 @@
+{
+  "source": "Q01-20260929-流程记录与解锁诊断.zip",
+  "sourceSha256": "d3cbfee89375b70c117c4bd40b2f9847ebe366ee8a3b4a959ea511db8f03c152",
+  "scope": "Unmodified selected records, not a complete audit export",
+  "audit": {
+    "oldestSequence": 155,
+    "latestSequence": 155,
+    "gap": false,
+    "writes": [
+      {
+        "occurredAtUtc": "2026-09-29T08:31:09.420737+00:00",
+        "area": 1,
+        "documentNumber": 35,
+        "value": 0,
+        "accepted": true,
+        "rejectionReason": null,
+        "requestHex": "177100000006010600220000",
+        "responseHex": "177100000006010600220000",
+        "responseSentAtUtc": "2026-09-29T08:31:09.420792+00:00",
+        "sequence": 155,
+        "connectionId": "d9ef8e97-ce34-43c7-9cb7-97edc40ab3d4",
+        "transactionId": 6001,
+        "function": 6,
+        "byteOrder": "ABCD",
+        "receipt": "Accepted",
+        "startAddress": 34,
+        "count": 1,
+        "receivedAtUtc": "2026-09-29T08:31:09.4207119+00:00",
+        "pduOffset": 34,
+        "rawWords": [
+          0
+        ],
+        "registerCount": 1
+      }
+    ],
+    "actions": [
+      {
+        "sequence": 23,
+        "actionSequence": 12,
+        "generation": 0,
+        "occurredAtUtc": "2026-09-29T08:31:09.7673773+00:00",
+        "kind": "PalletLock",
+        "command": 0,
+        "phase": "accepted",
+        "writeSequenceRefs": [
+          155
+        ],
+        "target": null,
+        "axisRole": null,
+        "actual": {
+          "x": 300,
+          "y": 100,
+          "z": 150
+        },
+        "handshake": {
+          "xy": 1,
+          "z": 0,
+          "sort": 0,
+          "flip": 0,
+          "zReset": 0
+        }
+      },
+      {
+        "sequence": 24,
+        "actionSequence": 12,
+        "generation": 0,
+        "occurredAtUtc": "2026-09-29T08:31:11.1236862+00:00",
+        "kind": "PalletLock",
+        "command": 0,
+        "phase": "completed",
+        "writeSequenceRefs": [
+          155
+        ],
+        "target": null,
+        "axisRole": null,
+        "actual": {
+          "x": 300,
+          "y": 100,
+          "z": 150
+        },
+        "handshake": {
+          "xy": 1,
+          "z": 0,
+          "sort": 0,
+          "flip": 0,
+          "zReset": 0
+        }
+      }
+    ],
+    "actionOldestSequence": 23,
+    "actionLatestSequence": 24
+  },
+  "changes": {
+    "oldestSequence": 310,
+    "latestSequence": 310,
+    "gap": false,
+    "changes": [
+      {
+        "sequence": 310,
+        "occurredAtUtc": "2026-09-29T08:31:11.1235355+00:00",
+        "area": 1,
+        "address": "4x0024",
+        "name": "Pallet_Lock_Status",
+        "direction": 1,
+        "previous": "1",
+        "current": "0",
+        "writer": "PLC"
+      }
+    ]
+  }
+}

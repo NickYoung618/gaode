@@ -1,0 +1,92 @@
+{
+  "scope": "B02LightweightOnly",
+  "result": "Passed",
+  "currentCredential": "E:\\dzk\\gaode-1\\artifacts\\recipe-execution-010\\bug-010-b02-early-return-76d2915a436f47c7846b7e0b1ad4898a\\L",
+  "currentAttempt": "05b32b1cdcb244d98b43886ccbaff99c",
+  "required": 70,
+  "discovered": 70,
+  "executed": 70,
+  "passed": 70,
+  "skipped": 0,
+  "dotnet": 27,
+  "newCases": [
+    {
+      "caseId": "N02-return-direct",
+      "dataRow": "sample: \"N02-return-direct\"",
+      "outcome": "Passed"
+    },
+    {
+      "caseId": "N02-return-helper-alias",
+      "dataRow": "sample: \"N02-return-helper-alias\"",
+      "outcome": "Passed"
+    },
+    {
+      "caseId": "P-return-throw",
+      "dataRow": "sample: \"P-return-throw\"",
+      "outcome": "Passed"
+    },
+    {
+      "caseId": "P-return-rejected-result",
+      "dataRow": "sample: \"P-return-rejected-result\"",
+      "outcome": "Passed"
+    },
+    {
+      "caseId": "P-return-origin-log",
+      "dataRow": "sample: \"P-return-origin-log\"",
+      "outcome": "Passed"
+    },
+    {
+      "caseId": "P-return-business",
+      "dataRow": "sample: \"P-return-business\"",
+      "outcome": "Passed"
+    }
+  ],
+  "finalGateNegative": [
+    {
+      "mode": "missing",
+      "row": "N02-return-direct",
+      "passed": false,
+      "errors": [
+        "TrxDataRowMissingOrDuplicate:Gaode.Rules.Tests.Architecture.RecipeExecutionBoundaryTests.EnvironmentalEarlyReturnIsRejected(sample: \"N02-return-direct\")",
+        "MissingOrDuplicateExecution:N02-return-direct"
+      ],
+      "evidence": "E:\\dzk\\gaode-1\\.specify\\bugs\\010-b02-early-return\\final-gate-negative\\missing\\rejection.json"
+    },
+    {
+      "mode": "not-executed",
+      "row": "N02-return-direct",
+      "passed": false,
+      "errors": [
+        "TrxNonPassing:notExecuted",
+        "NotDiscoveredExecutedPassed:N02-return-direct"
+      ],
+      "evidence": "E:\\dzk\\gaode-1\\.specify\\bugs\\010-b02-early-return\\final-gate-negative\\not-executed\\rejection.json"
+    }
+  ],
+  "productSourceFilesCompared": 228,
+  "productSourceChanged": false,
+  "protectedFilesUnchanged": true,
+  "historicalEvidenceFilesCompared": 1182,
+  "historicalEvidenceUnchanged": true,
+  "historicalFreezeMatchesCurrent": false,
+  "sourceChangesFromHistoricalFreeze": [
+    "backend/tests/Gaode.Rules.Tests/Architecture/RecipeExecutionBoundaryChecker.cs",
+    "backend/tests/Gaode.Rules.Tests/Architecture/RecipeExecutionBoundaryTests.cs",
+    "scripts/workflow/010-lightweight-cases.json",
+    "specs/010-recipe-execution-isolation/contracts/verification.md",
+    "specs/010-recipe-execution-isolation/quickstart.md"
+  ],
+  "fullDynamicAggregationReexecuted": false,
+  "notExecuted": [
+    "Host",
+    "PLC",
+    "Worker",
+    "Database",
+    "B",
+    "E",
+    "S",
+    "T",
+    "full-suite",
+    "whole-machine"
+  ]
+}

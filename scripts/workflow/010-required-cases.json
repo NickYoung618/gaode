@@ -1,0 +1,3858 @@
+{
+  "schemaVersion": "010-required-cases/1",
+  "scope": "RecipeExecution010",
+  "preparationOrder": [
+    "inputs-oracles-manifests",
+    "B",
+    "freeze",
+    "E",
+    "S",
+    "V07"
+  ],
+  "requiredFiles": [
+    "scripts/workflow/recipe_execution_010.py",
+    "scripts/workflow/test_recipe_execution_010.py",
+    "scripts/workflow/migration_audit.py",
+    "scripts/architecture/010-script-boundary-cases.json",
+    "backend/tests/Gaode.Rules.Tests/Architecture/RecipeExecutionBoundaryChecker.cs",
+    "backend/tests/Gaode.Rules.Tests/Architecture/RecipeExecutionBoundaryTests.cs",
+    "backend/tests/Gaode.Rules.Tests/Architecture/009-boundary-inventory.json",
+    "backend/tests/Gaode.Rules.Tests/Architecture/009-public-shapes.json",
+    "backend/tests/Gaode.Rules.Tests/Architecture/010-test-obligations.json",
+    "backend/tests/Gaode.Integration.Tests/Fixtures/RecipeExecution010/independent-expectations.json",
+    "backend/tests/Gaode.Integration.Tests/Fixtures/RecipeExecution010/replacement-coverage.json"
+  ],
+  "cases": [
+    {
+      "caseId": "V05-CommonFullRun",
+      "set": "B",
+      "verification": "V05",
+      "kind": "dotnet",
+      "suite": "Gaode.Integration.Tests",
+      "method": "Gaode.Integration.Tests.Station01.ThreeStageMainFlowIntegrationTests.CommittedV2HandoffContinuesThroughThreeStagesOverFormalTcpAndSqlite",
+      "dataRowId": "0",
+      "dataRow": null,
+      "sourceInlineData": "Fact",
+      "path": "backend/tests/Gaode.Integration.Tests/Station01/ThreeStageMainFlowIntegrationTests.cs",
+      "evidenceLevel": "FullRun",
+      "requiredEvidence": [
+        "trx",
+        "discovery",
+        "current-context"
+      ],
+      "obligations": [
+        "MIG-SimulatedAdapterPreservesInputOutputVersionAndEvidenceWithoutTouchingPlc",
+        "MIG-MainFlowPersistsWholeTrayUnlockAndManualCompletionInOrder",
+        "MIG-EvidenceEndpointReturnsComponentSourcesWithoutCollapsingMixedEvidenceToReal",
+        "MIG-AbThenCdExecuteThroughVirtualPlcWorkerMediaAndSqlite",
+        "MIG-AuthenticatedManualConfirmationIsTheOnlyStepThatCreatesFinalUnloadCompletion",
+        "MIG-DetectionCanOnlyStartFromCommittedMatchingV2Handoff",
+        "MIG-TwoGroupsKeepCompletedMembersAndRunIndependentTargetsThroughRealPorts",
+        "MIG-FourFaceGroupsUseSourceCompositionAndDistinctETargets",
+        "MIG-CommittedV2HandoffContinuesThroughThreeStagesOverFormalTcpAndSqlite",
+        "MIG-TestManualActorRetainsActualOriginWhileFinalIsHostDerived",
+        "SRC-05b",
+        "SRC-05c",
+        "SRC-11b",
+        "SRC-12",
+        "SRC-13a",
+        "SRC-13b",
+        "SRC-14"
+      ]
+    },
+    {
+      "caseId": "V03/SingleFaceDetectionIntegrationTests.AbThenCdExecuteThroughVirtualPlcWorkerMediaAndSqlite/0",
+      "set": "B",
+      "verification": "V03",
+      "kind": "dotnet",
+      "suite": "Gaode.Integration.Tests",
+      "method": "Gaode.Integration.Tests.Devices.SingleFaceDetectionIntegrationTests.AbThenCdExecuteThroughVirtualPlcWorkerMediaAndSqlite",
+      "dataRowId": "0",
+      "dataRow": null,
+      "sourceInlineData": "Fact",
+      "path": "backend/tests/Gaode.Integration.Tests/CommunicationFixtures/SingleFaceDetectionIntegrationTests.Wire.cs",
+      "evidenceLevel": "PortComponent",
+      "requiredEvidence": [
+        "trx",
+        "discovery",
+        "current-context"
+      ],
+      "obligations": [
+        "MIG-CapturePortRejectsMissingCommittedIntentBeforeSchedulingCallback",
+        "MIG-SimulatedAdapterPreservesInputOutputVersionAndEvidenceWithoutTouchingPlc",
+        "MIG-AbThenCdExecuteThroughVirtualPlcWorkerMediaAndSqlite",
+        "MIG-FrozenTestManifestSelectsDistinctReadableAAndBMedia",
+        "SRC-06",
+        "SRC-07c",
+        "SRC-14"
+      ]
+    },
+    {
+      "caseId": "V01/FormalHostCompositionTests.FormalHostCompositionUsesOneDeviceAndRealStageAndEvidenceProducers/0",
+      "set": "B",
+      "verification": "V01",
+      "kind": "dotnet",
+      "suite": "Gaode.Integration.Tests",
+      "method": "Gaode.Integration.Tests.CommunicationFixtures.FormalHostCompositionTests.FormalHostCompositionUsesOneDeviceAndRealStageAndEvidenceProducers",
+      "dataRowId": "0",
+      "dataRow": "imageManifest: \"media-manifest.json\"",
+      "sourceInlineData": "\"media-manifest.json\"",
+      "path": "backend/tests/Gaode.Integration.Tests/CommunicationFixtures/FormalHostCompositionTests.cs",
+      "evidenceLevel": "PortComponent",
+      "requiredEvidence": [
+        "trx",
+        "discovery",
+        "current-context"
+      ],
+      "obligations": [
+        "MIG-ProductionRequestIsExplicitlyRejectedWithoutSimulatedSuccess",
+        "MIG-MissingExpectedObjectsDoesNotFabricateResults",
+        "MIG-ProductionSourceCannotUseSimulatedStageEvidence",
+        "MIG-FormalHostCompositionUsesOneDeviceAndRealStageAndEvidenceProducers"
+      ]
+    },
+    {
+      "caseId": "V01/FormalHostCompositionTests.FormalHostCompositionUsesOneDeviceAndRealStageAndEvidenceProducers/1",
+      "set": "B",
+      "verification": "V01",
+      "kind": "dotnet",
+      "suite": "Gaode.Integration.Tests",
+      "method": "Gaode.Integration.Tests.CommunicationFixtures.FormalHostCompositionTests.FormalHostCompositionUsesOneDeviceAndRealStageAndEvidenceProducers",
+      "dataRowId": "1",
+      "dataRow": "imageManifest: \"media-manifest-q02.json\"",
+      "sourceInlineData": "\"media-manifest-q02.json\"",
+      "path": "backend/tests/Gaode.Integration.Tests/CommunicationFixtures/FormalHostCompositionTests.cs",
+      "evidenceLevel": "PortComponent",
+      "requiredEvidence": [
+        "trx",
+        "discovery",
+        "current-context"
+      ],
+      "obligations": [
+        "MIG-ProductionRequestIsExplicitlyRejectedWithoutSimulatedSuccess",
+        "MIG-MissingExpectedObjectsDoesNotFabricateResults",
+        "MIG-ProductionSourceCannotUseSimulatedStageEvidence",
+        "MIG-FormalHostCompositionUsesOneDeviceAndRealStageAndEvidenceProducers"
+      ]
+    },
+    {
+      "caseId": "V02/ThreeStageMainFlowIntegrationTests.PersistedHandoffRecordsPendingMappingFailedAndUnknownHeldWithoutFalseCompletion/0",
+      "set": "B",
+      "verification": "V02",
+      "kind": "dotnet",
+      "suite": "Gaode.Integration.Tests",
+      "method": "Gaode.Integration.Tests.Station01.ThreeStageMainFlowIntegrationTests.PersistedHandoffRecordsPendingMappingFailedAndUnknownHeldWithoutFalseCompletion",
+      "dataRowId": "0",
+      "dataRow": "scenario: \"pending\"",
+      "sourceInlineData": "\"pending\"",
+      "path": "backend/tests/Gaode.Integration.Tests/Station01/ThreeStageMainFlowIntegrationTests.cs",
+      "evidenceLevel": "UpperIsolation",
+      "requiredEvidence": [
+        "trx",
+        "discovery",
+        "current-context"
+      ],
+      "obligations": [
+        "MIG-PersistedHandoffRecordsPendingMappingFailedAndUnknownHeldWithoutFalseCompletion"
+      ]
+    },
+    {
+      "caseId": "V02/ThreeStageMainFlowIntegrationTests.PersistedHandoffRecordsPendingMappingFailedAndUnknownHeldWithoutFalseCompletion/1",
+      "set": "B",
+      "verification": "V02",
+      "kind": "dotnet",
+      "suite": "Gaode.Integration.Tests",
+      "method": "Gaode.Integration.Tests.Station01.ThreeStageMainFlowIntegrationTests.PersistedHandoffRecordsPendingMappingFailedAndUnknownHeldWithoutFalseCompletion",
+      "dataRowId": "1",
+      "dataRow": "scenario: \"wrong-mapping\"",
+      "sourceInlineData": "\"wrong-mapping\"",
+      "path": "backend/tests/Gaode.Integration.Tests/Station01/ThreeStageMainFlowIntegrationTests.cs",
+      "evidenceLevel": "UpperIsolation",
+      "requiredEvidence": [
+        "trx",
+        "discovery",
+        "current-context"
+      ],
+      "obligations": [
+        "MIG-PersistedHandoffRecordsPendingMappingFailedAndUnknownHeldWithoutFalseCompletion",
+        "MIG-Current007AmbiguousDetectionMappingBlocksBeforeSorting"
+      ]
+    },
+    {
+      "caseId": "V02/ThreeStageMainFlowIntegrationTests.PersistedHandoffRecordsPendingMappingFailedAndUnknownHeldWithoutFalseCompletion/2",
+      "set": "B",
+      "verification": "V02",
+      "kind": "dotnet",
+      "suite": "Gaode.Integration.Tests",
+      "method": "Gaode.Integration.Tests.Station01.ThreeStageMainFlowIntegrationTests.PersistedHandoffRecordsPendingMappingFailedAndUnknownHeldWithoutFalseCompletion",
+      "dataRowId": "2",
+      "dataRow": "scenario: \"unknown-held\"",
+      "sourceInlineData": "\"unknown-held\"",
+      "path": "backend/tests/Gaode.Integration.Tests/Station01/ThreeStageMainFlowIntegrationTests.cs",
+      "evidenceLevel": "UpperIsolation",
+      "requiredEvidence": [
+        "trx",
+        "discovery",
+        "current-context"
+      ],
+      "obligations": [
+        "MIG-PersistedHandoffRecordsPendingMappingFailedAndUnknownHeldWithoutFalseCompletion"
+      ]
+    },
+    {
+      "caseId": "V02/RecipeEnvironmentDecoderTests.FixtureFCodeResolvesToReviewCatalogCode/0",
+      "set": "B",
+      "verification": "V02",
+      "kind": "dotnet",
+      "suite": "Gaode.Contracts.Tests",
+      "method": "Gaode.Contracts.Tests.Recipes.RecipeEnvironmentDecoderTests.FixtureFCodeResolvesToReviewCatalogCode",
+      "dataRowId": "0",
+      "dataRow": null,
+      "sourceInlineData": "Fact",
+      "path": "backend/tests/Gaode.Contracts.Tests/Recipes/RecipeEnvironmentDecoderTests.cs",
+      "evidenceLevel": "Component",
+      "requiredEvidence": [
+        "trx",
+        "discovery",
+        "current-context"
+      ],
+      "obligations": [
+        "MIG-FixtureFCodeResolvesToReviewCatalogCode"
+      ]
+    },
+    {
+      "caseId": "V02/RecipeEnvironmentDecoderTests.OtherFixtureCodesRemainStable/0",
+      "set": "B",
+      "verification": "V02",
+      "kind": "dotnet",
+      "suite": "Gaode.Contracts.Tests",
+      "method": "Gaode.Contracts.Tests.Recipes.RecipeEnvironmentDecoderTests.OtherFixtureCodesRemainStable",
+      "dataRowId": "0",
+      "dataRow": null,
+      "sourceInlineData": "Fact",
+      "path": "backend/tests/Gaode.Contracts.Tests/Recipes/RecipeEnvironmentDecoderTests.cs",
+      "evidenceLevel": "Component",
+      "requiredEvidence": [
+        "trx",
+        "discovery",
+        "current-context"
+      ],
+      "obligations": [
+        "MIG-OtherFixtureCodesRemainStable"
+      ]
+    },
+    {
+      "caseId": "V02/FinalUnloadCompletionIntegrationTests.AuthenticatedManualConfirmationIsTheOnlyStepThatCreatesFinalUnloadCompletion/0",
+      "set": "B",
+      "verification": "V02",
+      "kind": "dotnet",
+      "suite": "Gaode.Integration.Tests",
+      "method": "Gaode.Integration.Tests.Station01.FinalUnloadCompletionIntegrationTests.AuthenticatedManualConfirmationIsTheOnlyStepThatCreatesFinalUnloadCompletion",
+      "dataRowId": "0",
+      "dataRow": null,
+      "sourceInlineData": "Fact",
+      "path": "backend/tests/Gaode.Integration.Tests/Station01/FinalUnloadCompletionIntegrationTests.cs",
+      "evidenceLevel": "Component",
+      "requiredEvidence": [
+        "trx",
+        "discovery",
+        "current-context"
+      ],
+      "obligations": [
+        "MIG-AuthenticatedManualConfirmationIsTheOnlyStepThatCreatesFinalUnloadCompletion",
+        "SRC-13a"
+      ]
+    },
+    {
+      "caseId": "V02/PublicPreparationHandoffV2IntegrationTests.DetectionCanOnlyStartFromCommittedMatchingV2Handoff/0",
+      "set": "B",
+      "verification": "V02",
+      "kind": "dotnet",
+      "suite": "Gaode.Integration.Tests",
+      "method": "Gaode.Integration.Tests.Station01.PublicPreparationHandoffV2IntegrationTests.DetectionCanOnlyStartFromCommittedMatchingV2Handoff",
+      "dataRowId": "0",
+      "dataRow": null,
+      "sourceInlineData": "Fact",
+      "path": "backend/tests/Gaode.Integration.Tests/Station01/PublicPreparationHandoffV2IntegrationTests.cs",
+      "evidenceLevel": "StorageComponent",
+      "requiredEvidence": [
+        "trx",
+        "discovery",
+        "current-context"
+      ],
+      "obligations": [
+        "MIG-DetectionCanOnlyStartFromCommittedMatchingV2Handoff",
+        "SRC-05a"
+      ]
+    },
+    {
+      "caseId": "V02/CaptureCoordinationTests.EndedAndMediaTakenAreIndependentAndFirstOwnedBufferWins/0",
+      "set": "B",
+      "verification": "V02",
+      "kind": "dotnet",
+      "suite": "Gaode.Contracts.Tests",
+      "method": "Gaode.Contracts.Tests.Acquisition.CaptureCoordinationTests.EndedAndMediaTakenAreIndependentAndFirstOwnedBufferWins",
+      "dataRowId": "0",
+      "dataRow": null,
+      "sourceInlineData": "Fact",
+      "path": "backend/tests/Gaode.Contracts.Tests/Acquisition/CaptureCoordinationTests.cs",
+      "evidenceLevel": "Component",
+      "requiredEvidence": [
+        "trx",
+        "discovery",
+        "current-context"
+      ],
+      "obligations": [
+        "MIG-EndedAndMediaTakenAreIndependentAndFirstOwnedBufferWins",
+        "SRC-07a"
+      ]
+    },
+    {
+      "caseId": "V02/CaptureCoordinationTests.FrameWithoutEndedAndEndedWithoutContentCannotCrossCompletionGate/0",
+      "set": "B",
+      "verification": "V02",
+      "kind": "dotnet",
+      "suite": "Gaode.Contracts.Tests",
+      "method": "Gaode.Contracts.Tests.Acquisition.CaptureCoordinationTests.FrameWithoutEndedAndEndedWithoutContentCannotCrossCompletionGate",
+      "dataRowId": "0",
+      "dataRow": null,
+      "sourceInlineData": "Fact",
+      "path": "backend/tests/Gaode.Contracts.Tests/Acquisition/CaptureCoordinationTests.cs",
+      "evidenceLevel": "Component",
+      "requiredEvidence": [
+        "trx",
+        "discovery",
+        "current-context"
+      ],
+      "obligations": [
+        "MIG-FrameWithoutEndedAndEndedWithoutContentCannotCrossCompletionGate",
+        "SRC-07b"
+      ]
+    },
+    {
+      "caseId": "V02/MessageContractTests.RequiresEndedAndMediaAndRejectsCrossCaptureAssociation/0",
+      "set": "B",
+      "verification": "V02",
+      "kind": "dotnet",
+      "suite": "Gaode.Contracts.Tests",
+      "method": "Gaode.Contracts.Tests.Acquisition.MessageContractTests.RequiresEndedAndMediaAndRejectsCrossCaptureAssociation",
+      "dataRowId": "0",
+      "dataRow": null,
+      "sourceInlineData": "Fact",
+      "path": "backend/tests/Gaode.Contracts.Tests/Acquisition/MessageContractTests.cs",
+      "evidenceLevel": "Component",
+      "requiredEvidence": [
+        "trx",
+        "discovery",
+        "current-context"
+      ],
+      "obligations": [
+        "MIG-RequiresEndedAndMediaAndRejectsCrossCaptureAssociation",
+        "SRC-07d"
+      ]
+    },
+    {
+      "caseId": "V02/FaceResultAggregatorTests.AbAndCdPairOnlyWithinSameObjectFaceAndHeightRound/0",
+      "set": "B",
+      "verification": "V02",
+      "kind": "dotnet",
+      "suite": "Gaode.Contracts.Tests",
+      "method": "Gaode.Contracts.Tests.Recipes.FaceResultAggregatorTests.AbAndCdPairOnlyWithinSameObjectFaceAndHeightRound",
+      "dataRowId": "0",
+      "dataRow": null,
+      "sourceInlineData": "Fact",
+      "path": "backend/tests/Gaode.Contracts.Tests/Recipes/FaceResultAggregatorTests.cs",
+      "evidenceLevel": "Component",
+      "requiredEvidence": [
+        "trx",
+        "discovery",
+        "current-context"
+      ],
+      "obligations": [
+        "MIG-AbAndCdPairOnlyWithinSameObjectFaceAndHeightRound"
+      ]
+    },
+    {
+      "caseId": "V02/PublicPreparationTargetResolutionTests.Q03HandoffResolvesBothFacesFromInitialMeasurement/0",
+      "set": "B",
+      "verification": "V02",
+      "kind": "dotnet",
+      "suite": "Gaode.Contracts.Tests",
+      "method": "Gaode.Contracts.Tests.Recipes.PublicPreparationTargetResolutionTests.Q03HandoffResolvesBothFacesFromInitialMeasurement",
+      "dataRowId": "0",
+      "dataRow": null,
+      "sourceInlineData": "Fact",
+      "path": "backend/tests/Gaode.Contracts.Tests/Recipes/PublicPreparationTargetResolutionTests.cs",
+      "evidenceLevel": "Component",
+      "requiredEvidence": [
+        "trx",
+        "discovery",
+        "current-context"
+      ],
+      "obligations": [
+        "MIG-Q03HandoffResolvesBothFacesFromInitialMeasurement"
+      ]
+    },
+    {
+      "caseId": "V02/PublicPreparationTargetResolutionTests.Q03FutureTargetRejectsWrongIdentity/0",
+      "set": "B",
+      "verification": "V02",
+      "kind": "dotnet",
+      "suite": "Gaode.Contracts.Tests",
+      "method": "Gaode.Contracts.Tests.Recipes.PublicPreparationTargetResolutionTests.Q03FutureTargetRejectsWrongIdentity",
+      "dataRowId": "0",
+      "dataRow": "field: \"localFace\", value: 1",
+      "sourceInlineData": "\"localFace\", 1",
+      "path": "backend/tests/Gaode.Contracts.Tests/Recipes/PublicPreparationTargetResolutionTests.cs",
+      "evidenceLevel": "Component",
+      "requiredEvidence": [
+        "trx",
+        "discovery",
+        "current-context"
+      ],
+      "obligations": [
+        "MIG-Q03FutureTargetRejectsWrongIdentity"
+      ]
+    },
+    {
+      "caseId": "V02/PublicPreparationTargetResolutionTests.Q03FutureTargetRejectsWrongIdentity/1",
+      "set": "B",
+      "verification": "V02",
+      "kind": "dotnet",
+      "suite": "Gaode.Contracts.Tests",
+      "method": "Gaode.Contracts.Tests.Recipes.PublicPreparationTargetResolutionTests.Q03FutureTargetRejectsWrongIdentity",
+      "dataRowId": "1",
+      "dataRow": "field: \"protocolSlotIndex\", value: 2",
+      "sourceInlineData": "\"protocolSlotIndex\", 2",
+      "path": "backend/tests/Gaode.Contracts.Tests/Recipes/PublicPreparationTargetResolutionTests.cs",
+      "evidenceLevel": "Component",
+      "requiredEvidence": [
+        "trx",
+        "discovery",
+        "current-context"
+      ],
+      "obligations": [
+        "MIG-Q03FutureTargetRejectsWrongIdentity"
+      ]
+    },
+    {
+      "caseId": "V02/PublicPreparationTargetResolutionTests.TestTargetsUseMatchingCurrentThreeDHeightAndRejectWrongSample/0",
+      "set": "B",
+      "verification": "V02",
+      "kind": "dotnet",
+      "suite": "Gaode.Contracts.Tests",
+      "method": "Gaode.Contracts.Tests.Recipes.PublicPreparationTargetResolutionTests.TestTargetsUseMatchingCurrentThreeDHeightAndRejectWrongSample",
+      "dataRowId": "0",
+      "dataRow": null,
+      "sourceInlineData": "Fact",
+      "path": "backend/tests/Gaode.Contracts.Tests/Recipes/PublicPreparationTargetResolutionTests.cs",
+      "evidenceLevel": "Component",
+      "requiredEvidence": [
+        "trx",
+        "discovery",
+        "current-context"
+      ],
+      "obligations": [
+        "MIG-TestTargetsUseMatchingCurrentThreeDHeightAndRejectWrongSample"
+      ]
+    },
+    {
+      "caseId": "V02/PublicPreparationTargetResolutionTests.CommittedHandoffResolvesExplicitFrozenFixedTargetsWithoutDefaultHeight/0",
+      "set": "B",
+      "verification": "V02",
+      "kind": "dotnet",
+      "suite": "Gaode.Contracts.Tests",
+      "method": "Gaode.Contracts.Tests.Recipes.PublicPreparationTargetResolutionTests.CommittedHandoffResolvesExplicitFrozenFixedTargetsWithoutDefaultHeight",
+      "dataRowId": "0",
+      "dataRow": null,
+      "sourceInlineData": "Fact",
+      "path": "backend/tests/Gaode.Contracts.Tests/Recipes/PublicPreparationTargetResolutionTests.cs",
+      "evidenceLevel": "Component",
+      "requiredEvidence": [
+        "trx",
+        "discovery",
+        "current-context"
+      ],
+      "obligations": [
+        "MIG-CommittedHandoffResolvesExplicitFrozenFixedTargetsWithoutDefaultHeight"
+      ]
+    },
+    {
+      "caseId": "V02/RecipeCatalogTests.Q09IncompleteOrMisboundFaceCannotBecomeExecutable/0",
+      "set": "B",
+      "verification": "V02",
+      "kind": "dotnet",
+      "suite": "Gaode.Contracts.Tests",
+      "method": "Gaode.Contracts.Tests.Recipes.RecipeCatalogTests.Q09IncompleteOrMisboundFaceCannotBecomeExecutable",
+      "dataRowId": "0",
+      "dataRow": "mutation: \"missing-camera\"",
+      "sourceInlineData": "\"missing-camera\"",
+      "path": "backend/tests/Gaode.Contracts.Tests/Recipes/RecipeCatalogTests.cs",
+      "evidenceLevel": "Component",
+      "requiredEvidence": [
+        "trx",
+        "discovery",
+        "current-context"
+      ],
+      "obligations": [
+        "MIG-Q09IncompleteOrMisboundFaceCannotBecomeExecutable"
+      ]
+    },
+    {
+      "caseId": "V02/RecipeCatalogTests.Q09IncompleteOrMisboundFaceCannotBecomeExecutable/1",
+      "set": "B",
+      "verification": "V02",
+      "kind": "dotnet",
+      "suite": "Gaode.Contracts.Tests",
+      "method": "Gaode.Contracts.Tests.Recipes.RecipeCatalogTests.Q09IncompleteOrMisboundFaceCannotBecomeExecutable",
+      "dataRowId": "1",
+      "dataRow": "mutation: \"wrong-source-slot\"",
+      "sourceInlineData": "\"wrong-source-slot\"",
+      "path": "backend/tests/Gaode.Contracts.Tests/Recipes/RecipeCatalogTests.cs",
+      "evidenceLevel": "Component",
+      "requiredEvidence": [
+        "trx",
+        "discovery",
+        "current-context"
+      ],
+      "obligations": [
+        "MIG-Q09IncompleteOrMisboundFaceCannotBecomeExecutable"
+      ]
+    },
+    {
+      "caseId": "V02/RecipeCatalogTests.Q09IncompleteOrMisboundFaceCannotBecomeExecutable/2",
+      "set": "B",
+      "verification": "V02",
+      "kind": "dotnet",
+      "suite": "Gaode.Contracts.Tests",
+      "method": "Gaode.Contracts.Tests.Recipes.RecipeCatalogTests.Q09IncompleteOrMisboundFaceCannotBecomeExecutable",
+      "dataRowId": "2",
+      "dataRow": "mutation: \"cross-face\"",
+      "sourceInlineData": "\"cross-face\"",
+      "path": "backend/tests/Gaode.Contracts.Tests/Recipes/RecipeCatalogTests.cs",
+      "evidenceLevel": "Component",
+      "requiredEvidence": [
+        "trx",
+        "discovery",
+        "current-context"
+      ],
+      "obligations": [
+        "MIG-Q09IncompleteOrMisboundFaceCannotBecomeExecutable"
+      ]
+    },
+    {
+      "caseId": "V02/RecipeCatalogTests.VirtualMultiFaceCatalogsHaveCompleteFrozenTargetsAndWorkload/0",
+      "set": "B",
+      "verification": "V02",
+      "kind": "dotnet",
+      "suite": "Gaode.Contracts.Tests",
+      "method": "Gaode.Contracts.Tests.Recipes.RecipeCatalogTests.VirtualMultiFaceCatalogsHaveCompleteFrozenTargetsAndWorkload",
+      "dataRowId": "0",
+      "dataRow": "caseId: \"Q04\", expectedSequence: \"AB,CD\"",
+      "sourceInlineData": "\"Q04\", \"AB,CD\"",
+      "path": "backend/tests/Gaode.Contracts.Tests/Recipes/RecipeCatalogTests.cs",
+      "evidenceLevel": "Component",
+      "requiredEvidence": [
+        "trx",
+        "discovery",
+        "current-context"
+      ],
+      "obligations": [
+        "MIG-VirtualMultiFaceCatalogsHaveCompleteFrozenTargetsAndWorkload"
+      ]
+    },
+    {
+      "caseId": "V02/RecipeCatalogTests.VirtualMultiFaceCatalogsHaveCompleteFrozenTargetsAndWorkload/1",
+      "set": "B",
+      "verification": "V02",
+      "kind": "dotnet",
+      "suite": "Gaode.Contracts.Tests",
+      "method": "Gaode.Contracts.Tests.Recipes.RecipeCatalogTests.VirtualMultiFaceCatalogsHaveCompleteFrozenTargetsAndWorkload",
+      "dataRowId": "1",
+      "dataRow": "caseId: \"Q05\", expectedSequence: \"CD,AB\"",
+      "sourceInlineData": "\"Q05\", \"CD,AB\"",
+      "path": "backend/tests/Gaode.Contracts.Tests/Recipes/RecipeCatalogTests.cs",
+      "evidenceLevel": "Component",
+      "requiredEvidence": [
+        "trx",
+        "discovery",
+        "current-context"
+      ],
+      "obligations": [
+        "MIG-VirtualMultiFaceCatalogsHaveCompleteFrozenTargetsAndWorkload"
+      ]
+    },
+    {
+      "caseId": "V02/RecipeCatalogTests.VirtualMultiFaceCatalogsHaveCompleteFrozenTargetsAndWorkload/2",
+      "set": "B",
+      "verification": "V02",
+      "kind": "dotnet",
+      "suite": "Gaode.Contracts.Tests",
+      "method": "Gaode.Contracts.Tests.Recipes.RecipeCatalogTests.VirtualMultiFaceCatalogsHaveCompleteFrozenTargetsAndWorkload",
+      "dataRowId": "2",
+      "dataRow": "caseId: \"Q06\", expectedSequence: \"CD,CD\"",
+      "sourceInlineData": "\"Q06\", \"CD,CD\"",
+      "path": "backend/tests/Gaode.Contracts.Tests/Recipes/RecipeCatalogTests.cs",
+      "evidenceLevel": "Component",
+      "requiredEvidence": [
+        "trx",
+        "discovery",
+        "current-context"
+      ],
+      "obligations": [
+        "MIG-VirtualMultiFaceCatalogsHaveCompleteFrozenTargetsAndWorkload"
+      ]
+    },
+    {
+      "caseId": "V02/RecipeCatalogTests.VirtualMultiFaceCatalogsHaveCompleteFrozenTargetsAndWorkload/3",
+      "set": "B",
+      "verification": "V02",
+      "kind": "dotnet",
+      "suite": "Gaode.Contracts.Tests",
+      "method": "Gaode.Contracts.Tests.Recipes.RecipeCatalogTests.VirtualMultiFaceCatalogsHaveCompleteFrozenTargetsAndWorkload",
+      "dataRowId": "3",
+      "dataRow": "caseId: \"Q08\", expectedSequence: \"AB,AB,AB,CD\"",
+      "sourceInlineData": "\"Q08\", \"AB,AB,AB,CD\"",
+      "path": "backend/tests/Gaode.Contracts.Tests/Recipes/RecipeCatalogTests.cs",
+      "evidenceLevel": "Component",
+      "requiredEvidence": [
+        "trx",
+        "discovery",
+        "current-context"
+      ],
+      "obligations": [
+        "MIG-VirtualMultiFaceCatalogsHaveCompleteFrozenTargetsAndWorkload"
+      ]
+    },
+    {
+      "caseId": "V02/RecipeCatalogTests.VirtualMultiFaceCatalogsHaveCompleteFrozenTargetsAndWorkload/4",
+      "set": "B",
+      "verification": "V02",
+      "kind": "dotnet",
+      "suite": "Gaode.Contracts.Tests",
+      "method": "Gaode.Contracts.Tests.Recipes.RecipeCatalogTests.VirtualMultiFaceCatalogsHaveCompleteFrozenTargetsAndWorkload",
+      "dataRowId": "4",
+      "dataRow": "caseId: \"Q09\", expectedSequence: \"AB,AB,CD,AB\"",
+      "sourceInlineData": "\"Q09\", \"AB,AB,CD,AB\"",
+      "path": "backend/tests/Gaode.Contracts.Tests/Recipes/RecipeCatalogTests.cs",
+      "evidenceLevel": "Component",
+      "requiredEvidence": [
+        "trx",
+        "discovery",
+        "current-context"
+      ],
+      "obligations": [
+        "MIG-VirtualMultiFaceCatalogsHaveCompleteFrozenTargetsAndWorkload"
+      ]
+    },
+    {
+      "caseId": "V02/RecipeCatalogTests.VirtualMultiFaceCatalogsHaveCompleteFrozenTargetsAndWorkload/5",
+      "set": "B",
+      "verification": "V02",
+      "kind": "dotnet",
+      "suite": "Gaode.Contracts.Tests",
+      "method": "Gaode.Contracts.Tests.Recipes.RecipeCatalogTests.VirtualMultiFaceCatalogsHaveCompleteFrozenTargetsAndWorkload",
+      "dataRowId": "5",
+      "dataRow": "caseId: \"Q11\", expectedSequence: \"AB,CD,AB,AB\"",
+      "sourceInlineData": "\"Q11\", \"AB,CD,AB,AB\"",
+      "path": "backend/tests/Gaode.Contracts.Tests/Recipes/RecipeCatalogTests.cs",
+      "evidenceLevel": "Component",
+      "requiredEvidence": [
+        "trx",
+        "discovery",
+        "current-context"
+      ],
+      "obligations": [
+        "MIG-VirtualMultiFaceCatalogsHaveCompleteFrozenTargetsAndWorkload"
+      ]
+    },
+    {
+      "caseId": "V02/RecipeCatalogTests.VirtualMultiFaceCatalogsHaveCompleteFrozenTargetsAndWorkload/6",
+      "set": "B",
+      "verification": "V02",
+      "kind": "dotnet",
+      "suite": "Gaode.Contracts.Tests",
+      "method": "Gaode.Contracts.Tests.Recipes.RecipeCatalogTests.VirtualMultiFaceCatalogsHaveCompleteFrozenTargetsAndWorkload",
+      "dataRowId": "6",
+      "dataRow": "caseId: \"Q14\", expectedSequence: \"AB,CD,CD,CD\"",
+      "sourceInlineData": "\"Q14\", \"AB,CD,CD,CD\"",
+      "path": "backend/tests/Gaode.Contracts.Tests/Recipes/RecipeCatalogTests.cs",
+      "evidenceLevel": "Component",
+      "requiredEvidence": [
+        "trx",
+        "discovery",
+        "current-context"
+      ],
+      "obligations": [
+        "MIG-VirtualMultiFaceCatalogsHaveCompleteFrozenTargetsAndWorkload"
+      ]
+    },
+    {
+      "caseId": "V02/RecipeCatalogTests.VirtualMultiFaceCatalogsHaveCompleteFrozenTargetsAndWorkload/7",
+      "set": "B",
+      "verification": "V02",
+      "kind": "dotnet",
+      "suite": "Gaode.Contracts.Tests",
+      "method": "Gaode.Contracts.Tests.Recipes.RecipeCatalogTests.VirtualMultiFaceCatalogsHaveCompleteFrozenTargetsAndWorkload",
+      "dataRowId": "7",
+      "dataRow": "caseId: \"Q15\", expectedSequence: \"CD,AB,AB,AB\"",
+      "sourceInlineData": "\"Q15\", \"CD,AB,AB,AB\"",
+      "path": "backend/tests/Gaode.Contracts.Tests/Recipes/RecipeCatalogTests.cs",
+      "evidenceLevel": "Component",
+      "requiredEvidence": [
+        "trx",
+        "discovery",
+        "current-context"
+      ],
+      "obligations": [
+        "MIG-VirtualMultiFaceCatalogsHaveCompleteFrozenTargetsAndWorkload"
+      ]
+    },
+    {
+      "caseId": "V02/RecipeCatalogTests.VirtualMultiFaceCatalogsHaveCompleteFrozenTargetsAndWorkload/8",
+      "set": "B",
+      "verification": "V02",
+      "kind": "dotnet",
+      "suite": "Gaode.Contracts.Tests",
+      "method": "Gaode.Contracts.Tests.Recipes.RecipeCatalogTests.VirtualMultiFaceCatalogsHaveCompleteFrozenTargetsAndWorkload",
+      "dataRowId": "8",
+      "dataRow": "caseId: \"Q18\", expectedSequence: \"CD,AB,CD,CD\"",
+      "sourceInlineData": "\"Q18\", \"CD,AB,CD,CD\"",
+      "path": "backend/tests/Gaode.Contracts.Tests/Recipes/RecipeCatalogTests.cs",
+      "evidenceLevel": "Component",
+      "requiredEvidence": [
+        "trx",
+        "discovery",
+        "current-context"
+      ],
+      "obligations": [
+        "MIG-VirtualMultiFaceCatalogsHaveCompleteFrozenTargetsAndWorkload"
+      ]
+    },
+    {
+      "caseId": "V02/RecipeCatalogTests.VirtualMultiFaceCatalogsHaveCompleteFrozenTargetsAndWorkload/9",
+      "set": "B",
+      "verification": "V02",
+      "kind": "dotnet",
+      "suite": "Gaode.Contracts.Tests",
+      "method": "Gaode.Contracts.Tests.Recipes.RecipeCatalogTests.VirtualMultiFaceCatalogsHaveCompleteFrozenTargetsAndWorkload",
+      "dataRowId": "9",
+      "dataRow": "caseId: \"Q20\", expectedSequence: \"CD,CD,AB,CD\"",
+      "sourceInlineData": "\"Q20\", \"CD,CD,AB,CD\"",
+      "path": "backend/tests/Gaode.Contracts.Tests/Recipes/RecipeCatalogTests.cs",
+      "evidenceLevel": "Component",
+      "requiredEvidence": [
+        "trx",
+        "discovery",
+        "current-context"
+      ],
+      "obligations": [
+        "MIG-VirtualMultiFaceCatalogsHaveCompleteFrozenTargetsAndWorkload"
+      ]
+    },
+    {
+      "caseId": "V02/RecipeCatalogTests.VirtualMultiFaceCatalogsHaveCompleteFrozenTargetsAndWorkload/10",
+      "set": "B",
+      "verification": "V02",
+      "kind": "dotnet",
+      "suite": "Gaode.Contracts.Tests",
+      "method": "Gaode.Contracts.Tests.Recipes.RecipeCatalogTests.VirtualMultiFaceCatalogsHaveCompleteFrozenTargetsAndWorkload",
+      "dataRowId": "10",
+      "dataRow": "caseId: \"Q21\", expectedSequence: \"CD,CD,CD,AB\"",
+      "sourceInlineData": "\"Q21\", \"CD,CD,CD,AB\"",
+      "path": "backend/tests/Gaode.Contracts.Tests/Recipes/RecipeCatalogTests.cs",
+      "evidenceLevel": "Component",
+      "requiredEvidence": [
+        "trx",
+        "discovery",
+        "current-context"
+      ],
+      "obligations": [
+        "MIG-VirtualMultiFaceCatalogsHaveCompleteFrozenTargetsAndWorkload"
+      ]
+    },
+    {
+      "caseId": "V02/RecipeCatalogTests.HistoricalOutOfScopeCatalogRemainsReadableButCannotDispatch/0",
+      "set": "B",
+      "verification": "V02",
+      "kind": "dotnet",
+      "suite": "Gaode.Contracts.Tests",
+      "method": "Gaode.Contracts.Tests.Recipes.RecipeCatalogTests.HistoricalOutOfScopeCatalogRemainsReadableButCannotDispatch",
+      "dataRowId": "0",
+      "dataRow": "slug: \"q07\"",
+      "sourceInlineData": "\"q07\"",
+      "path": "backend/tests/Gaode.Contracts.Tests/Recipes/RecipeCatalogTests.cs",
+      "evidenceLevel": "Component",
+      "requiredEvidence": [
+        "trx",
+        "discovery",
+        "current-context"
+      ],
+      "obligations": [
+        "MIG-HistoricalOutOfScopeCatalogRemainsReadableButCannotDispatch"
+      ]
+    },
+    {
+      "caseId": "V02/RecipeCatalogTests.HistoricalOutOfScopeCatalogRemainsReadableButCannotDispatch/1",
+      "set": "B",
+      "verification": "V02",
+      "kind": "dotnet",
+      "suite": "Gaode.Contracts.Tests",
+      "method": "Gaode.Contracts.Tests.Recipes.RecipeCatalogTests.HistoricalOutOfScopeCatalogRemainsReadableButCannotDispatch",
+      "dataRowId": "1",
+      "dataRow": "slug: \"q10\"",
+      "sourceInlineData": "\"q10\"",
+      "path": "backend/tests/Gaode.Contracts.Tests/Recipes/RecipeCatalogTests.cs",
+      "evidenceLevel": "Component",
+      "requiredEvidence": [
+        "trx",
+        "discovery",
+        "current-context"
+      ],
+      "obligations": [
+        "MIG-HistoricalOutOfScopeCatalogRemainsReadableButCannotDispatch"
+      ]
+    },
+    {
+      "caseId": "V02/RecipeCatalogTests.HistoricalOutOfScopeCatalogRemainsReadableButCannotDispatch/2",
+      "set": "B",
+      "verification": "V02",
+      "kind": "dotnet",
+      "suite": "Gaode.Contracts.Tests",
+      "method": "Gaode.Contracts.Tests.Recipes.RecipeCatalogTests.HistoricalOutOfScopeCatalogRemainsReadableButCannotDispatch",
+      "dataRowId": "2",
+      "dataRow": "slug: \"q12\"",
+      "sourceInlineData": "\"q12\"",
+      "path": "backend/tests/Gaode.Contracts.Tests/Recipes/RecipeCatalogTests.cs",
+      "evidenceLevel": "Component",
+      "requiredEvidence": [
+        "trx",
+        "discovery",
+        "current-context"
+      ],
+      "obligations": [
+        "MIG-HistoricalOutOfScopeCatalogRemainsReadableButCannotDispatch"
+      ]
+    },
+    {
+      "caseId": "V02/RecipeCatalogTests.HistoricalOutOfScopeCatalogRemainsReadableButCannotDispatch/3",
+      "set": "B",
+      "verification": "V02",
+      "kind": "dotnet",
+      "suite": "Gaode.Contracts.Tests",
+      "method": "Gaode.Contracts.Tests.Recipes.RecipeCatalogTests.HistoricalOutOfScopeCatalogRemainsReadableButCannotDispatch",
+      "dataRowId": "3",
+      "dataRow": "slug: \"q13\"",
+      "sourceInlineData": "\"q13\"",
+      "path": "backend/tests/Gaode.Contracts.Tests/Recipes/RecipeCatalogTests.cs",
+      "evidenceLevel": "Component",
+      "requiredEvidence": [
+        "trx",
+        "discovery",
+        "current-context"
+      ],
+      "obligations": [
+        "MIG-HistoricalOutOfScopeCatalogRemainsReadableButCannotDispatch"
+      ]
+    },
+    {
+      "caseId": "V02/RecipeCatalogTests.HistoricalOutOfScopeCatalogRemainsReadableButCannotDispatch/4",
+      "set": "B",
+      "verification": "V02",
+      "kind": "dotnet",
+      "suite": "Gaode.Contracts.Tests",
+      "method": "Gaode.Contracts.Tests.Recipes.RecipeCatalogTests.HistoricalOutOfScopeCatalogRemainsReadableButCannotDispatch",
+      "dataRowId": "4",
+      "dataRow": "slug: \"q16\"",
+      "sourceInlineData": "\"q16\"",
+      "path": "backend/tests/Gaode.Contracts.Tests/Recipes/RecipeCatalogTests.cs",
+      "evidenceLevel": "Component",
+      "requiredEvidence": [
+        "trx",
+        "discovery",
+        "current-context"
+      ],
+      "obligations": [
+        "MIG-HistoricalOutOfScopeCatalogRemainsReadableButCannotDispatch"
+      ]
+    },
+    {
+      "caseId": "V02/RecipeCatalogTests.HistoricalOutOfScopeCatalogRemainsReadableButCannotDispatch/5",
+      "set": "B",
+      "verification": "V02",
+      "kind": "dotnet",
+      "suite": "Gaode.Contracts.Tests",
+      "method": "Gaode.Contracts.Tests.Recipes.RecipeCatalogTests.HistoricalOutOfScopeCatalogRemainsReadableButCannotDispatch",
+      "dataRowId": "5",
+      "dataRow": "slug: \"q17\"",
+      "sourceInlineData": "\"q17\"",
+      "path": "backend/tests/Gaode.Contracts.Tests/Recipes/RecipeCatalogTests.cs",
+      "evidenceLevel": "Component",
+      "requiredEvidence": [
+        "trx",
+        "discovery",
+        "current-context"
+      ],
+      "obligations": [
+        "MIG-HistoricalOutOfScopeCatalogRemainsReadableButCannotDispatch"
+      ]
+    },
+    {
+      "caseId": "V02/RecipeCatalogTests.HistoricalOutOfScopeCatalogRemainsReadableButCannotDispatch/6",
+      "set": "B",
+      "verification": "V02",
+      "kind": "dotnet",
+      "suite": "Gaode.Contracts.Tests",
+      "method": "Gaode.Contracts.Tests.Recipes.RecipeCatalogTests.HistoricalOutOfScopeCatalogRemainsReadableButCannotDispatch",
+      "dataRowId": "6",
+      "dataRow": "slug: \"q19\"",
+      "sourceInlineData": "\"q19\"",
+      "path": "backend/tests/Gaode.Contracts.Tests/Recipes/RecipeCatalogTests.cs",
+      "evidenceLevel": "Component",
+      "requiredEvidence": [
+        "trx",
+        "discovery",
+        "current-context"
+      ],
+      "obligations": [
+        "MIG-HistoricalOutOfScopeCatalogRemainsReadableButCannotDispatch"
+      ]
+    },
+    {
+      "caseId": "V02/RecipeCatalogTests.HistoricalOutOfScopeCatalogRemainsReadableButCannotDispatch/7",
+      "set": "B",
+      "verification": "V02",
+      "kind": "dotnet",
+      "suite": "Gaode.Contracts.Tests",
+      "method": "Gaode.Contracts.Tests.Recipes.RecipeCatalogTests.HistoricalOutOfScopeCatalogRemainsReadableButCannotDispatch",
+      "dataRowId": "7",
+      "dataRow": "slug: \"q22\"",
+      "sourceInlineData": "\"q22\"",
+      "path": "backend/tests/Gaode.Contracts.Tests/Recipes/RecipeCatalogTests.cs",
+      "evidenceLevel": "Component",
+      "requiredEvidence": [
+        "trx",
+        "discovery",
+        "current-context"
+      ],
+      "obligations": [
+        "MIG-HistoricalOutOfScopeCatalogRemainsReadableButCannotDispatch"
+      ]
+    },
+    {
+      "caseId": "V02/RecipeCatalogTests.Q03TwoFaceFixtureUsesInitialHeightAndExplicitFaceTargets/0",
+      "set": "B",
+      "verification": "V02",
+      "kind": "dotnet",
+      "suite": "Gaode.Contracts.Tests",
+      "method": "Gaode.Contracts.Tests.Recipes.RecipeCatalogTests.Q03TwoFaceFixtureUsesInitialHeightAndExplicitFaceTargets",
+      "dataRowId": "0",
+      "dataRow": null,
+      "sourceInlineData": "Fact",
+      "path": "backend/tests/Gaode.Contracts.Tests/Recipes/RecipeCatalogTests.cs",
+      "evidenceLevel": "Component",
+      "requiredEvidence": [
+        "trx",
+        "discovery",
+        "current-context"
+      ],
+      "obligations": [
+        "MIG-Q03TwoFaceFixtureUsesInitialHeightAndExplicitFaceTargets"
+      ]
+    },
+    {
+      "caseId": "V02/RecipeCatalogTests.Q01TestCatalogAllowsOnlyMappedSlot/0",
+      "set": "B",
+      "verification": "V02",
+      "kind": "dotnet",
+      "suite": "Gaode.Contracts.Tests",
+      "method": "Gaode.Contracts.Tests.Recipes.RecipeCatalogTests.Q01TestCatalogAllowsOnlyMappedSlot",
+      "dataRowId": "0",
+      "dataRow": null,
+      "sourceInlineData": "Fact",
+      "path": "backend/tests/Gaode.Contracts.Tests/Recipes/RecipeCatalogTests.cs",
+      "evidenceLevel": "Component",
+      "requiredEvidence": [
+        "trx",
+        "discovery",
+        "current-context"
+      ],
+      "obligations": [
+        "MIG-Q01TestCatalogAllowsOnlyMappedSlot"
+      ]
+    },
+    {
+      "caseId": "V02/RecipeCatalogTests.Q02MappedCatalogKeepsCdBatchOrderAndNoncontiguousSlots/0",
+      "set": "B",
+      "verification": "V02",
+      "kind": "dotnet",
+      "suite": "Gaode.Contracts.Tests",
+      "method": "Gaode.Contracts.Tests.Recipes.RecipeCatalogTests.Q02MappedCatalogKeepsCdBatchOrderAndNoncontiguousSlots",
+      "dataRowId": "0",
+      "dataRow": null,
+      "sourceInlineData": "Fact",
+      "path": "backend/tests/Gaode.Contracts.Tests/Recipes/RecipeCatalogTests.cs",
+      "evidenceLevel": "Component",
+      "requiredEvidence": [
+        "trx",
+        "discovery",
+        "current-context"
+      ],
+      "obligations": [
+        "MIG-Q02MappedCatalogKeepsCdBatchOrderAndNoncontiguousSlots"
+      ]
+    },
+    {
+      "caseId": "V02/RecipeCatalogTests.Q01ParamUsesSameRecipeWithChangedCaptureAndTwoSlots/0",
+      "set": "B",
+      "verification": "V02",
+      "kind": "dotnet",
+      "suite": "Gaode.Contracts.Tests",
+      "method": "Gaode.Contracts.Tests.Recipes.RecipeCatalogTests.Q01ParamUsesSameRecipeWithChangedCaptureAndTwoSlots",
+      "dataRowId": "0",
+      "dataRow": null,
+      "sourceInlineData": "Fact",
+      "path": "backend/tests/Gaode.Contracts.Tests/Recipes/RecipeCatalogTests.cs",
+      "evidenceLevel": "Component",
+      "requiredEvidence": [
+        "trx",
+        "discovery",
+        "current-context"
+      ],
+      "obligations": [
+        "MIG-Q01ParamUsesSameRecipeWithChangedCaptureAndTwoSlots"
+      ]
+    },
+    {
+      "caseId": "V02/RecipeCatalogTests.ReviewCatalogLoadsAllVirtualRecipesAndAssignsStablePlcIds/0",
+      "set": "B",
+      "verification": "V02",
+      "kind": "dotnet",
+      "suite": "Gaode.Contracts.Tests",
+      "method": "Gaode.Contracts.Tests.Recipes.RecipeCatalogTests.ReviewCatalogLoadsAllVirtualRecipesAndAssignsStablePlcIds",
+      "dataRowId": "0",
+      "dataRow": null,
+      "sourceInlineData": "Fact",
+      "path": "backend/tests/Gaode.Contracts.Tests/Recipes/RecipeCatalogTests.cs",
+      "evidenceLevel": "Component",
+      "requiredEvidence": [
+        "trx",
+        "discovery",
+        "current-context"
+      ],
+      "obligations": [
+        "MIG-ReviewCatalogLoadsAllVirtualRecipesAndAssignsStablePlcIds"
+      ]
+    },
+    {
+      "caseId": "V02/RecipeCatalogTests.PlannerBindsRecipeOnlyFromPostFCodeAndCarriesPlcId/0",
+      "set": "B",
+      "verification": "V02",
+      "kind": "dotnet",
+      "suite": "Gaode.Contracts.Tests",
+      "method": "Gaode.Contracts.Tests.Recipes.RecipeCatalogTests.PlannerBindsRecipeOnlyFromPostFCodeAndCarriesPlcId",
+      "dataRowId": "0",
+      "dataRow": null,
+      "sourceInlineData": "Fact",
+      "path": "backend/tests/Gaode.Contracts.Tests/Recipes/RecipeCatalogTests.cs",
+      "evidenceLevel": "Component",
+      "requiredEvidence": [
+        "trx",
+        "discovery",
+        "current-context"
+      ],
+      "obligations": [
+        "MIG-PlannerBindsRecipeOnlyFromPostFCodeAndCarriesPlcId"
+      ]
+    },
+    {
+      "caseId": "V02/RecipeCatalogTests.FileProviderSwitchKeepsTheSameRecipeContract/0",
+      "set": "B",
+      "verification": "V02",
+      "kind": "dotnet",
+      "suite": "Gaode.Contracts.Tests",
+      "method": "Gaode.Contracts.Tests.Recipes.RecipeCatalogTests.FileProviderSwitchKeepsTheSameRecipeContract",
+      "dataRowId": "0",
+      "dataRow": null,
+      "sourceInlineData": "Fact",
+      "path": "backend/tests/Gaode.Contracts.Tests/Recipes/RecipeCatalogTests.cs",
+      "evidenceLevel": "Component",
+      "requiredEvidence": [
+        "trx",
+        "discovery",
+        "current-context"
+      ],
+      "obligations": [
+        "MIG-FileProviderSwitchKeepsTheSameRecipeContract"
+      ]
+    },
+    {
+      "caseId": "V02/RecipeExecutionCoordinatorTests.Q01MappedPlanHasCompleteSingleFaceSteps/0",
+      "set": "B",
+      "verification": "V02",
+      "kind": "dotnet",
+      "suite": "Gaode.Contracts.Tests",
+      "method": "Gaode.Contracts.Tests.Recipes.RecipeExecutionCoordinatorTests.Q01MappedPlanHasCompleteSingleFaceSteps",
+      "dataRowId": "0",
+      "dataRow": null,
+      "sourceInlineData": "Fact",
+      "path": "backend/tests/Gaode.Contracts.Tests/Recipes/RecipeExecutionCoordinatorTests.cs",
+      "evidenceLevel": "Component",
+      "requiredEvidence": [
+        "trx",
+        "discovery",
+        "current-context"
+      ],
+      "obligations": [
+        "MIG-Q01MappedPlanHasCompleteSingleFaceSteps"
+      ]
+    },
+    {
+      "caseId": "V02/RecipeExecutionCoordinatorTests.CaptureMustFollowMatchingPositionAndUnknownStepsCannotBeSkipped/0",
+      "set": "B",
+      "verification": "V02",
+      "kind": "dotnet",
+      "suite": "Gaode.Contracts.Tests",
+      "method": "Gaode.Contracts.Tests.Recipes.RecipeExecutionCoordinatorTests.CaptureMustFollowMatchingPositionAndUnknownStepsCannotBeSkipped",
+      "dataRowId": "0",
+      "dataRow": null,
+      "sourceInlineData": "Fact",
+      "path": "backend/tests/Gaode.Contracts.Tests/Recipes/RecipeExecutionCoordinatorTests.cs",
+      "evidenceLevel": "Component",
+      "requiredEvidence": [
+        "trx",
+        "discovery",
+        "current-context"
+      ],
+      "obligations": [
+        "MIG-CaptureMustFollowMatchingPositionAndUnknownStepsCannotBeSkipped"
+      ]
+    },
+    {
+      "caseId": "V02/RecipeExecutionCoordinatorTests.Q01DeadlinesAreAbsoluteAndCountCaptureFusionMotionAndSaves/0",
+      "set": "B",
+      "verification": "V02",
+      "kind": "dotnet",
+      "suite": "Gaode.Contracts.Tests",
+      "method": "Gaode.Contracts.Tests.Recipes.RecipeExecutionCoordinatorTests.Q01DeadlinesAreAbsoluteAndCountCaptureFusionMotionAndSaves",
+      "dataRowId": "0",
+      "dataRow": null,
+      "sourceInlineData": "Fact",
+      "path": "backend/tests/Gaode.Contracts.Tests/Recipes/RecipeExecutionCoordinatorTests.cs",
+      "evidenceLevel": "Component",
+      "requiredEvidence": [
+        "trx",
+        "discovery",
+        "current-context"
+      ],
+      "obligations": [
+        "MIG-Q01DeadlinesAreAbsoluteAndCountCaptureFusionMotionAndSaves"
+      ]
+    },
+    {
+      "caseId": "V02/RecipeExecutionCoordinatorTests.Q03BudgetIncludesBothFacesAndOneFlipWithoutRescan/0",
+      "set": "B",
+      "verification": "V02",
+      "kind": "dotnet",
+      "suite": "Gaode.Contracts.Tests",
+      "method": "Gaode.Contracts.Tests.Recipes.RecipeExecutionCoordinatorTests.Q03BudgetIncludesBothFacesAndOneFlipWithoutRescan",
+      "dataRowId": "0",
+      "dataRow": null,
+      "sourceInlineData": "Fact",
+      "path": "backend/tests/Gaode.Contracts.Tests/Recipes/RecipeExecutionCoordinatorTests.cs",
+      "evidenceLevel": "Component",
+      "requiredEvidence": [
+        "trx",
+        "discovery",
+        "current-context"
+      ],
+      "obligations": [
+        "MIG-Q03BudgetIncludesBothFacesAndOneFlipWithoutRescan"
+      ]
+    },
+    {
+      "caseId": "V02/RecipeExecutionCoordinatorTests.Q03TwoSlotsAllowConsecutiveEntityFlipsBeforeNextFaceCapture/0",
+      "set": "B",
+      "verification": "V02",
+      "kind": "dotnet",
+      "suite": "Gaode.Contracts.Tests",
+      "method": "Gaode.Contracts.Tests.Recipes.RecipeExecutionCoordinatorTests.Q03TwoSlotsAllowConsecutiveEntityFlipsBeforeNextFaceCapture",
+      "dataRowId": "0",
+      "dataRow": null,
+      "sourceInlineData": "Fact",
+      "path": "backend/tests/Gaode.Contracts.Tests/Recipes/RecipeExecutionCoordinatorTests.cs",
+      "evidenceLevel": "Component",
+      "requiredEvidence": [
+        "trx",
+        "discovery",
+        "current-context"
+      ],
+      "obligations": [
+        "MIG-Q03TwoSlotsAllowConsecutiveEntityFlipsBeforeNextFaceCapture"
+      ]
+    },
+    {
+      "caseId": "V02/RecipeExecutionCoordinatorTests.StrictRecipeRequestRejectsLegacyPlaceholderPosition/0",
+      "set": "B",
+      "verification": "V02",
+      "kind": "dotnet",
+      "suite": "Gaode.Contracts.Tests",
+      "method": "Gaode.Contracts.Tests.Recipes.RecipeExecutionCoordinatorTests.StrictRecipeRequestRejectsLegacyPlaceholderPosition",
+      "dataRowId": "0",
+      "dataRow": null,
+      "sourceInlineData": "Fact",
+      "path": "backend/tests/Gaode.Contracts.Tests/Recipes/RecipeExecutionCoordinatorTests.cs",
+      "evidenceLevel": "Component",
+      "requiredEvidence": [
+        "trx",
+        "discovery",
+        "current-context"
+      ],
+      "obligations": [
+        "MIG-StrictRecipeRequestRejectsLegacyPlaceholderPosition"
+      ]
+    },
+    {
+      "caseId": "V02/RecipeRunPlannerTests.SameFrozenInputsCreateStableOrderedPlan/0",
+      "set": "B",
+      "verification": "V02",
+      "kind": "dotnet",
+      "suite": "Gaode.Contracts.Tests",
+      "method": "Gaode.Contracts.Tests.Recipes.RecipeRunPlannerTests.SameFrozenInputsCreateStableOrderedPlan",
+      "dataRowId": "0",
+      "dataRow": null,
+      "sourceInlineData": "Fact",
+      "path": "backend/tests/Gaode.Contracts.Tests/Recipes/RecipeRunPlannerTests.cs",
+      "evidenceLevel": "Component",
+      "requiredEvidence": [
+        "trx",
+        "discovery",
+        "current-context"
+      ],
+      "obligations": [
+        "MIG-SameFrozenInputsCreateStableOrderedPlan"
+      ]
+    },
+    {
+      "caseId": "V02/RecipeRunPlannerTests.DuplicateUnknownOrEmptyOccupiedSlotsAreRejected/0",
+      "set": "B",
+      "verification": "V02",
+      "kind": "dotnet",
+      "suite": "Gaode.Contracts.Tests",
+      "method": "Gaode.Contracts.Tests.Recipes.RecipeRunPlannerTests.DuplicateUnknownOrEmptyOccupiedSlotsAreRejected",
+      "dataRowId": "0",
+      "dataRow": null,
+      "sourceInlineData": "Fact",
+      "path": "backend/tests/Gaode.Contracts.Tests/Recipes/RecipeRunPlannerTests.cs",
+      "evidenceLevel": "Component",
+      "requiredEvidence": [
+        "trx",
+        "discovery",
+        "current-context"
+      ],
+      "obligations": [
+        "MIG-DuplicateUnknownOrEmptyOccupiedSlotsAreRejected"
+      ]
+    },
+    {
+      "caseId": "V02/FScanStepTests.FUsesOneTriggerOneImageAndDoesNotPerformRecipeOperation/0",
+      "set": "B",
+      "verification": "V02",
+      "kind": "dotnet",
+      "suite": "Gaode.Contracts.Tests",
+      "method": "Gaode.Contracts.Tests.Station01.FScanStepTests.FUsesOneTriggerOneImageAndDoesNotPerformRecipeOperation",
+      "dataRowId": "0",
+      "dataRow": null,
+      "sourceInlineData": "Fact",
+      "path": "backend/tests/Gaode.Contracts.Tests/Station01/FScanStepTests.cs",
+      "evidenceLevel": "Component",
+      "requiredEvidence": [
+        "trx",
+        "discovery",
+        "current-context"
+      ],
+      "obligations": [
+        "MIG-FUsesOneTriggerOneImageAndDoesNotPerformRecipeOperation"
+      ]
+    },
+    {
+      "caseId": "V02/FScanStepTests.FailedAlgorithmFactSaveDoesNotSubmitFCompletion/0",
+      "set": "B",
+      "verification": "V02",
+      "kind": "dotnet",
+      "suite": "Gaode.Contracts.Tests",
+      "method": "Gaode.Contracts.Tests.Station01.FScanStepTests.FailedAlgorithmFactSaveDoesNotSubmitFCompletion",
+      "dataRowId": "0",
+      "dataRow": null,
+      "sourceInlineData": "Fact",
+      "path": "backend/tests/Gaode.Contracts.Tests/Station01/FScanStepTests.cs",
+      "evidenceLevel": "Component",
+      "requiredEvidence": [
+        "trx",
+        "discovery",
+        "current-context"
+      ],
+      "obligations": [
+        "MIG-FailedAlgorithmFactSaveDoesNotSubmitFCompletion"
+      ]
+    },
+    {
+      "caseId": "V02/PublicPreparationHandoffV2Tests.OnlyPersistedMatchingV2HandoffCanConstructDetectionRequest/0",
+      "set": "B",
+      "verification": "V02",
+      "kind": "dotnet",
+      "suite": "Gaode.Contracts.Tests",
+      "method": "Gaode.Contracts.Tests.Station01.PublicPreparationHandoffV2Tests.OnlyPersistedMatchingV2HandoffCanConstructDetectionRequest",
+      "dataRowId": "0",
+      "dataRow": null,
+      "sourceInlineData": "Fact",
+      "path": "backend/tests/Gaode.Contracts.Tests/Station01/PublicPreparationHandoffV2Tests.cs",
+      "evidenceLevel": "Component",
+      "requiredEvidence": [
+        "trx",
+        "discovery",
+        "current-context"
+      ],
+      "obligations": [
+        "MIG-OnlyPersistedMatchingV2HandoffCanConstructDetectionRequest"
+      ]
+    },
+    {
+      "caseId": "V02/PublicPreparationHandoffV2Tests.InMemoryNotificationCannotReplaceCommittedHandoff/0",
+      "set": "B",
+      "verification": "V02",
+      "kind": "dotnet",
+      "suite": "Gaode.Contracts.Tests",
+      "method": "Gaode.Contracts.Tests.Station01.PublicPreparationHandoffV2Tests.InMemoryNotificationCannotReplaceCommittedHandoff",
+      "dataRowId": "0",
+      "dataRow": null,
+      "sourceInlineData": "Fact",
+      "path": "backend/tests/Gaode.Contracts.Tests/Station01/PublicPreparationHandoffV2Tests.cs",
+      "evidenceLevel": "Component",
+      "requiredEvidence": [
+        "trx",
+        "discovery",
+        "current-context"
+      ],
+      "obligations": [
+        "MIG-InMemoryNotificationCannotReplaceCommittedHandoff"
+      ]
+    },
+    {
+      "caseId": "V02/PublicPreparationHandoffV2Tests.EmptyReferencesOrMissingCommittedWriteCannotProduceRequest/0",
+      "set": "B",
+      "verification": "V02",
+      "kind": "dotnet",
+      "suite": "Gaode.Contracts.Tests",
+      "method": "Gaode.Contracts.Tests.Station01.PublicPreparationHandoffV2Tests.EmptyReferencesOrMissingCommittedWriteCannotProduceRequest",
+      "dataRowId": "0",
+      "dataRow": null,
+      "sourceInlineData": "Fact",
+      "path": "backend/tests/Gaode.Contracts.Tests/Station01/PublicPreparationHandoffV2Tests.cs",
+      "evidenceLevel": "Component",
+      "requiredEvidence": [
+        "trx",
+        "discovery",
+        "current-context"
+      ],
+      "obligations": [
+        "MIG-EmptyReferencesOrMissingCommittedWriteCannotProduceRequest"
+      ]
+    },
+    {
+      "caseId": "V02/PublicPreparationHandoffV2Tests.WrongRunTrayOrPlanIsRejected/0",
+      "set": "B",
+      "verification": "V02",
+      "kind": "dotnet",
+      "suite": "Gaode.Contracts.Tests",
+      "method": "Gaode.Contracts.Tests.Station01.PublicPreparationHandoffV2Tests.WrongRunTrayOrPlanIsRejected",
+      "dataRowId": "0",
+      "dataRow": null,
+      "sourceInlineData": "Fact",
+      "path": "backend/tests/Gaode.Contracts.Tests/Station01/PublicPreparationHandoffV2Tests.cs",
+      "evidenceLevel": "Component",
+      "requiredEvidence": [
+        "trx",
+        "discovery",
+        "current-context"
+      ],
+      "obligations": [
+        "MIG-WrongRunTrayOrPlanIsRejected"
+      ]
+    },
+    {
+      "caseId": "V02/RecipeApplicationContractTests.RunCancellationClosesRegisteredBindingTokenWithoutTurningPauseIntoCancellation/0",
+      "set": "B",
+      "verification": "V02",
+      "kind": "dotnet",
+      "suite": "Gaode.Contracts.Tests",
+      "method": "Gaode.Contracts.Tests.Station01.RecipeApplicationContractTests.RunCancellationClosesRegisteredBindingTokenWithoutTurningPauseIntoCancellation",
+      "dataRowId": "0",
+      "dataRow": null,
+      "sourceInlineData": "Fact",
+      "path": "backend/tests/Gaode.Contracts.Tests/Station01/RecipeApplicationContractTests.cs",
+      "evidenceLevel": "Component",
+      "requiredEvidence": [
+        "trx",
+        "discovery",
+        "current-context"
+      ],
+      "obligations": [
+        "MIG-RunCancellationClosesRegisteredBindingTokenWithoutTurningPauseIntoCancellation"
+      ]
+    },
+    {
+      "caseId": "V02/RecipeApplicationContractTests.DeviceConfirmationWithoutActualEvidenceReceiptCannotAuthorizeBinding/0",
+      "set": "B",
+      "verification": "V02",
+      "kind": "dotnet",
+      "suite": "Gaode.Contracts.Tests",
+      "method": "Gaode.Contracts.Tests.Station01.RecipeApplicationContractTests.DeviceConfirmationWithoutActualEvidenceReceiptCannotAuthorizeBinding",
+      "dataRowId": "0",
+      "dataRow": null,
+      "sourceInlineData": "Fact",
+      "path": "backend/tests/Gaode.Contracts.Tests/Station01/RecipeApplicationContractTests.cs",
+      "evidenceLevel": "Component",
+      "requiredEvidence": [
+        "trx",
+        "discovery",
+        "current-context"
+      ],
+      "obligations": [
+        "MIG-DeviceConfirmationWithoutActualEvidenceReceiptCannotAuthorizeBinding"
+      ]
+    },
+    {
+      "caseId": "V02/RecipeApplicationContractTests.EarlyPlatformTimerWakeDoesNotCloseOriginalBindingWindow/0",
+      "set": "B",
+      "verification": "V02",
+      "kind": "dotnet",
+      "suite": "Gaode.Contracts.Tests",
+      "method": "Gaode.Contracts.Tests.Station01.RecipeApplicationContractTests.EarlyPlatformTimerWakeDoesNotCloseOriginalBindingWindow",
+      "dataRowId": "0",
+      "dataRow": null,
+      "sourceInlineData": "Fact",
+      "path": "backend/tests/Gaode.Contracts.Tests/Station01/RecipeApplicationContractTests.cs",
+      "evidenceLevel": "Component",
+      "requiredEvidence": [
+        "trx",
+        "discovery",
+        "current-context"
+      ],
+      "obligations": [
+        "MIG-EarlyPlatformTimerWakeDoesNotCloseOriginalBindingWindow"
+      ]
+    },
+    {
+      "caseId": "V02/RecipeApplicationContractTests.BothCapacityInputsKeepTrayIdentityAndAllNecessarySavesInOneWindow/0",
+      "set": "B",
+      "verification": "V02",
+      "kind": "dotnet",
+      "suite": "Gaode.Contracts.Tests",
+      "method": "Gaode.Contracts.Tests.Station01.RecipeApplicationContractTests.BothCapacityInputsKeepTrayIdentityAndAllNecessarySavesInOneWindow",
+      "dataRowId": "0",
+      "dataRow": "capacity: True",
+      "sourceInlineData": "true",
+      "path": "backend/tests/Gaode.Contracts.Tests/Station01/RecipeApplicationContractTests.cs",
+      "evidenceLevel": "Component",
+      "requiredEvidence": [
+        "trx",
+        "discovery",
+        "current-context"
+      ],
+      "obligations": [
+        "MIG-BothCapacityInputsKeepTrayIdentityAndAllNecessarySavesInOneWindow"
+      ]
+    },
+    {
+      "caseId": "V02/RecipeApplicationContractTests.BothCapacityInputsKeepTrayIdentityAndAllNecessarySavesInOneWindow/1",
+      "set": "B",
+      "verification": "V02",
+      "kind": "dotnet",
+      "suite": "Gaode.Contracts.Tests",
+      "method": "Gaode.Contracts.Tests.Station01.RecipeApplicationContractTests.BothCapacityInputsKeepTrayIdentityAndAllNecessarySavesInOneWindow",
+      "dataRowId": "1",
+      "dataRow": "capacity: False",
+      "sourceInlineData": "false",
+      "path": "backend/tests/Gaode.Contracts.Tests/Station01/RecipeApplicationContractTests.cs",
+      "evidenceLevel": "Component",
+      "requiredEvidence": [
+        "trx",
+        "discovery",
+        "current-context"
+      ],
+      "obligations": [
+        "MIG-BothCapacityInputsKeepTrayIdentityAndAllNecessarySavesInOneWindow"
+      ]
+    },
+    {
+      "caseId": "V02/RecipeApplicationContractTests.FailedIntentNeverCallsDeviceOrRegistersTotalWindow/0",
+      "set": "B",
+      "verification": "V02",
+      "kind": "dotnet",
+      "suite": "Gaode.Contracts.Tests",
+      "method": "Gaode.Contracts.Tests.Station01.RecipeApplicationContractTests.FailedIntentNeverCallsDeviceOrRegistersTotalWindow",
+      "dataRowId": "0",
+      "dataRow": null,
+      "sourceInlineData": "Fact",
+      "path": "backend/tests/Gaode.Contracts.Tests/Station01/RecipeApplicationContractTests.cs",
+      "evidenceLevel": "Component",
+      "requiredEvidence": [
+        "trx",
+        "discovery",
+        "current-context"
+      ],
+      "obligations": [
+        "MIG-FailedIntentNeverCallsDeviceOrRegistersTotalWindow"
+      ]
+    },
+    {
+      "caseId": "V02/RecipeApplicationContractTests.LateOrCancelledDeviceReturnDoesNotCreateBoundOrHandoff/0",
+      "set": "B",
+      "verification": "V02",
+      "kind": "dotnet",
+      "suite": "Gaode.Contracts.Tests",
+      "method": "Gaode.Contracts.Tests.Station01.RecipeApplicationContractTests.LateOrCancelledDeviceReturnDoesNotCreateBoundOrHandoff",
+      "dataRowId": "0",
+      "dataRow": "cancelled: False",
+      "sourceInlineData": "false",
+      "path": "backend/tests/Gaode.Contracts.Tests/Station01/RecipeApplicationContractTests.cs",
+      "evidenceLevel": "Component",
+      "requiredEvidence": [
+        "trx",
+        "discovery",
+        "current-context"
+      ],
+      "obligations": [
+        "MIG-LateOrCancelledDeviceReturnDoesNotCreateBoundOrHandoff"
+      ]
+    },
+    {
+      "caseId": "V02/RecipeApplicationContractTests.LateOrCancelledDeviceReturnDoesNotCreateBoundOrHandoff/1",
+      "set": "B",
+      "verification": "V02",
+      "kind": "dotnet",
+      "suite": "Gaode.Contracts.Tests",
+      "method": "Gaode.Contracts.Tests.Station01.RecipeApplicationContractTests.LateOrCancelledDeviceReturnDoesNotCreateBoundOrHandoff",
+      "dataRowId": "1",
+      "dataRow": "cancelled: True",
+      "sourceInlineData": "true",
+      "path": "backend/tests/Gaode.Contracts.Tests/Station01/RecipeApplicationContractTests.cs",
+      "evidenceLevel": "Component",
+      "requiredEvidence": [
+        "trx",
+        "discovery",
+        "current-context"
+      ],
+      "obligations": [
+        "MIG-LateOrCancelledDeviceReturnDoesNotCreateBoundOrHandoff"
+      ]
+    },
+    {
+      "caseId": "V02/RecipeApplicationContractTests.ExpiredExistingDeadlineRejectsBeforeDeviceAndDoesNotRefreshIt/0",
+      "set": "B",
+      "verification": "V02",
+      "kind": "dotnet",
+      "suite": "Gaode.Contracts.Tests",
+      "method": "Gaode.Contracts.Tests.Station01.RecipeApplicationContractTests.ExpiredExistingDeadlineRejectsBeforeDeviceAndDoesNotRefreshIt",
+      "dataRowId": "0",
+      "dataRow": "caseId: \"BA06-downstream/strict-before-port\"",
+      "sourceInlineData": "\"BA06-downstream/strict-before-port\"",
+      "path": "backend/tests/Gaode.Contracts.Tests/Station01/RecipeApplicationContractTests.cs",
+      "evidenceLevel": "Component",
+      "requiredEvidence": [
+        "trx",
+        "discovery",
+        "current-context"
+      ],
+      "obligations": [
+        "MIG-ExpiredExistingDeadlineRejectsBeforeDeviceAndDoesNotRefreshIt"
+      ]
+    },
+    {
+      "caseId": "V02/RecipeApplicationContractTests.TimelyRequiredReceiptsRemainValidAfterLaterContinuation/0",
+      "set": "B",
+      "verification": "V02",
+      "kind": "dotnet",
+      "suite": "Gaode.Contracts.Tests",
+      "method": "Gaode.Contracts.Tests.Station01.RecipeApplicationContractTests.TimelyRequiredReceiptsRemainValidAfterLaterContinuation",
+      "dataRowId": "0",
+      "dataRow": null,
+      "sourceInlineData": "Fact",
+      "path": "backend/tests/Gaode.Contracts.Tests/Station01/RecipeApplicationContractTests.cs",
+      "evidenceLevel": "Component",
+      "requiredEvidence": [
+        "trx",
+        "discovery",
+        "current-context"
+      ],
+      "obligations": [
+        "MIG-TimelyRequiredReceiptsRemainValidAfterLaterContinuation"
+      ]
+    },
+    {
+      "caseId": "V02/RecipeApplicationContractTests.DeviceConfirmationAloneCannotCompleteWhenRequiredSaveFails/0",
+      "set": "B",
+      "verification": "V02",
+      "kind": "dotnet",
+      "suite": "Gaode.Contracts.Tests",
+      "method": "Gaode.Contracts.Tests.Station01.RecipeApplicationContractTests.DeviceConfirmationAloneCannotCompleteWhenRequiredSaveFails",
+      "dataRowId": "0",
+      "dataRow": null,
+      "sourceInlineData": "Fact",
+      "path": "backend/tests/Gaode.Contracts.Tests/Station01/RecipeApplicationContractTests.cs",
+      "evidenceLevel": "Component",
+      "requiredEvidence": [
+        "trx",
+        "discovery",
+        "current-context"
+      ],
+      "obligations": [
+        "MIG-DeviceConfirmationAloneCannotCompleteWhenRequiredSaveFails"
+      ]
+    },
+    {
+      "caseId": "V02/RecipeApplicationContractTests.LastRequiredReceiptUsesOriginalTotalWindow/0",
+      "set": "B",
+      "verification": "V02",
+      "kind": "dotnet",
+      "suite": "Gaode.Contracts.Tests",
+      "method": "Gaode.Contracts.Tests.Station01.RecipeApplicationContractTests.LastRequiredReceiptUsesOriginalTotalWindow",
+      "dataRowId": "0",
+      "dataRow": "caseId: \"BA04-boundary/before\", receivedAt: 9999, valid: True",
+      "sourceInlineData": "\"BA04-boundary/before\", 9999, true",
+      "path": "backend/tests/Gaode.Contracts.Tests/Station01/RecipeApplicationContractTests.cs",
+      "evidenceLevel": "Component",
+      "requiredEvidence": [
+        "trx",
+        "discovery",
+        "current-context"
+      ],
+      "obligations": [
+        "MIG-LastRequiredReceiptUsesOriginalTotalWindow"
+      ]
+    },
+    {
+      "caseId": "V02/RecipeApplicationContractTests.LastRequiredReceiptUsesOriginalTotalWindow/1",
+      "set": "B",
+      "verification": "V02",
+      "kind": "dotnet",
+      "suite": "Gaode.Contracts.Tests",
+      "method": "Gaode.Contracts.Tests.Station01.RecipeApplicationContractTests.LastRequiredReceiptUsesOriginalTotalWindow",
+      "dataRowId": "1",
+      "dataRow": "caseId: \"BA04-boundary/exact\", receivedAt: 10000, valid: False",
+      "sourceInlineData": "\"BA04-boundary/exact\", 10000, false",
+      "path": "backend/tests/Gaode.Contracts.Tests/Station01/RecipeApplicationContractTests.cs",
+      "evidenceLevel": "Component",
+      "requiredEvidence": [
+        "trx",
+        "discovery",
+        "current-context"
+      ],
+      "obligations": [
+        "MIG-LastRequiredReceiptUsesOriginalTotalWindow"
+      ]
+    },
+    {
+      "caseId": "V02/RecipeApplicationContractTests.LastRequiredReceiptUsesOriginalTotalWindow/2",
+      "set": "B",
+      "verification": "V02",
+      "kind": "dotnet",
+      "suite": "Gaode.Contracts.Tests",
+      "method": "Gaode.Contracts.Tests.Station01.RecipeApplicationContractTests.LastRequiredReceiptUsesOriginalTotalWindow",
+      "dataRowId": "2",
+      "dataRow": "caseId: \"BA04-boundary/after\", receivedAt: 10001, valid: False",
+      "sourceInlineData": "\"BA04-boundary/after\", 10001, false",
+      "path": "backend/tests/Gaode.Contracts.Tests/Station01/RecipeApplicationContractTests.cs",
+      "evidenceLevel": "Component",
+      "requiredEvidence": [
+        "trx",
+        "discovery",
+        "current-context"
+      ],
+      "obligations": [
+        "MIG-LastRequiredReceiptUsesOriginalTotalWindow"
+      ]
+    },
+    {
+      "caseId": "V02/RecipeApplicationContractTests.EarlierDownstreamDeadlineClosesNecessarySaveWithoutRefreshingAnyDeadline/0",
+      "set": "B",
+      "verification": "V02",
+      "kind": "dotnet",
+      "suite": "Gaode.Contracts.Tests",
+      "method": "Gaode.Contracts.Tests.Station01.RecipeApplicationContractTests.EarlierDownstreamDeadlineClosesNecessarySaveWithoutRefreshingAnyDeadline",
+      "dataRowId": "0",
+      "dataRow": "caseId: \"BA06-downstream/strict-during-save\"",
+      "sourceInlineData": "\"BA06-downstream/strict-during-save\"",
+      "path": "backend/tests/Gaode.Contracts.Tests/Station01/RecipeApplicationContractTests.cs",
+      "evidenceLevel": "Component",
+      "requiredEvidence": [
+        "trx",
+        "discovery",
+        "current-context"
+      ],
+      "obligations": [
+        "MIG-EarlierDownstreamDeadlineClosesNecessarySaveWithoutRefreshingAnyDeadline"
+      ]
+    },
+    {
+      "caseId": "V02/RecipeApplicationContractTests.CancellationAfterBoundCommitCannotStartRequiredHandoffSave/0",
+      "set": "B",
+      "verification": "V02",
+      "kind": "dotnet",
+      "suite": "Gaode.Contracts.Tests",
+      "method": "Gaode.Contracts.Tests.Station01.RecipeApplicationContractTests.CancellationAfterBoundCommitCannotStartRequiredHandoffSave",
+      "dataRowId": "0",
+      "dataRow": null,
+      "sourceInlineData": "Fact",
+      "path": "backend/tests/Gaode.Contracts.Tests/Station01/RecipeApplicationContractTests.cs",
+      "evidenceLevel": "Component",
+      "requiredEvidence": [
+        "trx",
+        "discovery",
+        "current-context"
+      ],
+      "obligations": [
+        "MIG-CancellationAfterBoundCommitCannotStartRequiredHandoffSave"
+      ]
+    },
+    {
+      "caseId": "V02/DetectionRetryAndPendingTests.StrictRecipePendingWithWrongObjectPositionCannotDispatchSorting/0",
+      "set": "B",
+      "verification": "V02",
+      "kind": "dotnet",
+      "suite": "Gaode.Contracts.Tests",
+      "method": "Gaode.Contracts.Tests.Workflow.DetectionRetryAndPendingTests.StrictRecipePendingWithWrongObjectPositionCannotDispatchSorting",
+      "dataRowId": "0",
+      "dataRow": null,
+      "sourceInlineData": "Fact",
+      "path": "backend/tests/Gaode.Contracts.Tests/Workflow/DetectionRetryAndPendingTests.cs",
+      "evidenceLevel": "UpperIsolation",
+      "requiredEvidence": [
+        "trx",
+        "discovery",
+        "current-context"
+      ],
+      "obligations": [
+        "MIG-StrictRecipePendingWithWrongObjectPositionCannotDispatchSorting"
+      ]
+    },
+    {
+      "caseId": "V02/DetectionRetryAndPendingTests.ExhaustedDetectionRetriesCreatePendingAndContinueFormalSorting/0",
+      "set": "B",
+      "verification": "V02",
+      "kind": "dotnet",
+      "suite": "Gaode.Contracts.Tests",
+      "method": "Gaode.Contracts.Tests.Workflow.DetectionRetryAndPendingTests.ExhaustedDetectionRetriesCreatePendingAndContinueFormalSorting",
+      "dataRowId": "0",
+      "dataRow": "kind: Disconnected, expectedAttempts: 4, first: 1, second: 2, third: 4",
+      "sourceInlineData": "DetectionResultKind.Disconnected, 4, 1, 2, 4",
+      "path": "backend/tests/Gaode.Contracts.Tests/Workflow/DetectionRetryAndPendingTests.cs",
+      "evidenceLevel": "UpperIsolation",
+      "requiredEvidence": [
+        "trx",
+        "discovery",
+        "current-context"
+      ],
+      "obligations": [
+        "MIG-ExhaustedDetectionRetriesCreatePendingAndContinueFormalSorting"
+      ]
+    },
+    {
+      "caseId": "V02/DetectionRetryAndPendingTests.ExhaustedDetectionRetriesCreatePendingAndContinueFormalSorting/1",
+      "set": "B",
+      "verification": "V02",
+      "kind": "dotnet",
+      "suite": "Gaode.Contracts.Tests",
+      "method": "Gaode.Contracts.Tests.Workflow.DetectionRetryAndPendingTests.ExhaustedDetectionRetriesCreatePendingAndContinueFormalSorting",
+      "dataRowId": "1",
+      "dataRow": "kind: TimedOut, expectedAttempts: 3, first: 2, second: 5, third: 0",
+      "sourceInlineData": "DetectionResultKind.TimedOut, 3, 2, 5, 0",
+      "path": "backend/tests/Gaode.Contracts.Tests/Workflow/DetectionRetryAndPendingTests.cs",
+      "evidenceLevel": "UpperIsolation",
+      "requiredEvidence": [
+        "trx",
+        "discovery",
+        "current-context"
+      ],
+      "obligations": [
+        "MIG-ExhaustedDetectionRetriesCreatePendingAndContinueFormalSorting"
+      ]
+    },
+    {
+      "caseId": "V02/DetectionRetryAndPendingTests.SharedDeadlineExpiringDuringFirstAttemptDoesNotResetAndCreatesPending/0",
+      "set": "B",
+      "verification": "V02",
+      "kind": "dotnet",
+      "suite": "Gaode.Contracts.Tests",
+      "method": "Gaode.Contracts.Tests.Workflow.DetectionRetryAndPendingTests.SharedDeadlineExpiringDuringFirstAttemptDoesNotResetAndCreatesPending",
+      "dataRowId": "0",
+      "dataRow": null,
+      "sourceInlineData": "Fact",
+      "path": "backend/tests/Gaode.Contracts.Tests/Workflow/DetectionRetryAndPendingTests.cs",
+      "evidenceLevel": "UpperIsolation",
+      "requiredEvidence": [
+        "trx",
+        "discovery",
+        "current-context"
+      ],
+      "obligations": [
+        "MIG-SharedDeadlineExpiringDuringFirstAttemptDoesNotResetAndCreatesPending"
+      ]
+    },
+    {
+      "caseId": "V02/StageRetryPolicyTests.DetectionCommunicationHasFourTotalAttemptsAndOneTwoFourBackoff/0",
+      "set": "B",
+      "verification": "V02",
+      "kind": "dotnet",
+      "suite": "Gaode.Contracts.Tests",
+      "method": "Gaode.Contracts.Tests.Workflow.StageRetryPolicyTests.DetectionCommunicationHasFourTotalAttemptsAndOneTwoFourBackoff",
+      "dataRowId": "0",
+      "dataRow": null,
+      "sourceInlineData": "Fact",
+      "path": "backend/tests/Gaode.Contracts.Tests/Workflow/StageRetryPolicyTests.cs",
+      "evidenceLevel": "UpperIsolation",
+      "requiredEvidence": [
+        "trx",
+        "discovery",
+        "current-context"
+      ],
+      "obligations": [
+        "MIG-DetectionCommunicationHasFourTotalAttemptsAndOneTwoFourBackoff"
+      ]
+    },
+    {
+      "caseId": "V02/StageRetryPolicyTests.AlgorithmTimeoutHasThreeTotalAttemptsAndTwoFiveBackoff/0",
+      "set": "B",
+      "verification": "V02",
+      "kind": "dotnet",
+      "suite": "Gaode.Contracts.Tests",
+      "method": "Gaode.Contracts.Tests.Workflow.StageRetryPolicyTests.AlgorithmTimeoutHasThreeTotalAttemptsAndTwoFiveBackoff",
+      "dataRowId": "0",
+      "dataRow": null,
+      "sourceInlineData": "Fact",
+      "path": "backend/tests/Gaode.Contracts.Tests/Workflow/StageRetryPolicyTests.cs",
+      "evidenceLevel": "UpperIsolation",
+      "requiredEvidence": [
+        "trx",
+        "discovery",
+        "current-context"
+      ],
+      "obligations": [
+        "MIG-AlgorithmTimeoutHasThreeTotalAttemptsAndTwoFiveBackoff"
+      ]
+    },
+    {
+      "caseId": "V02/StageRetryPolicyTests.SharedDeadlineWinsAndDetectionBecomesPending/0",
+      "set": "B",
+      "verification": "V02",
+      "kind": "dotnet",
+      "suite": "Gaode.Contracts.Tests",
+      "method": "Gaode.Contracts.Tests.Workflow.StageRetryPolicyTests.SharedDeadlineWinsAndDetectionBecomesPending",
+      "dataRowId": "0",
+      "dataRow": null,
+      "sourceInlineData": "Fact",
+      "path": "backend/tests/Gaode.Contracts.Tests/Workflow/StageRetryPolicyTests.cs",
+      "evidenceLevel": "UpperIsolation",
+      "requiredEvidence": [
+        "trx",
+        "discovery",
+        "current-context"
+      ],
+      "obligations": [
+        "MIG-SharedDeadlineWinsAndDetectionBecomesPending"
+      ]
+    },
+    {
+      "caseId": "V02/StageRetryPolicyTests.RestartUsesPersistedDeadlineInsteadOfResettingIt/0",
+      "set": "B",
+      "verification": "V02",
+      "kind": "dotnet",
+      "suite": "Gaode.Contracts.Tests",
+      "method": "Gaode.Contracts.Tests.Workflow.StageRetryPolicyTests.RestartUsesPersistedDeadlineInsteadOfResettingIt",
+      "dataRowId": "0",
+      "dataRow": null,
+      "sourceInlineData": "Fact",
+      "path": "backend/tests/Gaode.Contracts.Tests/Workflow/StageRetryPolicyTests.cs",
+      "evidenceLevel": "UpperIsolation",
+      "requiredEvidence": [
+        "trx",
+        "discovery",
+        "current-context"
+      ],
+      "obligations": [
+        "MIG-RestartUsesPersistedDeadlineInsteadOfResettingIt"
+      ]
+    },
+    {
+      "caseId": "V02/StageRetryPolicyTests.PlcPreDispatchFailureCanRetryButExhaustionIsFailed/0",
+      "set": "B",
+      "verification": "V02",
+      "kind": "dotnet",
+      "suite": "Gaode.Contracts.Tests",
+      "method": "Gaode.Contracts.Tests.Workflow.StageRetryPolicyTests.PlcPreDispatchFailureCanRetryButExhaustionIsFailed",
+      "dataRowId": "0",
+      "dataRow": null,
+      "sourceInlineData": "Fact",
+      "path": "backend/tests/Gaode.Contracts.Tests/Workflow/StageRetryPolicyTests.cs",
+      "evidenceLevel": "UpperIsolation",
+      "requiredEvidence": [
+        "trx",
+        "discovery",
+        "current-context"
+      ],
+      "obligations": [
+        "MIG-PlcPreDispatchFailureCanRetryButExhaustionIsFailed"
+      ]
+    },
+    {
+      "caseId": "V02/StageRetryPolicyTests.PossiblyDispatchedPlcActionNeverRetriesAndIsUnknownHeld/0",
+      "set": "B",
+      "verification": "V02",
+      "kind": "dotnet",
+      "suite": "Gaode.Contracts.Tests",
+      "method": "Gaode.Contracts.Tests.Workflow.StageRetryPolicyTests.PossiblyDispatchedPlcActionNeverRetriesAndIsUnknownHeld",
+      "dataRowId": "0",
+      "dataRow": null,
+      "sourceInlineData": "Fact",
+      "path": "backend/tests/Gaode.Contracts.Tests/Workflow/StageRetryPolicyTests.cs",
+      "evidenceLevel": "UpperIsolation",
+      "requiredEvidence": [
+        "trx",
+        "discovery",
+        "current-context"
+      ],
+      "obligations": [
+        "MIG-PossiblyDispatchedPlcActionNeverRetriesAndIsUnknownHeld"
+      ]
+    },
+    {
+      "caseId": "V02/ThreeStageWorkflowExecutorTests.CompleteMappingExecutesOnlyDetectionSortingAndUnloadPreparationInOrder/0",
+      "set": "B",
+      "verification": "V02",
+      "kind": "dotnet",
+      "suite": "Gaode.Contracts.Tests",
+      "method": "Gaode.Contracts.Tests.Workflow.ThreeStageWorkflowExecutorTests.CompleteMappingExecutesOnlyDetectionSortingAndUnloadPreparationInOrder",
+      "dataRowId": "0",
+      "dataRow": null,
+      "sourceInlineData": "Fact",
+      "path": "backend/tests/Gaode.Contracts.Tests/Workflow/ThreeStageWorkflowExecutorTests.cs",
+      "evidenceLevel": "UpperIsolation",
+      "requiredEvidence": [
+        "trx",
+        "discovery",
+        "current-context"
+      ],
+      "obligations": [
+        "MIG-CompleteMappingExecutesOnlyDetectionSortingAndUnloadPreparationInOrder"
+      ]
+    },
+    {
+      "caseId": "V02/ThreeStageWorkflowExecutorTests.MappingFailedPausesDetectionAndNeverCallsPlcPort/0",
+      "set": "B",
+      "verification": "V02",
+      "kind": "dotnet",
+      "suite": "Gaode.Contracts.Tests",
+      "method": "Gaode.Contracts.Tests.Workflow.ThreeStageWorkflowExecutorTests.MappingFailedPausesDetectionAndNeverCallsPlcPort",
+      "dataRowId": "0",
+      "dataRow": null,
+      "sourceInlineData": "Fact",
+      "path": "backend/tests/Gaode.Contracts.Tests/Workflow/ThreeStageWorkflowExecutorTests.cs",
+      "evidenceLevel": "UpperIsolation",
+      "requiredEvidence": [
+        "trx",
+        "discovery",
+        "current-context"
+      ],
+      "obligations": [
+        "MIG-MappingFailedPausesDetectionAndNeverCallsPlcPort"
+      ]
+    },
+    {
+      "caseId": "V02/ThreeStageWorkflowExecutorTests.MissingSortingTargetBlocksBeforeUnloadMotion/0",
+      "set": "B",
+      "verification": "V02",
+      "kind": "dotnet",
+      "suite": "Gaode.Contracts.Tests",
+      "method": "Gaode.Contracts.Tests.Workflow.ThreeStageWorkflowExecutorTests.MissingSortingTargetBlocksBeforeUnloadMotion",
+      "dataRowId": "0",
+      "dataRow": null,
+      "sourceInlineData": "Fact",
+      "path": "backend/tests/Gaode.Contracts.Tests/Workflow/ThreeStageWorkflowExecutorTests.cs",
+      "evidenceLevel": "UpperIsolation",
+      "requiredEvidence": [
+        "trx",
+        "discovery",
+        "current-context"
+      ],
+      "obligations": [
+        "MIG-MissingSortingTargetBlocksBeforeUnloadMotion"
+      ]
+    },
+    {
+      "caseId": "V02/ThreeStageWorkflowExecutorTests.TwoProblemEntitiesCannotReserveTheSameTargetCell/0",
+      "set": "B",
+      "verification": "V02",
+      "kind": "dotnet",
+      "suite": "Gaode.Contracts.Tests",
+      "method": "Gaode.Contracts.Tests.Workflow.ThreeStageWorkflowExecutorTests.TwoProblemEntitiesCannotReserveTheSameTargetCell",
+      "dataRowId": "0",
+      "dataRow": null,
+      "sourceInlineData": "Fact",
+      "path": "backend/tests/Gaode.Contracts.Tests/Workflow/ThreeStageWorkflowExecutorTests.cs",
+      "evidenceLevel": "UpperIsolation",
+      "requiredEvidence": [
+        "trx",
+        "discovery",
+        "current-context"
+      ],
+      "obligations": [
+        "MIG-TwoProblemEntitiesCannotReserveTheSameTargetCell"
+      ]
+    },
+    {
+      "caseId": "V02/ThreeStageWorkflowExecutorTests.OccupiedSourceCellCannotBeAssignedAsSortingDestination/0",
+      "set": "B",
+      "verification": "V02",
+      "kind": "dotnet",
+      "suite": "Gaode.Contracts.Tests",
+      "method": "Gaode.Contracts.Tests.Workflow.ThreeStageWorkflowExecutorTests.OccupiedSourceCellCannotBeAssignedAsSortingDestination",
+      "dataRowId": "0",
+      "dataRow": null,
+      "sourceInlineData": "Fact",
+      "path": "backend/tests/Gaode.Contracts.Tests/Workflow/ThreeStageWorkflowExecutorTests.cs",
+      "evidenceLevel": "UpperIsolation",
+      "requiredEvidence": [
+        "trx",
+        "discovery",
+        "current-context"
+      ],
+      "obligations": [
+        "MIG-OccupiedSourceCellCannotBeAssignedAsSortingDestination"
+      ]
+    },
+    {
+      "caseId": "V02/ThreeStageWorkflowExecutorTests.ReservationSaveFailurePreventsEvenUnloadDispatch/0",
+      "set": "B",
+      "verification": "V02",
+      "kind": "dotnet",
+      "suite": "Gaode.Contracts.Tests",
+      "method": "Gaode.Contracts.Tests.Workflow.ThreeStageWorkflowExecutorTests.ReservationSaveFailurePreventsEvenUnloadDispatch",
+      "dataRowId": "0",
+      "dataRow": null,
+      "sourceInlineData": "Fact",
+      "path": "backend/tests/Gaode.Contracts.Tests/Workflow/ThreeStageWorkflowExecutorTests.cs",
+      "evidenceLevel": "UpperIsolation",
+      "requiredEvidence": [
+        "trx",
+        "discovery",
+        "current-context"
+      ],
+      "obligations": [
+        "MIG-ReservationSaveFailurePreventsEvenUnloadDispatch"
+      ]
+    },
+    {
+      "caseId": "V02/ThreeStageWorkflowExecutorTests.MixedTrayCommitsNormalMemberRetentionWithoutAnotherSortingAction/0",
+      "set": "B",
+      "verification": "V02",
+      "kind": "dotnet",
+      "suite": "Gaode.Contracts.Tests",
+      "method": "Gaode.Contracts.Tests.Workflow.ThreeStageWorkflowExecutorTests.MixedTrayCommitsNormalMemberRetentionWithoutAnotherSortingAction",
+      "dataRowId": "0",
+      "dataRow": null,
+      "sourceInlineData": "Fact",
+      "path": "backend/tests/Gaode.Contracts.Tests/Workflow/ThreeStageWorkflowExecutorTests.cs",
+      "evidenceLevel": "UpperIsolation",
+      "requiredEvidence": [
+        "trx",
+        "discovery",
+        "current-context"
+      ],
+      "obligations": [
+        "MIG-MixedTrayCommitsNormalMemberRetentionWithoutAnotherSortingAction"
+      ]
+    },
+    {
+      "caseId": "V02/ThreeStageWorkflowExecutorTests.CommunicationFailuresUseInitialAttemptPlusThreeRetriesAndOneTwoFourBackoff/0",
+      "set": "B",
+      "verification": "V02",
+      "kind": "dotnet",
+      "suite": "Gaode.Contracts.Tests",
+      "method": "Gaode.Contracts.Tests.Workflow.ThreeStageWorkflowExecutorTests.CommunicationFailuresUseInitialAttemptPlusThreeRetriesAndOneTwoFourBackoff",
+      "dataRowId": "0",
+      "dataRow": null,
+      "sourceInlineData": "Fact",
+      "path": "backend/tests/Gaode.Contracts.Tests/Workflow/ThreeStageWorkflowExecutorTests.cs",
+      "evidenceLevel": "UpperIsolation",
+      "requiredEvidence": [
+        "trx",
+        "discovery",
+        "current-context"
+      ],
+      "obligations": [
+        "MIG-CommunicationFailuresUseInitialAttemptPlusThreeRetriesAndOneTwoFourBackoff"
+      ]
+    },
+    {
+      "caseId": "V02/ThreeStageWorkflowExecutorTests.AlgorithmTimeoutsUseInitialAttemptPlusTwoRetriesAndTwoFiveBackoff/0",
+      "set": "B",
+      "verification": "V02",
+      "kind": "dotnet",
+      "suite": "Gaode.Contracts.Tests",
+      "method": "Gaode.Contracts.Tests.Workflow.ThreeStageWorkflowExecutorTests.AlgorithmTimeoutsUseInitialAttemptPlusTwoRetriesAndTwoFiveBackoff",
+      "dataRowId": "0",
+      "dataRow": null,
+      "sourceInlineData": "Fact",
+      "path": "backend/tests/Gaode.Contracts.Tests/Workflow/ThreeStageWorkflowExecutorTests.cs",
+      "evidenceLevel": "UpperIsolation",
+      "requiredEvidence": [
+        "trx",
+        "discovery",
+        "current-context"
+      ],
+      "obligations": [
+        "MIG-AlgorithmTimeoutsUseInitialAttemptPlusTwoRetriesAndTwoFiveBackoff"
+      ]
+    },
+    {
+      "caseId": "V02/ThreeStageWorkflowExecutorTests.SharedStageDeadlineStopsRetryBeforeItCanCrossOneHundredTwentySeconds/0",
+      "set": "B",
+      "verification": "V02",
+      "kind": "dotnet",
+      "suite": "Gaode.Contracts.Tests",
+      "method": "Gaode.Contracts.Tests.Workflow.ThreeStageWorkflowExecutorTests.SharedStageDeadlineStopsRetryBeforeItCanCrossOneHundredTwentySeconds",
+      "dataRowId": "0",
+      "dataRow": null,
+      "sourceInlineData": "Fact",
+      "path": "backend/tests/Gaode.Contracts.Tests/Workflow/ThreeStageWorkflowExecutorTests.cs",
+      "evidenceLevel": "UpperIsolation",
+      "requiredEvidence": [
+        "trx",
+        "discovery",
+        "current-context"
+      ],
+      "obligations": [
+        "MIG-SharedStageDeadlineStopsRetryBeforeItCanCrossOneHundredTwentySeconds"
+      ]
+    },
+    {
+      "caseId": "V02/ThreeStageWorkflowExecutorTests.DetectionExecutionAtStageDeadlineCannotDispatchSorting/0",
+      "set": "B",
+      "verification": "V02",
+      "kind": "dotnet",
+      "suite": "Gaode.Contracts.Tests",
+      "method": "Gaode.Contracts.Tests.Workflow.ThreeStageWorkflowExecutorTests.DetectionExecutionAtStageDeadlineCannotDispatchSorting",
+      "dataRowId": "0",
+      "dataRow": null,
+      "sourceInlineData": "Fact",
+      "path": "backend/tests/Gaode.Contracts.Tests/Workflow/ThreeStageWorkflowExecutorTests.cs",
+      "evidenceLevel": "UpperIsolation",
+      "requiredEvidence": [
+        "trx",
+        "discovery",
+        "current-context"
+      ],
+      "obligations": [
+        "MIG-DetectionExecutionAtStageDeadlineCannotDispatchSorting"
+      ]
+    },
+    {
+      "caseId": "V02/ThreeStageWorkflowExecutorTests.PlcUnknownHeldKeepsAssociationAndNeverRetriesOrAdvances/0",
+      "set": "B",
+      "verification": "V02",
+      "kind": "dotnet",
+      "suite": "Gaode.Contracts.Tests",
+      "method": "Gaode.Contracts.Tests.Workflow.ThreeStageWorkflowExecutorTests.PlcUnknownHeldKeepsAssociationAndNeverRetriesOrAdvances",
+      "dataRowId": "0",
+      "dataRow": null,
+      "sourceInlineData": "Fact",
+      "path": "backend/tests/Gaode.Contracts.Tests/Workflow/ThreeStageWorkflowExecutorTests.cs",
+      "evidenceLevel": "UpperIsolation",
+      "requiredEvidence": [
+        "trx",
+        "discovery",
+        "current-context"
+      ],
+      "obligations": [
+        "MIG-PlcUnknownHeldKeepsAssociationAndNeverRetriesOrAdvances"
+      ]
+    },
+    {
+      "caseId": "V02/ThreeStageWorkflowExecutorTests.FailedPhysicalDetectionAtDeadlineCannotBecomePendingOrDispatchUnload/0",
+      "set": "B",
+      "verification": "V02",
+      "kind": "dotnet",
+      "suite": "Gaode.Contracts.Tests",
+      "method": "Gaode.Contracts.Tests.Workflow.ThreeStageWorkflowExecutorTests.FailedPhysicalDetectionAtDeadlineCannotBecomePendingOrDispatchUnload",
+      "dataRowId": "0",
+      "dataRow": "caseId: \"F04-COMPONENT/physical-failure/false\", afterDeadline: False",
+      "sourceInlineData": "\"F04-COMPONENT/physical-failure/false\", false",
+      "path": "backend/tests/Gaode.Contracts.Tests/Workflow/ThreeStageWorkflowExecutorTests.cs",
+      "evidenceLevel": "UpperIsolation",
+      "requiredEvidence": [
+        "trx",
+        "discovery",
+        "current-context"
+      ],
+      "obligations": [
+        "MIG-FailedPhysicalDetectionAtDeadlineCannotBecomePendingOrDispatchUnload"
+      ]
+    },
+    {
+      "caseId": "V02/ThreeStageWorkflowExecutorTests.FailedPhysicalDetectionAtDeadlineCannotBecomePendingOrDispatchUnload/1",
+      "set": "B",
+      "verification": "V02",
+      "kind": "dotnet",
+      "suite": "Gaode.Contracts.Tests",
+      "method": "Gaode.Contracts.Tests.Workflow.ThreeStageWorkflowExecutorTests.FailedPhysicalDetectionAtDeadlineCannotBecomePendingOrDispatchUnload",
+      "dataRowId": "1",
+      "dataRow": "caseId: \"F04-COMPONENT/physical-failure/true\", afterDeadline: True",
+      "sourceInlineData": "\"F04-COMPONENT/physical-failure/true\", true",
+      "path": "backend/tests/Gaode.Contracts.Tests/Workflow/ThreeStageWorkflowExecutorTests.cs",
+      "evidenceLevel": "UpperIsolation",
+      "requiredEvidence": [
+        "trx",
+        "discovery",
+        "current-context"
+      ],
+      "obligations": [
+        "MIG-FailedPhysicalDetectionAtDeadlineCannotBecomePendingOrDispatchUnload"
+      ]
+    },
+    {
+      "caseId": "V02/ThreeStageWorkflowExecutorTests.StaleOperationOrEpochFeedbackBecomesUnknownHeldAndCannotCompleteCurrentAction/0",
+      "set": "B",
+      "verification": "V02",
+      "kind": "dotnet",
+      "suite": "Gaode.Contracts.Tests",
+      "method": "Gaode.Contracts.Tests.Workflow.ThreeStageWorkflowExecutorTests.StaleOperationOrEpochFeedbackBecomesUnknownHeldAndCannotCompleteCurrentAction",
+      "dataRowId": "0",
+      "dataRow": null,
+      "sourceInlineData": "Fact",
+      "path": "backend/tests/Gaode.Contracts.Tests/Workflow/ThreeStageWorkflowExecutorTests.cs",
+      "evidenceLevel": "UpperIsolation",
+      "requiredEvidence": [
+        "trx",
+        "discovery",
+        "current-context"
+      ],
+      "obligations": [
+        "MIG-StaleOperationOrEpochFeedbackBecomesUnknownHeldAndCannotCompleteCurrentAction"
+      ]
+    },
+    {
+      "caseId": "V02/ThreeStageWorkflowExecutorTests.DetectionDisconnectedRemainsDetectionFailureInsteadOfPlcUnknownHeld/0",
+      "set": "B",
+      "verification": "V02",
+      "kind": "dotnet",
+      "suite": "Gaode.Contracts.Tests",
+      "method": "Gaode.Contracts.Tests.Workflow.ThreeStageWorkflowExecutorTests.DetectionDisconnectedRemainsDetectionFailureInsteadOfPlcUnknownHeld",
+      "dataRowId": "0",
+      "dataRow": null,
+      "sourceInlineData": "Fact",
+      "path": "backend/tests/Gaode.Contracts.Tests/Workflow/ThreeStageWorkflowExecutorTests.cs",
+      "evidenceLevel": "UpperIsolation",
+      "requiredEvidence": [
+        "trx",
+        "discovery",
+        "current-context"
+      ],
+      "obligations": [
+        "MIG-DetectionDisconnectedRemainsDetectionFailureInsteadOfPlcUnknownHeld"
+      ]
+    },
+    {
+      "caseId": "V02/ThreeStageWorkflowExecutorTests.RecoveryBlocksUnknownPlcActionAndPreservesItsOperationAndEpoch/0",
+      "set": "B",
+      "verification": "V02",
+      "kind": "dotnet",
+      "suite": "Gaode.Contracts.Tests",
+      "method": "Gaode.Contracts.Tests.Workflow.ThreeStageWorkflowExecutorTests.RecoveryBlocksUnknownPlcActionAndPreservesItsOperationAndEpoch",
+      "dataRowId": "0",
+      "dataRow": null,
+      "sourceInlineData": "Fact",
+      "path": "backend/tests/Gaode.Contracts.Tests/Workflow/ThreeStageWorkflowExecutorTests.cs",
+      "evidenceLevel": "UpperIsolation",
+      "requiredEvidence": [
+        "trx",
+        "discovery",
+        "current-context"
+      ],
+      "obligations": [
+        "MIG-RecoveryBlocksUnknownPlcActionAndPreservesItsOperationAndEpoch"
+      ]
+    },
+    {
+      "caseId": "V02/WholeTrayWorkflowOrchestratorTests.DeviceVersionComesFromActualSemanticProducerNotCurrentProtocolDefinition/0",
+      "set": "B",
+      "verification": "V02",
+      "kind": "dotnet",
+      "suite": "Gaode.Contracts.Tests",
+      "method": "Gaode.Contracts.Tests.Workflow.WholeTrayWorkflowOrchestratorTests.DeviceVersionComesFromActualSemanticProducerNotCurrentProtocolDefinition",
+      "dataRowId": "0",
+      "dataRow": null,
+      "sourceInlineData": "Fact",
+      "path": "backend/tests/Gaode.Contracts.Tests/Workflow/WholeTrayWorkflowOrchestratorTests.cs",
+      "evidenceLevel": "UpperIsolation",
+      "requiredEvidence": [
+        "trx",
+        "discovery",
+        "current-context"
+      ],
+      "obligations": [
+        "MIG-DeviceVersionComesFromActualSemanticProducerNotCurrentProtocolDefinition",
+        "SRC-01"
+      ]
+    },
+    {
+      "caseId": "V02/WholeTrayWorkflowOrchestratorTests.TestPurposeDoesNotReplaceEachActualProducerWithSimulatedSource/0",
+      "set": "B",
+      "verification": "V02",
+      "kind": "dotnet",
+      "suite": "Gaode.Contracts.Tests",
+      "method": "Gaode.Contracts.Tests.Workflow.WholeTrayWorkflowOrchestratorTests.TestPurposeDoesNotReplaceEachActualProducerWithSimulatedSource",
+      "dataRowId": "0",
+      "dataRow": null,
+      "sourceInlineData": "Fact",
+      "path": "backend/tests/Gaode.Contracts.Tests/Workflow/WholeTrayWorkflowOrchestratorTests.cs",
+      "evidenceLevel": "UpperIsolation",
+      "requiredEvidence": [
+        "trx",
+        "discovery",
+        "current-context"
+      ],
+      "obligations": [
+        "MIG-TestPurposeDoesNotReplaceEachActualProducerWithSimulatedSource",
+        "SRC-02"
+      ]
+    },
+    {
+      "caseId": "V02/WholeTrayWorkflowOrchestratorTests.UnknownProducerCannotBeFilledFromPurposeOrHistoricalResultCategory/0",
+      "set": "B",
+      "verification": "V02",
+      "kind": "dotnet",
+      "suite": "Gaode.Contracts.Tests",
+      "method": "Gaode.Contracts.Tests.Workflow.WholeTrayWorkflowOrchestratorTests.UnknownProducerCannotBeFilledFromPurposeOrHistoricalResultCategory",
+      "dataRowId": "0",
+      "dataRow": "missingCamera: True, missingAlgorithm: False, component: \"Camera\"",
+      "sourceInlineData": "true, false, \"Camera\"",
+      "path": "backend/tests/Gaode.Contracts.Tests/Workflow/WholeTrayWorkflowOrchestratorTests.cs",
+      "evidenceLevel": "UpperIsolation",
+      "requiredEvidence": [
+        "trx",
+        "discovery",
+        "current-context"
+      ],
+      "obligations": [
+        "MIG-UnknownProducerCannotBeFilledFromPurposeOrHistoricalResultCategory",
+        "SRC-03"
+      ]
+    },
+    {
+      "caseId": "V02/WholeTrayWorkflowOrchestratorTests.UnknownProducerCannotBeFilledFromPurposeOrHistoricalResultCategory/1",
+      "set": "B",
+      "verification": "V02",
+      "kind": "dotnet",
+      "suite": "Gaode.Contracts.Tests",
+      "method": "Gaode.Contracts.Tests.Workflow.WholeTrayWorkflowOrchestratorTests.UnknownProducerCannotBeFilledFromPurposeOrHistoricalResultCategory",
+      "dataRowId": "1",
+      "dataRow": "missingCamera: False, missingAlgorithm: True, component: \"Algorithm\"",
+      "sourceInlineData": "false, true, \"Algorithm\"",
+      "path": "backend/tests/Gaode.Contracts.Tests/Workflow/WholeTrayWorkflowOrchestratorTests.cs",
+      "evidenceLevel": "UpperIsolation",
+      "requiredEvidence": [
+        "trx",
+        "discovery",
+        "current-context"
+      ],
+      "obligations": [
+        "MIG-UnknownProducerCannotBeFilledFromPurposeOrHistoricalResultCategory",
+        "SRC-04"
+      ]
+    },
+    {
+      "caseId": "V02/WholeTrayWorkflowOrchestratorTests.UnlockCannotBypassPersistedWholeTrayEvidence/0",
+      "set": "B",
+      "verification": "V02",
+      "kind": "dotnet",
+      "suite": "Gaode.Contracts.Tests",
+      "method": "Gaode.Contracts.Tests.Workflow.WholeTrayWorkflowOrchestratorTests.UnlockCannotBypassPersistedWholeTrayEvidence",
+      "dataRowId": "0",
+      "dataRow": null,
+      "sourceInlineData": "Fact",
+      "path": "backend/tests/Gaode.Contracts.Tests/Workflow/WholeTrayWorkflowOrchestratorTests.cs",
+      "evidenceLevel": "UpperIsolation",
+      "requiredEvidence": [
+        "trx",
+        "discovery",
+        "current-context"
+      ],
+      "obligations": [
+        "MIG-UnlockCannotBypassPersistedWholeTrayEvidence"
+      ]
+    },
+    {
+      "caseId": "V02/WholeTrayWorkflowOrchestratorTests.UnknownUnlockFeedbackDoesNotCreateObservedUnlocked/0",
+      "set": "B",
+      "verification": "V02",
+      "kind": "dotnet",
+      "suite": "Gaode.Contracts.Tests",
+      "method": "Gaode.Contracts.Tests.Workflow.WholeTrayWorkflowOrchestratorTests.UnknownUnlockFeedbackDoesNotCreateObservedUnlocked",
+      "dataRowId": "0",
+      "dataRow": null,
+      "sourceInlineData": "Fact",
+      "path": "backend/tests/Gaode.Contracts.Tests/Workflow/WholeTrayWorkflowOrchestratorTests.cs",
+      "evidenceLevel": "UpperIsolation",
+      "requiredEvidence": [
+        "trx",
+        "discovery",
+        "current-context"
+      ],
+      "obligations": [
+        "MIG-UnknownUnlockFeedbackDoesNotCreateObservedUnlocked"
+      ]
+    },
+    {
+      "caseId": "V02/WholeTrayWorkflowOrchestratorTests.ProductionSourceCannotUseSimulatedStageEvidence/0",
+      "set": "B",
+      "verification": "V02",
+      "kind": "dotnet",
+      "suite": "Gaode.Contracts.Tests",
+      "method": "Gaode.Contracts.Tests.Workflow.WholeTrayWorkflowOrchestratorTests.ProductionSourceCannotUseSimulatedStageEvidence",
+      "dataRowId": "0",
+      "dataRow": null,
+      "sourceInlineData": "Fact",
+      "path": "backend/tests/Gaode.Contracts.Tests/Workflow/WholeTrayWorkflowOrchestratorTests.cs",
+      "evidenceLevel": "UpperIsolation",
+      "requiredEvidence": [
+        "trx",
+        "discovery",
+        "current-context"
+      ],
+      "obligations": [
+        "MIG-ProductionSourceCannotUseSimulatedStageEvidence"
+      ]
+    },
+    {
+      "caseId": "V02/CommittedResultProjectionTests.EvidenceProjectionPreservesCommittedActualReadbackInsteadOfCopyingTarget/0",
+      "set": "B",
+      "verification": "V02",
+      "kind": "dotnet",
+      "suite": "Gaode.Integration.Tests",
+      "method": "Gaode.Integration.Tests.Api.CommittedResultProjectionTests.EvidenceProjectionPreservesCommittedActualReadbackInsteadOfCopyingTarget",
+      "dataRowId": "0",
+      "dataRow": null,
+      "sourceInlineData": "Fact",
+      "path": "backend/tests/Gaode.Integration.Tests/Api/CommittedResultProjectionTests.cs",
+      "evidenceLevel": "Component",
+      "requiredEvidence": [
+        "trx",
+        "discovery",
+        "current-context"
+      ],
+      "obligations": [
+        "MIG-EvidenceProjectionPreservesCommittedActualReadbackInsteadOfCopyingTarget"
+      ]
+    },
+    {
+      "caseId": "V02/CommittedResultProjectionTests.MotionTargetHasFiniteBusinessFieldsAndReadsCurrentSemanticPosition/0",
+      "set": "B",
+      "verification": "V02",
+      "kind": "dotnet",
+      "suite": "Gaode.Integration.Tests",
+      "method": "Gaode.Integration.Tests.Api.CommittedResultProjectionTests.MotionTargetHasFiniteBusinessFieldsAndReadsCurrentSemanticPosition",
+      "dataRowId": "0",
+      "dataRow": null,
+      "sourceInlineData": "Fact",
+      "path": "backend/tests/Gaode.Integration.Tests/Api/CommittedResultProjectionTests.cs",
+      "evidenceLevel": "Component",
+      "requiredEvidence": [
+        "trx",
+        "discovery",
+        "current-context"
+      ],
+      "obligations": [
+        "MIG-MotionTargetHasFiniteBusinessFieldsAndReadsCurrentSemanticPosition"
+      ]
+    },
+    {
+      "caseId": "V02/CommittedResultProjectionTests.CommittedImageIsVisibleBeforeObjectAggregateWithoutInventingObjectQuality/0",
+      "set": "B",
+      "verification": "V02",
+      "kind": "dotnet",
+      "suite": "Gaode.Integration.Tests",
+      "method": "Gaode.Integration.Tests.Api.CommittedResultProjectionTests.CommittedImageIsVisibleBeforeObjectAggregateWithoutInventingObjectQuality",
+      "dataRowId": "0",
+      "dataRow": "quality: \"OK\"",
+      "sourceInlineData": "\"OK\"",
+      "path": "backend/tests/Gaode.Integration.Tests/Api/CommittedResultProjectionTests.cs",
+      "evidenceLevel": "Component",
+      "requiredEvidence": [
+        "trx",
+        "discovery",
+        "current-context"
+      ],
+      "obligations": [
+        "MIG-CommittedImageIsVisibleBeforeObjectAggregateWithoutInventingObjectQuality",
+        "SRC-08"
+      ]
+    },
+    {
+      "caseId": "V02/CommittedResultProjectionTests.CommittedImageIsVisibleBeforeObjectAggregateWithoutInventingObjectQuality/1",
+      "set": "B",
+      "verification": "V02",
+      "kind": "dotnet",
+      "suite": "Gaode.Integration.Tests",
+      "method": "Gaode.Integration.Tests.Api.CommittedResultProjectionTests.CommittedImageIsVisibleBeforeObjectAggregateWithoutInventingObjectQuality",
+      "dataRowId": "1",
+      "dataRow": "quality: \"NG\"",
+      "sourceInlineData": "\"NG\"",
+      "path": "backend/tests/Gaode.Integration.Tests/Api/CommittedResultProjectionTests.cs",
+      "evidenceLevel": "Component",
+      "requiredEvidence": [
+        "trx",
+        "discovery",
+        "current-context"
+      ],
+      "obligations": [
+        "MIG-CommittedImageIsVisibleBeforeObjectAggregateWithoutInventingObjectQuality",
+        "SRC-08"
+      ]
+    },
+    {
+      "caseId": "V02/CommittedResultProjectionTests.CommittedImageIsVisibleBeforeObjectAggregateWithoutInventingObjectQuality/2",
+      "set": "B",
+      "verification": "V02",
+      "kind": "dotnet",
+      "suite": "Gaode.Integration.Tests",
+      "method": "Gaode.Integration.Tests.Api.CommittedResultProjectionTests.CommittedImageIsVisibleBeforeObjectAggregateWithoutInventingObjectQuality",
+      "dataRowId": "2",
+      "dataRow": "quality: \"Pending\"",
+      "sourceInlineData": "\"Pending\"",
+      "path": "backend/tests/Gaode.Integration.Tests/Api/CommittedResultProjectionTests.cs",
+      "evidenceLevel": "Component",
+      "requiredEvidence": [
+        "trx",
+        "discovery",
+        "current-context"
+      ],
+      "obligations": [
+        "MIG-CommittedImageIsVisibleBeforeObjectAggregateWithoutInventingObjectQuality",
+        "SRC-08"
+      ]
+    },
+    {
+      "caseId": "V02/CommittedResultProjectionTests.QualityAndRequiredTargetsRemainDistinctFromFlowFinal/0",
+      "set": "B",
+      "verification": "V02",
+      "kind": "dotnet",
+      "suite": "Gaode.Integration.Tests",
+      "method": "Gaode.Integration.Tests.Api.CommittedResultProjectionTests.QualityAndRequiredTargetsRemainDistinctFromFlowFinal",
+      "dataRowId": "0",
+      "dataRow": null,
+      "sourceInlineData": "Fact",
+      "path": "backend/tests/Gaode.Integration.Tests/Api/CommittedResultProjectionTests.cs",
+      "evidenceLevel": "Component",
+      "requiredEvidence": [
+        "trx",
+        "discovery",
+        "current-context"
+      ],
+      "obligations": [
+        "MIG-QualityAndRequiredTargetsRemainDistinctFromFlowFinal"
+      ]
+    },
+    {
+      "caseId": "V02/CommittedResultProjectionTests.LegacyUnassociatedPayloadDoesNotBecomeCurrentObject/0",
+      "set": "B",
+      "verification": "V02",
+      "kind": "dotnet",
+      "suite": "Gaode.Integration.Tests",
+      "method": "Gaode.Integration.Tests.Api.CommittedResultProjectionTests.LegacyUnassociatedPayloadDoesNotBecomeCurrentObject",
+      "dataRowId": "0",
+      "dataRow": null,
+      "sourceInlineData": "Fact",
+      "path": "backend/tests/Gaode.Integration.Tests/Api/CommittedResultProjectionTests.cs",
+      "evidenceLevel": "Component",
+      "requiredEvidence": [
+        "trx",
+        "discovery",
+        "current-context"
+      ],
+      "obligations": [
+        "MIG-LegacyUnassociatedPayloadDoesNotBecomeCurrentObject"
+      ]
+    },
+    {
+      "caseId": "V02/RunMediaCatalogTests.MultiFaceMediaKeepsCommittedFaceRoundAndRescanIdentity/0",
+      "set": "B",
+      "verification": "V02",
+      "kind": "dotnet",
+      "suite": "Gaode.Integration.Tests",
+      "method": "Gaode.Integration.Tests.Api.RunMediaCatalogTests.MultiFaceMediaKeepsCommittedFaceRoundAndRescanIdentity",
+      "dataRowId": "0",
+      "dataRow": null,
+      "sourceInlineData": "Fact",
+      "path": "backend/tests/Gaode.Integration.Tests/Api/RunMediaCatalogTests.cs",
+      "evidenceLevel": "StorageComponent",
+      "requiredEvidence": [
+        "trx",
+        "discovery",
+        "current-context"
+      ],
+      "obligations": [
+        "MIG-MultiFaceMediaKeepsCommittedFaceRoundAndRescanIdentity"
+      ]
+    },
+    {
+      "caseId": "V02/Station01SourceMatrixApiTests.EvidenceEndpointReturnsComponentSourcesWithoutCollapsingMixedEvidenceToReal/0",
+      "set": "B",
+      "verification": "V02",
+      "kind": "dotnet",
+      "suite": "Gaode.Integration.Tests",
+      "method": "Gaode.Integration.Tests.Api.Station01SourceMatrixApiTests.EvidenceEndpointReturnsComponentSourcesWithoutCollapsingMixedEvidenceToReal",
+      "dataRowId": "0",
+      "dataRow": null,
+      "sourceInlineData": "Fact",
+      "path": "backend/tests/Gaode.Integration.Tests/Api/Station01SourceMatrixApiTests.cs",
+      "evidenceLevel": "StorageComponent",
+      "requiredEvidence": [
+        "trx",
+        "discovery",
+        "current-context"
+      ],
+      "obligations": [
+        "MIG-EvidenceEndpointReturnsComponentSourcesWithoutCollapsingMixedEvidenceToReal",
+        "SRC-12"
+      ]
+    },
+    {
+      "caseId": "V04/RecipeMultiObjectIntegrationTests.ManualFlipRequiresObservedOccupancyAndAuthenticatedConfirmationThenClearsBeforeNextFace/0",
+      "set": "B",
+      "verification": "V04",
+      "kind": "dotnet",
+      "suite": "Gaode.Integration.Tests",
+      "method": "Gaode.Integration.Tests.Station01.RecipeMultiObjectIntegrationTests.ManualFlipRequiresObservedOccupancyAndAuthenticatedConfirmationThenClearsBeforeNextFace",
+      "dataRowId": "0",
+      "dataRow": null,
+      "sourceInlineData": "Fact",
+      "path": "backend/tests/Gaode.Integration.Tests/CommunicationFixtures/RecipeMultiObjectIntegrationTests.Wire.cs",
+      "evidenceLevel": "PortComponent",
+      "requiredEvidence": [
+        "trx",
+        "discovery",
+        "current-context"
+      ],
+      "obligations": [
+        "MIG-ManualFlipRequiresObservedOccupancyAndAuthenticatedConfirmationThenClearsBeforeNextFace"
+      ]
+    },
+    {
+      "caseId": "V04/RecipeMultiObjectIntegrationTests.ManualAssemblyWithEUsesSameOccupancyAndFaceConfirmation/0",
+      "set": "B",
+      "verification": "V04",
+      "kind": "dotnet",
+      "suite": "Gaode.Integration.Tests",
+      "method": "Gaode.Integration.Tests.Station01.RecipeMultiObjectIntegrationTests.ManualAssemblyWithEUsesSameOccupancyAndFaceConfirmation",
+      "dataRowId": "0",
+      "dataRow": null,
+      "sourceInlineData": "Fact",
+      "path": "backend/tests/Gaode.Integration.Tests/CommunicationFixtures/RecipeMultiObjectIntegrationTests.Wire.cs",
+      "evidenceLevel": "PortComponent",
+      "requiredEvidence": [
+        "trx",
+        "discovery",
+        "current-context"
+      ],
+      "obligations": [
+        "MIG-ManualAssemblyWithEUsesSameOccupancyAndFaceConfirmation"
+      ]
+    },
+    {
+      "caseId": "V04/RecipeMultiObjectIntegrationTests.AssemblySharesOneFlipAndRetainsPartsWhenECodeIsPresentOrMissing/0",
+      "set": "B",
+      "verification": "V04",
+      "kind": "dotnet",
+      "suite": "Gaode.Integration.Tests",
+      "method": "Gaode.Integration.Tests.Station01.RecipeMultiObjectIntegrationTests.AssemblySharesOneFlipAndRetainsPartsWhenECodeIsPresentOrMissing",
+      "dataRowId": "0",
+      "dataRow": "missingCode: False, workerError: False, ngParts: False",
+      "sourceInlineData": "false, false, false",
+      "path": "backend/tests/Gaode.Integration.Tests/CommunicationFixtures/RecipeMultiObjectIntegrationTests.Wire.cs",
+      "evidenceLevel": "PortComponent",
+      "requiredEvidence": [
+        "trx",
+        "discovery",
+        "current-context"
+      ],
+      "obligations": [
+        "MIG-AssemblySharesOneFlipAndRetainsPartsWhenECodeIsPresentOrMissing",
+        "MIG-TwoGroupsKeepCompletedMembersAndRunIndependentTargetsThroughRealPorts"
+      ]
+    },
+    {
+      "caseId": "V04/RecipeMultiObjectIntegrationTests.AssemblySharesOneFlipAndRetainsPartsWhenECodeIsPresentOrMissing/1",
+      "set": "B",
+      "verification": "V04",
+      "kind": "dotnet",
+      "suite": "Gaode.Integration.Tests",
+      "method": "Gaode.Integration.Tests.Station01.RecipeMultiObjectIntegrationTests.AssemblySharesOneFlipAndRetainsPartsWhenECodeIsPresentOrMissing",
+      "dataRowId": "1",
+      "dataRow": "missingCode: True, workerError: False, ngParts: False",
+      "sourceInlineData": "true, false, false",
+      "path": "backend/tests/Gaode.Integration.Tests/CommunicationFixtures/RecipeMultiObjectIntegrationTests.Wire.cs",
+      "evidenceLevel": "PortComponent",
+      "requiredEvidence": [
+        "trx",
+        "discovery",
+        "current-context"
+      ],
+      "obligations": [
+        "MIG-AssemblySharesOneFlipAndRetainsPartsWhenECodeIsPresentOrMissing",
+        "MIG-TwoGroupsKeepCompletedMembersAndRunIndependentTargetsThroughRealPorts"
+      ]
+    },
+    {
+      "caseId": "V04-V06-AssemblyNgPending",
+      "set": "S",
+      "verification": "V04",
+      "kind": "dotnet",
+      "suite": "Gaode.Integration.Tests",
+      "method": "Gaode.Integration.Tests.Station01.RecipeMultiObjectIntegrationTests.AssemblyNgPriorityRetainsPendingDetailAndMovesWholeEntityOnce",
+      "dataRowId": "0",
+      "dataRow": null,
+      "sourceInlineData": "Fact",
+      "path": "backend/tests/Gaode.Integration.Tests/CommunicationFixtures/RecipeMultiObjectIntegrationTests.Wire.cs",
+      "evidenceLevel": "PortComponent",
+      "requiredEvidence": [
+        "trx",
+        "discovery",
+        "current-context"
+      ],
+      "obligations": [
+        "MIG-AssemblyNgPriorityRetainsPendingDetailAndMovesWholeEntityOnce"
+      ]
+    },
+    {
+      "caseId": "V04/RecipeRotationIntegrationTests.SpecialDeviceRunsPoseAndExitWithoutOrdinarySortingReplay/0",
+      "set": "B",
+      "verification": "V04",
+      "kind": "dotnet",
+      "suite": "Gaode.Integration.Tests",
+      "method": "Gaode.Integration.Tests.Station01.RecipeRotationIntegrationTests.SpecialDeviceRunsPoseAndExitWithoutOrdinarySortingReplay",
+      "dataRowId": "0",
+      "dataRow": "assembly: False, quality: \"OK\", wrongPose: False",
+      "sourceInlineData": "false, \"OK\", false",
+      "path": "backend/tests/Gaode.Integration.Tests/CommunicationFixtures/RecipeRotationIntegrationTests.Wire.cs",
+      "evidenceLevel": "PortComponent",
+      "requiredEvidence": [
+        "trx",
+        "discovery",
+        "current-context"
+      ],
+      "obligations": [
+        "MIG-SpecialDeviceRunsPoseAndExitWithoutOrdinarySortingReplay"
+      ]
+    },
+    {
+      "caseId": "V04/RecipeRotationIntegrationTests.SpecialDeviceRunsPoseAndExitWithoutOrdinarySortingReplay/1",
+      "set": "B",
+      "verification": "V04",
+      "kind": "dotnet",
+      "suite": "Gaode.Integration.Tests",
+      "method": "Gaode.Integration.Tests.Station01.RecipeRotationIntegrationTests.SpecialDeviceRunsPoseAndExitWithoutOrdinarySortingReplay",
+      "dataRowId": "1",
+      "dataRow": "assembly: False, quality: \"NG\", wrongPose: False",
+      "sourceInlineData": "false, \"NG\", false",
+      "path": "backend/tests/Gaode.Integration.Tests/CommunicationFixtures/RecipeRotationIntegrationTests.Wire.cs",
+      "evidenceLevel": "PortComponent",
+      "requiredEvidence": [
+        "trx",
+        "discovery",
+        "current-context"
+      ],
+      "obligations": [
+        "MIG-SpecialDeviceRunsPoseAndExitWithoutOrdinarySortingReplay"
+      ]
+    },
+    {
+      "caseId": "V04/RecipeRotationIntegrationTests.SpecialDeviceRunsPoseAndExitWithoutOrdinarySortingReplay/2",
+      "set": "B",
+      "verification": "V04",
+      "kind": "dotnet",
+      "suite": "Gaode.Integration.Tests",
+      "method": "Gaode.Integration.Tests.Station01.RecipeRotationIntegrationTests.SpecialDeviceRunsPoseAndExitWithoutOrdinarySortingReplay",
+      "dataRowId": "2",
+      "dataRow": "assembly: False, quality: \"Pending\", wrongPose: False",
+      "sourceInlineData": "false, \"Pending\", false",
+      "path": "backend/tests/Gaode.Integration.Tests/CommunicationFixtures/RecipeRotationIntegrationTests.Wire.cs",
+      "evidenceLevel": "PortComponent",
+      "requiredEvidence": [
+        "trx",
+        "discovery",
+        "current-context"
+      ],
+      "obligations": [
+        "MIG-SpecialDeviceRunsPoseAndExitWithoutOrdinarySortingReplay"
+      ]
+    },
+    {
+      "caseId": "V04/RecipeRotationIntegrationTests.SpecialDeviceRunsPoseAndExitWithoutOrdinarySortingReplay/3",
+      "set": "B",
+      "verification": "V04",
+      "kind": "dotnet",
+      "suite": "Gaode.Integration.Tests",
+      "method": "Gaode.Integration.Tests.Station01.RecipeRotationIntegrationTests.SpecialDeviceRunsPoseAndExitWithoutOrdinarySortingReplay",
+      "dataRowId": "3",
+      "dataRow": "assembly: True, quality: \"OK\", wrongPose: False",
+      "sourceInlineData": "true, \"OK\", false",
+      "path": "backend/tests/Gaode.Integration.Tests/CommunicationFixtures/RecipeRotationIntegrationTests.Wire.cs",
+      "evidenceLevel": "PortComponent",
+      "requiredEvidence": [
+        "trx",
+        "discovery",
+        "current-context"
+      ],
+      "obligations": [
+        "MIG-SpecialDeviceRunsPoseAndExitWithoutOrdinarySortingReplay"
+      ]
+    },
+    {
+      "caseId": "V04/RecipeRotationIntegrationTests.SpecialDeviceRunsPoseAndExitWithoutOrdinarySortingReplay/4",
+      "set": "B",
+      "verification": "V04",
+      "kind": "dotnet",
+      "suite": "Gaode.Integration.Tests",
+      "method": "Gaode.Integration.Tests.Station01.RecipeRotationIntegrationTests.SpecialDeviceRunsPoseAndExitWithoutOrdinarySortingReplay",
+      "dataRowId": "4",
+      "dataRow": "assembly: False, quality: \"OK\", wrongPose: True",
+      "sourceInlineData": "false, \"OK\", true",
+      "path": "backend/tests/Gaode.Integration.Tests/CommunicationFixtures/RecipeRotationIntegrationTests.Wire.cs",
+      "evidenceLevel": "PortComponent",
+      "requiredEvidence": [
+        "trx",
+        "discovery",
+        "current-context"
+      ],
+      "obligations": [
+        "MIG-SpecialDeviceRunsPoseAndExitWithoutOrdinarySortingReplay"
+      ]
+    },
+    {
+      "caseId": "V03/SingleFaceDetectionIntegrationTests.NecessaryFailureStopsBeforeNextProductMove/0",
+      "set": "B",
+      "verification": "V03",
+      "kind": "dotnet",
+      "suite": "Gaode.Integration.Tests",
+      "method": "Gaode.Integration.Tests.Devices.SingleFaceDetectionIntegrationTests.NecessaryFailureStopsBeforeNextProductMove",
+      "dataRowId": "0",
+      "dataRow": "caseId: \"DETECTION-COMPONENT/WrongArrival\", failure: WrongArrival",
+      "sourceInlineData": "\"DETECTION-COMPONENT/WrongArrival\",FailureKind.WrongArrival",
+      "path": "backend/tests/Gaode.Integration.Tests/CommunicationFixtures/SingleFaceDetectionIntegrationTests.Wire.cs",
+      "evidenceLevel": "PortComponent",
+      "requiredEvidence": [
+        "trx",
+        "discovery",
+        "current-context"
+      ],
+      "obligations": [
+        "MIG-NecessaryFailureStopsBeforeNextProductMove"
+      ]
+    },
+    {
+      "caseId": "V03/SingleFaceDetectionIntegrationTests.NecessaryFailureStopsBeforeNextProductMove/1",
+      "set": "B",
+      "verification": "V03",
+      "kind": "dotnet",
+      "suite": "Gaode.Integration.Tests",
+      "method": "Gaode.Integration.Tests.Devices.SingleFaceDetectionIntegrationTests.NecessaryFailureStopsBeforeNextProductMove",
+      "dataRowId": "1",
+      "dataRow": "caseId: \"DETECTION-COMPONENT/MediaSave\", failure: MediaSave",
+      "sourceInlineData": "\"DETECTION-COMPONENT/MediaSave\",FailureKind.MediaSave",
+      "path": "backend/tests/Gaode.Integration.Tests/CommunicationFixtures/SingleFaceDetectionIntegrationTests.Wire.cs",
+      "evidenceLevel": "PortComponent",
+      "requiredEvidence": [
+        "trx",
+        "discovery",
+        "current-context"
+      ],
+      "obligations": [
+        "MIG-NecessaryFailureStopsBeforeNextProductMove"
+      ]
+    },
+    {
+      "caseId": "V03/SingleFaceDetectionIntegrationTests.NecessaryFailureStopsBeforeNextProductMove/2",
+      "set": "B",
+      "verification": "V03",
+      "kind": "dotnet",
+      "suite": "Gaode.Integration.Tests",
+      "method": "Gaode.Integration.Tests.Devices.SingleFaceDetectionIntegrationTests.NecessaryFailureStopsBeforeNextProductMove",
+      "dataRowId": "2",
+      "dataRow": "caseId: \"DETECTION-COMPONENT/Reset\", failure: ReleaseUnavailable",
+      "sourceInlineData": "\"DETECTION-COMPONENT/Reset\",FailureKind.ReleaseUnavailable",
+      "path": "backend/tests/Gaode.Integration.Tests/CommunicationFixtures/SingleFaceDetectionIntegrationTests.Wire.cs",
+      "evidenceLevel": "PortComponent",
+      "requiredEvidence": [
+        "trx",
+        "discovery",
+        "current-context"
+      ],
+      "obligations": [
+        "MIG-NecessaryFailureStopsBeforeNextProductMove"
+      ]
+    },
+    {
+      "caseId": "V03/SingleFaceDetectionIntegrationTests.NecessaryFailureStopsBeforeNextProductMove/3",
+      "set": "B",
+      "verification": "V03",
+      "kind": "dotnet",
+      "suite": "Gaode.Integration.Tests",
+      "method": "Gaode.Integration.Tests.Devices.SingleFaceDetectionIntegrationTests.NecessaryFailureStopsBeforeNextProductMove",
+      "dataRowId": "3",
+      "dataRow": "caseId: \"DETECTION-COMPONENT/SaveWindowExpiry\", failure: SaveWindowExpiry",
+      "sourceInlineData": "\"DETECTION-COMPONENT/SaveWindowExpiry\",FailureKind.SaveWindowExpiry",
+      "path": "backend/tests/Gaode.Integration.Tests/CommunicationFixtures/SingleFaceDetectionIntegrationTests.Wire.cs",
+      "evidenceLevel": "PortComponent",
+      "requiredEvidence": [
+        "trx",
+        "discovery",
+        "current-context"
+      ],
+      "obligations": [
+        "MIG-NecessaryFailureStopsBeforeNextProductMove"
+      ]
+    },
+    {
+      "caseId": "V04/RecipeMultiObjectIntegrationTests.TwoGroupsKeepCompletedMembersAndRunIndependentTargetsThroughRealPorts/0",
+      "set": "B",
+      "verification": "V04",
+      "kind": "dotnet",
+      "suite": "Gaode.Integration.Tests",
+      "method": "Gaode.Integration.Tests.Station01.RecipeMultiObjectIntegrationTests.TwoGroupsKeepCompletedMembersAndRunIndependentTargetsThroughRealPorts",
+      "dataRowId": "0",
+      "dataRow": "mixedResults: False, fourFaceModel: False",
+      "sourceInlineData": "false, false",
+      "path": "backend/tests/Gaode.Integration.Tests/Station01/RecipeMultiObjectIntegrationTests.cs",
+      "evidenceLevel": "PortComponent",
+      "requiredEvidence": [
+        "trx",
+        "discovery",
+        "current-context"
+      ],
+      "obligations": [
+        "MIG-TwoGroupsKeepCompletedMembersAndRunIndependentTargetsThroughRealPorts"
+      ]
+    },
+    {
+      "caseId": "V04/RecipeMultiObjectIntegrationTests.TwoGroupsKeepCompletedMembersAndRunIndependentTargetsThroughRealPorts/1",
+      "set": "B",
+      "verification": "V04",
+      "kind": "dotnet",
+      "suite": "Gaode.Integration.Tests",
+      "method": "Gaode.Integration.Tests.Station01.RecipeMultiObjectIntegrationTests.TwoGroupsKeepCompletedMembersAndRunIndependentTargetsThroughRealPorts",
+      "dataRowId": "1",
+      "dataRow": "mixedResults: True, fourFaceModel: False",
+      "sourceInlineData": "true, false",
+      "path": "backend/tests/Gaode.Integration.Tests/Station01/RecipeMultiObjectIntegrationTests.cs",
+      "evidenceLevel": "PortComponent",
+      "requiredEvidence": [
+        "trx",
+        "discovery",
+        "current-context"
+      ],
+      "obligations": [
+        "MIG-TwoGroupsKeepCompletedMembersAndRunIndependentTargetsThroughRealPorts"
+      ]
+    },
+    {
+      "caseId": "V04/RecipeMultiObjectIntegrationTests.FourFaceGroupsUseSourceCompositionAndDistinctETargets/0",
+      "set": "B",
+      "verification": "V04",
+      "kind": "dotnet",
+      "suite": "Gaode.Integration.Tests",
+      "method": "Gaode.Integration.Tests.Station01.RecipeMultiObjectIntegrationTests.FourFaceGroupsUseSourceCompositionAndDistinctETargets",
+      "dataRowId": "0",
+      "dataRow": null,
+      "sourceInlineData": "Fact",
+      "path": "backend/tests/Gaode.Integration.Tests/Station01/RecipeMultiObjectIntegrationTests.cs",
+      "evidenceLevel": "PortComponent",
+      "requiredEvidence": [
+        "trx",
+        "discovery",
+        "current-context"
+      ],
+      "obligations": [
+        "MIG-FourFaceGroupsUseSourceCompositionAndDistinctETargets"
+      ]
+    },
+    {
+      "caseId": "V04/RecipeMultiObjectIntegrationTests.EWorkerFailureLeavesIssueAndContinuesWholeAssembly/0",
+      "set": "B",
+      "verification": "V04",
+      "kind": "dotnet",
+      "suite": "Gaode.Integration.Tests",
+      "method": "Gaode.Integration.Tests.Station01.RecipeMultiObjectIntegrationTests.EWorkerFailureLeavesIssueAndContinuesWholeAssembly",
+      "dataRowId": "0",
+      "dataRow": null,
+      "sourceInlineData": "Fact",
+      "path": "backend/tests/Gaode.Integration.Tests/Station01/RecipeMultiObjectIntegrationTests.cs",
+      "evidenceLevel": "PortComponent",
+      "requiredEvidence": [
+        "trx",
+        "discovery",
+        "current-context"
+      ],
+      "obligations": [
+        "MIG-EWorkerFailureLeavesIssueAndContinuesWholeAssembly"
+      ]
+    },
+    {
+      "caseId": "V02/ThreeStageMainFlowIntegrationTests.UnintegratedProducersCannotClaimRealExecutionOrIgnoreCancellation/0",
+      "set": "B",
+      "verification": "V02",
+      "kind": "dotnet",
+      "suite": "Gaode.Integration.Tests",
+      "method": "Gaode.Integration.Tests.Station01.ThreeStageMainFlowIntegrationTests.UnintegratedProducersCannotClaimRealExecutionOrIgnoreCancellation",
+      "dataRowId": "0",
+      "dataRow": null,
+      "sourceInlineData": "Fact",
+      "path": "backend/tests/Gaode.Integration.Tests/Station01/ThreeStageMainFlowIntegrationTests.cs",
+      "evidenceLevel": "PortComponent",
+      "requiredEvidence": [
+        "trx",
+        "discovery",
+        "current-context"
+      ],
+      "obligations": [
+        "MIG-UnintegratedProducersCannotClaimRealExecutionOrIgnoreCancellation"
+      ]
+    },
+    {
+      "caseId": "V03/VirtualRecipeAndDetectionGateTests.FailedFirstThreeDMotionNeverGuessesSafeZOrStartsF/0",
+      "set": "B",
+      "verification": "V03",
+      "kind": "dotnet",
+      "suite": "Gaode.Integration.Tests",
+      "method": "Gaode.Integration.Tests.Station01.VirtualRecipeAndDetectionGateTests.FailedFirstThreeDMotionNeverGuessesSafeZOrStartsF",
+      "dataRowId": "0",
+      "dataRow": null,
+      "sourceInlineData": "Fact",
+      "path": "backend/tests/Gaode.Integration.Tests/Station01/VirtualRecipeAndDetectionGateTests.cs",
+      "evidenceLevel": "PortComponent",
+      "requiredEvidence": [
+        "trx",
+        "discovery",
+        "current-context"
+      ],
+      "obligations": [
+        "MIG-FailedFirstThreeDMotionNeverGuessesSafeZOrStartsF"
+      ]
+    },
+    {
+      "caseId": "V03/VirtualRecipeAndDetectionGateTests.IndependentWorkerUnmatchedFDoesNotReuseOldRecipe/0",
+      "set": "B",
+      "verification": "V03",
+      "kind": "dotnet",
+      "suite": "Gaode.Integration.Tests",
+      "method": "Gaode.Integration.Tests.Station01.VirtualRecipeAndDetectionGateTests.IndependentWorkerUnmatchedFDoesNotReuseOldRecipe",
+      "dataRowId": "0",
+      "dataRow": null,
+      "sourceInlineData": "Fact",
+      "path": "backend/tests/Gaode.Integration.Tests/Station01/VirtualRecipeAndDetectionGateTests.cs",
+      "evidenceLevel": "PortComponent",
+      "requiredEvidence": [
+        "trx",
+        "discovery",
+        "current-context"
+      ],
+      "obligations": [
+        "MIG-IndependentWorkerUnmatchedFDoesNotReuseOldRecipe"
+      ]
+    },
+    {
+      "caseId": "V03/VirtualRecipeAndDetectionGateTests.InvalidDetectionWorkerResultStopsWithoutDefaultOk/0",
+      "set": "B",
+      "verification": "V03",
+      "kind": "dotnet",
+      "suite": "Gaode.Integration.Tests",
+      "method": "Gaode.Integration.Tests.Station01.VirtualRecipeAndDetectionGateTests.InvalidDetectionWorkerResultStopsWithoutDefaultOk",
+      "dataRowId": "0",
+      "dataRow": null,
+      "sourceInlineData": "Fact",
+      "path": "backend/tests/Gaode.Integration.Tests/Station01/VirtualRecipeAndDetectionGateTests.cs",
+      "evidenceLevel": "PortComponent",
+      "requiredEvidence": [
+        "trx",
+        "discovery",
+        "current-context"
+      ],
+      "obligations": [
+        "MIG-InvalidDetectionWorkerResultStopsWithoutDefaultOk"
+      ]
+    },
+    {
+      "caseId": "V03/VirtualRecipeAndDetectionGateTests.LateIndependentDetectionWorkerBecomesFinitePendingAndSorts/0",
+      "set": "B",
+      "verification": "V03",
+      "kind": "dotnet",
+      "suite": "Gaode.Integration.Tests",
+      "method": "Gaode.Integration.Tests.Station01.VirtualRecipeAndDetectionGateTests.LateIndependentDetectionWorkerBecomesFinitePendingAndSorts",
+      "dataRowId": "0",
+      "dataRow": null,
+      "sourceInlineData": "Fact",
+      "path": "backend/tests/Gaode.Integration.Tests/Station01/VirtualRecipeAndDetectionGateTests.cs",
+      "evidenceLevel": "PortComponent",
+      "requiredEvidence": [
+        "trx",
+        "discovery",
+        "current-context"
+      ],
+      "obligations": [
+        "MIG-LateIndependentDetectionWorkerBecomesFinitePendingAndSorts"
+      ]
+    },
+    {
+      "caseId": "V02/ComponentSourceMatrixStoreTests.MixedSourcesRoundTripAsSoftwareLoopOnlyAndNeverCollapseToReal/0",
+      "set": "B",
+      "verification": "V02",
+      "kind": "dotnet",
+      "suite": "Gaode.Integration.Tests",
+      "method": "Gaode.Integration.Tests.Storage.ComponentSourceMatrixStoreTests.MixedSourcesRoundTripAsSoftwareLoopOnlyAndNeverCollapseToReal",
+      "dataRowId": "0",
+      "dataRow": null,
+      "sourceInlineData": "Fact",
+      "path": "backend/tests/Gaode.Integration.Tests/Storage/ComponentSourceMatrixStoreTests.cs",
+      "evidenceLevel": "StorageComponent",
+      "requiredEvidence": [
+        "trx",
+        "discovery",
+        "current-context"
+      ],
+      "obligations": [
+        "MIG-MixedSourcesRoundTripAsSoftwareLoopOnlyAndNeverCollapseToReal",
+        "SRC-09"
+      ]
+    },
+    {
+      "caseId": "V02/ComponentSourceMatrixStoreTests.MissingUnknownOrUnverifiableRequiredComponentBlocksCompletion/0",
+      "set": "B",
+      "verification": "V02",
+      "kind": "dotnet",
+      "suite": "Gaode.Integration.Tests",
+      "method": "Gaode.Integration.Tests.Storage.ComponentSourceMatrixStoreTests.MissingUnknownOrUnverifiableRequiredComponentBlocksCompletion",
+      "dataRowId": "0",
+      "dataRow": "state: Missing",
+      "sourceInlineData": "ComponentEvidenceState.Missing",
+      "path": "backend/tests/Gaode.Integration.Tests/Storage/ComponentSourceMatrixStoreTests.cs",
+      "evidenceLevel": "StorageComponent",
+      "requiredEvidence": [
+        "trx",
+        "discovery",
+        "current-context"
+      ],
+      "obligations": [
+        "MIG-MissingUnknownOrUnverifiableRequiredComponentBlocksCompletion",
+        "SRC-10"
+      ]
+    },
+    {
+      "caseId": "V02/ComponentSourceMatrixStoreTests.MissingUnknownOrUnverifiableRequiredComponentBlocksCompletion/1",
+      "set": "B",
+      "verification": "V02",
+      "kind": "dotnet",
+      "suite": "Gaode.Integration.Tests",
+      "method": "Gaode.Integration.Tests.Storage.ComponentSourceMatrixStoreTests.MissingUnknownOrUnverifiableRequiredComponentBlocksCompletion",
+      "dataRowId": "1",
+      "dataRow": "state: Unknown",
+      "sourceInlineData": "ComponentEvidenceState.Unknown",
+      "path": "backend/tests/Gaode.Integration.Tests/Storage/ComponentSourceMatrixStoreTests.cs",
+      "evidenceLevel": "StorageComponent",
+      "requiredEvidence": [
+        "trx",
+        "discovery",
+        "current-context"
+      ],
+      "obligations": [
+        "MIG-MissingUnknownOrUnverifiableRequiredComponentBlocksCompletion",
+        "SRC-10"
+      ]
+    },
+    {
+      "caseId": "V02/ComponentSourceMatrixStoreTests.MissingUnknownOrUnverifiableRequiredComponentBlocksCompletion/2",
+      "set": "B",
+      "verification": "V02",
+      "kind": "dotnet",
+      "suite": "Gaode.Integration.Tests",
+      "method": "Gaode.Integration.Tests.Storage.ComponentSourceMatrixStoreTests.MissingUnknownOrUnverifiableRequiredComponentBlocksCompletion",
+      "dataRowId": "2",
+      "dataRow": "state: Unverifiable",
+      "sourceInlineData": "ComponentEvidenceState.Unverifiable",
+      "path": "backend/tests/Gaode.Integration.Tests/Storage/ComponentSourceMatrixStoreTests.cs",
+      "evidenceLevel": "StorageComponent",
+      "requiredEvidence": [
+        "trx",
+        "discovery",
+        "current-context"
+      ],
+      "obligations": [
+        "MIG-MissingUnknownOrUnverifiableRequiredComponentBlocksCompletion",
+        "SRC-10"
+      ]
+    },
+    {
+      "caseId": "V02/ComponentSourceMatrixStoreTests.FinalMatrixKeepsReadyEvidenceImmutableAndAddsAuthenticatedHumanActor/0",
+      "set": "B",
+      "verification": "V02",
+      "kind": "dotnet",
+      "suite": "Gaode.Integration.Tests",
+      "method": "Gaode.Integration.Tests.Storage.ComponentSourceMatrixStoreTests.FinalMatrixKeepsReadyEvidenceImmutableAndAddsAuthenticatedHumanActor",
+      "dataRowId": "0",
+      "dataRow": null,
+      "sourceInlineData": "Fact",
+      "path": "backend/tests/Gaode.Integration.Tests/Storage/ComponentSourceMatrixStoreTests.cs",
+      "evidenceLevel": "StorageComponent",
+      "requiredEvidence": [
+        "trx",
+        "discovery",
+        "current-context"
+      ],
+      "obligations": [
+        "MIG-FinalMatrixKeepsReadyEvidenceImmutableAndAddsAuthenticatedHumanActor",
+        "SRC-11a"
+      ]
+    },
+    {
+      "caseId": "V02/CaptureCoordinationTests.CaptureFactMustMatchCurrentRequestAndFirstOwnedBuffer/0",
+      "set": "B",
+      "verification": "V02",
+      "kind": "dotnet",
+      "suite": "Gaode.Contracts.Tests",
+      "method": "Gaode.Contracts.Tests.Acquisition.CaptureCoordinationTests.CaptureFactMustMatchCurrentRequestAndFirstOwnedBuffer",
+      "dataRowId": "0",
+      "dataRow": "mismatch: \"run\"",
+      "sourceInlineData": "\"run\"",
+      "path": "backend/tests/Gaode.Contracts.Tests/Acquisition/CaptureCoordinationTests.cs",
+      "evidenceLevel": "Component",
+      "requiredEvidence": [
+        "trx",
+        "discovery",
+        "current-context"
+      ],
+      "obligations": [
+        "NF-CAP"
+      ]
+    },
+    {
+      "caseId": "V02/CaptureCoordinationTests.CaptureFactMustMatchCurrentRequestAndFirstOwnedBuffer/1",
+      "set": "B",
+      "verification": "V02",
+      "kind": "dotnet",
+      "suite": "Gaode.Contracts.Tests",
+      "method": "Gaode.Contracts.Tests.Acquisition.CaptureCoordinationTests.CaptureFactMustMatchCurrentRequestAndFirstOwnedBuffer",
+      "dataRowId": "1",
+      "dataRow": "mismatch: \"capture\"",
+      "sourceInlineData": "\"capture\"",
+      "path": "backend/tests/Gaode.Contracts.Tests/Acquisition/CaptureCoordinationTests.cs",
+      "evidenceLevel": "Component",
+      "requiredEvidence": [
+        "trx",
+        "discovery",
+        "current-context"
+      ],
+      "obligations": [
+        "NF-CAP"
+      ]
+    },
+    {
+      "caseId": "V02/CaptureCoordinationTests.CaptureFactMustMatchCurrentRequestAndFirstOwnedBuffer/2",
+      "set": "B",
+      "verification": "V02",
+      "kind": "dotnet",
+      "suite": "Gaode.Contracts.Tests",
+      "method": "Gaode.Contracts.Tests.Acquisition.CaptureCoordinationTests.CaptureFactMustMatchCurrentRequestAndFirstOwnedBuffer",
+      "dataRowId": "2",
+      "dataRow": "mismatch: \"operation\"",
+      "sourceInlineData": "\"operation\"",
+      "path": "backend/tests/Gaode.Contracts.Tests/Acquisition/CaptureCoordinationTests.cs",
+      "evidenceLevel": "Component",
+      "requiredEvidence": [
+        "trx",
+        "discovery",
+        "current-context"
+      ],
+      "obligations": [
+        "NF-CAP"
+      ]
+    },
+    {
+      "caseId": "V02/CaptureCoordinationTests.CaptureFactMustMatchCurrentRequestAndFirstOwnedBuffer/3",
+      "set": "B",
+      "verification": "V02",
+      "kind": "dotnet",
+      "suite": "Gaode.Contracts.Tests",
+      "method": "Gaode.Contracts.Tests.Acquisition.CaptureCoordinationTests.CaptureFactMustMatchCurrentRequestAndFirstOwnedBuffer",
+      "dataRowId": "3",
+      "dataRow": "mismatch: \"epoch\"",
+      "sourceInlineData": "\"epoch\"",
+      "path": "backend/tests/Gaode.Contracts.Tests/Acquisition/CaptureCoordinationTests.cs",
+      "evidenceLevel": "Component",
+      "requiredEvidence": [
+        "trx",
+        "discovery",
+        "current-context"
+      ],
+      "obligations": [
+        "NF-CAP"
+      ]
+    },
+    {
+      "caseId": "V02/CaptureCoordinationTests.CaptureFactMustMatchCurrentRequestAndFirstOwnedBuffer/4",
+      "set": "B",
+      "verification": "V02",
+      "kind": "dotnet",
+      "suite": "Gaode.Contracts.Tests",
+      "method": "Gaode.Contracts.Tests.Acquisition.CaptureCoordinationTests.CaptureFactMustMatchCurrentRequestAndFirstOwnedBuffer",
+      "dataRowId": "4",
+      "dataRow": "mismatch: \"settings\"",
+      "sourceInlineData": "\"settings\"",
+      "path": "backend/tests/Gaode.Contracts.Tests/Acquisition/CaptureCoordinationTests.cs",
+      "evidenceLevel": "Component",
+      "requiredEvidence": [
+        "trx",
+        "discovery",
+        "current-context"
+      ],
+      "obligations": [
+        "NF-CAP"
+      ]
+    },
+    {
+      "caseId": "V02/CaptureCoordinationTests.MissingAdapterFactCannotBeFilledFromRequestedSettings/0",
+      "set": "B",
+      "verification": "V02",
+      "kind": "dotnet",
+      "suite": "Gaode.Contracts.Tests",
+      "method": "Gaode.Contracts.Tests.Acquisition.CaptureCoordinationTests.MissingAdapterFactCannotBeFilledFromRequestedSettings",
+      "dataRowId": "0",
+      "dataRow": null,
+      "sourceInlineData": "Fact",
+      "path": "backend/tests/Gaode.Contracts.Tests/Acquisition/CaptureCoordinationTests.cs",
+      "evidenceLevel": "Component",
+      "requiredEvidence": [
+        "trx",
+        "discovery",
+        "current-context"
+      ],
+      "obligations": [
+        "NF-CAP-missing"
+      ]
+    },
+    {
+      "caseId": "V02/CaptureCoordinationTests.ActualUnknownMediaSourceIsNotFilledFromSimulationFixture/0",
+      "set": "B",
+      "verification": "V02",
+      "kind": "dotnet",
+      "suite": "Gaode.Contracts.Tests",
+      "method": "Gaode.Contracts.Tests.Acquisition.CaptureCoordinationTests.ActualUnknownMediaSourceIsNotFilledFromSimulationFixture",
+      "dataRowId": "0",
+      "dataRow": null,
+      "sourceInlineData": "Fact",
+      "path": "backend/tests/Gaode.Contracts.Tests/Acquisition/CaptureCoordinationTests.cs",
+      "evidenceLevel": "Component",
+      "requiredEvidence": [
+        "trx",
+        "discovery",
+        "current-context"
+      ],
+      "obligations": [
+        "NF-CAP-SOURCE"
+      ]
+    },
+    {
+      "caseId": "V02/PublicPreparationHandoffV2Tests.FSourceFactMustBeCommittedAndMatchCurrentCallForHandoff/0",
+      "set": "B",
+      "verification": "V02",
+      "kind": "dotnet",
+      "suite": "Gaode.Contracts.Tests",
+      "method": "Gaode.Contracts.Tests.Station01.PublicPreparationHandoffV2Tests.FSourceFactMustBeCommittedAndMatchCurrentCallForHandoff",
+      "dataRowId": "0",
+      "dataRow": "reason: \"missing-or-uncommitted\"",
+      "sourceInlineData": "\"missing-or-uncommitted\"",
+      "path": "backend/tests/Gaode.Contracts.Tests/Station01/PublicPreparationHandoffV2Tests.cs",
+      "evidenceLevel": "Component",
+      "requiredEvidence": [
+        "trx",
+        "discovery",
+        "current-context"
+      ],
+      "obligations": [
+        "NF-F-REJECT"
+      ]
+    },
+    {
+      "caseId": "V02/PublicPreparationHandoffV2Tests.FSourceFactMustBeCommittedAndMatchCurrentCallForHandoff/1",
+      "set": "B",
+      "verification": "V02",
+      "kind": "dotnet",
+      "suite": "Gaode.Contracts.Tests",
+      "method": "Gaode.Contracts.Tests.Station01.PublicPreparationHandoffV2Tests.FSourceFactMustBeCommittedAndMatchCurrentCallForHandoff",
+      "dataRowId": "1",
+      "dataRow": "reason: \"wrongCall\"",
+      "sourceInlineData": "\"wrongCall\"",
+      "path": "backend/tests/Gaode.Contracts.Tests/Station01/PublicPreparationHandoffV2Tests.cs",
+      "evidenceLevel": "Component",
+      "requiredEvidence": [
+        "trx",
+        "discovery",
+        "current-context"
+      ],
+      "obligations": [
+        "NF-F-REJECT"
+      ]
+    },
+    {
+      "caseId": "V02/PublicPreparationHandoffV2Tests.FSourceFactMustBeCommittedAndMatchCurrentCallForHandoff/2",
+      "set": "B",
+      "verification": "V02",
+      "kind": "dotnet",
+      "suite": "Gaode.Contracts.Tests",
+      "method": "Gaode.Contracts.Tests.Station01.PublicPreparationHandoffV2Tests.FSourceFactMustBeCommittedAndMatchCurrentCallForHandoff",
+      "dataRowId": "2",
+      "dataRow": "reason: \"unknownOrigin\"",
+      "sourceInlineData": "\"unknownOrigin\"",
+      "path": "backend/tests/Gaode.Contracts.Tests/Station01/PublicPreparationHandoffV2Tests.cs",
+      "evidenceLevel": "Component",
+      "requiredEvidence": [
+        "trx",
+        "discovery",
+        "current-context"
+      ],
+      "obligations": [
+        "NF-F-REJECT"
+      ]
+    },
+    {
+      "caseId": "V02/CommittedResultProjectionTests.ActualCaptureParametersRemainDistinctFromRequestedValues/0",
+      "set": "B",
+      "verification": "V02",
+      "kind": "dotnet",
+      "suite": "Gaode.Integration.Tests",
+      "method": "Gaode.Integration.Tests.Api.CommittedResultProjectionTests.ActualCaptureParametersRemainDistinctFromRequestedValues",
+      "dataRowId": "0",
+      "dataRow": null,
+      "sourceInlineData": "Fact",
+      "path": "backend/tests/Gaode.Integration.Tests/Api/CommittedResultProjectionTests.cs",
+      "evidenceLevel": "Component",
+      "requiredEvidence": [
+        "trx",
+        "discovery",
+        "current-context"
+      ],
+      "obligations": [
+        "NF-PROJECTION"
+      ]
+    },
+    {
+      "caseId": "V02/RecipeApplicationDeadlineTests.CommonInputsKeepOriginalDeadlineOriginForAllThreeEntries/0",
+      "set": "B",
+      "verification": "V02",
+      "kind": "dotnet",
+      "suite": "Gaode.Integration.Tests",
+      "method": "Gaode.Integration.Tests.Station01.RecipeApplicationDeadlineTests.CommonInputsKeepOriginalDeadlineOriginForAllThreeEntries",
+      "dataRowId": "0",
+      "dataRow": "entry: \"context/2.0\"",
+      "sourceInlineData": "\"context/2.0\"",
+      "path": "backend/tests/Gaode.Integration.Tests/Station01/RecipeApplicationDeadlineTests.cs",
+      "evidenceLevel": "PortComponent",
+      "requiredEvidence": [
+        "trx",
+        "discovery",
+        "current-context"
+      ],
+      "obligations": [
+        "M02-entry-windows"
+      ]
+    },
+    {
+      "caseId": "V02/RecipeApplicationDeadlineTests.CommonInputsKeepOriginalDeadlineOriginForAllThreeEntries/1",
+      "set": "B",
+      "verification": "V02",
+      "kind": "dotnet",
+      "suite": "Gaode.Integration.Tests",
+      "method": "Gaode.Integration.Tests.Station01.RecipeApplicationDeadlineTests.CommonInputsKeepOriginalDeadlineOriginForAllThreeEntries",
+      "dataRowId": "1",
+      "dataRow": "entry: \"context/1.0\"",
+      "sourceInlineData": "\"context/1.0\"",
+      "path": "backend/tests/Gaode.Integration.Tests/Station01/RecipeApplicationDeadlineTests.cs",
+      "evidenceLevel": "PortComponent",
+      "requiredEvidence": [
+        "trx",
+        "discovery",
+        "current-context"
+      ],
+      "obligations": [
+        "M02-entry-windows"
+      ]
+    },
+    {
+      "caseId": "V02/RecipeApplicationDeadlineTests.CommonInputsKeepOriginalDeadlineOriginForAllThreeEntries/2",
+      "set": "B",
+      "verification": "V02",
+      "kind": "dotnet",
+      "suite": "Gaode.Integration.Tests",
+      "method": "Gaode.Integration.Tests.Station01.RecipeApplicationDeadlineTests.CommonInputsKeepOriginalDeadlineOriginForAllThreeEntries",
+      "dataRowId": "2",
+      "dataRow": "entry: \"independent/no-downstream\"",
+      "sourceInlineData": "\"independent/no-downstream\"",
+      "path": "backend/tests/Gaode.Integration.Tests/Station01/RecipeApplicationDeadlineTests.cs",
+      "evidenceLevel": "PortComponent",
+      "requiredEvidence": [
+        "trx",
+        "discovery",
+        "current-context"
+      ],
+      "obligations": [
+        "M02-entry-windows"
+      ]
+    },
+    {
+      "caseId": "V02/RecipeEnvironmentDecoderTests.DirectSemanticDefinitionsCannotBypassCommonRules/0",
+      "set": "B",
+      "verification": "V02",
+      "kind": "dotnet",
+      "suite": "Gaode.Contracts.Tests",
+      "method": "Gaode.Contracts.Tests.Recipes.RecipeEnvironmentDecoderTests.DirectSemanticDefinitionsCannotBypassCommonRules",
+      "dataRowId": "0",
+      "dataRow": "mutation: \"duplicate-face\", expectedProblem: \"RecipeRequiredTargetsIncompleteOrDuplicate\"",
+      "sourceInlineData": "\"duplicate-face\", \"RecipeRequiredTargetsIncompleteOrDuplicate\"",
+      "path": "backend/tests/Gaode.Contracts.Tests/Recipes/RecipeEnvironmentDecoderTests.cs",
+      "evidenceLevel": "Component",
+      "requiredEvidence": [
+        "trx",
+        "discovery",
+        "current-context"
+      ],
+      "obligations": [
+        "M01-common-validation"
+      ]
+    },
+    {
+      "caseId": "V02/RecipeEnvironmentDecoderTests.DirectSemanticDefinitionsCannotBypassCommonRules/1",
+      "set": "B",
+      "verification": "V02",
+      "kind": "dotnet",
+      "suite": "Gaode.Contracts.Tests",
+      "method": "Gaode.Contracts.Tests.Recipes.RecipeEnvironmentDecoderTests.DirectSemanticDefinitionsCannotBypassCommonRules",
+      "dataRowId": "1",
+      "dataRow": "mutation: \"wrong-material\", expectedProblem: \"RecipeTargetInvalid\"",
+      "sourceInlineData": "\"wrong-material\", \"RecipeTargetInvalid\"",
+      "path": "backend/tests/Gaode.Contracts.Tests/Recipes/RecipeEnvironmentDecoderTests.cs",
+      "evidenceLevel": "Component",
+      "requiredEvidence": [
+        "trx",
+        "discovery",
+        "current-context"
+      ],
+      "obligations": [
+        "M01-common-validation"
+      ]
+    },
+    {
+      "caseId": "V02/RecipeEnvironmentDecoderTests.DirectSemanticDefinitionsCannotBypassCommonRules/2",
+      "set": "B",
+      "verification": "V02",
+      "kind": "dotnet",
+      "suite": "Gaode.Contracts.Tests",
+      "method": "Gaode.Contracts.Tests.Recipes.RecipeEnvironmentDecoderTests.DirectSemanticDefinitionsCannotBypassCommonRules",
+      "dataRowId": "2",
+      "dataRow": "mutation: \"capture-parameters\", expectedProblem: \"RecipeCaptureProfileInvalid\"",
+      "sourceInlineData": "\"capture-parameters\", \"RecipeCaptureProfileInvalid\"",
+      "path": "backend/tests/Gaode.Contracts.Tests/Recipes/RecipeEnvironmentDecoderTests.cs",
+      "evidenceLevel": "Component",
+      "requiredEvidence": [
+        "trx",
+        "discovery",
+        "current-context"
+      ],
+      "obligations": [
+        "M01-common-validation"
+      ]
+    },
+    {
+      "caseId": "V02/RecipeEnvironmentDecoderTests.DirectSemanticDefinitionsCannotBypassCommonRules/3",
+      "set": "B",
+      "verification": "V02",
+      "kind": "dotnet",
+      "suite": "Gaode.Contracts.Tests",
+      "method": "Gaode.Contracts.Tests.Recipes.RecipeEnvironmentDecoderTests.DirectSemanticDefinitionsCannotBypassCommonRules",
+      "dataRowId": "3",
+      "dataRow": "mutation: \"algorithm-inputs\", expectedProblem: \"RecipeAlgorithmRequirementInvalid\"",
+      "sourceInlineData": "\"algorithm-inputs\", \"RecipeAlgorithmRequirementInvalid\"",
+      "path": "backend/tests/Gaode.Contracts.Tests/Recipes/RecipeEnvironmentDecoderTests.cs",
+      "evidenceLevel": "Component",
+      "requiredEvidence": [
+        "trx",
+        "discovery",
+        "current-context"
+      ],
+      "obligations": [
+        "M01-common-validation"
+      ]
+    },
+    {
+      "caseId": "V04/RecipeMultiObjectIntegrationTests.OrdinaryTwoFaceAutoFlipExecutesBothFacesFromInitialHeight/0",
+      "set": "B",
+      "verification": "V04",
+      "kind": "dotnet",
+      "suite": "Gaode.Integration.Tests",
+      "method": "Gaode.Integration.Tests.Station01.RecipeMultiObjectIntegrationTests.OrdinaryTwoFaceAutoFlipExecutesBothFacesFromInitialHeight",
+      "dataRowId": "0",
+      "dataRow": null,
+      "sourceInlineData": "Fact",
+      "path": "backend/tests/Gaode.Integration.Tests/CommunicationFixtures/RecipeMultiObjectIntegrationTests.Wire.cs",
+      "evidenceLevel": "PortComponent",
+      "requiredEvidence": [
+        "trx",
+        "discovery",
+        "current-context"
+      ],
+      "obligations": [
+        "V04-ordinary-auto-flip"
+      ]
+    },
+    {
+      "caseId": "V06-EquivalentFullRun",
+      "set": "E",
+      "verification": "V06",
+      "kind": "dotnet",
+      "suite": "Gaode.Integration.Tests",
+      "method": "Gaode.Integration.Tests.Station01.ThreeStageMainFlowIntegrationTests.CommittedV2HandoffContinuesThroughThreeStagesOverFormalTcpAndSqlite",
+      "dataRowId": "0",
+      "dataRow": null,
+      "sourceInlineData": "Fact",
+      "path": "backend/tests/Gaode.Integration.Tests/Station01/ThreeStageMainFlowIntegrationTests.cs",
+      "evidenceLevel": "FullRun",
+      "requiredEvidence": [
+        "trx",
+        "discovery",
+        "current-context"
+      ],
+      "obligations": [
+        "FR-017",
+        "AC-04",
+        "SC-002",
+        "five-real-replacements"
+      ]
+    },
+    {
+      "caseId": "V00-Host",
+      "set": "B",
+      "verification": "V00",
+      "kind": "build",
+      "project": "backend/src/Gaode.Host/Gaode.Host.csproj",
+      "dataRowId": "0",
+      "evidenceLevel": "Build",
+      "requiredEvidence": [
+        "build-log",
+        "build-files",
+        "current-context"
+      ],
+      "obligations": [
+        "V00"
+      ]
+    },
+    {
+      "caseId": "V00-Contracts",
+      "set": "B",
+      "verification": "V00",
+      "kind": "build",
+      "project": "backend/tests/Gaode.Contracts.Tests/Gaode.Contracts.Tests.csproj",
+      "dataRowId": "0",
+      "evidenceLevel": "Build",
+      "requiredEvidence": [
+        "build-log",
+        "build-files",
+        "current-context"
+      ],
+      "obligations": [
+        "V00"
+      ]
+    },
+    {
+      "caseId": "V00-Integration",
+      "set": "B",
+      "verification": "V00",
+      "kind": "build",
+      "project": "backend/tests/Gaode.Integration.Tests/Gaode.Integration.Tests.csproj",
+      "dataRowId": "0",
+      "evidenceLevel": "Build",
+      "requiredEvidence": [
+        "build-log",
+        "build-files",
+        "current-context"
+      ],
+      "obligations": [
+        "V00"
+      ]
+    },
+    {
+      "caseId": "V00-VirtualPlc",
+      "set": "B",
+      "verification": "V00",
+      "kind": "build",
+      "project": "VirtualPlc/VirtualPlc.csproj",
+      "dataRowId": "0",
+      "evidenceLevel": "Build",
+      "requiredEvidence": [
+        "build-log",
+        "build-files",
+        "current-context"
+      ],
+      "obligations": [
+        "V00"
+      ]
+    },
+    {
+      "caseId": "V00-Communication",
+      "set": "B",
+      "verification": "V00",
+      "kind": "build",
+      "project": "backend/tests/Gaode.Communication.Tests/Gaode.Communication.Tests.csproj",
+      "dataRowId": "0",
+      "evidenceLevel": "Build",
+      "requiredEvidence": [
+        "build-log",
+        "build-files",
+        "current-context"
+      ],
+      "obligations": [
+        "V00"
+      ]
+    },
+    {
+      "caseId": "V02-ContentWorkerSelfcheck",
+      "set": "B",
+      "verification": "V02",
+      "kind": "worker-selfcheck",
+      "dataRowId": "0",
+      "evidenceLevel": "PortComponent",
+      "requiredEvidence": [
+        "raw-report",
+        "current-context"
+      ],
+      "obligations": [
+        "IB-03",
+        "R10",
+        "ContentSampleWorker-media-computation-and-release"
+      ]
+    },
+    {
+      "caseId": "V03/ActionHandshakeTests.SortingPickPlaceRequiresRealInTransitCommitAndCompleteAck/0",
+      "set": "B",
+      "verification": "V03",
+      "kind": "dotnet",
+      "suite": "Gaode.Communication.Tests",
+      "method": "Gaode.Communication.Tests.Devices.ActionHandshakeTests.SortingPickPlaceRequiresRealInTransitCommitAndCompleteAck",
+      "dataRowId": "0",
+      "dataRow": null,
+      "sourceInlineData": "Fact",
+      "path": "backend/tests/Gaode.Communication.Tests/Devices/ActionHandshakeTests.StageMigration.cs",
+      "evidenceLevel": "PortComponent",
+      "requiredEvidence": [
+        "trx",
+        "discovery",
+        "current-context"
+      ],
+      "obligations": [
+        "S-REPAIR-CommittedPickContinuation"
+      ]
+    },
+    {
+      "caseId": "V03/ActionHandshakeTests.ObservedPickWithoutDurableReferencePreservesReservation/0",
+      "set": "B",
+      "verification": "V03",
+      "kind": "dotnet",
+      "suite": "Gaode.Communication.Tests",
+      "method": "Gaode.Communication.Tests.Devices.ActionHandshakeTests.ObservedPickWithoutDurableReferencePreservesReservation",
+      "dataRowId": "0",
+      "dataRow": "caseId: \"PICK-RAW/rollback-business-writable\", faultKind: 0",
+      "sourceInlineData": "\"PICK-RAW/rollback-business-writable\", 0",
+      "path": "backend/tests/Gaode.Communication.Tests/Devices/ActionHandshakeTests.RawSaveFailure.cs",
+      "evidenceLevel": "PortComponent",
+      "requiredEvidence": [
+        "trx",
+        "discovery",
+        "current-context"
+      ],
+      "obligations": [
+        "S-REPAIR-NoPlacementWithoutCurrentPickEvidence"
+      ]
+    },
+    {
+      "caseId": "V03/ActionHandshakeTests.ObservedPickWithoutDurableReferencePreservesReservation/1",
+      "set": "B",
+      "verification": "V03",
+      "kind": "dotnet",
+      "suite": "Gaode.Communication.Tests",
+      "method": "Gaode.Communication.Tests.Devices.ActionHandshakeTests.ObservedPickWithoutDurableReferencePreservesReservation",
+      "dataRowId": "1",
+      "dataRow": "caseId: \"PICK-RAW/committed-reference-withheld\", faultKind: 1",
+      "sourceInlineData": "\"PICK-RAW/committed-reference-withheld\", 1",
+      "path": "backend/tests/Gaode.Communication.Tests/Devices/ActionHandshakeTests.RawSaveFailure.cs",
+      "evidenceLevel": "PortComponent",
+      "requiredEvidence": [
+        "trx",
+        "discovery",
+        "current-context"
+      ],
+      "obligations": [
+        "S-REPAIR-NoPlacementWithoutCurrentPickEvidence"
+      ]
+    },
+    {
+      "caseId": "V03/ActionHandshakeTests.ObservedPickWithoutDurableReferencePreservesReservation/2",
+      "set": "B",
+      "verification": "V03",
+      "kind": "dotnet",
+      "suite": "Gaode.Communication.Tests",
+      "method": "Gaode.Communication.Tests.Devices.ActionHandshakeTests.ObservedPickWithoutDurableReferencePreservesReservation",
+      "dataRowId": "2",
+      "dataRow": "caseId: \"PICK-RAW/store-unavailable-until-reconciliation\", faultKind: 2",
+      "sourceInlineData": "\"PICK-RAW/store-unavailable-until-reconciliation\", 2",
+      "path": "backend/tests/Gaode.Communication.Tests/Devices/ActionHandshakeTests.RawSaveFailure.cs",
+      "evidenceLevel": "PortComponent",
+      "requiredEvidence": [
+        "trx",
+        "discovery",
+        "current-context"
+      ],
+      "obligations": [
+        "S-REPAIR-NoPlacementWithoutCurrentPickEvidence"
+      ]
+    }
+  ],
+  "lightweight": "scripts/workflow/010-lightweight-cases.json",
+  "fullRunFixtures": {
+    "B": "backend/tests/Gaode.Integration.Tests/Fixtures/RecipeExecution010/baseline.json",
+    "E": "backend/tests/Gaode.Integration.Tests/Fixtures/RecipeExecution010/equivalent.json"
+  },
+  "scopeLimits": [
+    "Test/Virtual only",
+    "NoProductionAcceptance",
+    "NoAllRecipes",
+    "NoFullMachine",
+    "Historical009FailuresRetained"
+  ],
+  "originalObligationIntegrity": "2df7997a166d10a467d442e36679de792a33a0bc86f8823c8090875c17271fd5",
+  "repairCoverage": {
+    "basis": "010 S actual failure: whole transfer evidence buffer gap; 009 E02 committed segments",
+    "requiredBeforeFreeze": [
+      "V03/ActionHandshakeTests.SortingPickPlaceRequiresRealInTransitCommitAndCompleteAck/0",
+      "V03/ActionHandshakeTests.ObservedPickWithoutDurableReferencePreservesReservation/0",
+      "V03/ActionHandshakeTests.ObservedPickWithoutDurableReferencePreservesReservation/1",
+      "V03/ActionHandshakeTests.ObservedPickWithoutDurableReferencePreservesReservation/2"
+    ],
+    "unrelatedDiagnostic": "SortingLatchesTargetStageBeforeRaisedCompletionZ first failed before MaterialPicked at target observation; unchanged isolated rerun passed (sorting-z-review.trx). This existing 009 diagnostic does not substitute for current S."
+  }
+}

@@ -1,0 +1,51 @@
+{
+  "schemaVersion": "station01-fixture/2.0",
+  "caseId": "016-mixed",
+  "purpose": "Test",
+  "scenarioId": "011-joint",
+  "occupiedSlots": [
+    "s1",
+    "s2",
+    "s3"
+  ],
+  "fCode": "011-TEST-TRAY-1",
+  "configRoot": "config",
+  "recipeInputPath": "catalog.json",
+  "recipeInputSha256": "9C3512ED46F0ED00FD2AA6086C7A2C7A7BCC5E24B007DDFE0940E1C87DD4A83F",
+  "imageManifestPath": "images.json",
+  "workerManifestPath": "worker.json",
+  "workerScriptPath": "scripts/010-content-sample-worker.py",
+  "plcMechanicsPath": "mechanics.json",
+  "publicConfigRef": {
+    "id": "s01-public-011-joint",
+    "version": "1"
+  },
+  "budgetRef": {
+    "id": "s01-budget-011-joint",
+    "version": "2"
+  },
+  "simulationRef": {
+    "id": "s01-sim-011-joint",
+    "version": "2"
+  },
+  "simulation": {
+    "putBackDurationMs": 150,
+    "flipPutBackSafeZ": 150
+  },
+  "expected": {
+    "endReason": "NormalCompletion",
+    "inspectionCompleted": false,
+    "productCaptureCount": 2,
+    "sortingTransferCount": 1,
+    "fRequired": true,
+    "coverage": "Complete",
+    "physicalSlots": [
+      1,
+      2,
+      3
+    ]
+  },
+  "restrictions": [
+    "Explicit Test input: simulated PNG camera and lights, ContentSampleWorker process, TCP VirtualPlc and real SQLite; no production claim."
+  ]
+}

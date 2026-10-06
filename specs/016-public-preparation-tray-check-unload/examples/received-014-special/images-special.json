@@ -1,0 +1,39 @@
+{
+  "schemaVersion": "station01-images/1.0",
+  "id": "014-special-images",
+  "version": "1",
+  "purpose": "Test",
+  "captureDelayMs": 4000,
+  "images": [
+    {
+      "role": "ThreeD",
+      "relativePath": "media/ThreeD-two.png",
+      "sha256": "4FA701379804B061B3EC7522B0244D5A3E4C599264FAAFAAEC95130573CD681C",
+      "contentType": "image/png",
+      "source": "Test/ExplicitSamplePNG"
+    },
+    {
+      "role": "F",
+      "relativePath": "media/F2.png",
+      "sha256": "2EB01FB2EA9D90650DBD8A40F5A256D41C5663E48488B26FE175C03A1ABBB2D7",
+      "contentType": "image/png",
+      "source": "Test/ExplicitSamplePNG"
+    },
+    {
+      "role": "Detection",
+      "relativePath": "media/A.png",
+      "sha256": "605A29DCEB8FA95B6BC3A1E60F7FDCAAF88E45AE539FB972B78BF0A2741F7851",
+      "contentType": "image/png",
+      "source": "Test/ExplicitSamplePNG",
+      "camera": "A"
+    },
+    {
+      "role": "Detection",
+      "relativePath": "media/B.png",
+      "sha256": "3AA2A3C2988C27991099A6E2392F0B15C0B2007107817D2B38DD7C4791F87D45",
+      "contentType": "image/png",
+      "source": "Test/ExplicitSamplePNG",
+      "camera": "B"
+    }
+  ]
+}

@@ -1,0 +1,48 @@
+{
+  "schemaVersion": "station01-fixture/2.0",
+  "caseId": "016-migration-group-four",
+  "purpose": "Test",
+  "scenarioId": "011-joint",
+  "occupiedSlots": [
+    "P01",
+    "P03"
+  ],
+  "fCode": "011-TEST-TRAY-1",
+  "configRoot": "config",
+  "recipeInputPath": "catalog.json",
+  "recipeInputSha256": "730BEA5742FD74464FC9A193D227DC04C867E2567E9626FFF41F3CD8F8E07290",
+  "imageManifestPath": "images.json",
+  "workerManifestPath": "worker.json",
+  "workerScriptPath": "scripts/virtual-station01-algorithm.py",
+  "plcMechanicsPath": "mechanics.json",
+  "publicConfigRef": {
+    "id": "s01-public-011-joint",
+    "version": "1"
+  },
+  "budgetRef": {
+    "id": "s01-budget-011-joint",
+    "version": "2"
+  },
+  "simulationRef": {
+    "id": "s01-sim-011-joint",
+    "version": "2"
+  },
+  "simulation": {
+    "putBackDurationMs": 150,
+    "flipPutBackSafeZ": 150
+  },
+  "expected": {
+    "captureCount": 30,
+    "memberCount": 8,
+    "faceCount": 14,
+    "flips": 6,
+    "ng": 0,
+    "pending": 0,
+    "groupCount": 2,
+    "assemblyCount": 0,
+    "objectCount": 8
+  },
+  "restrictions": [
+    "Explicit Test input: simulated PNG camera and lights, ContentSampleWorker process, TCP VirtualPlc and real SQLite; no production claim."
+  ]
+}

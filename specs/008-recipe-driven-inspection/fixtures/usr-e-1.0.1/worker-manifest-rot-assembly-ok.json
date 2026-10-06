@@ -1,0 +1,18 @@
+{
+  "schemaVersion": "station01-virtual-algorithm/1.0",
+  "id": "rot-assembly-ok-worker",
+  "version": "1.0.0-test",
+  "purpose": "Test",
+  "seed": 8202,
+  "delayMs": 10000,
+  "heightMm": {
+    "min": 10.0,
+    "max": 12.0
+  },
+  "detectionDisposition": [
+    "OK"
+  ],
+  "fCode": "TEST-TRAY-0206",
+  "eCode": "TEST-BASE-A",
+  "eCodeIdentitySuffix": true
+}

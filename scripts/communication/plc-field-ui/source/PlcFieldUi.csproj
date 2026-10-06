@@ -1,0 +1,14 @@
+<Project Sdk="Microsoft.NET.Sdk.Web">
+  <PropertyGroup>
+    <TargetFramework>net10.0</TargetFramework>
+    <ImplicitUsings>enable</ImplicitUsings>
+    <Nullable>enable</Nullable>
+    <TreatWarningsAsErrors>true</TreatWarningsAsErrors>
+    <AssemblyName>Gaode.PlcFieldUi</AssemblyName>
+    <Version>0.4.0</Version>
+  </PropertyGroup>
+  <ItemGroup>
+    <Compile Include="../../../../backend/src/Gaode.Plc.Protocol/Float32Codec.cs" Link="Float32Codec.cs" Condition="Exists('../../../../backend/src/Gaode.Plc.Protocol/Float32Codec.cs')" />
+    <Compile Include="../../../../backend/src/Gaode.Plc.Protocol/BoolByteCodec.cs" Link="BoolByteCodec.cs" Condition="Exists('../../../../backend/src/Gaode.Plc.Protocol/BoolByteCodec.cs')" />
+  </ItemGroup>
+</Project>

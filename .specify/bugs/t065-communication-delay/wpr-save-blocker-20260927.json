@@ -1,0 +1,38 @@
+{
+  "affectedObservations": [
+    "observe-20260927T014401343Z",
+    "observe-20260927T015550635Z"
+  ],
+  "utc": "2026-09-27T01:59:17.4420387Z",
+  "error": "0x80010106",
+  "wprPath": "C:\\Windows\\System32\\wpr.exe",
+  "source": "https://devblogs.microsoft.com/performance-diagnostics/wpr-start-and-stop-commands/",
+  "nextStep": "Correct WPT tooling and validate ETL save without devices before any further communication observation",
+  "wprSha256": "9EEFA2061EFF72ECCCF095E13B819099A71AC449E4FCE6B7A8AD7AE99B407A38",
+  "toolStatus": "Validated",
+  "toolchainSha256": "C8E136BC1C5437792108AF3A5036F09DE0E865A45BD06581DB4F75343173FECB",
+  "proofPath": "E:\\dzk\\gaode-1\\.specify\\bugs\\t065-communication-delay\\tool-fix-20260927T020325729Z/verification-proof.json",
+  "proofSha256": "EF98003761BE76DA7E026C1DF865F3A8BD5B4237C4068CCA696F46855A15399E",
+  "communicationResolved": false,
+  "resolvedToolUtc": "2026-09-27T02:23:34.5341031Z",
+  "identityAmendment": {
+    "utc": "2026-09-27T03:09:42.2421972Z",
+    "previousManifestSha256": "2CF9EEF41723C77023E593A6EE5DEFC6ED6E2C2EBA2797D192154E6BB883445B",
+    "previousManifest": "E:\\dzk\\gaode-1\\.specify\\bugs\\t065-communication-delay\\identity-20260927T025949770Z\\before-wpt-toolchain-20260927.json",
+    "communicationResolved": false,
+    "reason": "Fixed ObserveIdentity and independent diagnostic artifacts only; all existing WPT/TDH bytes unchanged",
+    "previousProofRetained": "E:\\dzk\\gaode-1\\.specify\\bugs\\t065-communication-delay\\tool-fix-20260927T020325729Z/verification-proof.json"
+  },
+  "formalFixAmendment": {
+    "previousManifest": "E:\\dzk\\gaode-1\\.specify\\bugs\\t065-communication-delay\\mechanism-20260927T042703015Z\\toolchain-before-formal-q01.json",
+    "changes": [
+      {
+        "path": "E:\\dzk\\gaode-1\\.specify\\bugs\\t065-communication-delay\\run-t065-diagnostic-task.ps1",
+        "old": "1AEEC3AAC3FA7E463324B6BAB22A72961C1A596F5230CA961D179647BB68ACD4",
+        "new": "D3A8D92A27C821630E85381C8EBCE27719AE2939ECD0C23959AEFCB19AF31643"
+      }
+    ],
+    "toolBytesUnchanged": true,
+    "communicationResolved": false
+  }
+}

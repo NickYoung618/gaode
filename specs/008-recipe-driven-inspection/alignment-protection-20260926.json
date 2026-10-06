@@ -1,0 +1,204 @@
+{
+  "date": "2026-09-26",
+  "baselineFileCount": 22277,
+  "missing": [],
+  "documentChanges": [
+    ".specify/memory/constitution-alignment.md",
+    ".specify/memory/constitution.md",
+    "README.md",
+    "packaging/q01-q02-local/README.md",
+    "specs/001-station01-public-preparation/checklists/requirements.md",
+    "specs/001-station01-public-preparation/contracts/api.md",
+    "specs/001-station01-public-preparation/contracts/device.md",
+    "specs/001-station01-public-preparation/contracts/persistence-handoff.md",
+    "specs/001-station01-public-preparation/plan.md",
+    "specs/001-station01-public-preparation/tasks.md",
+    "specs/002-plc-xyz-recipes/contracts/recipe-execution.md",
+    "specs/002-plc-xyz-recipes/plan.md",
+    "specs/002-plc-xyz-recipes/spec.md",
+    "specs/002-plc-xyz-recipes/tasks.md",
+    "specs/003-plc-latest-protocol/contracts.md",
+    "specs/003-plc-latest-protocol/contracts/component-source-matrix.md",
+    "specs/003-plc-latest-protocol/contracts/detection-port.md",
+    "specs/003-plc-latest-protocol/contracts/plc-stage-action-port.md",
+    "specs/003-plc-latest-protocol/contracts/public-preparation-handoff.md",
+    "specs/003-plc-latest-protocol/contracts/stage-events.md",
+    "specs/003-plc-latest-protocol/contracts/station01-main-flow-api.md",
+    "specs/003-plc-latest-protocol/contracts/status-notifications.md",
+    "specs/003-plc-latest-protocol/contracts/virtual-plc-boundary.md",
+    "specs/003-plc-latest-protocol/contracts/whole-tray-workflow.md",
+    "specs/003-plc-latest-protocol/data-model.md",
+    "specs/003-plc-latest-protocol/differences.md",
+    "specs/003-plc-latest-protocol/plan.md",
+    "specs/003-plc-latest-protocol/quickstart.md",
+    "specs/003-plc-latest-protocol/research.md",
+    "specs/003-plc-latest-protocol/spec.md",
+    "specs/003-plc-latest-protocol/tasks.md",
+    "specs/006-frontend-station01-console/contracts/api.md",
+    "specs/006-frontend-station01-console/contracts/gaps.md",
+    "specs/006-frontend-station01-console/contracts/prototype-mapping.md",
+    "specs/006-frontend-station01-console/data-model.md",
+    "specs/006-frontend-station01-console/plan.md",
+    "specs/006-frontend-station01-console/research.md",
+    "specs/006-frontend-station01-console/spec.md",
+    "specs/006-frontend-station01-console/tasks.md",
+    "specs/007-station01-integrated-loop/checklists/requirements.md",
+    "specs/007-station01-integrated-loop/contracts/commissioning-cli.md",
+    "specs/007-station01-integrated-loop/contracts/virtual-integration.md",
+    "specs/007-station01-integrated-loop/data-model.md",
+    "specs/007-station01-integrated-loop/plan.md",
+    "specs/007-station01-integrated-loop/quickstart.md",
+    "specs/007-station01-integrated-loop/research.md",
+    "specs/007-station01-integrated-loop/spec.md",
+    "specs/007-station01-integrated-loop/tasks.md",
+    "specs/008-recipe-driven-inspection/checklists/requirements.md",
+    "specs/008-recipe-driven-inspection/contracts/api-results.md",
+    "specs/008-recipe-driven-inspection/contracts/evidence.md",
+    "specs/008-recipe-driven-inspection/contracts/execution.md",
+    "specs/008-recipe-driven-inspection/contracts/test-virtual-mapping.md",
+    "specs/008-recipe-driven-inspection/coverage-matrix.md",
+    "specs/008-recipe-driven-inspection/data-model.md",
+    "specs/008-recipe-driven-inspection/evidence/index.md",
+    "specs/008-recipe-driven-inspection/plan.md",
+    "specs/008-recipe-driven-inspection/quickstart.md",
+    "specs/008-recipe-driven-inspection/recipe-cases.md",
+    "specs/008-recipe-driven-inspection/research.md",
+    "specs/008-recipe-driven-inspection/spec.md",
+    "specs/008-recipe-driven-inspection/tasks.md",
+    "软件需求规格说明书/软件需求规格说明书_V1.1_开发范围版.docx",
+    "软件需求规格说明书/软件需求规格说明书_V1.1_开发范围版.md",
+    "软件需求规格说明书/需求开发跟踪表_V1.1.xlsx",
+    "高德_文档/最新版PLC_VirtualPlc_第一工位配方接入说明.md",
+    "高德_文档/通信协议使用说明.md"
+  ],
+  "taskSnapshots": [
+    {
+      "file": "specs/001-station01-public-preparation/tasks.md",
+      "count": 89,
+      "unchanged": true
+    },
+    {
+      "file": "specs/002-plc-xyz-recipes/tasks.md",
+      "count": 10,
+      "unchanged": true
+    },
+    {
+      "file": "specs/003-plc-latest-protocol/tasks.md",
+      "count": 71,
+      "unchanged": true
+    },
+    {
+      "file": "specs/006-frontend-station01-console/tasks.md",
+      "count": 50,
+      "unchanged": true
+    },
+    {
+      "file": "specs/007-station01-integrated-loop/tasks.md",
+      "count": 32,
+      "unchanged": true
+    },
+    {
+      "file": "specs/008-recipe-driven-inspection/tasks.md",
+      "count": 22,
+      "unchanged": true
+    }
+  ],
+  "protectedExceptions": [
+    {
+      "file": "artifacts/station01-007/manual-20260923-172123/last-watch-error.json",
+      "before": "116CB498D4D7360307AA19866950AB5D0017946F56B19505E0E6A04BB40100A7",
+      "after": "5883DBDDECF130895297E6C1B1BD7B92F403E0BA36FE583C1A6D431FFB84CFE0",
+      "meaning": "哈希采样期间变化；本轮未写入，写入方未确认，不回写"
+    },
+    {
+      "file": "artifacts/station01-007/manual-20260923-223203-292f28d5/last-watch-error.json",
+      "before": "1CC8154D141AB9D3952021DFE7BC54D4CD09A63B8159DD39993C80E5C09357D1",
+      "after": "F89AD6991D09D6FB190B8AF8B55368A794699145044A405FC88F2F548016C9CC",
+      "meaning": "哈希采样期间变化；本轮未写入，写入方未确认，不回写"
+    },
+    {
+      "file": "artifacts/station01-007/manual-20260923-225338-e407229a/last-watch-error.json",
+      "before": "33EAC2F68F2D09E6CBE1922D6F56D451E0EECB8AD636B2A774665001C02612E9",
+      "after": "1CF5B80F282E1E6CD9BA4630EC29AD954F513D001E5D9AB05AEBEB009F7B27AE",
+      "meaning": "哈希采样期间变化；本轮未写入，写入方未确认，不回写"
+    },
+    {
+      "file": "artifacts/station01-007/manual-20260924-030213-5badb1e9/last-watch-error.json",
+      "before": "8A91475F9880ADC61184E8E53DB1744087B97F049D6DE70AC8E799DE74FBEE6A",
+      "after": "4006CBEA3D752F3EB0697062DA8DEF7A06C8529C4FAA2D4AF177A9935A0F9589",
+      "meaning": "哈希采样期间变化；本轮未写入，写入方未确认，不回写"
+    },
+    {
+      "file": "artifacts/station01-007/manual-20260924-032734-b29cc9ab/last-watch-error.json",
+      "before": "B437224097464707D24C172B06E41EE9348F75203BFD794F4D9B28449F9BA53E",
+      "after": "B9AF21BC41CE607AA32CA9E24A22C8F2EC40078AC5CDB1BA900D6B4C1511F1E4",
+      "meaning": "哈希采样期间变化；本轮未写入，写入方未确认，不回写"
+    },
+    {
+      "file": "artifacts/station01-007/manual-20260924-033644-b7b9f088/last-watch-error.json",
+      "before": "9A41704D8AE71F5570629B9587E2B1953F0639A4A4D188BB522B02772611E27C",
+      "after": "705FB8C08ED2D185DC62D6CEC52EE88C51D9FE6FD924987CA3683D23D82BECBE",
+      "meaning": "哈希采样期间变化；本轮未写入，写入方未确认，不回写"
+    },
+    {
+      "file": "artifacts/station01-007/manual-20260924-060537-8b0db3fa/last-watch-error.json",
+      "before": "878C3DAFAAB1B4722835FECD134D4B956CD8CA49B8CD9A91D57380BFC1592DFD",
+      "after": "8F102D615C7AB56F8C2856731CF5CA68D43168B9D2070C36AB98DB1A9DE1153E",
+      "meaning": "哈希采样期间变化；本轮未写入，写入方未确认，不回写"
+    },
+    {
+      "file": "artifacts/station01-007/manual-20260924-072425-5432e37c/last-watch-error.json",
+      "before": "4F2FBC9E5C18A9DE8995C05B36FA3860F33E819C33A01F1B9B54F95218B25237",
+      "after": "8B6696CD6B8A1F59F6A65C2DB12DCA5DD1DC6C52303978998B4B354D6225A1B4",
+      "meaning": "哈希采样期间变化；本轮未写入，写入方未确认，不回写"
+    },
+    {
+      "file": "artifacts/station01-007/manual-20260924-113930-a58e1ac2/last-watch-error.json",
+      "before": "0F96B71695D6CAF445D100BF14A3C028678F189AECA388E650C414B03344467D",
+      "after": "19B88B6C4FD5429155EA31920530834723D6520D0A1A9EBC2525DBC5C034A5DD",
+      "meaning": "哈希采样期间变化；本轮未写入，写入方未确认，不回写"
+    }
+  ],
+  "criticalFiles": [
+    {
+      "file": "AGENTS.md",
+      "before": "F89EA961226FF699ED28AB0F6D6F36183EC2BE8A9057540BACDF42500A19797D",
+      "after": "F89EA961226FF699ED28AB0F6D6F36183EC2BE8A9057540BACDF42500A19797D"
+    },
+    {
+      "file": ".specify/feature.json",
+      "before": "2BA47B641A7C3E56C122183331A6D1EDA02FFCD163AFF79CBE1D7F08C17F5816",
+      "after": "2BA47B641A7C3E56C122183331A6D1EDA02FFCD163AFF79CBE1D7F08C17F5816"
+    },
+    {
+      "file": "artifacts/migration/原型.zip",
+      "before": "3DC791C1F8AB5EEDFA037F5DBAE450B2D20522FED654F86EA700C0284945E1E0",
+      "after": "3DC791C1F8AB5EEDFA037F5DBAE450B2D20522FED654F86EA700C0284945E1E0"
+    },
+    {
+      "file": "artifacts/migration-return/review-20260923-191548/original/原型.zip",
+      "before": "3DC791C1F8AB5EEDFA037F5DBAE450B2D20522FED654F86EA700C0284945E1E0",
+      "after": "3DC791C1F8AB5EEDFA037F5DBAE450B2D20522FED654F86EA700C0284945E1E0"
+    },
+    {
+      "file": "高德_文档/PLC与上位机通信接口协议_最新版_上下位机信号分区版.docx",
+      "before": "405AC9EE2AE2D765951D9F523DC7195CC77F6CD1F38DBC0AD144A0013586C519",
+      "after": "405AC9EE2AE2D765951D9F523DC7195CC77F6CD1F38DBC0AD144A0013586C519"
+    },
+    {
+      "file": "高德_文档/通信协议历史备份/20260925_分区版启用/PLC与上位机通信接口协议_最新版.docx",
+      "before": "CF5ADCD1EFC5AF86A4AF254317C7D0A8697212BDDFB66D061D4AB5C421B1ADDF",
+      "after": "CF5ADCD1EFC5AF86A4AF254317C7D0A8697212BDDFB66D061D4AB5C421B1ADDF"
+    },
+    {
+      "file": "高德_文档/通信协议历史备份/20260925_分区版启用/PLC与上位机通信接口协议_最新版_上下位机信号分区版.docx",
+      "before": "E9F976D31558D96ACF9A749B96DFA9A5EECEF3850120F35B2670067C59ACC897",
+      "after": "E9F976D31558D96ACF9A749B96DFA9A5EECEF3850120F35B2670067C59ACC897"
+    },
+    {
+      "file": "E:\\dzk\\gaode\\原型.zip",
+      "before": "3DC791C1F8AB5EEDFA037F5DBAE450B2D20522FED654F86EA700C0284945E1E0",
+      "after": "3DC791C1F8AB5EEDFA037F5DBAE450B2D20522FED654F86EA700C0284945E1E0"
+    }
+  ]
+}

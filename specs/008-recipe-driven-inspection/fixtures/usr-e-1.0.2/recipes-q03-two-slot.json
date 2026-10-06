@@ -1,0 +1,1153 @@
+{
+  "schemaVersion": "review-recipe-catalog/0.5",
+  "releaseStatus": "simulationOnlyNotProduction",
+  "source": {
+    "basis": "review-recipe-catalog/0.4 and 008 recipe-cases Q01",
+    "status": "TestOnly/ExplicitFlipPosition",
+    "pointMapping": "test-virtual-mapping/q03-1.0.0",
+    "heightMapping": "test-virtual-mapping/q03-1.0.0"
+  },
+  "virtualFixedProfiles": {
+    "SIM_TRAY_5X3": {
+      "coordinateSystem": "SIM_TRAY_MM",
+      "grid": "5 columns x 3 rows",
+      "originMm": [
+        100,
+        100
+      ],
+      "pitchMm": [
+        100,
+        100
+      ],
+      "cameraXYOffsetsMm": {
+        "A": [
+          0,
+          0
+        ],
+        "B": [
+          10,
+          0
+        ],
+        "C": [
+          0,
+          10
+        ],
+        "D": [
+          10,
+          10
+        ],
+        "E": [
+          20,
+          0
+        ]
+      },
+      "ngGroupCellCapacity": 15,
+      "pendingGroupCellCapacity": 15,
+      "ngCells": [
+        {
+          "cellId": "NG01",
+          "virtualCenterMm": {
+            "x": 900,
+            "y": 100
+          },
+          "capacity": "oneDetectionUnitOrOneGroup"
+        },
+        {
+          "cellId": "NG02",
+          "virtualCenterMm": {
+            "x": 1000,
+            "y": 100
+          },
+          "capacity": "oneDetectionUnitOrOneGroup"
+        },
+        {
+          "cellId": "NG03",
+          "virtualCenterMm": {
+            "x": 1100,
+            "y": 100
+          },
+          "capacity": "oneDetectionUnitOrOneGroup"
+        },
+        {
+          "cellId": "NG04",
+          "virtualCenterMm": {
+            "x": 1200,
+            "y": 100
+          },
+          "capacity": "oneDetectionUnitOrOneGroup"
+        },
+        {
+          "cellId": "NG05",
+          "virtualCenterMm": {
+            "x": 1300,
+            "y": 100
+          },
+          "capacity": "oneDetectionUnitOrOneGroup"
+        },
+        {
+          "cellId": "NG06",
+          "virtualCenterMm": {
+            "x": 900,
+            "y": 200
+          },
+          "capacity": "oneDetectionUnitOrOneGroup"
+        },
+        {
+          "cellId": "NG07",
+          "virtualCenterMm": {
+            "x": 1000,
+            "y": 200
+          },
+          "capacity": "oneDetectionUnitOrOneGroup"
+        },
+        {
+          "cellId": "NG08",
+          "virtualCenterMm": {
+            "x": 1100,
+            "y": 200
+          },
+          "capacity": "oneDetectionUnitOrOneGroup"
+        },
+        {
+          "cellId": "NG09",
+          "virtualCenterMm": {
+            "x": 1200,
+            "y": 200
+          },
+          "capacity": "oneDetectionUnitOrOneGroup"
+        },
+        {
+          "cellId": "NG10",
+          "virtualCenterMm": {
+            "x": 1300,
+            "y": 200
+          },
+          "capacity": "oneDetectionUnitOrOneGroup"
+        },
+        {
+          "cellId": "NG11",
+          "virtualCenterMm": {
+            "x": 900,
+            "y": 300
+          },
+          "capacity": "oneDetectionUnitOrOneGroup"
+        },
+        {
+          "cellId": "NG12",
+          "virtualCenterMm": {
+            "x": 1000,
+            "y": 300
+          },
+          "capacity": "oneDetectionUnitOrOneGroup"
+        },
+        {
+          "cellId": "NG13",
+          "virtualCenterMm": {
+            "x": 1100,
+            "y": 300
+          },
+          "capacity": "oneDetectionUnitOrOneGroup"
+        },
+        {
+          "cellId": "NG14",
+          "virtualCenterMm": {
+            "x": 1200,
+            "y": 300
+          },
+          "capacity": "oneDetectionUnitOrOneGroup"
+        },
+        {
+          "cellId": "NG15",
+          "virtualCenterMm": {
+            "x": 1300,
+            "y": 300
+          },
+          "capacity": "oneDetectionUnitOrOneGroup"
+        }
+      ],
+      "pendingCells": [
+        {
+          "cellId": "PD01",
+          "virtualCenterMm": {
+            "x": 1500,
+            "y": 100
+          },
+          "capacity": "oneDetectionUnitOrOneGroup"
+        },
+        {
+          "cellId": "PD02",
+          "virtualCenterMm": {
+            "x": 1600,
+            "y": 100
+          },
+          "capacity": "oneDetectionUnitOrOneGroup"
+        },
+        {
+          "cellId": "PD03",
+          "virtualCenterMm": {
+            "x": 1700,
+            "y": 100
+          },
+          "capacity": "oneDetectionUnitOrOneGroup"
+        },
+        {
+          "cellId": "PD04",
+          "virtualCenterMm": {
+            "x": 1800,
+            "y": 100
+          },
+          "capacity": "oneDetectionUnitOrOneGroup"
+        },
+        {
+          "cellId": "PD05",
+          "virtualCenterMm": {
+            "x": 1900,
+            "y": 100
+          },
+          "capacity": "oneDetectionUnitOrOneGroup"
+        },
+        {
+          "cellId": "PD06",
+          "virtualCenterMm": {
+            "x": 1500,
+            "y": 200
+          },
+          "capacity": "oneDetectionUnitOrOneGroup"
+        },
+        {
+          "cellId": "PD07",
+          "virtualCenterMm": {
+            "x": 1600,
+            "y": 200
+          },
+          "capacity": "oneDetectionUnitOrOneGroup"
+        },
+        {
+          "cellId": "PD08",
+          "virtualCenterMm": {
+            "x": 1700,
+            "y": 200
+          },
+          "capacity": "oneDetectionUnitOrOneGroup"
+        },
+        {
+          "cellId": "PD09",
+          "virtualCenterMm": {
+            "x": 1800,
+            "y": 200
+          },
+          "capacity": "oneDetectionUnitOrOneGroup"
+        },
+        {
+          "cellId": "PD10",
+          "virtualCenterMm": {
+            "x": 1900,
+            "y": 200
+          },
+          "capacity": "oneDetectionUnitOrOneGroup"
+        },
+        {
+          "cellId": "PD11",
+          "virtualCenterMm": {
+            "x": 1500,
+            "y": 300
+          },
+          "capacity": "oneDetectionUnitOrOneGroup"
+        },
+        {
+          "cellId": "PD12",
+          "virtualCenterMm": {
+            "x": 1600,
+            "y": 300
+          },
+          "capacity": "oneDetectionUnitOrOneGroup"
+        },
+        {
+          "cellId": "PD13",
+          "virtualCenterMm": {
+            "x": 1700,
+            "y": 300
+          },
+          "capacity": "oneDetectionUnitOrOneGroup"
+        },
+        {
+          "cellId": "PD14",
+          "virtualCenterMm": {
+            "x": 1800,
+            "y": 300
+          },
+          "capacity": "oneDetectionUnitOrOneGroup"
+        },
+        {
+          "cellId": "PD15",
+          "virtualCenterMm": {
+            "x": 1900,
+            "y": 300
+          },
+          "capacity": "oneDetectionUnitOrOneGroup"
+        }
+      ]
+    },
+    "SIM_MOTION": {
+      "rotationStationXYmm": [
+        700,
+        100
+      ],
+      "fixedRotationAngleDeg": 90,
+      "imagingZmm": 100,
+      "eReaderZmm": 90,
+      "pickZmm": 20,
+      "safeZmm": 150,
+      "positionToleranceMm": 0.5,
+      "angleToleranceDeg": 1,
+      "moveTimeoutMs": 5000
+    },
+    "SIM_CAPTURE_AB": {
+      "cameraOrder": [
+        "A",
+        "B"
+      ],
+      "framesPerCameraTarget": 1,
+      "exposureUs": 10000,
+      "gain": 1,
+      "roiPixels": [
+        0,
+        0,
+        1024,
+        1024
+      ],
+      "lightChannel": "SIM_WHITE",
+      "brightnessPercent": 60,
+      "settleMs": 100,
+      "captureTimeoutMs": 3000
+    },
+    "SIM_ALGORITHM": {
+      "modelVersion": "SIM_ONLY_V1",
+      "fusion": "sameUnitSameLocalFaceAB",
+      "timeoutMs": 5000,
+      "missingInput": "Pending"
+    },
+    "SIM_QUALITY": {
+      "pitDiameterNgAtOrAboveMm": 0.1,
+      "scratchLengthNgAtOrAboveMm": 0.2,
+      "nonCircularMachiningMark": "NG",
+      "obviousColorDifferenceOrDirt": "NG",
+      "basis": "technicalSpecificationReviewBaselineNotValidatedBySample"
+    }
+  },
+  "recipes": [
+    {
+      "recipeId": "R008-Q03",
+      "version": "1.0.0-test",
+      "releaseStatus": "simulationOnly",
+      "manuallySelectedScenario": "S1",
+      "model": "Q03-Test-TwoFace",
+      "fCode": {
+        "reader": "F",
+        "virtualExactPayload": "TEST-TRAY-0103",
+        "lookup": "parseExactRecipeIdAndVersion;compareManualScenario;bindToTrayRunId",
+        "onMismatch": "pausePreparation",
+        "bindingEvidence": [
+          "TrayRunId",
+          "FReadEvidenceId",
+          "RecipeId",
+          "RecipeVersion"
+        ]
+      },
+      "tray": {
+        "capacity": 15,
+        "layoutProfile": "SIM_TRAY_5X3",
+        "emptySlot": "recordMissingUnit;doNotInventInspectionFrames"
+      },
+      "unitKind": "independentPart",
+      "primaryMaterial": "BASE",
+      "compositionPerOccupiedSlot": [
+        {
+          "material": "BASE",
+          "name": "大底座",
+          "role": "primary",
+          "localFaces": [
+            1,
+            2
+          ],
+          "sourceCell": "B9",
+          "captureProfile": "SIM_CAPTURE_AB",
+          "algorithmProfile": "SIM_ALGORITHM"
+        }
+      ],
+      "positions": [
+        {
+          "slotId": "P01",
+          "expectedUnitCount": 1,
+          "virtualCenterMm": {
+            "x": 100,
+            "y": 100
+          },
+          "unitIdPattern": "{TrayRunId}:P:P01",
+          "members": [
+            {
+              "memberIdPattern": "{UnitId}:M01",
+              "material": "BASE",
+              "virtualXYmm": {
+                "x": 100,
+                "y": 100
+              },
+              "handling": "individualPart"
+            }
+          ],
+          "protocolSlotIndex": 1,
+          "pointRefs": {
+            "A": "Q03-P01-A-test-virtual-mapping/1.0.0",
+            "B": "Q03-P01-B-test-virtual-mapping/1.0.0"
+          },
+          "resolvedSourcePoint": {
+            "id": "P01",
+            "version": "test-virtual-mapping/q03-1.0.0",
+            "x": 100,
+            "y": 100,
+            "z": 150,
+            "unit": "mm",
+            "frame": "SIM_MACHINE",
+            "testSourceRef": "Test/VirtualSource/Q03/P01/1.0.0",
+            "point": {
+              "id": "P01",
+              "version": "test-virtual-mapping/q03-1.0.0",
+              "x": 100,
+              "y": 100,
+              "z": 150,
+              "unit": "mm",
+              "frame": "SIM_MACHINE"
+            }
+          },
+          "resolvedFlipPosition": {
+            "id": "P01",
+            "version": "test-virtual-mapping/q03-1.0.0",
+            "x": 100,
+            "y": 100,
+            "z": 150,
+            "unit": "mm",
+            "frame": "SIM_MACHINE",
+            "testSourceRef": "Test/VirtualFlipPosition/Q03/P01/1.0.0",
+            "point": {
+              "id": "Q03-P01-flip-position",
+              "version": "test-virtual-mapping/q03-1.0.0",
+              "x": 100,
+              "y": 100,
+              "z": 150,
+              "unit": "mm",
+              "frame": "SIM_MACHINE"
+            }
+          },
+          "resolvedSortingTargets": {
+            "NG": {
+              "testSourceRef": "Test/VirtualSameTray/NG/P01/1.0.0",
+              "targetSlotId": "P14",
+              "point": {
+                "id": "P14",
+                "version": "test-virtual-mapping/q03-1.0.0",
+                "x": 400,
+                "y": 300,
+                "z": 150,
+                "unit": "mm",
+                "frame": "SIM_MACHINE"
+              }
+            },
+            "Pending": {
+              "testSourceRef": "Test/VirtualSameTray/Pending/P01/1.0.0",
+              "targetSlotId": "P15",
+              "point": {
+                "id": "P15",
+                "version": "test-virtual-mapping/q03-1.0.0",
+                "x": 500,
+                "y": 300,
+                "z": 150,
+                "unit": "mm",
+                "frame": "SIM_MACHINE"
+              }
+            }
+          },
+          "resolvedDetectionTargetsByFace": {
+            "1": {
+              "A": {
+                "executionStageId": "stage:1",
+                "objectId": "{UnitId}:M01",
+                "sourceSlotId": "P01",
+                "protocolSlotIndex": 1,
+                "localFace": 1,
+                "cameraId": "A",
+                "pointRef": "Q03-P01-A-test-virtual-mapping/1.0.0",
+                "point": {
+                  "id": "Q03-P01-face1-A",
+                  "version": "test-virtual-mapping/q03-1.0.0",
+                  "x": 100,
+                  "y": 100,
+                  "unit": "mm",
+                  "frame": "SIM_MACHINE",
+                  "testSourceRef": "Test/VirtualPoint/Q03/P01/face1/A/1.0.0"
+                },
+                "coordinateConfigVersion": "test-virtual-mapping/q03-1.0.0",
+                "zBasis": {
+                  "mode": "InitialMeasurementOffset",
+                  "measurementRef": {
+                    "scopeId": "sim-whole-tray",
+                    "scopeVersion": "1.0.0",
+                    "sampleId": "sample-a",
+                    "objectSlotId": "P01",
+                    "unit": "mm",
+                    "datum": "SIM_REFERENCE"
+                  },
+                  "offsetMm": 100.0,
+                  "minZ": 105.0,
+                  "maxZ": 120.0,
+                  "mappingSourceRef": "Test/VirtualPoint/Q03/P01/face1/A/1.0.0"
+                }
+              },
+              "B": {
+                "executionStageId": "stage:1",
+                "objectId": "{UnitId}:M01",
+                "sourceSlotId": "P01",
+                "protocolSlotIndex": 1,
+                "localFace": 1,
+                "cameraId": "B",
+                "pointRef": "Q03-P01-B-test-virtual-mapping/1.0.0",
+                "point": {
+                  "id": "Q03-P01-face1-B",
+                  "version": "test-virtual-mapping/q03-1.0.0",
+                  "x": 110,
+                  "y": 100,
+                  "unit": "mm",
+                  "frame": "SIM_MACHINE",
+                  "testSourceRef": "Test/VirtualPoint/Q03/P01/face1/B/1.0.0"
+                },
+                "coordinateConfigVersion": "test-virtual-mapping/q03-1.0.0",
+                "zBasis": {
+                  "mode": "InitialMeasurementOffset",
+                  "measurementRef": {
+                    "scopeId": "sim-whole-tray",
+                    "scopeVersion": "1.0.0",
+                    "sampleId": "sample-a",
+                    "objectSlotId": "P01",
+                    "unit": "mm",
+                    "datum": "SIM_REFERENCE"
+                  },
+                  "offsetMm": 100.0,
+                  "minZ": 105.0,
+                  "maxZ": 120.0,
+                  "mappingSourceRef": "Test/VirtualPoint/Q03/P01/face1/B/1.0.0"
+                }
+              }
+            },
+            "2": {
+              "A": {
+                "executionStageId": "stage:2",
+                "objectId": "{UnitId}:M01",
+                "sourceSlotId": "P01",
+                "protocolSlotIndex": 1,
+                "localFace": 2,
+                "cameraId": "A",
+                "pointRef": "Q03-P01-A-test-virtual-mapping/1.0.0",
+                "point": {
+                  "id": "Q03-P01-face2-A",
+                  "version": "test-virtual-mapping/q03-1.0.0",
+                  "x": 120,
+                  "y": 100,
+                  "unit": "mm",
+                  "frame": "SIM_MACHINE",
+                  "testSourceRef": "Test/VirtualPoint/Q03/P01/face2/A/1.0.0"
+                },
+                "coordinateConfigVersion": "test-virtual-mapping/q03-1.0.0",
+                "zBasis": {
+                  "mode": "InitialMeasurementOffset",
+                  "measurementRef": {
+                    "scopeId": "sim-whole-tray",
+                    "scopeVersion": "1.0.0",
+                    "sampleId": "sample-a",
+                    "objectSlotId": "P01",
+                    "unit": "mm",
+                    "datum": "SIM_REFERENCE"
+                  },
+                  "offsetMm": 102.0,
+                  "minZ": 105.0,
+                  "maxZ": 120.0,
+                  "mappingSourceRef": "Test/VirtualPoint/Q03/P01/face2/A/1.0.0"
+                }
+              },
+              "B": {
+                "executionStageId": "stage:2",
+                "objectId": "{UnitId}:M01",
+                "sourceSlotId": "P01",
+                "protocolSlotIndex": 1,
+                "localFace": 2,
+                "cameraId": "B",
+                "pointRef": "Q03-P01-B-test-virtual-mapping/1.0.0",
+                "point": {
+                  "id": "Q03-P01-face2-B",
+                  "version": "test-virtual-mapping/q03-1.0.0",
+                  "x": 130,
+                  "y": 100,
+                  "unit": "mm",
+                  "frame": "SIM_MACHINE",
+                  "testSourceRef": "Test/VirtualPoint/Q03/P01/face2/B/1.0.0"
+                },
+                "coordinateConfigVersion": "test-virtual-mapping/q03-1.0.0",
+                "zBasis": {
+                  "mode": "InitialMeasurementOffset",
+                  "measurementRef": {
+                    "scopeId": "sim-whole-tray",
+                    "scopeVersion": "1.0.0",
+                    "sampleId": "sample-a",
+                    "objectSlotId": "P01",
+                    "unit": "mm",
+                    "datum": "SIM_REFERENCE"
+                  },
+                  "offsetMm": 102.0,
+                  "minZ": 105.0,
+                  "maxZ": 120.0,
+                  "mappingSourceRef": "Test/VirtualPoint/Q03/P01/face2/B/1.0.0"
+                }
+              }
+            }
+          }
+        },
+        {
+          "slotId": "P02",
+          "expectedUnitCount": 1,
+          "virtualCenterMm": {
+            "x": 200,
+            "y": 100
+          },
+          "unitIdPattern": "{TrayRunId}:P:P02",
+          "members": [
+            {
+              "memberIdPattern": "{UnitId}:M01",
+              "material": "BASE",
+              "virtualXYmm": {
+                "x": 200,
+                "y": 100
+              },
+              "handling": "individualPart"
+            }
+          ],
+          "protocolSlotIndex": 2,
+          "resolvedSourcePoint": {
+            "id": "P02",
+            "version": "test-virtual-mapping/q03-1.0.0",
+            "x": 200,
+            "y": 100,
+            "z": 150,
+            "unit": "mm",
+            "frame": "SIM_MACHINE",
+            "testSourceRef": "Test/VirtualSource/Q03/P02/1.0.0",
+            "point": {
+              "id": "P02",
+              "version": "test-virtual-mapping/q03-1.0.0",
+              "x": 200,
+              "y": 100,
+              "z": 150,
+              "unit": "mm",
+              "frame": "SIM_MACHINE"
+            }
+          },
+          "resolvedFlipPosition": {
+            "id": "P02",
+            "version": "test-virtual-mapping/q03-1.0.0",
+            "x": 200,
+            "y": 100,
+            "z": 150,
+            "unit": "mm",
+            "frame": "SIM_MACHINE",
+            "testSourceRef": "Test/VirtualFlipPosition/Q03/P02/1.0.0",
+            "point": {
+              "id": "Q03-P02-flip-position",
+              "version": "test-virtual-mapping/q03-1.0.0",
+              "x": 200,
+              "y": 100,
+              "z": 150,
+              "unit": "mm",
+              "frame": "SIM_MACHINE"
+            }
+          },
+          "resolvedDetectionTargetsByFace": {
+            "1": {
+              "A": {
+                "executionStageId": "stage:1",
+                "objectId": "{UnitId}:M01",
+                "sourceSlotId": "P02",
+                "protocolSlotIndex": 2,
+                "localFace": 1,
+                "cameraId": "A",
+                "pointRef": "Q03-P02-A-test-virtual-mapping/1.0.0",
+                "point": {
+                  "id": "Q03-P02-face1-A",
+                  "version": "test-virtual-mapping/q03-1.0.0",
+                  "x": 200,
+                  "y": 100,
+                  "unit": "mm",
+                  "frame": "SIM_MACHINE",
+                  "testSourceRef": "Test/VirtualPoint/Q03/P02/face1/A/1.0.0"
+                },
+                "coordinateConfigVersion": "test-virtual-mapping/q03-1.0.0",
+                "zBasis": {
+                  "mode": "InitialMeasurementOffset",
+                  "measurementRef": {
+                    "scopeId": "sim-whole-tray",
+                    "scopeVersion": "1.0.0",
+                    "sampleId": "sample-a",
+                    "objectSlotId": "P02",
+                    "unit": "mm",
+                    "datum": "SIM_REFERENCE"
+                  },
+                  "offsetMm": 100.0,
+                  "minZ": 105.0,
+                  "maxZ": 120.0,
+                  "mappingSourceRef": "Test/VirtualPoint/Q03/P02/face1/A/1.0.0"
+                }
+              },
+              "B": {
+                "executionStageId": "stage:1",
+                "objectId": "{UnitId}:M01",
+                "sourceSlotId": "P02",
+                "protocolSlotIndex": 2,
+                "localFace": 1,
+                "cameraId": "B",
+                "pointRef": "Q03-P02-B-test-virtual-mapping/1.0.0",
+                "point": {
+                  "id": "Q03-P02-face1-B",
+                  "version": "test-virtual-mapping/q03-1.0.0",
+                  "x": 210,
+                  "y": 100,
+                  "unit": "mm",
+                  "frame": "SIM_MACHINE",
+                  "testSourceRef": "Test/VirtualPoint/Q03/P02/face1/B/1.0.0"
+                },
+                "coordinateConfigVersion": "test-virtual-mapping/q03-1.0.0",
+                "zBasis": {
+                  "mode": "InitialMeasurementOffset",
+                  "measurementRef": {
+                    "scopeId": "sim-whole-tray",
+                    "scopeVersion": "1.0.0",
+                    "sampleId": "sample-a",
+                    "objectSlotId": "P02",
+                    "unit": "mm",
+                    "datum": "SIM_REFERENCE"
+                  },
+                  "offsetMm": 100.0,
+                  "minZ": 105.0,
+                  "maxZ": 120.0,
+                  "mappingSourceRef": "Test/VirtualPoint/Q03/P02/face1/B/1.0.0"
+                }
+              }
+            },
+            "2": {
+              "A": {
+                "executionStageId": "stage:2",
+                "objectId": "{UnitId}:M01",
+                "sourceSlotId": "P02",
+                "protocolSlotIndex": 2,
+                "localFace": 2,
+                "cameraId": "A",
+                "pointRef": "Q03-P02-A-test-virtual-mapping/1.0.0",
+                "point": {
+                  "id": "Q03-P02-face2-A",
+                  "version": "test-virtual-mapping/q03-1.0.0",
+                  "x": 220,
+                  "y": 100,
+                  "unit": "mm",
+                  "frame": "SIM_MACHINE",
+                  "testSourceRef": "Test/VirtualPoint/Q03/P02/face2/A/1.0.0"
+                },
+                "coordinateConfigVersion": "test-virtual-mapping/q03-1.0.0",
+                "zBasis": {
+                  "mode": "InitialMeasurementOffset",
+                  "measurementRef": {
+                    "scopeId": "sim-whole-tray",
+                    "scopeVersion": "1.0.0",
+                    "sampleId": "sample-a",
+                    "objectSlotId": "P02",
+                    "unit": "mm",
+                    "datum": "SIM_REFERENCE"
+                  },
+                  "offsetMm": 102.0,
+                  "minZ": 105.0,
+                  "maxZ": 120.0,
+                  "mappingSourceRef": "Test/VirtualPoint/Q03/P02/face2/A/1.0.0"
+                }
+              },
+              "B": {
+                "executionStageId": "stage:2",
+                "objectId": "{UnitId}:M01",
+                "sourceSlotId": "P02",
+                "protocolSlotIndex": 2,
+                "localFace": 2,
+                "cameraId": "B",
+                "pointRef": "Q03-P02-B-test-virtual-mapping/1.0.0",
+                "point": {
+                  "id": "Q03-P02-face2-B",
+                  "version": "test-virtual-mapping/q03-1.0.0",
+                  "x": 230,
+                  "y": 100,
+                  "unit": "mm",
+                  "frame": "SIM_MACHINE",
+                  "testSourceRef": "Test/VirtualPoint/Q03/P02/face2/B/1.0.0"
+                },
+                "coordinateConfigVersion": "test-virtual-mapping/q03-1.0.0",
+                "zBasis": {
+                  "mode": "InitialMeasurementOffset",
+                  "measurementRef": {
+                    "scopeId": "sim-whole-tray",
+                    "scopeVersion": "1.0.0",
+                    "sampleId": "sample-a",
+                    "objectSlotId": "P02",
+                    "unit": "mm",
+                    "datum": "SIM_REFERENCE"
+                  },
+                  "offsetMm": 102.0,
+                  "minZ": 105.0,
+                  "maxZ": 120.0,
+                  "mappingSourceRef": "Test/VirtualPoint/Q03/P02/face2/B/1.0.0"
+                }
+              }
+            }
+          },
+          "pointRefs": {
+            "A": "Q03-P02-A-test-virtual-mapping/1.0.0",
+            "B": "Q03-P02-B-test-virtual-mapping/1.0.0"
+          }
+        },
+        {
+          "slotId": "P03",
+          "expectedUnitCount": 1,
+          "virtualCenterMm": {
+            "x": 300,
+            "y": 100
+          },
+          "unitIdPattern": "{TrayRunId}:P:P03",
+          "members": [
+            {
+              "memberIdPattern": "{UnitId}:M01",
+              "material": "BASE",
+              "virtualXYmm": {
+                "x": 300,
+                "y": 100
+              },
+              "handling": "individualPart"
+            }
+          ]
+        },
+        {
+          "slotId": "P04",
+          "expectedUnitCount": 1,
+          "virtualCenterMm": {
+            "x": 400,
+            "y": 100
+          },
+          "unitIdPattern": "{TrayRunId}:P:P04",
+          "members": [
+            {
+              "memberIdPattern": "{UnitId}:M01",
+              "material": "BASE",
+              "virtualXYmm": {
+                "x": 400,
+                "y": 100
+              },
+              "handling": "individualPart"
+            }
+          ]
+        },
+        {
+          "slotId": "P05",
+          "expectedUnitCount": 1,
+          "virtualCenterMm": {
+            "x": 500,
+            "y": 100
+          },
+          "unitIdPattern": "{TrayRunId}:P:P05",
+          "members": [
+            {
+              "memberIdPattern": "{UnitId}:M01",
+              "material": "BASE",
+              "virtualXYmm": {
+                "x": 500,
+                "y": 100
+              },
+              "handling": "individualPart"
+            }
+          ]
+        },
+        {
+          "slotId": "P06",
+          "expectedUnitCount": 1,
+          "virtualCenterMm": {
+            "x": 100,
+            "y": 200
+          },
+          "unitIdPattern": "{TrayRunId}:P:P06",
+          "members": [
+            {
+              "memberIdPattern": "{UnitId}:M01",
+              "material": "BASE",
+              "virtualXYmm": {
+                "x": 100,
+                "y": 200
+              },
+              "handling": "individualPart"
+            }
+          ]
+        },
+        {
+          "slotId": "P07",
+          "expectedUnitCount": 1,
+          "virtualCenterMm": {
+            "x": 200,
+            "y": 200
+          },
+          "unitIdPattern": "{TrayRunId}:P:P07",
+          "members": [
+            {
+              "memberIdPattern": "{UnitId}:M01",
+              "material": "BASE",
+              "virtualXYmm": {
+                "x": 200,
+                "y": 200
+              },
+              "handling": "individualPart"
+            }
+          ]
+        },
+        {
+          "slotId": "P08",
+          "expectedUnitCount": 1,
+          "virtualCenterMm": {
+            "x": 300,
+            "y": 200
+          },
+          "unitIdPattern": "{TrayRunId}:P:P08",
+          "members": [
+            {
+              "memberIdPattern": "{UnitId}:M01",
+              "material": "BASE",
+              "virtualXYmm": {
+                "x": 300,
+                "y": 200
+              },
+              "handling": "individualPart"
+            }
+          ]
+        },
+        {
+          "slotId": "P09",
+          "expectedUnitCount": 1,
+          "virtualCenterMm": {
+            "x": 400,
+            "y": 200
+          },
+          "unitIdPattern": "{TrayRunId}:P:P09",
+          "members": [
+            {
+              "memberIdPattern": "{UnitId}:M01",
+              "material": "BASE",
+              "virtualXYmm": {
+                "x": 400,
+                "y": 200
+              },
+              "handling": "individualPart"
+            }
+          ]
+        },
+        {
+          "slotId": "P10",
+          "expectedUnitCount": 1,
+          "virtualCenterMm": {
+            "x": 500,
+            "y": 200
+          },
+          "unitIdPattern": "{TrayRunId}:P:P10",
+          "members": [
+            {
+              "memberIdPattern": "{UnitId}:M01",
+              "material": "BASE",
+              "virtualXYmm": {
+                "x": 500,
+                "y": 200
+              },
+              "handling": "individualPart"
+            }
+          ]
+        },
+        {
+          "slotId": "P11",
+          "expectedUnitCount": 1,
+          "virtualCenterMm": {
+            "x": 100,
+            "y": 300
+          },
+          "unitIdPattern": "{TrayRunId}:P:P11",
+          "members": [
+            {
+              "memberIdPattern": "{UnitId}:M01",
+              "material": "BASE",
+              "virtualXYmm": {
+                "x": 100,
+                "y": 300
+              },
+              "handling": "individualPart"
+            }
+          ]
+        },
+        {
+          "slotId": "P12",
+          "expectedUnitCount": 1,
+          "virtualCenterMm": {
+            "x": 200,
+            "y": 300
+          },
+          "unitIdPattern": "{TrayRunId}:P:P12",
+          "members": [
+            {
+              "memberIdPattern": "{UnitId}:M01",
+              "material": "BASE",
+              "virtualXYmm": {
+                "x": 200,
+                "y": 300
+              },
+              "handling": "individualPart"
+            }
+          ]
+        },
+        {
+          "slotId": "P13",
+          "expectedUnitCount": 1,
+          "virtualCenterMm": {
+            "x": 300,
+            "y": 300
+          },
+          "unitIdPattern": "{TrayRunId}:P:P13",
+          "members": [
+            {
+              "memberIdPattern": "{UnitId}:M01",
+              "material": "BASE",
+              "virtualXYmm": {
+                "x": 300,
+                "y": 300
+              },
+              "handling": "individualPart"
+            }
+          ]
+        },
+        {
+          "slotId": "P14",
+          "expectedUnitCount": 1,
+          "virtualCenterMm": {
+            "x": 400,
+            "y": 300
+          },
+          "unitIdPattern": "{TrayRunId}:P:P14",
+          "members": [
+            {
+              "memberIdPattern": "{UnitId}:M01",
+              "material": "BASE",
+              "virtualXYmm": {
+                "x": 400,
+                "y": 300
+              },
+              "handling": "individualPart"
+            }
+          ]
+        },
+        {
+          "slotId": "P15",
+          "expectedUnitCount": 1,
+          "virtualCenterMm": {
+            "x": 500,
+            "y": 300
+          },
+          "unitIdPattern": "{TrayRunId}:P:P15",
+          "members": [
+            {
+              "memberIdPattern": "{UnitId}:M01",
+              "material": "BASE",
+              "virtualXYmm": {
+                "x": 500,
+                "y": 300
+              },
+              "handling": "individualPart"
+            }
+          ]
+        }
+      ],
+      "eCode": {
+        "enabled": false,
+        "reader": null,
+        "representativeMaterial": null,
+        "bindTo": null,
+        "requiredForOk": false,
+        "readAt": null,
+        "source": null
+      },
+      "execution": {
+        "route": "ordinaryBatch",
+        "stages": [
+          {
+            "stage": 1,
+            "action": "none",
+            "targets": [
+              {
+                "material": "BASE",
+                "localFace": 1,
+                "cameraPair": "AB",
+                "captureProfile": "SIM_CAPTURE_AB",
+                "algorithmProfile": "SIM_ALGORITHM"
+              }
+            ],
+            "order": "faceThenCameraThenAllOccupiedSlots",
+            "coordinateRule": "initial3D"
+          },
+          {
+            "stage": 2,
+            "action": "flipAffectedMembersOneByOne",
+            "targets": [
+              {
+                "material": "BASE",
+                "localFace": 2,
+                "cameraPair": "AB",
+                "captureProfile": "SIM_CAPTURE_AB",
+                "algorithmProfile": "SIM_ALGORITHM"
+              }
+            ],
+            "order": "faceThenCameraThenAllOccupiedSlots",
+            "coordinateRule": "initial3D;perFaceTargets;retainIdentity"
+          }
+        ],
+        "motionProfile": "SIM_MOTION",
+        "plcCompletion": "matchingOperationIdAndActualPositionBeforeCommandClear",
+        "cameraTrigger": "upperComputerAfterActualPosition"
+      },
+      "quality": {
+        "ruleProfile": "SIM_QUALITY",
+        "memberResults": true,
+        "unitAggregation": "reliableNG=>NG;else anyMissingRequiredEvidence=>Pending;else OK",
+        "resultId": "PartId"
+      },
+      "disposition": {
+        "ok": "originalSlot",
+        "ng": "NGReservedCell",
+        "pending": "PendingReservedCell",
+        "physicalUnit": "singlePart",
+        "onUnknownPickOrTargetFull": "pauseAndReconcile",
+        "completeWhen": "matchingPLCPhysicalFeedback"
+      },
+      "productionGaps": [
+        "realFRegistration",
+        "realSlotGeometry",
+        "realMachineCoordinatesAndClearance",
+        "cameraLightROIAndModelValidation",
+        "PLCCompleteMotionContract"
+      ],
+      "plcRecipeId": 103,
+      "testEligibleSlots": [
+        "P01",
+        "P02"
+      ]
+    }
+  ]
+}

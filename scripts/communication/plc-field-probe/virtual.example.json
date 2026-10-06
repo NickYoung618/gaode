@@ -1,0 +1,121 @@
+{
+  "schemaVersion": 1,
+  "purpose": "Virtual",
+  "sourceReference": "仅本机VirtualPlc；Gaode.Plc.Protocol/Signals.cs 011/014测试映射；不是现场点表",
+  "host": "127.0.0.1",
+  "port": 1502,
+  "unitId": 1,
+  "addressBase": 1,
+  "intervalMs": 300,
+  "timeoutMs": 1000,
+  "heartbeat": {
+    "mode": "EchoOnChange",
+    "confirmed": true,
+    "requestSignal": "PLC_Heartbeat_Req",
+    "responseSignal": "PC_Heartbeat_Resp"
+  },
+  "signals": [
+    {
+      "enabled": true,
+      "name": "PLC_Heartbeat_Req",
+      "label": "PLC心跳",
+      "direction": "PLC->PC",
+      "area": "Coil",
+      "type": "Bool",
+      "address": 1
+    },
+    {
+      "enabled": true,
+      "name": "PC_Heartbeat_Resp",
+      "label": "PC心跳应答",
+      "direction": "PC->PLC",
+      "area": "Coil",
+      "type": "Bool",
+      "address": 2
+    },
+    {
+      "enabled": true,
+      "name": "PLC_System_Fault",
+      "label": "PLC故障",
+      "direction": "PLC->PC",
+      "area": "Coil",
+      "type": "Bool",
+      "address": 4
+    },
+    {
+      "enabled": true,
+      "name": "PLC_Mode_Auto",
+      "label": "自动模式",
+      "direction": "PLC->PC",
+      "area": "Coil",
+      "type": "Bool",
+      "address": 5
+    },
+    {
+      "enabled": true,
+      "name": "PLC_Ready_State",
+      "label": "PLC就绪",
+      "direction": "PLC->PC",
+      "area": "Coil",
+      "type": "Bool",
+      "address": 8
+    },
+    {
+      "enabled": true,
+      "name": "Machine_Current_Pos_X",
+      "label": "X实际位置",
+      "direction": "PLC->PC",
+      "area": "HoldingRegister",
+      "type": "Float32",
+      "byteOrder": "ABCD",
+      "address": 13
+    },
+    {
+      "enabled": true,
+      "name": "X_Pos_Confirmed",
+      "label": "X到位原码",
+      "direction": "PLC->PC",
+      "area": "HoldingRegister",
+      "type": "Int16",
+      "address": 128
+    },
+    {
+      "enabled": true,
+      "name": "Camera_Target_X",
+      "label": "X target TEST ONLY",
+      "direction": "PC->PLC",
+      "area": "HoldingRegister",
+      "type": "Float32",
+      "byteOrder": "ABCD",
+      "address": 3
+    },
+    {
+      "enabled": true,
+      "name": "X_Move_Start",
+      "label": "X start TEST ONLY",
+      "direction": "PC->PLC",
+      "area": "Coil",
+      "type": "Bool",
+      "address": 34
+    }
+  ],
+  "motion": {
+    "confirmed": true,
+    "sourceReference": "VirtualPlc TEST ONLY: arbitrary software test range, not physical limits",
+    "actions": [
+      {
+        "name": "X",
+        "targetSignal": "Camera_Target_X",
+        "startSignal": "X_Move_Start",
+        "feedbackSignal": "X_Pos_Confirmed",
+        "actualSignal": "Machine_Current_Pos_X",
+        "min": -100,
+        "max": 100,
+        "tolerance": 0.01,
+        "unit": "mm",
+        "frame": "VirtualPlc-Test",
+        "timeoutMs": 10000
+      }
+    ]
+  }
+}

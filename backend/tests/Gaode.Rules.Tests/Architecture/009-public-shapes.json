@@ -1,0 +1,5152 @@
+{
+  "schemaVersion": "009-public-shapes/1",
+  "status": "InitialMigrationRegistry",
+  "mappingSource": "specs/009-plc-protocol-isolation/impact-matrix.md section5.1-5.5",
+  "mappingGlossary": [
+    {
+      "line": 100,
+      "text": ""
+    },
+    {
+      "line": 101,
+      "text": "版本约定：S=`s01-status/2.0`；R=run新增`deviceSchemaVersion=\"device-semantics/1\"`，E=evidence同字段，所有新设备事实payload用同版本且camelCase；N=`s01/notification/2.0`（旧为`s01/notification/1.0`）。原run.resultSchemaVersion及业务run.state枚举传输保持，不能借此次统一所有业务枚举。诊断读取另用`plc-evidence/1`，不把raw挂回S/R/E/N。Unknown是明确语义；null表示该事实不存在/不可取得；空数组只表示确实无条目，不能替代未取得观察。"
+    },
+    {
+      "line": 102,
+      "text": ""
+    },
+    {
+      "line": 103,
+      "text": "生产者/消费者及调整责任缩写（每行继承）：**PS**=通信语义观察→Host status→runtime/业务脚本，通信与API负责人(AL03/04)；**PR**=StartupReadiness/RunSnapshot及业务持久化→Host run/查询→runtime/业务脚本，公共流程与API负责人(AL01/04)；**PE**=业务动作保存＋Infrastructure历史读者→Host evidence/CommittedResultProjection→runtime/采证脚本，业务保存与API负责人(AL03/06)；**PN**=Coordinator→通知服务→notification-reducer/runtime→GET对账，通知/前端负责人(AL04)。这些角色必须同时修改生产与消费方，不留下raw兼容字段。"
+    },
+    {
+      "line": 104,
+      "text": ""
+    },
+    {
+      "line": 105,
+      "text": "历史约定：**H0**=原业务值/类型/缺失保留；**H1**=新语义只用于新事实，旧已存字段由有限历史读者按当时实际记录提供业务摘要，`recordNature=LegacyRecordedClaim`，不提升为当前物理反馈；**H2**=原始字段留旧payload/受权存储审计，不回传业务API、不写进新raw表；无实际包标`rawAvailability=RawUnavailable`；**H3**=未存全对象/字段保留null及Unavailable，不能按新流程补齐。新事实标`recordNature=Captured`（实际采样事实）或`Derived`（Host汇总），真实ExecutionOrigin另列，不把记录性质当Provider。"
+    },
+    {
+      "line": 106,
+      "text": ""
+    },
+    {
+      "line": 107,
+      "text": "### 5.1 status逐字段"
+    },
+    {
+      "line": 108,
+      "text": ""
+    },
+    {
+      "line": 109,
+      "text": "| 旧字段：含义/当前类型 | 处理及目标字段/类型/缺失 | 版本；产消/责任 | 历史 |"
+    },
+    {
+      "line": 110,
+      "text": "| --- | --- | --- | --- |"
+    },
+    {
+      "line": 111,
+      "text": "| schemaVersion:string | 替换为S | S；PS | H0，历史包原版本不改 |"
+    },
+    {
+      "line": 112,
+      "text": "| plc:object? | 语义DeviceObservation?，无采样为null；有采样但陈旧时保留值并标reliability=Stale | S；PS | H1/H3 |"
+    },
+    {
+      "line": 113,
+      "text": "| plc.connected:bool | connection:string，Connected/Disconnected | S；PS | H1，失联非已停 |"
+    },
+    {
+      "line": 114,
+      "text": "| plc.automatic:bool | operatingMode:string，Automatic/NonAutomatic/Unconfirmed | S；PS | H1；缺依据Unconfirmed |"
+    },
+    {
+      "line": 142,
+      "text": ""
+    },
+    {
+      "line": 143,
+      "text": "`plcReady/flipStatus/flipCurrentFace/manualZoneOccupied`当前虽在PlcObservation源码中，但不在status投影；不得伪列旧公开字段。目标readiness/manualArea来源于语义解释；自动翻面实际面放相关动作证据，不为对应每个寄存器扩status。"
+    },
+    {
+      "line": 144,
+      "text": ""
+    },
+    {
+      "line": 145,
+      "text": "### 5.2 startupDiagnostic、run及历史"
+    },
+    {
+      "line": 146,
+      "text": ""
+    },
+    {
+      "line": 194,
+      "text": ""
+    },
+    {
+      "line": 195,
+      "text": "新持久设备事实用device-semantics/1；旧Writes.PayloadJson、StageEvents.PayloadJson、Operations.EvidenceJson及摘要不改。旧protocolStatus=2、sortingAckCleared=true等合成声明不迁为CapturedRaw。新旧payload解读边界在Infrastructure，Host业务投影不解析原始2/3或位。"
+    },
+    {
+      "line": 196,
+      "text": ""
+    },
+    {
+      "line": 197,
+      "text": "`facts.target`不能整体透传：FixedMoveStep:122保存的是坐标，而IntegratedDetectionPort:767–769保存完整DetectionStepTarget（StagePortContracts:44–55）。目标使用有限`BusinessMotionTarget`形状，以下逐字段规则均属E/PE责任，H0/H3保留原存事实及缺失，不改变配方载荷。"
+    },
+    {
+      "line": 198,
+      "text": ""
+    },
+    {
+      "line": 226,
+      "text": ""
+    },
+    {
+      "line": 227,
+      "text": "消费者实际边界：runtime.js:331–345展示启动原因，:345/381来源需由已有数据区域绑定真实值；notification-reducer.ts:1目前类型不符；CJS报警断言与Python取放码断言按V02.1拆分，旧raw断言由通信探针保留。上述绑定只在006既有页面区域/文字含义内调整数据，不改变客户原型结构、控件、静态文案或交互。外部未登记客户端发布前盘点，不能保留raw影子作兼容。"
+    },
+    {
+      "line": 228,
+      "text": ""
+    },
+    {
+      "line": 229,
+      "text": "### 5.5 本轮配方应用期限的语义字段增量（待实现）"
+    },
+    {
+      "line": 230,
+      "text": ""
+    },
+    {
+      "line": 231,
+      "text": "沿R/E的`device-semantics/1`及现有业务事实读取，不新增页面或诊断控制入口。下列新元数据仅来自当前真实冻结/观察/保存；历史缺项为null并标NotRecorded，不根据旧RecipePlanBound存在就反推预算、设备应用或及时回执。业务字段形状登记同时进入A02/A08—A10；不是任意JSON兼容通道。"
+    },
+    {
+      "line": 232,
+      "text": ""
+    },
+    {
+      "line": 233,
+      "text": "| 旧字段/当前含义 | 目标字段、类型及缺失 | 版本、生产者/消费者与调整责任 | 历史 |"
+    }
+  ],
+  "fieldMappings": [
+    {
+      "source": "specs/009-plc-protocol-isolation/impact-matrix.md",
+      "line": 111,
+      "section": "### 5.1 status逐字段",
+      "columns": [
+        "schemaVersion:string",
+        "替换为S",
+        "S；PS",
+        "H0，历史包原版本不改"
+      ]
+    },
+    {
+      "source": "specs/009-plc-protocol-isolation/impact-matrix.md",
+      "line": 112,
+      "section": "### 5.1 status逐字段",
+      "columns": [
+        "plc:object?",
+        "语义DeviceObservation?，无采样为null；有采样但陈旧时保留值并标reliability=Stale",
+        "S；PS",
+        "H1/H3"
+      ]
+    },
+    {
+      "source": "specs/009-plc-protocol-isolation/impact-matrix.md",
+      "line": 113,
+      "section": "### 5.1 status逐字段",
+      "columns": [
+        "plc.connected:bool",
+        "connection:string，Connected/Disconnected",
+        "S；PS",
+        "H1，失联非已停"
+      ]
+    },
+    {
+      "source": "specs/009-plc-protocol-isolation/impact-matrix.md",
+      "line": 114,
+      "section": "### 5.1 status逐字段",
+      "columns": [
+        "plc.automatic:bool",
+        "operatingMode:string，Automatic/NonAutomatic/Unconfirmed",
+        "S；PS",
+        "H1；缺依据Unconfirmed"
+      ]
+    },
+    {
+      "source": "specs/009-plc-protocol-isolation/impact-matrix.md",
+      "line": 115,
+      "section": "### 5.1 status逐字段",
+      "columns": [
+        "plc.safetyClear:bool",
+        "safetyAssessment:string，Clear/ExplicitUnsafe/Unconfirmed",
+        "S；PS",
+        "H1，未观察不当Unsafe"
+      ]
+    },
+    {
+      "source": "specs/009-plc-protocol-isolation/impact-matrix.md",
+      "line": 116,
+      "section": "### 5.1 status逐字段",
+      "columns": [
+        "plc.clamped:bool",
+        "clamp:string，Secured/Released/Unconfirmed",
+        "S；PS",
+        "H1"
+      ]
+    },
+    {
+      "source": "specs/009-plc-protocol-isolation/impact-matrix.md",
+      "line": 117,
+      "section": "### 5.1 status逐字段",
+      "columns": [
+        "plc.physicalStart:bool",
+        "删除，无替代按钮字段；启动Accepted另由动作提交事实表达，正式设备现固定false不能称真实按钮",
+        "S；PS",
+        "H2"
+      ]
+    },
+    {
+      "source": "specs/009-plc-protocol-isolation/impact-matrix.md",
+      "line": 118,
+      "section": "### 5.1 status逐字段",
+      "columns": [
+        "plc.palletLockStatus:int",
+        "原值仅通信诊断；业务clamp按真实观察解释，不保留旧字段",
+        "S；PS",
+        "H2"
+      ]
+    },
+    {
+      "source": "specs/009-plc-protocol-isolation/impact-matrix.md",
+      "line": 119,
+      "section": "### 5.1 status逐字段",
+      "columns": [
+        "plc.waitingForManualOccupancy:bool",
+        "manualHandling:string，Waiting/Confirmed/Unconfirmed；按真实人工流程与安全条件形成，不以旧false直接推Confirmed；manualArea独立业务观察",
+        "S；PS",
+        "H1/H3"
+      ]
+    },
+    {
+      "source": "specs/009-plc-protocol-isolation/impact-matrix.md",
+      "line": 120,
+      "section": "### 5.1 status逐字段",
+      "columns": [
+        "plc.x / y / z:double（逐坐标）",
+        "position.actualX/actualY/actualZ:double?，有真实采样才赋；附轴用途/单位依据/观察身份，无值null",
+        "S；PS",
+        "H0/H3，不以零或目标补值"
+      ]
+    },
+    {
+      "source": "specs/009-plc-protocol-isolation/impact-matrix.md",
+      "line": 121,
+      "section": "### 5.1 status逐字段",
+      "columns": [
+        "plc.motionStatus:string",
+        "motionAvailability:string，Available/InUse/HeldUnknown；基于当前动作和租约，非原始阶段逐项改名",
+        "S；PS",
+        "H1"
+      ]
+    },
+    {
+      "source": "specs/009-plc-protocol-isolation/impact-matrix.md",
+      "line": 122,
+      "section": "### 5.1 status逐字段",
+      "columns": [
+        "plc.inspectionStatus:int",
+        "原值仅诊断；acquisitionReadiness:string为Available/Unavailable/Unconfirmed",
+        "S；PS",
+        "H2"
+      ]
+    },
+    {
+      "source": "specs/009-plc-protocol-isolation/impact-matrix.md",
+      "line": 123,
+      "section": "### 5.1 status逐字段",
+      "columns": [
+        "plc.zResetStatus:int",
+        "原值仅诊断；周期释放是业务动作结果，不新增逐阶段reset字段",
+        "S；PS",
+        "H2"
+      ]
+    },
+    {
+      "source": "specs/009-plc-protocol-isolation/impact-matrix.md",
+      "line": 124,
+      "section": "### 5.1 status逐字段",
+      "columns": [
+        "plc.alarmBits:ushort",
+        "仅诊断，业务alarms及safetyAssessment",
+        "S；PS",
+        "H2"
+      ]
+    },
+    {
+      "source": "specs/009-plc-protocol-isolation/impact-matrix.md",
+      "line": 125,
+      "section": "### 5.1 status逐字段",
+      "columns": [
+        "plc.alarmSeverity:ushort",
+        "仅诊断，alarms[].severity:string Warning/Fault/Critical/Unknown",
+        "S；PS",
+        "H2，未知不由ordinal推安全"
+      ]
+    },
+    {
+      "source": "specs/009-plc-protocol-isolation/impact-matrix.md",
+      "line": 126,
+      "section": "### 5.1 status逐字段",
+      "columns": [
+        "plc.plcSystemFault:bool",
+        "移除线圈镜像；reasonCodes含稳定DeviceFault（有确认依据时）及对应安全评估",
+        "S；PS",
+        "H1/H2"
+      ]
+    },
+    {
+      "source": "specs/009-plc-protocol-isolation/impact-matrix.md",
+      "line": 127,
+      "section": "### 5.1 status逐字段",
+      "columns": [
+        "plc.connectionEpoch:long",
+        "原名long保留",
+        "S；PS",
+        "H0"
+      ]
+    },
+    {
+      "source": "specs/009-plc-protocol-isolation/impact-matrix.md",
+      "line": 128,
+      "section": "### 5.1 status逐字段",
+      "columns": [
+        "plc.observedUtc:timestamp",
+        "sampleEndedUtc:timestamp；新增sampleStartedUtc/observationId，分别来自真实批次，不承诺原子采样",
+        "S；PS",
+        "H0/H3；旧只有结束时间不补起始"
+      ]
+    },
+    {
+      "source": "specs/009-plc-protocol-isolation/impact-matrix.md",
+      "line": 129,
+      "section": "### 5.1 status逐字段",
+      "columns": [
+        "plc.diagnosticCode:string?",
+        "reasonCodes:string[]仅稳定业务原因（通信不可用/安全受限/证据未确认等）；内部错误文本去诊断",
+        "S；PS",
+        "H1/H2"
+      ]
+    },
+    {
+      "source": "specs/009-plc-protocol-isolation/impact-matrix.md",
+      "line": 130,
+      "section": "### 5.1 status逐字段",
+      "columns": [
+        "plc.failureOrigin:string?",
+        "内部通道/轮询故障来源仅诊断，不保留同名业务字段",
+        "S；PS",
+        "H2"
+      ]
+    },
+    {
+      "source": "specs/009-plc-protocol-isolation/impact-matrix.md",
+      "line": 131,
+      "section": "### 5.1 status逐字段",
+      "columns": [
+        "plc.alarms[].bit:int",
+        "删除，位号只在诊断",
+        "S；PS",
+        "H2"
+      ]
+    },
+    {
+      "source": "specs/009-plc-protocol-isolation/impact-matrix.md",
+      "line": 132,
+      "section": "### 5.1 status逐字段",
+      "columns": [
+        "plc.alarms[].name:string",
+        "alarms[].name:string稳定已确认报警名称；severity/reliability为语义字段，组合报警逐项列出；无可靠报警样本时alarms=null",
+        "S；PS",
+        "H1/H3，不从新位表解旧值"
+      ]
+    },
+    {
+      "source": "specs/009-plc-protocol-isolation/impact-matrix.md",
+      "line": 133,
+      "section": "### 5.1 status逐字段",
+      "columns": [
+        "plc.source:string",
+        "executionOrigin:{provider,componentVersion?,quality}；provider仅Real/Virtual/Simulated/Unavailable，未记录版本null",
+        "S；PS",
+        "H1，保留旧来源声明性质，不自动改Real"
+      ]
+    },
+    {
+      "source": "specs/009-plc-protocol-isolation/impact-matrix.md",
+      "line": 134,
+      "section": "### 5.1 status逐字段",
+      "columns": [
+        "原无字段",
+        "plc.schemaVersion、reliability、readiness、manualArea、observationId、diagnosticEvidenceReference?；全部依据模型§1/2，引用仅实际提交确认产生",
+        "S；PS",
+        "H3；旧无观察ID/引用为null"
+      ]
+    },
+    {
+      "source": "specs/009-plc-protocol-isolation/impact-matrix.md",
+      "line": 135,
+      "section": "### 5.1 status逐字段",
+      "columns": [
+        "revision:long / eTag:string",
+        "原字段类型及缓存含义保留，摘要必须纳入新语义投影和版本",
+        "S；PS",
+        "H0"
+      ]
+    },
+    {
+      "source": "specs/009-plc-protocol-isolation/impact-matrix.md",
+      "line": 136,
+      "section": "### 5.1 status逐字段",
+      "columns": [
+        "host:string",
+        "原样保留",
+        "S；PS",
+        "H0"
+      ]
+    },
+    {
+      "source": "specs/009-plc-protocol-isolation/impact-matrix.md",
+      "line": 137,
+      "section": "### 5.1 status逐字段",
+      "columns": [
+        "camera:{state,source}? / storage:{state,maintenance}? / maintenance:{state,maintenance}?",
+        "原字段及各string类型保留；不可把未知维护变成已就绪",
+        "S；PS",
+        "H0"
+      ]
+    },
+    {
+      "source": "specs/009-plc-protocol-isolation/impact-matrix.md",
+      "line": 138,
+      "section": "### 5.1 status逐字段",
+      "columns": [
+        "algorithm:{state:string,source:string?,reason:string?}",
+        "原样保留，与设备来源分开",
+        "S；PS",
+        "H0"
+      ]
+    },
+    {
+      "source": "specs/009-plc-protocol-isolation/impact-matrix.md",
+      "line": 139,
+      "section": "### 5.1 status逐字段",
+      "columns": [
+        "currentRun:object?",
+        "按§5.2 R映射，null不变；禁止旧RunSnapshot整体漏raw",
+        "S/R；PS/PR",
+        "H0/H3"
+      ]
+    },
+    {
+      "source": "specs/009-plc-protocol-isolation/impact-matrix.md",
+      "line": 140,
+      "section": "### 5.1 status逐字段",
+      "columns": [
+        "capabilities:string[] / observedAt:timestamp",
+        "原样保留；后者是响应时间，不取代设备采样时间",
+        "S；PS",
+        "H0"
+      ]
+    },
+    {
+      "source": "specs/009-plc-protocol-isolation/impact-matrix.md",
+      "line": 141,
+      "section": "### 5.1 status逐字段",
+      "columns": [
+        "mode / stage / recipe / quality:string?；activeRuns:int",
+        "各字段原名/类型/业务含义保留",
+        "S；PS",
+        "H0"
+      ]
+    },
+    {
+      "source": "specs/009-plc-protocol-isolation/impact-matrix.md",
+      "line": 149,
+      "section": "### 5.2 startupDiagnostic、run及历史",
+      "columns": [
+        "startupDiagnostic:object?",
+        "保留对象可空；新增schemaVersion/recordNature/rawAvailability/diagnosticEvidenceReference?",
+        "R；PR",
+        "H3：当前历史重建默认null，旧Audit未保存完整StopStage，不能强行恢复"
+      ]
+    },
+    {
+      "source": "specs/009-plc-protocol-isolation/impact-matrix.md",
+      "line": 150,
+      "section": "### 5.2 startupDiagnostic、run及历史",
+      "columns": [
+        "reasonCodes:string[]",
+        "原名/稳定业务原因保留，不嵌原始值供调用方解析",
+        "R；PR",
+        "H0/H3"
+      ]
+    },
+    {
+      "source": "specs/009-plc-protocol-isolation/impact-matrix.md",
+      "line": 151,
+      "section": "### 5.2 startupDiagnostic、run及历史",
+      "columns": [
+        "safetyAssessment:string",
+        "保留原StartupReadiness词汇Other/ExplicitUnsafe/Unconfirmed；设备Clear且因其他原因阻断→Other，ExplicitUnsafe→ExplicitUnsafe，无可靠观察→Unconfirmed（StartupReadiness:27）；不得发明Safe词汇",
+        "R；PR",
+        "H0/H3"
+      ]
+    },
+    {
+      "source": "specs/009-plc-protocol-isolation/impact-matrix.md",
+      "line": 152,
+      "section": "### 5.2 startupDiagnostic、run及历史",
+      "columns": [
+        "stopStage:string / disposition:string",
+        "分别原名保留；缺历史完整诊断则对象null，不补默认阶段/BlockedNoDeviceAction",
+        "R；PR",
+        "H0/H3"
+      ]
+    },
+    {
+      "source": "specs/009-plc-protocol-isolation/impact-matrix.md",
+      "line": 153,
+      "section": "### 5.2 startupDiagnostic、run及历史",
+      "columns": [
+        "connectionEpoch:long? / observedAtUtc:timestamp?",
+        "各原名及可空性保留，与同次观察对应",
+        "R；PR",
+        "H0/H3"
+      ]
+    },
+    {
+      "source": "specs/009-plc-protocol-isolation/impact-matrix.md",
+      "line": 154,
+      "section": "### 5.2 startupDiagnostic、run及历史",
+      "columns": [
+        "source:string",
+        "替为executionOrigin对象；旧来源另在recordNature说明，未知provider=Unavailable",
+        "R；PR",
+        "H1"
+      ]
+    },
+    {
+      "source": "specs/009-plc-protocol-isolation/impact-matrix.md",
+      "line": 155,
+      "section": "### 5.2 startupDiagnostic、run及历史",
+      "columns": [
+        "reliableFeedback:object?",
+        "删除，替semanticObservation:object?；无可靠快照null，不能空对象假定安全",
+        "R；PR",
+        "H1/H3"
+      ]
+    },
+    {
+      "source": "specs/009-plc-protocol-isolation/impact-matrix.md",
+      "line": 156,
+      "section": "### 5.2 startupDiagnostic、run及历史",
+      "columns": [
+        "reliableFeedback.connected:bool",
+        "semanticObservation.connection:string",
+        "R；PR",
+        "H1"
+      ]
+    },
+    {
+      "source": "specs/009-plc-protocol-isolation/impact-matrix.md",
+      "line": 157,
+      "section": "### 5.2 startupDiagnostic、run及历史",
+      "columns": [
+        "reliableFeedback.automatic:bool",
+        "semanticObservation.operatingMode:string",
+        "R；PR",
+        "H1"
+      ]
+    },
+    {
+      "source": "specs/009-plc-protocol-isolation/impact-matrix.md",
+      "line": 158,
+      "section": "### 5.2 startupDiagnostic、run及历史",
+      "columns": [
+        "reliableFeedback.safetyClear:bool",
+        "semanticObservation.safetyAssessment:string（模型Clear/ExplicitUnsafe/Unconfirmed）",
+        "R；PR",
+        "H1"
+      ]
+    },
+    {
+      "source": "specs/009-plc-protocol-isolation/impact-matrix.md",
+      "line": 159,
+      "section": "### 5.2 startupDiagnostic、run及历史",
+      "columns": [
+        "reliableFeedback.alarmBits:ushort",
+        "仅诊断，业务只含语义alarms/reasonCodes",
+        "R；PR",
+        "H2"
+      ]
+    },
+    {
+      "source": "specs/009-plc-protocol-isolation/impact-matrix.md",
+      "line": 160,
+      "section": "### 5.2 startupDiagnostic、run及历史",
+      "columns": [
+        "reliableFeedback.alarmSeverity:ushort",
+        "仅诊断，语义报警严重性同§5.1",
+        "R；PR",
+        "H2"
+      ]
+    },
+    {
+      "source": "specs/009-plc-protocol-isolation/impact-matrix.md",
+      "line": 161,
+      "section": "### 5.2 startupDiagnostic、run及历史",
+      "columns": [
+        "reliableFeedback.plcSystemFault:bool",
+        "仅诊断，语义DeviceFault原因，禁止raw影子",
+        "R；PR",
+        "H1/H2"
+      ]
+    },
+    {
+      "source": "specs/009-plc-protocol-isolation/impact-matrix.md",
+      "line": 162,
+      "section": "### 5.2 startupDiagnostic、run及历史",
+      "columns": [
+        "run.state:RunState传输值 / executionState:string",
+        "两者保留，仍以executionState作流程展示；不改整个业务状态机",
+        "R；PR",
+        "H0"
+      ]
+    },
+    {
+      "source": "specs/009-plc-protocol-isolation/impact-matrix.md",
+      "line": 163,
+      "section": "### 5.2 startupDiagnostic、run及历史",
+      "columns": [
+        "results[].dispositionState:string?",
+        "原名/业务处置含义保留，新事实由已提交语义取放及有效关联形成；不足null",
+        "R；PE",
+        "H1；旧raw解析仅Infrastructure，结果标记录性质"
+      ]
+    },
+    {
+      "source": "specs/009-plc-protocol-isolation/impact-matrix.md",
+      "line": 164,
+      "section": "### 5.2 startupDiagnostic、run及历史",
+      "columns": [
+        "movements[].entityId:string / physicalSlotIndex:int / sourcePointRef,targetPointRef,state:string / operationId,committedEventId:UUID",
+        "各字段原名/类型保留；状态为已提交处置，不据quality/Final猜已搬运",
+        "R；PE",
+        "H0/H1"
+      ]
+    },
+    {
+      "source": "specs/009-plc-protocol-isolation/impact-matrix.md",
+      "line": 165,
+      "section": "### 5.2 startupDiagnostic、run及历史",
+      "columns": [
+        "results[].source:string?、quality:string?；组件来源矩阵",
+        "业务原字段保留实际来源/质量；新增记录性质不替换组件来源，不能把整盘混合来源压成单一Real或Virtual",
+        "R/E；PE",
+        "H1，旧声明不“校正”"
+      ]
+    },
+    {
+      "source": "specs/009-plc-protocol-isolation/impact-matrix.md",
+      "line": 166,
+      "section": "### 5.2 startupDiagnostic、run及历史",
+      "columns": [
+        "其余run业务字段（身份/修订、action/capture/algorithm/save/handoff、配置版本、recipe/quality/sorting/wholeTask、计划和提交ID、allowedActions、人工/恢复投影、results检查明细、resultContext、faultRestart）",
+        "原RunSnapshot及各嵌套业务DTO的字段名、类型、null/集合和业务含义原样保留；只递归替换本表明确设备字段。历史allowedActions=[]；结果schema station01-result-display/1.0保持",
+        "R；PR/PE",
+        "H0；无授权从历史推进当前动作"
+      ]
+    },
+    {
+      "source": "specs/009-plc-protocol-isolation/impact-matrix.md",
+      "line": 174,
+      "section": "### 5.3 run/evidence与保存表示",
+      "columns": [
+        "stages[].positionEvidence:JsonElement?（原PositionEvidence数组）",
+        "同名改为显式SemanticPositionEvidence[]?；无证据null。新增schemaVersion/recordNature及ObservationId?、DiagnosticEvidenceReference?，不再透传任意JSON",
+        "E；PE",
+        "H1/H3；原字节不改"
+      ]
+    },
+    {
+      "source": "specs/009-plc-protocol-isolation/impact-matrix.md",
+      "line": 175,
+      "section": "### 5.3 run/evidence与保存表示",
+      "columns": [
+        "PositionEvidence.Phase:string",
+        "显式映射kind:string：PickTargetObserved→SourcePositionReached；PlaceTargetObserved→TargetPositionReached；PickCompleted→PickObserved；PlaceCompleted→PlaceObserved；UnloadPositionValidated→PositionReached。PickWriteAcknowledged/UnloadWriteAcknowledged/PlaceWriteAcknowledged/SortingAckCleared四种仅诊断；解锁在独立动作结果，不新增位置阶段",
+        "E；PE",
+        "H1/H2；不能仅凭旧phase声明新物理成功"
+      ]
+    },
+    {
+      "source": "specs/009-plc-protocol-isolation/impact-matrix.md",
+      "line": 176,
+      "section": "### 5.3 run/evidence与保存表示",
+      "columns": [
+        "AxisRole:string",
+        "axisRole:string，已确认业务轴用途，未知Unconfirmed",
+        "E；PE",
+        "H0/H3"
+      ]
+    },
+    {
+      "source": "specs/009-plc-protocol-isolation/impact-matrix.md",
+      "line": 177,
+      "section": "### 5.3 run/evidence与保存表示",
+      "columns": [
+        "TargetX / TargetY / TargetZ:double（逐坐标）",
+        "target.x/y/z:double，另附目标pointRef/version；目标始终为请求依据",
+        "E；PE",
+        "H0，旧无目标版本null"
+      ]
+    },
+    {
+      "source": "specs/009-plc-protocol-isolation/impact-matrix.md",
+      "line": 178,
+      "section": "### 5.3 run/evidence与保存表示",
+      "columns": [
+        "ActualX / ActualY / ActualZ:double?（逐坐标）",
+        "actual.x/y/z:double?；完全无采样actual=null，不复制target",
+        "E；PE",
+        "H0/H3"
+      ]
+    },
+    {
+      "source": "specs/009-plc-protocol-isolation/impact-matrix.md",
+      "line": 179,
+      "section": "### 5.3 run/evidence与保存表示",
+      "columns": [
+        "Status:ushort?",
+        "删除业务字段；实际raw仅诊断，旧合成值只留原payload",
+        "E；PE",
+        "H2"
+      ]
+    },
+    {
+      "source": "specs/009-plc-protocol-isolation/impact-matrix.md",
+      "line": 180,
+      "section": "### 5.3 run/evidence与保存表示",
+      "columns": [
+        "Tolerance:double",
+        "tolerance:double原业务容差，不因变体变更",
+        "E；PE",
+        "H0"
+      ]
+    },
+    {
+      "source": "specs/009-plc-protocol-isolation/impact-matrix.md",
+      "line": 181,
+      "section": "### 5.3 run/evidence与保存表示",
+      "columns": [
+        "ObservedAtUtc:timestamp",
+        "observedAtUtc:timestamp真实观察时刻",
+        "E；PE",
+        "H0/H3"
+      ]
+    },
+    {
+      "source": "specs/009-plc-protocol-isolation/impact-matrix.md",
+      "line": 182,
+      "section": "### 5.3 run/evidence与保存表示",
+      "columns": [
+        "Matched:bool?",
+        "matched:bool?，未知null，须与当前实际/目标关联",
+        "E；PE",
+        "H0/H3"
+      ]
+    },
+    {
+      "source": "specs/009-plc-protocol-isolation/impact-matrix.md",
+      "line": 183,
+      "section": "### 5.3 run/evidence与保存表示",
+      "columns": [
+        "stages[].eventId / operationId:UUID；attempt:int；connectionEpoch/sequence:long",
+        "各原名/类型保留；新增actionId仅真实已建立时可空UUID",
+        "E；PE",
+        "H0/H3，不编造PLC ActionId"
+      ]
+    },
+    {
+      "source": "specs/009-plc-protocol-isolation/impact-matrix.md",
+      "line": 184,
+      "section": "### 5.3 run/evidence与保存表示",
+      "columns": [
+        "stages[].stage/eventType/planRevision:string；errorCode:string?",
+        "各原名保留业务含义；UnknownHeld失败不能被Completed覆盖",
+        "E；PE",
+        "H0"
+      ]
+    },
+    {
+      "source": "specs/009-plc-protocol-isolation/impact-matrix.md",
+      "line": 185,
+      "section": "### 5.3 run/evidence与保存表示",
+      "columns": [
+        "stages[].source/quality:string",
+        "原名保留，来源按真实事实；新增recordNature区分历史声明",
+        "E；PE",
+        "H1"
+      ]
+    },
+    {
+      "source": "specs/009-plc-protocol-isolation/impact-matrix.md",
+      "line": 186,
+      "section": "### 5.3 run/evidence与保存表示",
+      "columns": [
+        "stages[].persistedAtUtc:timestamp；stageStartedAtUtc/stageDeadlineAtUtc:timestamp?",
+        "各原名/类型保留，采样/提交/截止分开",
+        "E；PE",
+        "H0/H3"
+      ]
+    },
+    {
+      "source": "specs/009-plc-protocol-isolation/impact-matrix.md",
+      "line": 187,
+      "section": "### 5.3 run/evidence与保存表示",
+      "columns": [
+        "motionEvidence:array?；[].writeId:UUID、committedAtUtc:timestamp",
+        "原字段/提交身份保留；当前成功查询无记录为[]，目标保留[]；历史集合确实不可取得才null/Unavailable",
+        "E；PE",
+        "H0"
+      ]
+    },
+    {
+      "source": "specs/009-plc-protocol-isolation/impact-matrix.md",
+      "line": 188,
+      "section": "### 5.3 run/evidence与保存表示",
+      "columns": [
+        "motionEvidence[].facts:JsonElement",
+        "改有限语义事实对象；仅下两行、target细表及§5.5已登记业务键和schema/recordNature/引用，拒raw逃生口",
+        "E；PE",
+        "H1/H3"
+      ]
+    },
+    {
+      "source": "specs/009-plc-protocol-isolation/impact-matrix.md",
+      "line": 189,
+      "section": "### 5.3 run/evidence与保存表示",
+      "columns": [
+        "facts.kind/pointId/pointVersion/role/zAxis:string?；operationId/actionId:UUID?；attempt:int?",
+        "各业务字段按原含义保留，缺失null；kind中内部协议名称不继续公开，换已保存业务事实用途",
+        "E；PE",
+        "H0/H1/H3"
+      ]
+    },
+    {
+      "source": "specs/009-plc-protocol-isolation/impact-matrix.md",
+      "line": 190,
+      "section": "### 5.3 run/evidence与保存表示",
+      "columns": [
+        "facts.actual:坐标对象?（target嵌套详见下表）；tolerance:number?；matched/accepted/completed:bool?；observedAtUtc:timestamp?；deviceEpoch/epoch:long?",
+        "保留真实已存语义及可空性；accepted不等于completed，target不填actual。两epoch旧形状按实际字段读取，目标新事实统一connectionEpoch并保留关联依据",
+        "E；PE",
+        "H0/H3；只能从旧真实X/Y/Z投actual"
+      ]
+    },
+    {
+      "source": "specs/009-plc-protocol-isolation/impact-matrix.md",
+      "line": 191,
+      "section": "### 5.3 run/evidence与保存表示",
+      "columns": [
+        "runId:UUID / trayId:UUID? / persistedRevision:long / stages:array",
+        "原样保留；新增顶层deviceSchemaVersion",
+        "E；PE",
+        "H0"
+      ]
+    },
+    {
+      "source": "specs/009-plc-protocol-isolation/impact-matrix.md",
+      "line": 192,
+      "section": "### 5.3 run/evidence与保存表示",
+      "columns": [
+        "wholeTrayCompletionId:UUID? / readyForUnlockSourceMatrix:object? / finalSourceMatrix:object? / finalResult:string",
+        "原样保留含各matrix字段/组件，不由取放或解锁单个状态推Final",
+        "E；PE",
+        "H0/H1"
+      ]
+    },
+    {
+      "source": "specs/009-plc-protocol-isolation/impact-matrix.md",
+      "line": 193,
+      "section": "### 5.3 run/evidence与保存表示",
+      "columns": [
+        "新字段diagnosticEvidenceReferences:opaque[]",
+        "仅实际持久可核查引用；数组无项不等于物理未执行，另用rawAvailability标缺失",
+        "R/E；PE",
+        "H3，旧无raw不给引用"
+      ]
+    },
+    {
+      "source": "specs/009-plc-protocol-isolation/impact-matrix.md",
+      "line": 201,
+      "section": "### 5.3 run/evidence与保存表示",
+      "columns": [
+        "简单形状X/Y/Z:double",
+        "target.point.x/y/z:double?；只能由已有目标填，其他身份null，不反推对象/面"
+      ]
+    },
+    {
+      "source": "specs/009-plc-protocol-isolation/impact-matrix.md",
+      "line": 202,
+      "section": "### 5.3 run/evidence与保存表示",
+      "columns": [
+        "StepSequence:int",
+        "target.stepSequence:int?，业务执行序号，缺失null"
+      ]
+    },
+    {
+      "source": "specs/009-plc-protocol-isolation/impact-matrix.md",
+      "line": 203,
+      "section": "### 5.3 run/evidence与保存表示",
+      "columns": [
+        "ObjectId:string",
+        "target.objectId:string?，缺失null"
+      ]
+    },
+    {
+      "source": "specs/009-plc-protocol-isolation/impact-matrix.md",
+      "line": 204,
+      "section": "### 5.3 run/evidence与保存表示",
+      "columns": [
+        "SlotId:string",
+        "target.slotId:string?，缺失null"
+      ]
+    },
+    {
+      "source": "specs/009-plc-protocol-isolation/impact-matrix.md",
+      "line": 205,
+      "section": "### 5.3 run/evidence与保存表示",
+      "columns": [
+        "ProtocolSlotIndex:int",
+        "target.physicalSlotIndex:int?，真实物理槽，非wire宽度；缺失null，不用StepSequence替代"
+      ]
+    },
+    {
+      "source": "specs/009-plc-protocol-isolation/impact-matrix.md",
+      "line": 206,
+      "section": "### 5.3 run/evidence与保存表示",
+      "columns": [
+        "LocalFace:int",
+        "target.localFace:int?，缺失null"
+      ]
+    },
+    {
+      "source": "specs/009-plc-protocol-isolation/impact-matrix.md",
+      "line": 207,
+      "section": "### 5.3 run/evidence与保存表示",
+      "columns": [
+        "HeightRound:int",
+        "target.heightRound:int?，保留真实测量关联，不由面序号补造"
+      ]
+    },
+    {
+      "source": "specs/009-plc-protocol-isolation/impact-matrix.md",
+      "line": 208,
+      "section": "### 5.3 run/evidence与保存表示",
+      "columns": [
+        "Camera:string",
+        "target.camera:string?，已有业务相机角色，缺失null"
+      ]
+    },
+    {
+      "source": "specs/009-plc-protocol-isolation/impact-matrix.md",
+      "line": 209,
+      "section": "### 5.3 run/evidence与保存表示",
+      "columns": [
+        "PointRef:string",
+        "target.pointRef:string?，已有配置引用，缺失null"
+      ]
+    },
+    {
+      "source": "specs/009-plc-protocol-isolation/impact-matrix.md",
+      "line": 210,
+      "section": "### 5.3 run/evidence与保存表示",
+      "columns": [
+        "Point.Id/Version/Unit/Frame:string（四个字段）",
+        "target.point.id/version/unit/frame:string?，各自原含义保留，缺失null"
+      ]
+    },
+    {
+      "source": "specs/009-plc-protocol-isolation/impact-matrix.md",
+      "line": 211,
+      "section": "### 5.3 run/evidence与保存表示",
+      "columns": [
+        "Point.X/Y/Z:double（逐坐标）",
+        "target.point.x/y/z:double?，目标坐标不当实测"
+      ]
+    },
+    {
+      "source": "specs/009-plc-protocol-isolation/impact-matrix.md",
+      "line": 212,
+      "section": "### 5.3 run/evidence与保存表示",
+      "columns": [
+        "Source:string",
+        "target.coordinateSource:string?，保留坐标配置来源，**不是设备执行Provider**；缺失null"
+      ]
+    },
+    {
+      "source": "specs/009-plc-protocol-isolation/impact-matrix.md",
+      "line": 213,
+      "section": "### 5.3 run/evidence与保存表示",
+      "columns": [
+        "ZBasis:string",
+        "target.zBasis:string?，实际配置/高度依据，缺失null"
+      ]
+    },
+    {
+      "source": "specs/009-plc-protocol-isolation/impact-matrix.md",
+      "line": 214,
+      "section": "### 5.3 run/evidence与保存表示",
+      "columns": [
+        "IsValid:bool（计算属性）",
+        "删除公开字段；它只是当时配置校验派生，不是动作完成。旧payload字节保留，不从当前模型重算历史真假"
+      ]
+    },
+    {
+      "source": "specs/009-plc-protocol-isolation/impact-matrix.md",
+      "line": 220,
+      "section": "### 5.4 通知逐字段与消费者",
+      "columns": [
+        "eventType:string",
+        "保留StateChanged/DiagnosticChanged/HandoffReady/WholeTrayCompleted/ObservedUnlocked/FinalUnloadCompleted的既有含义",
+        "N；PN",
+        "原通知包不改，不作提交证明"
+      ]
+    },
+    {
+      "source": "specs/009-plc-protocol-isolation/impact-matrix.md",
+      "line": 221,
+      "section": "### 5.4 通知逐字段与消费者",
+      "columns": [
+        "schemaVersion:string",
+        "s01/notification/1.0→N",
+        "N；PN",
+        "历史包保留版本"
+      ]
+    },
+    {
+      "source": "specs/009-plc-protocol-isolation/impact-matrix.md",
+      "line": 222,
+      "section": "### 5.4 通知逐字段与消费者",
+      "columns": [
+        "runId:UUID；revision/persistedRevision:long",
+        "各字段原样保留；修订只作GET对账提示",
+        "N；PN",
+        "H0"
+      ]
+    },
+    {
+      "source": "specs/009-plc-protocol-isolation/impact-matrix.md",
+      "line": 223,
+      "section": "### 5.4 通知逐字段与消费者",
+      "columns": [
+        "changedFields:string[]",
+        "仅业务语义路径；旧error提示统一errorCode，新增startupDiagnostic变化提示其路径；禁止raw/内部握手路径",
+        "N；PN",
+        "旧通知路径原样归档，不作为当前API字段"
+      ]
+    },
+    {
+      "source": "specs/009-plc-protocol-isolation/impact-matrix.md",
+      "line": 224,
+      "section": "### 5.4 通知逐字段与消费者",
+      "columns": [
+        "summary:object?（实际整个RunSnapshot；TS当前声明string不符）",
+        "固定对象或null：{executionState:string,wholeTaskState:string,errorCode:string?}，不含完整run或startup原始反馈。前端TS按对象对齐，通知只提示GET",
+        "N；PN",
+        "不补造旧摘要、不重放作新运行状态"
+      ]
+    },
+    {
+      "source": "specs/009-plc-protocol-isolation/impact-matrix.md",
+      "line": 225,
+      "section": "### 5.4 通知逐字段与消费者",
+      "columns": [
+        "occurredAt:timestamp",
+        "原名保留通知产生时间，不等于采样/持久时间",
+        "N；PN",
+        "H0"
+      ]
+    },
+    {
+      "source": "specs/009-plc-protocol-isolation/impact-matrix.md",
+      "line": 235,
+      "section": "### 5.5 本轮配方应用期限的语义字段增量（待实现）",
+      "columns": [
+        "BusinessBudget.businessMs无独立绑定预算；冻结JSON无此键",
+        "`businessMs.recipeApplication:int`必需；新运行不得null/缺项，Test10000",
+        "budget schema1.1；配置作者→Loader/Validator/Freezer→三入口；AL08/I25",
+        "旧快照原文保留，历史可读不补默认，不授权新绑定"
+      ]
+    },
+    {
+      "source": "specs/009-plc-protocol-isolation/impact-matrix.md",
+      "line": 236,
+      "section": "### 5.5 本轮配方应用期限的语义字段增量（待实现）",
+      "columns": [
+        "当前RecipePlanBound事实含计划/版本，未记录完整总窗",
+        "既有`motionEvidence[].facts`增加有限`recipeApplication`对象；当前绑定事实必需，其他动作不输出此对象",
+        "E及持久device-semantics/1；Application保存→Infrastructure只读投影→Host/业务采证；AL03/04/06/08",
+        "旧缺项null/NotRecorded，无raw补造"
+      ]
+    },
+    {
+      "source": "specs/009-plc-protocol-isolation/impact-matrix.md",
+      "line": 237,
+      "section": "### 5.5 本轮配方应用期限的语义字段增量（待实现）",
+      "columns": [
+        "无当前绑定预算来源字段",
+        "`recipeApplication.bindingId:string`、`budgetReference:{id,version,purpose,source,digest,snapshotId:string,budgetMs:int}`",
+        "同上；来源为当前Run/Binding冻结事实；不由通信定义生成",
+        "任一历史来源未存则该字段null，整组不可完整取得为null"
+      ]
+    },
+    {
+      "source": "specs/009-plc-protocol-isolation/impact-matrix.md",
+      "line": 238,
+      "section": "### 5.5 本轮配方应用期限的语义字段增量（待实现）",
+      "columns": [
+        "无绑定唯一总窗及校验时刻",
+        "`recipeApplication.window:{clockId:string,startTick:string,budgetDueTick:string,effectiveDueTick:string,startedAtUtc:timestamp,deadlineAtUtc:timestamp,applicableDeadlineReferences:[{stage:string,startedAtUtc:timestamp,deadlineAtUtc:timestamp}]}`；`hostValidatedTick:string?`。tick以既有Host时钟单位的十进制字符串保存/传输，避免JS整数精度损失；数组仅列实际存在的Detection/Unload/Sorting原截止",
+        "同上；业务登记/仲裁，不使用PLC时间回填；Host只投影，时钟单位/频率沿既有clockId来源记录",
+        "无旧时钟/起止记录则null；不得按10秒推算；适用截止历史未知不能填[]冒充确无"
+      ]
+    },
+    {
+      "source": "specs/009-plc-protocol-isolation/impact-matrix.md",
+      "line": 239,
+      "section": "### 5.5 本轮配方应用期限的语义字段增量（待实现）",
+      "columns": [
+        "原绑定完成隐含设备成功、未分开保存回执",
+        "`recipeApplication.deviceApplied:bool?`、`outcome:string`（Applying/AwaitingRequiredBusinessCommits/Completed/TimedOut/Cancelled/Failed/HeldUnknown）、`requiredCommits:[{writeId:string,kind:string,actualCommit:string,receiptValidity:string?,committedAtUtc:timestamp?,hostReceivedTick:string?}]`、`diagnosticEvidenceReferences:opaque[]`",
+        "同上；未观察deviceApplied=null；kind限BindingIntent/RecipePlanBound/本次Handoff/RequiredCommunicationEvidence等保存用途。实际commit读存储元数据，Host回执读独立Audit观察，不在自身事务预填。完成须全回执及时有效",
+        "原行/真实提交不改；缺回执观察null/NotRecorded，不能自动标ValidCurrent"
+      ]
+    },
+    {
+      "source": "specs/009-plc-protocol-isolation/impact-matrix.md",
+      "line": 240,
+      "section": "### 5.5 本轮配方应用期限的语义字段增量（待实现）",
+      "columns": [
+        "RunSnapshot.RecipeState及对应查询Bound/Ready当前可能仅据handoff存在",
+        "保留业务字段/序列化形状；只有本次所有必要回执按期齐备且当前资格有效才可续接Bound/Ready，已有绑定/handoff行仅为事实。按期Completed后的稍晚调度不重判总窗超时，仍核当前安全/取消/后段",
+        "R；公共流程/当前Receipt→PublicPreparationHandoffV2、QueryEndpoints:155–157/173–174与通知GET；AL02/03/04/08。通知固定摘要不扩字段",
+        "旧状态仅历史声明；重启或迟到核查无当前资格不得恢复续接"
+      ]
+    },
+    {
+      "source": "specs/009-plc-protocol-isolation/impact-matrix.md",
+      "line": 241,
+      "section": "### 5.5 本轮配方应用期限的语义字段增量（待实现）",
+      "columns": [
+        "`/api/v1/recipes/bind`现200 `{plan,plcBinding:\"CommittedAfterF\"}`仅说明端口返回",
+        "保留plan业务含义；移除plcBinding字面成功，改`deviceSchemaVersion:\"device-semantics/1\"`与类型化`bindingResult`，包含bindingId、outcome、budgetReference、window、requiredCommits、诊断引用；200仅Completed且及时有效。已知拒绝/超期沿409错误响应携语义reason及关联；HTTP取消可无响应但不减弱后台关闭义务",
+        "Application共同绑定能力→Host端点→API调用/采证；AL02/03/04/08，发布前盘点调用方；无新增页面",
+        "旧响应原包只读，不转换为新的有效Receipt，不留raw或plcBinding影子字段"
+      ]
+    }
+  ],
+  "currentPublicDeclarations": [
+    {
+      "path": "backend/src/Gaode.Application/Ports/CaptureAlgorithmMessages.cs",
+      "sha256": "731314e15fc37a99d30219a7f94ad3eee3048f5135a7b05234fa3ceec57aadb5",
+      "declarations": [
+        {
+          "name": "CaptureRole",
+          "line": 6,
+          "declaration": "public enum CaptureRole {"
+        },
+        {
+          "name": "CaptureEventKind",
+          "line": 7,
+          "declaration": "public enum CaptureEventKind {"
+        },
+        {
+          "name": "DetectionCaptureSettings",
+          "line": 8,
+          "declaration": "public sealed record DetectionCaptureSettings(string ProfileId, int ExposureUs, double Gain,\n    int[] RoiPixels, string LightChannel, int BrightnessPercent, int SettleMs);"
+        },
+        {
+          "name": "CaptureRequest",
+          "line": 10,
+          "declaration": "public sealed record CaptureRequest(PortEnvelope Envelope, Guid CaptureId, CaptureRole Role,\n    string PointId, string PointVersion, string? ScopeId, string? ScopeVersion,\n    string CameraBindingId, string LightBindingId, Guid IntentWriteId, long MaxBytes)\n{"
+        },
+        {
+          "name": "CaptureEvent",
+          "line": 16,
+          "declaration": "public sealed record CaptureEvent(CaptureRequest Request, CaptureEventKind Kind,\n    long ConnectionEpoch, byte[]? Buffer = null, string? Format = null,\n    string? ErrorCode = null);"
+        },
+        {
+          "name": "MediaRef",
+          "line": 20,
+          "declaration": "public sealed record MediaRef(Guid MediaId, Guid RunId, Guid CaptureId, string Kind,\n    string RelativeKey, long ByteLength, string Format, string Source,\n    string ScopeVersion, string PointVersion, string StorageState)\n{"
+        },
+        {
+          "name": "AlgorithmRole",
+          "line": 36,
+          "declaration": "public enum AlgorithmRole {"
+        },
+        {
+          "name": "AlgorithmEventKind",
+          "line": 37,
+          "declaration": "public enum AlgorithmEventKind {"
+        },
+        {
+          "name": "WorkerTargetIdentity",
+          "line": 38,
+          "declaration": "public sealed record WorkerTargetIdentity(string ObjectId, int LocalFace,\n    int HeightRound, string Camera);"
+        },
+        {
+          "name": "AlgorithmRequest",
+          "line": 40,
+          "declaration": "public sealed record AlgorithmRequest(PortEnvelope Envelope, Guid CallId, Guid CaptureId,\n    AlgorithmRole Role, IReadOnlyList<MediaRef> Inputs, string ParametersVersion,\n    string CapabilityId, string CapabilityVersion, Guid IntentWriteId,\n    string InvocationBasis, WorkerTargetIdentity? TargetIdentity = null)\n{"
+        },
+        {
+          "name": "AlgorithmEvent",
+          "line": 47,
+          "declaration": "public sealed record AlgorithmEvent(AlgorithmRequest Request, AlgorithmEventKind Kind,\n    IReadOnlyList<HeightSample>? HeightSamples = null,\n    IReadOnlyList<string>? RawCodes = null, string? ErrorCode = null,\n    Guid? WorkerSessionId = null, string? DetectionDisposition = null);"
+        },
+        {
+          "name": "AcquisitionContract",
+          "line": 52,
+          "declaration": "public static class AcquisitionContract\n{"
+        }
+      ],
+      "mappingBasis": "impact-matrix section5 and data-model semantic purpose tables; unspecified business fields retain their actual type/null/purpose; raw fields have no compatibility shadows"
+    },
+    {
+      "path": "backend/src/Gaode.Application/Ports/DeviceMessages.cs",
+      "sha256": "a7303e45b67eeb5f2e9aeae53a66b2afdf3a5d4b3b8885067bf3d04e176fc490",
+      "declarations": [
+        {
+          "name": "PortEnvelope",
+          "line": 6,
+          "declaration": "public sealed record PortEnvelope(Guid RunId, Guid OperationId, int Attempt, Guid SessionId,\n    string SnapshotId, string ConfigVersion, string Purpose, long StartTick,\n    long DueTick, string ClockId)\n{"
+        },
+        {
+          "name": "DeviceEventKind",
+          "line": 16,
+          "declaration": "public enum DeviceEventKind {"
+        },
+        {
+          "name": "DeviceEvent",
+          "line": 17,
+          "declaration": "public sealed record DeviceEvent(PortEnvelope Envelope, DeviceEventKind Kind,\n    Guid ActionId, long ConnectionEpoch, string? ErrorCode = null,\n    DateTimeOffset? DeviceObservedUtc = null);"
+        },
+        {
+          "name": "PlcObservation",
+          "line": 21,
+          "declaration": "public sealed record PlcObservation(bool Connected, bool Automatic, bool SafetyClear,\n    bool Clamped, bool PhysicalStart, double X, double Y, long ConnectionEpoch,\n    string MotionStatus, DateTimeOffset ObservedUtc, double Z = 0, string Source = \"Simulated\",\n    int InspectionStatus = 0, int ZResetStatus = 0, ushort AlarmBits = 0,\n    ushort AlarmSeverity = 0, bool PlcSystemFault = false, int PalletLockStatus = 0,\n    bool PlcReady = true, string? DiagnosticCode = null, string? FailureOrigin = null,\n    int FlipStatus = 0, int FlipCurrentFace = 0, bool ManualZoneOccupied = false);"
+        },
+        {
+          "name": "MoveRequest",
+          "line": 29,
+          "declaration": "public sealed record MoveRequest(PortEnvelope Envelope, Guid ActionId, FixedPoint Target,\n    Guid IntentWriteId, string BindingId, string Role = \"3D\");"
+        },
+        {
+          "name": "DeviceContract",
+          "line": 32,
+          "declaration": "public static class DeviceContract\n{"
+        }
+      ],
+      "mappingBasis": "impact-matrix section5 and data-model semantic purpose tables; unspecified business fields retain their actual type/null/purpose; raw fields have no compatibility shadows"
+    },
+    {
+      "path": "backend/src/Gaode.Application/Ports/IAlgorithmPort.cs",
+      "sha256": "b525c2fa2c539e7a5eac2e5f245fcc3eae5c5ba579aaf36171a5a7199d83e349",
+      "declarations": [
+        {
+          "name": "AlgorithmDispatch",
+          "line": 4,
+          "declaration": "public sealed record AlgorithmDispatch(Task Exited);"
+        },
+        {
+          "name": "AlgorithmNotDispatchedException",
+          "line": 8,
+          "declaration": "public sealed class AlgorithmNotDispatchedException(Guid callId, string evidence)\n    : Exception(\"算法未派发且未取得输入：\" + evidence)\n{"
+        },
+        {
+          "name": "IAlgorithmPort",
+          "line": 17,
+          "declaration": "public interface IAlgorithmPort\n{"
+        }
+      ],
+      "mappingBasis": "impact-matrix section5 and data-model semantic purpose tables; unspecified business fields retain their actual type/null/purpose; raw fields have no compatibility shadows"
+    },
+    {
+      "path": "backend/src/Gaode.Application/Ports/ICapturePort.cs",
+      "sha256": "24571ffe86c8440d31978509280e01cf2bfab4a239ee14acca0e40701ff8e050",
+      "declarations": [
+        {
+          "name": "ICapturePort",
+          "line": 3,
+          "declaration": "public interface ICapturePort\n{"
+        }
+      ],
+      "mappingBasis": "impact-matrix section5 and data-model semantic purpose tables; unspecified business fields retain their actual type/null/purpose; raw fields have no compatibility shadows"
+    },
+    {
+      "path": "backend/src/Gaode.Application/Ports/IInspectionHandshakePort.cs",
+      "sha256": "9e796cf33541d209432cf1a1a7eb3fd84757e46a4dc2d54fa8d0f510cffa98b8",
+      "declarations": [
+        {
+          "name": "InspectionHandshakeContext",
+          "line": 5,
+          "declaration": "public sealed record InspectionHandshakeContext(\n    Guid RunId,\n    Guid OperationId,\n    long ConnectionEpoch,\n    FixedPoint Target)\n{"
+        },
+        {
+          "name": "IInspectionHandshakePort",
+          "line": 22,
+          "declaration": "public interface IInspectionHandshakePort\n{"
+        }
+      ],
+      "mappingBasis": "impact-matrix section5 and data-model semantic purpose tables; unspecified business fields retain their actual type/null/purpose; raw fields have no compatibility shadows"
+    },
+    {
+      "path": "backend/src/Gaode.Application/Ports/IMediaStore.cs",
+      "sha256": "917d07d209ce133bd645e09120d18312c31784531d004c4503b4ddb9a442afbf",
+      "declarations": [
+        {
+          "name": "IMediaStore",
+          "line": 3,
+          "declaration": "public interface IMediaStore\n{"
+        }
+      ],
+      "mappingBasis": "impact-matrix section5 and data-model semantic purpose tables; unspecified business fields retain their actual type/null/purpose; raw fields have no compatibility shadows"
+    },
+    {
+      "path": "backend/src/Gaode.Application/Ports/IMotionPort.cs",
+      "sha256": "ceaea12e0f2a741863a366ab3d62b67769a21875d481e7078d0d4ebace267aea",
+      "declarations": [
+        {
+          "name": "IMotionPort",
+          "line": 3,
+          "declaration": "public interface IMotionPort\n{"
+        }
+      ],
+      "mappingBasis": "impact-matrix section5 and data-model semantic purpose tables; unspecified business fields retain their actual type/null/purpose; raw fields have no compatibility shadows"
+    },
+    {
+      "path": "backend/src/Gaode.Application/Ports/IPlcActionPort.cs",
+      "sha256": "8c996c6e1ed865a1536a0101056075f3dcb8601fc948f3b9abb040b5c458beb9",
+      "declarations": [
+        {
+          "name": "IPlcActionPort",
+          "line": 3,
+          "declaration": "public interface IPlcActionPort\n{"
+        }
+      ],
+      "mappingBasis": "impact-matrix section5 and data-model semantic purpose tables; unspecified business fields retain their actual type/null/purpose; raw fields have no compatibility shadows"
+    },
+    {
+      "path": "backend/src/Gaode.Application/Ports/IPlcRecipePort.cs",
+      "sha256": "97d9b6116c7ac06cfd5fc1dfe25266692b9aa8c46a9db2883062163f1eaa5e01",
+      "declarations": [
+        {
+          "name": "PlcRecipeBinding",
+          "line": 3,
+          "declaration": "public sealed record PlcRecipeBinding(ushort RecipeId, ushort? NgCapacity, ushort? PendingCapacity);"
+        },
+        {
+          "name": "IPlcRecipePort",
+          "line": 5,
+          "declaration": "public interface IPlcRecipePort\n{"
+        }
+      ],
+      "mappingBasis": "impact-matrix section5 and data-model semantic purpose tables; unspecified business fields retain their actual type/null/purpose; raw fields have no compatibility shadows"
+    },
+    {
+      "path": "backend/src/Gaode.Application/Ports/IPlcResetPort.cs",
+      "sha256": "7daa7ea6084ed0545f3c39b1311532a07cbbd9637b3e527e6d2992ca36079d15",
+      "declarations": [
+        {
+          "name": "PlcInitialStateObservation",
+          "line": 3,
+          "declaration": "public sealed record PlcInitialStateObservation(PlcObservation Actual,\n    IReadOnlyDictionary<string, bool> Checks, long? SpecialGeneration = null)\n{"
+        },
+        {
+          "name": "IPlcResetPort",
+          "line": 8,
+          "declaration": "public interface IPlcResetPort\n{"
+        }
+      ],
+      "mappingBasis": "impact-matrix section5 and data-model semantic purpose tables; unspecified business fields retain their actual type/null/purpose; raw fields have no compatibility shadows"
+    },
+    {
+      "path": "backend/src/Gaode.Application/Ports/IPlcStatePort.cs",
+      "sha256": "157929001a587a4a4bb1c233f1ea36e65ae45458e79b13549b8dbde67b66491f",
+      "declarations": [
+        {
+          "name": "IPlcStatePort",
+          "line": 3,
+          "declaration": "public interface IPlcStatePort\n{"
+        }
+      ],
+      "mappingBasis": "impact-matrix section5 and data-model semantic purpose tables; unspecified business fields retain their actual type/null/purpose; raw fields have no compatibility shadows"
+    },
+    {
+      "path": "backend/src/Gaode.Application/Ports/IPublicConfiguration.cs",
+      "sha256": "487df6eac98b09e01fbac7f8dd5ae76a2321134c743939b9f6e60a63f1290c6b",
+      "declarations": [
+        {
+          "name": "LoadedConfiguration",
+          "line": 5,
+          "declaration": "public sealed record LoadedConfiguration<T>(T Value, string CanonicalJson, string Digest,\n    string SourceFile);"
+        },
+        {
+          "name": "IPublicConfiguration",
+          "line": 8,
+          "declaration": "public interface IPublicConfiguration\n{"
+        }
+      ],
+      "mappingBasis": "impact-matrix section5 and data-model semantic purpose tables; unspecified business fields retain their actual type/null/purpose; raw fields have no compatibility shadows"
+    },
+    {
+      "path": "backend/src/Gaode.Application/Ports/IReservedIntegrations.cs",
+      "sha256": "52cbd7af86c731c05b9682e19131abede20645ac361ea5f559d2c714c46878d5",
+      "declarations": [
+        {
+          "name": "IReservedIntegration",
+          "line": 3,
+          "declaration": "public interface IReservedIntegration\n{"
+        }
+      ],
+      "mappingBasis": "impact-matrix section5 and data-model semantic purpose tables; unspecified business fields retain their actual type/null/purpose; raw fields have no compatibility shadows"
+    },
+    {
+      "path": "backend/src/Gaode.Application/Ports/IStageHandoffQuery.cs",
+      "sha256": "9161e2acbd36bceec3e8018bc38605e6d0e54ff09ebf5cdb8a444e9fa0fef482",
+      "declarations": [
+        {
+          "name": "IStageHandoffQuery",
+          "line": 5,
+          "declaration": "public interface IStageHandoffQuery\n{"
+        }
+      ],
+      "mappingBasis": "impact-matrix section5 and data-model semantic purpose tables; unspecified business fields retain their actual type/null/purpose; raw fields have no compatibility shadows"
+    },
+    {
+      "path": "backend/src/Gaode.Application/Ports/ITraceQuery.cs",
+      "sha256": "da1d1d86eac94ac2bf320bff73523a0d07c780800d3191196d37b988b95705e1",
+      "declarations": [
+        {
+          "name": "ITraceQuery",
+          "line": 3,
+          "declaration": "public interface ITraceQuery\n{"
+        }
+      ],
+      "mappingBasis": "impact-matrix section5 and data-model semantic purpose tables; unspecified business fields retain their actual type/null/purpose; raw fields have no compatibility shadows"
+    },
+    {
+      "path": "backend/src/Gaode.Application/Ports/ITraceWriter.cs",
+      "sha256": "8d3d6ce8136c55b50ec258420662a55474c82db8a4cf8a1029028b08c28f280d",
+      "declarations": [
+        {
+          "name": "ITraceWriter",
+          "line": 3,
+          "declaration": "public interface ITraceWriter\n{"
+        }
+      ],
+      "mappingBasis": "impact-matrix section5 and data-model semantic purpose tables; unspecified business fields retain their actual type/null/purpose; raw fields have no compatibility shadows"
+    },
+    {
+      "path": "backend/src/Gaode.Application/Ports/PersistenceMessages.cs",
+      "sha256": "4f3cc1195910ac643b68f6c45062cc02e080adbeca73ec4d79c3f9c094ab998a",
+      "declarations": [
+        {
+          "name": "WriteKind",
+          "line": 5,
+          "declaration": "public enum WriteKind {"
+        },
+        {
+          "name": "CommitState",
+          "line": 7,
+          "declaration": "public enum CommitState {"
+        },
+        {
+          "name": "WriteBatch",
+          "line": 9,
+          "declaration": "public sealed record WriteBatch(Guid WriteId, Guid RunId, long ExpectedRevision,\n    WriteKind Kind, string PayloadJson, string PayloadDigest, RunState? StateAfter = null,\n    TerminalOutcome ExpectedTerminal = TerminalOutcome.None,\n    TerminalOutcome CandidateTerminal = TerminalOutcome.None,\n    string? HandoffJson = null, string? RequestId = null, string? SubjectId = null,\n    string? ContextJson = null, Guid? HandoffId = null,\n    Guid? TrayId = null, string? HandoffV2Json = null);"
+        },
+        {
+          "name": "CommitReceipt",
+          "line": 17,
+          "declaration": "public sealed record CommitReceipt(Guid WriteId, Guid RunId, CommitState State,\n    long? CommittedRevision, TerminalOutcome ActualTerminal, string? ErrorCode);"
+        },
+        {
+          "name": "QueuedWrite",
+          "line": 19,
+          "declaration": "public sealed record QueuedWrite(CommitReceipt QueuedReceipt, Task<CommitReceipt> Completion);"
+        },
+        {
+          "name": "PersistedRun",
+          "line": 21,
+          "declaration": "public sealed record PersistedRun(Guid RunId, string RequestId, string SubjectId,\n    string ContextJson, RunState State, long Revision, TerminalOutcome Terminal,\n    long? TerminalRevision, bool CancelRequested);"
+        },
+        {
+          "name": "PersistedWrite",
+          "line": 24,
+          "declaration": "public sealed record PersistedWrite(Guid WriteId, Guid RunId, long Revision,\n    WriteKind Kind, string PayloadJson, string PayloadDigest, CommitState State);"
+        },
+        {
+          "name": "PersistedHandoff",
+          "line": 26,
+          "declaration": "public sealed record PersistedHandoff(Guid HandoffId, Guid RunId, string Json,\n    long Revision, TerminalOutcome Terminal, Guid WriteId);"
+        },
+        {
+          "name": "AlgorithmIntentPayload",
+          "line": 29,
+          "declaration": "public sealed record AlgorithmIntentPayload(Guid CallId, Guid OperationId, int Attempt,\n    Guid RunId, Guid CaptureId, IReadOnlyList<Guid> InputMediaIds,\n    string PublicVersion, string ScopeVersion, string ParametersVersion,\n    string CapabilityId, string CapabilityVersion, string ExpectedComponentVersion,\n    Guid SessionId, string ClockId, long StartTick, long DueTick,\n    int BudgetMs, string InvocationBasis);"
+        },
+        {
+          "name": "RunCreatedPayload",
+          "line": 36,
+          "declaration": "public sealed record RunCreatedPayload(Guid CommandId, string RequestId,\n    string SubjectId, string ContextJson, string PublicJson, string BudgetJson,\n    string SimulationJson, string SnapshotId, string PublicDigest,\n    string BudgetDigest, string SimulationDigest)\n{"
+        },
+        {
+          "name": "OperationIntentPayload",
+          "line": 44,
+          "declaration": "public sealed record OperationIntentPayload(Guid OperationId, string Kind,\n    int Attempt, Guid? ActionId, Guid? CaptureId, string TargetOrScope,\n    string SnapshotId, Guid IntentWriteId);"
+        },
+        {
+          "name": "AlgorithmFactPayload",
+          "line": 48,
+          "declaration": "public sealed record AlgorithmFactPayload(Guid CallId, AlgorithmState State,\n    bool ResponseReceived, string RawResultJson, string Decision,\n    string DispatchEvidence = \"NotDispatched\", long DispatchTick = 0,\n    long? AcceptedTick = null, Guid? WorkerSessionId = null);"
+        },
+        {
+          "name": "PersistenceContract",
+          "line": 53,
+          "declaration": "public static class PersistenceContract\n{"
+        }
+      ],
+      "mappingBasis": "impact-matrix section5 and data-model semantic purpose tables; unspecified business fields retain their actual type/null/purpose; raw fields have no compatibility shadows"
+    },
+    {
+      "path": "backend/src/Gaode.Application/Ports/StagePortContracts.cs",
+      "sha256": "e84a1c6d5c4075fed23a2acdb8485c07592af58e190827ed47c7d75135ba862e",
+      "declarations": [
+        {
+          "name": "DetectionResultKind",
+          "line": 6,
+          "declaration": "public enum DetectionResultKind {"
+        },
+        {
+          "name": "StageActionKind",
+          "line": 7,
+          "declaration": "public enum StageActionKind {"
+        },
+        {
+          "name": "WholeTrayWorkflowStage",
+          "line": 8,
+          "declaration": "public enum WholeTrayWorkflowStage\n{"
+        },
+        {
+          "name": "PlcWorkflowStage",
+          "line": 16,
+          "declaration": "public enum PlcWorkflowStage {"
+        },
+        {
+          "name": "ResultSource",
+          "line": 17,
+          "declaration": "public enum ResultSource {"
+        },
+        {
+          "name": "ResultQuality",
+          "line": 18,
+          "declaration": "public enum ResultQuality {"
+        },
+        {
+          "name": "StageFailureClass",
+          "line": 19,
+          "declaration": "public enum StageFailureClass\n{"
+        },
+        {
+          "name": "DetectionObjectExpectation",
+          "line": 27,
+          "declaration": "public sealed record DetectionObjectExpectation(\n    string ObjectId,\n    FixedPoint Position,\n    string ExpectedClassification)\n{"
+        },
+        {
+          "name": "DetectionStepTarget",
+          "line": 44,
+          "declaration": "public sealed record DetectionStepTarget(int StepSequence, string ObjectId, string SlotId,\n    int ProtocolSlotIndex, int LocalFace, int HeightRound, string Camera,\n    string PointRef, FixedPoint Point, string Source, string ZBasis)\n{"
+        },
+        {
+          "name": "DetectionRequest",
+          "line": 58,
+          "declaration": "public sealed record DetectionRequest(\n    Guid RunId,\n    Guid TrayId,\n    Guid StationId,\n    Guid LineId,\n    WholeTrayWorkflowStage Stage,\n    Guid OperationId,\n    string PlanRevision,\n    long ConnectionEpoch,\n    DateTimeOffset DeadlineUtc,\n    IReadOnlyList<string> InputMediaReferences,\n    string SourcePolicy,\n    string IdempotencyKey,\n    int Attempt = 1,\n    DateTimeOffset? StageStartedAtUtc = null,\n    IReadOnlyList<string>? ComponentEvidenceReferences = null,\n    IReadOnlyList<DetectionObjectExpectation>? ExpectedObjects = null,\n    RecipeRunPlan? Plan = null,\n    bool StrictRecipeExecution = false,\n    PublicConfiguration? MotionConfiguration = null,\n    IReadOnlyList<DetectionStepTarget>? Targets = null)\n{"
+        },
+        {
+          "name": "DetectionObjectResult",
+          "line": 98,
+          "declaration": "public sealed record DetectionObjectResult(\n    string ObjectId,\n    FixedPoint Position,\n    string Classification,\n    string Disposition = \"NG\",\n    IReadOnlyList<string>? EvidenceReferences = null)\n{"
+        },
+        {
+          "name": "DetectionPortResult",
+          "line": 115,
+          "declaration": "public sealed record DetectionPortResult(\n    DetectionRequest Request,\n    DetectionResultKind Kind,\n    string? ResultReference,\n    IReadOnlyList<DetectionObjectResult> Objects,\n    ResultSource Source,\n    ResultQuality Quality,\n    string? ErrorCode,\n    DateTimeOffset ObservedAtUtc,\n    IReadOnlyList<string>? EvidenceReferences = null)\n{"
+        },
+        {
+          "name": "IDetectionPort",
+          "line": 141,
+          "declaration": "public interface IDetectionPort\n{"
+        },
+        {
+          "name": "PlcStageActionRequest",
+          "line": 147,
+          "declaration": "public sealed record PlcStageActionRequest(\n    Guid RunId,\n    Guid TrayId,\n    Guid StationId,\n    Guid LineId,\n    PlcWorkflowStage Stage,\n    Guid OperationId,\n    int Attempt,\n    string PlanRevision,\n    string ActionParametersDigest,\n    long ConnectionEpoch,\n    DateTimeOffset DeadlineUtc,\n    string IdempotencyKey,\n    Guid? WholeTrayCompletionId = null,\n    ushort? ProtocolPartIndex = null,\n    FixedPoint? UnloadTarget = null,\n    double PositionTolerance = 0,\n    string? TargetPurpose = null,\n    string? ConfigSnapshotId = null,\n    FixedPoint? SortingSource = null,\n    FixedPoint? SortingTarget = null)\n{"
+        },
+        {
+          "name": "PlcStageActionResult",
+          "line": 180,
+          "declaration": "public sealed record PlcStageActionResult(\n    PlcStageActionRequest Request,\n    StageActionKind Kind,\n    Guid ActionId,\n    long ConnectionEpoch,\n    ushort? ProtocolStatus,\n    string? ErrorCode,\n    bool HoldsDevice,\n    bool CanRetry,\n    DateTimeOffset ObservedAtUtc,\n    ResultSource Source = ResultSource.Fallback,\n    ResultQuality Quality = ResultQuality.Unknown,\n    string ComponentVersion = \"unknown\",\n    IReadOnlyList<string>? EvidenceReferences = null)\n{"
+        },
+        {
+          "name": "PlcPositionEvidence",
+          "line": 206,
+          "declaration": "public sealed record PlcPositionEvidence(string Phase, string AxisRole, double TargetX, double TargetY, double TargetZ,\n    double? ActualX, double? ActualY, double? ActualZ, ushort? Status, double Tolerance,\n    DateTimeOffset ObservedAtUtc, bool? Matched);"
+        },
+        {
+          "name": "IPlcStageActionPort",
+          "line": 210,
+          "declaration": "public interface IPlcStageActionPort\n{"
+        },
+        {
+          "name": "PlcStageProtocolContract",
+          "line": 216,
+          "declaration": "public static class PlcStageProtocolContract\n{"
+        },
+        {
+          "name": "MappingFailed",
+          "line": 235,
+          "declaration": "public sealed record MappingFailed(\n    Guid RunId,\n    Guid TrayId,\n    string PlanRevision,\n    IReadOnlyList<string> MissingObjectIds,\n    IReadOnlyList<string> DuplicateObjectIds,\n    IReadOnlyList<string> AmbiguousObjectIds,\n    string Reason)\n{"
+        },
+        {
+          "name": "UnknownHeld",
+          "line": 251,
+          "declaration": "public sealed record UnknownHeld(\n    Guid RunId,\n    Guid TrayId,\n    PlcWorkflowStage Stage,\n    Guid OperationId,\n    long ConnectionEpoch,\n    string ErrorCode,\n    bool HoldsDevice,\n    bool AutomaticRetryAllowed)\n{"
+        }
+      ],
+      "mappingBasis": "impact-matrix section5 and data-model semantic purpose tables; unspecified business fields retain their actual type/null/purpose; raw fields have no compatibility shadows"
+    },
+    {
+      "path": "backend/src/Gaode.Application/Ports/TestSpecialActions.cs",
+      "sha256": "be6882837019fe1bb1cca309933027dda5d1fc9096bca7f7e9dc2b6a5d5fecc6",
+      "declarations": [
+        {
+          "name": "TestSpecialTarget",
+          "line": 3,
+          "declaration": "public sealed record TestSpecialTarget(double X, double Y, double Z, string Unit, string Frame, string Version);"
+        },
+        {
+          "name": "TestSpecialRequest",
+          "line": 4,
+          "declaration": "public sealed record TestSpecialRequest(Guid RunId, Guid OperationId, Guid ActionId, string EntityId,\n    int StepSequence, int Attempt, string Kind, string PoseId, string SourcePointRef,\n    int OriginalSlotIndex, TestSpecialTarget Target);"
+        },
+        {
+          "name": "TestSpecialResult",
+          "line": 7,
+          "declaration": "public sealed record TestSpecialResult(TestSpecialRequest Request, string Status, string? OccupiedEntityId,\n    string? PoseId, TestSpecialTarget? Actual, string Source, string? ErrorCode, DateTimeOffset ObservedUtc)\n{"
+        }
+      ],
+      "mappingBasis": "impact-matrix section5 and data-model semantic purpose tables; unspecified business fields retain their actual type/null/purpose; raw fields have no compatibility shadows"
+    },
+    {
+      "path": "backend/src/Gaode.Domain/Station01/CompletionPolicy.cs",
+      "sha256": "c83ef2d2bff2a99d808448d23dd764bb9006b2b66fb96e561dc98ddde75b3798",
+      "declarations": [
+        {
+          "name": "CompletionEvidence",
+          "line": 3,
+          "declaration": "public sealed record CompletionEvidence(bool StartAccepted, bool PhysicalButton, bool ClampCompleted,\n    bool Move3DCompleted, bool Capture3DCompleted, bool HeightTerminalSaved,\n    bool MoveFCompleted, bool CaptureFCompleted, bool FTerminalSaved,\n    bool MediaSaved, bool SafetyClear, bool MotionKnown, bool AllNecessarySaved);"
+        },
+        {
+          "name": "CompletionPolicy",
+          "line": 8,
+          "declaration": "public static class CompletionPolicy\n{"
+        }
+      ],
+      "mappingBasis": "impact-matrix section5 and data-model semantic purpose tables; unspecified business fields retain their actual type/null/purpose; raw fields have no compatibility shadows"
+    },
+    {
+      "path": "backend/src/Gaode.Domain/Station01/ComponentEvidenceMatrix.cs",
+      "sha256": "83cdecf770bca5319ef2e00e0214c6bc289e24af171f08ea102de4f21999704e",
+      "declarations": [
+        {
+          "name": "ComponentKind",
+          "line": 3,
+          "declaration": "public enum ComponentKind {"
+        },
+        {
+          "name": "EvidenceMilestone",
+          "line": 4,
+          "declaration": "public enum EvidenceMilestone {"
+        },
+        {
+          "name": "ComponentEvidenceState",
+          "line": 5,
+          "declaration": "public enum ComponentEvidenceState {"
+        },
+        {
+          "name": "ComponentEvidenceSource",
+          "line": 6,
+          "declaration": "public enum ComponentEvidenceSource {"
+        },
+        {
+          "name": "EvidenceScope",
+          "line": 7,
+          "declaration": "public enum EvidenceScope {"
+        },
+        {
+          "name": "ComponentEvidence",
+          "line": 9,
+          "declaration": "public sealed record ComponentEvidence(\n    ComponentKind Component,\n    ComponentEvidenceState State,\n    ComponentEvidenceSource? Source,\n    string? Quality,\n    string? VersionRef,\n    IReadOnlyList<string> EvidenceReferences,\n    DateTimeOffset? CapturedAt,\n    string? Digest)\n{"
+        },
+        {
+          "name": "ComponentEvidenceMatrix",
+          "line": 30,
+          "declaration": "public sealed class ComponentEvidenceMatrix\n{"
+        }
+      ],
+      "mappingBasis": "impact-matrix section5 and data-model semantic purpose tables; unspecified business fields retain their actual type/null/purpose; raw fields have no compatibility shadows"
+    },
+    {
+      "path": "backend/src/Gaode.Domain/Station01/ControlledRecoveryDecision.cs",
+      "sha256": "0fd3af8cbfa3679d0aab405784282cf1b7428708c9749e6eab213e80f31dfa5c",
+      "declarations": [
+        {
+          "name": "ControlledRecoveryAction",
+          "line": 3,
+          "declaration": "public enum ControlledRecoveryAction\n{"
+        },
+        {
+          "name": "ControlledRecoveryDecision",
+          "line": 9,
+          "declaration": "public sealed record ControlledRecoveryDecision\n{"
+        }
+      ],
+      "mappingBasis": "impact-matrix section5 and data-model semantic purpose tables; unspecified business fields retain their actual type/null/purpose; raw fields have no compatibility shadows"
+    },
+    {
+      "path": "backend/src/Gaode.Domain/Station01/FCodePolicy.cs",
+      "sha256": "228a05fe475038253ef849d208f03be006a6bf1f8b56fadf5b66cd10feda71e0",
+      "declarations": [
+        {
+          "name": "FCodePolicy",
+          "line": 3,
+          "declaration": "public static class FCodePolicy\n{"
+        }
+      ],
+      "mappingBasis": "impact-matrix section5 and data-model semantic purpose tables; unspecified business fields retain their actual type/null/purpose; raw fields have no compatibility shadows"
+    },
+    {
+      "path": "backend/src/Gaode.Domain/Station01/FCodeResult.cs",
+      "sha256": "57169caacf3f66a805752853c5209b50665aeab4d52af8402edf9e5e34680a76",
+      "declarations": [
+        {
+          "name": "FRecognitionState",
+          "line": 3,
+          "declaration": "public enum FRecognitionState {"
+        },
+        {
+          "name": "FParseState",
+          "line": 4,
+          "declaration": "public enum FParseState {"
+        },
+        {
+          "name": "FCodeResult",
+          "line": 6,
+          "declaration": "public sealed record FCodeResult(bool ResponseReceived, IReadOnlyList<string>? RawCandidates,\n    IReadOnlyList<string> DistinctRawValues, FRecognitionState RecognitionState,\n    string? PrimaryCode, FParseState ParseState, string? TrayIdentifier);"
+        }
+      ],
+      "mappingBasis": "impact-matrix section5 and data-model semantic purpose tables; unspecified business fields retain their actual type/null/purpose; raw fields have no compatibility shadows"
+    },
+    {
+      "path": "backend/src/Gaode.Domain/Station01/HeightResult.cs",
+      "sha256": "c4f54d992704850da2e42c24f5613672357f78bcc97ee45821e14e411a3a6917",
+      "declarations": [
+        {
+          "name": "HeightSample",
+          "line": 3,
+          "declaration": "public sealed record HeightSample(string SourceElementId, double? RawValue, string? Unit,\n    string? Datum, HeightValidity Validity, string? Reason)\n{"
+        },
+        {
+          "name": "HeightResult",
+          "line": 17,
+          "declaration": "public sealed record HeightResult(Guid RunId, Guid CaptureId, Guid CallId,\n    string ScopeId, string ScopeVersion, IReadOnlyList<HeightSample> Samples, AlgorithmState TechnicalState);"
+        }
+      ],
+      "mappingBasis": "impact-matrix section5 and data-model semantic purpose tables; unspecified business fields retain their actual type/null/purpose; raw fields have no compatibility shadows"
+    },
+    {
+      "path": "backend/src/Gaode.Domain/Station01/HeightValidity.cs",
+      "sha256": "ee202c666e42dace63cb139e1932c49d98fc8c643ce7a37a633714c647ad9c1f",
+      "declarations": [
+        {
+          "name": "HeightValidity",
+          "line": 3,
+          "declaration": "public enum HeightValidity {"
+        }
+      ],
+      "mappingBasis": "impact-matrix section5 and data-model semantic purpose tables; unspecified business fields retain their actual type/null/purpose; raw fields have no compatibility shadows"
+    },
+    {
+      "path": "backend/src/Gaode.Domain/Station01/OperationState.cs",
+      "sha256": "52f81d824fa9dc1d971639855d6b8c1195128e2692ffb325f5165a042b1f7132",
+      "declarations": [
+        {
+          "name": "OperationKind",
+          "line": 3,
+          "declaration": "public enum OperationKind {"
+        },
+        {
+          "name": "OperationPhase",
+          "line": 4,
+          "declaration": "public enum OperationPhase {"
+        },
+        {
+          "name": "IngressOutcome",
+          "line": 5,
+          "declaration": "public enum IngressOutcome {"
+        },
+        {
+          "name": "OperationKey",
+          "line": 7,
+          "declaration": "public sealed record OperationKey(Guid RunId, Guid OperationId, int Attempt, OperationPhase Phase)\n{"
+        }
+      ],
+      "mappingBasis": "impact-matrix section5 and data-model semantic purpose tables; unspecified business fields retain their actual type/null/purpose; raw fields have no compatibility shadows"
+    },
+    {
+      "path": "backend/src/Gaode.Domain/Station01/RunIdentity.cs",
+      "sha256": "d4f75a5fbf71c339aace9da291b7d45d5fb06000f0500c9f3a903f3562bc9522",
+      "declarations": [
+        {
+          "name": "RunId",
+          "line": 3,
+          "declaration": "public readonly record struct RunId(Guid Value)\n{"
+        },
+        {
+          "name": "OperationId",
+          "line": 9,
+          "declaration": "public readonly record struct OperationId(Guid Value)\n{"
+        },
+        {
+          "name": "RunPurpose",
+          "line": 15,
+          "declaration": "public enum RunPurpose\n{"
+        },
+        {
+          "name": "WorkflowIdentity",
+          "line": 22,
+          "declaration": "public sealed record WorkflowIdentity(\n    Guid RunId,\n    Guid TrayId,\n    string StationId,\n    string LineId,\n    string RequestId,\n    string ScenarioId,\n    IReadOnlyList<string> OccupiedSlots,\n    DateTimeOffset StartedAt,\n    string ActorId,\n    RunPurpose Purpose,\n    string PublicConfigRevision,\n    string BudgetRevision,\n    string SimulationConfigRevision)\n{"
+        }
+      ],
+      "mappingBasis": "impact-matrix section5 and data-model semantic purpose tables; unspecified business fields retain their actual type/null/purpose; raw fields have no compatibility shadows"
+    },
+    {
+      "path": "backend/src/Gaode.Domain/Station01/RunSnapshot.cs",
+      "sha256": "1b8e0c5dbe6174d75adfc21305b937ec7deb5e7966da16f21b6a85ac23583322",
+      "declarations": [
+        {
+          "name": "RunSnapshot",
+          "line": 3,
+          "declaration": "public sealed record RunSnapshot(\n    Guid RunId, string RequestId, string SubjectId, RunState State, long ObservedRevision,\n    long PersistedRevision, TerminalOutcome FinalOutcome, bool CancelRequested,\n    ActionState Action, CaptureState Capture, AlgorithmState Algorithm, SaveState Save,\n    HandoffState Handoff, string? PublicVersion, string? BudgetVersion,\n    string? SimulationVersion, IReadOnlyList<string> Events, string? ErrorCode = null,\n    WorkflowIdentity? Identity = null, bool PhysicalAlarmRaised = false,\n    bool AutomaticContinuationAllowed = false, string? PhysicalRestrictionCode = null,\n    string RecipeState = \"Unmatched\", string QualityState = \"NotEvaluated\",\n    string SortingState = \"NotStarted\", string WholeTaskState = \"NotCompleted\",\n    string? PlanRevision = null, string? RecipeBindingReference = null,\n    Guid? HandoffId = null, Guid? WholeTrayCompletionId = null,\n    Guid? ReadyForUnlockSourceMatrixId = null, Guid? UnlockObservedEventId = null,\n    StartupDiagnostic? StartupDiagnostic = null)\n{"
+        },
+        {
+          "name": "RecipeSelectionProjection",
+          "line": 50,
+          "declaration": "public sealed record RecipeSelectionProjection(string RecipeId, string Version,\n    string CatalogDigest, string ScenarioId, string Purpose);"
+        },
+        {
+          "name": "RecipeExecutionProjection",
+          "line": 53,
+          "declaration": "public sealed record RecipeExecutionProjection(string RecipeId, string Version,\n    string CatalogDigest, string PlanRevision, string ScenarioId, string Route);"
+        },
+        {
+          "name": "RunResultProjection",
+          "line": 56,
+          "declaration": "public sealed record RunResultProjection(string Kind, string Id, string? Disposition,\n    string? ResultReference, string PlanRevision, Guid? CommittedEventId,\n    string? Source, string? Quality)\n{"
+        },
+        {
+          "name": "RunMovementProjection",
+          "line": 73,
+          "declaration": "public sealed record RunMovementProjection(string EntityId, int PhysicalSlotIndex,\n    string SourcePointRef, string TargetPointRef, string State, Guid OperationId,\n    Guid CommittedEventId);"
+        },
+        {
+          "name": "StartupDiagnostic",
+          "line": 77,
+          "declaration": "public sealed record StartupDiagnostic(\n    IReadOnlyList<string> ReasonCodes, string SafetyAssessment, string StopStage,\n    string Disposition, long? ConnectionEpoch, DateTimeOffset? ObservedAtUtc,\n    string Source, StartupReliableFeedback? ReliableFeedback = null);"
+        },
+        {
+          "name": "StartupReliableFeedback",
+          "line": 82,
+          "declaration": "public sealed record StartupReliableFeedback(bool Connected, bool Automatic,\n    bool SafetyClear, ushort AlarmBits, ushort AlarmSeverity, bool PlcSystemFault);"
+        },
+        {
+          "name": "ManualFlipProjection",
+          "line": 85,
+          "declaration": "public sealed record ManualFlipProjection(string EntityId, int StepSequence,\n    int TargetFace, DateTimeOffset DeadlineUtc, string FaceSource);"
+        },
+        {
+          "name": "FailedCommandRecoveryProjection",
+          "line": 87,
+          "declaration": "public sealed record FailedCommandRecoveryProjection(Guid OperationId, Guid ActionId,\n    long FailedEpoch, string Role, DateTimeOffset DeadlineUtc, long? ResetEpoch, Guid? CheckId);"
+        },
+        {
+          "name": "ResultContextProjection",
+          "line": 90,
+          "declaration": "public sealed record ResultContextProjection(string Kind, string Id, int? LocalFace, int? StepSequence);"
+        },
+        {
+          "name": "InspectionParameterProjection",
+          "line": 91,
+          "declaration": "public sealed record InspectionParameterProjection(string Name, object Value, string Kind, string Reference, string? Unit = null);"
+        },
+        {
+          "name": "DetailAvailabilityProjection",
+          "line": 92,
+          "declaration": "public sealed record DetailAvailabilityProjection(string Parameters, string Defects, string Confidence, string Measurement);"
+        },
+        {
+          "name": "InspectionResultProjection",
+          "line": 93,
+          "declaration": "public sealed record InspectionResultProjection(string InspectionId, int? StepSequence, int? LocalFace,\n    string? BusinessCamera, Guid? CaptureId, Guid? CallId, IReadOnlyList<Guid> MediaIds,\n    string? ItemId, string? ItemName, string? Rule, string? TechnicalState, string? Disposition,\n    IReadOnlyList<string> ReasonCodes, IReadOnlyList<InspectionParameterProjection> Parameters,\n    DetailAvailabilityProjection DetailAvailability, string ResultReference, Guid CommittedEventId,\n    long CommittedRevision, string Source, string Quality)\n{"
+        },
+        {
+          "name": "FaultRestartProjection",
+          "line": 108,
+          "declaration": "public sealed record FaultRestartProjection(Guid FaultRunId, Guid? ResetId, Guid? InitialCheckId,\n    string Status, Guid? NewRunId, IReadOnlyList<string> BlockedReasons, long CommittedRevision);"
+        }
+      ],
+      "mappingBasis": "impact-matrix section5 and data-model semantic purpose tables; unspecified business fields retain their actual type/null/purpose; raw fields have no compatibility shadows"
+    },
+    {
+      "path": "backend/src/Gaode.Domain/Station01/RunState.cs",
+      "sha256": "f010168793089b23d0d4f0963d55cc8b05dd1f97fc350a518c0f187687cb85a0",
+      "declarations": [
+        {
+          "name": "RunState",
+          "line": 3,
+          "declaration": "public enum RunState\n{"
+        },
+        {
+          "name": "TerminalOutcome",
+          "line": 13,
+          "declaration": "public enum TerminalOutcome {"
+        },
+        {
+          "name": "ActionState",
+          "line": 14,
+          "declaration": "public enum ActionState {"
+        },
+        {
+          "name": "CaptureState",
+          "line": 15,
+          "declaration": "public enum CaptureState {"
+        },
+        {
+          "name": "AlgorithmState",
+          "line": 16,
+          "declaration": "public enum AlgorithmState {"
+        },
+        {
+          "name": "SaveState",
+          "line": 17,
+          "declaration": "public enum SaveState {"
+        },
+        {
+          "name": "HandoffState",
+          "line": 18,
+          "declaration": "public enum HandoffState {"
+        },
+        {
+          "name": "StepCompleteness",
+          "line": 19,
+          "declaration": "public enum StepCompleteness {"
+        },
+        {
+          "name": "RunStateRules",
+          "line": 21,
+          "declaration": "public static class RunStateRules\n{"
+        }
+      ],
+      "mappingBasis": "impact-matrix section5 and data-model semantic purpose tables; unspecified business fields retain their actual type/null/purpose; raw fields have no compatibility shadows"
+    },
+    {
+      "path": "backend/src/Gaode.Domain/Station01/SortingMappingContracts.cs",
+      "sha256": "33639788b4349e2d94c5311561289e4a35416da86462eb38b0bb533cfe834047",
+      "declarations": [
+        {
+          "name": "SortingActionPlan",
+          "line": 5,
+          "declaration": "public sealed record SortingActionPlan(\n    Guid RunId,\n    Guid TrayId,\n    string RecipePlanVersion,\n    int Sequence,\n    string ObjectId,\n    FixedPoint Position,\n    string Classification,\n    Guid OperationId,\n    long ConnectionEpoch,\n    string SlotId,\n    string? MemberId,\n    string Disposition = \"NG\")\n{"
+        },
+        {
+          "name": "SortingMappingFailure",
+          "line": 28,
+          "declaration": "public sealed record SortingMappingFailure(\n    Guid RunId,\n    Guid TrayId,\n    string RecipePlanVersion,\n    IReadOnlyList<string> MissingObjectIds,\n    IReadOnlyList<string> DuplicateObjectIds,\n    IReadOnlyList<string> AmbiguousObjectIds,\n    string Reason)\n{"
+        },
+        {
+          "name": "SortingMappingResult",
+          "line": 45,
+          "declaration": "public sealed record SortingMappingResult(\n    bool IsComplete,\n    IReadOnlyList<SortingActionPlan> Actions,\n    SortingMappingFailure? Failure,\n    Guid MappingOperationId,\n    long ConnectionEpoch)\n{"
+        }
+      ],
+      "mappingBasis": "impact-matrix section5 and data-model semantic purpose tables; unspecified business fields retain their actual type/null/purpose; raw fields have no compatibility shadows"
+    },
+    {
+      "path": "backend/src/Gaode.Domain/Station01/StageOperationContracts.cs",
+      "sha256": "0a76076eae2efa3d9865416262b58faf204549eaabb5ba25062367ebe0e461fc",
+      "declarations": [
+        {
+          "name": "IdempotencyDecision",
+          "line": 3,
+          "declaration": "public enum IdempotencyDecision {"
+        },
+        {
+          "name": "StageOperationIdentity",
+          "line": 5,
+          "declaration": "public sealed record StageOperationIdentity(\n    Guid RunId,\n    Guid TrayId,\n    Guid StationId,\n    Guid LineId,\n    string Stage,\n    Guid OperationId,\n    int Attempt,\n    string PayloadDigest)\n{"
+        },
+        {
+          "name": "StageIdempotencyRegistry",
+          "line": 21,
+          "declaration": "public sealed class StageIdempotencyRegistry\n{"
+        },
+        {
+          "name": "WholeTrayCompletionReference",
+          "line": 44,
+          "declaration": "public sealed record WholeTrayCompletionReference(\n    Guid CompletionId,\n    Guid RunId,\n    Guid TrayId,\n    Guid StationId,\n    Guid LineId,\n    string PlanRevision,\n    Guid DetectionCompletedEventId,\n    Guid SortingCompletedEventId,\n    Guid UnloadPreparationCompletedEventId)\n{"
+        },
+        {
+          "name": "FinalUnloadCompletion",
+          "line": 62,
+          "declaration": "public sealed record FinalUnloadCompletion(\n    Guid FinalCompletionId,\n    WholeTrayCompletionReference WholeTray,\n    Guid UnlockObservedEventId,\n    string OperatorId,\n    DateTimeOffset ConfirmedAtUtc,\n    string ConfirmationStage,\n    bool Confirmed,\n    string Reason,\n    Guid FinalSourceMatrixId)\n{"
+        }
+      ],
+      "mappingBasis": "impact-matrix section5 and data-model semantic purpose tables; unspecified business fields retain their actual type/null/purpose; raw fields have no compatibility shadows"
+    },
+    {
+      "path": "backend/src/Gaode.Host/Api/CommittedResultProjection.cs",
+      "sha256": "1b7668416e70fe3fe79ee7c043be080422f87d62429c4d85428b41e26fbadf02",
+      "declarations": [
+        {
+          "name": "CommittedResultProjection",
+          "line": 9,
+          "declaration": "public static class CommittedResultProjection\n{"
+        }
+      ],
+      "mappingBasis": "impact-matrix section5 and data-model semantic purpose tables; unspecified business fields retain their actual type/null/purpose; raw fields have no compatibility shadows"
+    },
+    {
+      "path": "backend/src/Gaode.Host/Api/ConfigurationEndpoints.cs",
+      "sha256": "be7865f38945c7dcfb4102c3a6d90825e481d3a0fe01aeb72d1fb4b7f31650f2",
+      "declarations": [
+        {
+          "name": "PublicConfigValidateRequest",
+          "line": 9,
+          "declaration": "public sealed record PublicConfigValidateRequest(ConfigReference PublicConfigRef,\n    ConfigReference BudgetRef, ConfigReference? SimulationRef);"
+        },
+        {
+          "name": "ConfigurationEndpoints",
+          "line": 12,
+          "declaration": "public static class ConfigurationEndpoints\n{"
+        }
+      ],
+      "mappingBasis": "impact-matrix section5 and data-model semantic purpose tables; unspecified business fields retain their actual type/null/purpose; raw fields have no compatibility shadows"
+    },
+    {
+      "path": "backend/src/Gaode.Host/Api/ControlEndpoints.cs",
+      "sha256": "7d1d95e1d96c9384c7c28ab73143ba8e80399667998bf8e7eaec3cedd7c39d84",
+      "declarations": [
+        {
+          "name": "ControlRequest",
+          "line": 10,
+          "declaration": "public sealed record ControlRequest(string RequestId, long ExpectedRevision, string? Reason);"
+        },
+        {
+          "name": "RecoveryCheckRequest",
+          "line": 11,
+          "declaration": "public sealed record RecoveryCheckRequest(string RequestId, long ExpectedRevision, bool SameTray,\n    bool LoadingUnchanged, bool SnapshotStillApplicable, IReadOnlyList<string>? EvidenceRefs, string? Reason);"
+        },
+        {
+          "name": "ContinueRequest",
+          "line": 13,
+          "declaration": "public sealed record ContinueRequest(string RequestId, long ExpectedRevision, Guid CheckId);"
+        },
+        {
+          "name": "ManualFlipCompleteRequest",
+          "line": 14,
+          "declaration": "public sealed record ManualFlipCompleteRequest(string RequestId, long ExpectedRevision,\n    string EntityId, int StepSequence, int TargetFace);"
+        },
+        {
+          "name": "ControlledRecoveryDecisionRequest",
+          "line": 16,
+          "declaration": "public sealed record ControlledRecoveryDecisionRequest(string RequestId, long ExpectedRevision,\n    Guid TrayId, string OriginalTaskId, Guid? OriginalOperationId, string OriginalStage,\n    ControlledRecoveryAction Decision, string Reason, IReadOnlyList<string> EvidenceReferences);"
+        },
+        {
+          "name": "ControlEndpoints",
+          "line": 20,
+          "declaration": "public static class ControlEndpoints\n{"
+        }
+      ],
+      "mappingBasis": "impact-matrix section5 and data-model semantic purpose tables; unspecified business fields retain their actual type/null/purpose; raw fields have no compatibility shadows"
+    },
+    {
+      "path": "backend/src/Gaode.Host/Api/MediaEndpoints.cs",
+      "sha256": "00dfdc67ae6e91fb29cbd3fe7b1729d4530b0b7a0002f10d7173bc07fe7ffddd",
+      "declarations": [
+        {
+          "name": "MediaEndpoints",
+          "line": 5,
+          "declaration": "public static class MediaEndpoints\n{"
+        }
+      ],
+      "mappingBasis": "impact-matrix section5 and data-model semantic purpose tables; unspecified business fields retain their actual type/null/purpose; raw fields have no compatibility shadows"
+    },
+    {
+      "path": "backend/src/Gaode.Host/Api/QueryEndpoints.cs",
+      "sha256": "ff11742d9ddb154789ee53277c6ab4c08a9cec989e167cad3ae04e146f99779b",
+      "declarations": [
+        {
+          "name": "QueryEndpoints",
+          "line": 18,
+          "declaration": "public static class QueryEndpoints\n{"
+        }
+      ],
+      "mappingBasis": "impact-matrix section5 and data-model semantic purpose tables; unspecified business fields retain their actual type/null/purpose; raw fields have no compatibility shadows"
+    },
+    {
+      "path": "backend/src/Gaode.Host/Api/RecipeEndpoints.cs",
+      "sha256": "b3a67da53767229486a78f49156c7cd24e215519bdfe77b98854f2413385f926",
+      "declarations": [
+        {
+          "name": "RecipePlanRequest",
+          "line": 10,
+          "declaration": "public sealed record RecipePlanRequest(Guid RunId, string ScenarioId,\n    IReadOnlyList<string> OccupiedSlots, int InitialCoordinateEpoch = 1);"
+        },
+        {
+          "name": "RecipeEndpoints",
+          "line": 13,
+          "declaration": "public static class RecipeEndpoints\n{"
+        }
+      ],
+      "mappingBasis": "impact-matrix section5 and data-model semantic purpose tables; unspecified business fields retain their actual type/null/purpose; raw fields have no compatibility shadows"
+    },
+    {
+      "path": "backend/src/Gaode.Host/Api/RunEndpoints.cs",
+      "sha256": "969dbcf85b9faa664dbdb653da0fbdfc61d430417a43879285081b020d986122",
+      "declarations": [
+        {
+          "name": "RunEndpoints",
+          "line": 12,
+          "declaration": "public static class RunEndpoints\n{"
+        }
+      ],
+      "mappingBasis": "impact-matrix section5 and data-model semantic purpose tables; unspecified business fields retain their actual type/null/purpose; raw fields have no compatibility shadows"
+    },
+    {
+      "path": "backend/src/Gaode.Host/Api/RunMediaCatalog.cs",
+      "sha256": "d84f1067bb301cbee7cddef6f7ff9aef5313a67d4d922cdf0c977c886004567e",
+      "declarations": [
+        {
+          "name": "RunMediaItemApi",
+          "line": 8,
+          "declaration": "public sealed record RunMediaItemApi(Guid MediaId, Guid CaptureId, string Role,\n    int? StepSequence, string? BusinessCamera, long CommittedRevision,\n    DateTimeOffset CommittedAtUtc, string Readiness, string Source,\n    string? ObjectId = null, int? LocalFace = null, int? HeightRound = null)\n{"
+        },
+        {
+          "name": "RunMediaCatalogApi",
+          "line": 16,
+          "declaration": "public sealed record RunMediaCatalogApi(Guid RunId, IReadOnlyList<RunMediaItemApi> Items);"
+        },
+        {
+          "name": "RunMediaCatalog",
+          "line": 18,
+          "declaration": "public static class RunMediaCatalog\n{"
+        }
+      ],
+      "mappingBasis": "impact-matrix section5 and data-model semantic purpose tables; unspecified business fields retain their actual type/null/purpose; raw fields have no compatibility shadows"
+    },
+    {
+      "path": "backend/src/Gaode.Host/Api/Station01ApiContracts.cs",
+      "sha256": "c2d36ed213d695b85093ea4bc90de3a2d0f7ff837c2c3ea304c26c5833b43d05",
+      "declarations": [
+        {
+          "name": "ErrorContract",
+          "line": 6,
+          "declaration": "public sealed record ErrorContract(\n    string Code,\n    string Message,\n    string Category,\n    string TraceId,\n    bool Retryable,\n    object? Details = null,\n    long? CurrentRevision = null);"
+        },
+        {
+          "name": "ApiCommandReceipt",
+          "line": 15,
+          "declaration": "public sealed record ApiCommandReceipt(\n    Guid CommandId,\n    Guid? RunId,\n    string? RequestId,\n    bool RequestAccepted,\n    bool AdmissionClosed,\n    string StopState,\n    string ReceiptDurability,\n    string TerminalDecision,\n    Guid? DecisionWriteId,\n    bool? Applied,\n    string? StatusUrl,\n    ErrorContract? Error = null);"
+        },
+        {
+          "name": "AlgorithmAvailability",
+          "line": 29,
+          "declaration": "public sealed record AlgorithmAvailability(string State, string? Source, string? Reason);"
+        },
+        {
+          "name": "ManualTrayRemovalApiRequest",
+          "line": 31,
+          "declaration": "public sealed record ManualTrayRemovalApiRequest(\n    string RequestId,\n    long ExpectedRevision,\n    string Reason);"
+        },
+        {
+          "name": "StageEvidenceApi",
+          "line": 36,
+          "declaration": "public sealed record StageEvidenceApi(\n    Guid EventId,\n    string Stage,\n    string EventType,\n    Guid OperationId,\n    int Attempt,\n    long ConnectionEpoch,\n    string PlanRevision,\n    string Source,\n    string Quality,\n    string? ErrorCode,\n    long Sequence,\n    DateTimeOffset PersistedAtUtc,\n    DateTimeOffset? StageStartedAtUtc,\n    DateTimeOffset? StageDeadlineAtUtc,\n    System.Text.Json.JsonElement? PositionEvidence = null);"
+        },
+        {
+          "name": "ComponentSourceMatrixApi",
+          "line": 53,
+          "declaration": "public sealed record ComponentSourceMatrixApi(\n    Guid MatrixId,\n    string SchemaVersion,\n    Guid RunId,\n    Guid TrayId,\n    string PlanRevision,\n    string Milestone,\n    string Scope,\n    string MatrixDigest,\n    IReadOnlyList<ComponentEvidence> Components,\n    IReadOnlyList<string> BlockedComponents,\n    DateTimeOffset CreatedAtUtc);"
+        },
+        {
+          "name": "Station01RunEvidenceApi",
+          "line": 66,
+          "declaration": "public sealed record Station01RunEvidenceApi(\n    Guid RunId,\n    Guid? TrayId,\n    long PersistedRevision,\n    IReadOnlyList<StageEvidenceApi> Stages,\n    Guid? WholeTrayCompletionId,\n    ComponentSourceMatrixApi? ReadyForUnlockSourceMatrix,\n    ComponentSourceMatrixApi? FinalSourceMatrix,\n    string FinalResult,\n    IReadOnlyList<MotionEvidenceApi>? MotionEvidence = null);"
+        },
+        {
+          "name": "StatusSnapshot",
+          "line": 77,
+          "declaration": "public sealed record StatusSnapshot(\n    string SchemaVersion,\n    long Revision,\n    string ETag,\n    string Host,\n    object? Plc,\n    object? Camera,\n    object? Storage,\n    object? Maintenance,\n    AlgorithmAvailability Algorithm,\n    object? CurrentRun,\n    IReadOnlyList<string> Capabilities,\n    DateTimeOffset ObservedAt,\n    string? Mode = null,\n    string? Stage = null,\n    string? Recipe = null,\n    string? Quality = null,\n    int ActiveRuns = 0);"
+        },
+        {
+          "name": "NotificationEnvelope",
+          "line": 96,
+          "declaration": "public sealed record NotificationEnvelope(\n    string EventType,\n    string SchemaVersion,\n    Guid RunId,\n    long Revision,\n    long PersistedRevision,\n    IReadOnlyList<string> ChangedFields,\n    object? Summary,\n    DateTimeOffset OccurredAt);"
+        },
+        {
+          "name": "MediaReference",
+          "line": 106,
+          "declaration": "public sealed record MediaReference(\n    Guid MediaId,\n    Guid RunId,\n    Guid CaptureId,\n    string Kind,\n    string ContentType,\n    string ETag,\n    string Readiness,\n    string Source,\n    string Purpose,\n    long ByteLength);"
+        },
+        {
+          "name": "Station01ApiResults",
+          "line": 118,
+          "declaration": "public static class Station01ApiResults\n{"
+        },
+        {
+          "name": "MotionEvidenceApi",
+          "line": 133,
+          "declaration": "public sealed record MotionEvidenceApi(Guid WriteId, DateTimeOffset CommittedAtUtc, System.Text.Json.JsonElement Facts);"
+        }
+      ],
+      "mappingBasis": "impact-matrix section5 and data-model semantic purpose tables; unspecified business fields retain their actual type/null/purpose; raw fields have no compatibility shadows"
+    },
+    {
+      "path": "backend/src/Gaode.Host/Api/Station01Authorization.cs",
+      "sha256": "e7b49c3d05d830512ef37ab29e7db162ed37c4713d9f763905eededdc2a1da30",
+      "declarations": [
+        {
+          "name": "Station01Authorization",
+          "line": 6,
+          "declaration": "public static class Station01Authorization\n{"
+        }
+      ],
+      "mappingBasis": "impact-matrix section5 and data-model semantic purpose tables; unspecified business fields retain their actual type/null/purpose; raw fields have no compatibility shadows"
+    },
+    {
+      "path": "backend/src/Gaode.Host/Api/Station01ErrorMapping.cs",
+      "sha256": "1f08c826479d5e37646a1b26798db44b9301238f46a4d996fb76067ff80d9bfd",
+      "declarations": [
+        {
+          "name": "Station01ErrorMapping",
+          "line": 5,
+          "declaration": "public static class Station01ErrorMapping\n{"
+        }
+      ],
+      "mappingBasis": "impact-matrix section5 and data-model semantic purpose tables; unspecified business fields retain their actual type/null/purpose; raw fields have no compatibility shadows"
+    },
+    {
+      "path": "backend/src/Gaode.Host/Api/Station01Hub.cs",
+      "sha256": "a011f220cacc36ff2e3eb6407370d51f0d4c498cb42d0ff2071444f6bea9c741",
+      "declarations": [
+        {
+          "name": "Station01Hub",
+          "line": 5,
+          "declaration": "public sealed class Station01Hub : Hub;"
+        }
+      ],
+      "mappingBasis": "impact-matrix section5 and data-model semantic purpose tables; unspecified business fields retain their actual type/null/purpose; raw fields have no compatibility shadows"
+    },
+    {
+      "path": "backend/src/Gaode.Host/Api/Station01NotificationService.cs",
+      "sha256": "52104f635a51ba07c610336e1396e504f86fcce9e3531f2bc373c93eefcc0485",
+      "declarations": [
+        {
+          "name": "Station01NotificationService",
+          "line": 9,
+          "declaration": "public sealed class Station01NotificationService : BackgroundService\n{"
+        }
+      ],
+      "mappingBasis": "impact-matrix section5 and data-model semantic purpose tables; unspecified business fields retain their actual type/null/purpose; raw fields have no compatibility shadows"
+    },
+    {
+      "path": "backend/src/Gaode.Host/Api/TestAuthenticationHandler.cs",
+      "sha256": "38e5de8a733e7e9f4f24eedb5dc1284016a974209ed3c33a3055f394d965bceb",
+      "declarations": [
+        {
+          "name": "TestAuthenticationHandler",
+          "line": 8,
+          "declaration": "public sealed class TestAuthenticationHandler(IOptionsMonitor<AuthenticationSchemeOptions> options,\n    ILoggerFactory logger, UrlEncoder encoder, IConfiguration config)\n    : AuthenticationHandler<AuthenticationSchemeOptions>(options, logger, encoder)\n{"
+        }
+      ],
+      "mappingBasis": "impact-matrix section5 and data-model semantic purpose tables; unspecified business fields retain their actual type/null/purpose; raw fields have no compatibility shadows"
+    }
+  ],
+  "targetContract": "specs/009-plc-protocol-isolation/data-model.md sections1-4; contracts/business-device.md B01-B06",
+  "forbiddenMigration": "Renaming protocol fields, enum casts or DTO wrapping is not a semantic interface. T017 must replace current raw declarations; registry does not approve them.",
+  "allowedPublicShapes": {
+    "Gaode.Application.Ports.CaptureRole": [
+      "Detection",
+      "E",
+      "F",
+      "ThreeD"
+    ],
+    "Gaode.Application.Ports.CaptureEventKind": [
+      "Accepted",
+      "Capturing",
+      "Ended",
+      "Failed",
+      "MediaTaken",
+      "Unknown"
+    ],
+    "Gaode.Application.Ports.DetectionCaptureSettings": [
+      "BrightnessPercent",
+      "ExposureUs",
+      "Gain",
+      "LightChannel",
+      "ProfileId",
+      "RoiPixels",
+      "SettleMs"
+    ],
+    "Gaode.Application.Ports.CaptureRequest": [
+      "CameraBindingId",
+      "CaptureId",
+      "DetectionSettings",
+      "Envelope",
+      "IntentWriteId",
+      "LightBindingId",
+      "MaxBytes",
+      "PointId",
+      "PointVersion",
+      "Role",
+      "ScopeId",
+      "ScopeVersion"
+    ],
+    "Gaode.Application.Ports.CaptureEvent": [
+      "Buffer",
+      "ConnectionEpoch",
+      "ErrorCode",
+      "Fact",
+      "Format",
+      "Kind",
+      "Request"
+    ],
+    "Gaode.Application.Ports.MediaRef": [
+      "ByteLength",
+      "CaptureId",
+      "ContentType",
+      "ETag",
+      "Format",
+      "Kind",
+      "MediaId",
+      "PointVersion",
+      "Purpose",
+      "Readiness",
+      "RelativeKey",
+      "RunId",
+      "ScopeVersion",
+      "Source",
+      "StorageState"
+    ],
+    "Gaode.Application.Ports.AlgorithmRole": [
+      "Detection",
+      "EDecode",
+      "FDecode",
+      "Height",
+      "TrayPose"
+    ],
+    "Gaode.Application.Ports.AlgorithmEventKind": [
+      "Accepted",
+      "Failed",
+      "InputReleased",
+      "Result",
+      "Running",
+      "WorkerExited"
+    ],
+    "Gaode.Application.Ports.WorkerTargetIdentity": [
+      "Camera",
+      "HeightRound",
+      "LocalFace",
+      "ObjectId",
+      "StageId"
+    ],
+    "Gaode.Application.Ports.AlgorithmRequest": [
+      "CallId",
+      "CapabilityId",
+      "CapabilityVersion",
+      "CaptureId",
+      "Envelope",
+      "InputIdentities",
+      "Inputs",
+      "IntentWriteId",
+      "InvocationBasis",
+      "ObservationContext",
+      "ParametersVersion",
+      "Role",
+      "TargetIdentity"
+    ],
+    "Gaode.Application.Ports.AlgorithmEvent": [
+      "DetectionDisposition",
+      "ErrorCode",
+      "HeightSamples",
+      "Kind",
+      "Observation",
+      "RawCodes",
+      "Request",
+      "WorkerSessionId"
+    ],
+    "Gaode.Application.Ports.AcquisitionContract": [
+      "Matches",
+      "MatchesFact",
+      "RequestedSettingsDigest"
+    ],
+    "Gaode.Application.Ports.PortEnvelope": [
+      "Attempt",
+      "ClockId",
+      "ConfigVersion",
+      "DueTick",
+      "IsValid",
+      "OperationId",
+      "Purpose",
+      "RunId",
+      "SessionId",
+      "SnapshotId",
+      "StartTick"
+    ],
+    "Gaode.Application.Ports.DeviceEventKind": [
+      "Accepted",
+      "ButtonPressed",
+      "ClampCompleted",
+      "ClampStarted",
+      "Completed",
+      "Executing",
+      "Failed",
+      "Stopped",
+      "UnknownHeld"
+    ],
+    "Gaode.Application.Ports.DeviceEvent": [
+      "ActionId",
+      "ConnectionEpoch",
+      "DeviceObservedUtc",
+      "Envelope",
+      "ErrorCode",
+      "Evidence",
+      "ExecutionOrigin",
+      "Kind"
+    ],
+    "Gaode.Application.Ports.MoveRequest": [
+      "ActionId",
+      "BindingId",
+      "Envelope",
+      "FlipPreparation",
+      "IntentWriteId",
+      "Role",
+      "Target"
+    ],
+    "Gaode.Application.Ports.DeviceContract": [
+      "Matches"
+    ],
+    "Gaode.Application.Ports.AlgorithmDispatch": [
+      "Exited"
+    ],
+    "Gaode.Application.Ports.AlgorithmNotDispatchedException": [
+      "CallId",
+      "Evidence",
+      "evidence"
+    ],
+    "Gaode.Application.Ports.IAlgorithmPort": [
+      "Origin",
+      "CallCount",
+      "RequestAsync"
+    ],
+    "Gaode.Application.Ports.ICapturePort": [
+      "CameraOrigin",
+      "LightOrigin",
+      "ConnectionEpoch",
+      "MediaSource",
+      "RequestCaptureAsync",
+      "TriggerCount"
+    ],
+    "Gaode.Application.Ports.IMediaStore": [
+      "IsReady",
+      "Lease",
+      "OpenReadAsync",
+      "ReserveCapture",
+      "SaveAsync"
+    ],
+    "Gaode.Application.Ports.IMotionPort": [
+      "RequestMoveAsync"
+    ],
+    "Gaode.Application.Ports.IPlcActionPort": [
+      "PrepareZonesAsync",
+      "RequestPalletUnlockAsync",
+      "RequestStartAsync",
+      "RequestStopAsync"
+    ],
+    "Gaode.Application.Ports.IPlcResetPort": [
+      "ReadInitialStateAsync",
+      "ResetAsync"
+    ],
+    "Gaode.Application.Ports.IPlcStatePort": [
+      "Observe"
+    ],
+    "Gaode.Application.Ports.IPublicConfiguration": [
+      "LoadBudget",
+      "LoadPublic",
+      "LoadSimulation",
+      "SavePublicPositions"
+    ],
+    "Gaode.Application.Ports.IReservedIntegration": [
+      "Name",
+      "StatusAsync"
+    ],
+    "Gaode.Application.Ports.IStageHandoffQuery": [
+      "GetCommittedV2Async",
+      "GetHandoffAsync"
+    ],
+    "Gaode.Application.Ports.ITraceQuery": [
+      "GetRunAsync",
+      "GetUnfinishedRunsAsync",
+      "GetWriteAsync",
+      "GetWritesAsync"
+    ],
+    "Gaode.Application.Ports.ITraceWriter": [
+      "ReconcileAsync",
+      "SubmitCritical"
+    ],
+    "Gaode.Application.Ports.WriteKind": [
+      "ActionFact",
+      "ActionIntent",
+      "AlgorithmFact",
+      "AlgorithmIntent",
+      "Audit",
+      "Cancel",
+      "CaptureFact",
+      "CaptureIntent",
+      "Complete",
+      "HandoffV2",
+      "Media",
+      "RunCreated",
+      "StartIntent"
+    ],
+    "Gaode.Application.Ports.CommitState": [
+      "Committed",
+      "CommitUnknown",
+      "ConditionRejected",
+      "Failed",
+      "Queued"
+    ],
+    "Gaode.Application.Ports.WriteBatch": [
+      "CandidateTerminal",
+      "ContextJson",
+      "ExpectedRevision",
+      "ExpectedTerminal",
+      "HandoffId",
+      "HandoffJson",
+      "HandoffV2Json",
+      "Kind",
+      "PayloadDigest",
+      "PayloadJson",
+      "RequestId",
+      "RunId",
+      "StateAfter",
+      "SubjectId",
+      "TrayId",
+      "WriteId"
+    ],
+    "Gaode.Application.Ports.CommitReceipt": [
+      "ActualTerminal",
+      "CommittedRevision",
+      "CommittedUtc",
+      "ErrorCode",
+      "RecordKind",
+      "RunId",
+      "State",
+      "WriteId"
+    ],
+    "Gaode.Application.Ports.QueuedWrite": [
+      "Completion",
+      "QueuedReceipt"
+    ],
+    "Gaode.Application.Ports.PersistedRun": [
+      "CancelRequested",
+      "ContextJson",
+      "RequestId",
+      "Revision",
+      "RunId",
+      "State",
+      "SubjectId",
+      "Terminal",
+      "TerminalRevision"
+    ],
+    "Gaode.Application.Ports.PersistedWrite": [
+      "Kind",
+      "PayloadDigest",
+      "PayloadJson",
+      "Revision",
+      "RunId",
+      "State",
+      "WriteId"
+    ],
+    "Gaode.Application.Ports.PersistedHandoff": [
+      "HandoffId",
+      "Json",
+      "Revision",
+      "RunId",
+      "Terminal",
+      "WriteId"
+    ],
+    "Gaode.Application.Ports.AlgorithmIntentPayload": [
+      "Attempt",
+      "BudgetMs",
+      "CallId",
+      "CapabilityId",
+      "CapabilityVersion",
+      "CaptureId",
+      "ClockId",
+      "DueTick",
+      "ExpectedComponentVersion",
+      "InputMediaIds",
+      "InvocationBasis",
+      "OperationId",
+      "ParametersVersion",
+      "PublicVersion",
+      "RunId",
+      "ScopeVersion",
+      "SessionId",
+      "StartTick"
+    ],
+    "Gaode.Application.Ports.RunCreatedPayload": [
+      "BudgetDigest",
+      "BudgetJson",
+      "CanonicalRequest",
+      "CommandId",
+      "ContextJson",
+      "PublicDigest",
+      "PublicJson",
+      "RequestId",
+      "SimulationDigest",
+      "SimulationJson",
+      "SnapshotId",
+      "SubjectId"
+    ],
+    "Gaode.Application.Ports.OperationIntentPayload": [
+      "ActionId",
+      "Attempt",
+      "CaptureId",
+      "IntentWriteId",
+      "Kind",
+      "OperationId",
+      "SnapshotId",
+      "TargetOrScope"
+    ],
+    "Gaode.Application.Ports.AlgorithmFactPayload": [
+      "AcceptedTick",
+      "CallId",
+      "CaptureId",
+      "Decision",
+      "DecodedCode",
+      "DispatchEvidence",
+      "DispatchTick",
+      "Origin",
+      "RawResultJson",
+      "ResponseReceived",
+      "RunId",
+      "State",
+      "WorkerSessionId"
+    ],
+    "Gaode.Application.Ports.PersistenceContract": [
+      "IsValid"
+    ],
+    "Gaode.Application.Ports.DetectionResultKind": [
+      "Accepted",
+      "Completed",
+      "Disconnected",
+      "Executing",
+      "Failed",
+      "TimedOut",
+      "UnknownHeld"
+    ],
+    "Gaode.Application.Ports.StageActionKind": [
+      "Accepted",
+      "Completed",
+      "Disconnected",
+      "Executing",
+      "Failed",
+      "TimedOut",
+      "UnknownHeld"
+    ],
+    "Gaode.Application.Ports.WholeTrayWorkflowStage": [
+      "Detection",
+      "ManualRemovalAdmission",
+      "ManualTrayRemovalConfirmation",
+      "RecipeApplication",
+      "Sorting",
+      "UnloadPreparation",
+      "UnlockObservation"
+    ],
+    "Gaode.Application.Ports.PlcWorkflowStage": [
+      "Sorting",
+      "UnloadPreparation",
+      "UnlockObservation",
+      "TransferToRotation",
+      "Rotate"
+    ],
+    "Gaode.Application.Ports.ResultSource": [
+      "Fallback",
+      "HostDerived",
+      "Real",
+      "Simulated",
+      "Test",
+      "Virtual"
+    ],
+    "Gaode.Application.Ports.ResultQuality": [
+      "Degraded",
+      "Derived",
+      "Measured",
+      "Unknown"
+    ],
+    "Gaode.Application.Ports.StageFailureClass": [
+      "DetectionAlgorithmTimeout",
+      "DetectionCommunication",
+      "PlcPhysicalDispatchUnknown",
+      "PlcPreDispatchCommunication"
+    ],
+    "Gaode.Application.Ports.DetectionObjectExpectation": [
+      "ExpectedClassification",
+      "IsApprovedPosition",
+      "IsValid",
+      "ObjectId",
+      "Position"
+    ],
+    "Gaode.Application.Ports.DetectionStepTarget": [
+      "Camera",
+      "CoordinateEpoch",
+      "IsValid",
+      "LocalFace",
+      "ObjectId",
+      "PhysicalSlotIndex",
+      "Point",
+      "PointRef",
+      "ResolutionKind",
+      "ScanPoseId",
+      "SlotId",
+      "Source",
+      "StageId",
+      "StepSequence",
+      "ZBasis"
+    ],
+    "Gaode.Application.Ports.DetectionRequest": [
+      "Attempt",
+      "ClockId",
+      "ComponentEvidenceReferences",
+      "ConnectionEpoch",
+      "CriticalSaveBudgetMs",
+      "DeadlineUtc",
+      "ExpectedObjects",
+      "FrozenBusinessDurations",
+      "IdempotencyKey",
+      "InitialObservation",
+      "InitialObservationWriteId",
+      "InputMediaReferences",
+      "Inputs",
+      "IsValid",
+      "LineId",
+      "MotionConfiguration",
+      "OperationId",
+      "Plan",
+      "PlanRevision",
+      "Purpose",
+      "RunId",
+      "Scope",
+      "SessionId",
+      "SnapshotId",
+      "Stage",
+      "StageStartedAtUtc",
+      "StationId",
+      "Targets",
+      "TrayId"
+    ],
+    "Gaode.Application.Ports.DetectionObjectResult": [
+      "Classification",
+      "Disposition",
+      "EvidenceReferences",
+      "HandlingEvidenceReference",
+      "IsValid",
+      "ObjectId",
+      "Position",
+      "SpecialHandlingCompleted"
+    ],
+    "Gaode.Application.Ports.DetectionPortResult": [
+      "AlgorithmOrigin",
+      "CaptureFacts",
+      "EndBasisReference",
+      "ErrorCode",
+      "EvidenceBasis",
+      "EvidenceReferences",
+      "IsCorrelated",
+      "IsRealAcceptance",
+      "IsValid",
+      "Kind",
+      "LastObservation",
+      "Objects",
+      "ObservedAtUtc",
+      "PosePending",
+      "Quality",
+      "Request",
+      "ResultReference",
+      "SlotParticipation",
+      "Source"
+    ],
+    "Gaode.Application.Ports.IDetectionPort": [
+      "ExecuteAsync"
+    ],
+    "Gaode.Application.Ports.PlcStageActionRequest": [
+      "ActionParametersDigest",
+      "Attempt",
+      "ConfigSnapshotId",
+      "ConnectionEpoch",
+      "Correlation",
+      "DeadlineUtc",
+      "IdempotencyKey",
+      "IsValid",
+      "LineId",
+      "OperationId",
+      "PhysicalSlotIndex",
+      "PlanRevision",
+      "PositionTolerance",
+      "RequestedGripperId",
+      "ReservationReference",
+      "RotationTarget",
+      "RunId",
+      "SafeTarget",
+      "Scope",
+      "SortingSource",
+      "SortingTarget",
+      "Stage",
+      "StationId",
+      "TargetPurpose",
+      "TransferPurpose",
+      "TrayId",
+      "UnloadTarget",
+      "WholeTrayCompletionId",
+      "Window"
+    ],
+    "Gaode.Application.Ports.PlcStageActionResult": [
+      "ActionId",
+      "CanRetry",
+      "ConnectionEpoch",
+      "ErrorCode",
+      "Evidence",
+      "ExecutionOrigin",
+      "HasComponentEvidence",
+      "HoldsDevice",
+      "IsCompleted",
+      "IsCorrelated",
+      "IsUnknownHeld",
+      "Kind",
+      "ObservedAtUtc",
+      "Request"
+    ],
+    "Gaode.Application.Ports.IPlcStageActionPort": [
+      "ExecuteAsync"
+    ],
+    "Gaode.Application.Ports.MappingFailed": [
+      "AllowsPartialDispatch",
+      "AmbiguousObjectIds",
+      "DuplicateObjectIds",
+      "IsValid",
+      "MissingObjectIds",
+      "PlanRevision",
+      "Reason",
+      "RunId",
+      "TrayId"
+    ],
+    "Gaode.Application.Ports.UnknownHeld": [
+      "AutomaticRetryAllowed",
+      "ConnectionEpoch",
+      "ErrorCode",
+      "HoldsDevice",
+      "IsValid",
+      "OperationId",
+      "RunId",
+      "Stage",
+      "TrayId"
+    ],
+    "Gaode.Domain.Configuration.FixedPoint": [
+      "Frame",
+      "Id",
+      "Unit",
+      "Version",
+      "X",
+      "Y",
+      "Z"
+    ],
+    "Gaode.Domain.Station01.DeviceReliability": [
+      "Reliable",
+      "Stale",
+      "Unavailable"
+    ],
+    "Gaode.Domain.Station01.DeviceConnection": [
+      "Connected",
+      "Disconnected"
+    ],
+    "Gaode.Domain.Station01.OperatingMode": [
+      "Automatic",
+      "NonAutomatic",
+      "Unconfirmed"
+    ],
+    "Gaode.Domain.Station01.DeviceReadiness": [
+      "NotReady",
+      "Ready",
+      "Unconfirmed"
+    ],
+    "Gaode.Domain.Station01.SafetyAssessment": [
+      "Clear",
+      "ExplicitUnsafe",
+      "Unconfirmed"
+    ],
+    "Gaode.Domain.Station01.ClampState": [
+      "Released",
+      "Secured",
+      "Unconfirmed"
+    ],
+    "Gaode.Domain.Station01.MotionAvailability": [
+      "Available",
+      "HeldUnknown",
+      "InUse"
+    ],
+    "Gaode.Domain.Station01.AcquisitionReadiness": [
+      "Available",
+      "Unavailable",
+      "Unconfirmed"
+    ],
+    "Gaode.Domain.Station01.ManualAreaState": [
+      "Clear",
+      "Occupied",
+      "Unconfirmed"
+    ],
+    "Gaode.Domain.Station01.ManualHandlingState": [
+      "Confirmed",
+      "Unconfirmed",
+      "Waiting"
+    ],
+    "Gaode.Domain.Station01.DeviceProvider": [
+      "Real",
+      "Simulated",
+      "Unavailable",
+      "Virtual"
+    ],
+    "Gaode.Domain.Station01.EvidenceQuality": [
+      "Degraded",
+      "Derived",
+      "Measured",
+      "Unknown"
+    ],
+    "Gaode.Domain.Station01.AlarmLevel": [
+      "Critical",
+      "Fault",
+      "Unknown",
+      "Warning"
+    ],
+    "Gaode.Domain.Station01.FaceSource": [
+      "CommandDefaultManualConfirmed",
+      "DeviceObserved",
+      "Unconfirmed"
+    ],
+    "Gaode.Domain.Station01.DeviceCompletionMeaning": [
+      "CaptureAllowed",
+      "CaptureReleased",
+      "DeviceRecipeApplied",
+      "FaceEstablished",
+      "FlipCompleted",
+      "MaterialPicked",
+      "MaterialTransferred",
+      "PositionReached",
+      "PutBackCompleted",
+      "RegionsPrepared",
+      "RequestSubmitted",
+      "ResetObserved",
+      "UnloadPrepared",
+      "Unlocked"
+    ],
+    "Gaode.Domain.Station01.ExecutionOrigin": [
+      "ComponentVersion",
+      "Provider",
+      "Quality"
+    ],
+    "Gaode.Domain.Station01.DiagnosticEvidenceReference": [
+      "EvidenceId",
+      "IsValid",
+      "SchemaVersion",
+      "StoreId"
+    ],
+    "Gaode.Domain.Station01.ActionCorrelation": [
+      "ActionId",
+      "AssemblyId",
+      "Attempt",
+      "ConnectionEpoch",
+      "GroupId",
+      "IsValid",
+      "LocalFace",
+      "ObjectId",
+      "OperationId",
+      "PhysicalSlotIndex",
+      "PlanRevision",
+      "RunId",
+      "SessionId",
+      "SnapshotId",
+      "TrayId"
+    ],
+    "Gaode.Domain.Station01.ActionWindow": [
+      "ClockId",
+      "Contains",
+      "DeadlineUtc",
+      "DueTick",
+      "IsValid",
+      "StartedUtc",
+      "StartTick"
+    ],
+    "Gaode.Domain.Station01.ObservationIdentity": [
+      "ConnectionEpoch",
+      "IsValid",
+      "ObservationId",
+      "Reliability",
+      "SampleEndedUtc",
+      "SampleStartedUtc"
+    ],
+    "Gaode.Domain.Station01.PositionObservation": [
+      "ActualX",
+      "ActualY",
+      "ActualZ",
+      "AxisPurpose",
+      "CoordinateFrame",
+      "Identity",
+      "IsReliable",
+      "Origin",
+      "UnitBasis"
+    ],
+    "Gaode.Domain.Station01.FaceObservation": [
+      "ActualFace",
+      "Correlation",
+      "Identity",
+      "Source"
+    ],
+    "Gaode.Domain.Station01.AlarmAssessment": [
+      "Name",
+      "Reliability",
+      "Severity"
+    ],
+    "Gaode.Domain.Station01.DeviceObservation": [
+      "AcquisitionReadiness",
+      "Alarms",
+      "AxisPositions",
+      "Clamp",
+      "Connection",
+      "ConnectionEpoch",
+      "DiagnosticEvidenceReference",
+      "ExecutionOrigin",
+      "Face",
+      "HasReliableObservation",
+      "Identity",
+      "ManualArea",
+      "ManualHandling",
+      "MotionAvailability",
+      "OperatingMode",
+      "Position",
+      "PositionForPurpose",
+      "Readiness",
+      "ReasonCodes",
+      "Reliability",
+      "SafetyAssessment",
+      "SchemaVersion"
+    ],
+    "Gaode.Domain.Station01.PositionReachedEvidence": [
+      "Actual",
+      "Correlation",
+      "Matched",
+      "Target",
+      "Tolerance"
+    ],
+    "Gaode.Domain.Station01.DeviceActionEvidence": [
+      "AngleReached",
+      "Correlation",
+      "DiagnosticEvidenceReferences",
+      "ExecutionOrigin",
+      "Face",
+      "IsCorrelated",
+      "Meaning",
+      "Observations",
+      "Positions",
+      "SafeReached",
+      "TransitionId"
+    ],
+    "Gaode.Domain.Station01.InitialReadiness": [
+      "Blocked",
+      "Ready",
+      "Unconfirmed"
+    ],
+    "Gaode.Domain.Station01.InitialReadinessAssessment": [
+      "BlockedReasons",
+      "Observation",
+      "Passed",
+      "Readiness",
+      "ResetGeneration"
+    ],
+    "Gaode.Domain.Station01.StartupDiagnostic": [
+      "ConnectionEpoch",
+      "DiagnosticEvidenceReference",
+      "Disposition",
+      "ExecutionOrigin",
+      "ObservedAtUtc",
+      "ReasonCodes",
+      "SafetyAssessment",
+      "SemanticObservation",
+      "StopStage"
+    ],
+    "Gaode.Domain.Station01.RunState": [
+      "AwaitingManualRemoval",
+      "Blocked",
+      "CancelRequested",
+      "Cancelled",
+      "Completed",
+      "CompletedWithExceptions",
+      "ConfigurationBlocked",
+      "Created",
+      "Detection",
+      "FinalUnloadCompleted",
+      "HandoffReady",
+      "ObservedUnlocked",
+      "PauseRequested",
+      "Paused",
+      "Preparing",
+      "ReadyForRemoval",
+      "ReadyForUnlock",
+      "RecoveryRequired",
+      "Restricted",
+      "Running3D",
+      "RunningF",
+      "SavingHandoff",
+      "Sorting",
+      "StopPending",
+      "UnloadPreparation",
+      "WaitingClamp",
+      "WaitingPhysicalStart",
+      "WaitingSafety",
+      "WaitingStartAcceptance"
+    ],
+    "Gaode.Domain.Station01.TerminalOutcome": [
+      "Cancelled",
+      "Completed",
+      "CompletedWithExceptions",
+      "None"
+    ],
+    "Gaode.Domain.Station01.ActionState": [
+      "Accepted",
+      "Completed",
+      "Dispatched",
+      "Executing",
+      "Failed",
+      "IntentCommitted",
+      "IntentPending",
+      "NotRequested",
+      "Unknown"
+    ],
+    "Gaode.Domain.Station01.CaptureState": [
+      "Capturing",
+      "ContentUnavailable",
+      "Ended",
+      "Failed",
+      "MediaTaken",
+      "NotRequested",
+      "Requested",
+      "Reserved",
+      "Unknown"
+    ],
+    "Gaode.Domain.Station01.AlgorithmState": [
+      "Cancelled",
+      "DependencyFailed",
+      "Error",
+      "InvalidResult",
+      "NoResult",
+      "NotConfigured",
+      "NotIntegrated",
+      "NotReady",
+      "NotRequested",
+      "Queued",
+      "Running",
+      "Success",
+      "TimedOut"
+    ],
+    "Gaode.Application.Ports.FlipRequest": [
+      "Correlation",
+      "IntentWriteId",
+      "Model",
+      "PositionEvidence",
+      "TargetPose",
+      "TransitionId",
+      "Window"
+    ],
+    "Gaode.Application.Ports.ManualHandlingSession": [
+      "DiagnosticEvidenceReferences",
+      "Observation",
+      "Request",
+      "SessionId",
+      "State"
+    ],
+    "Gaode.Application.Ports.AuxiliaryHandlingKind": [
+      "Exit",
+      "Rotate",
+      "TransferToRotation"
+    ],
+    "Gaode.Application.Ports.AuxiliaryHandlingRequest": [
+      "CoordinateEvidenceReference",
+      "Correlation",
+      "IntentWriteId",
+      "Kind",
+      "PoseId",
+      "Purpose",
+      "StepSequence",
+      "Target",
+      "Window"
+    ],
+    "Gaode.Application.Ports.AuxiliaryHandlingResult": [
+      "Evidence",
+      "OccupiedEntityId",
+      "PoseId",
+      "Request"
+    ],
+    "Gaode.Application.Ports.IPhysicalHandlingPort": [
+      "BeginManualHandlingAsync",
+      "ConfirmManualHandlingAsync",
+      "FlipAsync",
+      "PutBackAsync"
+    ],
+    "Gaode.Application.Ports.RecipeApplicationRequest": [
+      "BindingId",
+      "Correlation",
+      "CriticalSaveBudgetMs",
+      "DisplayRecipeId",
+      "IntentWriteId",
+      "IsValid",
+      "NgCapacity",
+      "PendingCapacity",
+      "Window"
+    ],
+    "Gaode.Application.Ports.RecipeApplicationState": [
+      "Cancelled",
+      "Completed",
+      "DeviceApplied",
+      "Rejected",
+      "Requested",
+      "TimedOut",
+      "UnknownHeld"
+    ],
+    "Gaode.Application.Ports.RecipeApplicationEvidence": [
+      "DeviceEvidence",
+      "ReceivedTick",
+      "Request",
+      "RequiredEvidenceCommit",
+      "State"
+    ],
+    "Gaode.Application.Ports.RecipeApplicationBudgetSource": [
+      "BudgetMs",
+      "ConfigurationId",
+      "Digest",
+      "Purpose",
+      "SchemaVersion",
+      "SnapshotId",
+      "Source",
+      "Version"
+    ],
+    "Gaode.Application.Ports.RecipeApplicationReceipt": [
+      "BindingId",
+      "BudgetSource",
+      "Correlation",
+      "DeviceEvidence",
+      "IntentCommit",
+      "ReceivedTick",
+      "Registration",
+      "RequiredCommits",
+      "RequiredEvidenceCommit",
+      "State",
+      "Validity",
+      "WasCompletedInWindow",
+      "Window"
+    ],
+    "Gaode.Application.Ports.AcquisitionState": [
+      "Blocked",
+      "CaptureAllowed",
+      "HeldUnknown",
+      "Released",
+      "Requested",
+      "WorkCommitted"
+    ],
+    "Gaode.Application.Ports.CaptureWindowRequest": [
+      "Correlation",
+      "PositionEvidence",
+      "Role",
+      "Target",
+      "Window"
+    ],
+    "Gaode.Application.Ports.AcquisitionSession": [
+      "Evidence",
+      "Request",
+      "SessionId",
+      "State"
+    ],
+    "Gaode.Application.Ports.CaptureWorkCommit": [
+      "MediaReleased",
+      "OperationId",
+      "RunId",
+      "WriteIds"
+    ],
+    "Gaode.Application.Ports.CaptureCycleResult": [
+      "Evidence",
+      "FailureReason",
+      "Session",
+      "State"
+    ],
+    "Gaode.Application.Ports.IAcquisitionCyclePort": [
+      "CloseFailedCaptureWindowAsync",
+      "FinishCaptureWindowAsync",
+      "OpenCaptureWindowAsync"
+    ],
+    "Gaode.Application.Ports.DeviceStageContract": [
+      "IsKnownStage"
+    ],
+    "Gaode.Application.Ports.ActualCommitState": [
+      "Committed",
+      "ConfirmedRolledBack",
+      "Unknown"
+    ],
+    "Gaode.Application.Ports.ReceiptValidity": [
+      "Invalid",
+      "None",
+      "ValidCurrent"
+    ],
+    "Gaode.Application.Ports.RequiredCommitEvidence": [
+      "ActualCommit",
+      "CommittedUtc",
+      "Correlation",
+      "FailureReason",
+      "PersistedRevision",
+      "ReceivedTick",
+      "RecordKind",
+      "SavePurpose",
+      "Validity",
+      "WriteId"
+    ],
+    "Gaode.Application.Ports.PhysicalPickState": [
+      "Observed",
+      "Unconfirmed"
+    ],
+    "Gaode.Application.Ports.PickCommitState": [
+      "Committed",
+      "Rejected",
+      "Unknown"
+    ],
+    "Gaode.Application.Ports.PickCompletionEvidence": [
+      "AssignmentDigest",
+      "Correlation",
+      "DiagnosticEvidenceReferences",
+      "ExecutionOrigin",
+      "ObjectId",
+      "Observation",
+      "PhysicalSlotIndex",
+      "PickObservedUtc",
+      "ReservationReference",
+      "SourcePoint",
+      "SourcePositionReached",
+      "TargetPoint",
+      "Window"
+    ],
+    "Gaode.Application.Ports.FixedPointIdentity": [
+      "Digest",
+      "Id",
+      "Version"
+    ],
+    "Gaode.Application.Ports.PickCommitReceipt": [
+      "ActualCommit",
+      "AssignmentDigest",
+      "CommittedUtc",
+      "Correlation",
+      "DiagnosticEvidenceReferences",
+      "EventId",
+      "FailureReason",
+      "MayAuthorizePlace",
+      "PersistedRevision",
+      "ReceivedTick",
+      "ReceivedUtc",
+      "ReservationReference",
+      "State",
+      "Validity",
+      "Window",
+      "WriteId"
+    ],
+    "Gaode.Application.Ports.PickEvidenceFailureNotice": [
+      "ActualCommit",
+      "CanRetry",
+      "Correlation",
+      "ExecutionOrigin",
+      "HoldsDevice",
+      "Observation",
+      "PhysicalPick",
+      "PickObservedUtc",
+      "Reason",
+      "ReceiptValidity",
+      "ReservationReference",
+      "SourcePositionReached"
+    ],
+    "Gaode.Application.Ports.IPickCommitPort": [
+      "CommitPickAsync",
+      "ReportPickEvidenceFailureAsync"
+    ],
+    "Gaode.Application.Recipes.RecipeRunPlan": [
+      "AlgorithmRequirements",
+      "Approval",
+      "CaptureProfiles",
+      "CatalogDigest",
+      "DefinitionDigest",
+      "Disposition",
+      "ECode",
+      "ECodeBindTo",
+      "ECodeRequiredForOk",
+      "ExecutionPositions",
+      "FCode",
+      "InitialCoordinateEpoch",
+      "InspectionKind",
+      "MissingSlots",
+      "Model",
+      "MotionProfile",
+      "NgCapacity",
+      "OriginalSlots",
+      "PendingCapacity",
+      "PlcRecipeId",
+      "QualityProfile",
+      "RecipeId",
+      "RecipeVersion",
+      "ReleaseStatus",
+      "RotationLoadingGripperId",
+      "RotationWorkstation",
+      "ScenarioId",
+      "SortingGripperId",
+      "Steps",
+      "TrayLayout",
+      "TrayRunId",
+      "TraySlotMapping",
+      "UnitKind"
+    ],
+    "Gaode.Application.Recipes.RecipeStep": [
+      "AlgorithmProfile",
+      "AngleDeg",
+      "Camera",
+      "CaptureProfile",
+      "CoordinateEpoch",
+      "Kind",
+      "LocalFace",
+      "Material",
+      "MemberId",
+      "OwnerStage",
+      "PhysicalEntityId",
+      "PhysicalSlotIndex",
+      "PointRef",
+      "ScanPoseId",
+      "Sequence",
+      "SlotId",
+      "StageId",
+      "TargetPose",
+      "UnitId",
+      "When"
+    ],
+    "Gaode.Application.Recipes.RecipeStepKind": [
+      "Capture",
+      "DecideUnit",
+      "FlipMember",
+      "PositionForCapture",
+      "ReadECode",
+      "RescanWholeTray",
+      "ReturnUnit",
+      "Rotate",
+      "SortUnit",
+      "TransferToRotation",
+      "UnloadTray"
+    ],
+    "Gaode.Application.Recipes.RecipeDisposition": [
+      "Ng",
+      "Ok",
+      "Pending",
+      "PhysicalUnit"
+    ],
+    "Gaode.Domain.Station01.HeightSample": [
+      "Datum",
+      "FromRaw",
+      "NormalizedValue",
+      "RawValue",
+      "Reason",
+      "SourceElementId",
+      "Unit",
+      "Validity"
+    ],
+    "Gaode.Domain.Station01.HeightValidity": [
+      "MissingDatum",
+      "MissingUnit",
+      "NonFinite",
+      "Rejected",
+      "Valid"
+    ],
+    "Gaode.Domain.Configuration.CapabilityRef": [
+      "ContractVersion",
+      "Id"
+    ],
+    "Gaode.Domain.Configuration.DeviceBinding": [
+      "Id",
+      "Provider",
+      "Role"
+    ],
+    "Gaode.Domain.Configuration.AxisLimits": [
+      "XMax",
+      "XMin",
+      "YMax",
+      "YMin",
+      "ZMax",
+      "ZMin"
+    ],
+    "Gaode.Domain.Configuration.FixedPoints": [
+      "F",
+      "ThreeD",
+      "Unload"
+    ],
+    "Gaode.Domain.Configuration.MotionConfiguration": [
+      "Axes",
+      "Capability",
+      "CoordinateDigest",
+      "CoordinateSource",
+      "Frame",
+      "Limits",
+      "Points",
+      "PositionTolerance",
+      "Unit"
+    ],
+    "Gaode.Domain.Configuration.TrayScope": [
+      "Bounds",
+      "Frame",
+      "Id",
+      "Kind",
+      "Unit",
+      "Version"
+    ],
+    "Gaode.Domain.Configuration.CaptureParameters": [
+      "ExposureUs",
+      "LightLevel"
+    ],
+    "Gaode.Domain.Configuration.Capture3DConfiguration": [
+      "BindingId",
+      "Capability",
+      "LightBindingId",
+      "MaxCaptureBytes",
+      "Parameters",
+      "Scope"
+    ],
+    "Gaode.Domain.Configuration.CaptureFConfiguration": [
+      "AutomaticRetry",
+      "BindingId",
+      "Capability",
+      "FrameCount",
+      "LightBindingId",
+      "MaxCaptureBytes",
+      "Parameters"
+    ],
+    "Gaode.Domain.Configuration.AlgorithmConfiguration": [
+      "BindingId",
+      "Capability",
+      "ParametersVersion"
+    ],
+    "Gaode.Domain.Configuration.AlgorithmConfigurations": [
+      "FDecode",
+      "Height",
+      "TrayPose"
+    ],
+    "Gaode.Domain.Configuration.ParserConfiguration": [
+      "Capability",
+      "ParametersVersion"
+    ],
+    "Gaode.Domain.Configuration.PublicConfiguration": [
+      "Algorithms",
+      "Bindings",
+      "Capture3d",
+      "CaptureF",
+      "Id",
+      "Motion",
+      "Parser",
+      "Purpose",
+      "QualityState",
+      "SchemaVersion",
+      "Source",
+      "StopAfter",
+      "Version"
+    ],
+    "Gaode.Application.Ports.BusinessCommitRecordKind": [
+      "CommunicationEvidence",
+      "RunWrite",
+      "StageEvent"
+    ],
+    "Gaode.Application.Ports.LoadedConfiguration<T>": [
+      "CanonicalJson",
+      "Digest",
+      "SourceFile",
+      "Value"
+    ],
+    "Gaode.Application.Station01.CommittedPublicPreparationHandoffV2": [
+      "Handoff",
+      "IsVerified",
+      "PersistedHandoffId",
+      "PersistedPayloadDigest",
+      "PersistedRevision",
+      "PersistedWriteId"
+    ],
+    "Gaode.Domain.Configuration.ConfigReference": [
+      "Id",
+      "Version"
+    ],
+    "Gaode.Application.Station01.PublicPreparationHandoffV2": [
+      "SchemaVersion",
+      "HandoffId",
+      "Identity",
+      "FrozenPointRevision",
+      "CapabilitySummaryDigest",
+      "ThreeDMediaReferences",
+      "FMediaReferences",
+      "ResultReferences",
+      "UniqueFCode",
+      "RecipeRunPlanReference",
+      "PlanRevision",
+      "RecipeBindingReference",
+      "Source",
+      "Quality",
+      "EvidenceReferences",
+      "WriteId",
+      "CommittedRevision",
+      "PersistedAt",
+      "PayloadDigest",
+      "CurrentSchemaVersion",
+      "IsComplete",
+      "ComputePayloadDigest"
+    ],
+    "Gaode.Domain.Configuration.BusinessBudget": [
+      "SchemaVersion",
+      "Id",
+      "Version",
+      "Purpose",
+      "Source",
+      "BusinessMs",
+      "Limits",
+      "PhysicalButtonWait",
+      "TimeoutBoundary"
+    ],
+    "Gaode.Domain.Configuration.BusinessDurations": [
+      "Capture3d",
+      "CaptureF",
+      "ClampCompletion",
+      "CriticalSave",
+      "FDecode",
+      "FlipCompletion",
+      "HeartbeatDisconnect",
+      "HeartbeatFlip",
+      "HeightAlgorithm",
+      "PlcAcceptance",
+      "PlcIo",
+      "PutBackCompletion",
+      "Query",
+      "RecipeApplication",
+      "SafetyReady",
+      "StopAcceptance",
+      "StopCompletion",
+      "TrayPoseAlgorithm",
+      "WorkerReleaseGrace",
+      "XyCompletion"
+    ],
+    "Gaode.Domain.Configuration.CapacityLimits": [
+      "FlowNormal",
+      "FlowControl",
+      "TerminalReservations",
+      "Writer",
+      "MediaJobs",
+      "AlgorithmQueuePerRole",
+      "WorkerPerRole",
+      "NotificationsPerClient",
+      "NotificationClients",
+      "QueryConcurrency",
+      "QueryPageMax",
+      "MediaMemoryBytes",
+      "RunMediaQuotaBytes",
+      "DataQuotaBytes",
+      "MinFreeDiskBytes",
+      "FReservedMemoryBytes",
+      "LateEvidencePerOperation",
+      "DuplicateSummariesPerOperation",
+      "MaxIpcMessageBytes",
+      "MaxPendingTimerEvents"
+    ],
+    "Gaode.Domain.Station01.WorkflowIdentity": [
+      "RunId",
+      "TrayId",
+      "StationId",
+      "LineId",
+      "RequestId",
+      "ScenarioId",
+      "OccupiedSlots",
+      "StartedAt",
+      "ActorId",
+      "Purpose",
+      "PublicConfigRevision",
+      "BudgetRevision",
+      "SimulationConfigRevision",
+      "EnsureScope"
+    ],
+    "Gaode.Domain.Station01.RunPurpose": [
+      "Production",
+      "Test",
+      "Commissioning"
+    ],
+    "Gaode.Domain.Configuration.SimulationProfile": [
+      "SchemaVersion",
+      "Id",
+      "Version",
+      "Purpose",
+      "Source",
+      "ClockMode",
+      "VirtualStartUtc",
+      "PublicConfigRef",
+      "BudgetRef",
+      "Stages",
+      "DeviceInitial",
+      "Stop",
+      "LateObservationWindowMs",
+      "Fixtures"
+    ],
+    "Gaode.Domain.Configuration.SimStage": [
+      "DelayMs",
+      "Strategy",
+      "Outcome",
+      "FailureCode",
+      "DuplicateOffsetsMs",
+      "IgnoreCancel"
+    ],
+    "Gaode.Domain.Configuration.SimStages": [
+      "PlcAcceptance",
+      "ClampCompletion",
+      "XyCompletion",
+      "Capture3d",
+      "HeightAlgorithm",
+      "CaptureF",
+      "FDecode"
+    ],
+    "Gaode.Domain.Configuration.SimDeviceInitial": [
+      "Connected",
+      "Automatic",
+      "SafetyClear",
+      "Clamped",
+      "X",
+      "Y"
+    ],
+    "Gaode.Domain.Configuration.SimStop": [
+      "AcceptedDelayMs",
+      "CompletedDelayMs",
+      "Respond"
+    ],
+    "Gaode.Domain.Configuration.SimHeightSample": [
+      "SourceElementId",
+      "Value",
+      "Unit",
+      "Datum"
+    ],
+    "Gaode.Domain.Configuration.SimFixtures": [
+      "HeightSamples",
+      "RawCodes",
+      "MediaSource"
+    ],
+    "Gaode.Domain.Station01.ComponentExecutionOrigin": [
+      "Source",
+      "VersionRef",
+      "Quality",
+      "Unknown",
+      "IsKnown"
+    ],
+    "Gaode.Domain.Station01.ComponentEvidenceSource": [
+      "Real",
+      "Virtual",
+      "Simulated",
+      "Test",
+      "AuthenticatedHuman"
+    ],
+    "Gaode.Application.Ports.RecipeApplicationRegistration": [
+      "ApplicableDeadlineReferences",
+      "BudgetDueTick",
+      "ClockFrequency",
+      "ClockId",
+      "DeadlineAtUtc",
+      "EffectiveDueTick",
+      "StartTick",
+      "StartedAtUtc"
+    ],
+    "Gaode.Application.Ports.RecipeDeadlineReference": [
+      "DeadlineAtUtc",
+      "Stage",
+      "StartedAtUtc"
+    ],
+    "Gaode.Application.Ports.CaptureApplicationState": [
+      "Unknown",
+      "Applied",
+      "ConfiguredOnly",
+      "NotApplied"
+    ],
+    "Gaode.Application.Ports.CorrelatedCaptureFact": [
+      "RunId",
+      "CaptureId",
+      "OperationId",
+      "ConnectionEpoch",
+      "RequestedSettingsDigest",
+      "MediaSource",
+      "CameraOrigin",
+      "LightOrigin",
+      "ApplicationState",
+      "ActualSettings",
+      "Replayed",
+      "EvidenceReferences"
+    ],
+    "Gaode.Application.Recipes.AlgorithmPurpose": [
+      "EntityCode",
+      "FaceFusion",
+      "Height",
+      "SingleDetection",
+      "TrayCode",
+      "TrayPose"
+    ],
+    "Gaode.Application.Recipes.CoordinateResolutionKind": [
+      "ApprovedFixed",
+      "MeasurementOffset",
+      "Unknown"
+    ],
+    "Gaode.Application.Recipes.FlipMode": [
+      "Automatic",
+      "Manual"
+    ],
+    "Gaode.Application.Recipes.CaptureProfile": [
+      "Id",
+      "Settings",
+      "Version"
+    ],
+    "Gaode.Application.Recipes.AlgorithmRequirement": [
+      "Id",
+      "InputCount",
+      "ParametersVersion",
+      "Purpose",
+      "ResultContract"
+    ],
+    "Gaode.Application.Recipes.BoundCapability": [
+      "ApprovalReference",
+      "CapabilityId",
+      "CapabilityVersion",
+      "ProviderIdentity",
+      "ProviderVersion",
+      "Requirement"
+    ],
+    "Gaode.Application.Recipes.MeasurementOffsetBasis": [
+      "ConfigurationReference",
+      "Datum",
+      "MaximumZ",
+      "MinimumZ",
+      "ObjectSlotId",
+      "Offset",
+      "SampleId",
+      "ScopeId",
+      "ScopeVersion",
+      "Unit"
+    ],
+    "Gaode.Application.Recipes.ApprovedFixedBasis": [
+      "ApprovalReference",
+      "ConfigurationVersion",
+      "Datum",
+      "Unit",
+      "Z"
+    ],
+    "Gaode.Application.Recipes.PlanarPoint": [
+      "Frame",
+      "Id",
+      "Unit",
+      "Version",
+      "X",
+      "Y"
+    ],
+    "Gaode.Application.Recipes.CoordinateDefinition": [
+      "Camera",
+      "CaptureProfile",
+      "ConfigurationVersion",
+      "Fixed",
+      "LocalFace",
+      "ObjectPattern",
+      "PhysicalSlotIndex",
+      "Point",
+      "PointRef",
+      "SlotId",
+      "SourceFactReference",
+      "StageId"
+    ],
+    "Gaode.Application.Recipes.HandlingPoint": [
+      "CoordinateEvidenceReference",
+      "Point"
+    ],
+    "Gaode.Application.Recipes.FlipTarget": [
+      "ManualWaitMs",
+      "Mode",
+      "Target"
+    ],
+    "Gaode.Application.Recipes.AuxiliaryTarget": [
+      "ActionTimeoutMs",
+      "Target"
+    ],
+    "Gaode.Application.Recipes.RotationTargets": [
+      "Entry",
+      "Exits",
+      "Poses"
+    ],
+    "Gaode.Application.Recipes.ObjectExecutionInputs": [
+      "Coordinates",
+      "Flip",
+      "OriginPutBack",
+      "PurposePoints",
+      "Rotation",
+      "Sorting",
+      "SortingCellIds",
+      "Source"
+    ],
+    "Gaode.Application.Recipes.SlotExecutionInputs": [
+      "ForDetection",
+      "ForObject",
+      "Members",
+      "PhysicalEntity",
+      "SlotId"
+    ],
+    "Gaode.Application.Recipes.ApprovalScope": [
+      "AllowedSlots",
+      "Digest",
+      "EvidenceReference",
+      "Id",
+      "Purpose",
+      "Version"
+    ],
+    "Gaode.Application.Recipes.AdmissionDecision": [
+      "ApprovalReference",
+      "Eligible",
+      "InputDigest",
+      "Reason"
+    ],
+    "Gaode.Application.Recipes.DecodedTrayCode": [
+      "EvidenceReference",
+      "FormatVersion",
+      "ParsedCode",
+      "RawCode"
+    ],
+    "Gaode.Application.Recipes.ExecutionCostProfile": [
+      "AcquisitionReleaseMs",
+      "AlgorithmMs",
+      "AlgorithmWaitMs",
+      "BudgetDigest",
+      "BudgetReference",
+      "CaptureMs",
+      "CaptureWaitMs",
+      "Id",
+      "InputReleaseWaitMs",
+      "OrdinarySortDeviceAllowanceMs",
+      "Purpose",
+      "Source",
+      "UnloadDeviceAllowanceMs",
+      "Version"
+    ],
+    "Gaode.Application.Recipes.FrozenExecutionInputs": [
+      "Capabilities",
+      "ComputeDigest",
+      "CostProfile",
+      "CurrentSchema",
+      "HistoricalSchema",
+      "IsValid",
+      "Plan",
+      "PlanRevision",
+      "RunId",
+      "SchemaVersion",
+      "SemanticDigest",
+      "TrayId",
+      "TrayPoseCapability"
+    ],
+    "Gaode.Application.Recipes.CommittedAlgorithmSource": [
+      "CallId",
+      "CaptureId",
+      "CommittedRevision",
+      "Origin",
+      "RunId",
+      "WriteId"
+    ],
+    "Gaode.Application.Recipes.RecipeMember": [
+      "CellId",
+      "Handling",
+      "Material",
+      "MemberPattern",
+      "PhysicalSlotIndex"
+    ],
+    "Gaode.Application.Recipes.RecipePosition": [
+      "CellId",
+      "Members",
+      "PhysicalSlotIndex",
+      "SlotId",
+      "UnitPattern"
+    ],
+    "Gaode.Application.Recipes.RecipeMaterial": [
+      "LocalFaces",
+      "Material"
+    ],
+    "Gaode.Application.Recipes.RecipeTarget": [
+      "AlgorithmProfile",
+      "CameraPair",
+      "CaptureProfile",
+      "LocalFace",
+      "Material"
+    ],
+    "Gaode.Application.Recipes.RecipeStage": [
+      "Action",
+      "AngleDeg",
+      "Number",
+      "Targets"
+    ],
+    "Gaode.Application.Recipes.RecipeCodeRule": [
+      "AlgorithmProfile",
+      "BindTo",
+      "CaptureProfile",
+      "Enabled",
+      "ExtraPose",
+      "ReadAt",
+      "RepresentativeMaterial",
+      "RequiredForOk",
+      "ScanPointRef"
+    ],
+    "Gaode.Application.Recipes.RecipeDefinition": [
+      "AlgorithmRequirements",
+      "Approval",
+      "Capacity",
+      "CaptureProfiles",
+      "CatalogDigest",
+      "Composition",
+      "DefinitionDigest",
+      "Disposition",
+      "ECode",
+      "ExecutionPositions",
+      "FCode",
+      "InspectionKind",
+      "LayoutProfile",
+      "Model",
+      "MotionProfile",
+      "NgCapacity",
+      "PendingCapacity",
+      "PlcRecipeId",
+      "Positions",
+      "PrimaryMaterial",
+      "QualityProfile",
+      "RecipeId",
+      "ReleaseStatus",
+      "RotationLoadingGripperId",
+      "RotationWorkstation",
+      "Route",
+      "ScenarioId",
+      "SchemaVersion",
+      "SortingGripperId",
+      "SortingTargets",
+      "Stages",
+      "TrayLayout",
+      "TraySlotMapping",
+      "UnitKind",
+      "Version"
+    ],
+    "Gaode.Application.Recipes.RecipeCatalogItem": [
+      "Availability",
+      "CatalogDigest",
+      "InspectionKind",
+      "Model",
+      "Purpose",
+      "RecipeId",
+      "Restriction",
+      "Route",
+      "ScenarioId",
+      "UnitKind",
+      "Version"
+    ],
+    "Gaode.Application.Recipes.IRecipeCatalog": [
+      "Count",
+      "Digest",
+      "Items",
+      "ReleaseStatus",
+      "Resolve",
+      "SchemaVersion"
+    ],
+    "Gaode.Application.Ports.TrayObservationContext": [
+      "CheckRound",
+      "Purpose",
+      "RelatedTransitionId",
+      "TrayId"
+    ],
+    "Gaode.Application.Ports.FlipMovePreparation": [
+      "Model",
+      "PhysicalEntityId",
+      "PhysicalSlotIndex",
+      "TargetPose",
+      "TransitionId"
+    ],
+    "Gaode.Application.Ports.PutBackRequest": [
+      "Correlation",
+      "IntentWriteId",
+      "PositionEvidence",
+      "TransitionId",
+      "Window"
+    ],
+    "Gaode.Domain.Station01.AxisPositionSet": [
+      "DetectionZ",
+      "GrabZ",
+      "ScanZ",
+      "X",
+      "Y"
+    ],
+    "Gaode.Domain.Station01.TrayPresence": [
+      "Absent",
+      "Present",
+      "Unknown"
+    ],
+    "Gaode.Domain.Station01.TrayPose": [
+      "Abnormal",
+      "Normal",
+      "Unknown"
+    ],
+    "Gaode.Domain.Station01.TrayObservationPurpose": [
+      "InitialPreparation",
+      "PostPlacementCheck"
+    ],
+    "Gaode.Domain.Station01.TraySlotObservation": [
+      "CellId",
+      "Column",
+      "HasPositionIdentity",
+      "PhysicalSlotIndex",
+      "Pose",
+      "Presence",
+      "Reason",
+      "Region",
+      "Row"
+    ],
+    "Gaode.Domain.Station01.FLocation": [
+      "Frame",
+      "IsValid",
+      "SourceReference",
+      "Unit",
+      "X",
+      "Y"
+    ],
+    "Gaode.Domain.Station01.TrayObservation": [
+      "CallId",
+      "CaptureId",
+      "CheckRound",
+      "EvidenceReferences",
+      "ExpectedPhysicalSlotIndices",
+      "FLocation",
+      "HasCompleteCoverage",
+      "HasSamePhysicalMapping",
+      "IsEmptyTray",
+      "IsValid",
+      "MappingSourceReference",
+      "ObservationId",
+      "ObservedAtUtc",
+      "Purpose",
+      "RelatedTransitionId",
+      "RunId",
+      "SchemaVersion",
+      "Slots",
+      "Source",
+      "TrayId"
+    ],
+    "Gaode.Domain.Station01.SlotParticipationState": [
+      "Absent",
+      "Participating",
+      "PoseExcluded",
+      "Unknown"
+    ],
+    "Gaode.Domain.Station01.SlotParticipation": [
+      "Apply",
+      "PhysicalSlotIndex",
+      "Reason",
+      "State"
+    ],
+    "Gaode.Application.Recipes.RecipeExtraScanPose": [
+      "AlgorithmProfile",
+      "CaptureProfile",
+      "PickPointRef",
+      "PoseId",
+      "PutBackPointRef",
+      "ScanPointRef",
+      "TargetPose"
+    ],
+    "Gaode.Application.Recipes.RecipeTargetPose": [
+      "PoseKey",
+      "ProfileId",
+      "ProfileVersion"
+    ],
+    "Gaode.Application.Recipes.RecipePointPurpose": [
+      "EScan",
+      "FlipPick",
+      "FlipPutBack"
+    ],
+    "Gaode.Application.Recipes.RecipePurposePoint": [
+      "CaptureProfile",
+      "CoordinateEvidenceReference",
+      "Fixed",
+      "Point",
+      "Purpose"
+    ],
+    "Gaode.Application.Recipes.RecipeFlipTransition": [
+      "PickPointRef",
+      "PutBackPointRef",
+      "TargetPose"
+    ],
+    "Gaode.Application.Recipes.RecipeFlipInputs": [
+      "Stages"
+    ],
+    "Gaode.Application.Ports.DetectionEvidenceBasis": [
+      "Unspecified",
+      "ProductInspection",
+      "InitialPoseExclusion"
+    ],
+    "Gaode.Domain.Station01.SortingActionPlan": [
+      "DetectionState",
+      "IsPosePending",
+      "ObservationReference",
+      "ReturnsToOrigin"
+    ],
+    "Gaode.Domain.Station01.ExecutionPhaseProjection": [
+      "CellId",
+      "StageId"
+    ],
+    "Gaode.Domain.Station01.SlotStateProjection": [
+      "CellId",
+      "Column",
+      "DetectionState",
+      "PhysicalDisposition",
+      "Region",
+      "RegionOrdinal",
+      "Row",
+      "SortingEvidenceRef"
+    ],
+    "Gaode.Domain.Station01.RunResultProjection": [
+      "StageId"
+    ],
+    "Gaode.Domain.Station01.InspectionResultProjection": [
+      "StageId"
+    ],
+    "Gaode.Domain.Station01.RunMovementProjection": [
+      "DetectionState",
+      "IsPosePending",
+      "OriginalCellId",
+      "PhysicalDisposition",
+      "Reason",
+      "SafeConfirmed",
+      "TransferPurpose"
+    ],
+    "Gaode.Application.Recipes.RecipeInspectionKind": [
+      "Ordinary",
+      "SpecialRotation"
+    ],
+    "Gaode.Application.Recipes.RecipeTrayRegion": [
+      "NG",
+      "OK",
+      "Pending"
+    ],
+    "Gaode.Application.Recipes.RecipeTrayCell": [
+      "CellId",
+      "Column",
+      "Region",
+      "Row"
+    ],
+    "Gaode.Application.Recipes.RecipeTrayLayout": [
+      "CellIdentity",
+      "Cells",
+      "Columns",
+      "Ordered",
+      "Rows"
+    ],
+    "Gaode.Application.Recipes.RecipeCellPhysicalBinding": [
+      "CellId",
+      "PhysicalSlotIndex"
+    ],
+    "Gaode.Application.Recipes.RecipeTraySlotMapping": [
+      "Bindings",
+      "EvidenceReference",
+      "Id",
+      "Version"
+    ],
+    "Gaode.Application.Recipes.RotationWorkstationInputs": [
+      "Pick",
+      "Place"
+    ],
+    "Gaode.Application.Recipes.OriginalSlotReference": [
+      "CellId",
+      "Column",
+      "EntityId",
+      "PhysicalSlotIndex",
+      "Row",
+      "SlotId",
+      "TrayId"
+    ],
+    "Gaode.Application.Ports.DetectionExecutionScope": [
+      "Includes",
+      "SlotId",
+      "UnitId"
+    ],
+    "Gaode.Application.Ports.TransferPurpose": [
+      "ReturnToOrigin",
+      "RotationLoading",
+      "Sorting"
+    ],
+    "Gaode.Application.Ports.RotationTarget": [
+      "AngleDeg",
+      "AngleToleranceDeg",
+      "MechanicalEvidenceReference",
+      "StageId"
+    ],
+    "Gaode.Application.Ports.RotationExecutionBasis": [
+      "AngleToleranceDeg",
+      "Purpose",
+      "SourceReference"
+    ],
+    "Gaode.Application.Ports.RotationExecutionConfiguration": [
+      "Basis"
+    ],
+    "Gaode.Domain.Station01.AngleReachedEvidence": [
+      "ActualAngleDeg",
+      "Correlation",
+      "Matched",
+      "ObservedAtUtc",
+      "TargetAngleDeg",
+      "ToleranceDeg"
+    ],
+    "Gaode.Domain.Station01.TrayEndReason": [
+      "EmptyTray",
+      "ManualIntervention",
+      "NormalCompletion"
+    ],
+    "Gaode.Domain.Station01.TrayAnomalyItem": [
+      "CellId",
+      "Column",
+      "PhysicalSlotIndex",
+      "Reason",
+      "Region",
+      "Row",
+      "Type"
+    ],
+    "Gaode.Domain.Station01.TrayAnomalyDecisionProjection": [
+      "CheckRound",
+      "Choice",
+      "ChoiceSource",
+      "CreatedUtc",
+      "DeadlineUtc",
+      "DecisionId",
+      "EvidenceReference",
+      "Items",
+      "ObservationId",
+      "OperatorId",
+      "RunId",
+      "State"
+    ],
+    "Gaode.Application.Ports.PosePendingHandling": [
+      "DetectionState",
+      "ObjectId",
+      "ObservationId",
+      "ObservationReference",
+      "PhysicalSlotIndex",
+      "Reason"
+    ]
+  },
+  "shapeReview": "Initial current semantic members registered with raw fields/types explicitly excluded. New semantic declarations require contract-backed registration in T017; runtime never auto-learns shapes. Unknown types/fields fail A02.",
+  "T017Review": {
+    "basis": "009 data-model sections1-5; business-device B01-B06; impact section5, actual old CaptureEvent.Buffer image payload",
+    "reviewer": "Codex/root architecture-role review; no external approval claimed",
+    "scope": "Explicit semantic source declarations and unchanged reachable business payloads only; candidate extraction is not a runtime allow-list generator",
+    "types": [
+      "Gaode.Domain.Configuration.FixedPoint",
+      "Gaode.Domain.Station01.DeviceReliability",
+      "Gaode.Domain.Station01.DeviceConnection",
+      "Gaode.Domain.Station01.OperatingMode",
+      "Gaode.Domain.Station01.DeviceReadiness",
+      "Gaode.Domain.Station01.SafetyAssessment",
+      "Gaode.Domain.Station01.ClampState",
+      "Gaode.Domain.Station01.MotionAvailability",
+      "Gaode.Domain.Station01.AcquisitionReadiness",
+      "Gaode.Domain.Station01.ManualAreaState",
+      "Gaode.Domain.Station01.ManualHandlingState",
+      "Gaode.Domain.Station01.DeviceProvider",
+      "Gaode.Domain.Station01.EvidenceQuality",
+      "Gaode.Domain.Station01.AlarmLevel",
+      "Gaode.Domain.Station01.FaceSource",
+      "Gaode.Domain.Station01.DeviceCompletionMeaning",
+      "Gaode.Domain.Station01.ExecutionOrigin",
+      "Gaode.Domain.Station01.DiagnosticEvidenceReference",
+      "Gaode.Domain.Station01.ActionCorrelation",
+      "Gaode.Domain.Station01.ActionWindow",
+      "Gaode.Domain.Station01.ObservationIdentity",
+      "Gaode.Domain.Station01.PositionObservation",
+      "Gaode.Domain.Station01.FaceObservation",
+      "Gaode.Domain.Station01.AlarmAssessment",
+      "Gaode.Domain.Station01.DeviceObservation",
+      "Gaode.Domain.Station01.PositionReachedEvidence",
+      "Gaode.Domain.Station01.DeviceActionEvidence",
+      "Gaode.Domain.Station01.InitialReadiness",
+      "Gaode.Domain.Station01.InitialReadinessAssessment",
+      "Gaode.Domain.Station01.StartupDiagnostic",
+      "Gaode.Domain.Station01.RunState",
+      "Gaode.Domain.Station01.TerminalOutcome",
+      "Gaode.Domain.Station01.ActionState",
+      "Gaode.Domain.Station01.CaptureState",
+      "Gaode.Domain.Station01.AlgorithmState",
+      "Gaode.Application.Ports.PortEnvelope",
+      "Gaode.Application.Ports.DeviceEventKind",
+      "Gaode.Application.Ports.DeviceEvent",
+      "Gaode.Application.Ports.MoveRequest",
+      "Gaode.Application.Ports.FlipRequest",
+      "Gaode.Application.Ports.ManualHandlingSession",
+      "Gaode.Application.Ports.AuxiliaryHandlingKind",
+      "Gaode.Application.Ports.AuxiliaryHandlingRequest",
+      "Gaode.Application.Ports.AuxiliaryHandlingResult",
+      "Gaode.Application.Ports.IPhysicalHandlingPort",
+      "Gaode.Application.Ports.DeviceContract",
+      "Gaode.Application.Ports.IPlcStatePort",
+      "Gaode.Application.Ports.IPlcActionPort",
+      "Gaode.Application.Ports.IMotionPort",
+      "Gaode.Application.Ports.IPlcResetPort",
+      "Gaode.Application.Ports.RecipeApplicationRequest",
+      "Gaode.Application.Ports.RecipeApplicationState",
+      "Gaode.Application.Ports.RecipeApplicationEvidence",
+      "Gaode.Application.Ports.RecipeApplicationBudgetSource",
+      "Gaode.Application.Ports.RecipeApplicationReceipt",
+      "Gaode.Application.Ports.IPlcRecipePort",
+      "Gaode.Application.Ports.AcquisitionState",
+      "Gaode.Application.Ports.CaptureWindowRequest",
+      "Gaode.Application.Ports.AcquisitionSession",
+      "Gaode.Application.Ports.CaptureWorkCommit",
+      "Gaode.Application.Ports.CaptureCycleResult",
+      "Gaode.Application.Ports.IAcquisitionCyclePort",
+      "Gaode.Application.Ports.DetectionResultKind",
+      "Gaode.Application.Ports.StageActionKind",
+      "Gaode.Application.Ports.WholeTrayWorkflowStage",
+      "Gaode.Application.Ports.PlcWorkflowStage",
+      "Gaode.Application.Ports.ResultSource",
+      "Gaode.Application.Ports.ResultQuality",
+      "Gaode.Application.Ports.StageFailureClass",
+      "Gaode.Application.Ports.DetectionObjectExpectation",
+      "Gaode.Application.Ports.DetectionStepTarget",
+      "Gaode.Application.Ports.DetectionRequest",
+      "Gaode.Application.Ports.DetectionObjectResult",
+      "Gaode.Application.Ports.DetectionPortResult",
+      "Gaode.Application.Ports.IDetectionPort",
+      "Gaode.Application.Ports.PlcStageActionRequest",
+      "Gaode.Application.Ports.PlcStageActionResult",
+      "Gaode.Application.Ports.IPlcStageActionPort",
+      "Gaode.Application.Ports.DeviceStageContract",
+      "Gaode.Application.Ports.MappingFailed",
+      "Gaode.Application.Ports.UnknownHeld",
+      "Gaode.Application.Ports.WriteKind",
+      "Gaode.Application.Ports.CommitState",
+      "Gaode.Application.Ports.ActualCommitState",
+      "Gaode.Application.Ports.ReceiptValidity",
+      "Gaode.Application.Ports.RequiredCommitEvidence",
+      "Gaode.Application.Ports.PhysicalPickState",
+      "Gaode.Application.Ports.PickCommitState",
+      "Gaode.Application.Ports.PickCompletionEvidence",
+      "Gaode.Application.Ports.FixedPointIdentity",
+      "Gaode.Application.Ports.PickCommitReceipt",
+      "Gaode.Application.Ports.PickEvidenceFailureNotice",
+      "Gaode.Application.Ports.IPickCommitPort",
+      "Gaode.Application.Ports.WriteBatch",
+      "Gaode.Application.Ports.CommitReceipt",
+      "Gaode.Application.Ports.QueuedWrite",
+      "Gaode.Application.Ports.PersistedRun",
+      "Gaode.Application.Ports.PersistedWrite",
+      "Gaode.Application.Ports.PersistedHandoff",
+      "Gaode.Application.Ports.AlgorithmIntentPayload",
+      "Gaode.Application.Ports.RunCreatedPayload",
+      "Gaode.Application.Ports.OperationIntentPayload",
+      "Gaode.Application.Ports.AlgorithmFactPayload",
+      "Gaode.Application.Ports.PersistenceContract",
+      "Gaode.Application.Ports.CaptureRole",
+      "Gaode.Application.Ports.CaptureEventKind",
+      "Gaode.Application.Ports.DetectionCaptureSettings",
+      "Gaode.Application.Ports.CaptureRequest",
+      "Gaode.Application.Ports.CaptureEvent",
+      "Gaode.Application.Ports.MediaRef",
+      "Gaode.Application.Ports.AlgorithmRole",
+      "Gaode.Application.Ports.AlgorithmEventKind",
+      "Gaode.Application.Ports.WorkerTargetIdentity",
+      "Gaode.Application.Ports.AlgorithmRequest",
+      "Gaode.Application.Ports.AlgorithmEvent",
+      "Gaode.Application.Ports.AcquisitionContract",
+      "Gaode.Application.Recipes.RecipeRunPlan",
+      "Gaode.Application.Recipes.RecipeStep",
+      "Gaode.Application.Recipes.RecipeStepKind",
+      "Gaode.Application.Recipes.RecipeDisposition",
+      "Gaode.Domain.Station01.HeightSample",
+      "Gaode.Domain.Station01.HeightValidity",
+      "Gaode.Domain.Configuration.CapabilityRef",
+      "Gaode.Domain.Configuration.DeviceBinding",
+      "Gaode.Domain.Configuration.AxisLimits",
+      "Gaode.Domain.Configuration.FixedPoint",
+      "Gaode.Domain.Configuration.FixedPoints",
+      "Gaode.Domain.Configuration.MotionConfiguration",
+      "Gaode.Domain.Configuration.TrayScope",
+      "Gaode.Domain.Configuration.CaptureParameters",
+      "Gaode.Domain.Configuration.Capture3DConfiguration",
+      "Gaode.Domain.Configuration.CaptureFConfiguration",
+      "Gaode.Domain.Configuration.AlgorithmConfiguration",
+      "Gaode.Domain.Configuration.AlgorithmConfigurations",
+      "Gaode.Domain.Configuration.ParserConfiguration",
+      "Gaode.Domain.Configuration.PublicConfiguration"
+    ],
+    "removedTypes": [
+      "PlcObservation",
+      "PlcInitialStateObservation",
+      "StartupReliableFeedback",
+      "PlcRecipeBinding",
+      "PlcPositionEvidence",
+      "PlcStageProtocolContract",
+      "IInspectionHandshakePort",
+      "InspectionHandshakeContext",
+      "TestSpecialTarget",
+      "TestSpecialRequest",
+      "TestSpecialResult"
+    ],
+    "unchangedPayloadBasis": "RecipeRunPlan existing frozen recipe/business sequence; HeightSample is measured 3D algorithm height with unit/datum, not PLC raw feedback; property JSON protocolSlotIndex retained solely as unchanged recipe storage name for PhysicalSlotIndex.",
+    "configurationBasis": "Existing public capture capabilities, device identity, coordinates, units and scope are business input. No address, wire code, or handshake exists in PublicConfiguration."
+  },
+  "jointClosureSemanticReview": "Codex 2026-10-01: stable action window/current session/snapshot, actual commit UTC and explicit business record store kind; independent binding stage is a persistence category only. B03.2/B05 and real SQLite immutable-terminal evidence. No protocol values or migration whitelist added. Full A02 scan still required.",
+  "detectionSaveWindowReview": {
+    "reviewer": "Codex /root implementation and boundary review; no external approval claimed",
+    "field": "Gaode.Application.Ports.DetectionRequest.CriticalSaveBudgetMs",
+    "type": "Int32 milliseconds",
+    "producer": "StartPublicPreparation from current RunExecution.Config.Budget.BusinessMs.CriticalSave",
+    "consumer": "IntegratedDetectionPort required save admission and receipt checks",
+    "basis": "003 contracts/detection-port.md 009 AL03 concrete wiring; 008 aligned spec/plan/tasks/execution; 009 FR-016/019 T035",
+    "independence": "Frozen business allowance, not address/code/handshake count; original stage deadline preserved; no default fallback"
+  },
+  "existingShapeReview20261001": {
+    "actor": "Codex actual source and contract review; no customer approval claimed",
+    "AlgorithmDispatch.Exited": "001 acquisition-algorithm: actual worker execution end, not device protocol state",
+    "ICapturePort.MediaSource/ConnectionEpoch": "Actual camera source and session generation used by capture association; no PLC encoding",
+    "LoadedConfiguration<T>": "001 configuration-time frozen business input, canonical text/digest/source file; concrete T recursively checked, no object escape",
+    "IReservedIntegration.Name": "Existing integration identity for status consumer, not raw device state",
+    "CommittedPublicPreparationHandoffV2": "003 public-preparation-handoff: actual stored IDs/revision/digest used to verify semantic handoff, not synthetic current raw history",
+    "ConfigReference/PublicPreparationHandoffV2": "Actual immutable config identity and verified committed handoff fields, all defined by 001 configuration-time and 003 public-preparation-handoff. No PLC status or raw array introduced; recursive field checking retained.",
+    "BusinessBudget/BusinessDurations/CapacityLimits": "001 configuration-time frozen business durations and resource bounds; RecipeApplication approved 009 FR-035—039; no protocol address or handshake count. Recursively checked actual fields only.",
+    "WorkflowIdentity/RunPurpose": "003 verified handoff and workflow scoped identity; actual station/actor/purpose/revisions and occupied business slots, not PLC wire encoding. Existing EnsureScope validates RunId/TrayId.",
+    "SimulationProfile/Sim*": "001 configuration-time versioned Test fixture inputs (durations, physical conditions, measured height and F-code strings); RawCodes here are camera algorithm barcode input, not PLC raw status. Explicit fields only; nested shape walk remains enabled.",
+    "ComponentEvidenceSource": "003 handoff/008 evidence contract actual component source category, independent from PLC encodings; no numeric coupling."
+  },
+  "componentOriginReview": {
+    "actor": "Codex /root implementation and finite interface review; no external approval claimed",
+    "basis": "001 acquisition-algorithm; 003 detection-port/component-source-matrix; 008 evidence; aligned spec/plan/tasks before code; 009 FR-011/015/020 T034/T035/T039",
+    "fields": "ComponentExecutionOrigin Source/VersionRef/Quality; ICapturePort CameraOrigin/LightOrigin; IAlgorithmPort Origin; DetectionPortResult AlgorithmOrigin; appended ResultSource.Test",
+    "purpose": "Actual producer identity plus correlated saved facts; Unknown stays Unknown, never inferred from RunPurpose; enum values not PLC encodings. Source absence prevents required completion; historical payload unchanged. Recursive shape checking remains required."
+  },
+  "recipeReceiptProjectionReview": {
+    "actor": "Codex",
+    "basis": "009 impact5.5 and actual aligned003 API contract5.5; B03.2 and E02.2",
+    "purpose": "Store original business clock coordinates as decimal strings, actual original stage references and actual save purpose/receipt; no second window or current permission from history. Intent receipt is prior to t0 and not folded into post-t0 required saves. Missing historical fields remain null; not a protocol exemption."
+  },
+  "necessaryEvidenceReceiptReview": {
+    "actor": "Codex",
+    "basis": "Actual 001/002/003/008 spec/contracts/plan/tasks alignment before code; 009 E02.2 and impact5.5",
+    "scope": "Storage receipt identity/actual commit/reception tick only, no raw value. Current receipt requires actual matching valid durable evidence; historical absent remains unrecorded. Real table identity in appended enum value preserves old values."
+  },
+  "recipeExecution010Review": {
+    "basis": "010 A01-A07 actual spec/contracts/plan/tasks alignment, CE-02/03 and IB-01-05",
+    "scope": "Semantic recipe/coordinate/capability inputs and correlated capture/F facts; no device encodings, fixture JSON or Worker process path in public shape. Requested settings and actual settings remain distinct. Legacy execution-only fields removed.",
+    "status": "Explicit registration; recursive A02 and 010 B03 still required"
+  },
+  "recipeExecution011Review": {
+    "basis": "recipe-contract/1.3 RC08, EX01/EX02/EX03 and published binding005-010/state003-004",
+    "scope": "Explicit semantic declarations, purpose points, original frozen durations, actual correlated observations. No raw words/ASCII, no global namespace exemption; removed old current fields are no longer registered.",
+    "changes": [
+      {
+        "type": "Gaode.Application.Ports.AlgorithmRole",
+        "added": [
+          "TrayPose"
+        ],
+        "removed": []
+      },
+      {
+        "type": "Gaode.Application.Ports.AlgorithmRequest",
+        "added": [
+          "ObservationContext"
+        ],
+        "removed": []
+      },
+      {
+        "type": "Gaode.Application.Ports.AlgorithmEvent",
+        "added": [
+          "Observation"
+        ],
+        "removed": []
+      },
+      {
+        "type": "Gaode.Application.Ports.TrayObservationContext",
+        "added": [
+          "CheckRound",
+          "Purpose",
+          "RelatedTransitionId",
+          "TrayId"
+        ],
+        "removed": []
+      },
+      {
+        "type": "Gaode.Application.Ports.MoveRequest",
+        "added": [
+          "FlipPreparation"
+        ],
+        "removed": []
+      },
+      {
+        "type": "Gaode.Application.Ports.FlipMovePreparation",
+        "added": [
+          "Model",
+          "PhysicalEntityId",
+          "PhysicalSlotIndex",
+          "TargetPose",
+          "TransitionId"
+        ],
+        "removed": []
+      },
+      {
+        "type": "Gaode.Application.Ports.FlipRequest",
+        "added": [
+          "Model",
+          "TargetPose",
+          "TransitionId"
+        ],
+        "removed": [
+          "TargetFace"
+        ]
+      },
+      {
+        "type": "Gaode.Application.Ports.PutBackRequest",
+        "added": [
+          "Correlation",
+          "IntentWriteId",
+          "PositionEvidence",
+          "TransitionId",
+          "Window"
+        ],
+        "removed": []
+      },
+      {
+        "type": "Gaode.Application.Ports.IPhysicalHandlingPort",
+        "added": [
+          "PutBackAsync"
+        ],
+        "removed": []
+      },
+      {
+        "type": "Gaode.Domain.Station01.DeviceCompletionMeaning",
+        "added": [
+          "FlipCompleted",
+          "PutBackCompleted"
+        ],
+        "removed": []
+      },
+      {
+        "type": "Gaode.Domain.Station01.DeviceObservation",
+        "added": [
+          "AxisPositions",
+          "PositionForPurpose"
+        ],
+        "removed": []
+      },
+      {
+        "type": "Gaode.Domain.Station01.AxisPositionSet",
+        "added": [
+          "DetectionZ",
+          "GrabZ",
+          "ScanZ",
+          "X",
+          "Y"
+        ],
+        "removed": []
+      },
+      {
+        "type": "Gaode.Domain.Station01.RunState",
+        "added": [
+          "ReadyForRemoval"
+        ],
+        "removed": []
+      },
+      {
+        "type": "Gaode.Application.Ports.WholeTrayWorkflowStage",
+        "added": [
+          "ManualRemovalAdmission"
+        ],
+        "removed": []
+      },
+      {
+        "type": "Gaode.Application.Ports.ResultSource",
+        "added": [],
+        "removed": []
+      },
+      {
+        "type": "Gaode.Application.Ports.DetectionStepTarget",
+        "added": [
+          "CoordinateEpoch",
+          "ScanPoseId",
+          "StageId"
+        ],
+        "removed": [
+          "HeightRound"
+        ]
+      },
+      {
+        "type": "Gaode.Application.Ports.DetectionRequest",
+        "added": [
+          "FrozenBusinessDurations",
+          "InitialObservation",
+          "InitialObservationWriteId"
+        ],
+        "removed": []
+      },
+      {
+        "type": "Gaode.Application.Ports.DetectionPortResult",
+        "added": [
+          "LastObservation",
+          "SlotParticipation"
+        ],
+        "removed": []
+      },
+      {
+        "type": "Gaode.Domain.Station01.TrayPresence",
+        "added": [
+          "Absent",
+          "Present",
+          "Unknown"
+        ],
+        "removed": []
+      },
+      {
+        "type": "Gaode.Domain.Station01.TrayPose",
+        "added": [
+          "Abnormal",
+          "Normal",
+          "Unknown"
+        ],
+        "removed": []
+      },
+      {
+        "type": "Gaode.Domain.Station01.TrayObservationPurpose",
+        "added": [
+          "InitialPreparation",
+          "PostPlacementCheck"
+        ],
+        "removed": []
+      },
+      {
+        "type": "Gaode.Domain.Station01.TraySlotObservation",
+        "added": [
+          "PhysicalSlotIndex",
+          "Pose",
+          "Presence",
+          "Reason"
+        ],
+        "removed": []
+      },
+      {
+        "type": "Gaode.Domain.Station01.FLocation",
+        "added": [
+          "Frame",
+          "IsValid",
+          "SourceReference",
+          "Unit",
+          "X",
+          "Y"
+        ],
+        "removed": []
+      },
+      {
+        "type": "Gaode.Domain.Station01.TrayObservation",
+        "added": [
+          "CallId",
+          "CaptureId",
+          "CheckRound",
+          "EvidenceReferences",
+          "FLocation",
+          "IsValid",
+          "ObservationId",
+          "ObservedAtUtc",
+          "Purpose",
+          "RelatedTransitionId",
+          "RunId",
+          "Slots",
+          "Source",
+          "TrayId"
+        ],
+        "removed": []
+      },
+      {
+        "type": "Gaode.Domain.Station01.SlotParticipationState",
+        "added": [
+          "Absent",
+          "Participating",
+          "PoseExcluded",
+          "Unknown"
+        ],
+        "removed": []
+      },
+      {
+        "type": "Gaode.Domain.Station01.SlotParticipation",
+        "added": [
+          "Apply",
+          "PhysicalSlotIndex",
+          "Reason",
+          "State"
+        ],
+        "removed": []
+      },
+      {
+        "type": "Gaode.Domain.Configuration.AlgorithmConfigurations",
+        "added": [
+          "TrayPose"
+        ],
+        "removed": []
+      },
+      {
+        "type": "Gaode.Domain.Configuration.BusinessDurations",
+        "added": [
+          "FlipCompletion",
+          "PutBackCompletion",
+          "TrayPoseAlgorithm"
+        ],
+        "removed": []
+      },
+      {
+        "type": "Gaode.Application.Recipes.RecipeRunPlan",
+        "added": [
+          "DefinitionDigest",
+          "ECode",
+          "Model"
+        ],
+        "removed": []
+      },
+      {
+        "type": "Gaode.Application.Recipes.RecipeStep",
+        "added": [
+          "ScanPoseId",
+          "StageId",
+          "TargetPose"
+        ],
+        "removed": [
+          "HeightRound"
+        ]
+      },
+      {
+        "type": "Gaode.Application.Recipes.RecipeMember",
+        "added": [],
+        "removed": [
+          "PointRefs"
+        ]
+      },
+      {
+        "type": "Gaode.Application.Recipes.RecipePosition",
+        "added": [],
+        "removed": [
+          "PointRefs"
+        ]
+      },
+      {
+        "type": "Gaode.Application.Recipes.RecipeStage",
+        "added": [],
+        "removed": [
+          "CoordinateRule"
+        ]
+      },
+      {
+        "type": "Gaode.Application.Recipes.RecipeDefinition",
+        "added": [
+          "DefinitionDigest",
+          "SchemaVersion"
+        ],
+        "removed": []
+      },
+      {
+        "type": "Gaode.Application.Recipes.RecipeCodeRule",
+        "added": [
+          "ExtraPose",
+          "ScanPointRef"
+        ],
+        "removed": []
+      },
+      {
+        "type": "Gaode.Application.Recipes.RecipeExtraScanPose",
+        "added": [
+          "AlgorithmProfile",
+          "CaptureProfile",
+          "PickPointRef",
+          "PoseId",
+          "PutBackPointRef",
+          "ScanPointRef",
+          "TargetPose"
+        ],
+        "removed": []
+      },
+      {
+        "type": "Gaode.Application.Recipes.CoordinateDefinition",
+        "added": [],
+        "removed": [
+          "HeightRound",
+          "Measurement",
+          "ResolutionKind"
+        ]
+      },
+      {
+        "type": "Gaode.Application.Recipes.ObjectExecutionInputs",
+        "added": [
+          "PurposePoints"
+        ],
+        "removed": []
+      },
+      {
+        "type": "Gaode.Application.Recipes.RecipeTargetPose",
+        "added": [
+          "PoseKey",
+          "ProfileId",
+          "ProfileVersion"
+        ],
+        "removed": []
+      },
+      {
+        "type": "Gaode.Application.Recipes.RecipePointPurpose",
+        "added": [
+          "EScan",
+          "FlipPick",
+          "FlipPutBack"
+        ],
+        "removed": []
+      },
+      {
+        "type": "Gaode.Application.Recipes.RecipePurposePoint",
+        "added": [
+          "CoordinateEvidenceReference",
+          "Fixed",
+          "Point",
+          "Purpose"
+        ],
+        "removed": []
+      },
+      {
+        "type": "Gaode.Application.Recipes.RecipeFlipTransition",
+        "added": [
+          "PickPointRef",
+          "PutBackPointRef",
+          "TargetPose"
+        ],
+        "removed": []
+      },
+      {
+        "type": "Gaode.Application.Recipes.RecipeFlipInputs",
+        "added": [
+          "Stages"
+        ],
+        "removed": []
+      },
+      {
+        "type": "Gaode.Application.Recipes.FrozenExecutionInputs",
+        "added": [
+          "TrayPoseCapability"
+        ],
+        "removed": []
+      },
+      {
+        "type": "Gaode.Application.Recipes.AlgorithmPurpose",
+        "added": [
+          "TrayPose"
+        ],
+        "removed": []
+      },
+      {
+        "type": "Gaode.Domain.Station01.DeviceActionEvidence",
+        "added": [
+          "TransitionId"
+        ],
+        "removed": []
+      }
+    ]
+  },
+  "mechanicalCleanup011Review": "011 binding011: reviewed explicit semantic evidence basis and deleted current auxiliary execution; historical type remains read-only. No protocol fields added.",
+  "pollingOptimization013Review": {
+    "basis": "001 budget schema 2.0 removes retired polling duration; communication policy stays internal. Live position identity independent; historical documents remain readable.",
+    "removedCurrentMember": "Gaode.Domain.Configuration.BusinessDurations.PlcPoll"
+  },
+  "review013SemanticFields": {
+    "axisObservations": "Existing 011 execution-and-state.md axis/position?/unit?/reliability/observedAt?/connectionEpoch?/evidenceRef?; live axes use Position.Identity; no raw protocol fields",
+    "pythonTypePredicate": "Only unshadowed builtin isinstance(value, dict), with all field/alias/escape checks retained"
+  },
+  "recipeUIFix012Review": "Local capture profile references and recipe-level semantic SortingGripperId; nullable omitted to preserve historical frozen digests; no PLC encoding or execution bypass",
+  "recipeRotation014Review": {
+    "basis": "RC10 EX14 and confirmed stable matrix/original-slot rules; semantic fields only. Raw protocol signal fields stay in communication assembly.",
+    "types": [
+      "Gaode.Application.Ports.DetectionExecutionScope",
+      "Gaode.Application.Ports.DetectionRequest",
+      "Gaode.Application.Ports.PlcStageActionRequest",
+      "Gaode.Application.Ports.RotationExecutionBasis",
+      "Gaode.Application.Ports.RotationExecutionConfiguration",
+      "Gaode.Application.Ports.RotationTarget",
+      "Gaode.Application.Ports.TransferPurpose",
+      "Gaode.Application.Ports.WorkerTargetIdentity",
+      "Gaode.Application.Recipes.FrozenExecutionInputs",
+      "Gaode.Application.Recipes.ObjectExecutionInputs",
+      "Gaode.Application.Recipes.OriginalSlotReference",
+      "Gaode.Application.Recipes.RecipeCatalogItem",
+      "Gaode.Application.Recipes.RecipeCellPhysicalBinding",
+      "Gaode.Application.Recipes.RecipeDefinition",
+      "Gaode.Application.Recipes.RecipeInspectionKind",
+      "Gaode.Application.Recipes.RecipePosition",
+      "Gaode.Application.Recipes.RecipeRunPlan",
+      "Gaode.Application.Recipes.RecipeTrayCell",
+      "Gaode.Application.Recipes.RecipeTrayLayout",
+      "Gaode.Application.Recipes.RecipeTrayRegion",
+      "Gaode.Application.Recipes.RecipeTraySlotMapping",
+      "Gaode.Application.Recipes.RotationWorkstationInputs",
+      "Gaode.Domain.Station01.AngleReachedEvidence",
+      "Gaode.Domain.Station01.DeviceActionEvidence",
+      "Gaode.Domain.Station01.ExecutionPhaseProjection",
+      "Gaode.Domain.Station01.InspectionResultProjection",
+      "Gaode.Domain.Station01.RunMovementProjection",
+      "Gaode.Domain.Station01.RunResultProjection",
+      "Gaode.Domain.Station01.SlotStateProjection",
+      "Gaode.Domain.Station01.SortingActionPlan"
+    ],
+    "hardwareApplied": "NotVerified",
+    "stageSemanticReview": "TransferToRotation and Rotate are approved business stage names only; no addresses/codes/handshake fields added"
+  },
+  "review016": {
+    "contract": "specs/016-public-preparation-tray-check-unload/contracts/public-tray-flow.md",
+    "fields": {
+      "Gaode.Application.Ports.IPublicConfiguration": [
+        "SavePublicPositions"
+      ],
+      "Gaode.Application.Ports.DetectionPortResult": [
+        "PosePending",
+        "EndBasisReference"
+      ],
+      "Gaode.Application.Ports.PosePendingHandling": [
+        "ObjectId",
+        "PhysicalSlotIndex",
+        "ObservationId",
+        "ObservationReference",
+        "DetectionState",
+        "Reason"
+      ],
+      "Gaode.Application.Recipes.RecipeMember": [
+        "CellId",
+        "PhysicalSlotIndex"
+      ],
+      "Gaode.Domain.Station01.TraySlotObservation": [
+        "CellId",
+        "Region",
+        "Row",
+        "Column",
+        "HasPositionIdentity"
+      ],
+      "Gaode.Domain.Station01.TrayObservation": [
+        "SchemaVersion",
+        "MappingSourceReference",
+        "ExpectedPhysicalSlotIndices",
+        "HasCompleteCoverage",
+        "IsEmptyTray",
+        "HasSamePhysicalMapping"
+      ],
+      "Gaode.Domain.Station01.SortingActionPlan": [
+        "IsPosePending",
+        "ObservationReference",
+        "DetectionState"
+      ],
+      "Gaode.Domain.Station01.SlotStateProjection": [
+        "DetectionState",
+        "PhysicalDisposition",
+        "SortingEvidenceRef"
+      ],
+      "Gaode.Domain.Station01.RunMovementProjection": [
+        "IsPosePending",
+        "DetectionState",
+        "PhysicalDisposition",
+        "Reason"
+      ],
+      "Gaode.Domain.Station01.TrayEndReason": [
+        "NormalCompletion",
+        "ManualIntervention",
+        "EmptyTray"
+      ],
+      "Gaode.Domain.Station01.TrayAnomalyItem": [
+        "PhysicalSlotIndex",
+        "CellId",
+        "Region",
+        "Row",
+        "Column",
+        "Type",
+        "Reason"
+      ],
+      "Gaode.Domain.Station01.TrayAnomalyDecisionProjection": [
+        "DecisionId",
+        "RunId",
+        "ObservationId",
+        "CheckRound",
+        "CreatedUtc",
+        "DeadlineUtc",
+        "Items",
+        "State",
+        "Choice",
+        "ChoiceSource",
+        "OperatorId",
+        "EvidenceReference"
+      ]
+    },
+    "history": "Missing old fields stay unknown; old recipe-definition/4 and completion payloads readable; new writes use recipe-definition/5 and tray-end/2; no raw signal fields exposed."
+  }
+}

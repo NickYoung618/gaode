@@ -1,0 +1,566 @@
+[
+  {
+    "name": "PLC_Heartbeat_Req",
+    "codeDirection": "PlcToPc",
+    "protocol": [
+      "0x0001",
+      "PLC_Heartbeat_Req",
+      "PLC->PC",
+      "Bool",
+      "PLC心跳脉冲（翻转）"
+    ],
+    "directionMatches": true
+  },
+  {
+    "name": "PC_Heartbeat_Resp",
+    "codeDirection": "PcToPlc",
+    "protocol": [
+      "0x0002",
+      "PC_Heartbeat_Resp",
+      "PC->PLC",
+      "Bool",
+      "PC响应心跳"
+    ],
+    "directionMatches": true
+  },
+  {
+    "name": "PC_System_Ready",
+    "codeDirection": "PcToPlc",
+    "protocol": [
+      "0x0003",
+      "PC_System_Ready",
+      "PC->PLC",
+      "Bool",
+      "上位机初始化完成，允许动作"
+    ],
+    "directionMatches": true
+  },
+  {
+    "name": "PLC_System_Fault",
+    "codeDirection": "PlcToPc",
+    "protocol": [
+      "0x0004",
+      "PLC_System_Fault",
+      "PLC->PC",
+      "Bool",
+      "PLC硬件故障（急停、光栅、过载）"
+    ],
+    "directionMatches": true
+  },
+  {
+    "name": "PLC_Mode_Auto",
+    "codeDirection": "PlcToPc",
+    "protocol": [
+      "0x0005",
+      "PLC_Mode_Auto",
+      "PLC->PC",
+      "Bool",
+      "PLC处于自动模式（非手动/维护）"
+    ],
+    "directionMatches": true
+  },
+  {
+    "name": "Soft_Stop_Cmd",
+    "codeDirection": "PcToPlc",
+    "protocol": [
+      "0x0006",
+      "Soft_Stop_Cmd",
+      "PC->PLC",
+      "Bool",
+      "软停机指令（上位机崩溃/失控时下发，PLC自动回位）"
+    ],
+    "directionMatches": true
+  },
+  {
+    "name": "System_Reset_Cmd",
+    "codeDirection": "PcToPlc",
+    "protocol": [
+      "0x0007",
+      "System_Reset_Cmd",
+      "PC->PLC",
+      "Bool",
+      "上位机触发系统复位（1=触发复位）重新回位开始"
+    ],
+    "directionMatches": true
+  },
+  {
+    "name": "PLC_Ready_State",
+    "codeDirection": "PlcToPc",
+    "protocol": [
+      "0x0008",
+      "PLC_Ready_State",
+      "PLC->PC",
+      "Bool",
+      "PLC就绪状态：1=已就绪，可接收上位机指令；0=未就绪"
+    ],
+    "directionMatches": true
+  },
+  {
+    "name": "PC_Start_Cmd",
+    "codeDirection": "PcToPlc",
+    "protocol": [
+      "0x0009",
+      "PC_Start_Cmd",
+      "PC->PLC",
+      "Bool",
+      "上位机复位后重新判断任务状态，确认安全后重新下发启动命令"
+    ],
+    "directionMatches": true
+  },
+  {
+    "name": "Manual_Zone_Occupied",
+    "codeDirection": "PlcToPc",
+    "protocol": [
+      "0x0010",
+      "Manual_Zone_Occupied",
+      "PLC->PC",
+      "Bool",
+      "1=翻转工位有人工介入（安全门打开），上位机必须禁止下发运动指令"
+    ],
+    "directionMatches": true
+  },
+  {
+    "name": "Manual_Flip_Complete",
+    "codeDirection": "PcToPlc",
+    "protocol": [
+      "0x0011",
+      "Manual_Flip_Complete",
+      "PC->PLC",
+      "Bool",
+      "人工完成翻转后，上位机下发确认信号，解除安全锁"
+    ],
+    "directionMatches": true
+  },
+  {
+    "name": "Teach_Mode_Cmd",
+    "codeDirection": "PcToPlc",
+    "protocol": [
+      "0x0020",
+      "Teach_Mode_Cmd",
+      "PC->PLC",
+      "Bool",
+      "1=进入示教模式，PLC停止自动运行"
+    ],
+    "directionMatches": true
+  },
+  {
+    "name": "Teach_Confirm",
+    "codeDirection": "PcToPlc",
+    "protocol": [
+      "0x0021",
+      "Teach_Confirm",
+      "PC->PLC",
+      "Bool",
+      "1=确认保存当前示教点"
+    ],
+    "directionMatches": true
+  },
+  {
+    "name": "XY_Move_Cmd",
+    "codeDirection": "PcToPlc",
+    "protocol": [
+      "4x0001",
+      "XY_Move_Cmd",
+      "PC->PLC",
+      "Int16",
+      "1=去上料位, 2=去检测位, 3=去翻转/扫码位, 4=去下料位, 5=去扫码位"
+    ],
+    "directionMatches": true
+  },
+  {
+    "name": "XY_Pos_Confirmed",
+    "codeDirection": "PlcToPc",
+    "protocol": [
+      "4x0002",
+      "XY_Pos_Confirmed",
+      "PLC->PC",
+      "Int16",
+      "0=运动中, 1=到位, 2=超时未到位"
+    ],
+    "directionMatches": true
+  },
+  {
+    "name": "Camera_Target_X",
+    "codeDirection": "PcToPlc",
+    "protocol": [
+      "4x0003",
+      "Camera_Target_X",
+      "PC->PLC",
+      "Float32",
+      "X轴绝对坐标（由上位机3D视觉算法计算后下发）"
+    ],
+    "directionMatches": true
+  },
+  {
+    "name": "Camera_Target_Y",
+    "codeDirection": "PcToPlc",
+    "protocol": [
+      "4x0005",
+      "Camera_Target_Y",
+      "PC->PLC",
+      "Float32",
+      "Y轴绝对坐标（由上位机3D视觉算法计算后下发）"
+    ],
+    "directionMatches": true
+  },
+  {
+    "name": "Camera_Target_Z",
+    "codeDirection": "PcToPlc",
+    "protocol": [
+      "4x0007",
+      "Camera_Target_Z",
+      "PC->PLC",
+      "Float32",
+      "检测Z轴目标高度（由上位机3D视觉算法计算后下发）"
+    ],
+    "directionMatches": true
+  },
+  {
+    "name": "Scan_Target_Z",
+    "codeDirection": "PcToPlc",
+    "protocol": [
+      "4x0009",
+      "Scan_Target_Z",
+      "PC->PLC",
+      "Float32",
+      "扫码机轴目标高度（由上位机配方下发）"
+    ],
+    "directionMatches": true
+  },
+  {
+    "name": "Grab_Target_Z",
+    "codeDirection": "PcToPlc",
+    "protocol": [
+      "4x000B",
+      "Grab_Target_Z",
+      "PC->PLC",
+      "Float32",
+      "抓取轴目标高度（由上位机配方下发）"
+    ],
+    "directionMatches": true
+  },
+  {
+    "name": "Machine_Current_Pos_X",
+    "codeDirection": "PlcToPc",
+    "protocol": [
+      "4x000D",
+      "Machine_Current_Pos_X",
+      "PLC->PC",
+      "Float32",
+      "PLC实时反馈当前X物理坐标，供上位机校验"
+    ],
+    "directionMatches": true
+  },
+  {
+    "name": "Machine_Current_Pos_Y",
+    "codeDirection": "PlcToPc",
+    "protocol": [
+      "4x000F",
+      "Machine_Current_Pos_Y",
+      "PLC->PC",
+      "Float32",
+      "PLC实时反馈当前Y物理坐标，供上位机校验"
+    ],
+    "directionMatches": true
+  },
+  {
+    "name": "Machine_Current_Pos_Z",
+    "codeDirection": "PlcToPc",
+    "protocol": [
+      "4x0011",
+      "Machine_Current_Pos_Z",
+      "PLC->PC",
+      "Float32",
+      "PLC实时反馈当前Z物理坐标，供上位机校验"
+    ],
+    "directionMatches": true
+  },
+  {
+    "name": "Z_Axis_Move_Status",
+    "codeDirection": "PlcToPc",
+    "protocol": [
+      "4x0013",
+      "Z_Axis_Move_Status",
+      "PLC->PC",
+      "Int16",
+      "0=空闲, 1=运动中, 2=已到达目标高度, 3=运动超时/失败"
+    ],
+    "directionMatches": true
+  },
+  {
+    "name": "Flip_Target_Face",
+    "codeDirection": "PcToPlc",
+    "protocol": [
+      "4x0015",
+      "Flip_Target_Face",
+      "PC->PLC",
+      "Int16",
+      "目标面编号（1=第1面, 2=第2面, 3=第3面, 4=第4面等）"
+    ],
+    "directionMatches": true
+  },
+  {
+    "name": "Flip_Status",
+    "codeDirection": "PlcToPc",
+    "protocol": [
+      "4x0016",
+      "Flip_Status",
+      "PLC->PC",
+      "Int16",
+      "0=空闲, 1=执行中, 2=翻面完成, 3=翻面失败"
+    ],
+    "directionMatches": true
+  },
+  {
+    "name": "Flip_Current_Face",
+    "codeDirection": "PlcToPc",
+    "protocol": [
+      "4x0017",
+      "Flip_Current_Face",
+      "PLC->PC",
+      "Int16",
+      "PLC反馈当前实际朝向的面编号（1~N），供上位机逻辑判断"
+    ],
+    "directionMatches": true
+  },
+  {
+    "name": "Sorting_Part_Index",
+    "codeDirection": "PcToPlc",
+    "protocol": [
+      "4x0020",
+      "Sorting_Part_Index",
+      "PC->PLC",
+      "Int16",
+      "当前分拣零件的槽位号（唯一ID）；在取料完成后，按§3.1.6第④步与放料坐标一同提交。"
+    ],
+    "directionMatches": true
+  },
+  {
+    "name": "Sorting_Cmd",
+    "codeDirection": "PcToPlc",
+    "protocol": [
+      "4x0021",
+      "Sorting_Cmd",
+      "PC->PLC",
+      "Int16",
+      "0=空闲；1=按已下发取料坐标执行取料；2=执行放料；3=满盘报警。槽位号提交时机见§3.1.6第④步。"
+    ],
+    "directionMatches": true
+  },
+  {
+    "name": "Sorting_Exec_Status",
+    "codeDirection": "PlcToPc",
+    "protocol": [
+      "4x0022",
+      "Sorting_Exec_Status",
+      "PLC->PC",
+      "Int16",
+      "0=空闲；1=执行中；2=取料成功；3=分拣成功（放料完成）；4=抓取空/失败（锁停）；5=满盘。"
+    ],
+    "directionMatches": true
+  },
+  {
+    "name": "Pallet_Lock_Cmd",
+    "codeDirection": "PcToPlc",
+    "protocol": [
+      "4x0023",
+      "Pallet_Lock_Cmd",
+      "PC->PLC",
+      "Int16",
+      "0=解锁, 1=锁紧（上料后、下料前）"
+    ],
+    "directionMatches": true
+  },
+  {
+    "name": "Pallet_Lock_Status",
+    "codeDirection": "PlcToPc",
+    "protocol": [
+      "4x0024",
+      "Pallet_Lock_Status",
+      "PLC->PC",
+      "Int16",
+      "0=未锁, 1=已锁紧, 2=锁紧失败（报警）"
+    ],
+    "directionMatches": true
+  },
+  {
+    "name": "NG_Zone_Count",
+    "codeDirection": "PcToPlc",
+    "protocol": [
+      "4x0025",
+      "NG_Zone_Count",
+      "PC->PLC",
+      "Int16",
+      "当前料盘NG区的有效物理槽位总数（动态下发）"
+    ],
+    "directionMatches": true
+  },
+  {
+    "name": "Pending_Zone_Count",
+    "codeDirection": "PcToPlc",
+    "protocol": [
+      "4x0026",
+      "Pending_Zone_Count",
+      "PC->PLC",
+      "Int16",
+      "当前料盘待判定区的有效物理槽位总数（动态下发）"
+    ],
+    "directionMatches": true
+  },
+  {
+    "name": "Zone_Config_Ready",
+    "codeDirection": "PcToPlc",
+    "protocol": [
+      "4x0027",
+      "Zone_Config_Ready",
+      "PC->PLC",
+      "Bool",
+      "区域配置下发完成信号（1=完成，PLC才开始运行）"
+    ],
+    "directionMatches": true
+  },
+  {
+    "name": "Zone_Config_Ack",
+    "codeDirection": "PlcToPc",
+    "protocol": [
+      "4x0028",
+      "Zone_Config_Ack",
+      "PLC->PC",
+      "Bool",
+      "PLC确认接收并更新内部坐标表（0=未收到，1=已更新）"
+    ],
+    "directionMatches": true
+  },
+  {
+    "name": "Retry_Cmd",
+    "codeDirection": "PcToPlc",
+    "protocol": [
+      "4x0029",
+      "Retry_Cmd",
+      "PC->PLC",
+      "Int16",
+      "异常重试：1=重试当前动作, 2=跳过/到下一步, 3=复位分拣队列"
+    ],
+    "directionMatches": true
+  },
+  {
+    "name": "Teach_Pos_Select",
+    "codeDirection": "PcToPlc",
+    "protocol": [
+      "4x0030",
+      "Teach_Pos_Select",
+      "PC->PLC",
+      "Int16",
+      "选择要示教的点位ID（详见2.5.2节）"
+    ],
+    "directionMatches": true
+  },
+  {
+    "name": "Teach_Pos_X",
+    "codeDirection": "PlcToPc",
+    "protocol": [
+      "4x0031",
+      "Teach_Pos_X",
+      "PLC->PC",
+      "Float32",
+      "示教点X坐标"
+    ],
+    "directionMatches": true
+  },
+  {
+    "name": "Teach_Pos_Y",
+    "codeDirection": "PlcToPc",
+    "protocol": [
+      "4x0033",
+      "Teach_Pos_Y",
+      "PLC->PC",
+      "Float32",
+      "示教点Y坐标"
+    ],
+    "directionMatches": true
+  },
+  {
+    "name": "Teach_Pos_Z",
+    "codeDirection": "PlcToPc",
+    "protocol": [
+      "4x0035",
+      "Teach_Pos_Z",
+      "PLC->PC",
+      "Float32",
+      "示教点Z坐标"
+    ],
+    "directionMatches": true
+  },
+  {
+    "name": "Recipe_ID",
+    "codeDirection": "PcToPlc",
+    "protocol": [
+      "4x0040",
+      "Recipe_ID",
+      "PC->PLC",
+      "Int16",
+      "当前配方标识（仅用于HMI显示，PLC不参与逻辑判断）"
+    ],
+    "directionMatches": true
+  },
+  {
+    "name": "Alarm_Bits",
+    "codeDirection": "PlcToPc",
+    "protocol": null,
+    "directionMatches": null
+  },
+  {
+    "name": "Alarm_Severity",
+    "codeDirection": "PlcToPc",
+    "protocol": null,
+    "directionMatches": null
+  },
+  {
+    "name": "Inspection_Status",
+    "codeDirection": "PcToPlc",
+    "protocol": [
+      "4x0052",
+      "Inspection_Status",
+      "PC->PLC",
+      "Int16",
+      "0=等待下位机工位到位；1=检测中（上位机复位XY_Move_Cmd）；2=检测完成（PLC收到后执行Z轴复位）；3=扫码中，4=扫码完成；（包含料盘码和单个零件二维码）"
+    ],
+    "directionMatches": true
+  },
+  {
+    "name": "Z_Reset_Status",
+    "codeDirection": "PlcToPc",
+    "protocol": [
+      "4x0053",
+      "Z_Reset_Status",
+      "PLC->PC",
+      "Int16",
+      "0=空闲/未复位；1=复位中；2=复位成功；3=复位失败/超时；PLC收到下一条XY_Move_Cmd后自动复位为0"
+    ],
+    "directionMatches": true
+  },
+  {
+    "name": "Sorting_OK",
+    "codeDirection": "PcToPlc",
+    "protocol": [
+      "4x0054",
+      "Sorting_OK",
+      "PC->PLC",
+      "Int16",
+      "0=空闲；1=上位机已收到本次分拣完成。PLC收到1后清Sorting_Exec_Status为0，上位机确认状态0后清Sorting_OK为0。"
+    ],
+    "directionMatches": true
+  },
+  {
+    "name": "Flip_OK",
+    "codeDirection": "PcToPlc",
+    "protocol": [
+      "4x0055",
+      "Flip_OK",
+      "PC->PLC",
+      "Int16",
+      "0=空闲；1=上位机已核验本次翻面完成及目标面。PLC收到1后清Flip_Status为0，上位机确认状态0后清Flip_OK为0。"
+    ],
+    "directionMatches": true
+  }
+]

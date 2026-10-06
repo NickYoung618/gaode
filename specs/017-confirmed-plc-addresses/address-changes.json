@@ -1,0 +1,805 @@
+{
+  "against": "0.3.0 tool template",
+  "removed": [
+    "Rotate_Statues"
+  ],
+  "changes": [
+    {
+      "id": "Rotate_Start",
+      "old": {
+        "mb": 2006,
+        "type": "Int16"
+      },
+      "current": {
+        "mb": 2000,
+        "type": "BoolByte"
+      }
+    },
+    {
+      "id": "X_Move_Start",
+      "old": {
+        "mb": 2008,
+        "type": "Int16"
+      },
+      "current": {
+        "mb": 2001,
+        "type": "BoolByte"
+      }
+    },
+    {
+      "id": "Y_Move_Start",
+      "old": {
+        "mb": 2010,
+        "type": "Int16"
+      },
+      "current": {
+        "mb": 2002,
+        "type": "BoolByte"
+      }
+    },
+    {
+      "id": "Z_Camera_Move_Start",
+      "old": {
+        "mb": 2012,
+        "type": "Int16"
+      },
+      "current": {
+        "mb": 2003,
+        "type": "BoolByte"
+      }
+    },
+    {
+      "id": "Z_Scan_Move_Start",
+      "old": {
+        "mb": 2014,
+        "type": "Int16"
+      },
+      "current": {
+        "mb": 2004,
+        "type": "BoolByte"
+      }
+    },
+    {
+      "id": "Z_Grab_Move_Start",
+      "old": {
+        "mb": 2016,
+        "type": "Int16"
+      },
+      "current": {
+        "mb": 2005,
+        "type": "BoolByte"
+      }
+    },
+    {
+      "id": "PC_System_Ready",
+      "old": {
+        "mb": 2001,
+        "type": "BoolByte"
+      },
+      "current": {
+        "mb": 2006,
+        "type": "BoolByte"
+      }
+    },
+    {
+      "id": "PC_Start_Cmd",
+      "old": {
+        "mb": 2004,
+        "type": "BoolByte"
+      },
+      "current": {
+        "mb": 2007,
+        "type": "BoolByte"
+      }
+    },
+    {
+      "id": "Soft_Stop_Cmd",
+      "old": {
+        "mb": 2002,
+        "type": "BoolByte"
+      },
+      "current": {
+        "mb": 2008,
+        "type": "BoolByte"
+      }
+    },
+    {
+      "id": "System_Reset_Cmd",
+      "old": {
+        "mb": 2003,
+        "type": "BoolByte"
+      },
+      "current": {
+        "mb": 2009,
+        "type": "BoolByte"
+      }
+    },
+    {
+      "id": "Buzzer_Mute",
+      "old": null,
+      "current": {
+        "mb": 2010,
+        "type": "BoolByte"
+      }
+    },
+    {
+      "id": "PC_Heartbeat_Resp",
+      "old": {
+        "mb": 2000,
+        "type": "BoolByte"
+      },
+      "current": {
+        "mb": 2011,
+        "type": "BoolByte"
+      }
+    },
+    {
+      "id": "Flip_Target_Face",
+      "old": {
+        "mb": 2020,
+        "type": "Int16"
+      },
+      "current": {
+        "mb": 2012,
+        "type": "Int16"
+      }
+    },
+    {
+      "id": "Flip_Sorting",
+      "old": {
+        "mb": 2022,
+        "type": "Int16"
+      },
+      "current": {
+        "mb": 2014,
+        "type": "Int16"
+      }
+    },
+    {
+      "id": "Sorting_Cmd",
+      "old": {
+        "mb": 2024,
+        "type": "Int16"
+      },
+      "current": {
+        "mb": 2016,
+        "type": "Int16"
+      }
+    },
+    {
+      "id": "Grab_ID",
+      "old": {
+        "mb": 2026,
+        "type": "Int16"
+      },
+      "current": {
+        "mb": 2018,
+        "type": "Int16"
+      }
+    },
+    {
+      "id": "Retry_Cmd",
+      "old": null,
+      "current": {
+        "mb": 2020,
+        "type": "Int16"
+      }
+    },
+    {
+      "id": "PC_Alarm_Code",
+      "old": null,
+      "current": {
+        "mb": 2022,
+        "type": "Int16"
+      }
+    },
+    {
+      "id": "Camera_Target_X",
+      "old": {
+        "mb": 2028,
+        "type": "Float32"
+      },
+      "current": {
+        "mb": 2024,
+        "type": "Float32"
+      }
+    },
+    {
+      "id": "Camera_Target_Y",
+      "old": {
+        "mb": 2032,
+        "type": "Float32"
+      },
+      "current": {
+        "mb": 2028,
+        "type": "Float32"
+      }
+    },
+    {
+      "id": "Camera_Target_Z",
+      "old": {
+        "mb": 2036,
+        "type": "Float32"
+      },
+      "current": {
+        "mb": 2032,
+        "type": "Float32"
+      }
+    },
+    {
+      "id": "Scan_Target_Z",
+      "old": {
+        "mb": 2040,
+        "type": "Float32"
+      },
+      "current": {
+        "mb": 2036,
+        "type": "Float32"
+      }
+    },
+    {
+      "id": "Grab_Target_Z",
+      "old": {
+        "mb": 2044,
+        "type": "Float32"
+      },
+      "current": {
+        "mb": 2040,
+        "type": "Float32"
+      }
+    },
+    {
+      "id": "Rotate_Target_R",
+      "old": {
+        "mb": 2048,
+        "type": "Float32"
+      },
+      "current": {
+        "mb": 2044,
+        "type": "Float32"
+      }
+    },
+    {
+      "id": "Model_Number",
+      "old": {
+        "mb": 2052,
+        "type": "Float32"
+      },
+      "current": {
+        "mb": 2048,
+        "type": "Float32"
+      }
+    },
+    {
+      "id": "Global_Target_Speed",
+      "old": null,
+      "current": {
+        "mb": 2052,
+        "type": "Float32"
+      }
+    },
+    {
+      "id": "X_Positive_Limit",
+      "old": null,
+      "current": {
+        "mb": 6000,
+        "type": "BoolByte"
+      }
+    },
+    {
+      "id": "X_Negative_Limit",
+      "old": null,
+      "current": {
+        "mb": 6001,
+        "type": "BoolByte"
+      }
+    },
+    {
+      "id": "X_Home",
+      "old": null,
+      "current": {
+        "mb": 6002,
+        "type": "BoolByte"
+      }
+    },
+    {
+      "id": "Y_Positive_Limit",
+      "old": null,
+      "current": {
+        "mb": 6003,
+        "type": "BoolByte"
+      }
+    },
+    {
+      "id": "Y_Negative_Limit",
+      "old": null,
+      "current": {
+        "mb": 6004,
+        "type": "BoolByte"
+      }
+    },
+    {
+      "id": "Y_Home",
+      "old": null,
+      "current": {
+        "mb": 6005,
+        "type": "BoolByte"
+      }
+    },
+    {
+      "id": "Z_Camera_Positive_Limit",
+      "old": null,
+      "current": {
+        "mb": 6006,
+        "type": "BoolByte"
+      }
+    },
+    {
+      "id": "Z_Camera_Negative_Limit",
+      "old": null,
+      "current": {
+        "mb": 6007,
+        "type": "BoolByte"
+      }
+    },
+    {
+      "id": "Z_Camera_Home",
+      "old": null,
+      "current": {
+        "mb": 6008,
+        "type": "BoolByte"
+      }
+    },
+    {
+      "id": "Z_Scan_Positive_Limit",
+      "old": null,
+      "current": {
+        "mb": 6009,
+        "type": "BoolByte"
+      }
+    },
+    {
+      "id": "Z_Scan_Negative_Limit",
+      "old": null,
+      "current": {
+        "mb": 6010,
+        "type": "BoolByte"
+      }
+    },
+    {
+      "id": "Z_Scan_Home",
+      "old": null,
+      "current": {
+        "mb": 6011,
+        "type": "BoolByte"
+      }
+    },
+    {
+      "id": "Z_Grab_Positive_Limit",
+      "old": null,
+      "current": {
+        "mb": 6012,
+        "type": "BoolByte"
+      }
+    },
+    {
+      "id": "Z_Grab_Negative_Limit",
+      "old": null,
+      "current": {
+        "mb": 6013,
+        "type": "BoolByte"
+      }
+    },
+    {
+      "id": "Z_Grab_Home",
+      "old": null,
+      "current": {
+        "mb": 6014,
+        "type": "BoolByte"
+      }
+    },
+    {
+      "id": "PLC_Ready_State",
+      "old": {
+        "mb": 6003,
+        "type": "BoolByte"
+      },
+      "current": {
+        "mb": 6015,
+        "type": "BoolByte"
+      }
+    },
+    {
+      "id": "PLC_Mode_Auto",
+      "old": {
+        "mb": 6002,
+        "type": "BoolByte"
+      },
+      "current": {
+        "mb": 6016,
+        "type": "BoolByte"
+      }
+    },
+    {
+      "id": "Start_Button",
+      "old": null,
+      "current": {
+        "mb": 6017,
+        "type": "BoolByte"
+      }
+    },
+    {
+      "id": "Stop_Button",
+      "old": null,
+      "current": {
+        "mb": 6018,
+        "type": "BoolByte"
+      }
+    },
+    {
+      "id": "Reset_Button",
+      "old": null,
+      "current": {
+        "mb": 6019,
+        "type": "BoolByte"
+      }
+    },
+    {
+      "id": "EStop_Active",
+      "old": null,
+      "current": {
+        "mb": 6020,
+        "type": "BoolByte"
+      }
+    },
+    {
+      "id": "Stack_Light_Red",
+      "old": null,
+      "current": {
+        "mb": 6021,
+        "type": "BoolByte"
+      }
+    },
+    {
+      "id": "Stack_Light_Green",
+      "old": null,
+      "current": {
+        "mb": 6022,
+        "type": "BoolByte"
+      }
+    },
+    {
+      "id": "Stack_Light_Yellow",
+      "old": null,
+      "current": {
+        "mb": 6023,
+        "type": "BoolByte"
+      }
+    },
+    {
+      "id": "Buzzer_State",
+      "old": null,
+      "current": {
+        "mb": 6024,
+        "type": "BoolByte"
+      }
+    },
+    {
+      "id": "Start_Indicator",
+      "old": null,
+      "current": {
+        "mb": 6025,
+        "type": "BoolByte"
+      }
+    },
+    {
+      "id": "Stop_Indicator",
+      "old": null,
+      "current": {
+        "mb": 6026,
+        "type": "BoolByte"
+      }
+    },
+    {
+      "id": "Reset_Indicator",
+      "old": null,
+      "current": {
+        "mb": 6027,
+        "type": "BoolByte"
+      }
+    },
+    {
+      "id": "X_Axis_Alarm",
+      "old": null,
+      "current": {
+        "mb": 6028,
+        "type": "BoolByte"
+      }
+    },
+    {
+      "id": "Y_Axis_Alarm",
+      "old": null,
+      "current": {
+        "mb": 6029,
+        "type": "BoolByte"
+      }
+    },
+    {
+      "id": "Z_Camera_Axis_Alarm",
+      "old": null,
+      "current": {
+        "mb": 6030,
+        "type": "BoolByte"
+      }
+    },
+    {
+      "id": "Z_Scan_Axis_Alarm",
+      "old": null,
+      "current": {
+        "mb": 6031,
+        "type": "BoolByte"
+      }
+    },
+    {
+      "id": "Z_Flip_Axis_Alarm",
+      "old": null,
+      "current": {
+        "mb": 6032,
+        "type": "BoolByte"
+      }
+    },
+    {
+      "id": "Rotate_Axis_Alarm",
+      "old": null,
+      "current": {
+        "mb": 6033,
+        "type": "BoolByte"
+      }
+    },
+    {
+      "id": "Flip_Axis_Alarm",
+      "old": null,
+      "current": {
+        "mb": 6034,
+        "type": "BoolByte"
+      }
+    },
+    {
+      "id": "PLC_System_Fault",
+      "old": {
+        "mb": 6001,
+        "type": "BoolByte"
+      },
+      "current": {
+        "mb": 6035,
+        "type": "BoolByte"
+      }
+    },
+    {
+      "id": "PC_Communication_Alarm",
+      "old": null,
+      "current": {
+        "mb": 6036,
+        "type": "BoolByte"
+      }
+    },
+    {
+      "id": "PC_Alarm",
+      "old": null,
+      "current": {
+        "mb": 6037,
+        "type": "BoolByte"
+      }
+    },
+    {
+      "id": "PLC_Heartbeat_Req",
+      "old": {
+        "mb": 6000,
+        "type": "BoolByte"
+      },
+      "current": {
+        "mb": 6038,
+        "type": "BoolByte"
+      }
+    },
+    {
+      "id": "X_Pos_Confirmed",
+      "old": {
+        "mb": 6004,
+        "type": "Int16"
+      },
+      "current": {
+        "mb": 6040,
+        "type": "Int16"
+      }
+    },
+    {
+      "id": "Y_Pos_Confirmed",
+      "old": {
+        "mb": 6006,
+        "type": "Int16"
+      },
+      "current": {
+        "mb": 6042,
+        "type": "Int16"
+      }
+    },
+    {
+      "id": "Z_Camera_Pos_Confirmed",
+      "old": {
+        "mb": 6008,
+        "type": "Int16"
+      },
+      "current": {
+        "mb": 6044,
+        "type": "Int16"
+      }
+    },
+    {
+      "id": "Z_Scan_Pos_Confirmed",
+      "old": {
+        "mb": 6010,
+        "type": "Int16"
+      },
+      "current": {
+        "mb": 6046,
+        "type": "Int16"
+      }
+    },
+    {
+      "id": "Z_Grap_Pos_Confirmed",
+      "old": {
+        "mb": 6012,
+        "type": "Int16"
+      },
+      "current": {
+        "mb": 6048,
+        "type": "Int16"
+      }
+    },
+    {
+      "id": "Flip_Status",
+      "old": {
+        "mb": 6016,
+        "type": "Float32"
+      },
+      "current": {
+        "mb": 6050,
+        "type": "Int16"
+      }
+    },
+    {
+      "id": "Flip_Unload_Status",
+      "old": {
+        "mb": 6020,
+        "type": "Float32"
+      },
+      "current": {
+        "mb": 6052,
+        "type": "Int16"
+      }
+    },
+    {
+      "id": "Sorting_Exec_Status",
+      "old": {
+        "mb": 6024,
+        "type": "Float32"
+      },
+      "current": {
+        "mb": 6054,
+        "type": "Int16"
+      }
+    },
+    {
+      "id": "Alarm_Code",
+      "old": null,
+      "current": {
+        "mb": 6056,
+        "type": "Int16"
+      }
+    },
+    {
+      "id": "Alarm_Level",
+      "old": null,
+      "current": {
+        "mb": 6058,
+        "type": "Int16"
+      }
+    },
+    {
+      "id": "R_Pos_Confirmed",
+      "old": null,
+      "current": {
+        "mb": 6060,
+        "type": "Int16"
+      }
+    },
+    {
+      "id": "Grab_Active_ID",
+      "old": null,
+      "current": {
+        "mb": 6062,
+        "type": "Int16"
+      }
+    },
+    {
+      "id": "Machine_Current_Pos_X",
+      "old": {
+        "mb": 6028,
+        "type": "Float32"
+      },
+      "current": {
+        "mb": 6064,
+        "type": "Float32"
+      }
+    },
+    {
+      "id": "Machine_Current_Pos_R",
+      "old": null,
+      "current": {
+        "mb": 6068,
+        "type": "Float32"
+      }
+    },
+    {
+      "id": "X_Actual_Speed",
+      "old": null,
+      "current": {
+        "mb": 6072,
+        "type": "Float32"
+      }
+    },
+    {
+      "id": "Machine_Current_Pos_Y",
+      "old": {
+        "mb": 6032,
+        "type": "Float32"
+      },
+      "current": {
+        "mb": 6076,
+        "type": "Float32"
+      }
+    },
+    {
+      "id": "Y_Actual_Speed",
+      "old": null,
+      "current": {
+        "mb": 6080,
+        "type": "Float32"
+      }
+    },
+    {
+      "id": "Machine_Current_Pos_Z",
+      "old": {
+        "mb": 6036,
+        "type": "Float32"
+      },
+      "current": {
+        "mb": 6084,
+        "type": "Float32"
+      }
+    },
+    {
+      "id": "Scan_Current_Pos_Z",
+      "old": {
+        "mb": 6040,
+        "type": "Float32"
+      },
+      "current": {
+        "mb": 6088,
+        "type": "Float32"
+      }
+    },
+    {
+      "id": "Flip_Grap_Current_Pos_Z",
+      "old": {
+        "mb": 6044,
+        "type": "Float32"
+      },
+      "current": {
+        "mb": 6092,
+        "type": "Float32"
+      }
+    }
+  ]
+}

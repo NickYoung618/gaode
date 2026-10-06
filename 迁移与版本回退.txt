@@ -1,0 +1,95 @@
+高德项目迁移与版本回退（2026-10-06）
+
+一、这次交付是什么
+
+GitHub 主仓库：https://github.com/NickYoung618/gaode
+首个版本标签：migration-20261006
+这是完整开发迁移包，包含源码、Git 历史、Spec Kit、设备 SDK、原型原始归档、PLC/相机联调工具及必要验证资料。它不是已经完成真实设备接入的一键生产安装器。中控机可以继续开发、联调、提交及回退版本。
+本次才建立 Git 历史，此前旧 ZIP 和历史证据不会自动变成旧提交。GitHub 当前为公开仓库；账号凭据、SDK 原始 ZIP、现场数据库/配置和运行日志不提交到源码仓库。
+
+二、如何放到中控机
+
+1. 下载 Gaode-Migration-20261006.zip 及同名 .sha256.txt。PowerShell 执行：
+   Get-FileHash -Algorithm SHA256 -LiteralPath 'D:\Downloads\Gaode-Migration-20261006.zip'
+   对照摘要后解压到一个新的短路径，例如 D:\GaodeTransfer。不要直接覆盖现场已有项目。
+2. 解压根目录先双击 Verify.cmd；它调用 Python 检查逐文件摘要、Git 提交、标签、远程地址和离线 bundle，任何失败都会显示并停留。首次校验请在移动文件前执行。
+3. 包中 E-drive 代表推荐恢复到 E: 的目录树：
+   E-drive\dzk\gaode-1       → E:\dzk\gaode-1（完整源码，务必包含隐藏 .git/.agents/.specify）
+   E-drive\dzk\gaode         → E:\dzk\gaode（原型.zip、软件开发SDK.zip，保持原件不变）
+   E-drive\dzk-delivery      → E:\dzk-delivery（016 最终集成与恢复证据）
+   tools                    → 任意独立联调工具目录，分别解压，不覆盖原现场配置
+   evidence                 → 保留历史 C: 来源证据，路径对应见 evidence/relocation-map.json
+   data-snapshots            → 一致性数据库备份，仅保留待核对，不自动安装到业务目录
+4. 如果中控机已有 E:\dzk\gaode-1 或现场 Codex 正在修改它，请保留它，先将本包项目放到新目录，交给 Codex 按基线比较合并。不要整目录覆盖正在开发的代码、现场 site.json 或数据库。没有 E: 也可以先用其他盘；少数历史验证脚本含 E:/C: 绝对路径，按 relocation-map 和实际脚本单独调整配置，不全局改写原始证据。
+5. 源码中的 artifacts 是迁来的历史验证资料；运行数据快照位于包外层 data-snapshots。不会把源机 PID、进程锁、浏览器登录状态或 Codex 账号状态恢复成中控机运行状态。
+
+三、第一次启动与依赖
+
+完整开发环境要求：Windows x64，Git，.NET SDK 10.0.401（global.json 精确锁定），Node 24.x，Python 3.12，PowerShell 7.4+；桌面程序还需 WebView2 Runtime。详见“新环境搭建清单.txt”。本包未捆绑这些通用安装器、NuGet/npm 缓存；首次源码还原需要联网或另备依赖缓存。不要通过修改版本锁来绕过缺失环境。
+
+在 E:\dzk\gaode-1 中检查：
+   git status --short
+   git remote -v
+   git log -1 --oneline
+   git describe --tags --exact-match
+   dotnet --version
+   node --version
+   python --version
+   pwsh --version
+   dotnet build backend/src/Gaode.Host/Gaode.Host.csproj
+   npm --prefix frontend ci
+   npm --prefix frontend run build
+
+依赖齐全后双击 start-recipe-preview.cmd，可进入当前配方页面预览和 FullSimulation Host；它不代表已经接入真实 PLC/相机。不要把“虚拟主流程成功”当成“实机动作完成”。桌面构建和适用的主流程验收由中控机 Codex 根据现场环境完成。
+PLC 工具：tools/plc 下 0.4.0 ZIP，解压后 Start.cmd；相机工具：tools/camera 下 0.1.1 ZIP，按配套“修复说明与运行方法.txt”操作。两个工具使用各自独立目录。现场已有新版联调界面时先比较，不退回覆盖。
+
+四、已完成与中控机继续完成的内容
+
+最新地址 PC.xls 26 项 + PLC(2).xls 59 项，路径 configuration/plc/confirmed-20261006/sources。PC 心跳 MB2011，PLC 心跳 MB6038，MB6037 是 PC_Alarm；旧地址不可照搬。BOOL 每个占一个字节，相邻两个字节共用一个 16 位寄存器；底层写入保留邻字节。85 项进入共享点表及工具，6 轴可核对目标/启动/到位/实际反馈。
+正式 Host 已能加载 Gaode:PlcFieldProfilePath，但当前执行合同仍有 10 项语义未闭合：ManualZoneOccupied、TeachModeCmd、TeachConfirm、TeachPosSelect、TeachPosX/Y/Z、AlarmBits、AlarmSeverity、ModelPayload。40 项同名已知信号已投影进正式定义；其他信号没有冒充业务已经使用。报警和型号字段不能只改名字就等同旧合同。正式 Host 会在真实 I/O 前报告具体缺项。
+Modbus PDU 起点、UnitId、字节/字序、单位、握手和机械范围要按现场验证。工具默认值只是初值，地址表本身不能证明这些参数正确。工具只读连接不要求先完成动作配置；0.4.0 仍保留原动作写入配置，中控机正在并行开发的简化操作界面不包含在本次完成声明中。
+真实相机/光源网关、真实算法和 Production 数据装配仍需现场完成。相机工具原有 2D 采图、3D 失败记录仅为历史结果。两类阻塞按用户决定在中控机解决；没有访问现场设备，没有声称实机验收通过。
+017 已通过 Host 构建、21 项通信测试、6 项架构测试、6 组实际 TCP/浏览器工具验证及自包含启动检查；详情 specs/017-confirmed-plc-addresses/validation.md。其他功能以各自原始验证记录为准。
+
+五、迁移后怎样继续用 Spec Kit
+
+.agents/skills、.specify、specs、workflows、dev.ps1 和 dev-parallel.ps1 均保留。不要重新初始化项目或重置任务勾选。先阅读 AGENTS.md 和当前功能完整目录；修改共享接口先更新 spec/contracts/plan/tasks，再改代码。
+包中的本机 feature.json 指向 specs/017-confirmed-plc-addresses（不入 Git）。016-public-preparation-tray-check-unload 和 016-plc-field-ui 是两个不同功能，必须使用完整目录名；开始其他功能时显式切换对应目录。
+Codex 的项目技能可按对应 SKILL.md 继续使用。dev.ps1 自动 Workflow 额外依赖 uv、兼容本项目内部接口的 specify-cli（原记录为 1.0.5.dev0）和 PyYAML；源机目前这些命令不齐，包不会伪称已安装。中控机先检查依赖与 scripts/workflow 的要求，不盲目更新至不兼容最新版；自动入口未就绪时仍可按项目技能分步开发。中控机 Codex 使用自己的登录，不复制源机认证文件。
+
+可直接交给中控机 Codex：
+“请接续当前 GitHub 仓库 NickYoung618/gaode 的 migration-20261006 基线。先校验迁移包、Git 提交、依赖和已存在的现场改动，阅读根目录迁移与版本回退.txt、AGENTS.md、017 验证记录，以及 artifacts/017-confirmed-plc-addresses/迁移补充说明.txt。建立 field/integration 分支，保留现场配置和数据库。用户已决定正式 PLC 业务合同与真实相机/光源/算法接入在这里解决，沿用 Spec Kit，先更新对应规格与合同后实施。与独立联调包按 Git 基线比较合并，不覆盖已有修改，不编造缺失信号，不更改客户原型。先验证环境和虚拟主流程，再按现场操作逐项联调。每个可用阶段提交代码和规格，测试通过后加标签、推送；回传配置摘要、TX/RX、动作反馈、图像与失败记录，不只回传 exe。”
+
+六、日常保存与回传
+
+在中控机项目目录操作（首次开发，分支名若已存在则直接切换）：
+   git switch -c field/integration
+   git status --short
+   git diff
+   git add <本次修改的明确文件或目录>
+   git diff --cached --stat
+   git commit -m "记录本次现场接入内容与验证结果"
+   git push -u origin field/integration
+上述 <...> 是占位，替换成实际文件，不要原样执行。中控机推送需要用自己的 GitHub 登录（例如已有 gh 时 gh auth login），不要把 token 写入脚本、远程地址或聊天。拉取公开仓库本身不需要写权限。
+一个阶段验收通过后，例如：git tag field-plc-pass-20261007，再 git push origin field-plc-pass-20261007。标签名按实际日期和已通过范围命名，不覆盖已发布标签。
+源码、规格、地址模板纳入 Git；site.json、现场 profile、数据库、图像和日志另行保存并随反馈包交付。不要 git add -f 强行提交凭据或现场数据。现场配置建议放项目 artifacts 下的独立目录，以免误提交到公开仓库。
+
+七、如何回退（保留现有工作）
+
+回退前停止相关软件对设备的控制，保存现场配置，并对已停止的数据库或用 SQLite backup API 作一致性备份。先提交当前代码或保留现有工作目录；不要用 reset --hard、clean -fd 或覆盖目录丢掉未提交改动。
+推荐另开一份旧版本目录：
+   git fetch origin --tags
+   git worktree add -b rollback/migration-20261006 E:/dzk/gaode-rollback-20261006 migration-20261006
+   git -C E:/dzk/gaode-rollback-20261006 log -1 --oneline
+标签已随包带来；断网时省略 fetch，也可执行 worktree。目录与分支已经存在时选一个新的名称。原目录不受影响；在旧版本目录按它自身的依赖、配置及数据版本重新构建和验证，再决定切换运行目录。不能同时运行两套程序写同一 PLC。
+若只需撤销一个错误提交，可在开发分支使用 git revert <提交号>，解决冲突并验证后推送。这会生成新的撤销提交并保留历史，不强推公共分支。
+如果 .git 丢失，可从包根的 gaode-repository.bundle 离线恢复：
+   git clone gaode-repository.bundle E:/dzk/gaode-recovered
+   git -C E:/dzk/gaode-recovered remote set-url origin https://github.com/NickYoung618/gaode.git
+也可 git clone https://github.com/NickYoung618/gaode.git 到新目录；另保留本包的 SDK、资料和数据快照。
+Git 只回退入库文件，不回退 PLC 程序、数据库、配方内容、相机固件和现场配置。当前存储 s01-store/3、配方 recipe-definition/5；历史程序不保证能打开升级后的库，必须使用匹配的数据备份或受控迁移。data-snapshots 仅是源机测试数据的一致快照，不能直接覆盖现场生产库。
+
+八、校验和证据边界
+
+包根 MIGRATION-MANIFEST.json 记录每个文件的 SHA256、基线提交和标签；manifest 自身不自引用，ZIP 的独立 SHA256 用于整个交付件校验。evidence/relocation-map.json 说明来源路径，evidence/exclusions.json 记录未带的编译缓存、浏览器状态及性能转储等。
+原型 ZIP 与 SDK ZIP 按原件复制；详细旧证据中的绝对路径、时间、提交前摘要保留历史含义，不改写为当前通过证明。017 当前证据优先于更早迁移审计；Git 提交与包 manifest 才是本次完整开发源码身份。

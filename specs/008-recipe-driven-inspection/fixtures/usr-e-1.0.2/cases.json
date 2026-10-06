@@ -1,0 +1,4748 @@
+{
+  "schemaVersion": "recipe-cases/1.0",
+  "purpose": "Test",
+  "cases": [
+    {
+      "caseId": "Q01",
+      "recipeRef": {
+        "recipeId": "R008-Q01",
+        "version": "1.1.1-test",
+        "catalogDigest": "496FA4A7F93F4055750AF0862BA9E214D889ED29F0C4E1F7B44E039148DE2962"
+      },
+      "scenarioId": "S1",
+      "occupiedSlots": [
+        "P01"
+      ],
+      "fCode": "TEST-TRAY-0101",
+      "unitKind": "independentPart",
+      "localFace": 1,
+      "cameraPair": "AB",
+      "availability": "Available",
+      "restrictions": [
+        "TestVirtualOnly;ProductionCalibrationNotApproved"
+      ],
+      "mediaSource": "Simulated/Test",
+      "object": {
+        "sourceSlotId": "P01",
+        "unitIdPattern": "{TrayRunId}:P:P01",
+        "physicalEntityIdPattern": "{UnitId}:M01",
+        "protocolSlotIndex": 1,
+        "pointRefs": {
+          "A": "Q01-P01-A-test-virtual-mapping/1.0.1",
+          "B": "Q01-P01-B-test-virtual-mapping/1.0.1"
+        },
+        "heightBinding": {
+          "scopeId": "sim-whole-tray",
+          "scopeVersion": "1.0.0",
+          "sampleId": "sample-a",
+          "objectSlotId": "P01",
+          "localFace": 1,
+          "heightRound": 1,
+          "unit": "mm",
+          "datum": "SIM_REFERENCE",
+          "offsetMm": 100.0,
+          "minZ": 105.0,
+          "maxZ": 120.0
+        }
+      },
+      "mediaInputs": {
+        "ThreeD": "media-manifest.json#ThreeD",
+        "F": "media-manifest.json#F",
+        "A": "media-manifest.json#Detection/A",
+        "B": "media-manifest.json#Detection/B"
+      }
+    },
+    {
+      "caseId": "Q02",
+      "recipeRef": {
+        "recipeId": "R008-Q02",
+        "version": "1.1.1-test",
+        "catalogDigest": "D01CAFCD9B7137693270E86C6DE0B30E070BA20FF5E6CCD54C4EB769C6912EBE"
+      },
+      "scenarioId": "S1",
+      "occupiedSlots": [
+        "P01",
+        "P03"
+      ],
+      "fCode": "TEST-TRAY-0202",
+      "unitKind": "independentPart",
+      "localFace": 1,
+      "cameraPair": "CD",
+      "availability": "Available",
+      "restrictions": [
+        "TestVirtualOnly;ProductionCalibrationNotApproved"
+      ],
+      "mediaSource": "Simulated/Test",
+      "objects": [
+        {
+          "sourceSlotId": "P01",
+          "unitIdPattern": "{TrayRunId}:P:P01",
+          "physicalEntityIdPattern": "{UnitId}:M01",
+          "protocolSlotIndex": 1,
+          "pointRefs": {
+            "C": "Q02-P01-C-test-virtual-mapping/1.0.1",
+            "D": "Q02-P01-D-test-virtual-mapping/1.0.1"
+          },
+          "heightBinding": {
+            "scopeId": "sim-whole-tray",
+            "scopeVersion": "1.0.0",
+            "sampleId": "sample-a",
+            "objectSlotId": "P01",
+            "localFace": 1,
+            "heightRound": 1,
+            "unit": "mm",
+            "datum": "SIM_REFERENCE",
+            "offsetMm": 100.0,
+            "minZ": 105.0,
+            "maxZ": 120.0
+          }
+        },
+        {
+          "sourceSlotId": "P03",
+          "unitIdPattern": "{TrayRunId}:P:P03",
+          "physicalEntityIdPattern": "{UnitId}:M01",
+          "protocolSlotIndex": 3,
+          "pointRefs": {
+            "C": "Q02-P03-C-test-virtual-mapping/1.0.1",
+            "D": "Q02-P03-D-test-virtual-mapping/1.0.1"
+          },
+          "heightBinding": {
+            "scopeId": "sim-whole-tray",
+            "scopeVersion": "1.0.0",
+            "sampleId": "sample-b",
+            "objectSlotId": "P03",
+            "localFace": 1,
+            "heightRound": 1,
+            "unit": "mm",
+            "datum": "SIM_REFERENCE",
+            "offsetMm": 100.0,
+            "minZ": 105.0,
+            "maxZ": 120.0
+          }
+        }
+      ],
+      "mediaInputs": {
+        "ThreeD": "media-manifest-q02.json#ThreeD",
+        "F": "media-manifest-q02.json#F",
+        "C": "media-manifest-q02.json#Detection/C",
+        "D": "media-manifest-q02.json#Detection/D"
+      }
+    },
+    {
+      "caseId": "Q01-PARAM",
+      "recipeRef": {
+        "recipeId": "R008-Q01",
+        "version": "1.2.0-test",
+        "catalogDigest": "C1DC2D242E2597049AD8290181CB48B0427A6018DB850590E0982DC732D20478"
+      },
+      "scenarioId": "S1",
+      "occupiedSlots": [
+        "P01",
+        "P03"
+      ],
+      "fCode": "TEST-TRAY-0101",
+      "unitKind": "independentPart",
+      "localFace": 1,
+      "cameraPair": "AB",
+      "availability": "Available",
+      "restrictions": [
+        "TestVirtualOnly;ProductionCalibrationNotApproved"
+      ],
+      "mediaSource": "Simulated/Test",
+      "mediaInputs": {
+        "ThreeD": "media-manifest.json#ThreeD",
+        "F": "media-manifest.json#F",
+        "A": "media-manifest-q01-param.json#Detection/A",
+        "B": "media-manifest-q01-param.json#Detection/B"
+      },
+      "objects": [
+        {
+          "sourceSlotId": "P01",
+          "unitIdPattern": "{TrayRunId}:P:P01",
+          "physicalEntityIdPattern": "{UnitId}:M01",
+          "protocolSlotIndex": 1,
+          "pointRefs": {
+            "A": "Q01-P01-A-test-virtual-mapping/1.0.1",
+            "B": "Q01-P01-B-test-virtual-mapping/1.0.1"
+          },
+          "heightBinding": {
+            "scopeId": "sim-whole-tray",
+            "scopeVersion": "1.0.0",
+            "sampleId": "sample-a",
+            "objectSlotId": "P01",
+            "localFace": 1,
+            "heightRound": 1,
+            "unit": "mm",
+            "datum": "SIM_REFERENCE",
+            "offsetMm": 100.0,
+            "minZ": 105.0,
+            "maxZ": 120.0
+          }
+        },
+        {
+          "sourceSlotId": "P03",
+          "unitIdPattern": "{TrayRunId}:P:P03",
+          "physicalEntityIdPattern": "{UnitId}:M01",
+          "protocolSlotIndex": 3,
+          "pointRefs": {
+            "A": "Q01-PARAM-P03-A-test-virtual-mapping/1.0.1",
+            "B": "Q01-PARAM-P03-B-test-virtual-mapping/1.0.1"
+          },
+          "heightBinding": {
+            "scopeId": "sim-whole-tray",
+            "scopeVersion": "1.0.0",
+            "sampleId": "sample-b",
+            "objectSlotId": "P03",
+            "localFace": 1,
+            "heightRound": 1,
+            "unit": "mm",
+            "datum": "SIM_REFERENCE",
+            "offsetMm": 100.0,
+            "minZ": 105.0,
+            "maxZ": 120.0
+          }
+        }
+      ]
+    },
+    {
+      "caseId": "Q03",
+      "recipeRef": {
+        "recipeId": "R008-Q03",
+        "version": "1.0.0-test",
+        "catalogDigest": "6BB0EA7B66DE92C471BB7AE628FC7917074B0C7B1073B9304308109696FB40EB"
+      },
+      "scenarioId": "S1",
+      "occupiedSlots": [
+        "P01"
+      ],
+      "fCode": "TEST-TRAY-0103",
+      "unitKind": "independentPart",
+      "cameraSequence": [
+        "AB",
+        "AB"
+      ],
+      "availability": "Available",
+      "restrictions": [
+        "TestVirtualOnly;ProductionCalibrationNotApproved"
+      ],
+      "mediaSource": "Simulated/Test",
+      "mediaInputs": {
+        "ThreeD": "media-manifest-q03.json#ThreeD",
+        "F": "media-manifest-q03.json#F",
+        "A": "media-manifest-q03.json#Detection/A",
+        "B": "media-manifest-q03.json#Detection/B"
+      },
+      "objects": [
+        {
+          "sourceSlotId": "P01",
+          "physicalEntityIdPattern": "{UnitId}:M01",
+          "protocolSlotIndex": 1,
+          "sourcePoint": {
+            "id": "P01",
+            "version": "test-virtual-mapping/q03-1.0.0",
+            "x": 100,
+            "y": 100,
+            "z": 150,
+            "unit": "mm",
+            "frame": "SIM_MACHINE",
+            "testSourceRef": "Test/VirtualSource/Q03/P01/1.0.0",
+            "point": {
+              "id": "P01",
+              "version": "test-virtual-mapping/q03-1.0.0",
+              "x": 100,
+              "y": 100,
+              "z": 150,
+              "unit": "mm",
+              "frame": "SIM_MACHINE"
+            }
+          },
+          "flipPosition": {
+            "id": "P01",
+            "version": "test-virtual-mapping/q03-1.0.0",
+            "x": 100,
+            "y": 100,
+            "z": 150,
+            "unit": "mm",
+            "frame": "SIM_MACHINE",
+            "testSourceRef": "Test/VirtualFlipPosition/Q03/P01/1.0.0",
+            "point": {
+              "id": "Q03-P01-flip-position",
+              "version": "test-virtual-mapping/q03-1.0.0",
+              "x": 100,
+              "y": 100,
+              "z": 150,
+              "unit": "mm",
+              "frame": "SIM_MACHINE"
+            }
+          },
+          "faces": {
+            "1": {
+              "A": {
+                "executionStageId": "stage:1",
+                "objectId": "{UnitId}:M01",
+                "sourceSlotId": "P01",
+                "protocolSlotIndex": 1,
+                "localFace": 1,
+                "cameraId": "A",
+                "pointRef": "Q03-P01-A-test-virtual-mapping/1.0.0",
+                "point": {
+                  "id": "Q03-P01-face1-A",
+                  "version": "test-virtual-mapping/q03-1.0.0",
+                  "x": 100,
+                  "y": 100,
+                  "unit": "mm",
+                  "frame": "SIM_MACHINE",
+                  "testSourceRef": "Test/VirtualPoint/Q03/P01/face1/A/1.0.0"
+                },
+                "coordinateConfigVersion": "test-virtual-mapping/q03-1.0.0",
+                "zBasis": {
+                  "mode": "InitialMeasurementOffset",
+                  "measurementRef": {
+                    "scopeId": "sim-whole-tray",
+                    "scopeVersion": "1.0.0",
+                    "sampleId": "sample-a",
+                    "objectSlotId": "P01",
+                    "unit": "mm",
+                    "datum": "SIM_REFERENCE"
+                  },
+                  "offsetMm": 100.0,
+                  "minZ": 105.0,
+                  "maxZ": 120.0,
+                  "mappingSourceRef": "Test/VirtualPoint/Q03/P01/face1/A/1.0.0"
+                }
+              },
+              "B": {
+                "executionStageId": "stage:1",
+                "objectId": "{UnitId}:M01",
+                "sourceSlotId": "P01",
+                "protocolSlotIndex": 1,
+                "localFace": 1,
+                "cameraId": "B",
+                "pointRef": "Q03-P01-B-test-virtual-mapping/1.0.0",
+                "point": {
+                  "id": "Q03-P01-face1-B",
+                  "version": "test-virtual-mapping/q03-1.0.0",
+                  "x": 110,
+                  "y": 100,
+                  "unit": "mm",
+                  "frame": "SIM_MACHINE",
+                  "testSourceRef": "Test/VirtualPoint/Q03/P01/face1/B/1.0.0"
+                },
+                "coordinateConfigVersion": "test-virtual-mapping/q03-1.0.0",
+                "zBasis": {
+                  "mode": "InitialMeasurementOffset",
+                  "measurementRef": {
+                    "scopeId": "sim-whole-tray",
+                    "scopeVersion": "1.0.0",
+                    "sampleId": "sample-a",
+                    "objectSlotId": "P01",
+                    "unit": "mm",
+                    "datum": "SIM_REFERENCE"
+                  },
+                  "offsetMm": 100.0,
+                  "minZ": 105.0,
+                  "maxZ": 120.0,
+                  "mappingSourceRef": "Test/VirtualPoint/Q03/P01/face1/B/1.0.0"
+                }
+              }
+            },
+            "2": {
+              "A": {
+                "executionStageId": "stage:2",
+                "objectId": "{UnitId}:M01",
+                "sourceSlotId": "P01",
+                "protocolSlotIndex": 1,
+                "localFace": 2,
+                "cameraId": "A",
+                "pointRef": "Q03-P01-A-test-virtual-mapping/1.0.0",
+                "point": {
+                  "id": "Q03-P01-face2-A",
+                  "version": "test-virtual-mapping/q03-1.0.0",
+                  "x": 120,
+                  "y": 100,
+                  "unit": "mm",
+                  "frame": "SIM_MACHINE",
+                  "testSourceRef": "Test/VirtualPoint/Q03/P01/face2/A/1.0.0"
+                },
+                "coordinateConfigVersion": "test-virtual-mapping/q03-1.0.0",
+                "zBasis": {
+                  "mode": "InitialMeasurementOffset",
+                  "measurementRef": {
+                    "scopeId": "sim-whole-tray",
+                    "scopeVersion": "1.0.0",
+                    "sampleId": "sample-a",
+                    "objectSlotId": "P01",
+                    "unit": "mm",
+                    "datum": "SIM_REFERENCE"
+                  },
+                  "offsetMm": 102.0,
+                  "minZ": 105.0,
+                  "maxZ": 120.0,
+                  "mappingSourceRef": "Test/VirtualPoint/Q03/P01/face2/A/1.0.0"
+                }
+              },
+              "B": {
+                "executionStageId": "stage:2",
+                "objectId": "{UnitId}:M01",
+                "sourceSlotId": "P01",
+                "protocolSlotIndex": 1,
+                "localFace": 2,
+                "cameraId": "B",
+                "pointRef": "Q03-P01-B-test-virtual-mapping/1.0.0",
+                "point": {
+                  "id": "Q03-P01-face2-B",
+                  "version": "test-virtual-mapping/q03-1.0.0",
+                  "x": 130,
+                  "y": 100,
+                  "unit": "mm",
+                  "frame": "SIM_MACHINE",
+                  "testSourceRef": "Test/VirtualPoint/Q03/P01/face2/B/1.0.0"
+                },
+                "coordinateConfigVersion": "test-virtual-mapping/q03-1.0.0",
+                "zBasis": {
+                  "mode": "InitialMeasurementOffset",
+                  "measurementRef": {
+                    "scopeId": "sim-whole-tray",
+                    "scopeVersion": "1.0.0",
+                    "sampleId": "sample-a",
+                    "objectSlotId": "P01",
+                    "unit": "mm",
+                    "datum": "SIM_REFERENCE"
+                  },
+                  "offsetMm": 102.0,
+                  "minZ": 105.0,
+                  "maxZ": 120.0,
+                  "mappingSourceRef": "Test/VirtualPoint/Q03/P01/face2/B/1.0.0"
+                }
+              }
+            }
+          }
+        }
+      ]
+    },
+    {
+      "caseId": "Q04",
+      "recipeRef": {
+        "recipeId": "R008-Q04",
+        "version": "1.0.2-test-usr-e",
+        "catalogDigest": "D03DD9655E475A8D506DB0F1250ECEA3C506545FACE87472ADA7D3224691BEA8"
+      },
+      "scenarioId": "S1",
+      "occupiedSlots": [
+        "P01"
+      ],
+      "fCode": "TEST-TRAY-0104",
+      "unitKind": "independentPart",
+      "cameraSequence": [
+        "AB",
+        "CD"
+      ],
+      "availability": "Available",
+      "restrictions": [
+        "TestVirtualOnly;ProductionCalibrationNotApproved"
+      ],
+      "mediaSource": "Simulated/Test",
+      "mediaInputs": {
+        "ThreeD": "media-manifest-q04.json#ThreeD",
+        "F": "media-manifest-q04.json#F",
+        "A": "media-manifest-q04.json#Detection/A",
+        "B": "media-manifest-q04.json#Detection/B",
+        "C": "media-manifest-q04.json#Detection/C",
+        "D": "media-manifest-q04.json#Detection/D"
+      },
+      "objects": [
+        {
+          "sourceSlotId": "P01",
+          "physicalEntityIdPattern": "{UnitId}:M01",
+          "protocolSlotIndex": 1,
+          "sourcePoint": {
+            "id": "P01",
+            "version": "test-virtual-mapping/q04-1.0.0",
+            "x": 100,
+            "y": 100,
+            "z": 150,
+            "unit": "mm",
+            "frame": "SIM_MACHINE",
+            "testSourceRef": "Test/VirtualSource/Q04/P01/1.0.0",
+            "point": {
+              "id": "P01",
+              "version": "test-virtual-mapping/q04-1.0.0",
+              "x": 100,
+              "y": 100,
+              "z": 150,
+              "unit": "mm",
+              "frame": "SIM_MACHINE"
+            }
+          },
+          "flipPosition": {
+            "id": "P01",
+            "version": "test-virtual-mapping/q04-1.0.0",
+            "x": 100,
+            "y": 100,
+            "z": 150,
+            "unit": "mm",
+            "frame": "SIM_MACHINE",
+            "testSourceRef": "Test/VirtualFlipPosition/Q04/P01/1.0.0",
+            "point": {
+              "id": "Q03-P01-flip-position",
+              "version": "test-virtual-mapping/q04-1.0.0",
+              "x": 100,
+              "y": 100,
+              "z": 150,
+              "unit": "mm",
+              "frame": "SIM_MACHINE"
+            }
+          },
+          "faces": {
+            "1": {
+              "A": {
+                "executionStageId": "stage:1",
+                "objectId": "{UnitId}:M01",
+                "sourceSlotId": "P01",
+                "protocolSlotIndex": 1,
+                "localFace": 1,
+                "cameraId": "A",
+                "pointRef": "Q04-P01-A-test-virtual-mapping/1.0.0",
+                "point": {
+                  "id": "Q04-P01-face1-A",
+                  "version": "test-virtual-mapping/q04-1.0.0",
+                  "x": 100,
+                  "y": 100,
+                  "unit": "mm",
+                  "frame": "SIM_MACHINE",
+                  "testSourceRef": "Test/VirtualPoint/Q04/P01/face1/A/1.0.0"
+                },
+                "coordinateConfigVersion": "test-virtual-mapping/q04-1.0.0",
+                "zBasis": {
+                  "mode": "InitialMeasurementOffset",
+                  "measurementRef": {
+                    "scopeId": "sim-whole-tray",
+                    "scopeVersion": "1.0.0",
+                    "sampleId": "sample-a",
+                    "objectSlotId": "P01",
+                    "unit": "mm",
+                    "datum": "SIM_REFERENCE"
+                  },
+                  "offsetMm": 100.0,
+                  "minZ": 105.0,
+                  "maxZ": 120.0,
+                  "mappingSourceRef": "Test/VirtualPoint/Q04/P01/face1/A/1.0.0"
+                }
+              },
+              "B": {
+                "executionStageId": "stage:1",
+                "objectId": "{UnitId}:M01",
+                "sourceSlotId": "P01",
+                "protocolSlotIndex": 1,
+                "localFace": 1,
+                "cameraId": "B",
+                "pointRef": "Q04-P01-B-test-virtual-mapping/1.0.0",
+                "point": {
+                  "id": "Q04-P01-face1-B",
+                  "version": "test-virtual-mapping/q04-1.0.0",
+                  "x": 110,
+                  "y": 100,
+                  "unit": "mm",
+                  "frame": "SIM_MACHINE",
+                  "testSourceRef": "Test/VirtualPoint/Q04/P01/face1/B/1.0.0"
+                },
+                "coordinateConfigVersion": "test-virtual-mapping/q04-1.0.0",
+                "zBasis": {
+                  "mode": "InitialMeasurementOffset",
+                  "measurementRef": {
+                    "scopeId": "sim-whole-tray",
+                    "scopeVersion": "1.0.0",
+                    "sampleId": "sample-a",
+                    "objectSlotId": "P01",
+                    "unit": "mm",
+                    "datum": "SIM_REFERENCE"
+                  },
+                  "offsetMm": 100.0,
+                  "minZ": 105.0,
+                  "maxZ": 120.0,
+                  "mappingSourceRef": "Test/VirtualPoint/Q04/P01/face1/B/1.0.0"
+                }
+              }
+            },
+            "2": {
+              "C": {
+                "executionStageId": "stage:2",
+                "objectId": "{UnitId}:M01",
+                "sourceSlotId": "P01",
+                "protocolSlotIndex": 1,
+                "localFace": 2,
+                "cameraId": "C",
+                "pointRef": "Q04-P01-C-test-virtual-mapping/1.0.0",
+                "point": {
+                  "id": "Q04-P01-face2-C",
+                  "version": "test-virtual-mapping/q04-1.0.0",
+                  "x": 120,
+                  "y": 110,
+                  "unit": "mm",
+                  "frame": "SIM_MACHINE",
+                  "testSourceRef": "Test/VirtualPoint/Q04/P01/face2/C/1.0.0"
+                },
+                "coordinateConfigVersion": "test-virtual-mapping/q04-1.0.0",
+                "zBasis": {
+                  "mode": "InitialMeasurementOffset",
+                  "measurementRef": {
+                    "scopeId": "sim-whole-tray",
+                    "scopeVersion": "1.0.0",
+                    "sampleId": "sample-a",
+                    "objectSlotId": "P01",
+                    "unit": "mm",
+                    "datum": "SIM_REFERENCE"
+                  },
+                  "offsetMm": 102.0,
+                  "minZ": 105.0,
+                  "maxZ": 120.0,
+                  "mappingSourceRef": "Test/VirtualPoint/Q04/P01/face2/C/1.0.0"
+                }
+              },
+              "D": {
+                "executionStageId": "stage:2",
+                "objectId": "{UnitId}:M01",
+                "sourceSlotId": "P01",
+                "protocolSlotIndex": 1,
+                "localFace": 2,
+                "cameraId": "D",
+                "pointRef": "Q04-P01-D-test-virtual-mapping/1.0.0",
+                "point": {
+                  "id": "Q04-P01-face2-D",
+                  "version": "test-virtual-mapping/q04-1.0.0",
+                  "x": 130,
+                  "y": 110,
+                  "unit": "mm",
+                  "frame": "SIM_MACHINE",
+                  "testSourceRef": "Test/VirtualPoint/Q04/P01/face2/D/1.0.0"
+                },
+                "coordinateConfigVersion": "test-virtual-mapping/q04-1.0.0",
+                "zBasis": {
+                  "mode": "InitialMeasurementOffset",
+                  "measurementRef": {
+                    "scopeId": "sim-whole-tray",
+                    "scopeVersion": "1.0.0",
+                    "sampleId": "sample-a",
+                    "objectSlotId": "P01",
+                    "unit": "mm",
+                    "datum": "SIM_REFERENCE"
+                  },
+                  "offsetMm": 102.0,
+                  "minZ": 105.0,
+                  "maxZ": 120.0,
+                  "mappingSourceRef": "Test/VirtualPoint/Q04/P01/face2/D/1.0.0"
+                }
+              }
+            }
+          }
+        }
+      ]
+    },
+    {
+      "caseId": "Q05",
+      "recipeRef": {
+        "recipeId": "R008-Q05",
+        "version": "1.0.2-test-usr-e",
+        "catalogDigest": "777FF7E16353C33DA2024117BC43D0FE469E36F282C8A0C9AF9CFA382A2EC4D9"
+      },
+      "scenarioId": "S1",
+      "occupiedSlots": [
+        "P01"
+      ],
+      "fCode": "TEST-TRAY-0105",
+      "unitKind": "independentPart",
+      "cameraSequence": [
+        "CD",
+        "AB"
+      ],
+      "availability": "Available",
+      "restrictions": [
+        "TestVirtualOnly;ProductionCalibrationNotApproved"
+      ],
+      "mediaSource": "Simulated/Test",
+      "mediaInputs": {
+        "ThreeD": "media-manifest-q05.json#ThreeD",
+        "F": "media-manifest-q05.json#F",
+        "A": "media-manifest-q05.json#Detection/A",
+        "B": "media-manifest-q05.json#Detection/B",
+        "C": "media-manifest-q05.json#Detection/C",
+        "D": "media-manifest-q05.json#Detection/D"
+      },
+      "objects": [
+        {
+          "sourceSlotId": "P01",
+          "physicalEntityIdPattern": "{UnitId}:M01",
+          "protocolSlotIndex": 1,
+          "sourcePoint": {
+            "id": "P01",
+            "version": "test-virtual-mapping/q05-1.0.0",
+            "x": 100,
+            "y": 100,
+            "z": 150,
+            "unit": "mm",
+            "frame": "SIM_MACHINE",
+            "testSourceRef": "Test/VirtualSource/Q05/P01/1.0.0",
+            "point": {
+              "id": "P01",
+              "version": "test-virtual-mapping/q05-1.0.0",
+              "x": 100,
+              "y": 100,
+              "z": 150,
+              "unit": "mm",
+              "frame": "SIM_MACHINE"
+            }
+          },
+          "flipPosition": {
+            "id": "P01",
+            "version": "test-virtual-mapping/q05-1.0.0",
+            "x": 100,
+            "y": 100,
+            "z": 150,
+            "unit": "mm",
+            "frame": "SIM_MACHINE",
+            "testSourceRef": "Test/VirtualFlipPosition/Q05/P01/1.0.0",
+            "point": {
+              "id": "Q03-P01-flip-position",
+              "version": "test-virtual-mapping/q05-1.0.0",
+              "x": 100,
+              "y": 100,
+              "z": 150,
+              "unit": "mm",
+              "frame": "SIM_MACHINE"
+            }
+          },
+          "faces": {
+            "1": {
+              "C": {
+                "executionStageId": "stage:1",
+                "objectId": "{UnitId}:M01",
+                "sourceSlotId": "P01",
+                "protocolSlotIndex": 1,
+                "localFace": 1,
+                "cameraId": "C",
+                "pointRef": "Q05-P01-C-test-virtual-mapping/1.0.0",
+                "point": {
+                  "id": "Q05-P01-face1-C",
+                  "version": "test-virtual-mapping/q05-1.0.0",
+                  "x": 100,
+                  "y": 110,
+                  "unit": "mm",
+                  "frame": "SIM_MACHINE",
+                  "testSourceRef": "Test/VirtualPoint/Q05/P01/face1/C/1.0.0"
+                },
+                "coordinateConfigVersion": "test-virtual-mapping/q05-1.0.0",
+                "zBasis": {
+                  "mode": "InitialMeasurementOffset",
+                  "measurementRef": {
+                    "scopeId": "sim-whole-tray",
+                    "scopeVersion": "1.0.0",
+                    "sampleId": "sample-a",
+                    "objectSlotId": "P01",
+                    "unit": "mm",
+                    "datum": "SIM_REFERENCE"
+                  },
+                  "offsetMm": 100.0,
+                  "minZ": 105.0,
+                  "maxZ": 120.0,
+                  "mappingSourceRef": "Test/VirtualPoint/Q05/P01/face1/C/1.0.0"
+                }
+              },
+              "D": {
+                "executionStageId": "stage:1",
+                "objectId": "{UnitId}:M01",
+                "sourceSlotId": "P01",
+                "protocolSlotIndex": 1,
+                "localFace": 1,
+                "cameraId": "D",
+                "pointRef": "Q05-P01-D-test-virtual-mapping/1.0.0",
+                "point": {
+                  "id": "Q05-P01-face1-D",
+                  "version": "test-virtual-mapping/q05-1.0.0",
+                  "x": 110,
+                  "y": 110,
+                  "unit": "mm",
+                  "frame": "SIM_MACHINE",
+                  "testSourceRef": "Test/VirtualPoint/Q05/P01/face1/D/1.0.0"
+                },
+                "coordinateConfigVersion": "test-virtual-mapping/q05-1.0.0",
+                "zBasis": {
+                  "mode": "InitialMeasurementOffset",
+                  "measurementRef": {
+                    "scopeId": "sim-whole-tray",
+                    "scopeVersion": "1.0.0",
+                    "sampleId": "sample-a",
+                    "objectSlotId": "P01",
+                    "unit": "mm",
+                    "datum": "SIM_REFERENCE"
+                  },
+                  "offsetMm": 100.0,
+                  "minZ": 105.0,
+                  "maxZ": 120.0,
+                  "mappingSourceRef": "Test/VirtualPoint/Q05/P01/face1/D/1.0.0"
+                }
+              }
+            },
+            "2": {
+              "A": {
+                "executionStageId": "stage:2",
+                "objectId": "{UnitId}:M01",
+                "sourceSlotId": "P01",
+                "protocolSlotIndex": 1,
+                "localFace": 2,
+                "cameraId": "A",
+                "pointRef": "Q05-P01-A-test-virtual-mapping/1.0.0",
+                "point": {
+                  "id": "Q05-P01-face2-A",
+                  "version": "test-virtual-mapping/q05-1.0.0",
+                  "x": 120,
+                  "y": 100,
+                  "unit": "mm",
+                  "frame": "SIM_MACHINE",
+                  "testSourceRef": "Test/VirtualPoint/Q05/P01/face2/A/1.0.0"
+                },
+                "coordinateConfigVersion": "test-virtual-mapping/q05-1.0.0",
+                "zBasis": {
+                  "mode": "InitialMeasurementOffset",
+                  "measurementRef": {
+                    "scopeId": "sim-whole-tray",
+                    "scopeVersion": "1.0.0",
+                    "sampleId": "sample-a",
+                    "objectSlotId": "P01",
+                    "unit": "mm",
+                    "datum": "SIM_REFERENCE"
+                  },
+                  "offsetMm": 102.0,
+                  "minZ": 105.0,
+                  "maxZ": 120.0,
+                  "mappingSourceRef": "Test/VirtualPoint/Q05/P01/face2/A/1.0.0"
+                }
+              },
+              "B": {
+                "executionStageId": "stage:2",
+                "objectId": "{UnitId}:M01",
+                "sourceSlotId": "P01",
+                "protocolSlotIndex": 1,
+                "localFace": 2,
+                "cameraId": "B",
+                "pointRef": "Q05-P01-B-test-virtual-mapping/1.0.0",
+                "point": {
+                  "id": "Q05-P01-face2-B",
+                  "version": "test-virtual-mapping/q05-1.0.0",
+                  "x": 130,
+                  "y": 100,
+                  "unit": "mm",
+                  "frame": "SIM_MACHINE",
+                  "testSourceRef": "Test/VirtualPoint/Q05/P01/face2/B/1.0.0"
+                },
+                "coordinateConfigVersion": "test-virtual-mapping/q05-1.0.0",
+                "zBasis": {
+                  "mode": "InitialMeasurementOffset",
+                  "measurementRef": {
+                    "scopeId": "sim-whole-tray",
+                    "scopeVersion": "1.0.0",
+                    "sampleId": "sample-a",
+                    "objectSlotId": "P01",
+                    "unit": "mm",
+                    "datum": "SIM_REFERENCE"
+                  },
+                  "offsetMm": 102.0,
+                  "minZ": 105.0,
+                  "maxZ": 120.0,
+                  "mappingSourceRef": "Test/VirtualPoint/Q05/P01/face2/B/1.0.0"
+                }
+              }
+            }
+          }
+        }
+      ]
+    },
+    {
+      "caseId": "Q06",
+      "recipeRef": {
+        "recipeId": "R008-Q06",
+        "version": "1.0.2-test-usr-e",
+        "catalogDigest": "B681E7DD3A0FBCE96B098695A6EA630FD6A78F46C9082E7E2971D7B82C199F53"
+      },
+      "scenarioId": "S1",
+      "occupiedSlots": [
+        "P01"
+      ],
+      "fCode": "TEST-TRAY-0106",
+      "unitKind": "independentPart",
+      "cameraSequence": [
+        "CD",
+        "CD"
+      ],
+      "availability": "Available",
+      "restrictions": [
+        "TestVirtualOnly;ProductionCalibrationNotApproved"
+      ],
+      "mediaSource": "Simulated/Test",
+      "mediaInputs": {
+        "ThreeD": "media-manifest-q06.json#ThreeD",
+        "F": "media-manifest-q06.json#F",
+        "C": "media-manifest-q06.json#Detection/C",
+        "D": "media-manifest-q06.json#Detection/D"
+      },
+      "objects": [
+        {
+          "sourceSlotId": "P01",
+          "physicalEntityIdPattern": "{UnitId}:M01",
+          "protocolSlotIndex": 1,
+          "sourcePoint": {
+            "id": "P01",
+            "version": "test-virtual-mapping/q06-1.0.0",
+            "x": 100,
+            "y": 100,
+            "z": 150,
+            "unit": "mm",
+            "frame": "SIM_MACHINE",
+            "testSourceRef": "Test/VirtualSource/Q06/P01/1.0.0",
+            "point": {
+              "id": "P01",
+              "version": "test-virtual-mapping/q06-1.0.0",
+              "x": 100,
+              "y": 100,
+              "z": 150,
+              "unit": "mm",
+              "frame": "SIM_MACHINE"
+            }
+          },
+          "flipPosition": {
+            "id": "P01",
+            "version": "test-virtual-mapping/q06-1.0.0",
+            "x": 100,
+            "y": 100,
+            "z": 150,
+            "unit": "mm",
+            "frame": "SIM_MACHINE",
+            "testSourceRef": "Test/VirtualFlipPosition/Q06/P01/1.0.0",
+            "point": {
+              "id": "Q03-P01-flip-position",
+              "version": "test-virtual-mapping/q06-1.0.0",
+              "x": 100,
+              "y": 100,
+              "z": 150,
+              "unit": "mm",
+              "frame": "SIM_MACHINE"
+            }
+          },
+          "faces": {
+            "1": {
+              "C": {
+                "executionStageId": "stage:1",
+                "objectId": "{UnitId}:M01",
+                "sourceSlotId": "P01",
+                "protocolSlotIndex": 1,
+                "localFace": 1,
+                "cameraId": "C",
+                "pointRef": "Q06-P01-C-test-virtual-mapping/1.0.0",
+                "point": {
+                  "id": "Q06-P01-face1-C",
+                  "version": "test-virtual-mapping/q06-1.0.0",
+                  "x": 100,
+                  "y": 110,
+                  "unit": "mm",
+                  "frame": "SIM_MACHINE",
+                  "testSourceRef": "Test/VirtualPoint/Q06/P01/face1/C/1.0.0"
+                },
+                "coordinateConfigVersion": "test-virtual-mapping/q06-1.0.0",
+                "zBasis": {
+                  "mode": "InitialMeasurementOffset",
+                  "measurementRef": {
+                    "scopeId": "sim-whole-tray",
+                    "scopeVersion": "1.0.0",
+                    "sampleId": "sample-a",
+                    "objectSlotId": "P01",
+                    "unit": "mm",
+                    "datum": "SIM_REFERENCE"
+                  },
+                  "offsetMm": 100.0,
+                  "minZ": 105.0,
+                  "maxZ": 120.0,
+                  "mappingSourceRef": "Test/VirtualPoint/Q06/P01/face1/C/1.0.0"
+                }
+              },
+              "D": {
+                "executionStageId": "stage:1",
+                "objectId": "{UnitId}:M01",
+                "sourceSlotId": "P01",
+                "protocolSlotIndex": 1,
+                "localFace": 1,
+                "cameraId": "D",
+                "pointRef": "Q06-P01-D-test-virtual-mapping/1.0.0",
+                "point": {
+                  "id": "Q06-P01-face1-D",
+                  "version": "test-virtual-mapping/q06-1.0.0",
+                  "x": 110,
+                  "y": 110,
+                  "unit": "mm",
+                  "frame": "SIM_MACHINE",
+                  "testSourceRef": "Test/VirtualPoint/Q06/P01/face1/D/1.0.0"
+                },
+                "coordinateConfigVersion": "test-virtual-mapping/q06-1.0.0",
+                "zBasis": {
+                  "mode": "InitialMeasurementOffset",
+                  "measurementRef": {
+                    "scopeId": "sim-whole-tray",
+                    "scopeVersion": "1.0.0",
+                    "sampleId": "sample-a",
+                    "objectSlotId": "P01",
+                    "unit": "mm",
+                    "datum": "SIM_REFERENCE"
+                  },
+                  "offsetMm": 100.0,
+                  "minZ": 105.0,
+                  "maxZ": 120.0,
+                  "mappingSourceRef": "Test/VirtualPoint/Q06/P01/face1/D/1.0.0"
+                }
+              }
+            },
+            "2": {
+              "C": {
+                "executionStageId": "stage:2",
+                "objectId": "{UnitId}:M01",
+                "sourceSlotId": "P01",
+                "protocolSlotIndex": 1,
+                "localFace": 2,
+                "cameraId": "C",
+                "pointRef": "Q06-P01-C-test-virtual-mapping/1.0.0",
+                "point": {
+                  "id": "Q06-P01-face2-C",
+                  "version": "test-virtual-mapping/q06-1.0.0",
+                  "x": 120,
+                  "y": 110,
+                  "unit": "mm",
+                  "frame": "SIM_MACHINE",
+                  "testSourceRef": "Test/VirtualPoint/Q06/P01/face2/C/1.0.0"
+                },
+                "coordinateConfigVersion": "test-virtual-mapping/q06-1.0.0",
+                "zBasis": {
+                  "mode": "InitialMeasurementOffset",
+                  "measurementRef": {
+                    "scopeId": "sim-whole-tray",
+                    "scopeVersion": "1.0.0",
+                    "sampleId": "sample-a",
+                    "objectSlotId": "P01",
+                    "unit": "mm",
+                    "datum": "SIM_REFERENCE"
+                  },
+                  "offsetMm": 102.0,
+                  "minZ": 105.0,
+                  "maxZ": 120.0,
+                  "mappingSourceRef": "Test/VirtualPoint/Q06/P01/face2/C/1.0.0"
+                }
+              },
+              "D": {
+                "executionStageId": "stage:2",
+                "objectId": "{UnitId}:M01",
+                "sourceSlotId": "P01",
+                "protocolSlotIndex": 1,
+                "localFace": 2,
+                "cameraId": "D",
+                "pointRef": "Q06-P01-D-test-virtual-mapping/1.0.0",
+                "point": {
+                  "id": "Q06-P01-face2-D",
+                  "version": "test-virtual-mapping/q06-1.0.0",
+                  "x": 130,
+                  "y": 110,
+                  "unit": "mm",
+                  "frame": "SIM_MACHINE",
+                  "testSourceRef": "Test/VirtualPoint/Q06/P01/face2/D/1.0.0"
+                },
+                "coordinateConfigVersion": "test-virtual-mapping/q06-1.0.0",
+                "zBasis": {
+                  "mode": "InitialMeasurementOffset",
+                  "measurementRef": {
+                    "scopeId": "sim-whole-tray",
+                    "scopeVersion": "1.0.0",
+                    "sampleId": "sample-a",
+                    "objectSlotId": "P01",
+                    "unit": "mm",
+                    "datum": "SIM_REFERENCE"
+                  },
+                  "offsetMm": 102.0,
+                  "minZ": 105.0,
+                  "maxZ": 120.0,
+                  "mappingSourceRef": "Test/VirtualPoint/Q06/P01/face2/D/1.0.0"
+                }
+              }
+            }
+          }
+        }
+      ]
+    },
+    {
+      "caseId": "Q08",
+      "recipeRef": {
+        "recipeId": "R008-Q08",
+        "version": "1.0.2-test-usr-e",
+        "catalogDigest": "0B230A710EF2C54BE62A3D70301BA59C70B4FA91601AB2E2DBB4D12EA76AFC1D"
+      },
+      "scenarioId": "S1",
+      "occupiedSlots": [
+        "P01"
+      ],
+      "fCode": "TEST-TRAY-0108",
+      "unitKind": "independentPart",
+      "cameraSequence": [
+        "AB",
+        "AB",
+        "AB",
+        "CD"
+      ],
+      "availability": "Available",
+      "restrictions": [
+        "TestVirtualOnly;ProductionCalibrationNotApproved"
+      ],
+      "mediaSource": "Simulated/Test",
+      "mediaInputs": {
+        "ThreeD": "media-manifest-q08.json#ThreeD",
+        "F": "media-manifest-q08.json#F",
+        "A": "media-manifest-q08.json#Detection/A",
+        "B": "media-manifest-q08.json#Detection/B",
+        "C": "media-manifest-q08.json#Detection/C",
+        "D": "media-manifest-q08.json#Detection/D"
+      },
+      "objects": [
+        {
+          "sourceSlotId": "P01",
+          "physicalEntityIdPattern": "{UnitId}:M01",
+          "protocolSlotIndex": 1,
+          "sourcePoint": {
+            "id": "P01",
+            "version": "test-virtual-mapping/q08-1.0.0",
+            "x": 100,
+            "y": 100,
+            "z": 150,
+            "unit": "mm",
+            "frame": "SIM_MACHINE",
+            "testSourceRef": "Test/VirtualSource/Q08/P01/1.0.0",
+            "point": {
+              "id": "P01",
+              "version": "test-virtual-mapping/q08-1.0.0",
+              "x": 100,
+              "y": 100,
+              "z": 150,
+              "unit": "mm",
+              "frame": "SIM_MACHINE"
+            }
+          },
+          "flipPosition": {
+            "id": "P01",
+            "version": "test-virtual-mapping/q08-1.0.0",
+            "x": 100,
+            "y": 100,
+            "z": 150,
+            "unit": "mm",
+            "frame": "SIM_MACHINE",
+            "testSourceRef": "Test/VirtualFlipPosition/Q08/P01/1.0.0",
+            "point": {
+              "id": "Q03-P01-flip-position",
+              "version": "test-virtual-mapping/q08-1.0.0",
+              "x": 100,
+              "y": 100,
+              "z": 150,
+              "unit": "mm",
+              "frame": "SIM_MACHINE"
+            }
+          },
+          "faces": {
+            "1": {
+              "A": {
+                "executionStageId": "stage:1",
+                "objectId": "{UnitId}:M01",
+                "sourceSlotId": "P01",
+                "protocolSlotIndex": 1,
+                "localFace": 1,
+                "cameraId": "A",
+                "pointRef": "Q08-P01-A-test-virtual-mapping/1.0.0",
+                "point": {
+                  "id": "Q08-P01-face1-A",
+                  "version": "test-virtual-mapping/q08-1.0.0",
+                  "x": 100,
+                  "y": 100,
+                  "unit": "mm",
+                  "frame": "SIM_MACHINE",
+                  "testSourceRef": "Test/VirtualPoint/Q08/P01/face1/A/1.0.0"
+                },
+                "coordinateConfigVersion": "test-virtual-mapping/q08-1.0.0",
+                "zBasis": {
+                  "mode": "InitialMeasurementOffset",
+                  "measurementRef": {
+                    "scopeId": "sim-whole-tray",
+                    "scopeVersion": "1.0.0",
+                    "sampleId": "sample-a",
+                    "objectSlotId": "P01",
+                    "unit": "mm",
+                    "datum": "SIM_REFERENCE"
+                  },
+                  "offsetMm": 100.0,
+                  "minZ": 105.0,
+                  "maxZ": 120.0,
+                  "mappingSourceRef": "Test/VirtualPoint/Q08/P01/face1/A/1.0.0"
+                }
+              },
+              "B": {
+                "executionStageId": "stage:1",
+                "objectId": "{UnitId}:M01",
+                "sourceSlotId": "P01",
+                "protocolSlotIndex": 1,
+                "localFace": 1,
+                "cameraId": "B",
+                "pointRef": "Q08-P01-B-test-virtual-mapping/1.0.0",
+                "point": {
+                  "id": "Q08-P01-face1-B",
+                  "version": "test-virtual-mapping/q08-1.0.0",
+                  "x": 110,
+                  "y": 100,
+                  "unit": "mm",
+                  "frame": "SIM_MACHINE",
+                  "testSourceRef": "Test/VirtualPoint/Q08/P01/face1/B/1.0.0"
+                },
+                "coordinateConfigVersion": "test-virtual-mapping/q08-1.0.0",
+                "zBasis": {
+                  "mode": "InitialMeasurementOffset",
+                  "measurementRef": {
+                    "scopeId": "sim-whole-tray",
+                    "scopeVersion": "1.0.0",
+                    "sampleId": "sample-a",
+                    "objectSlotId": "P01",
+                    "unit": "mm",
+                    "datum": "SIM_REFERENCE"
+                  },
+                  "offsetMm": 100.0,
+                  "minZ": 105.0,
+                  "maxZ": 120.0,
+                  "mappingSourceRef": "Test/VirtualPoint/Q08/P01/face1/B/1.0.0"
+                }
+              }
+            },
+            "2": {
+              "A": {
+                "executionStageId": "stage:2",
+                "objectId": "{UnitId}:M01",
+                "sourceSlotId": "P01",
+                "protocolSlotIndex": 1,
+                "localFace": 2,
+                "cameraId": "A",
+                "pointRef": "Q08-P01-A-test-virtual-mapping/1.0.0",
+                "point": {
+                  "id": "Q08-P01-face2-A",
+                  "version": "test-virtual-mapping/q08-1.0.0",
+                  "x": 120,
+                  "y": 100,
+                  "unit": "mm",
+                  "frame": "SIM_MACHINE",
+                  "testSourceRef": "Test/VirtualPoint/Q08/P01/face2/A/1.0.0"
+                },
+                "coordinateConfigVersion": "test-virtual-mapping/q08-1.0.0",
+                "zBasis": {
+                  "mode": "InitialMeasurementOffset",
+                  "measurementRef": {
+                    "scopeId": "sim-whole-tray",
+                    "scopeVersion": "1.0.0",
+                    "sampleId": "sample-a",
+                    "objectSlotId": "P01",
+                    "unit": "mm",
+                    "datum": "SIM_REFERENCE"
+                  },
+                  "offsetMm": 102.0,
+                  "minZ": 105.0,
+                  "maxZ": 120.0,
+                  "mappingSourceRef": "Test/VirtualPoint/Q08/P01/face2/A/1.0.0"
+                }
+              },
+              "B": {
+                "executionStageId": "stage:2",
+                "objectId": "{UnitId}:M01",
+                "sourceSlotId": "P01",
+                "protocolSlotIndex": 1,
+                "localFace": 2,
+                "cameraId": "B",
+                "pointRef": "Q08-P01-B-test-virtual-mapping/1.0.0",
+                "point": {
+                  "id": "Q08-P01-face2-B",
+                  "version": "test-virtual-mapping/q08-1.0.0",
+                  "x": 130,
+                  "y": 100,
+                  "unit": "mm",
+                  "frame": "SIM_MACHINE",
+                  "testSourceRef": "Test/VirtualPoint/Q08/P01/face2/B/1.0.0"
+                },
+                "coordinateConfigVersion": "test-virtual-mapping/q08-1.0.0",
+                "zBasis": {
+                  "mode": "InitialMeasurementOffset",
+                  "measurementRef": {
+                    "scopeId": "sim-whole-tray",
+                    "scopeVersion": "1.0.0",
+                    "sampleId": "sample-a",
+                    "objectSlotId": "P01",
+                    "unit": "mm",
+                    "datum": "SIM_REFERENCE"
+                  },
+                  "offsetMm": 102.0,
+                  "minZ": 105.0,
+                  "maxZ": 120.0,
+                  "mappingSourceRef": "Test/VirtualPoint/Q08/P01/face2/B/1.0.0"
+                }
+              }
+            },
+            "3": {
+              "A": {
+                "executionStageId": "stage:3",
+                "objectId": "{UnitId}:M01",
+                "sourceSlotId": "P01",
+                "protocolSlotIndex": 1,
+                "localFace": 3,
+                "cameraId": "A",
+                "pointRef": "Q08-P01-A-test-virtual-mapping/1.0.0",
+                "point": {
+                  "id": "Q08-P01-face3-A",
+                  "version": "test-virtual-mapping/q08-1.0.0",
+                  "x": 140,
+                  "y": 100,
+                  "unit": "mm",
+                  "frame": "SIM_MACHINE",
+                  "testSourceRef": "Test/VirtualPoint/Q08/P01/face3/A/1.0.0"
+                },
+                "coordinateConfigVersion": "test-virtual-mapping/q08-1.0.0",
+                "zBasis": {
+                  "mode": "InitialMeasurementOffset",
+                  "measurementRef": {
+                    "scopeId": "sim-whole-tray",
+                    "scopeVersion": "1.0.0",
+                    "sampleId": "sample-a",
+                    "objectSlotId": "P01",
+                    "unit": "mm",
+                    "datum": "SIM_REFERENCE"
+                  },
+                  "offsetMm": 104.0,
+                  "minZ": 105.0,
+                  "maxZ": 120.0,
+                  "mappingSourceRef": "Test/VirtualPoint/Q08/P01/face3/A/1.0.0"
+                }
+              },
+              "B": {
+                "executionStageId": "stage:3",
+                "objectId": "{UnitId}:M01",
+                "sourceSlotId": "P01",
+                "protocolSlotIndex": 1,
+                "localFace": 3,
+                "cameraId": "B",
+                "pointRef": "Q08-P01-B-test-virtual-mapping/1.0.0",
+                "point": {
+                  "id": "Q08-P01-face3-B",
+                  "version": "test-virtual-mapping/q08-1.0.0",
+                  "x": 150,
+                  "y": 100,
+                  "unit": "mm",
+                  "frame": "SIM_MACHINE",
+                  "testSourceRef": "Test/VirtualPoint/Q08/P01/face3/B/1.0.0"
+                },
+                "coordinateConfigVersion": "test-virtual-mapping/q08-1.0.0",
+                "zBasis": {
+                  "mode": "InitialMeasurementOffset",
+                  "measurementRef": {
+                    "scopeId": "sim-whole-tray",
+                    "scopeVersion": "1.0.0",
+                    "sampleId": "sample-a",
+                    "objectSlotId": "P01",
+                    "unit": "mm",
+                    "datum": "SIM_REFERENCE"
+                  },
+                  "offsetMm": 104.0,
+                  "minZ": 105.0,
+                  "maxZ": 120.0,
+                  "mappingSourceRef": "Test/VirtualPoint/Q08/P01/face3/B/1.0.0"
+                }
+              }
+            },
+            "4": {
+              "C": {
+                "executionStageId": "stage:4",
+                "objectId": "{UnitId}:M01",
+                "sourceSlotId": "P01",
+                "protocolSlotIndex": 1,
+                "localFace": 4,
+                "cameraId": "C",
+                "pointRef": "Q08-P01-C-test-virtual-mapping/1.0.0",
+                "point": {
+                  "id": "Q08-P01-face4-C",
+                  "version": "test-virtual-mapping/q08-1.0.0",
+                  "x": 160,
+                  "y": 110,
+                  "unit": "mm",
+                  "frame": "SIM_MACHINE",
+                  "testSourceRef": "Test/VirtualPoint/Q08/P01/face4/C/1.0.0"
+                },
+                "coordinateConfigVersion": "test-virtual-mapping/q08-1.0.0",
+                "zBasis": {
+                  "mode": "InitialMeasurementOffset",
+                  "measurementRef": {
+                    "scopeId": "sim-whole-tray",
+                    "scopeVersion": "1.0.0",
+                    "sampleId": "sample-a",
+                    "objectSlotId": "P01",
+                    "unit": "mm",
+                    "datum": "SIM_REFERENCE"
+                  },
+                  "offsetMm": 106.0,
+                  "minZ": 105.0,
+                  "maxZ": 120.0,
+                  "mappingSourceRef": "Test/VirtualPoint/Q08/P01/face4/C/1.0.0"
+                }
+              },
+              "D": {
+                "executionStageId": "stage:4",
+                "objectId": "{UnitId}:M01",
+                "sourceSlotId": "P01",
+                "protocolSlotIndex": 1,
+                "localFace": 4,
+                "cameraId": "D",
+                "pointRef": "Q08-P01-D-test-virtual-mapping/1.0.0",
+                "point": {
+                  "id": "Q08-P01-face4-D",
+                  "version": "test-virtual-mapping/q08-1.0.0",
+                  "x": 170,
+                  "y": 110,
+                  "unit": "mm",
+                  "frame": "SIM_MACHINE",
+                  "testSourceRef": "Test/VirtualPoint/Q08/P01/face4/D/1.0.0"
+                },
+                "coordinateConfigVersion": "test-virtual-mapping/q08-1.0.0",
+                "zBasis": {
+                  "mode": "InitialMeasurementOffset",
+                  "measurementRef": {
+                    "scopeId": "sim-whole-tray",
+                    "scopeVersion": "1.0.0",
+                    "sampleId": "sample-a",
+                    "objectSlotId": "P01",
+                    "unit": "mm",
+                    "datum": "SIM_REFERENCE"
+                  },
+                  "offsetMm": 106.0,
+                  "minZ": 105.0,
+                  "maxZ": 120.0,
+                  "mappingSourceRef": "Test/VirtualPoint/Q08/P01/face4/D/1.0.0"
+                }
+              }
+            }
+          }
+        }
+      ]
+    },
+    {
+      "caseId": "Q09",
+      "recipeRef": {
+        "recipeId": "R008-Q09",
+        "version": "1.0.2-test-usr-e",
+        "catalogDigest": "266C74F0A7E316CAADB8D2CC01034D4AA6A3B131B2DD88414A6A9FED56BBADFB"
+      },
+      "scenarioId": "S1",
+      "occupiedSlots": [
+        "P01"
+      ],
+      "fCode": "TEST-TRAY-0109",
+      "unitKind": "independentPart",
+      "cameraSequence": [
+        "AB",
+        "AB",
+        "CD",
+        "AB"
+      ],
+      "availability": "Available",
+      "restrictions": [
+        "TestVirtualOnly;ProductionCalibrationNotApproved"
+      ],
+      "mediaSource": "Simulated/Test",
+      "mediaInputs": {
+        "ThreeD": "media-manifest-q09.json#ThreeD",
+        "F": "media-manifest-q09.json#F",
+        "A": "media-manifest-q09.json#Detection/A",
+        "B": "media-manifest-q09.json#Detection/B",
+        "C": "media-manifest-q09.json#Detection/C",
+        "D": "media-manifest-q09.json#Detection/D"
+      },
+      "objects": [
+        {
+          "sourceSlotId": "P01",
+          "physicalEntityIdPattern": "{UnitId}:M01",
+          "protocolSlotIndex": 1,
+          "sourcePoint": {
+            "id": "P01",
+            "version": "test-virtual-mapping/q09-1.0.0",
+            "x": 100,
+            "y": 100,
+            "z": 150,
+            "unit": "mm",
+            "frame": "SIM_MACHINE",
+            "testSourceRef": "Test/VirtualSource/Q09/P01/1.0.0",
+            "point": {
+              "id": "P01",
+              "version": "test-virtual-mapping/q09-1.0.0",
+              "x": 100,
+              "y": 100,
+              "z": 150,
+              "unit": "mm",
+              "frame": "SIM_MACHINE"
+            }
+          },
+          "flipPosition": {
+            "id": "P01",
+            "version": "test-virtual-mapping/q09-1.0.0",
+            "x": 100,
+            "y": 100,
+            "z": 150,
+            "unit": "mm",
+            "frame": "SIM_MACHINE",
+            "testSourceRef": "Test/VirtualFlipPosition/Q09/P01/1.0.0",
+            "point": {
+              "id": "Q03-P01-flip-position",
+              "version": "test-virtual-mapping/q09-1.0.0",
+              "x": 100,
+              "y": 100,
+              "z": 150,
+              "unit": "mm",
+              "frame": "SIM_MACHINE"
+            }
+          },
+          "faces": {
+            "1": {
+              "A": {
+                "executionStageId": "stage:1",
+                "objectId": "{UnitId}:M01",
+                "sourceSlotId": "P01",
+                "protocolSlotIndex": 1,
+                "localFace": 1,
+                "cameraId": "A",
+                "pointRef": "Q09-P01-A-test-virtual-mapping/1.0.0",
+                "point": {
+                  "id": "Q09-P01-face1-A",
+                  "version": "test-virtual-mapping/q09-1.0.0",
+                  "x": 100,
+                  "y": 100,
+                  "unit": "mm",
+                  "frame": "SIM_MACHINE",
+                  "testSourceRef": "Test/VirtualPoint/Q09/P01/face1/A/1.0.0"
+                },
+                "coordinateConfigVersion": "test-virtual-mapping/q09-1.0.0",
+                "zBasis": {
+                  "mode": "InitialMeasurementOffset",
+                  "measurementRef": {
+                    "scopeId": "sim-whole-tray",
+                    "scopeVersion": "1.0.0",
+                    "sampleId": "sample-a",
+                    "objectSlotId": "P01",
+                    "unit": "mm",
+                    "datum": "SIM_REFERENCE"
+                  },
+                  "offsetMm": 100.0,
+                  "minZ": 105.0,
+                  "maxZ": 120.0,
+                  "mappingSourceRef": "Test/VirtualPoint/Q09/P01/face1/A/1.0.0"
+                }
+              },
+              "B": {
+                "executionStageId": "stage:1",
+                "objectId": "{UnitId}:M01",
+                "sourceSlotId": "P01",
+                "protocolSlotIndex": 1,
+                "localFace": 1,
+                "cameraId": "B",
+                "pointRef": "Q09-P01-B-test-virtual-mapping/1.0.0",
+                "point": {
+                  "id": "Q09-P01-face1-B",
+                  "version": "test-virtual-mapping/q09-1.0.0",
+                  "x": 110,
+                  "y": 100,
+                  "unit": "mm",
+                  "frame": "SIM_MACHINE",
+                  "testSourceRef": "Test/VirtualPoint/Q09/P01/face1/B/1.0.0"
+                },
+                "coordinateConfigVersion": "test-virtual-mapping/q09-1.0.0",
+                "zBasis": {
+                  "mode": "InitialMeasurementOffset",
+                  "measurementRef": {
+                    "scopeId": "sim-whole-tray",
+                    "scopeVersion": "1.0.0",
+                    "sampleId": "sample-a",
+                    "objectSlotId": "P01",
+                    "unit": "mm",
+                    "datum": "SIM_REFERENCE"
+                  },
+                  "offsetMm": 100.0,
+                  "minZ": 105.0,
+                  "maxZ": 120.0,
+                  "mappingSourceRef": "Test/VirtualPoint/Q09/P01/face1/B/1.0.0"
+                }
+              }
+            },
+            "2": {
+              "A": {
+                "executionStageId": "stage:2",
+                "objectId": "{UnitId}:M01",
+                "sourceSlotId": "P01",
+                "protocolSlotIndex": 1,
+                "localFace": 2,
+                "cameraId": "A",
+                "pointRef": "Q09-P01-A-test-virtual-mapping/1.0.0",
+                "point": {
+                  "id": "Q09-P01-face2-A",
+                  "version": "test-virtual-mapping/q09-1.0.0",
+                  "x": 120,
+                  "y": 100,
+                  "unit": "mm",
+                  "frame": "SIM_MACHINE",
+                  "testSourceRef": "Test/VirtualPoint/Q09/P01/face2/A/1.0.0"
+                },
+                "coordinateConfigVersion": "test-virtual-mapping/q09-1.0.0",
+                "zBasis": {
+                  "mode": "InitialMeasurementOffset",
+                  "measurementRef": {
+                    "scopeId": "sim-whole-tray",
+                    "scopeVersion": "1.0.0",
+                    "sampleId": "sample-a",
+                    "objectSlotId": "P01",
+                    "unit": "mm",
+                    "datum": "SIM_REFERENCE"
+                  },
+                  "offsetMm": 102.0,
+                  "minZ": 105.0,
+                  "maxZ": 120.0,
+                  "mappingSourceRef": "Test/VirtualPoint/Q09/P01/face2/A/1.0.0"
+                }
+              },
+              "B": {
+                "executionStageId": "stage:2",
+                "objectId": "{UnitId}:M01",
+                "sourceSlotId": "P01",
+                "protocolSlotIndex": 1,
+                "localFace": 2,
+                "cameraId": "B",
+                "pointRef": "Q09-P01-B-test-virtual-mapping/1.0.0",
+                "point": {
+                  "id": "Q09-P01-face2-B",
+                  "version": "test-virtual-mapping/q09-1.0.0",
+                  "x": 130,
+                  "y": 100,
+                  "unit": "mm",
+                  "frame": "SIM_MACHINE",
+                  "testSourceRef": "Test/VirtualPoint/Q09/P01/face2/B/1.0.0"
+                },
+                "coordinateConfigVersion": "test-virtual-mapping/q09-1.0.0",
+                "zBasis": {
+                  "mode": "InitialMeasurementOffset",
+                  "measurementRef": {
+                    "scopeId": "sim-whole-tray",
+                    "scopeVersion": "1.0.0",
+                    "sampleId": "sample-a",
+                    "objectSlotId": "P01",
+                    "unit": "mm",
+                    "datum": "SIM_REFERENCE"
+                  },
+                  "offsetMm": 102.0,
+                  "minZ": 105.0,
+                  "maxZ": 120.0,
+                  "mappingSourceRef": "Test/VirtualPoint/Q09/P01/face2/B/1.0.0"
+                }
+              }
+            },
+            "3": {
+              "C": {
+                "executionStageId": "stage:3",
+                "objectId": "{UnitId}:M01",
+                "sourceSlotId": "P01",
+                "protocolSlotIndex": 1,
+                "localFace": 3,
+                "cameraId": "C",
+                "pointRef": "Q09-P01-C-test-virtual-mapping/1.0.0",
+                "point": {
+                  "id": "Q09-P01-face3-C",
+                  "version": "test-virtual-mapping/q09-1.0.0",
+                  "x": 140,
+                  "y": 110,
+                  "unit": "mm",
+                  "frame": "SIM_MACHINE",
+                  "testSourceRef": "Test/VirtualPoint/Q09/P01/face3/C/1.0.0"
+                },
+                "coordinateConfigVersion": "test-virtual-mapping/q09-1.0.0",
+                "zBasis": {
+                  "mode": "InitialMeasurementOffset",
+                  "measurementRef": {
+                    "scopeId": "sim-whole-tray",
+                    "scopeVersion": "1.0.0",
+                    "sampleId": "sample-a",
+                    "objectSlotId": "P01",
+                    "unit": "mm",
+                    "datum": "SIM_REFERENCE"
+                  },
+                  "offsetMm": 104.0,
+                  "minZ": 105.0,
+                  "maxZ": 120.0,
+                  "mappingSourceRef": "Test/VirtualPoint/Q09/P01/face3/C/1.0.0"
+                }
+              },
+              "D": {
+                "executionStageId": "stage:3",
+                "objectId": "{UnitId}:M01",
+                "sourceSlotId": "P01",
+                "protocolSlotIndex": 1,
+                "localFace": 3,
+                "cameraId": "D",
+                "pointRef": "Q09-P01-D-test-virtual-mapping/1.0.0",
+                "point": {
+                  "id": "Q09-P01-face3-D",
+                  "version": "test-virtual-mapping/q09-1.0.0",
+                  "x": 150,
+                  "y": 110,
+                  "unit": "mm",
+                  "frame": "SIM_MACHINE",
+                  "testSourceRef": "Test/VirtualPoint/Q09/P01/face3/D/1.0.0"
+                },
+                "coordinateConfigVersion": "test-virtual-mapping/q09-1.0.0",
+                "zBasis": {
+                  "mode": "InitialMeasurementOffset",
+                  "measurementRef": {
+                    "scopeId": "sim-whole-tray",
+                    "scopeVersion": "1.0.0",
+                    "sampleId": "sample-a",
+                    "objectSlotId": "P01",
+                    "unit": "mm",
+                    "datum": "SIM_REFERENCE"
+                  },
+                  "offsetMm": 104.0,
+                  "minZ": 105.0,
+                  "maxZ": 120.0,
+                  "mappingSourceRef": "Test/VirtualPoint/Q09/P01/face3/D/1.0.0"
+                }
+              }
+            },
+            "4": {
+              "A": {
+                "executionStageId": "stage:4",
+                "objectId": "{UnitId}:M01",
+                "sourceSlotId": "P01",
+                "protocolSlotIndex": 1,
+                "localFace": 4,
+                "cameraId": "A",
+                "pointRef": "Q09-P01-A-test-virtual-mapping/1.0.0",
+                "point": {
+                  "id": "Q09-P01-face4-A",
+                  "version": "test-virtual-mapping/q09-1.0.0",
+                  "x": 160,
+                  "y": 100,
+                  "unit": "mm",
+                  "frame": "SIM_MACHINE",
+                  "testSourceRef": "Test/VirtualPoint/Q09/P01/face4/A/1.0.0"
+                },
+                "coordinateConfigVersion": "test-virtual-mapping/q09-1.0.0",
+                "zBasis": {
+                  "mode": "InitialMeasurementOffset",
+                  "measurementRef": {
+                    "scopeId": "sim-whole-tray",
+                    "scopeVersion": "1.0.0",
+                    "sampleId": "sample-a",
+                    "objectSlotId": "P01",
+                    "unit": "mm",
+                    "datum": "SIM_REFERENCE"
+                  },
+                  "offsetMm": 106.0,
+                  "minZ": 105.0,
+                  "maxZ": 120.0,
+                  "mappingSourceRef": "Test/VirtualPoint/Q09/P01/face4/A/1.0.0"
+                }
+              },
+              "B": {
+                "executionStageId": "stage:4",
+                "objectId": "{UnitId}:M01",
+                "sourceSlotId": "P01",
+                "protocolSlotIndex": 1,
+                "localFace": 4,
+                "cameraId": "B",
+                "pointRef": "Q09-P01-B-test-virtual-mapping/1.0.0",
+                "point": {
+                  "id": "Q09-P01-face4-B",
+                  "version": "test-virtual-mapping/q09-1.0.0",
+                  "x": 170,
+                  "y": 100,
+                  "unit": "mm",
+                  "frame": "SIM_MACHINE",
+                  "testSourceRef": "Test/VirtualPoint/Q09/P01/face4/B/1.0.0"
+                },
+                "coordinateConfigVersion": "test-virtual-mapping/q09-1.0.0",
+                "zBasis": {
+                  "mode": "InitialMeasurementOffset",
+                  "measurementRef": {
+                    "scopeId": "sim-whole-tray",
+                    "scopeVersion": "1.0.0",
+                    "sampleId": "sample-a",
+                    "objectSlotId": "P01",
+                    "unit": "mm",
+                    "datum": "SIM_REFERENCE"
+                  },
+                  "offsetMm": 106.0,
+                  "minZ": 105.0,
+                  "maxZ": 120.0,
+                  "mappingSourceRef": "Test/VirtualPoint/Q09/P01/face4/B/1.0.0"
+                }
+              }
+            }
+          }
+        }
+      ]
+    },
+    {
+      "caseId": "Q11",
+      "recipeRef": {
+        "recipeId": "R008-Q11",
+        "version": "1.0.2-test-usr-e",
+        "catalogDigest": "914E16FB4D008A1E881F85D1850B58AF92A5745DE28E0AE6766D10EC7B7D674E"
+      },
+      "scenarioId": "S1",
+      "occupiedSlots": [
+        "P01"
+      ],
+      "fCode": "TEST-TRAY-0111",
+      "unitKind": "independentPart",
+      "cameraSequence": [
+        "AB",
+        "CD",
+        "AB",
+        "AB"
+      ],
+      "availability": "Available",
+      "restrictions": [
+        "TestVirtualOnly;ProductionCalibrationNotApproved"
+      ],
+      "mediaSource": "Simulated/Test",
+      "mediaInputs": {
+        "ThreeD": "media-manifest-q11.json#ThreeD",
+        "F": "media-manifest-q11.json#F",
+        "A": "media-manifest-q11.json#Detection/A",
+        "B": "media-manifest-q11.json#Detection/B",
+        "C": "media-manifest-q11.json#Detection/C",
+        "D": "media-manifest-q11.json#Detection/D"
+      },
+      "objects": [
+        {
+          "sourceSlotId": "P01",
+          "physicalEntityIdPattern": "{UnitId}:M01",
+          "protocolSlotIndex": 1,
+          "sourcePoint": {
+            "id": "P01",
+            "version": "test-virtual-mapping/q11-1.0.0",
+            "x": 100,
+            "y": 100,
+            "z": 150,
+            "unit": "mm",
+            "frame": "SIM_MACHINE",
+            "testSourceRef": "Test/VirtualSource/Q11/P01/1.0.0",
+            "point": {
+              "id": "P01",
+              "version": "test-virtual-mapping/q11-1.0.0",
+              "x": 100,
+              "y": 100,
+              "z": 150,
+              "unit": "mm",
+              "frame": "SIM_MACHINE"
+            }
+          },
+          "flipPosition": {
+            "id": "P01",
+            "version": "test-virtual-mapping/q11-1.0.0",
+            "x": 100,
+            "y": 100,
+            "z": 150,
+            "unit": "mm",
+            "frame": "SIM_MACHINE",
+            "testSourceRef": "Test/VirtualFlipPosition/Q11/P01/1.0.0",
+            "point": {
+              "id": "Q03-P01-flip-position",
+              "version": "test-virtual-mapping/q11-1.0.0",
+              "x": 100,
+              "y": 100,
+              "z": 150,
+              "unit": "mm",
+              "frame": "SIM_MACHINE"
+            }
+          },
+          "faces": {
+            "1": {
+              "A": {
+                "executionStageId": "stage:1",
+                "objectId": "{UnitId}:M01",
+                "sourceSlotId": "P01",
+                "protocolSlotIndex": 1,
+                "localFace": 1,
+                "cameraId": "A",
+                "pointRef": "Q11-P01-A-test-virtual-mapping/1.0.0",
+                "point": {
+                  "id": "Q11-P01-face1-A",
+                  "version": "test-virtual-mapping/q11-1.0.0",
+                  "x": 100,
+                  "y": 100,
+                  "unit": "mm",
+                  "frame": "SIM_MACHINE",
+                  "testSourceRef": "Test/VirtualPoint/Q11/P01/face1/A/1.0.0"
+                },
+                "coordinateConfigVersion": "test-virtual-mapping/q11-1.0.0",
+                "zBasis": {
+                  "mode": "InitialMeasurementOffset",
+                  "measurementRef": {
+                    "scopeId": "sim-whole-tray",
+                    "scopeVersion": "1.0.0",
+                    "sampleId": "sample-a",
+                    "objectSlotId": "P01",
+                    "unit": "mm",
+                    "datum": "SIM_REFERENCE"
+                  },
+                  "offsetMm": 100.0,
+                  "minZ": 105.0,
+                  "maxZ": 120.0,
+                  "mappingSourceRef": "Test/VirtualPoint/Q11/P01/face1/A/1.0.0"
+                }
+              },
+              "B": {
+                "executionStageId": "stage:1",
+                "objectId": "{UnitId}:M01",
+                "sourceSlotId": "P01",
+                "protocolSlotIndex": 1,
+                "localFace": 1,
+                "cameraId": "B",
+                "pointRef": "Q11-P01-B-test-virtual-mapping/1.0.0",
+                "point": {
+                  "id": "Q11-P01-face1-B",
+                  "version": "test-virtual-mapping/q11-1.0.0",
+                  "x": 110,
+                  "y": 100,
+                  "unit": "mm",
+                  "frame": "SIM_MACHINE",
+                  "testSourceRef": "Test/VirtualPoint/Q11/P01/face1/B/1.0.0"
+                },
+                "coordinateConfigVersion": "test-virtual-mapping/q11-1.0.0",
+                "zBasis": {
+                  "mode": "InitialMeasurementOffset",
+                  "measurementRef": {
+                    "scopeId": "sim-whole-tray",
+                    "scopeVersion": "1.0.0",
+                    "sampleId": "sample-a",
+                    "objectSlotId": "P01",
+                    "unit": "mm",
+                    "datum": "SIM_REFERENCE"
+                  },
+                  "offsetMm": 100.0,
+                  "minZ": 105.0,
+                  "maxZ": 120.0,
+                  "mappingSourceRef": "Test/VirtualPoint/Q11/P01/face1/B/1.0.0"
+                }
+              }
+            },
+            "2": {
+              "C": {
+                "executionStageId": "stage:2",
+                "objectId": "{UnitId}:M01",
+                "sourceSlotId": "P01",
+                "protocolSlotIndex": 1,
+                "localFace": 2,
+                "cameraId": "C",
+                "pointRef": "Q11-P01-C-test-virtual-mapping/1.0.0",
+                "point": {
+                  "id": "Q11-P01-face2-C",
+                  "version": "test-virtual-mapping/q11-1.0.0",
+                  "x": 120,
+                  "y": 110,
+                  "unit": "mm",
+                  "frame": "SIM_MACHINE",
+                  "testSourceRef": "Test/VirtualPoint/Q11/P01/face2/C/1.0.0"
+                },
+                "coordinateConfigVersion": "test-virtual-mapping/q11-1.0.0",
+                "zBasis": {
+                  "mode": "InitialMeasurementOffset",
+                  "measurementRef": {
+                    "scopeId": "sim-whole-tray",
+                    "scopeVersion": "1.0.0",
+                    "sampleId": "sample-a",
+                    "objectSlotId": "P01",
+                    "unit": "mm",
+                    "datum": "SIM_REFERENCE"
+                  },
+                  "offsetMm": 102.0,
+                  "minZ": 105.0,
+                  "maxZ": 120.0,
+                  "mappingSourceRef": "Test/VirtualPoint/Q11/P01/face2/C/1.0.0"
+                }
+              },
+              "D": {
+                "executionStageId": "stage:2",
+                "objectId": "{UnitId}:M01",
+                "sourceSlotId": "P01",
+                "protocolSlotIndex": 1,
+                "localFace": 2,
+                "cameraId": "D",
+                "pointRef": "Q11-P01-D-test-virtual-mapping/1.0.0",
+                "point": {
+                  "id": "Q11-P01-face2-D",
+                  "version": "test-virtual-mapping/q11-1.0.0",
+                  "x": 130,
+                  "y": 110,
+                  "unit": "mm",
+                  "frame": "SIM_MACHINE",
+                  "testSourceRef": "Test/VirtualPoint/Q11/P01/face2/D/1.0.0"
+                },
+                "coordinateConfigVersion": "test-virtual-mapping/q11-1.0.0",
+                "zBasis": {
+                  "mode": "InitialMeasurementOffset",
+                  "measurementRef": {
+                    "scopeId": "sim-whole-tray",
+                    "scopeVersion": "1.0.0",
+                    "sampleId": "sample-a",
+                    "objectSlotId": "P01",
+                    "unit": "mm",
+                    "datum": "SIM_REFERENCE"
+                  },
+                  "offsetMm": 102.0,
+                  "minZ": 105.0,
+                  "maxZ": 120.0,
+                  "mappingSourceRef": "Test/VirtualPoint/Q11/P01/face2/D/1.0.0"
+                }
+              }
+            },
+            "3": {
+              "A": {
+                "executionStageId": "stage:3",
+                "objectId": "{UnitId}:M01",
+                "sourceSlotId": "P01",
+                "protocolSlotIndex": 1,
+                "localFace": 3,
+                "cameraId": "A",
+                "pointRef": "Q11-P01-A-test-virtual-mapping/1.0.0",
+                "point": {
+                  "id": "Q11-P01-face3-A",
+                  "version": "test-virtual-mapping/q11-1.0.0",
+                  "x": 140,
+                  "y": 100,
+                  "unit": "mm",
+                  "frame": "SIM_MACHINE",
+                  "testSourceRef": "Test/VirtualPoint/Q11/P01/face3/A/1.0.0"
+                },
+                "coordinateConfigVersion": "test-virtual-mapping/q11-1.0.0",
+                "zBasis": {
+                  "mode": "InitialMeasurementOffset",
+                  "measurementRef": {
+                    "scopeId": "sim-whole-tray",
+                    "scopeVersion": "1.0.0",
+                    "sampleId": "sample-a",
+                    "objectSlotId": "P01",
+                    "unit": "mm",
+                    "datum": "SIM_REFERENCE"
+                  },
+                  "offsetMm": 104.0,
+                  "minZ": 105.0,
+                  "maxZ": 120.0,
+                  "mappingSourceRef": "Test/VirtualPoint/Q11/P01/face3/A/1.0.0"
+                }
+              },
+              "B": {
+                "executionStageId": "stage:3",
+                "objectId": "{UnitId}:M01",
+                "sourceSlotId": "P01",
+                "protocolSlotIndex": 1,
+                "localFace": 3,
+                "cameraId": "B",
+                "pointRef": "Q11-P01-B-test-virtual-mapping/1.0.0",
+                "point": {
+                  "id": "Q11-P01-face3-B",
+                  "version": "test-virtual-mapping/q11-1.0.0",
+                  "x": 150,
+                  "y": 100,
+                  "unit": "mm",
+                  "frame": "SIM_MACHINE",
+                  "testSourceRef": "Test/VirtualPoint/Q11/P01/face3/B/1.0.0"
+                },
+                "coordinateConfigVersion": "test-virtual-mapping/q11-1.0.0",
+                "zBasis": {
+                  "mode": "InitialMeasurementOffset",
+                  "measurementRef": {
+                    "scopeId": "sim-whole-tray",
+                    "scopeVersion": "1.0.0",
+                    "sampleId": "sample-a",
+                    "objectSlotId": "P01",
+                    "unit": "mm",
+                    "datum": "SIM_REFERENCE"
+                  },
+                  "offsetMm": 104.0,
+                  "minZ": 105.0,
+                  "maxZ": 120.0,
+                  "mappingSourceRef": "Test/VirtualPoint/Q11/P01/face3/B/1.0.0"
+                }
+              }
+            },
+            "4": {
+              "A": {
+                "executionStageId": "stage:4",
+                "objectId": "{UnitId}:M01",
+                "sourceSlotId": "P01",
+                "protocolSlotIndex": 1,
+                "localFace": 4,
+                "cameraId": "A",
+                "pointRef": "Q11-P01-A-test-virtual-mapping/1.0.0",
+                "point": {
+                  "id": "Q11-P01-face4-A",
+                  "version": "test-virtual-mapping/q11-1.0.0",
+                  "x": 160,
+                  "y": 100,
+                  "unit": "mm",
+                  "frame": "SIM_MACHINE",
+                  "testSourceRef": "Test/VirtualPoint/Q11/P01/face4/A/1.0.0"
+                },
+                "coordinateConfigVersion": "test-virtual-mapping/q11-1.0.0",
+                "zBasis": {
+                  "mode": "InitialMeasurementOffset",
+                  "measurementRef": {
+                    "scopeId": "sim-whole-tray",
+                    "scopeVersion": "1.0.0",
+                    "sampleId": "sample-a",
+                    "objectSlotId": "P01",
+                    "unit": "mm",
+                    "datum": "SIM_REFERENCE"
+                  },
+                  "offsetMm": 106.0,
+                  "minZ": 105.0,
+                  "maxZ": 120.0,
+                  "mappingSourceRef": "Test/VirtualPoint/Q11/P01/face4/A/1.0.0"
+                }
+              },
+              "B": {
+                "executionStageId": "stage:4",
+                "objectId": "{UnitId}:M01",
+                "sourceSlotId": "P01",
+                "protocolSlotIndex": 1,
+                "localFace": 4,
+                "cameraId": "B",
+                "pointRef": "Q11-P01-B-test-virtual-mapping/1.0.0",
+                "point": {
+                  "id": "Q11-P01-face4-B",
+                  "version": "test-virtual-mapping/q11-1.0.0",
+                  "x": 170,
+                  "y": 100,
+                  "unit": "mm",
+                  "frame": "SIM_MACHINE",
+                  "testSourceRef": "Test/VirtualPoint/Q11/P01/face4/B/1.0.0"
+                },
+                "coordinateConfigVersion": "test-virtual-mapping/q11-1.0.0",
+                "zBasis": {
+                  "mode": "InitialMeasurementOffset",
+                  "measurementRef": {
+                    "scopeId": "sim-whole-tray",
+                    "scopeVersion": "1.0.0",
+                    "sampleId": "sample-a",
+                    "objectSlotId": "P01",
+                    "unit": "mm",
+                    "datum": "SIM_REFERENCE"
+                  },
+                  "offsetMm": 106.0,
+                  "minZ": 105.0,
+                  "maxZ": 120.0,
+                  "mappingSourceRef": "Test/VirtualPoint/Q11/P01/face4/B/1.0.0"
+                }
+              }
+            }
+          }
+        }
+      ]
+    },
+    {
+      "caseId": "Q14",
+      "recipeRef": {
+        "recipeId": "R008-Q14",
+        "version": "1.0.2-test-usr-e",
+        "catalogDigest": "2955C70184C06C1A4508C2DB4128F6FACEA3216FF1EF11E8B955167F4C3DAA42"
+      },
+      "scenarioId": "S1",
+      "occupiedSlots": [
+        "P01"
+      ],
+      "fCode": "TEST-TRAY-0114",
+      "unitKind": "independentPart",
+      "cameraSequence": [
+        "AB",
+        "CD",
+        "CD",
+        "CD"
+      ],
+      "availability": "Available",
+      "restrictions": [
+        "TestVirtualOnly;ProductionCalibrationNotApproved"
+      ],
+      "mediaSource": "Simulated/Test",
+      "mediaInputs": {
+        "ThreeD": "media-manifest-q14.json#ThreeD",
+        "F": "media-manifest-q14.json#F",
+        "A": "media-manifest-q14.json#Detection/A",
+        "B": "media-manifest-q14.json#Detection/B",
+        "C": "media-manifest-q14.json#Detection/C",
+        "D": "media-manifest-q14.json#Detection/D"
+      },
+      "objects": [
+        {
+          "sourceSlotId": "P01",
+          "physicalEntityIdPattern": "{UnitId}:M01",
+          "protocolSlotIndex": 1,
+          "sourcePoint": {
+            "id": "P01",
+            "version": "test-virtual-mapping/q14-1.0.0",
+            "x": 100,
+            "y": 100,
+            "z": 150,
+            "unit": "mm",
+            "frame": "SIM_MACHINE",
+            "testSourceRef": "Test/VirtualSource/Q14/P01/1.0.0",
+            "point": {
+              "id": "P01",
+              "version": "test-virtual-mapping/q14-1.0.0",
+              "x": 100,
+              "y": 100,
+              "z": 150,
+              "unit": "mm",
+              "frame": "SIM_MACHINE"
+            }
+          },
+          "flipPosition": {
+            "id": "P01",
+            "version": "test-virtual-mapping/q14-1.0.0",
+            "x": 100,
+            "y": 100,
+            "z": 150,
+            "unit": "mm",
+            "frame": "SIM_MACHINE",
+            "testSourceRef": "Test/VirtualFlipPosition/Q14/P01/1.0.0",
+            "point": {
+              "id": "Q03-P01-flip-position",
+              "version": "test-virtual-mapping/q14-1.0.0",
+              "x": 100,
+              "y": 100,
+              "z": 150,
+              "unit": "mm",
+              "frame": "SIM_MACHINE"
+            }
+          },
+          "faces": {
+            "1": {
+              "A": {
+                "executionStageId": "stage:1",
+                "objectId": "{UnitId}:M01",
+                "sourceSlotId": "P01",
+                "protocolSlotIndex": 1,
+                "localFace": 1,
+                "cameraId": "A",
+                "pointRef": "Q14-P01-A-test-virtual-mapping/1.0.0",
+                "point": {
+                  "id": "Q14-P01-face1-A",
+                  "version": "test-virtual-mapping/q14-1.0.0",
+                  "x": 100,
+                  "y": 100,
+                  "unit": "mm",
+                  "frame": "SIM_MACHINE",
+                  "testSourceRef": "Test/VirtualPoint/Q14/P01/face1/A/1.0.0"
+                },
+                "coordinateConfigVersion": "test-virtual-mapping/q14-1.0.0",
+                "zBasis": {
+                  "mode": "InitialMeasurementOffset",
+                  "measurementRef": {
+                    "scopeId": "sim-whole-tray",
+                    "scopeVersion": "1.0.0",
+                    "sampleId": "sample-a",
+                    "objectSlotId": "P01",
+                    "unit": "mm",
+                    "datum": "SIM_REFERENCE"
+                  },
+                  "offsetMm": 100.0,
+                  "minZ": 105.0,
+                  "maxZ": 120.0,
+                  "mappingSourceRef": "Test/VirtualPoint/Q14/P01/face1/A/1.0.0"
+                }
+              },
+              "B": {
+                "executionStageId": "stage:1",
+                "objectId": "{UnitId}:M01",
+                "sourceSlotId": "P01",
+                "protocolSlotIndex": 1,
+                "localFace": 1,
+                "cameraId": "B",
+                "pointRef": "Q14-P01-B-test-virtual-mapping/1.0.0",
+                "point": {
+                  "id": "Q14-P01-face1-B",
+                  "version": "test-virtual-mapping/q14-1.0.0",
+                  "x": 110,
+                  "y": 100,
+                  "unit": "mm",
+                  "frame": "SIM_MACHINE",
+                  "testSourceRef": "Test/VirtualPoint/Q14/P01/face1/B/1.0.0"
+                },
+                "coordinateConfigVersion": "test-virtual-mapping/q14-1.0.0",
+                "zBasis": {
+                  "mode": "InitialMeasurementOffset",
+                  "measurementRef": {
+                    "scopeId": "sim-whole-tray",
+                    "scopeVersion": "1.0.0",
+                    "sampleId": "sample-a",
+                    "objectSlotId": "P01",
+                    "unit": "mm",
+                    "datum": "SIM_REFERENCE"
+                  },
+                  "offsetMm": 100.0,
+                  "minZ": 105.0,
+                  "maxZ": 120.0,
+                  "mappingSourceRef": "Test/VirtualPoint/Q14/P01/face1/B/1.0.0"
+                }
+              }
+            },
+            "2": {
+              "C": {
+                "executionStageId": "stage:2",
+                "objectId": "{UnitId}:M01",
+                "sourceSlotId": "P01",
+                "protocolSlotIndex": 1,
+                "localFace": 2,
+                "cameraId": "C",
+                "pointRef": "Q14-P01-C-test-virtual-mapping/1.0.0",
+                "point": {
+                  "id": "Q14-P01-face2-C",
+                  "version": "test-virtual-mapping/q14-1.0.0",
+                  "x": 120,
+                  "y": 110,
+                  "unit": "mm",
+                  "frame": "SIM_MACHINE",
+                  "testSourceRef": "Test/VirtualPoint/Q14/P01/face2/C/1.0.0"
+                },
+                "coordinateConfigVersion": "test-virtual-mapping/q14-1.0.0",
+                "zBasis": {
+                  "mode": "InitialMeasurementOffset",
+                  "measurementRef": {
+                    "scopeId": "sim-whole-tray",
+                    "scopeVersion": "1.0.0",
+                    "sampleId": "sample-a",
+                    "objectSlotId": "P01",
+                    "unit": "mm",
+                    "datum": "SIM_REFERENCE"
+                  },
+                  "offsetMm": 102.0,
+                  "minZ": 105.0,
+                  "maxZ": 120.0,
+                  "mappingSourceRef": "Test/VirtualPoint/Q14/P01/face2/C/1.0.0"
+                }
+              },
+              "D": {
+                "executionStageId": "stage:2",
+                "objectId": "{UnitId}:M01",
+                "sourceSlotId": "P01",
+                "protocolSlotIndex": 1,
+                "localFace": 2,
+                "cameraId": "D",
+                "pointRef": "Q14-P01-D-test-virtual-mapping/1.0.0",
+                "point": {
+                  "id": "Q14-P01-face2-D",
+                  "version": "test-virtual-mapping/q14-1.0.0",
+                  "x": 130,
+                  "y": 110,
+                  "unit": "mm",
+                  "frame": "SIM_MACHINE",
+                  "testSourceRef": "Test/VirtualPoint/Q14/P01/face2/D/1.0.0"
+                },
+                "coordinateConfigVersion": "test-virtual-mapping/q14-1.0.0",
+                "zBasis": {
+                  "mode": "InitialMeasurementOffset",
+                  "measurementRef": {
+                    "scopeId": "sim-whole-tray",
+                    "scopeVersion": "1.0.0",
+                    "sampleId": "sample-a",
+                    "objectSlotId": "P01",
+                    "unit": "mm",
+                    "datum": "SIM_REFERENCE"
+                  },
+                  "offsetMm": 102.0,
+                  "minZ": 105.0,
+                  "maxZ": 120.0,
+                  "mappingSourceRef": "Test/VirtualPoint/Q14/P01/face2/D/1.0.0"
+                }
+              }
+            },
+            "3": {
+              "C": {
+                "executionStageId": "stage:3",
+                "objectId": "{UnitId}:M01",
+                "sourceSlotId": "P01",
+                "protocolSlotIndex": 1,
+                "localFace": 3,
+                "cameraId": "C",
+                "pointRef": "Q14-P01-C-test-virtual-mapping/1.0.0",
+                "point": {
+                  "id": "Q14-P01-face3-C",
+                  "version": "test-virtual-mapping/q14-1.0.0",
+                  "x": 140,
+                  "y": 110,
+                  "unit": "mm",
+                  "frame": "SIM_MACHINE",
+                  "testSourceRef": "Test/VirtualPoint/Q14/P01/face3/C/1.0.0"
+                },
+                "coordinateConfigVersion": "test-virtual-mapping/q14-1.0.0",
+                "zBasis": {
+                  "mode": "InitialMeasurementOffset",
+                  "measurementRef": {
+                    "scopeId": "sim-whole-tray",
+                    "scopeVersion": "1.0.0",
+                    "sampleId": "sample-a",
+                    "objectSlotId": "P01",
+                    "unit": "mm",
+                    "datum": "SIM_REFERENCE"
+                  },
+                  "offsetMm": 104.0,
+                  "minZ": 105.0,
+                  "maxZ": 120.0,
+                  "mappingSourceRef": "Test/VirtualPoint/Q14/P01/face3/C/1.0.0"
+                }
+              },
+              "D": {
+                "executionStageId": "stage:3",
+                "objectId": "{UnitId}:M01",
+                "sourceSlotId": "P01",
+                "protocolSlotIndex": 1,
+                "localFace": 3,
+                "cameraId": "D",
+                "pointRef": "Q14-P01-D-test-virtual-mapping/1.0.0",
+                "point": {
+                  "id": "Q14-P01-face3-D",
+                  "version": "test-virtual-mapping/q14-1.0.0",
+                  "x": 150,
+                  "y": 110,
+                  "unit": "mm",
+                  "frame": "SIM_MACHINE",
+                  "testSourceRef": "Test/VirtualPoint/Q14/P01/face3/D/1.0.0"
+                },
+                "coordinateConfigVersion": "test-virtual-mapping/q14-1.0.0",
+                "zBasis": {
+                  "mode": "InitialMeasurementOffset",
+                  "measurementRef": {
+                    "scopeId": "sim-whole-tray",
+                    "scopeVersion": "1.0.0",
+                    "sampleId": "sample-a",
+                    "objectSlotId": "P01",
+                    "unit": "mm",
+                    "datum": "SIM_REFERENCE"
+                  },
+                  "offsetMm": 104.0,
+                  "minZ": 105.0,
+                  "maxZ": 120.0,
+                  "mappingSourceRef": "Test/VirtualPoint/Q14/P01/face3/D/1.0.0"
+                }
+              }
+            },
+            "4": {
+              "C": {
+                "executionStageId": "stage:4",
+                "objectId": "{UnitId}:M01",
+                "sourceSlotId": "P01",
+                "protocolSlotIndex": 1,
+                "localFace": 4,
+                "cameraId": "C",
+                "pointRef": "Q14-P01-C-test-virtual-mapping/1.0.0",
+                "point": {
+                  "id": "Q14-P01-face4-C",
+                  "version": "test-virtual-mapping/q14-1.0.0",
+                  "x": 160,
+                  "y": 110,
+                  "unit": "mm",
+                  "frame": "SIM_MACHINE",
+                  "testSourceRef": "Test/VirtualPoint/Q14/P01/face4/C/1.0.0"
+                },
+                "coordinateConfigVersion": "test-virtual-mapping/q14-1.0.0",
+                "zBasis": {
+                  "mode": "InitialMeasurementOffset",
+                  "measurementRef": {
+                    "scopeId": "sim-whole-tray",
+                    "scopeVersion": "1.0.0",
+                    "sampleId": "sample-a",
+                    "objectSlotId": "P01",
+                    "unit": "mm",
+                    "datum": "SIM_REFERENCE"
+                  },
+                  "offsetMm": 106.0,
+                  "minZ": 105.0,
+                  "maxZ": 120.0,
+                  "mappingSourceRef": "Test/VirtualPoint/Q14/P01/face4/C/1.0.0"
+                }
+              },
+              "D": {
+                "executionStageId": "stage:4",
+                "objectId": "{UnitId}:M01",
+                "sourceSlotId": "P01",
+                "protocolSlotIndex": 1,
+                "localFace": 4,
+                "cameraId": "D",
+                "pointRef": "Q14-P01-D-test-virtual-mapping/1.0.0",
+                "point": {
+                  "id": "Q14-P01-face4-D",
+                  "version": "test-virtual-mapping/q14-1.0.0",
+                  "x": 170,
+                  "y": 110,
+                  "unit": "mm",
+                  "frame": "SIM_MACHINE",
+                  "testSourceRef": "Test/VirtualPoint/Q14/P01/face4/D/1.0.0"
+                },
+                "coordinateConfigVersion": "test-virtual-mapping/q14-1.0.0",
+                "zBasis": {
+                  "mode": "InitialMeasurementOffset",
+                  "measurementRef": {
+                    "scopeId": "sim-whole-tray",
+                    "scopeVersion": "1.0.0",
+                    "sampleId": "sample-a",
+                    "objectSlotId": "P01",
+                    "unit": "mm",
+                    "datum": "SIM_REFERENCE"
+                  },
+                  "offsetMm": 106.0,
+                  "minZ": 105.0,
+                  "maxZ": 120.0,
+                  "mappingSourceRef": "Test/VirtualPoint/Q14/P01/face4/D/1.0.0"
+                }
+              }
+            }
+          }
+        }
+      ]
+    },
+    {
+      "caseId": "Q15",
+      "recipeRef": {
+        "recipeId": "R008-Q15",
+        "version": "1.0.2-test-usr-e",
+        "catalogDigest": "A4E9AC11CEA60020B3EEDC706DE04FFDD8D044EEAB508D9FF5653EBD0D25B12C"
+      },
+      "scenarioId": "S1",
+      "occupiedSlots": [
+        "P01"
+      ],
+      "fCode": "TEST-TRAY-0115",
+      "unitKind": "independentPart",
+      "cameraSequence": [
+        "CD",
+        "AB",
+        "AB",
+        "AB"
+      ],
+      "availability": "Available",
+      "restrictions": [
+        "TestVirtualOnly;ProductionCalibrationNotApproved"
+      ],
+      "mediaSource": "Simulated/Test",
+      "mediaInputs": {
+        "ThreeD": "media-manifest-q15.json#ThreeD",
+        "F": "media-manifest-q15.json#F",
+        "A": "media-manifest-q15.json#Detection/A",
+        "B": "media-manifest-q15.json#Detection/B",
+        "C": "media-manifest-q15.json#Detection/C",
+        "D": "media-manifest-q15.json#Detection/D"
+      },
+      "objects": [
+        {
+          "sourceSlotId": "P01",
+          "physicalEntityIdPattern": "{UnitId}:M01",
+          "protocolSlotIndex": 1,
+          "sourcePoint": {
+            "id": "P01",
+            "version": "test-virtual-mapping/q15-1.0.0",
+            "x": 100,
+            "y": 100,
+            "z": 150,
+            "unit": "mm",
+            "frame": "SIM_MACHINE",
+            "testSourceRef": "Test/VirtualSource/Q15/P01/1.0.0",
+            "point": {
+              "id": "P01",
+              "version": "test-virtual-mapping/q15-1.0.0",
+              "x": 100,
+              "y": 100,
+              "z": 150,
+              "unit": "mm",
+              "frame": "SIM_MACHINE"
+            }
+          },
+          "flipPosition": {
+            "id": "P01",
+            "version": "test-virtual-mapping/q15-1.0.0",
+            "x": 100,
+            "y": 100,
+            "z": 150,
+            "unit": "mm",
+            "frame": "SIM_MACHINE",
+            "testSourceRef": "Test/VirtualFlipPosition/Q15/P01/1.0.0",
+            "point": {
+              "id": "Q03-P01-flip-position",
+              "version": "test-virtual-mapping/q15-1.0.0",
+              "x": 100,
+              "y": 100,
+              "z": 150,
+              "unit": "mm",
+              "frame": "SIM_MACHINE"
+            }
+          },
+          "faces": {
+            "1": {
+              "C": {
+                "executionStageId": "stage:1",
+                "objectId": "{UnitId}:M01",
+                "sourceSlotId": "P01",
+                "protocolSlotIndex": 1,
+                "localFace": 1,
+                "cameraId": "C",
+                "pointRef": "Q15-P01-C-test-virtual-mapping/1.0.0",
+                "point": {
+                  "id": "Q15-P01-face1-C",
+                  "version": "test-virtual-mapping/q15-1.0.0",
+                  "x": 100,
+                  "y": 110,
+                  "unit": "mm",
+                  "frame": "SIM_MACHINE",
+                  "testSourceRef": "Test/VirtualPoint/Q15/P01/face1/C/1.0.0"
+                },
+                "coordinateConfigVersion": "test-virtual-mapping/q15-1.0.0",
+                "zBasis": {
+                  "mode": "InitialMeasurementOffset",
+                  "measurementRef": {
+                    "scopeId": "sim-whole-tray",
+                    "scopeVersion": "1.0.0",
+                    "sampleId": "sample-a",
+                    "objectSlotId": "P01",
+                    "unit": "mm",
+                    "datum": "SIM_REFERENCE"
+                  },
+                  "offsetMm": 100.0,
+                  "minZ": 105.0,
+                  "maxZ": 120.0,
+                  "mappingSourceRef": "Test/VirtualPoint/Q15/P01/face1/C/1.0.0"
+                }
+              },
+              "D": {
+                "executionStageId": "stage:1",
+                "objectId": "{UnitId}:M01",
+                "sourceSlotId": "P01",
+                "protocolSlotIndex": 1,
+                "localFace": 1,
+                "cameraId": "D",
+                "pointRef": "Q15-P01-D-test-virtual-mapping/1.0.0",
+                "point": {
+                  "id": "Q15-P01-face1-D",
+                  "version": "test-virtual-mapping/q15-1.0.0",
+                  "x": 110,
+                  "y": 110,
+                  "unit": "mm",
+                  "frame": "SIM_MACHINE",
+                  "testSourceRef": "Test/VirtualPoint/Q15/P01/face1/D/1.0.0"
+                },
+                "coordinateConfigVersion": "test-virtual-mapping/q15-1.0.0",
+                "zBasis": {
+                  "mode": "InitialMeasurementOffset",
+                  "measurementRef": {
+                    "scopeId": "sim-whole-tray",
+                    "scopeVersion": "1.0.0",
+                    "sampleId": "sample-a",
+                    "objectSlotId": "P01",
+                    "unit": "mm",
+                    "datum": "SIM_REFERENCE"
+                  },
+                  "offsetMm": 100.0,
+                  "minZ": 105.0,
+                  "maxZ": 120.0,
+                  "mappingSourceRef": "Test/VirtualPoint/Q15/P01/face1/D/1.0.0"
+                }
+              }
+            },
+            "2": {
+              "A": {
+                "executionStageId": "stage:2",
+                "objectId": "{UnitId}:M01",
+                "sourceSlotId": "P01",
+                "protocolSlotIndex": 1,
+                "localFace": 2,
+                "cameraId": "A",
+                "pointRef": "Q15-P01-A-test-virtual-mapping/1.0.0",
+                "point": {
+                  "id": "Q15-P01-face2-A",
+                  "version": "test-virtual-mapping/q15-1.0.0",
+                  "x": 120,
+                  "y": 100,
+                  "unit": "mm",
+                  "frame": "SIM_MACHINE",
+                  "testSourceRef": "Test/VirtualPoint/Q15/P01/face2/A/1.0.0"
+                },
+                "coordinateConfigVersion": "test-virtual-mapping/q15-1.0.0",
+                "zBasis": {
+                  "mode": "InitialMeasurementOffset",
+                  "measurementRef": {
+                    "scopeId": "sim-whole-tray",
+                    "scopeVersion": "1.0.0",
+                    "sampleId": "sample-a",
+                    "objectSlotId": "P01",
+                    "unit": "mm",
+                    "datum": "SIM_REFERENCE"
+                  },
+                  "offsetMm": 102.0,
+                  "minZ": 105.0,
+                  "maxZ": 120.0,
+                  "mappingSourceRef": "Test/VirtualPoint/Q15/P01/face2/A/1.0.0"
+                }
+              },
+              "B": {
+                "executionStageId": "stage:2",
+                "objectId": "{UnitId}:M01",
+                "sourceSlotId": "P01",
+                "protocolSlotIndex": 1,
+                "localFace": 2,
+                "cameraId": "B",
+                "pointRef": "Q15-P01-B-test-virtual-mapping/1.0.0",
+                "point": {
+                  "id": "Q15-P01-face2-B",
+                  "version": "test-virtual-mapping/q15-1.0.0",
+                  "x": 130,
+                  "y": 100,
+                  "unit": "mm",
+                  "frame": "SIM_MACHINE",
+                  "testSourceRef": "Test/VirtualPoint/Q15/P01/face2/B/1.0.0"
+                },
+                "coordinateConfigVersion": "test-virtual-mapping/q15-1.0.0",
+                "zBasis": {
+                  "mode": "InitialMeasurementOffset",
+                  "measurementRef": {
+                    "scopeId": "sim-whole-tray",
+                    "scopeVersion": "1.0.0",
+                    "sampleId": "sample-a",
+                    "objectSlotId": "P01",
+                    "unit": "mm",
+                    "datum": "SIM_REFERENCE"
+                  },
+                  "offsetMm": 102.0,
+                  "minZ": 105.0,
+                  "maxZ": 120.0,
+                  "mappingSourceRef": "Test/VirtualPoint/Q15/P01/face2/B/1.0.0"
+                }
+              }
+            },
+            "3": {
+              "A": {
+                "executionStageId": "stage:3",
+                "objectId": "{UnitId}:M01",
+                "sourceSlotId": "P01",
+                "protocolSlotIndex": 1,
+                "localFace": 3,
+                "cameraId": "A",
+                "pointRef": "Q15-P01-A-test-virtual-mapping/1.0.0",
+                "point": {
+                  "id": "Q15-P01-face3-A",
+                  "version": "test-virtual-mapping/q15-1.0.0",
+                  "x": 140,
+                  "y": 100,
+                  "unit": "mm",
+                  "frame": "SIM_MACHINE",
+                  "testSourceRef": "Test/VirtualPoint/Q15/P01/face3/A/1.0.0"
+                },
+                "coordinateConfigVersion": "test-virtual-mapping/q15-1.0.0",
+                "zBasis": {
+                  "mode": "InitialMeasurementOffset",
+                  "measurementRef": {
+                    "scopeId": "sim-whole-tray",
+                    "scopeVersion": "1.0.0",
+                    "sampleId": "sample-a",
+                    "objectSlotId": "P01",
+                    "unit": "mm",
+                    "datum": "SIM_REFERENCE"
+                  },
+                  "offsetMm": 104.0,
+                  "minZ": 105.0,
+                  "maxZ": 120.0,
+                  "mappingSourceRef": "Test/VirtualPoint/Q15/P01/face3/A/1.0.0"
+                }
+              },
+              "B": {
+                "executionStageId": "stage:3",
+                "objectId": "{UnitId}:M01",
+                "sourceSlotId": "P01",
+                "protocolSlotIndex": 1,
+                "localFace": 3,
+                "cameraId": "B",
+                "pointRef": "Q15-P01-B-test-virtual-mapping/1.0.0",
+                "point": {
+                  "id": "Q15-P01-face3-B",
+                  "version": "test-virtual-mapping/q15-1.0.0",
+                  "x": 150,
+                  "y": 100,
+                  "unit": "mm",
+                  "frame": "SIM_MACHINE",
+                  "testSourceRef": "Test/VirtualPoint/Q15/P01/face3/B/1.0.0"
+                },
+                "coordinateConfigVersion": "test-virtual-mapping/q15-1.0.0",
+                "zBasis": {
+                  "mode": "InitialMeasurementOffset",
+                  "measurementRef": {
+                    "scopeId": "sim-whole-tray",
+                    "scopeVersion": "1.0.0",
+                    "sampleId": "sample-a",
+                    "objectSlotId": "P01",
+                    "unit": "mm",
+                    "datum": "SIM_REFERENCE"
+                  },
+                  "offsetMm": 104.0,
+                  "minZ": 105.0,
+                  "maxZ": 120.0,
+                  "mappingSourceRef": "Test/VirtualPoint/Q15/P01/face3/B/1.0.0"
+                }
+              }
+            },
+            "4": {
+              "A": {
+                "executionStageId": "stage:4",
+                "objectId": "{UnitId}:M01",
+                "sourceSlotId": "P01",
+                "protocolSlotIndex": 1,
+                "localFace": 4,
+                "cameraId": "A",
+                "pointRef": "Q15-P01-A-test-virtual-mapping/1.0.0",
+                "point": {
+                  "id": "Q15-P01-face4-A",
+                  "version": "test-virtual-mapping/q15-1.0.0",
+                  "x": 160,
+                  "y": 100,
+                  "unit": "mm",
+                  "frame": "SIM_MACHINE",
+                  "testSourceRef": "Test/VirtualPoint/Q15/P01/face4/A/1.0.0"
+                },
+                "coordinateConfigVersion": "test-virtual-mapping/q15-1.0.0",
+                "zBasis": {
+                  "mode": "InitialMeasurementOffset",
+                  "measurementRef": {
+                    "scopeId": "sim-whole-tray",
+                    "scopeVersion": "1.0.0",
+                    "sampleId": "sample-a",
+                    "objectSlotId": "P01",
+                    "unit": "mm",
+                    "datum": "SIM_REFERENCE"
+                  },
+                  "offsetMm": 106.0,
+                  "minZ": 105.0,
+                  "maxZ": 120.0,
+                  "mappingSourceRef": "Test/VirtualPoint/Q15/P01/face4/A/1.0.0"
+                }
+              },
+              "B": {
+                "executionStageId": "stage:4",
+                "objectId": "{UnitId}:M01",
+                "sourceSlotId": "P01",
+                "protocolSlotIndex": 1,
+                "localFace": 4,
+                "cameraId": "B",
+                "pointRef": "Q15-P01-B-test-virtual-mapping/1.0.0",
+                "point": {
+                  "id": "Q15-P01-face4-B",
+                  "version": "test-virtual-mapping/q15-1.0.0",
+                  "x": 170,
+                  "y": 100,
+                  "unit": "mm",
+                  "frame": "SIM_MACHINE",
+                  "testSourceRef": "Test/VirtualPoint/Q15/P01/face4/B/1.0.0"
+                },
+                "coordinateConfigVersion": "test-virtual-mapping/q15-1.0.0",
+                "zBasis": {
+                  "mode": "InitialMeasurementOffset",
+                  "measurementRef": {
+                    "scopeId": "sim-whole-tray",
+                    "scopeVersion": "1.0.0",
+                    "sampleId": "sample-a",
+                    "objectSlotId": "P01",
+                    "unit": "mm",
+                    "datum": "SIM_REFERENCE"
+                  },
+                  "offsetMm": 106.0,
+                  "minZ": 105.0,
+                  "maxZ": 120.0,
+                  "mappingSourceRef": "Test/VirtualPoint/Q15/P01/face4/B/1.0.0"
+                }
+              }
+            }
+          }
+        }
+      ]
+    },
+    {
+      "caseId": "Q18",
+      "recipeRef": {
+        "recipeId": "R008-Q18",
+        "version": "1.0.2-test-usr-e",
+        "catalogDigest": "AEA6C2F5A010E68B6AC214CCF8982590FCC6F12444C6DFD6F44ACD1F616F28AE"
+      },
+      "scenarioId": "S1",
+      "occupiedSlots": [
+        "P01"
+      ],
+      "fCode": "TEST-TRAY-0118",
+      "unitKind": "independentPart",
+      "cameraSequence": [
+        "CD",
+        "AB",
+        "CD",
+        "CD"
+      ],
+      "availability": "Available",
+      "restrictions": [
+        "TestVirtualOnly;ProductionCalibrationNotApproved"
+      ],
+      "mediaSource": "Simulated/Test",
+      "mediaInputs": {
+        "ThreeD": "media-manifest-q18.json#ThreeD",
+        "F": "media-manifest-q18.json#F",
+        "A": "media-manifest-q18.json#Detection/A",
+        "B": "media-manifest-q18.json#Detection/B",
+        "C": "media-manifest-q18.json#Detection/C",
+        "D": "media-manifest-q18.json#Detection/D"
+      },
+      "objects": [
+        {
+          "sourceSlotId": "P01",
+          "physicalEntityIdPattern": "{UnitId}:M01",
+          "protocolSlotIndex": 1,
+          "sourcePoint": {
+            "id": "P01",
+            "version": "test-virtual-mapping/q18-1.0.0",
+            "x": 100,
+            "y": 100,
+            "z": 150,
+            "unit": "mm",
+            "frame": "SIM_MACHINE",
+            "testSourceRef": "Test/VirtualSource/Q18/P01/1.0.0",
+            "point": {
+              "id": "P01",
+              "version": "test-virtual-mapping/q18-1.0.0",
+              "x": 100,
+              "y": 100,
+              "z": 150,
+              "unit": "mm",
+              "frame": "SIM_MACHINE"
+            }
+          },
+          "flipPosition": {
+            "id": "P01",
+            "version": "test-virtual-mapping/q18-1.0.0",
+            "x": 100,
+            "y": 100,
+            "z": 150,
+            "unit": "mm",
+            "frame": "SIM_MACHINE",
+            "testSourceRef": "Test/VirtualFlipPosition/Q18/P01/1.0.0",
+            "point": {
+              "id": "Q03-P01-flip-position",
+              "version": "test-virtual-mapping/q18-1.0.0",
+              "x": 100,
+              "y": 100,
+              "z": 150,
+              "unit": "mm",
+              "frame": "SIM_MACHINE"
+            }
+          },
+          "faces": {
+            "1": {
+              "C": {
+                "executionStageId": "stage:1",
+                "objectId": "{UnitId}:M01",
+                "sourceSlotId": "P01",
+                "protocolSlotIndex": 1,
+                "localFace": 1,
+                "cameraId": "C",
+                "pointRef": "Q18-P01-C-test-virtual-mapping/1.0.0",
+                "point": {
+                  "id": "Q18-P01-face1-C",
+                  "version": "test-virtual-mapping/q18-1.0.0",
+                  "x": 100,
+                  "y": 110,
+                  "unit": "mm",
+                  "frame": "SIM_MACHINE",
+                  "testSourceRef": "Test/VirtualPoint/Q18/P01/face1/C/1.0.0"
+                },
+                "coordinateConfigVersion": "test-virtual-mapping/q18-1.0.0",
+                "zBasis": {
+                  "mode": "InitialMeasurementOffset",
+                  "measurementRef": {
+                    "scopeId": "sim-whole-tray",
+                    "scopeVersion": "1.0.0",
+                    "sampleId": "sample-a",
+                    "objectSlotId": "P01",
+                    "unit": "mm",
+                    "datum": "SIM_REFERENCE"
+                  },
+                  "offsetMm": 100.0,
+                  "minZ": 105.0,
+                  "maxZ": 120.0,
+                  "mappingSourceRef": "Test/VirtualPoint/Q18/P01/face1/C/1.0.0"
+                }
+              },
+              "D": {
+                "executionStageId": "stage:1",
+                "objectId": "{UnitId}:M01",
+                "sourceSlotId": "P01",
+                "protocolSlotIndex": 1,
+                "localFace": 1,
+                "cameraId": "D",
+                "pointRef": "Q18-P01-D-test-virtual-mapping/1.0.0",
+                "point": {
+                  "id": "Q18-P01-face1-D",
+                  "version": "test-virtual-mapping/q18-1.0.0",
+                  "x": 110,
+                  "y": 110,
+                  "unit": "mm",
+                  "frame": "SIM_MACHINE",
+                  "testSourceRef": "Test/VirtualPoint/Q18/P01/face1/D/1.0.0"
+                },
+                "coordinateConfigVersion": "test-virtual-mapping/q18-1.0.0",
+                "zBasis": {
+                  "mode": "InitialMeasurementOffset",
+                  "measurementRef": {
+                    "scopeId": "sim-whole-tray",
+                    "scopeVersion": "1.0.0",
+                    "sampleId": "sample-a",
+                    "objectSlotId": "P01",
+                    "unit": "mm",
+                    "datum": "SIM_REFERENCE"
+                  },
+                  "offsetMm": 100.0,
+                  "minZ": 105.0,
+                  "maxZ": 120.0,
+                  "mappingSourceRef": "Test/VirtualPoint/Q18/P01/face1/D/1.0.0"
+                }
+              }
+            },
+            "2": {
+              "A": {
+                "executionStageId": "stage:2",
+                "objectId": "{UnitId}:M01",
+                "sourceSlotId": "P01",
+                "protocolSlotIndex": 1,
+                "localFace": 2,
+                "cameraId": "A",
+                "pointRef": "Q18-P01-A-test-virtual-mapping/1.0.0",
+                "point": {
+                  "id": "Q18-P01-face2-A",
+                  "version": "test-virtual-mapping/q18-1.0.0",
+                  "x": 120,
+                  "y": 100,
+                  "unit": "mm",
+                  "frame": "SIM_MACHINE",
+                  "testSourceRef": "Test/VirtualPoint/Q18/P01/face2/A/1.0.0"
+                },
+                "coordinateConfigVersion": "test-virtual-mapping/q18-1.0.0",
+                "zBasis": {
+                  "mode": "InitialMeasurementOffset",
+                  "measurementRef": {
+                    "scopeId": "sim-whole-tray",
+                    "scopeVersion": "1.0.0",
+                    "sampleId": "sample-a",
+                    "objectSlotId": "P01",
+                    "unit": "mm",
+                    "datum": "SIM_REFERENCE"
+                  },
+                  "offsetMm": 102.0,
+                  "minZ": 105.0,
+                  "maxZ": 120.0,
+                  "mappingSourceRef": "Test/VirtualPoint/Q18/P01/face2/A/1.0.0"
+                }
+              },
+              "B": {
+                "executionStageId": "stage:2",
+                "objectId": "{UnitId}:M01",
+                "sourceSlotId": "P01",
+                "protocolSlotIndex": 1,
+                "localFace": 2,
+                "cameraId": "B",
+                "pointRef": "Q18-P01-B-test-virtual-mapping/1.0.0",
+                "point": {
+                  "id": "Q18-P01-face2-B",
+                  "version": "test-virtual-mapping/q18-1.0.0",
+                  "x": 130,
+                  "y": 100,
+                  "unit": "mm",
+                  "frame": "SIM_MACHINE",
+                  "testSourceRef": "Test/VirtualPoint/Q18/P01/face2/B/1.0.0"
+                },
+                "coordinateConfigVersion": "test-virtual-mapping/q18-1.0.0",
+                "zBasis": {
+                  "mode": "InitialMeasurementOffset",
+                  "measurementRef": {
+                    "scopeId": "sim-whole-tray",
+                    "scopeVersion": "1.0.0",
+                    "sampleId": "sample-a",
+                    "objectSlotId": "P01",
+                    "unit": "mm",
+                    "datum": "SIM_REFERENCE"
+                  },
+                  "offsetMm": 102.0,
+                  "minZ": 105.0,
+                  "maxZ": 120.0,
+                  "mappingSourceRef": "Test/VirtualPoint/Q18/P01/face2/B/1.0.0"
+                }
+              }
+            },
+            "3": {
+              "C": {
+                "executionStageId": "stage:3",
+                "objectId": "{UnitId}:M01",
+                "sourceSlotId": "P01",
+                "protocolSlotIndex": 1,
+                "localFace": 3,
+                "cameraId": "C",
+                "pointRef": "Q18-P01-C-test-virtual-mapping/1.0.0",
+                "point": {
+                  "id": "Q18-P01-face3-C",
+                  "version": "test-virtual-mapping/q18-1.0.0",
+                  "x": 140,
+                  "y": 110,
+                  "unit": "mm",
+                  "frame": "SIM_MACHINE",
+                  "testSourceRef": "Test/VirtualPoint/Q18/P01/face3/C/1.0.0"
+                },
+                "coordinateConfigVersion": "test-virtual-mapping/q18-1.0.0",
+                "zBasis": {
+                  "mode": "InitialMeasurementOffset",
+                  "measurementRef": {
+                    "scopeId": "sim-whole-tray",
+                    "scopeVersion": "1.0.0",
+                    "sampleId": "sample-a",
+                    "objectSlotId": "P01",
+                    "unit": "mm",
+                    "datum": "SIM_REFERENCE"
+                  },
+                  "offsetMm": 104.0,
+                  "minZ": 105.0,
+                  "maxZ": 120.0,
+                  "mappingSourceRef": "Test/VirtualPoint/Q18/P01/face3/C/1.0.0"
+                }
+              },
+              "D": {
+                "executionStageId": "stage:3",
+                "objectId": "{UnitId}:M01",
+                "sourceSlotId": "P01",
+                "protocolSlotIndex": 1,
+                "localFace": 3,
+                "cameraId": "D",
+                "pointRef": "Q18-P01-D-test-virtual-mapping/1.0.0",
+                "point": {
+                  "id": "Q18-P01-face3-D",
+                  "version": "test-virtual-mapping/q18-1.0.0",
+                  "x": 150,
+                  "y": 110,
+                  "unit": "mm",
+                  "frame": "SIM_MACHINE",
+                  "testSourceRef": "Test/VirtualPoint/Q18/P01/face3/D/1.0.0"
+                },
+                "coordinateConfigVersion": "test-virtual-mapping/q18-1.0.0",
+                "zBasis": {
+                  "mode": "InitialMeasurementOffset",
+                  "measurementRef": {
+                    "scopeId": "sim-whole-tray",
+                    "scopeVersion": "1.0.0",
+                    "sampleId": "sample-a",
+                    "objectSlotId": "P01",
+                    "unit": "mm",
+                    "datum": "SIM_REFERENCE"
+                  },
+                  "offsetMm": 104.0,
+                  "minZ": 105.0,
+                  "maxZ": 120.0,
+                  "mappingSourceRef": "Test/VirtualPoint/Q18/P01/face3/D/1.0.0"
+                }
+              }
+            },
+            "4": {
+              "C": {
+                "executionStageId": "stage:4",
+                "objectId": "{UnitId}:M01",
+                "sourceSlotId": "P01",
+                "protocolSlotIndex": 1,
+                "localFace": 4,
+                "cameraId": "C",
+                "pointRef": "Q18-P01-C-test-virtual-mapping/1.0.0",
+                "point": {
+                  "id": "Q18-P01-face4-C",
+                  "version": "test-virtual-mapping/q18-1.0.0",
+                  "x": 160,
+                  "y": 110,
+                  "unit": "mm",
+                  "frame": "SIM_MACHINE",
+                  "testSourceRef": "Test/VirtualPoint/Q18/P01/face4/C/1.0.0"
+                },
+                "coordinateConfigVersion": "test-virtual-mapping/q18-1.0.0",
+                "zBasis": {
+                  "mode": "InitialMeasurementOffset",
+                  "measurementRef": {
+                    "scopeId": "sim-whole-tray",
+                    "scopeVersion": "1.0.0",
+                    "sampleId": "sample-a",
+                    "objectSlotId": "P01",
+                    "unit": "mm",
+                    "datum": "SIM_REFERENCE"
+                  },
+                  "offsetMm": 106.0,
+                  "minZ": 105.0,
+                  "maxZ": 120.0,
+                  "mappingSourceRef": "Test/VirtualPoint/Q18/P01/face4/C/1.0.0"
+                }
+              },
+              "D": {
+                "executionStageId": "stage:4",
+                "objectId": "{UnitId}:M01",
+                "sourceSlotId": "P01",
+                "protocolSlotIndex": 1,
+                "localFace": 4,
+                "cameraId": "D",
+                "pointRef": "Q18-P01-D-test-virtual-mapping/1.0.0",
+                "point": {
+                  "id": "Q18-P01-face4-D",
+                  "version": "test-virtual-mapping/q18-1.0.0",
+                  "x": 170,
+                  "y": 110,
+                  "unit": "mm",
+                  "frame": "SIM_MACHINE",
+                  "testSourceRef": "Test/VirtualPoint/Q18/P01/face4/D/1.0.0"
+                },
+                "coordinateConfigVersion": "test-virtual-mapping/q18-1.0.0",
+                "zBasis": {
+                  "mode": "InitialMeasurementOffset",
+                  "measurementRef": {
+                    "scopeId": "sim-whole-tray",
+                    "scopeVersion": "1.0.0",
+                    "sampleId": "sample-a",
+                    "objectSlotId": "P01",
+                    "unit": "mm",
+                    "datum": "SIM_REFERENCE"
+                  },
+                  "offsetMm": 106.0,
+                  "minZ": 105.0,
+                  "maxZ": 120.0,
+                  "mappingSourceRef": "Test/VirtualPoint/Q18/P01/face4/D/1.0.0"
+                }
+              }
+            }
+          }
+        }
+      ]
+    },
+    {
+      "caseId": "Q20",
+      "recipeRef": {
+        "recipeId": "R008-Q20",
+        "version": "1.0.2-test-usr-e",
+        "catalogDigest": "BF45523D14E7DA1F7FED629053D39DF725C5A7496E6D7F4F803BE7104B2330F1"
+      },
+      "scenarioId": "S1",
+      "occupiedSlots": [
+        "P01"
+      ],
+      "fCode": "TEST-TRAY-0120",
+      "unitKind": "independentPart",
+      "cameraSequence": [
+        "CD",
+        "CD",
+        "AB",
+        "CD"
+      ],
+      "availability": "Available",
+      "restrictions": [
+        "TestVirtualOnly;ProductionCalibrationNotApproved"
+      ],
+      "mediaSource": "Simulated/Test",
+      "mediaInputs": {
+        "ThreeD": "media-manifest-q20.json#ThreeD",
+        "F": "media-manifest-q20.json#F",
+        "A": "media-manifest-q20.json#Detection/A",
+        "B": "media-manifest-q20.json#Detection/B",
+        "C": "media-manifest-q20.json#Detection/C",
+        "D": "media-manifest-q20.json#Detection/D"
+      },
+      "objects": [
+        {
+          "sourceSlotId": "P01",
+          "physicalEntityIdPattern": "{UnitId}:M01",
+          "protocolSlotIndex": 1,
+          "sourcePoint": {
+            "id": "P01",
+            "version": "test-virtual-mapping/q20-1.0.0",
+            "x": 100,
+            "y": 100,
+            "z": 150,
+            "unit": "mm",
+            "frame": "SIM_MACHINE",
+            "testSourceRef": "Test/VirtualSource/Q20/P01/1.0.0",
+            "point": {
+              "id": "P01",
+              "version": "test-virtual-mapping/q20-1.0.0",
+              "x": 100,
+              "y": 100,
+              "z": 150,
+              "unit": "mm",
+              "frame": "SIM_MACHINE"
+            }
+          },
+          "flipPosition": {
+            "id": "P01",
+            "version": "test-virtual-mapping/q20-1.0.0",
+            "x": 100,
+            "y": 100,
+            "z": 150,
+            "unit": "mm",
+            "frame": "SIM_MACHINE",
+            "testSourceRef": "Test/VirtualFlipPosition/Q20/P01/1.0.0",
+            "point": {
+              "id": "Q03-P01-flip-position",
+              "version": "test-virtual-mapping/q20-1.0.0",
+              "x": 100,
+              "y": 100,
+              "z": 150,
+              "unit": "mm",
+              "frame": "SIM_MACHINE"
+            }
+          },
+          "faces": {
+            "1": {
+              "C": {
+                "executionStageId": "stage:1",
+                "objectId": "{UnitId}:M01",
+                "sourceSlotId": "P01",
+                "protocolSlotIndex": 1,
+                "localFace": 1,
+                "cameraId": "C",
+                "pointRef": "Q20-P01-C-test-virtual-mapping/1.0.0",
+                "point": {
+                  "id": "Q20-P01-face1-C",
+                  "version": "test-virtual-mapping/q20-1.0.0",
+                  "x": 100,
+                  "y": 110,
+                  "unit": "mm",
+                  "frame": "SIM_MACHINE",
+                  "testSourceRef": "Test/VirtualPoint/Q20/P01/face1/C/1.0.0"
+                },
+                "coordinateConfigVersion": "test-virtual-mapping/q20-1.0.0",
+                "zBasis": {
+                  "mode": "InitialMeasurementOffset",
+                  "measurementRef": {
+                    "scopeId": "sim-whole-tray",
+                    "scopeVersion": "1.0.0",
+                    "sampleId": "sample-a",
+                    "objectSlotId": "P01",
+                    "unit": "mm",
+                    "datum": "SIM_REFERENCE"
+                  },
+                  "offsetMm": 100.0,
+                  "minZ": 105.0,
+                  "maxZ": 120.0,
+                  "mappingSourceRef": "Test/VirtualPoint/Q20/P01/face1/C/1.0.0"
+                }
+              },
+              "D": {
+                "executionStageId": "stage:1",
+                "objectId": "{UnitId}:M01",
+                "sourceSlotId": "P01",
+                "protocolSlotIndex": 1,
+                "localFace": 1,
+                "cameraId": "D",
+                "pointRef": "Q20-P01-D-test-virtual-mapping/1.0.0",
+                "point": {
+                  "id": "Q20-P01-face1-D",
+                  "version": "test-virtual-mapping/q20-1.0.0",
+                  "x": 110,
+                  "y": 110,
+                  "unit": "mm",
+                  "frame": "SIM_MACHINE",
+                  "testSourceRef": "Test/VirtualPoint/Q20/P01/face1/D/1.0.0"
+                },
+                "coordinateConfigVersion": "test-virtual-mapping/q20-1.0.0",
+                "zBasis": {
+                  "mode": "InitialMeasurementOffset",
+                  "measurementRef": {
+                    "scopeId": "sim-whole-tray",
+                    "scopeVersion": "1.0.0",
+                    "sampleId": "sample-a",
+                    "objectSlotId": "P01",
+                    "unit": "mm",
+                    "datum": "SIM_REFERENCE"
+                  },
+                  "offsetMm": 100.0,
+                  "minZ": 105.0,
+                  "maxZ": 120.0,
+                  "mappingSourceRef": "Test/VirtualPoint/Q20/P01/face1/D/1.0.0"
+                }
+              }
+            },
+            "2": {
+              "C": {
+                "executionStageId": "stage:2",
+                "objectId": "{UnitId}:M01",
+                "sourceSlotId": "P01",
+                "protocolSlotIndex": 1,
+                "localFace": 2,
+                "cameraId": "C",
+                "pointRef": "Q20-P01-C-test-virtual-mapping/1.0.0",
+                "point": {
+                  "id": "Q20-P01-face2-C",
+                  "version": "test-virtual-mapping/q20-1.0.0",
+                  "x": 120,
+                  "y": 110,
+                  "unit": "mm",
+                  "frame": "SIM_MACHINE",
+                  "testSourceRef": "Test/VirtualPoint/Q20/P01/face2/C/1.0.0"
+                },
+                "coordinateConfigVersion": "test-virtual-mapping/q20-1.0.0",
+                "zBasis": {
+                  "mode": "InitialMeasurementOffset",
+                  "measurementRef": {
+                    "scopeId": "sim-whole-tray",
+                    "scopeVersion": "1.0.0",
+                    "sampleId": "sample-a",
+                    "objectSlotId": "P01",
+                    "unit": "mm",
+                    "datum": "SIM_REFERENCE"
+                  },
+                  "offsetMm": 102.0,
+                  "minZ": 105.0,
+                  "maxZ": 120.0,
+                  "mappingSourceRef": "Test/VirtualPoint/Q20/P01/face2/C/1.0.0"
+                }
+              },
+              "D": {
+                "executionStageId": "stage:2",
+                "objectId": "{UnitId}:M01",
+                "sourceSlotId": "P01",
+                "protocolSlotIndex": 1,
+                "localFace": 2,
+                "cameraId": "D",
+                "pointRef": "Q20-P01-D-test-virtual-mapping/1.0.0",
+                "point": {
+                  "id": "Q20-P01-face2-D",
+                  "version": "test-virtual-mapping/q20-1.0.0",
+                  "x": 130,
+                  "y": 110,
+                  "unit": "mm",
+                  "frame": "SIM_MACHINE",
+                  "testSourceRef": "Test/VirtualPoint/Q20/P01/face2/D/1.0.0"
+                },
+                "coordinateConfigVersion": "test-virtual-mapping/q20-1.0.0",
+                "zBasis": {
+                  "mode": "InitialMeasurementOffset",
+                  "measurementRef": {
+                    "scopeId": "sim-whole-tray",
+                    "scopeVersion": "1.0.0",
+                    "sampleId": "sample-a",
+                    "objectSlotId": "P01",
+                    "unit": "mm",
+                    "datum": "SIM_REFERENCE"
+                  },
+                  "offsetMm": 102.0,
+                  "minZ": 105.0,
+                  "maxZ": 120.0,
+                  "mappingSourceRef": "Test/VirtualPoint/Q20/P01/face2/D/1.0.0"
+                }
+              }
+            },
+            "3": {
+              "A": {
+                "executionStageId": "stage:3",
+                "objectId": "{UnitId}:M01",
+                "sourceSlotId": "P01",
+                "protocolSlotIndex": 1,
+                "localFace": 3,
+                "cameraId": "A",
+                "pointRef": "Q20-P01-A-test-virtual-mapping/1.0.0",
+                "point": {
+                  "id": "Q20-P01-face3-A",
+                  "version": "test-virtual-mapping/q20-1.0.0",
+                  "x": 140,
+                  "y": 100,
+                  "unit": "mm",
+                  "frame": "SIM_MACHINE",
+                  "testSourceRef": "Test/VirtualPoint/Q20/P01/face3/A/1.0.0"
+                },
+                "coordinateConfigVersion": "test-virtual-mapping/q20-1.0.0",
+                "zBasis": {
+                  "mode": "InitialMeasurementOffset",
+                  "measurementRef": {
+                    "scopeId": "sim-whole-tray",
+                    "scopeVersion": "1.0.0",
+                    "sampleId": "sample-a",
+                    "objectSlotId": "P01",
+                    "unit": "mm",
+                    "datum": "SIM_REFERENCE"
+                  },
+                  "offsetMm": 104.0,
+                  "minZ": 105.0,
+                  "maxZ": 120.0,
+                  "mappingSourceRef": "Test/VirtualPoint/Q20/P01/face3/A/1.0.0"
+                }
+              },
+              "B": {
+                "executionStageId": "stage:3",
+                "objectId": "{UnitId}:M01",
+                "sourceSlotId": "P01",
+                "protocolSlotIndex": 1,
+                "localFace": 3,
+                "cameraId": "B",
+                "pointRef": "Q20-P01-B-test-virtual-mapping/1.0.0",
+                "point": {
+                  "id": "Q20-P01-face3-B",
+                  "version": "test-virtual-mapping/q20-1.0.0",
+                  "x": 150,
+                  "y": 100,
+                  "unit": "mm",
+                  "frame": "SIM_MACHINE",
+                  "testSourceRef": "Test/VirtualPoint/Q20/P01/face3/B/1.0.0"
+                },
+                "coordinateConfigVersion": "test-virtual-mapping/q20-1.0.0",
+                "zBasis": {
+                  "mode": "InitialMeasurementOffset",
+                  "measurementRef": {
+                    "scopeId": "sim-whole-tray",
+                    "scopeVersion": "1.0.0",
+                    "sampleId": "sample-a",
+                    "objectSlotId": "P01",
+                    "unit": "mm",
+                    "datum": "SIM_REFERENCE"
+                  },
+                  "offsetMm": 104.0,
+                  "minZ": 105.0,
+                  "maxZ": 120.0,
+                  "mappingSourceRef": "Test/VirtualPoint/Q20/P01/face3/B/1.0.0"
+                }
+              }
+            },
+            "4": {
+              "C": {
+                "executionStageId": "stage:4",
+                "objectId": "{UnitId}:M01",
+                "sourceSlotId": "P01",
+                "protocolSlotIndex": 1,
+                "localFace": 4,
+                "cameraId": "C",
+                "pointRef": "Q20-P01-C-test-virtual-mapping/1.0.0",
+                "point": {
+                  "id": "Q20-P01-face4-C",
+                  "version": "test-virtual-mapping/q20-1.0.0",
+                  "x": 160,
+                  "y": 110,
+                  "unit": "mm",
+                  "frame": "SIM_MACHINE",
+                  "testSourceRef": "Test/VirtualPoint/Q20/P01/face4/C/1.0.0"
+                },
+                "coordinateConfigVersion": "test-virtual-mapping/q20-1.0.0",
+                "zBasis": {
+                  "mode": "InitialMeasurementOffset",
+                  "measurementRef": {
+                    "scopeId": "sim-whole-tray",
+                    "scopeVersion": "1.0.0",
+                    "sampleId": "sample-a",
+                    "objectSlotId": "P01",
+                    "unit": "mm",
+                    "datum": "SIM_REFERENCE"
+                  },
+                  "offsetMm": 106.0,
+                  "minZ": 105.0,
+                  "maxZ": 120.0,
+                  "mappingSourceRef": "Test/VirtualPoint/Q20/P01/face4/C/1.0.0"
+                }
+              },
+              "D": {
+                "executionStageId": "stage:4",
+                "objectId": "{UnitId}:M01",
+                "sourceSlotId": "P01",
+                "protocolSlotIndex": 1,
+                "localFace": 4,
+                "cameraId": "D",
+                "pointRef": "Q20-P01-D-test-virtual-mapping/1.0.0",
+                "point": {
+                  "id": "Q20-P01-face4-D",
+                  "version": "test-virtual-mapping/q20-1.0.0",
+                  "x": 170,
+                  "y": 110,
+                  "unit": "mm",
+                  "frame": "SIM_MACHINE",
+                  "testSourceRef": "Test/VirtualPoint/Q20/P01/face4/D/1.0.0"
+                },
+                "coordinateConfigVersion": "test-virtual-mapping/q20-1.0.0",
+                "zBasis": {
+                  "mode": "InitialMeasurementOffset",
+                  "measurementRef": {
+                    "scopeId": "sim-whole-tray",
+                    "scopeVersion": "1.0.0",
+                    "sampleId": "sample-a",
+                    "objectSlotId": "P01",
+                    "unit": "mm",
+                    "datum": "SIM_REFERENCE"
+                  },
+                  "offsetMm": 106.0,
+                  "minZ": 105.0,
+                  "maxZ": 120.0,
+                  "mappingSourceRef": "Test/VirtualPoint/Q20/P01/face4/D/1.0.0"
+                }
+              }
+            }
+          }
+        }
+      ]
+    },
+    {
+      "caseId": "Q21",
+      "recipeRef": {
+        "recipeId": "R008-Q21",
+        "version": "1.0.2-test-usr-e",
+        "catalogDigest": "335A2B1D7CB0060C39BDCC8333E85AC26EF77D63804328474F6994D4F3561A65"
+      },
+      "scenarioId": "S1",
+      "occupiedSlots": [
+        "P01"
+      ],
+      "fCode": "TEST-TRAY-0121",
+      "unitKind": "independentPart",
+      "cameraSequence": [
+        "CD",
+        "CD",
+        "CD",
+        "AB"
+      ],
+      "availability": "Available",
+      "restrictions": [
+        "TestVirtualOnly;ProductionCalibrationNotApproved"
+      ],
+      "mediaSource": "Simulated/Test",
+      "mediaInputs": {
+        "ThreeD": "media-manifest-q21.json#ThreeD",
+        "F": "media-manifest-q21.json#F",
+        "A": "media-manifest-q21.json#Detection/A",
+        "B": "media-manifest-q21.json#Detection/B",
+        "C": "media-manifest-q21.json#Detection/C",
+        "D": "media-manifest-q21.json#Detection/D"
+      },
+      "objects": [
+        {
+          "sourceSlotId": "P01",
+          "physicalEntityIdPattern": "{UnitId}:M01",
+          "protocolSlotIndex": 1,
+          "sourcePoint": {
+            "id": "P01",
+            "version": "test-virtual-mapping/q21-1.0.0",
+            "x": 100,
+            "y": 100,
+            "z": 150,
+            "unit": "mm",
+            "frame": "SIM_MACHINE",
+            "testSourceRef": "Test/VirtualSource/Q21/P01/1.0.0",
+            "point": {
+              "id": "P01",
+              "version": "test-virtual-mapping/q21-1.0.0",
+              "x": 100,
+              "y": 100,
+              "z": 150,
+              "unit": "mm",
+              "frame": "SIM_MACHINE"
+            }
+          },
+          "flipPosition": {
+            "id": "P01",
+            "version": "test-virtual-mapping/q21-1.0.0",
+            "x": 100,
+            "y": 100,
+            "z": 150,
+            "unit": "mm",
+            "frame": "SIM_MACHINE",
+            "testSourceRef": "Test/VirtualFlipPosition/Q21/P01/1.0.0",
+            "point": {
+              "id": "Q03-P01-flip-position",
+              "version": "test-virtual-mapping/q21-1.0.0",
+              "x": 100,
+              "y": 100,
+              "z": 150,
+              "unit": "mm",
+              "frame": "SIM_MACHINE"
+            }
+          },
+          "faces": {
+            "1": {
+              "C": {
+                "executionStageId": "stage:1",
+                "objectId": "{UnitId}:M01",
+                "sourceSlotId": "P01",
+                "protocolSlotIndex": 1,
+                "localFace": 1,
+                "cameraId": "C",
+                "pointRef": "Q21-P01-C-test-virtual-mapping/1.0.0",
+                "point": {
+                  "id": "Q21-P01-face1-C",
+                  "version": "test-virtual-mapping/q21-1.0.0",
+                  "x": 100,
+                  "y": 110,
+                  "unit": "mm",
+                  "frame": "SIM_MACHINE",
+                  "testSourceRef": "Test/VirtualPoint/Q21/P01/face1/C/1.0.0"
+                },
+                "coordinateConfigVersion": "test-virtual-mapping/q21-1.0.0",
+                "zBasis": {
+                  "mode": "InitialMeasurementOffset",
+                  "measurementRef": {
+                    "scopeId": "sim-whole-tray",
+                    "scopeVersion": "1.0.0",
+                    "sampleId": "sample-a",
+                    "objectSlotId": "P01",
+                    "unit": "mm",
+                    "datum": "SIM_REFERENCE"
+                  },
+                  "offsetMm": 100.0,
+                  "minZ": 105.0,
+                  "maxZ": 120.0,
+                  "mappingSourceRef": "Test/VirtualPoint/Q21/P01/face1/C/1.0.0"
+                }
+              },
+              "D": {
+                "executionStageId": "stage:1",
+                "objectId": "{UnitId}:M01",
+                "sourceSlotId": "P01",
+                "protocolSlotIndex": 1,
+                "localFace": 1,
+                "cameraId": "D",
+                "pointRef": "Q21-P01-D-test-virtual-mapping/1.0.0",
+                "point": {
+                  "id": "Q21-P01-face1-D",
+                  "version": "test-virtual-mapping/q21-1.0.0",
+                  "x": 110,
+                  "y": 110,
+                  "unit": "mm",
+                  "frame": "SIM_MACHINE",
+                  "testSourceRef": "Test/VirtualPoint/Q21/P01/face1/D/1.0.0"
+                },
+                "coordinateConfigVersion": "test-virtual-mapping/q21-1.0.0",
+                "zBasis": {
+                  "mode": "InitialMeasurementOffset",
+                  "measurementRef": {
+                    "scopeId": "sim-whole-tray",
+                    "scopeVersion": "1.0.0",
+                    "sampleId": "sample-a",
+                    "objectSlotId": "P01",
+                    "unit": "mm",
+                    "datum": "SIM_REFERENCE"
+                  },
+                  "offsetMm": 100.0,
+                  "minZ": 105.0,
+                  "maxZ": 120.0,
+                  "mappingSourceRef": "Test/VirtualPoint/Q21/P01/face1/D/1.0.0"
+                }
+              }
+            },
+            "2": {
+              "C": {
+                "executionStageId": "stage:2",
+                "objectId": "{UnitId}:M01",
+                "sourceSlotId": "P01",
+                "protocolSlotIndex": 1,
+                "localFace": 2,
+                "cameraId": "C",
+                "pointRef": "Q21-P01-C-test-virtual-mapping/1.0.0",
+                "point": {
+                  "id": "Q21-P01-face2-C",
+                  "version": "test-virtual-mapping/q21-1.0.0",
+                  "x": 120,
+                  "y": 110,
+                  "unit": "mm",
+                  "frame": "SIM_MACHINE",
+                  "testSourceRef": "Test/VirtualPoint/Q21/P01/face2/C/1.0.0"
+                },
+                "coordinateConfigVersion": "test-virtual-mapping/q21-1.0.0",
+                "zBasis": {
+                  "mode": "InitialMeasurementOffset",
+                  "measurementRef": {
+                    "scopeId": "sim-whole-tray",
+                    "scopeVersion": "1.0.0",
+                    "sampleId": "sample-a",
+                    "objectSlotId": "P01",
+                    "unit": "mm",
+                    "datum": "SIM_REFERENCE"
+                  },
+                  "offsetMm": 102.0,
+                  "minZ": 105.0,
+                  "maxZ": 120.0,
+                  "mappingSourceRef": "Test/VirtualPoint/Q21/P01/face2/C/1.0.0"
+                }
+              },
+              "D": {
+                "executionStageId": "stage:2",
+                "objectId": "{UnitId}:M01",
+                "sourceSlotId": "P01",
+                "protocolSlotIndex": 1,
+                "localFace": 2,
+                "cameraId": "D",
+                "pointRef": "Q21-P01-D-test-virtual-mapping/1.0.0",
+                "point": {
+                  "id": "Q21-P01-face2-D",
+                  "version": "test-virtual-mapping/q21-1.0.0",
+                  "x": 130,
+                  "y": 110,
+                  "unit": "mm",
+                  "frame": "SIM_MACHINE",
+                  "testSourceRef": "Test/VirtualPoint/Q21/P01/face2/D/1.0.0"
+                },
+                "coordinateConfigVersion": "test-virtual-mapping/q21-1.0.0",
+                "zBasis": {
+                  "mode": "InitialMeasurementOffset",
+                  "measurementRef": {
+                    "scopeId": "sim-whole-tray",
+                    "scopeVersion": "1.0.0",
+                    "sampleId": "sample-a",
+                    "objectSlotId": "P01",
+                    "unit": "mm",
+                    "datum": "SIM_REFERENCE"
+                  },
+                  "offsetMm": 102.0,
+                  "minZ": 105.0,
+                  "maxZ": 120.0,
+                  "mappingSourceRef": "Test/VirtualPoint/Q21/P01/face2/D/1.0.0"
+                }
+              }
+            },
+            "3": {
+              "C": {
+                "executionStageId": "stage:3",
+                "objectId": "{UnitId}:M01",
+                "sourceSlotId": "P01",
+                "protocolSlotIndex": 1,
+                "localFace": 3,
+                "cameraId": "C",
+                "pointRef": "Q21-P01-C-test-virtual-mapping/1.0.0",
+                "point": {
+                  "id": "Q21-P01-face3-C",
+                  "version": "test-virtual-mapping/q21-1.0.0",
+                  "x": 140,
+                  "y": 110,
+                  "unit": "mm",
+                  "frame": "SIM_MACHINE",
+                  "testSourceRef": "Test/VirtualPoint/Q21/P01/face3/C/1.0.0"
+                },
+                "coordinateConfigVersion": "test-virtual-mapping/q21-1.0.0",
+                "zBasis": {
+                  "mode": "InitialMeasurementOffset",
+                  "measurementRef": {
+                    "scopeId": "sim-whole-tray",
+                    "scopeVersion": "1.0.0",
+                    "sampleId": "sample-a",
+                    "objectSlotId": "P01",
+                    "unit": "mm",
+                    "datum": "SIM_REFERENCE"
+                  },
+                  "offsetMm": 104.0,
+                  "minZ": 105.0,
+                  "maxZ": 120.0,
+                  "mappingSourceRef": "Test/VirtualPoint/Q21/P01/face3/C/1.0.0"
+                }
+              },
+              "D": {
+                "executionStageId": "stage:3",
+                "objectId": "{UnitId}:M01",
+                "sourceSlotId": "P01",
+                "protocolSlotIndex": 1,
+                "localFace": 3,
+                "cameraId": "D",
+                "pointRef": "Q21-P01-D-test-virtual-mapping/1.0.0",
+                "point": {
+                  "id": "Q21-P01-face3-D",
+                  "version": "test-virtual-mapping/q21-1.0.0",
+                  "x": 150,
+                  "y": 110,
+                  "unit": "mm",
+                  "frame": "SIM_MACHINE",
+                  "testSourceRef": "Test/VirtualPoint/Q21/P01/face3/D/1.0.0"
+                },
+                "coordinateConfigVersion": "test-virtual-mapping/q21-1.0.0",
+                "zBasis": {
+                  "mode": "InitialMeasurementOffset",
+                  "measurementRef": {
+                    "scopeId": "sim-whole-tray",
+                    "scopeVersion": "1.0.0",
+                    "sampleId": "sample-a",
+                    "objectSlotId": "P01",
+                    "unit": "mm",
+                    "datum": "SIM_REFERENCE"
+                  },
+                  "offsetMm": 104.0,
+                  "minZ": 105.0,
+                  "maxZ": 120.0,
+                  "mappingSourceRef": "Test/VirtualPoint/Q21/P01/face3/D/1.0.0"
+                }
+              }
+            },
+            "4": {
+              "A": {
+                "executionStageId": "stage:4",
+                "objectId": "{UnitId}:M01",
+                "sourceSlotId": "P01",
+                "protocolSlotIndex": 1,
+                "localFace": 4,
+                "cameraId": "A",
+                "pointRef": "Q21-P01-A-test-virtual-mapping/1.0.0",
+                "point": {
+                  "id": "Q21-P01-face4-A",
+                  "version": "test-virtual-mapping/q21-1.0.0",
+                  "x": 160,
+                  "y": 100,
+                  "unit": "mm",
+                  "frame": "SIM_MACHINE",
+                  "testSourceRef": "Test/VirtualPoint/Q21/P01/face4/A/1.0.0"
+                },
+                "coordinateConfigVersion": "test-virtual-mapping/q21-1.0.0",
+                "zBasis": {
+                  "mode": "InitialMeasurementOffset",
+                  "measurementRef": {
+                    "scopeId": "sim-whole-tray",
+                    "scopeVersion": "1.0.0",
+                    "sampleId": "sample-a",
+                    "objectSlotId": "P01",
+                    "unit": "mm",
+                    "datum": "SIM_REFERENCE"
+                  },
+                  "offsetMm": 106.0,
+                  "minZ": 105.0,
+                  "maxZ": 120.0,
+                  "mappingSourceRef": "Test/VirtualPoint/Q21/P01/face4/A/1.0.0"
+                }
+              },
+              "B": {
+                "executionStageId": "stage:4",
+                "objectId": "{UnitId}:M01",
+                "sourceSlotId": "P01",
+                "protocolSlotIndex": 1,
+                "localFace": 4,
+                "cameraId": "B",
+                "pointRef": "Q21-P01-B-test-virtual-mapping/1.0.0",
+                "point": {
+                  "id": "Q21-P01-face4-B",
+                  "version": "test-virtual-mapping/q21-1.0.0",
+                  "x": 170,
+                  "y": 100,
+                  "unit": "mm",
+                  "frame": "SIM_MACHINE",
+                  "testSourceRef": "Test/VirtualPoint/Q21/P01/face4/B/1.0.0"
+                },
+                "coordinateConfigVersion": "test-virtual-mapping/q21-1.0.0",
+                "zBasis": {
+                  "mode": "InitialMeasurementOffset",
+                  "measurementRef": {
+                    "scopeId": "sim-whole-tray",
+                    "scopeVersion": "1.0.0",
+                    "sampleId": "sample-a",
+                    "objectSlotId": "P01",
+                    "unit": "mm",
+                    "datum": "SIM_REFERENCE"
+                  },
+                  "offsetMm": 106.0,
+                  "minZ": 105.0,
+                  "maxZ": 120.0,
+                  "mappingSourceRef": "Test/VirtualPoint/Q21/P01/face4/B/1.0.0"
+                }
+              }
+            }
+          }
+        }
+      ]
+    }
+  ],
+  "operationCases": [
+    {
+      "caseId": "GROUP-F",
+      "covers": [
+        "C03"
+      ],
+      "fixture": "fixture-group-f.json",
+      "recipeRef": {
+        "recipeId": "R008-GROUP-F",
+        "version": "1.0.0-test",
+        "catalogDigest": "4926B32BF0610D0D46EB40982D53BBF557B93E27BFDB3C99F8922697D8E4F5A6"
+      },
+      "scenarioId": "S2",
+      "occupiedSlots": [
+        "P01",
+        "P03"
+      ],
+      "fCode": "TEST-TRAY-0201",
+      "purpose": "Test",
+      "mediaSource": "Simulated/Test",
+      "productionAvailable": false,
+      "references": {
+        "recipeCatalogPath": {
+          "path": "E:\\dzk\\gaode-1\\specs\\008-recipe-driven-inspection\\fixtures\\recipes-group-f.json",
+          "sha256": "4926B32BF0610D0D46EB40982D53BBF557B93E27BFDB3C99F8922697D8E4F5A6"
+        },
+        "imageManifestPath": {
+          "path": "E:\\dzk\\gaode-1\\specs\\008-recipe-driven-inspection\\fixtures\\media-manifest-group-f.json",
+          "sha256": "166F83BDD433A8059188B1695BA2773AD9ABBE16742A5BB181C01F6F17A2E1C6"
+        },
+        "workerManifestPath": {
+          "path": "E:\\dzk\\gaode-1\\specs\\008-recipe-driven-inspection\\fixtures\\worker-manifest-group-f.json",
+          "sha256": "C325BA5558E131AE1A1276282424657DD38B3CEF1B5F50B13322A57E02895004"
+        },
+        "workerScriptPath": {
+          "path": "E:\\dzk\\gaode-1\\scripts\\virtual-station01-algorithm.py",
+          "sha256": "F90A052381369646D19E9BFD744D25AA10C546BE9C11C53CF38BC8624AD504F9"
+        }
+      },
+      "expected": {
+        "initial3d": 1,
+        "initialF": 1,
+        "detectionCaptures": 12,
+        "fusions": 6,
+        "detectionCalls": 18,
+        "eCalls": 0,
+        "automaticFlips": 2,
+        "manualFlips": 0,
+        "specialActions": 0,
+        "postFlip3d": 0
+      },
+      "businessBasis": "business-decisions-20260926 U01-U08; source model rows; existing virtual range",
+      "pageStatus": "NotRun",
+      "evidenceIsConfigurationOnly": true
+    },
+    {
+      "caseId": "GROUP-F-MIXED",
+      "covers": [
+        "C03",
+        "C06"
+      ],
+      "fixture": "fixture-group-f-mixed.json",
+      "recipeRef": {
+        "recipeId": "R008-GROUP-F",
+        "version": "1.0.0-test",
+        "catalogDigest": "4926B32BF0610D0D46EB40982D53BBF557B93E27BFDB3C99F8922697D8E4F5A6"
+      },
+      "scenarioId": "S2",
+      "occupiedSlots": [
+        "P01",
+        "P03"
+      ],
+      "fCode": "TEST-TRAY-0201",
+      "purpose": "Test",
+      "mediaSource": "Simulated/Test",
+      "productionAvailable": false,
+      "references": {
+        "recipeCatalogPath": {
+          "path": "E:\\dzk\\gaode-1\\specs\\008-recipe-driven-inspection\\fixtures\\recipes-group-f.json",
+          "sha256": "4926B32BF0610D0D46EB40982D53BBF557B93E27BFDB3C99F8922697D8E4F5A6"
+        },
+        "imageManifestPath": {
+          "path": "E:\\dzk\\gaode-1\\specs\\008-recipe-driven-inspection\\fixtures\\media-manifest-group-f.json",
+          "sha256": "166F83BDD433A8059188B1695BA2773AD9ABBE16742A5BB181C01F6F17A2E1C6"
+        },
+        "workerManifestPath": {
+          "path": "E:\\dzk\\gaode-1\\specs\\008-recipe-driven-inspection\\fixtures\\worker-manifest-group-f-mixed.json",
+          "sha256": "02E33F11BE2EA97B74EA5057E44D0B9AF14A8DD0F1D1E98AB6E71C40D0DCE7D2"
+        },
+        "workerScriptPath": {
+          "path": "E:\\dzk\\gaode-1\\scripts\\virtual-station01-algorithm.py",
+          "sha256": "F90A052381369646D19E9BFD744D25AA10C546BE9C11C53CF38BC8624AD504F9"
+        }
+      },
+      "expected": {
+        "initial3d": 1,
+        "initialF": 1,
+        "detectionCaptures": 12,
+        "fusions": 6,
+        "detectionCalls": 18,
+        "eCalls": 0,
+        "automaticFlips": 2,
+        "manualFlips": 0,
+        "specialActions": 0,
+        "postFlip3d": 0
+      },
+      "businessBasis": "business-decisions-20260926 U01-U08; source model rows; existing virtual range",
+      "pageStatus": "NotRun",
+      "evidenceIsConfigurationOnly": true
+    },
+    {
+      "caseId": "GROUP-A-E",
+      "covers": [
+        "C03"
+      ],
+      "fixture": "fixture-group-a-e.json",
+      "recipeRef": {
+        "recipeId": "R008-GROUP-A-E",
+        "version": "1.0.0-test",
+        "catalogDigest": "D57CD53239C23BB792359834D1D8E02E5467E0693586E93259D83DB2CF67531E"
+      },
+      "scenarioId": "S2",
+      "occupiedSlots": [
+        "P01",
+        "P03"
+      ],
+      "fCode": "TEST-TRAY-0204",
+      "purpose": "Test",
+      "mediaSource": "Simulated/Test",
+      "productionAvailable": false,
+      "references": {
+        "recipeCatalogPath": {
+          "path": "E:\\dzk\\gaode-1\\specs\\008-recipe-driven-inspection\\fixtures\\recipes-group-a-e.json",
+          "sha256": "D57CD53239C23BB792359834D1D8E02E5467E0693586E93259D83DB2CF67531E"
+        },
+        "imageManifestPath": {
+          "path": "E:\\dzk\\gaode-1\\specs\\008-recipe-driven-inspection\\fixtures\\media-manifest-group-a-e.json",
+          "sha256": "5967D24BAB28FD494F45D1281C59EFD8A41CE49C8730D2A0E43EFB5F15343846"
+        },
+        "workerManifestPath": {
+          "path": "E:\\dzk\\gaode-1\\specs\\008-recipe-driven-inspection\\fixtures\\worker-manifest-group-a-e.json",
+          "sha256": "D15BAF75836F4B3AAA97D5657AC049867985BFA0B9F68338DCDEFE71214B038D"
+        },
+        "workerScriptPath": {
+          "path": "E:\\dzk\\gaode-1\\scripts\\virtual-station01-algorithm.py",
+          "sha256": "F90A052381369646D19E9BFD744D25AA10C546BE9C11C53CF38BC8624AD504F9"
+        }
+      },
+      "expected": {
+        "initial3d": 1,
+        "initialF": 1,
+        "detectionCaptures": 28,
+        "fusions": 14,
+        "detectionCalls": 42,
+        "eCalls": 2,
+        "automaticFlips": 6,
+        "manualFlips": 0,
+        "specialActions": 0,
+        "postFlip3d": 0
+      },
+      "businessBasis": "business-decisions-20260926 U01-U08; source model rows; existing virtual range",
+      "pageStatus": "NotRun",
+      "evidenceIsConfigurationOnly": true
+    },
+    {
+      "caseId": "ASSEMBLY-A-E",
+      "covers": [
+        "C04"
+      ],
+      "fixture": "fixture-assembly-a-e.json",
+      "recipeRef": {
+        "recipeId": "R008-ASSEMBLY-A-E",
+        "version": "1.0.1-test",
+        "catalogDigest": "B5DBC6F05D837866BDC5802A1FD340BCBF7C85B842AB3AAD15F70F0C1AD605E6"
+      },
+      "scenarioId": "S3",
+      "occupiedSlots": [
+        "P01"
+      ],
+      "fCode": "TEST-TRAY-0207",
+      "purpose": "Test",
+      "mediaSource": "Simulated/Test",
+      "productionAvailable": false,
+      "references": {
+        "recipeCatalogPath": {
+          "path": "E:\\dzk\\gaode-1\\specs\\008-recipe-driven-inspection\\fixtures\\recipes-assembly-a-e.json",
+          "sha256": "B5DBC6F05D837866BDC5802A1FD340BCBF7C85B842AB3AAD15F70F0C1AD605E6"
+        },
+        "imageManifestPath": {
+          "path": "E:\\dzk\\gaode-1\\specs\\008-recipe-driven-inspection\\fixtures\\media-manifest-assembly-a-e.json",
+          "sha256": "6655DB7F33853CED2BCF269CD607AC6E845D83F9F9CC207830B1BACB0FF3B789"
+        },
+        "workerManifestPath": {
+          "path": "E:\\dzk\\gaode-1\\specs\\008-recipe-driven-inspection\\fixtures\\worker-manifest-assembly-a-e.json",
+          "sha256": "5AF7DCD8AC57B9CAFFE57D01D8B170300C72233886397C8C0786425317BD2255"
+        },
+        "workerScriptPath": {
+          "path": "E:\\dzk\\gaode-1\\scripts\\virtual-station01-algorithm.py",
+          "sha256": "F90A052381369646D19E9BFD744D25AA10C546BE9C11C53CF38BC8624AD504F9"
+        }
+      },
+      "expected": {
+        "initial3d": 1,
+        "initialF": 1,
+        "detectionCaptures": 6,
+        "fusions": 3,
+        "detectionCalls": 9,
+        "eCalls": 1,
+        "automaticFlips": 1,
+        "manualFlips": 0,
+        "specialActions": 0,
+        "postFlip3d": 0
+      },
+      "businessBasis": "business-decisions-20260926 U01-U08; source model rows; existing virtual range",
+      "pageStatus": "NotRun",
+      "evidenceIsConfigurationOnly": true
+    },
+    {
+      "caseId": "ASSEMBLY-A-E-NOCODE",
+      "covers": [
+        "C04"
+      ],
+      "fixture": "fixture-assembly-a-e-no-code.json",
+      "recipeRef": {
+        "recipeId": "R008-ASSEMBLY-A-E",
+        "version": "1.0.1-test",
+        "catalogDigest": "B5DBC6F05D837866BDC5802A1FD340BCBF7C85B842AB3AAD15F70F0C1AD605E6"
+      },
+      "scenarioId": "S3",
+      "occupiedSlots": [
+        "P01"
+      ],
+      "fCode": "TEST-TRAY-0207",
+      "purpose": "Test",
+      "mediaSource": "Simulated/Test",
+      "productionAvailable": false,
+      "references": {
+        "recipeCatalogPath": {
+          "path": "E:\\dzk\\gaode-1\\specs\\008-recipe-driven-inspection\\fixtures\\recipes-assembly-a-e.json",
+          "sha256": "B5DBC6F05D837866BDC5802A1FD340BCBF7C85B842AB3AAD15F70F0C1AD605E6"
+        },
+        "imageManifestPath": {
+          "path": "E:\\dzk\\gaode-1\\specs\\008-recipe-driven-inspection\\fixtures\\media-manifest-assembly-a-e.json",
+          "sha256": "6655DB7F33853CED2BCF269CD607AC6E845D83F9F9CC207830B1BACB0FF3B789"
+        },
+        "workerManifestPath": {
+          "path": "E:\\dzk\\gaode-1\\specs\\008-recipe-driven-inspection\\fixtures\\worker-manifest-assembly-a-e-no-code.json",
+          "sha256": "85E9870DD249EDBA592F308766A1AAFC6CA42A580C0AD0A71306F1B82F1E6A0C"
+        },
+        "workerScriptPath": {
+          "path": "E:\\dzk\\gaode-1\\scripts\\virtual-station01-algorithm.py",
+          "sha256": "F90A052381369646D19E9BFD744D25AA10C546BE9C11C53CF38BC8624AD504F9"
+        }
+      },
+      "expected": {
+        "initial3d": 1,
+        "initialF": 1,
+        "detectionCaptures": 6,
+        "fusions": 3,
+        "detectionCalls": 9,
+        "eCalls": 1,
+        "automaticFlips": 1,
+        "manualFlips": 0,
+        "specialActions": 0,
+        "postFlip3d": 0
+      },
+      "businessBasis": "business-decisions-20260926 U01-U08; source model rows; existing virtual range",
+      "pageStatus": "NotRun",
+      "evidenceIsConfigurationOnly": true
+    },
+    {
+      "caseId": "ASSEMBLY-A-E-ERROR",
+      "covers": [
+        "C04"
+      ],
+      "fixture": "fixture-assembly-a-e-error.json",
+      "recipeRef": {
+        "recipeId": "R008-ASSEMBLY-A-E",
+        "version": "1.0.1-test",
+        "catalogDigest": "B5DBC6F05D837866BDC5802A1FD340BCBF7C85B842AB3AAD15F70F0C1AD605E6"
+      },
+      "scenarioId": "S3",
+      "occupiedSlots": [
+        "P01"
+      ],
+      "fCode": "TEST-TRAY-0207",
+      "purpose": "Test",
+      "mediaSource": "Simulated/Test",
+      "productionAvailable": false,
+      "references": {
+        "recipeCatalogPath": {
+          "path": "E:\\dzk\\gaode-1\\specs\\008-recipe-driven-inspection\\fixtures\\recipes-assembly-a-e.json",
+          "sha256": "B5DBC6F05D837866BDC5802A1FD340BCBF7C85B842AB3AAD15F70F0C1AD605E6"
+        },
+        "imageManifestPath": {
+          "path": "E:\\dzk\\gaode-1\\specs\\008-recipe-driven-inspection\\fixtures\\media-manifest-assembly-a-e.json",
+          "sha256": "6655DB7F33853CED2BCF269CD607AC6E845D83F9F9CC207830B1BACB0FF3B789"
+        },
+        "workerManifestPath": {
+          "path": "E:\\dzk\\gaode-1\\specs\\008-recipe-driven-inspection\\fixtures\\worker-manifest-assembly-a-e-error.json",
+          "sha256": "5D62DB3512465E16C9BB65AC5846C8C98089EF01E0071F232808FD14E4EF2E37"
+        },
+        "workerScriptPath": {
+          "path": "E:\\dzk\\gaode-1\\scripts\\virtual-station01-algorithm.py",
+          "sha256": "F90A052381369646D19E9BFD744D25AA10C546BE9C11C53CF38BC8624AD504F9"
+        }
+      },
+      "expected": {
+        "initial3d": 1,
+        "initialF": 1,
+        "detectionCaptures": 6,
+        "fusions": 3,
+        "detectionCalls": 9,
+        "eCalls": 1,
+        "automaticFlips": 1,
+        "manualFlips": 0,
+        "specialActions": 0,
+        "postFlip3d": 0
+      },
+      "businessBasis": "business-decisions-20260926 U01-U08; source model rows; existing virtual range",
+      "pageStatus": "NotRun",
+      "evidenceIsConfigurationOnly": true
+    },
+    {
+      "caseId": "ASSEMBLY-A-E-NG",
+      "covers": [
+        "C04",
+        "C06"
+      ],
+      "fixture": "fixture-assembly-a-e-ng.json",
+      "recipeRef": {
+        "recipeId": "R008-ASSEMBLY-A-E",
+        "version": "1.0.1-test",
+        "catalogDigest": "B5DBC6F05D837866BDC5802A1FD340BCBF7C85B842AB3AAD15F70F0C1AD605E6"
+      },
+      "scenarioId": "S3",
+      "occupiedSlots": [
+        "P01"
+      ],
+      "fCode": "TEST-TRAY-0207",
+      "purpose": "Test",
+      "mediaSource": "Simulated/Test",
+      "productionAvailable": false,
+      "references": {
+        "recipeCatalogPath": {
+          "path": "E:\\dzk\\gaode-1\\specs\\008-recipe-driven-inspection\\fixtures\\recipes-assembly-a-e.json",
+          "sha256": "B5DBC6F05D837866BDC5802A1FD340BCBF7C85B842AB3AAD15F70F0C1AD605E6"
+        },
+        "imageManifestPath": {
+          "path": "E:\\dzk\\gaode-1\\specs\\008-recipe-driven-inspection\\fixtures\\media-manifest-assembly-a-e.json",
+          "sha256": "6655DB7F33853CED2BCF269CD607AC6E845D83F9F9CC207830B1BACB0FF3B789"
+        },
+        "workerManifestPath": {
+          "path": "E:\\dzk\\gaode-1\\specs\\008-recipe-driven-inspection\\fixtures\\worker-manifest-assembly-a-e-ng.json",
+          "sha256": "3385AF934D18E78F2F517F4A161D9906468AECD0388A60E0DB7621BF8B6A43EF"
+        },
+        "workerScriptPath": {
+          "path": "E:\\dzk\\gaode-1\\scripts\\virtual-station01-algorithm.py",
+          "sha256": "F90A052381369646D19E9BFD744D25AA10C546BE9C11C53CF38BC8624AD504F9"
+        }
+      },
+      "expected": {
+        "initial3d": 1,
+        "initialF": 1,
+        "detectionCaptures": 6,
+        "fusions": 3,
+        "detectionCalls": 9,
+        "eCalls": 1,
+        "automaticFlips": 1,
+        "manualFlips": 0,
+        "specialActions": 0,
+        "postFlip3d": 0
+      },
+      "businessBasis": "business-decisions-20260926 U01-U08; source model rows; existing virtual range",
+      "pageStatus": "NotRun",
+      "evidenceIsConfigurationOnly": true
+    },
+    {
+      "caseId": "Q04-MANUAL",
+      "covers": [
+        "C02"
+      ],
+      "fixture": "fixture-q04-manual.json",
+      "recipeRef": {
+        "recipeId": "R008-Q04-MANUAL",
+        "version": "1.0.0-test",
+        "catalogDigest": "2EE00B4925520E836FBE3C8F5D0D8CD29876E0C98869986BEF1FDED6713C033D"
+      },
+      "scenarioId": "S1",
+      "occupiedSlots": [
+        "P01"
+      ],
+      "fCode": "TEST-TRAY-0203",
+      "purpose": "Test",
+      "mediaSource": "Simulated/Test",
+      "productionAvailable": false,
+      "references": {
+        "recipeCatalogPath": {
+          "path": "E:\\dzk\\gaode-1\\specs\\008-recipe-driven-inspection\\fixtures\\recipes-q04-manual.json",
+          "sha256": "2EE00B4925520E836FBE3C8F5D0D8CD29876E0C98869986BEF1FDED6713C033D"
+        },
+        "imageManifestPath": {
+          "path": "E:\\dzk\\gaode-1\\specs\\008-recipe-driven-inspection\\fixtures\\media-manifest-q04.json",
+          "sha256": "685830689B0DDDFC1453DCF4280653BE5159AB77E8E63441704B8206D5E226A3"
+        },
+        "workerManifestPath": {
+          "path": "E:\\dzk\\gaode-1\\specs\\008-recipe-driven-inspection\\fixtures\\worker-manifest-q04-manual.json",
+          "sha256": "1FEED333045C3CECBDFE9577F4D2575D40C89ADE01A48394AFF4C4293D15796B"
+        },
+        "workerScriptPath": {
+          "path": "E:\\dzk\\gaode-1\\scripts\\virtual-station01-algorithm.py",
+          "sha256": "F90A052381369646D19E9BFD744D25AA10C546BE9C11C53CF38BC8624AD504F9"
+        }
+      },
+      "expected": {
+        "initial3d": 1,
+        "initialF": 1,
+        "detectionCaptures": 4,
+        "fusions": 2,
+        "detectionCalls": 6,
+        "eCalls": 0,
+        "automaticFlips": 0,
+        "manualFlips": 1,
+        "specialActions": 0,
+        "postFlip3d": 0
+      },
+      "businessBasis": "business-decisions-20260926 U01-U08; source model rows; existing virtual range",
+      "pageStatus": "NotRun",
+      "evidenceIsConfigurationOnly": true
+    },
+    {
+      "caseId": "ASSEMBLY-A-E-MANUAL",
+      "covers": [
+        "C02",
+        "C04"
+      ],
+      "fixture": "fixture-assembly-a-e-manual.json",
+      "recipeRef": {
+        "recipeId": "R008-ASSEMBLY-A-E-MANUAL",
+        "version": "1.0.0-test",
+        "catalogDigest": "03DF03C8EB73C3D72C5287080E43212303A5AA0344FDD70A03E45FD7A8930D3E"
+      },
+      "scenarioId": "S3",
+      "occupiedSlots": [
+        "P01"
+      ],
+      "fCode": "TEST-TRAY-0208",
+      "purpose": "Test",
+      "mediaSource": "Simulated/Test",
+      "productionAvailable": false,
+      "references": {
+        "recipeCatalogPath": {
+          "path": "E:\\dzk\\gaode-1\\specs\\008-recipe-driven-inspection\\fixtures\\recipes-assembly-a-e-manual.json",
+          "sha256": "03DF03C8EB73C3D72C5287080E43212303A5AA0344FDD70A03E45FD7A8930D3E"
+        },
+        "imageManifestPath": {
+          "path": "E:\\dzk\\gaode-1\\specs\\008-recipe-driven-inspection\\fixtures\\media-manifest-assembly-a-e.json",
+          "sha256": "6655DB7F33853CED2BCF269CD607AC6E845D83F9F9CC207830B1BACB0FF3B789"
+        },
+        "workerManifestPath": {
+          "path": "E:\\dzk\\gaode-1\\specs\\008-recipe-driven-inspection\\fixtures\\worker-manifest-assembly-a-e-manual.json",
+          "sha256": "294D54C311F9398F5E6A775BA60F86DD7E8A10DBD652A40B3C2F8C986F160DEA"
+        },
+        "workerScriptPath": {
+          "path": "E:\\dzk\\gaode-1\\scripts\\virtual-station01-algorithm.py",
+          "sha256": "F90A052381369646D19E9BFD744D25AA10C546BE9C11C53CF38BC8624AD504F9"
+        }
+      },
+      "expected": {
+        "initial3d": 1,
+        "initialF": 1,
+        "detectionCaptures": 6,
+        "fusions": 3,
+        "detectionCalls": 9,
+        "eCalls": 1,
+        "automaticFlips": 0,
+        "manualFlips": 1,
+        "specialActions": 0,
+        "postFlip3d": 0
+      },
+      "businessBasis": "business-decisions-20260926 U01-U08; source model rows; existing virtual range",
+      "pageStatus": "NotRun",
+      "evidenceIsConfigurationOnly": true
+    },
+    {
+      "caseId": "ROT-PART-OK",
+      "covers": [
+        "C05"
+      ],
+      "fixture": "fixture-rot-part-ok.json",
+      "recipeRef": {
+        "recipeId": "R008-ROT-PART",
+        "version": "1.0.0-test",
+        "catalogDigest": "013D98C305D800E9BBEFBBB19AED49A3BF619257E7A211E9E491F29E7AD37A27"
+      },
+      "scenarioId": "S1",
+      "occupiedSlots": [
+        "P01"
+      ],
+      "fCode": "TEST-TRAY-0205",
+      "purpose": "Test",
+      "mediaSource": "Simulated/Test",
+      "productionAvailable": false,
+      "references": {
+        "recipeCatalogPath": {
+          "path": "E:\\dzk\\gaode-1\\specs\\008-recipe-driven-inspection\\fixtures\\recipes-rot-part.json",
+          "sha256": "013D98C305D800E9BBEFBBB19AED49A3BF619257E7A211E9E491F29E7AD37A27"
+        },
+        "imageManifestPath": {
+          "path": "E:\\dzk\\gaode-1\\specs\\008-recipe-driven-inspection\\fixtures\\media-manifest-rot-part.json",
+          "sha256": "685830689B0DDDFC1453DCF4280653BE5159AB77E8E63441704B8206D5E226A3"
+        },
+        "workerManifestPath": {
+          "path": "E:\\dzk\\gaode-1\\specs\\008-recipe-driven-inspection\\fixtures\\worker-manifest-rot-part-ok.json",
+          "sha256": "2CA52DEC78F694B28A1BE33F6DF88FDBD5296A55210345B3DDC4722A2E485028"
+        },
+        "workerScriptPath": {
+          "path": "E:\\dzk\\gaode-1\\scripts\\virtual-station01-algorithm.py",
+          "sha256": "F90A052381369646D19E9BFD744D25AA10C546BE9C11C53CF38BC8624AD504F9"
+        }
+      },
+      "expected": {
+        "initial3d": 1,
+        "initialF": 1,
+        "detectionCaptures": 4,
+        "fusions": 2,
+        "detectionCalls": 6,
+        "eCalls": 0,
+        "automaticFlips": 0,
+        "manualFlips": 0,
+        "specialActions": 4,
+        "postFlip3d": 0
+      },
+      "businessBasis": "business-decisions-20260926 U01-U08; source model rows; existing virtual range",
+      "pageStatus": "NotRun",
+      "evidenceIsConfigurationOnly": true
+    },
+    {
+      "caseId": "ROT-PART-NG",
+      "covers": [
+        "C05",
+        "C06"
+      ],
+      "fixture": "fixture-rot-part-ng.json",
+      "recipeRef": {
+        "recipeId": "R008-ROT-PART",
+        "version": "1.0.0-test",
+        "catalogDigest": "013D98C305D800E9BBEFBBB19AED49A3BF619257E7A211E9E491F29E7AD37A27"
+      },
+      "scenarioId": "S1",
+      "occupiedSlots": [
+        "P01"
+      ],
+      "fCode": "TEST-TRAY-0205",
+      "purpose": "Test",
+      "mediaSource": "Simulated/Test",
+      "productionAvailable": false,
+      "references": {
+        "recipeCatalogPath": {
+          "path": "E:\\dzk\\gaode-1\\specs\\008-recipe-driven-inspection\\fixtures\\recipes-rot-part.json",
+          "sha256": "013D98C305D800E9BBEFBBB19AED49A3BF619257E7A211E9E491F29E7AD37A27"
+        },
+        "imageManifestPath": {
+          "path": "E:\\dzk\\gaode-1\\specs\\008-recipe-driven-inspection\\fixtures\\media-manifest-rot-part.json",
+          "sha256": "685830689B0DDDFC1453DCF4280653BE5159AB77E8E63441704B8206D5E226A3"
+        },
+        "workerManifestPath": {
+          "path": "E:\\dzk\\gaode-1\\specs\\008-recipe-driven-inspection\\fixtures\\worker-manifest-rot-part-ng.json",
+          "sha256": "C9E84D770FC3F3A30435946D9092842FEF1343750CAEA43D8A413D4A7819365B"
+        },
+        "workerScriptPath": {
+          "path": "E:\\dzk\\gaode-1\\scripts\\virtual-station01-algorithm.py",
+          "sha256": "F90A052381369646D19E9BFD744D25AA10C546BE9C11C53CF38BC8624AD504F9"
+        }
+      },
+      "expected": {
+        "initial3d": 1,
+        "initialF": 1,
+        "detectionCaptures": 4,
+        "fusions": 2,
+        "detectionCalls": 6,
+        "eCalls": 0,
+        "automaticFlips": 0,
+        "manualFlips": 0,
+        "specialActions": 4,
+        "postFlip3d": 0
+      },
+      "businessBasis": "business-decisions-20260926 U01-U08; source model rows; existing virtual range",
+      "pageStatus": "NotRun",
+      "evidenceIsConfigurationOnly": true
+    },
+    {
+      "caseId": "ROT-PART-PENDING",
+      "covers": [
+        "C05",
+        "C06"
+      ],
+      "fixture": "fixture-rot-part-pending.json",
+      "recipeRef": {
+        "recipeId": "R008-ROT-PART",
+        "version": "1.0.0-test",
+        "catalogDigest": "013D98C305D800E9BBEFBBB19AED49A3BF619257E7A211E9E491F29E7AD37A27"
+      },
+      "scenarioId": "S1",
+      "occupiedSlots": [
+        "P01"
+      ],
+      "fCode": "TEST-TRAY-0205",
+      "purpose": "Test",
+      "mediaSource": "Simulated/Test",
+      "productionAvailable": false,
+      "references": {
+        "recipeCatalogPath": {
+          "path": "E:\\dzk\\gaode-1\\specs\\008-recipe-driven-inspection\\fixtures\\recipes-rot-part.json",
+          "sha256": "013D98C305D800E9BBEFBBB19AED49A3BF619257E7A211E9E491F29E7AD37A27"
+        },
+        "imageManifestPath": {
+          "path": "E:\\dzk\\gaode-1\\specs\\008-recipe-driven-inspection\\fixtures\\media-manifest-rot-part.json",
+          "sha256": "685830689B0DDDFC1453DCF4280653BE5159AB77E8E63441704B8206D5E226A3"
+        },
+        "workerManifestPath": {
+          "path": "E:\\dzk\\gaode-1\\specs\\008-recipe-driven-inspection\\fixtures\\worker-manifest-rot-part-pending.json",
+          "sha256": "64FCB7B2EF0EFA623C1F12FACCCA53375D3C2C55F2CAD622FCBF84ADE1B9C87F"
+        },
+        "workerScriptPath": {
+          "path": "E:\\dzk\\gaode-1\\scripts\\virtual-station01-algorithm.py",
+          "sha256": "F90A052381369646D19E9BFD744D25AA10C546BE9C11C53CF38BC8624AD504F9"
+        }
+      },
+      "expected": {
+        "initial3d": 1,
+        "initialF": 1,
+        "detectionCaptures": 4,
+        "fusions": 2,
+        "detectionCalls": 6,
+        "eCalls": 0,
+        "automaticFlips": 0,
+        "manualFlips": 0,
+        "specialActions": 4,
+        "postFlip3d": 0
+      },
+      "businessBasis": "business-decisions-20260926 U01-U08; source model rows; existing virtual range",
+      "pageStatus": "NotRun",
+      "evidenceIsConfigurationOnly": true
+    },
+    {
+      "caseId": "ROT-ASSEMBLY-OK",
+      "covers": [
+        "C05"
+      ],
+      "fixture": "fixture-rot-assembly-ok.json",
+      "recipeRef": {
+        "recipeId": "R008-ROT-ASSEMBLY",
+        "version": "1.0.0-test",
+        "catalogDigest": "E5290C21938A9A8841E8D8FB0C59C39C96F567F94DAE1B426A23EE4E709DB335"
+      },
+      "scenarioId": "S3",
+      "occupiedSlots": [
+        "P01"
+      ],
+      "fCode": "TEST-TRAY-0206",
+      "purpose": "Test",
+      "mediaSource": "Simulated/Test",
+      "productionAvailable": false,
+      "references": {
+        "recipeCatalogPath": {
+          "path": "E:\\dzk\\gaode-1\\specs\\008-recipe-driven-inspection\\fixtures\\recipes-rot-assembly.json",
+          "sha256": "E5290C21938A9A8841E8D8FB0C59C39C96F567F94DAE1B426A23EE4E709DB335"
+        },
+        "imageManifestPath": {
+          "path": "E:\\dzk\\gaode-1\\specs\\008-recipe-driven-inspection\\fixtures\\media-manifest-rot-assembly.json",
+          "sha256": "6655DB7F33853CED2BCF269CD607AC6E845D83F9F9CC207830B1BACB0FF3B789"
+        },
+        "workerManifestPath": {
+          "path": "E:\\dzk\\gaode-1\\specs\\008-recipe-driven-inspection\\fixtures\\worker-manifest-rot-assembly-ok.json",
+          "sha256": "1317860B97AFD45E10E45958F77FA2CA0F81DE087F8A76E1B7D77DB349550071"
+        },
+        "workerScriptPath": {
+          "path": "E:\\dzk\\gaode-1\\scripts\\virtual-station01-algorithm.py",
+          "sha256": "F90A052381369646D19E9BFD744D25AA10C546BE9C11C53CF38BC8624AD504F9"
+        }
+      },
+      "expected": {
+        "initial3d": 1,
+        "initialF": 1,
+        "detectionCaptures": 6,
+        "fusions": 3,
+        "detectionCalls": 9,
+        "eCalls": 1,
+        "automaticFlips": 0,
+        "manualFlips": 0,
+        "specialActions": 4,
+        "postFlip3d": 0
+      },
+      "businessBasis": "business-decisions-20260926 U01-U08; source model rows; existing virtual range",
+      "pageStatus": "NotRun",
+      "evidenceIsConfigurationOnly": true
+    },
+    {
+      "caseId": "RECOVERY-3D",
+      "covers": [
+        "C07"
+      ],
+      "fixture": "fixture-recovery-3d.json",
+      "recipeRef": {
+        "recipeId": "R008-SINGLEFACE-GATES",
+        "version": "1.0.0-test",
+        "catalogDigest": "58A54806808732D13C30310567B291E5194E984ABB74008D3DBBDA33F6F0FDE5"
+      },
+      "scenarioId": "S1",
+      "occupiedSlots": [
+        "P01"
+      ],
+      "fCode": "TEST-TRAY-0999",
+      "purpose": "Test",
+      "mediaSource": "Simulated/Test",
+      "productionAvailable": false,
+      "references": {
+        "recipeCatalogPath": {
+          "path": "E:\\dzk\\gaode-1\\specs\\008-recipe-driven-inspection\\fixtures\\recipes-singleface-gates.json",
+          "sha256": "58A54806808732D13C30310567B291E5194E984ABB74008D3DBBDA33F6F0FDE5"
+        },
+        "imageManifestPath": {
+          "path": "E:\\dzk\\gaode-1\\specs\\008-recipe-driven-inspection\\fixtures\\media-manifest.json",
+          "sha256": "125FBC678EE1363271710B31755E8998A00F9B8B99CC99C7A13AE0D5A74FD570"
+        },
+        "workerManifestPath": {
+          "path": "E:\\dzk\\gaode-1\\specs\\008-recipe-driven-inspection\\fixtures\\worker-manifest-singleface-gates.json",
+          "sha256": "61C1F011ADBFEF0A75F708E6C9369FF51F6F9C134AFF0C574B5D92451E8868EA"
+        },
+        "workerScriptPath": {
+          "path": "E:\\dzk\\gaode-1\\scripts\\virtual-station01-algorithm.py",
+          "sha256": "F90A052381369646D19E9BFD744D25AA10C546BE9C11C53CF38BC8624AD504F9"
+        }
+      },
+      "expected": {
+        "initial3d": 1,
+        "initialF": 1,
+        "detectionCaptures": 2,
+        "fusions": 1,
+        "detectionCalls": 3,
+        "eCalls": 0,
+        "automaticFlips": 0,
+        "manualFlips": 0,
+        "specialActions": 0,
+        "postFlip3d": 0
+      },
+      "businessBasis": "business-decisions-20260926 U01-U08; source model rows; existing virtual range",
+      "pageStatus": "NotRun",
+      "evidenceIsConfigurationOnly": true
+    }
+  ],
+  "cCoverageConfiguration": {
+    "C01": [
+      "Q01-PARAM",
+      "Q02"
+    ],
+    "C02": [
+      "Q04-MANUAL",
+      "ASSEMBLY-A-E-MANUAL"
+    ],
+    "C03": [
+      "GROUP-F",
+      "GROUP-F-MIXED",
+      "GROUP-A-E"
+    ],
+    "C04": [
+      "ASSEMBLY-A-E",
+      "ASSEMBLY-A-E-NOCODE",
+      "ASSEMBLY-A-E-ERROR",
+      "ASSEMBLY-A-E-NG"
+    ],
+    "C05": [
+      "ROT-PART-OK",
+      "ROT-PART-NG",
+      "ROT-PART-PENDING",
+      "ROT-ASSEMBLY-OK"
+    ],
+    "C06": [
+      "Q03-NG",
+      "Q03-Pending",
+      "GROUP-F-MIXED",
+      "ASSEMBLY-A-E-NG"
+    ],
+    "C07": [
+      "RECOVERY-3D"
+    ],
+    "C08": [
+      "Q01",
+      "Q01-PARAM"
+    ]
+  }
+}

@@ -1,0 +1,11 @@
+# T065自动诊断入口准备
+
+用户询问为何重复要求人工输入，希望由代理执行验证。已核实：当前Codex账户只有SeChangeNotifyPrivilege/SeIncreaseWorkingSetPrivilege，Win32_Process子进程查询拒绝访问；既有Gaode008DesktopRecovery只授权固定桌面worker恢复，不能借改其执行脚本运行无关管理员命令。
+
+用户执行保存命令的实际结果：sampling-20260927T011909797Z/recovery-20260927T013620973Z/stop-result.json exitCode0，previous-recording.etl 3429892096 bytes，wpr-after显示未录制。随后旧launcher11212/创建09:19:11.574038有后代，脚本按保守门禁退出，未启动新观察；后代身份未保存是当前工具诊断缺口，不把它定性为他人进程。旧记录不改。
+
+准备一个独立固定按需任务GaodeT065CommunicationDiagnostic：Administrator交互令牌/提升，无密码、无登录触发器，不替换或停止桌面worker。Codex只获得查询/执行权；动作固定为run-t065-diagnostic-task.ps1，请求只允许Preflight或Observe及GUID。初始请求Preflight只读采集旧launcher/后代身份、WPR和独立端口；Observe调用已冻结单次120秒脚本，不启动完整配方。请求完成后同GUID不重放，不自动循环重试；ETL解析和根因判断由代理完成。
+
+grant-t065-diagnostic-task.ps1仅安装固定任务并登记ACL，不启动采样/清理；任务已存在则拒绝覆盖。三个PowerShell脚本AST和冻结输入ReviewOnly通过，尚未安装/未作真实权限验证。唯一外部动作是Administrator运行一次grant脚本；随后代理自行调用固定任务并收证，无需用户继续逐条测试命令。不是Spec Kit确认门禁，是实际Windows权限边界。
+
+补充评估继续保留：当前不能确定业务补丁，未改003/008任务勾选、业务代码或原始失败。

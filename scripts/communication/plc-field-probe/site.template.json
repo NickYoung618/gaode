@@ -1,0 +1,387 @@
+{
+  "schemaVersion": 1,
+  "purpose": "Field",
+  "sourceReference": "待填写：现场PLC程序版本、点表版本和确认记录",
+  "host": "",
+  "port": null,
+  "unitId": null,
+  "addressBase": null,
+  "intervalMs": 300,
+  "timeoutMs": 1000,
+  "heartbeat": {
+    "mode": "EchoOnChange",
+    "confirmed": false,
+    "requestSignal": "PLC_Heartbeat_Req",
+    "responseSignal": "PC_Heartbeat_Resp"
+  },
+  "signals": [
+    {
+      "enabled": true,
+      "name": "PLC_Heartbeat_Req",
+      "label": "PLC心跳",
+      "direction": "PLC->PC",
+      "area": "Coil",
+      "type": "Bool",
+      "address": null
+    },
+    {
+      "enabled": false,
+      "name": "PC_Heartbeat_Resp",
+      "label": "PC心跳应答",
+      "direction": "PC->PLC",
+      "area": "Coil",
+      "type": "Bool",
+      "address": null
+    },
+    {
+      "enabled": false,
+      "name": "PLC_System_Fault",
+      "label": "PLC故障",
+      "direction": "PLC->PC",
+      "area": "Coil",
+      "type": "Bool",
+      "address": null
+    },
+    {
+      "enabled": false,
+      "name": "PLC_Mode_Auto",
+      "label": "自动模式",
+      "direction": "PLC->PC",
+      "area": "Coil",
+      "type": "Bool",
+      "address": null
+    },
+    {
+      "enabled": false,
+      "name": "PLC_Ready_State",
+      "label": "PLC就绪",
+      "direction": "PLC->PC",
+      "area": "Coil",
+      "type": "Bool",
+      "address": null
+    },
+    {
+      "enabled": false,
+      "name": "Machine_Current_Pos_X",
+      "label": "X实际位置",
+      "direction": "PLC->PC",
+      "area": "HoldingRegister",
+      "type": "Float32",
+      "byteOrder": null,
+      "address": null
+    },
+    {
+      "enabled": false,
+      "name": "X_Pos_Confirmed",
+      "label": "X到位原码",
+      "direction": "PLC->PC",
+      "area": "HoldingRegister",
+      "type": "Int16",
+      "address": null
+    },
+    {
+      "enabled": false,
+      "name": "Camera_Target_X",
+      "label": "Camera_Target_X",
+      "direction": "PC->PLC",
+      "area": "HoldingRegister",
+      "type": "Float32",
+      "byteOrder": null,
+      "address": null
+    },
+    {
+      "enabled": false,
+      "name": "X_Move_Start",
+      "label": "X_Move_Start",
+      "direction": "PC->PLC",
+      "area": "Coil",
+      "type": "Bool",
+      "byteOrder": null,
+      "address": null
+    },
+    {
+      "enabled": false,
+      "name": "Camera_Target_Y",
+      "label": "Camera_Target_Y",
+      "direction": "PC->PLC",
+      "area": "HoldingRegister",
+      "type": "Float32",
+      "byteOrder": null,
+      "address": null
+    },
+    {
+      "enabled": false,
+      "name": "Y_Move_Start",
+      "label": "Y_Move_Start",
+      "direction": "PC->PLC",
+      "area": "Coil",
+      "type": "Bool",
+      "byteOrder": null,
+      "address": null
+    },
+    {
+      "enabled": false,
+      "name": "Y_Pos_Confirmed",
+      "label": "Y_Pos_Confirmed",
+      "direction": "PLC->PC",
+      "area": "HoldingRegister",
+      "type": "Int16",
+      "byteOrder": null,
+      "address": null
+    },
+    {
+      "enabled": false,
+      "name": "Machine_Current_Pos_Y",
+      "label": "Machine_Current_Pos_Y",
+      "direction": "PLC->PC",
+      "area": "HoldingRegister",
+      "type": "Float32",
+      "byteOrder": null,
+      "address": null
+    },
+    {
+      "enabled": false,
+      "name": "Camera_Target_Z",
+      "label": "Camera_Target_Z",
+      "direction": "PC->PLC",
+      "area": "HoldingRegister",
+      "type": "Float32",
+      "byteOrder": null,
+      "address": null
+    },
+    {
+      "enabled": false,
+      "name": "Z_Camera_Move_Start",
+      "label": "Z_Camera_Move_Start",
+      "direction": "PC->PLC",
+      "area": "Coil",
+      "type": "Bool",
+      "byteOrder": null,
+      "address": null
+    },
+    {
+      "enabled": false,
+      "name": "Z_Camera_Pos_Confirmed",
+      "label": "Z_Camera_Pos_Confirmed",
+      "direction": "PLC->PC",
+      "area": "HoldingRegister",
+      "type": "Int16",
+      "byteOrder": null,
+      "address": null
+    },
+    {
+      "enabled": false,
+      "name": "Machine_Current_Pos_Z",
+      "label": "Machine_Current_Pos_Z",
+      "direction": "PLC->PC",
+      "area": "HoldingRegister",
+      "type": "Float32",
+      "byteOrder": null,
+      "address": null
+    },
+    {
+      "enabled": false,
+      "name": "Scan_Target_Z",
+      "label": "Scan_Target_Z",
+      "direction": "PC->PLC",
+      "area": "HoldingRegister",
+      "type": "Float32",
+      "byteOrder": null,
+      "address": null
+    },
+    {
+      "enabled": false,
+      "name": "Z_Scan_Move_Start",
+      "label": "Z_Scan_Move_Start",
+      "direction": "PC->PLC",
+      "area": "Coil",
+      "type": "Bool",
+      "byteOrder": null,
+      "address": null
+    },
+    {
+      "enabled": false,
+      "name": "Z_Scan_Pos_Confirmed",
+      "label": "Z_Scan_Pos_Confirmed",
+      "direction": "PLC->PC",
+      "area": "HoldingRegister",
+      "type": "Int16",
+      "byteOrder": null,
+      "address": null
+    },
+    {
+      "enabled": false,
+      "name": "Scan_Current_Pos_Z",
+      "label": "Scan_Current_Pos_Z",
+      "direction": "PLC->PC",
+      "area": "HoldingRegister",
+      "type": "Float32",
+      "byteOrder": null,
+      "address": null
+    },
+    {
+      "enabled": false,
+      "name": "Grab_Target_Z",
+      "label": "Grab_Target_Z",
+      "direction": "PC->PLC",
+      "area": "HoldingRegister",
+      "type": "Float32",
+      "byteOrder": null,
+      "address": null
+    },
+    {
+      "enabled": false,
+      "name": "Z_Grab_Move_Start",
+      "label": "Z_Grab_Move_Start",
+      "direction": "PC->PLC",
+      "area": "Coil",
+      "type": "Bool",
+      "byteOrder": null,
+      "address": null
+    },
+    {
+      "enabled": false,
+      "name": "Z_Grap_Pos_Confirmed",
+      "label": "Z_Grap_Pos_Confirmed",
+      "direction": "PLC->PC",
+      "area": "HoldingRegister",
+      "type": "Int16",
+      "byteOrder": null,
+      "address": null
+    },
+    {
+      "enabled": false,
+      "name": "Flip_Grap_Current_Pos_Z",
+      "label": "Flip_Grap_Current_Pos_Z",
+      "direction": "PLC->PC",
+      "area": "HoldingRegister",
+      "type": "Float32",
+      "byteOrder": null,
+      "address": null
+    },
+    {
+      "enabled": false,
+      "name": "Rotate_Target_R",
+      "label": "Rotate_Target_R",
+      "direction": "PC->PLC",
+      "area": "HoldingRegister",
+      "type": "Float32",
+      "byteOrder": null,
+      "address": null
+    },
+    {
+      "enabled": false,
+      "name": "Rotate_Start",
+      "label": "Rotate_Start",
+      "direction": "PC->PLC",
+      "area": "Coil",
+      "type": "Bool",
+      "byteOrder": null,
+      "address": null
+    },
+    {
+      "enabled": false,
+      "name": "R_Pos_Confirmed",
+      "label": "R_Pos_Confirmed",
+      "direction": "PLC->PC",
+      "area": "HoldingRegister",
+      "type": "Int16",
+      "byteOrder": null,
+      "address": null
+    },
+    {
+      "enabled": false,
+      "name": "Machine_Current_Pos_R",
+      "label": "Machine_Current_Pos_R",
+      "direction": "PLC->PC",
+      "area": "HoldingRegister",
+      "type": "Float32",
+      "byteOrder": null,
+      "address": null
+    }
+  ],
+  "motion": {
+    "confirmed": false,
+    "sourceReference": "",
+    "actions": [
+      {
+        "name": "X",
+        "targetSignal": "Camera_Target_X",
+        "startSignal": "X_Move_Start",
+        "feedbackSignal": "X_Pos_Confirmed",
+        "actualSignal": "Machine_Current_Pos_X",
+        "min": null,
+        "max": null,
+        "tolerance": null,
+        "unit": "",
+        "frame": "",
+        "timeoutMs": null
+      },
+      {
+        "name": "Y",
+        "targetSignal": "Camera_Target_Y",
+        "startSignal": "Y_Move_Start",
+        "feedbackSignal": "Y_Pos_Confirmed",
+        "actualSignal": "Machine_Current_Pos_Y",
+        "min": null,
+        "max": null,
+        "tolerance": null,
+        "unit": "",
+        "frame": "",
+        "timeoutMs": null
+      },
+      {
+        "name": "CameraZ",
+        "targetSignal": "Camera_Target_Z",
+        "startSignal": "Z_Camera_Move_Start",
+        "feedbackSignal": "Z_Camera_Pos_Confirmed",
+        "actualSignal": "Machine_Current_Pos_Z",
+        "min": null,
+        "max": null,
+        "tolerance": null,
+        "unit": "",
+        "frame": "",
+        "timeoutMs": null
+      },
+      {
+        "name": "ScanZ",
+        "targetSignal": "Scan_Target_Z",
+        "startSignal": "Z_Scan_Move_Start",
+        "feedbackSignal": "Z_Scan_Pos_Confirmed",
+        "actualSignal": "Scan_Current_Pos_Z",
+        "min": null,
+        "max": null,
+        "tolerance": null,
+        "unit": "",
+        "frame": "",
+        "timeoutMs": null
+      },
+      {
+        "name": "GrabZ",
+        "targetSignal": "Grab_Target_Z",
+        "startSignal": "Z_Grab_Move_Start",
+        "feedbackSignal": "Z_Grap_Pos_Confirmed",
+        "actualSignal": "Flip_Grap_Current_Pos_Z",
+        "min": null,
+        "max": null,
+        "tolerance": null,
+        "unit": "",
+        "frame": "",
+        "timeoutMs": null
+      },
+      {
+        "name": "R",
+        "targetSignal": "Rotate_Target_R",
+        "startSignal": "Rotate_Start",
+        "feedbackSignal": "R_Pos_Confirmed",
+        "actualSignal": "Machine_Current_Pos_R",
+        "min": null,
+        "max": null,
+        "tolerance": null,
+        "unit": "",
+        "frame": "",
+        "timeoutMs": null
+      }
+    ]
+  }
+}

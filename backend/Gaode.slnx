@@ -1,0 +1,15 @@
+<Solution>
+  <Folder Name="/src/">
+    <Project Path="src/Gaode.Plc.Protocol/Gaode.Plc.Protocol.csproj" />
+    <Project Path="src/Gaode.Application/Gaode.Application.csproj" />
+    <Project Path="src/Gaode.Domain/Gaode.Domain.csproj" />
+    <Project Path="src/Gaode.Host/Gaode.Host.csproj" />
+    <Project Path="src/Gaode.Infrastructure/Gaode.Infrastructure.csproj" />
+  </Folder>
+  <Folder Name="/tests/">
+    <Project Path="tests/Gaode.Communication.Tests/Gaode.Communication.Tests.csproj" />
+    <Project Path="tests/Gaode.Contracts.Tests/Gaode.Contracts.Tests.csproj" />
+    <Project Path="tests/Gaode.Integration.Tests/Gaode.Integration.Tests.csproj" />
+    <Project Path="tests/Gaode.Rules.Tests/Gaode.Rules.Tests.csproj" />
+  </Folder>
+</Solution>

@@ -1,0 +1,567 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>制冷机零件缺陷检测系统 · 数据展示</title>
+<script src="https://cdn.tailwindcss.com"></script>
+<link rel="preconnect" href="https://fonts.googleapis.com" />
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+<link href="https://fonts.googleapis.com/css2?family=Noto+Sans+SC:wght@400;500;700&family=Rajdhani:wght@500;600;700&display=swap" rel="stylesheet" />
+<script src="https://unpkg.com/lucide@latest"></script>
+<style>
+  * { box-sizing: border-box; }
+  html, body { margin:0; padding:0; font-family:'Noto Sans SC', system-ui, sans-serif; }
+  body {
+    min-height: 100vh;
+    background: #f3f4f6;  /* neutral grey — blends with stage when 16:9 != viewport ratio */
+    color: #111827;
+    overflow: hidden;
+    display: flex; align-items: flex-start; justify-content: flex-start;
+  }
+  .num-font { font-family:'Rajdhani', sans-serif; letter-spacing: .5px; }
+
+  /* 16:9 stage — anchored top-left, uniform scale */
+  .stage {
+    width: 1600px; height: 900px;
+    background: #f3f4f6;
+    display: flex; flex-direction: column;
+    overflow: hidden;
+    transform-origin: top left;
+    flex-shrink: 0;
+    position: relative;
+  }
+
+  ::-webkit-scrollbar { width: 8px; height: 8px; }
+  ::-webkit-scrollbar-thumb { background: #cbd5e1; border-radius: 4px; }
+
+  /* tab bar (top) — matches reference "缺陷展示 / 报告" */
+  .tab-bar {
+    background: #e5e7eb; border-bottom: 1px solid #9ca3af;
+    display: flex; align-items: flex-end; padding: 0 12px;
+    height: 32px;
+  }
+  .tab {
+    padding: 5px 18px; font-size: 13px; color:#374151;
+    border: 1px solid #9ca3af; border-bottom: 0; background: #d1d5db;
+    margin-right: 2px; cursor: pointer;
+    border-top-left-radius: 4px; border-top-right-radius: 4px;
+    position: relative; top: 1px;
+  }
+  .tab.active { background: #fff; color:#111827; font-weight: 500; }
+
+  /* table style (matches reference) */
+  .dtbl {
+    width: 100%; border-collapse: collapse;
+    font-size: 13px; background: #fff;
+  }
+  .dtbl th, .dtbl td {
+    border: 1px solid #9ca3af;
+    padding: 6px 10px; text-align: left;
+    vertical-align: middle;
+  }
+  .dtbl th {
+    background: #d1d5db; font-weight: 500; color: #111827;
+  }
+  .dtbl tr:hover td { background: #eef2f7; }
+
+  /* KPI card */
+  .kpi {
+    flex: 1;
+    background: #fff;
+    border: 1px solid #d1d5db;
+    padding: 10px 14px;
+    display: flex; flex-direction: column; justify-content: center;
+    min-width: 0;
+  }
+  .kpi .k-label { font-size: 12px; color:#6b7280; }
+  .kpi .k-value {
+    font-family:'Rajdhani', sans-serif;
+    font-size: 32px; font-weight: 700; line-height: 1;
+    margin-top: 2px;
+  }
+  .kpi .k-sub { font-size: 11px; color:#6b7280; margin-top: 4px; }
+
+  /* badge */
+  .badge { display:inline-block; padding:1px 6px; font-size:11px; border-radius:2px; border:1px solid; }
+  .badge-ok   { color:#065f46; background:#d1fae5; border-color:#6ee7b7; }
+  .badge-ng   { color:#991b1b; background:#fee2e2; border-color:#fca5a5; }
+  .badge-pend { color:#92400e; background:#fef3c7; border-color:#fcd34d; }
+
+  /* NG type bars */
+  .ng-bar-wrap { display:flex; gap:3px; height: 16px; width: 100%; align-items:stretch; }
+  .ng-bar { position:relative; height:100%; display:flex; align-items:center; justify-content:center; color:#fff; font-size:10px; }
+  .ng-c1 { background:#ef4444; } /* 点状凹坑 */
+  .ng-c2 { background:#f59e0b; } /* 划伤 */
+  .ng-c3 { background:#3b82f6; } /* 机加纹路 */
+  .ng-c4 { background:#8b5cf6; } /* 脏污 */
+  .ng-c5 { background:#6b7280; } /* 其他 */
+
+  /* legend dot */
+  .ldot { display:inline-block; width:10px; height:10px; border-radius:2px; margin-right:4px; vertical-align:middle; }
+
+  /* scene sub-tabs */
+  .scene-tab {
+    padding: 6px 20px; font-size: 13px; cursor: pointer;
+    border: 1px solid #9ca3af; background: #e5e7eb; color:#374151;
+  }
+  .scene-tab.active { background: #2563eb; color: #fff; border-color: #1d4ed8; font-weight:500; }
+
+  /* form inputs */
+  input, select { font-size: 13px; padding: 3px 8px; border: 1px solid #9ca3af; background:#fff; color:#111827; height: 28px; }
+  input:focus, select:focus { outline: none; border-color: #2563eb; }
+
+  /* defect report modal (单个数据展示) */
+  .report-table {
+    width: 100%; border-collapse: collapse; background:#fff;
+    font-size: 12px;
+  }
+  .report-table th, .report-table td {
+    border: 1px solid #6b7280;
+    padding: 6px 8px; vertical-align: middle;
+  }
+  .report-table th { background:#e5e7eb; font-weight: 500; }
+  /* real defect thumbnails · 缺陷图已带红色标注 */
+  .defect-img {
+    width: 300px; height: 120px;
+    position: relative; overflow: hidden;
+    background: #111827;
+  }
+  .defect-img > img {
+    width: 100%; height: 100%; object-fit: cover;
+    display: block;
+  }
+  .defect-img .pid {
+    position: absolute; left: 6px; bottom: 4px;
+    font-size: 10px; color: rgba(255,255,255,.85);
+    font-family: 'Rajdhani', sans-serif;
+    background: rgba(0,0,0,.55); padding: 0 4px; border-radius: 2px;
+  }
+
+  /* btn */
+  .btn-action {
+    height: 28px; padding: 0 12px;
+    background:#2563eb; color:#fff; border:0;
+    font-size: 13px; cursor: pointer;
+  }
+  .btn-action:hover { filter: brightness(1.1); }
+  .btn-action.sec { background:#e5e7eb; color:#111827; border:1px solid #9ca3af; }
+</style>
+</head>
+<body>
+
+<div class="stage" id="stage">
+
+  <!-- ========== 顶部标签栏 ========== -->
+  <div class="tab-bar shrink-0">
+    <div class="tab active">缺陷展示</div>
+    <div class="tab">报告</div>
+    <div class="ml-auto flex items-center gap-3 pr-3 pb-1 text-[12px] text-slate-700">
+      <span>制冷机零件缺陷检测系统 · 数据展示</span>
+      <span id="nowTime" class="num-font"></span>
+      <a href="prototype.html" class="text-[12px] text-blue-700 underline">返回检测界面</a>
+    </div>
+  </div>
+
+  <!-- ========== 筛选条 ========== -->
+  <div class="shrink-0 px-4 py-2 flex items-center gap-3 bg-white border-b border-gray-300">
+    <span class="text-[13px] text-slate-600">日期：</span>
+    <input type="date" value="2026-04-22" />
+    <span class="text-slate-500">~</span>
+    <input type="date" value="2026-04-22" />
+
+    <span class="text-[13px] text-slate-600 ml-4">操作员：</span>
+    <select><option>全部</option><option>张工</option><option>李工</option></select>
+
+    <button class="btn-action ml-2">查询</button>
+    <button class="btn-action sec">导出 Excel</button>
+    <button class="btn-action sec">导出报告</button>
+  </div>
+
+  <!-- ========== KPI 汇总条 ========== -->
+  <div class="shrink-0 px-4 py-3 flex gap-3 bg-gray-100 border-b border-gray-300">
+    <div class="kpi">
+      <div class="k-label">已检测总数</div>
+      <div class="k-value text-slate-900">1,248</div>
+      <div class="k-sub">当日累计 · 节拍 1.8 s</div>
+    </div>
+    <div class="kpi" style="background:#ecfdf5; border-color:#6ee7b7;">
+      <div class="k-label text-emerald-800">合格数 / 合格率</div>
+      <div class="k-value text-emerald-600">1,216 · 97.44%</div>
+      <div class="k-sub text-emerald-700">同比昨日 +0.32%</div>
+    </div>
+    <div class="kpi" style="background:#fef2f2; border-color:#fca5a5;">
+      <div class="k-label text-rose-800">NG 数 / NG 率</div>
+      <div class="k-value text-rose-600">24 · 1.92%</div>
+      <div class="k-sub text-rose-700">其中划伤 10 · 凹坑 8</div>
+    </div>
+    <div class="kpi" style="background:#fffbeb; border-color:#fcd34d;">
+      <div class="k-label text-amber-800">待判定</div>
+      <div class="k-value text-amber-600">8 · 0.64%</div>
+      <div class="k-sub text-amber-700">待人工复核</div>
+    </div>
+    <div class="kpi">
+      <div class="k-label">覆盖零件种类</div>
+      <div class="k-value">7 / 8</div>
+      <div class="k-sub">今日未检测：阀钉</div>
+    </div>
+  </div>
+
+  <!-- ========== 一级：检测场景 ========== -->
+  <div class="shrink-0 px-4 pt-3 flex items-center gap-2 bg-gray-100 border-b border-gray-300">
+    <span class="text-[13px] text-slate-600">一级 · 检测场景：</span>
+    <div class="scene-tab" data-scene="all">全部</div>
+    <div class="scene-tab active" data-scene="single">单一零件检测</div>
+    <div class="scene-tab" data-scene="half">半成品检测</div>
+    <div class="scene-tab" data-scene="finished">成品检测</div>
+    <div class="ml-auto text-[12px] text-slate-500 pb-2">
+      单击"检测零件"行可查看该零件今日全部检测记录
+    </div>
+  </div>
+
+  <!-- ========== 主体：二级零件统计表 + NG 类型比例 ========== -->
+  <div class="flex-1 min-h-0 grid gap-3 p-3" style="grid-template-columns: minmax(0,1.6fr) minmax(0,1fr);">
+
+    <!-- 二级零件统计表 -->
+    <section class="bg-white border border-gray-300 flex flex-col min-h-0 overflow-hidden">
+      <div class="px-3 py-2 border-b border-gray-300 flex items-center justify-between shrink-0">
+        <div class="text-sm font-medium">二级 · 检测零件统计（当前场景：<span id="currentScene" class="text-blue-700">单一零件检测</span>）</div>
+        <div class="text-[11px] text-slate-500">共 <b id="partsCount">—</b> 种零件</div>
+      </div>
+      <div class="flex-1 min-h-0 overflow-y-auto">
+        <table class="dtbl">
+          <thead class="sticky top-0">
+            <tr>
+              <th style="width:36px;">#</th>
+              <th>检测零件</th>
+              <th style="width:78px;">已检</th>
+              <th style="width:64px;">OK</th>
+              <th style="width:64px;">NG</th>
+              <th style="width:64px;">待判</th>
+              <th style="width:84px;">合格率</th>
+              <th>NG 类型占比</th>
+              <th style="width:72px;">操作</th>
+            </tr>
+          </thead>
+          <tbody id="partsTbody"></tbody>
+        </table>
+      </div>
+    </section>
+
+    <!-- NG 类型比例面板 -->
+    <section class="bg-white border border-gray-300 flex flex-col min-h-0 overflow-hidden">
+      <div class="px-3 py-2 border-b border-gray-300 flex items-center justify-between shrink-0">
+        <div class="text-sm font-medium">NG 类型比例</div>
+        <div class="flex gap-2 text-[11px]">
+          <button class="btn-action sec" style="height:24px; padding:0 8px;">柱状</button>
+          <button class="btn-action" style="height:24px; padding:0 8px;">饼图</button>
+        </div>
+      </div>
+
+      <div class="flex-1 min-h-0 overflow-y-auto p-4">
+        <!-- donut chart (conic-gradient) -->
+        <div class="flex items-center gap-5">
+          <div id="donut" style="width:180px; height:180px; border-radius:50%; position:relative; flex-shrink:0;">
+            <div style="position:absolute; inset:30%; background:#fff; border-radius:50%;
+                        display:flex; flex-direction:column; align-items:center; justify-content:center;">
+              <div class="text-[11px] text-slate-500">NG 总数</div>
+              <div class="num-font text-2xl font-bold text-rose-600">24</div>
+            </div>
+          </div>
+          <div class="flex-1 space-y-2 text-[12px]">
+            <div class="flex items-center justify-between"><span><span class="ldot" style="background:#ef4444;"></span>点状凹坑</span><b class="num-font">8 · 33.3%</b></div>
+            <div class="flex items-center justify-between"><span><span class="ldot" style="background:#f59e0b;"></span>划伤</span><b class="num-font">10 · 41.7%</b></div>
+            <div class="flex items-center justify-between"><span><span class="ldot" style="background:#3b82f6;"></span>机加纹路</span><b class="num-font">3 · 12.5%</b></div>
+            <div class="flex items-center justify-between"><span><span class="ldot" style="background:#8b5cf6;"></span>脏污</span><b class="num-font">2 · 8.3%</b></div>
+            <div class="flex items-center justify-between"><span><span class="ldot" style="background:#6b7280;"></span>其他</span><b class="num-font">1 · 4.2%</b></div>
+          </div>
+        </div>
+
+        <div class="mt-5 text-[12px] font-medium text-slate-700 mb-2">缺陷趋势（近 7 日 NG 数）</div>
+        <div id="trendChart" class="flex items-end gap-1" style="height:110px; padding: 6px 2px; border: 1px solid #e5e7eb; background:#fafafa;"></div>
+        <div id="trendLabels" class="flex gap-1 mt-1 text-[10px] text-slate-500"></div>
+
+        <div class="mt-5 text-[12px] font-medium text-slate-700 mb-2">按场景 · NG 分布</div>
+        <table class="dtbl">
+          <thead><tr><th>场景</th><th style="width:60px;">已检</th><th style="width:56px;">NG</th><th style="width:72px;">NG 率</th></tr></thead>
+          <tbody>
+            <tr><td>单一零件检测</td><td class="num-font">620</td><td class="num-font text-rose-600">11</td><td class="num-font">1.77%</td></tr>
+            <tr><td>半成品检测</td><td class="num-font">480</td><td class="num-font text-rose-600">9</td><td class="num-font">1.88%</td></tr>
+            <tr><td>成品检测</td><td class="num-font">148</td><td class="num-font text-rose-600">4</td><td class="num-font">2.70%</td></tr>
+          </tbody>
+        </table>
+      </div>
+    </section>
+  </div>
+
+</div> <!-- /.stage -->
+
+
+<!-- ============== 单个缺陷报告 Modal（风格参考 单个数据展示.png） ============== -->
+<div id="reportModal" class="fixed inset-0 z-50 hidden items-center justify-center bg-black/60" onclick="closeReport(event)">
+  <div class="bg-white flex flex-col" style="width: 1160px; height: 820px; border: 1px solid #6b7280;" onclick="event.stopPropagation()">
+    <!-- title row -->
+    <div class="relative flex items-center px-4 py-2 border-b border-gray-500 shrink-0">
+      <div class="text-[13px]">日期：<span class="font-medium" id="reportDate">2026/04/22</span></div>
+      <div class="absolute left-1/2 -translate-x-1/2 text-[18px] font-semibold">制冷机零件缺陷检测系统</div>
+      <div class="ml-auto flex items-center gap-3">
+        <div class="text-[14px] text-rose-600">缺陷数量：<span class="font-bold num-font" id="reportCount">—</span></div>
+        <button onclick="closeReport()" class="text-slate-500 hover:text-slate-900"><i data-lucide="x" class="w-5 h-5"></i></button>
+      </div>
+    </div>
+    <!-- subheader -->
+    <div class="px-4 py-1.5 flex items-center gap-8 border-b border-gray-400 bg-gray-50 shrink-0 text-[12px]">
+      <div>产品 ID：<span class="font-medium num-font" id="reportPid">—</span></div>
+      <div>零件：<span class="font-medium" id="reportPart">—</span></div>
+      <div>检测场景：<span class="font-medium">半成品检测</span></div>
+      <div>检测配方：<span class="font-medium">RCP-20260422-001 · v3.2</span></div>
+      <div>操作员：<span class="font-medium">张工</span></div>
+      <div class="ml-auto">判定：<span class="badge badge-ng">整件 NG</span></div>
+    </div>
+    <!-- body -->
+    <div class="flex-1 min-h-0 overflow-y-auto p-3">
+      <table class="report-table">
+        <thead class="sticky top-0">
+          <tr>
+            <th style="width:92px;">产品 ID</th>
+            <th style="width:312px;">缺陷图片</th>
+            <th style="width:74px;">位置</th>
+            <th style="width:128px;">大小</th>
+            <th style="width:84px;">种类</th>
+            <th>检测项 / 判定规则</th>
+            <th style="width:64px;">判定</th>
+            <th style="width:64px;">复检</th>
+          </tr>
+        </thead>
+        <tbody id="reportRows"></tbody>
+      </table>
+
+      <!-- 汇总小结 -->
+      <div class="mt-3 grid gap-3" style="grid-template-columns: 1fr 1fr 1fr;">
+        <div class="border border-gray-300 p-3">
+          <div class="text-[12px] text-slate-500 mb-1">尺寸合规</div>
+          <div class="text-[13px]">抽检项 <b class="num-font">15</b> / 合规 <b class="num-font text-emerald-600">9</b> / 超差 <b class="num-font text-rose-600">6</b></div>
+        </div>
+        <div class="border border-gray-300 p-3">
+          <div class="text-[12px] text-slate-500 mb-1">缺陷类型分布</div>
+          <div class="text-[13px]">划伤 <b>2</b> · 凹坑 <b>2</b> · 纹路 <b>1</b> · 异物 <b>1</b></div>
+        </div>
+        <div class="border border-gray-300 p-3">
+          <div class="text-[12px] text-slate-500 mb-1">置信度 / 用时</div>
+          <div class="text-[13px]"><b class="num-font text-rose-600">96.4%</b> · 用时 <b class="num-font">4860 ms</b></div>
+        </div>
+      </div>
+    </div>
+    <div class="flex justify-end gap-2 px-4 py-2 border-t border-gray-300 bg-gray-100 shrink-0">
+      <button onclick="closeReport()" class="btn-action sec">关闭</button>
+    </div>
+  </div>
+</div>
+
+
+<script>
+  // ---- scale stage ----
+  function scaleStage(){
+    const s = Math.min(window.innerWidth/1600, window.innerHeight/900);
+    document.getElementById('stage').style.transform = `scale(${s})`;
+  }
+  window.addEventListener('resize', scaleStage); window.addEventListener('load', scaleStage); scaleStage();
+
+  // ---- clock ----
+  const pad = n => String(n).padStart(2,'0');
+  function tick(){
+    const d = new Date();
+    document.getElementById('nowTime').textContent =
+      `${d.getFullYear()}-${pad(d.getMonth()+1)}-${pad(d.getDate())} ${pad(d.getHours())}:${pad(d.getMinutes())}:${pad(d.getSeconds())}`;
+  }
+  tick(); setInterval(tick, 1000);
+
+  // ---- data: scene → parts → stats ----
+  // ng breakdown [凹坑, 划伤, 机加纹路, 脏污, 其他]
+  const dataByScene = {
+    single: {
+      label: '单一零件检测',
+      parts: [
+        { name:'大底座',         total:180, ok:176, ng:3, pend:1, ng_types:[2,1,0,0,0] },
+        { name:'压缩端盖',       total:120, ok:118, ng:2, pend:0, ng_types:[1,1,0,0,0] },
+        { name:'转子外罩',       total:100, ok: 97, ng:2, pend:1, ng_types:[0,1,0,1,0] },
+        { name:'电机外壳',       total: 80, ok: 79, ng:1, pend:0, ng_types:[0,0,1,0,0] },
+        { name:'杜瓦',           total: 70, ok: 68, ng:1, pend:1, ng_types:[1,0,0,0,0] },
+        { name:'冷指保护筒',     total: 50, ok: 49, ng:1, pend:0, ng_types:[0,0,1,0,0] },
+        { name:'阀钉',           total: 20, ok: 20, ng:0, pend:0, ng_types:[0,0,0,0,0] },
+      ],
+    },
+    half: {
+      label: '半成品检测',
+      parts: [
+        { name:'大底座 · 密封面',      total:210, ok:203, ng:5, pend:2, ng_types:[2,2,0,1,0] },
+        { name:'压缩端盖 · 正面',      total:120, ok:117, ng:2, pend:1, ng_types:[0,1,0,0,1] },
+        { name:'转子外罩 · 外表面',    total: 90, ok: 89, ng:1, pend:0, ng_types:[1,0,0,0,0] },
+        { name:'杜瓦 · 筒身',          total: 60, ok: 59, ng:1, pend:0, ng_types:[0,1,0,0,0] },
+      ],
+    },
+    finished: {
+      label: '成品检测',
+      parts: [
+        { name:'装配体 A',  total: 80, ok: 77, ng:2, pend:1, ng_types:[1,1,0,0,0] },
+        { name:'装配体 B',  total: 68, ok: 66, ng:2, pend:0, ng_types:[1,0,1,0,0] },
+      ],
+    },
+  };
+
+  const ngColors = ['ng-c1','ng-c2','ng-c3','ng-c4','ng-c5'];
+  const ngNames  = ['点状凹坑','划伤','机加纹路','脏污','其他'];
+
+  function renderParts(sceneKey){
+    const sc = dataByScene[sceneKey];
+    document.getElementById('currentScene').textContent = sc.label;
+    document.getElementById('partsCount').textContent = sc.parts.length;
+    document.getElementById('partsTbody').innerHTML = sc.parts.map((p, idx) => {
+      const rate = p.total ? (p.ok / p.total * 100) : 0;
+      const rateCls = rate >= 98 ? 'text-emerald-600' : rate >= 95 ? 'text-amber-600' : 'text-rose-600';
+      const total_ng = p.ng_types.reduce((a,b)=>a+b, 0);
+      const bars = total_ng === 0
+        ? '<span class="text-[11px] text-slate-400">— 无 NG —</span>'
+        : `<div class="ng-bar-wrap" title="${ngNames.map((n,i)=> n+':'+p.ng_types[i]).join(' / ')}">
+             ${p.ng_types.map((v,i) => v? `<div class="ng-bar ${ngColors[i]}" style="flex:${v};" title="${ngNames[i]} ${v}">${v>=1?v:''}</div>` : '').join('')}
+           </div>`;
+      return `
+        <tr class="cursor-pointer" onclick="openReport('${p.name}')">
+          <td class="num-font text-center">${pad(idx+1)}</td>
+          <td>${p.name}</td>
+          <td class="num-font">${p.total}</td>
+          <td class="num-font text-emerald-700">${p.ok}</td>
+          <td class="num-font text-rose-700">${p.ng}</td>
+          <td class="num-font text-amber-700">${p.pend}</td>
+          <td class="num-font ${rateCls}">${rate.toFixed(2)}%</td>
+          <td>${bars}</td>
+          <td><button class="btn-action" style="height:22px; padding:0 8px; font-size:11px;" onclick="event.stopPropagation(); openReport('${p.name}')">详情</button></td>
+        </tr>`;
+    }).join('');
+  }
+  renderParts('single');
+
+  // scene tab switch
+  document.querySelectorAll('.scene-tab').forEach(t => {
+    t.addEventListener('click', () => {
+      document.querySelectorAll('.scene-tab').forEach(x => x.classList.remove('active'));
+      t.classList.add('active');
+      const scene = t.dataset.scene;
+      if (scene === 'all') {
+        // merge all
+        const merged = { label:'全部', parts: [] };
+        Object.values(dataByScene).forEach(sc => merged.parts.push(...sc.parts));
+        dataByScene.all = merged;
+      }
+      renderParts(scene);
+    });
+  });
+
+  // ---- donut chart (NG types) ----
+  const ngPcts = [33.3, 41.7, 12.5, 8.3, 4.2]; // same order as ngColors
+  const donutColors = ['#ef4444','#f59e0b','#3b82f6','#8b5cf6','#6b7280'];
+  let acc = 0;
+  const stops = ngPcts.map((v,i) => {
+    const from = acc; acc += v; return `${donutColors[i]} ${from}% ${acc}%`;
+  }).join(', ');
+  document.getElementById('donut').style.background = `conic-gradient(${stops})`;
+
+  // ---- trend chart (mock 7-day NG counts) ----
+  const trend = [{d:'04/16', n:20},{d:'04/17', n:18},{d:'04/18', n:26},{d:'04/19', n:22},{d:'04/20', n:19},{d:'04/21', n:28},{d:'04/22', n:24}];
+  const maxN = Math.max(...trend.map(x=>x.n));
+  document.getElementById('trendChart').innerHTML = trend.map(x => `
+    <div style="flex:1; display:flex; flex-direction:column; align-items:center; justify-content:flex-end; height:100%;">
+      <div class="num-font text-[10px] text-slate-600">${x.n}</div>
+      <div style="width:80%; background:#f87171; height:${(x.n/maxN*90)}%; border-top:2px solid #dc2626;"></div>
+    </div>`).join('');
+  document.getElementById('trendLabels').innerHTML = trend.map(x => `
+    <div style="flex:1; text-align:center;">${x.d}</div>`).join('');
+
+  // ---- defect report modal ----
+  // 一类缺陷对应一张图，共 6 张真实样本（红色标注框已烘焙在图片内）
+  const mockDefects = [
+    { face:'检测面 1 · 环面', type:'划伤',     size:{L:45, W:1.5, D:0.6},     img:'assets/环面划痕.jpg' },
+    { face:'检测面 2 · 环面', type:'划伤',     size:{L:32, W:2.1, D:0.7},     img:'assets/环面划痕1.jpg' },
+    { face:'检测面 2 · 环面', type:'点状凹坑', size:{L:0.20, W:0.18, D:null}, img:'assets/环面点状凹坑.jpg' },
+    { face:'检测面 3 · 孔底', type:'点状凹坑', size:{L:0.25, W:0.22, D:null}, img:'assets/孔底点状凹坑+带判定刀纹异常.jpg', judgeOverride:'待判定' },
+    { face:'检测面 3 · 孔底', type:'机加纹路', size:{L:null, W:null, D:null}, img:'assets/孔底刀纹异常.jpg' },
+    { face:'检测面 4 · 孔底', type:'异物',     size:{L:0.5, W:0.4, D:null},   img:'assets/孔底异物.jpg' },
+  ];
+
+  function openReport(partName){
+    const pid = 'L' + Math.floor(10 + Math.random()*90) + '-' + Math.floor(1000 + Math.random()*9000);
+    const today = new Date();
+    const dateStr = `${today.getFullYear()}/${pad(today.getMonth()+1)}/${pad(today.getDate())}`;
+
+    document.getElementById('reportPart').textContent = partName;
+    document.getElementById('reportPid').textContent = pid;
+    document.getElementById('reportDate').textContent = dateStr;
+    document.getElementById('reportCount').textContent = mockDefects.length;
+
+    const ruleMap = {
+      '划伤':     '长度 ≥ 0.20 mm 判 NG',
+      '点状凹坑': '直径 ≥ 0.10 mm 判 NG',
+      '脏污':     '与加工面颜色差异',
+      '机加纹路': '非同心圆纹路判 NG',
+      '异物':     '存在即 NG',
+    };
+    const judge = x => {
+      if (x.judgeOverride) return x.judgeOverride;
+      if (x.type === '异物') return 'NG';
+      if (x.type === '划伤')     return (x.size.L >= 0.2) ? 'NG' : 'OK';
+      if (x.type === '点状凹坑') return (x.size.W >= 0.1) ? 'NG' : 'OK';
+      if (x.type === '脏污')     return (x.size.W >= 0.5) ? 'NG' : '待判定';
+      return 'NG';
+    };
+    const sizeHtml = s => {
+      if (s.L == null && s.W == null) return '<div class="text-slate-400">— 不测量 —</div>';
+      const parts = [];
+      if (s.L != null) parts.push(`<div>长：${s.L} mm</div>`);
+      if (s.W != null) parts.push(`<div>宽：${s.W} mm</div>`);
+      if (s.D != null) parts.push(`<div>深：${s.D} mm</div>`);
+      return parts.join('');
+    };
+
+    document.getElementById('reportRows').innerHTML = mockDefects.map((x,i) => {
+      const jud = judge(x);
+      const judCls = jud==='OK' ? 'badge-ok' : jud==='NG' ? 'badge-ng' : 'badge-pend';
+      const rule = ruleMap[x.type] || '—';
+      const imgUrl = encodeURI(x.img);
+      return `
+        <tr>
+          <td class="num-font align-middle text-center">${pid}</td>
+          <td class="align-middle">
+            <div class="defect-img">
+              <img src="${imgUrl}" alt="${x.type}" loading="lazy" />
+              <span class="pid">${pid} · ${String(i+1).padStart(2,'0')}</span>
+            </div>
+          </td>
+          <td class="align-middle text-center">${x.face}</td>
+          <td class="align-middle text-[11px] leading-tight">${sizeHtml(x.size)}</td>
+          <td class="align-middle text-center">${x.type}</td>
+          <td class="align-middle text-[11px]">
+            <div>${x.type} · 检出</div>
+            <div class="text-slate-500">${rule}</div>
+          </td>
+          <td class="align-middle text-center"><span class="badge ${judCls}">${jud}</span></td>
+          <td class="align-middle text-center">
+            <button class="btn-action sec" style="height:22px; padding:0 8px; font-size:11px;">复检</button>
+          </td>
+        </tr>`;
+    }).join('');
+
+    const m = document.getElementById('reportModal');
+    m.classList.remove('hidden'); m.classList.add('flex');
+    lucide.createIcons();
+  }
+  function closeReport(e){
+    if (e && e.target !== e.currentTarget) return;
+    const m = document.getElementById('reportModal');
+    m.classList.add('hidden'); m.classList.remove('flex');
+  }
+  document.addEventListener('keydown', e => { if (e.key==='Escape') closeReport(); });
+
+  lucide.createIcons();
+</script>
+</body>
+</html>

@@ -1,0 +1,34 @@
+{
+  "schemaVersion": "016-delivery/1",
+  "featureDir": "specs/016-public-preparation-tray-check-unload",
+  "source": "E:\\dzk\\gaode-1",
+  "copy": "C:\\dzk-work\\gaode-016-public-tray-flow",
+  "mainMerged": false,
+  "files": "../../delivery-package/integrated-20261006/file-manifest.json",
+  "originalRecovery": "../../delivery-package/integrated-20261006/original-recovery.zip",
+  "delta": "../../delivery-package/integrated-20261006/delta-files.zip",
+  "seal": "../../delivery-package/integrated-20261006/seal.json",
+  "acceptance": "artifacts/016-public-tray-flow/integrated-copy-acceptance-2/continuation-1/result.json",
+  "requiredAcceptance": {
+    "result": "Passed",
+    "phase": "all"
+  },
+  "excluded": [
+    ".specify/feature.json",
+    ".git",
+    ".gitignore",
+    "runtime databases",
+    "build/cache directories",
+    "large baseline archive",
+    "tokens"
+  ],
+  "sharedRegistrations": [
+    "backend/tests/Gaode.Rules.Tests/Architecture/009-boundary-inventory.json",
+    "backend/tests/Gaode.Rules.Tests/Architecture/009-public-shapes.json"
+  ],
+  "installation": [
+    "Stop owned Host; prepare new /3 or controlled Test /2→/3 upgrade; preserve archive and old payloads",
+    "Current recipe writes use recipe-definition/5; historical /2,/3,/4 remain original values; fill real member mapping before save"
+  ],
+  "proofPolicy": "Do not merge until external seal and current acceptance both verify. File hashes live in the sealed package to avoid self-referential manifests."
+}

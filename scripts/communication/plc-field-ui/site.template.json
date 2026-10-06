@@ -1,0 +1,1521 @@
+{
+  "schemaVersion": 2,
+  "layoutId": "confirmed-20261006-v2",
+  "purpose": "Field",
+  "sourceReference": "2026-10-06 user-confirmed PC.xls and PLC(2).xls",
+  "plcProgramVersion": "",
+  "connection": {
+    "protocol": "ModbusTcp",
+    "host": "",
+    "port": 502,
+    "unitId": 1,
+    "timeoutMs": 1000,
+    "pollMs": 200
+  },
+  "mapping": {
+    "pcPduBase": 1000,
+    "plcPduBase": 3000,
+    "plcArea": "HoldingRegister",
+    "boolByteOrder": "EvenLow",
+    "floatOrder": "Abcd",
+    "confirmed": false,
+    "source": "软件初值，尚未现场校准；不代表实际PLC映射已确认"
+  },
+  "writesConfirmed": false,
+  "singleWriterConfirmed": false,
+  "heartbeat": {
+    "confirmed": false,
+    "request": "PLC_Heartbeat_Req",
+    "response": "PC_Heartbeat_Resp",
+    "timeoutMs": 3000
+  },
+  "signals": [
+    {
+      "id": "Rotate_Start",
+      "label": "Rotate_Start",
+      "direction": "PC->PLC",
+      "mw": 1000,
+      "mb": 2000,
+      "type": "BoolByte",
+      "enabled": true,
+      "writeEnabled": false,
+      "min": null,
+      "max": null,
+      "allowedValues": [
+        0,
+        1
+      ],
+      "note": "PC.xls 第2行：0=空闲，1=开始运动"
+    },
+    {
+      "id": "X_Move_Start",
+      "label": "X_Move_Start",
+      "direction": "PC->PLC",
+      "mw": 1000,
+      "mb": 2001,
+      "type": "BoolByte",
+      "enabled": true,
+      "writeEnabled": false,
+      "min": null,
+      "max": null,
+      "allowedValues": [
+        0,
+        1
+      ],
+      "note": "PC.xls 第3行：0=空闲，1=开始运动"
+    },
+    {
+      "id": "Y_Move_Start",
+      "label": "Y_Move_Start",
+      "direction": "PC->PLC",
+      "mw": 1001,
+      "mb": 2002,
+      "type": "BoolByte",
+      "enabled": true,
+      "writeEnabled": false,
+      "min": null,
+      "max": null,
+      "allowedValues": [
+        0,
+        1
+      ],
+      "note": "PC.xls 第4行：0=空闲，1=开始运动"
+    },
+    {
+      "id": "Z_Camera_Move_Start",
+      "label": "Z_Camera_Move_Start",
+      "direction": "PC->PLC",
+      "mw": 1001,
+      "mb": 2003,
+      "type": "BoolByte",
+      "enabled": true,
+      "writeEnabled": false,
+      "min": null,
+      "max": null,
+      "allowedValues": [
+        0,
+        1
+      ],
+      "note": "PC.xls 第5行：0=空闲，1=开始运动（检测）"
+    },
+    {
+      "id": "Z_Scan_Move_Start",
+      "label": "Z_Scan_Move_Start",
+      "direction": "PC->PLC",
+      "mw": 1002,
+      "mb": 2004,
+      "type": "BoolByte",
+      "enabled": true,
+      "writeEnabled": false,
+      "min": null,
+      "max": null,
+      "allowedValues": [
+        0,
+        1
+      ],
+      "note": "PC.xls 第6行：0=空闲，1=开始运动（扫码）"
+    },
+    {
+      "id": "Z_Grab_Move_Start",
+      "label": "Z_Grab_Move_Start",
+      "direction": "PC->PLC",
+      "mw": 1002,
+      "mb": 2005,
+      "type": "BoolByte",
+      "enabled": true,
+      "writeEnabled": false,
+      "min": null,
+      "max": null,
+      "allowedValues": [
+        0,
+        1
+      ],
+      "note": "PC.xls 第7行：0=空闲，1=开始运动（分拣）"
+    },
+    {
+      "id": "PC_System_Ready",
+      "label": "上位机初始化完成，允许动作",
+      "direction": "PC->PLC",
+      "mw": 1003,
+      "mb": 2006,
+      "type": "BoolByte",
+      "enabled": true,
+      "writeEnabled": false,
+      "min": null,
+      "max": null,
+      "allowedValues": [
+        0,
+        1
+      ],
+      "note": "PC.xls 第8行：上位机初始化完成，允许动作"
+    },
+    {
+      "id": "PC_Start_Cmd",
+      "label": "上位机复位后重新判断任务状态，确认安全后重新下发启动命令",
+      "direction": "PC->PLC",
+      "mw": 1003,
+      "mb": 2007,
+      "type": "BoolByte",
+      "enabled": true,
+      "writeEnabled": false,
+      "min": null,
+      "max": null,
+      "allowedValues": [
+        0,
+        1
+      ],
+      "note": "PC.xls 第9行：上位机复位后重新判断任务状态，确认安全后重新下发启动命令"
+    },
+    {
+      "id": "Soft_Stop_Cmd",
+      "label": "软停机指令",
+      "direction": "PC->PLC",
+      "mw": 1004,
+      "mb": 2008,
+      "type": "BoolByte",
+      "enabled": true,
+      "writeEnabled": false,
+      "min": null,
+      "max": null,
+      "allowedValues": [
+        0,
+        1
+      ],
+      "note": "PC.xls 第10行：软停机指令（上位机崩溃/失控时下发，PLC自动回位）"
+    },
+    {
+      "id": "System_Reset_Cmd",
+      "label": "上位机触发系统复位",
+      "direction": "PC->PLC",
+      "mw": 1004,
+      "mb": 2009,
+      "type": "BoolByte",
+      "enabled": true,
+      "writeEnabled": false,
+      "min": null,
+      "max": null,
+      "allowedValues": [
+        0,
+        1
+      ],
+      "note": "PC.xls 第11行：上位机触发系统复位（1=触发复位）重新回位开始"
+    },
+    {
+      "id": "Buzzer_Mute",
+      "label": "蜂鸣器消音控制",
+      "direction": "PC->PLC",
+      "mw": 1005,
+      "mb": 2010,
+      "type": "BoolByte",
+      "enabled": true,
+      "writeEnabled": false,
+      "min": null,
+      "max": null,
+      "allowedValues": [
+        0,
+        1
+      ],
+      "note": "PC.xls 第12行：蜂鸣器消音控制。"
+    },
+    {
+      "id": "PC_Heartbeat_Resp",
+      "label": "PC响应心跳",
+      "direction": "PC->PLC",
+      "mw": 1005,
+      "mb": 2011,
+      "type": "BoolByte",
+      "enabled": true,
+      "writeEnabled": false,
+      "min": null,
+      "max": null,
+      "allowedValues": [
+        0,
+        1
+      ],
+      "note": "PC.xls 第13行：PC响应心跳"
+    },
+    {
+      "id": "Flip_Target_Face",
+      "label": "目标面编号",
+      "direction": "PC->PLC",
+      "mw": 1006,
+      "mb": 2012,
+      "type": "Int16",
+      "enabled": true,
+      "writeEnabled": false,
+      "min": null,
+      "max": null,
+      "allowedValues": [],
+      "note": "PC.xls 第14行：目标面编号（1=第1面, 2=第2面, 3=第3面, 4=第4面等）"
+    },
+    {
+      "id": "Flip_Sorting",
+      "label": "Flip_Sorting",
+      "direction": "PC->PLC",
+      "mw": 1007,
+      "mb": 2014,
+      "type": "Int16",
+      "enabled": true,
+      "writeEnabled": false,
+      "min": null,
+      "max": null,
+      "allowedValues": [
+        0,
+        1,
+        2
+      ],
+      "note": "PC.xls 第15行：0=空闲，1=执行翻面，2=执行放料"
+    },
+    {
+      "id": "Sorting_Cmd",
+      "label": "公共取放料指令，普通分拣、旋转工位上料及旋转零件分拣共用",
+      "direction": "PC->PLC",
+      "mw": 1008,
+      "mb": 2016,
+      "type": "Int16",
+      "enabled": true,
+      "writeEnabled": false,
+      "min": null,
+      "max": null,
+      "allowedValues": [
+        0,
+        1,
+        2
+      ],
+      "note": "PC.xls 第16行：公共取放料指令，普通分拣、旋转工位上料及旋转零件分拣共用。0=空闲；1=执行取料；2=执行放料。"
+    },
+    {
+      "id": "Grab_ID",
+      "label": "Grab_ID",
+      "direction": "PC->PLC",
+      "mw": 1009,
+      "mb": 2018,
+      "type": "Int16",
+      "enabled": true,
+      "writeEnabled": false,
+      "min": null,
+      "max": null,
+      "allowedValues": [
+        0,
+        1,
+        2
+      ],
+      "note": "PC.xls 第17行：0=无有效选择；1=抓手1；2=抓手2，编号不绑定用途。仅用于分拣和旋转零件取放料，所需编号分别读取配方的上料、分拣抓手配置。正常保留旧ID；与当前有效选择相同则沿用，不同才发送新ID，待反馈更新一致后执行。首次选择或失效后重新确认。闭环中不重复发送，翻面不使用。"
+    },
+    {
+      "id": "Retry_Cmd",
+      "label": "异常处理指令",
+      "direction": "PC->PLC",
+      "mw": 1010,
+      "mb": 2020,
+      "type": "Int16",
+      "enabled": true,
+      "writeEnabled": false,
+      "min": null,
+      "max": null,
+      "allowedValues": [
+        1,
+        2,
+        3
+      ],
+      "note": "PC.xls 第18行：异常处理指令；1=重试当前动作；2=跳过或放弃当前零件；3=复位分拣队列。"
+    },
+    {
+      "id": "PC_Alarm_Code",
+      "label": "上位机报警码",
+      "direction": "PC->PLC",
+      "mw": 1011,
+      "mb": 2022,
+      "type": "Int16",
+      "enabled": true,
+      "writeEnabled": false,
+      "min": null,
+      "max": null,
+      "allowedValues": [],
+      "note": "PC.xls 第19行：上位机报警码；沿用原表16位整数报警接口。"
+    },
+    {
+      "id": "Camera_Target_X",
+      "label": "X轴绝对坐标",
+      "direction": "PC->PLC",
+      "mw": 1012,
+      "mb": 2024,
+      "type": "Float32",
+      "enabled": true,
+      "writeEnabled": false,
+      "min": null,
+      "max": null,
+      "allowedValues": [],
+      "note": "PC.xls 第20行：X轴绝对坐标（由上位机下发）"
+    },
+    {
+      "id": "Camera_Target_Y",
+      "label": "Y轴绝对坐标",
+      "direction": "PC->PLC",
+      "mw": 1014,
+      "mb": 2028,
+      "type": "Float32",
+      "enabled": true,
+      "writeEnabled": false,
+      "min": null,
+      "max": null,
+      "allowedValues": [],
+      "note": "PC.xls 第21行：Y轴绝对坐标（由上位机下发）"
+    },
+    {
+      "id": "Camera_Target_Z",
+      "label": "检测Z轴绝对坐标",
+      "direction": "PC->PLC",
+      "mw": 1016,
+      "mb": 2032,
+      "type": "Float32",
+      "enabled": true,
+      "writeEnabled": false,
+      "min": null,
+      "max": null,
+      "allowedValues": [],
+      "note": "PC.xls 第22行：检测Z轴绝对坐标（由上位机下发）"
+    },
+    {
+      "id": "Scan_Target_Z",
+      "label": "扫码Z轴绝对坐标",
+      "direction": "PC->PLC",
+      "mw": 1018,
+      "mb": 2036,
+      "type": "Float32",
+      "enabled": true,
+      "writeEnabled": false,
+      "min": null,
+      "max": null,
+      "allowedValues": [],
+      "note": "PC.xls 第23行：扫码Z轴绝对坐标（由上位机配方下发）"
+    },
+    {
+      "id": "Grab_Target_Z",
+      "label": "抓取",
+      "direction": "PC->PLC",
+      "mw": 1020,
+      "mb": 2040,
+      "type": "Float32",
+      "enabled": true,
+      "writeEnabled": false,
+      "min": null,
+      "max": null,
+      "allowedValues": [],
+      "note": "PC.xls 第24行：抓取（分拣）Z轴绝对坐标（由上位机配方下发）"
+    },
+    {
+      "id": "Rotate_Target_R",
+      "label": "R轴绝对目标角度",
+      "direction": "PC->PLC",
+      "mw": 1022,
+      "mb": 2044,
+      "type": "Float32",
+      "enabled": true,
+      "writeEnabled": false,
+      "min": null,
+      "max": null,
+      "allowedValues": [],
+      "note": "PC.xls 第25行：R轴绝对目标角度（由上位机下发）"
+    },
+    {
+      "id": "Model_Number",
+      "label": "单个零件型号",
+      "direction": "PC->PLC",
+      "mw": 1024,
+      "mb": 2048,
+      "type": "Float32",
+      "enabled": true,
+      "writeEnabled": false,
+      "min": null,
+      "max": null,
+      "allowedValues": [],
+      "note": "PC.xls 第26行：单个零件型号（a、b、c、d、e） 组装零件型号（A、B、C、D、E）"
+    },
+    {
+      "id": "Global_Target_Speed",
+      "label": "整体目标速度，由上位机下发并赋予各轴",
+      "direction": "PC->PLC",
+      "mw": 1026,
+      "mb": 2052,
+      "type": "Float32",
+      "enabled": true,
+      "writeEnabled": false,
+      "min": null,
+      "max": null,
+      "allowedValues": [],
+      "note": "PC.xls 第27行：整体目标速度，由上位机下发并赋予各轴。"
+    },
+    {
+      "id": "X_Positive_Limit",
+      "label": "X轴正限位反馈",
+      "direction": "PLC->PC",
+      "mw": 3000,
+      "mb": 6000,
+      "type": "BoolByte",
+      "enabled": true,
+      "writeEnabled": false,
+      "min": null,
+      "max": null,
+      "allowedValues": [
+        0,
+        1
+      ],
+      "note": "PLC(2).xls 第2行：X轴正限位反馈；0=未触发；1=触发。"
+    },
+    {
+      "id": "X_Negative_Limit",
+      "label": "X轴负限位反馈",
+      "direction": "PLC->PC",
+      "mw": 3000,
+      "mb": 6001,
+      "type": "BoolByte",
+      "enabled": true,
+      "writeEnabled": false,
+      "min": null,
+      "max": null,
+      "allowedValues": [
+        0,
+        1
+      ],
+      "note": "PLC(2).xls 第3行：X轴负限位反馈；0=未触发；1=触发。"
+    },
+    {
+      "id": "X_Home",
+      "label": "X轴原点开关反馈",
+      "direction": "PLC->PC",
+      "mw": 3001,
+      "mb": 6002,
+      "type": "BoolByte",
+      "enabled": true,
+      "writeEnabled": false,
+      "min": null,
+      "max": null,
+      "allowedValues": [
+        0,
+        1
+      ],
+      "note": "PLC(2).xls 第4行：X轴原点开关反馈；0=无效；1=有效。"
+    },
+    {
+      "id": "Y_Positive_Limit",
+      "label": "Y轴正限位反馈",
+      "direction": "PLC->PC",
+      "mw": 3001,
+      "mb": 6003,
+      "type": "BoolByte",
+      "enabled": true,
+      "writeEnabled": false,
+      "min": null,
+      "max": null,
+      "allowedValues": [
+        0,
+        1
+      ],
+      "note": "PLC(2).xls 第5行：Y轴正限位反馈；0=未触发；1=触发。"
+    },
+    {
+      "id": "Y_Negative_Limit",
+      "label": "Y轴负限位反馈",
+      "direction": "PLC->PC",
+      "mw": 3002,
+      "mb": 6004,
+      "type": "BoolByte",
+      "enabled": true,
+      "writeEnabled": false,
+      "min": null,
+      "max": null,
+      "allowedValues": [
+        0,
+        1
+      ],
+      "note": "PLC(2).xls 第6行：Y轴负限位反馈；0=未触发；1=触发。"
+    },
+    {
+      "id": "Y_Home",
+      "label": "Y轴原点开关反馈",
+      "direction": "PLC->PC",
+      "mw": 3002,
+      "mb": 6005,
+      "type": "BoolByte",
+      "enabled": true,
+      "writeEnabled": false,
+      "min": null,
+      "max": null,
+      "allowedValues": [
+        0,
+        1
+      ],
+      "note": "PLC(2).xls 第7行：Y轴原点开关反馈；0=无效；1=有效。"
+    },
+    {
+      "id": "Z_Camera_Positive_Limit",
+      "label": "检测Z轴正限位反馈",
+      "direction": "PLC->PC",
+      "mw": 3003,
+      "mb": 6006,
+      "type": "BoolByte",
+      "enabled": true,
+      "writeEnabled": false,
+      "min": null,
+      "max": null,
+      "allowedValues": [
+        0,
+        1
+      ],
+      "note": "PLC(2).xls 第8行：检测Z轴正限位反馈；下位机上传；0=无效；1=有效。"
+    },
+    {
+      "id": "Z_Camera_Negative_Limit",
+      "label": "检测Z轴负限位反馈",
+      "direction": "PLC->PC",
+      "mw": 3003,
+      "mb": 6007,
+      "type": "BoolByte",
+      "enabled": true,
+      "writeEnabled": false,
+      "min": null,
+      "max": null,
+      "allowedValues": [
+        0,
+        1
+      ],
+      "note": "PLC(2).xls 第9行：检测Z轴负限位反馈；下位机上传；0=无效；1=有效。"
+    },
+    {
+      "id": "Z_Camera_Home",
+      "label": "检测Z轴原点反馈",
+      "direction": "PLC->PC",
+      "mw": 3004,
+      "mb": 6008,
+      "type": "BoolByte",
+      "enabled": true,
+      "writeEnabled": false,
+      "min": null,
+      "max": null,
+      "allowedValues": [
+        0,
+        1
+      ],
+      "note": "PLC(2).xls 第10行：检测Z轴原点反馈；下位机上传；0=无效；1=有效。"
+    },
+    {
+      "id": "Z_Scan_Positive_Limit",
+      "label": "扫码Z轴正限位反馈",
+      "direction": "PLC->PC",
+      "mw": 3004,
+      "mb": 6009,
+      "type": "BoolByte",
+      "enabled": true,
+      "writeEnabled": false,
+      "min": null,
+      "max": null,
+      "allowedValues": [
+        0,
+        1
+      ],
+      "note": "PLC(2).xls 第11行：扫码Z轴正限位反馈；下位机上传；0=无效；1=有效。"
+    },
+    {
+      "id": "Z_Scan_Negative_Limit",
+      "label": "扫码Z轴负限位反馈",
+      "direction": "PLC->PC",
+      "mw": 3005,
+      "mb": 6010,
+      "type": "BoolByte",
+      "enabled": true,
+      "writeEnabled": false,
+      "min": null,
+      "max": null,
+      "allowedValues": [
+        0,
+        1
+      ],
+      "note": "PLC(2).xls 第12行：扫码Z轴负限位反馈；下位机上传；0=无效；1=有效。"
+    },
+    {
+      "id": "Z_Scan_Home",
+      "label": "扫码Z轴原点反馈",
+      "direction": "PLC->PC",
+      "mw": 3005,
+      "mb": 6011,
+      "type": "BoolByte",
+      "enabled": true,
+      "writeEnabled": false,
+      "min": null,
+      "max": null,
+      "allowedValues": [
+        0,
+        1
+      ],
+      "note": "PLC(2).xls 第13行：扫码Z轴原点反馈；下位机上传；0=无效；1=有效。"
+    },
+    {
+      "id": "Z_Grab_Positive_Limit",
+      "label": "翻转分拣Z轴正限位反馈",
+      "direction": "PLC->PC",
+      "mw": 3006,
+      "mb": 6012,
+      "type": "BoolByte",
+      "enabled": true,
+      "writeEnabled": false,
+      "min": null,
+      "max": null,
+      "allowedValues": [
+        0,
+        1
+      ],
+      "note": "PLC(2).xls 第14行：翻转分拣Z轴正限位反馈；下位机上传；0=无效；1=有效。"
+    },
+    {
+      "id": "Z_Grab_Negative_Limit",
+      "label": "翻转分拣Z轴负限位反馈",
+      "direction": "PLC->PC",
+      "mw": 3006,
+      "mb": 6013,
+      "type": "BoolByte",
+      "enabled": true,
+      "writeEnabled": false,
+      "min": null,
+      "max": null,
+      "allowedValues": [
+        0,
+        1
+      ],
+      "note": "PLC(2).xls 第15行：翻转分拣Z轴负限位反馈；下位机上传；0=无效；1=有效。"
+    },
+    {
+      "id": "Z_Grab_Home",
+      "label": "翻转分拣Z轴原点反馈",
+      "direction": "PLC->PC",
+      "mw": 3007,
+      "mb": 6014,
+      "type": "BoolByte",
+      "enabled": true,
+      "writeEnabled": false,
+      "min": null,
+      "max": null,
+      "allowedValues": [
+        0,
+        1
+      ],
+      "note": "PLC(2).xls 第16行：翻转分拣Z轴原点反馈；下位机上传；0=无效；1=有效。"
+    },
+    {
+      "id": "PLC_Ready_State",
+      "label": "PLC就绪状态：1=已就绪，可接收上位机指令",
+      "direction": "PLC->PC",
+      "mw": 3007,
+      "mb": 6015,
+      "type": "BoolByte",
+      "enabled": true,
+      "writeEnabled": false,
+      "min": null,
+      "max": null,
+      "allowedValues": [
+        0,
+        1
+      ],
+      "note": "PLC(2).xls 第17行：PLC就绪状态：1=已就绪，可接收上位机指令；0=未就绪"
+    },
+    {
+      "id": "PLC_Mode_Auto",
+      "label": "PLC处于自动模式",
+      "direction": "PLC->PC",
+      "mw": 3008,
+      "mb": 6016,
+      "type": "BoolByte",
+      "enabled": true,
+      "writeEnabled": false,
+      "min": null,
+      "max": null,
+      "allowedValues": [
+        0,
+        1
+      ],
+      "note": "PLC(2).xls 第18行：PLC处于自动模式（非手动/维护）"
+    },
+    {
+      "id": "Start_Button",
+      "label": "启动按钮状态",
+      "direction": "PLC->PC",
+      "mw": 3008,
+      "mb": 6017,
+      "type": "BoolByte",
+      "enabled": true,
+      "writeEnabled": false,
+      "min": null,
+      "max": null,
+      "allowedValues": [
+        0,
+        1
+      ],
+      "note": "PLC(2).xls 第19行：启动按钮状态；0=未按下；1=按下。"
+    },
+    {
+      "id": "Stop_Button",
+      "label": "停止按钮状态",
+      "direction": "PLC->PC",
+      "mw": 3009,
+      "mb": 6018,
+      "type": "BoolByte",
+      "enabled": true,
+      "writeEnabled": false,
+      "min": null,
+      "max": null,
+      "allowedValues": [
+        0,
+        1
+      ],
+      "note": "PLC(2).xls 第20行：停止按钮状态；0=未按下；1=按下。"
+    },
+    {
+      "id": "Reset_Button",
+      "label": "复位按钮状态",
+      "direction": "PLC->PC",
+      "mw": 3009,
+      "mb": 6019,
+      "type": "BoolByte",
+      "enabled": true,
+      "writeEnabled": false,
+      "min": null,
+      "max": null,
+      "allowedValues": [
+        0,
+        1
+      ],
+      "note": "PLC(2).xls 第21行：复位按钮状态；0=未按下；1=按下。"
+    },
+    {
+      "id": "EStop_Active",
+      "label": "物理急停状态",
+      "direction": "PLC->PC",
+      "mw": 3010,
+      "mb": 6020,
+      "type": "BoolByte",
+      "enabled": true,
+      "writeEnabled": false,
+      "min": null,
+      "max": null,
+      "allowedValues": [
+        0,
+        1
+      ],
+      "note": "PLC(2).xls 第22行：物理急停状态；0=未触发；1=急停触发。"
+    },
+    {
+      "id": "Stack_Light_Red",
+      "label": "三色灯红灯状态",
+      "direction": "PLC->PC",
+      "mw": 3010,
+      "mb": 6021,
+      "type": "BoolByte",
+      "enabled": true,
+      "writeEnabled": false,
+      "min": null,
+      "max": null,
+      "allowedValues": [
+        0,
+        1
+      ],
+      "note": "PLC(2).xls 第23行：三色灯红灯状态；0=关闭；1=点亮。"
+    },
+    {
+      "id": "Stack_Light_Green",
+      "label": "三色灯绿灯状态",
+      "direction": "PLC->PC",
+      "mw": 3011,
+      "mb": 6022,
+      "type": "BoolByte",
+      "enabled": true,
+      "writeEnabled": false,
+      "min": null,
+      "max": null,
+      "allowedValues": [
+        0,
+        1
+      ],
+      "note": "PLC(2).xls 第24行：三色灯绿灯状态；0=关闭；1=点亮。"
+    },
+    {
+      "id": "Stack_Light_Yellow",
+      "label": "三色灯黄灯状态",
+      "direction": "PLC->PC",
+      "mw": 3011,
+      "mb": 6023,
+      "type": "BoolByte",
+      "enabled": true,
+      "writeEnabled": false,
+      "min": null,
+      "max": null,
+      "allowedValues": [
+        0,
+        1
+      ],
+      "note": "PLC(2).xls 第25行：三色灯黄灯状态；0=关闭；1=点亮。"
+    },
+    {
+      "id": "Buzzer_State",
+      "label": "蜂鸣器状态",
+      "direction": "PLC->PC",
+      "mw": 3012,
+      "mb": 6024,
+      "type": "BoolByte",
+      "enabled": true,
+      "writeEnabled": false,
+      "min": null,
+      "max": null,
+      "allowedValues": [
+        0,
+        1
+      ],
+      "note": "PLC(2).xls 第26行：蜂鸣器状态；0=关闭；1=鸣响。"
+    },
+    {
+      "id": "Start_Indicator",
+      "label": "启动指示灯状态",
+      "direction": "PLC->PC",
+      "mw": 3012,
+      "mb": 6025,
+      "type": "BoolByte",
+      "enabled": true,
+      "writeEnabled": false,
+      "min": null,
+      "max": null,
+      "allowedValues": [
+        0,
+        1
+      ],
+      "note": "PLC(2).xls 第27行：启动指示灯状态；0=关闭；1=点亮。"
+    },
+    {
+      "id": "Stop_Indicator",
+      "label": "停止指示灯状态",
+      "direction": "PLC->PC",
+      "mw": 3013,
+      "mb": 6026,
+      "type": "BoolByte",
+      "enabled": true,
+      "writeEnabled": false,
+      "min": null,
+      "max": null,
+      "allowedValues": [
+        0,
+        1
+      ],
+      "note": "PLC(2).xls 第28行：停止指示灯状态；0=关闭；1=点亮。"
+    },
+    {
+      "id": "Reset_Indicator",
+      "label": "复位指示灯状态",
+      "direction": "PLC->PC",
+      "mw": 3013,
+      "mb": 6027,
+      "type": "BoolByte",
+      "enabled": true,
+      "writeEnabled": false,
+      "min": null,
+      "max": null,
+      "allowedValues": [
+        0,
+        1
+      ],
+      "note": "PLC(2).xls 第29行：复位指示灯状态；0=关闭；1=点亮。"
+    },
+    {
+      "id": "X_Axis_Alarm",
+      "label": "X轴报警",
+      "direction": "PLC->PC",
+      "mw": 3014,
+      "mb": 6028,
+      "type": "BoolByte",
+      "enabled": true,
+      "writeEnabled": false,
+      "min": null,
+      "max": null,
+      "allowedValues": [
+        0,
+        1
+      ],
+      "note": "PLC(2).xls 第30行：X轴报警；0=无报警；1=报警。"
+    },
+    {
+      "id": "Y_Axis_Alarm",
+      "label": "Y轴报警",
+      "direction": "PLC->PC",
+      "mw": 3014,
+      "mb": 6029,
+      "type": "BoolByte",
+      "enabled": true,
+      "writeEnabled": false,
+      "min": null,
+      "max": null,
+      "allowedValues": [
+        0,
+        1
+      ],
+      "note": "PLC(2).xls 第31行：Y轴报警；0=无报警；1=报警。"
+    },
+    {
+      "id": "Z_Camera_Axis_Alarm",
+      "label": "检测Z轴报警",
+      "direction": "PLC->PC",
+      "mw": 3015,
+      "mb": 6030,
+      "type": "BoolByte",
+      "enabled": true,
+      "writeEnabled": false,
+      "min": null,
+      "max": null,
+      "allowedValues": [
+        0,
+        1
+      ],
+      "note": "PLC(2).xls 第32行：检测Z轴报警；0=无报警；1=报警。"
+    },
+    {
+      "id": "Z_Scan_Axis_Alarm",
+      "label": "扫码",
+      "direction": "PLC->PC",
+      "mw": 3015,
+      "mb": 6031,
+      "type": "BoolByte",
+      "enabled": true,
+      "writeEnabled": false,
+      "min": null,
+      "max": null,
+      "allowedValues": [
+        0,
+        1
+      ],
+      "note": "PLC(2).xls 第33行：扫码（零件二维码）Z轴报警；0=无报警；1=报警。"
+    },
+    {
+      "id": "Z_Flip_Axis_Alarm",
+      "label": "翻面Z轴报警",
+      "direction": "PLC->PC",
+      "mw": 3016,
+      "mb": 6032,
+      "type": "BoolByte",
+      "enabled": true,
+      "writeEnabled": false,
+      "min": null,
+      "max": null,
+      "allowedValues": [
+        0,
+        1
+      ],
+      "note": "PLC(2).xls 第34行：翻面Z轴报警；0=无报警；1=报警。"
+    },
+    {
+      "id": "Rotate_Axis_Alarm",
+      "label": "旋转轴报警",
+      "direction": "PLC->PC",
+      "mw": 3016,
+      "mb": 6033,
+      "type": "BoolByte",
+      "enabled": true,
+      "writeEnabled": false,
+      "min": null,
+      "max": null,
+      "allowedValues": [
+        0,
+        1
+      ],
+      "note": "PLC(2).xls 第35行：旋转轴报警；0=无报警；1=报警。"
+    },
+    {
+      "id": "Flip_Axis_Alarm",
+      "label": "翻转轴报警",
+      "direction": "PLC->PC",
+      "mw": 3017,
+      "mb": 6034,
+      "type": "BoolByte",
+      "enabled": true,
+      "writeEnabled": false,
+      "min": null,
+      "max": null,
+      "allowedValues": [
+        0,
+        1
+      ],
+      "note": "PLC(2).xls 第36行：翻转轴报警；0=无报警；1=报警。"
+    },
+    {
+      "id": "PLC_System_Fault",
+      "label": "PLC硬件故障",
+      "direction": "PLC->PC",
+      "mw": 3017,
+      "mb": 6035,
+      "type": "BoolByte",
+      "enabled": true,
+      "writeEnabled": false,
+      "min": null,
+      "max": null,
+      "allowedValues": [
+        0,
+        1
+      ],
+      "note": "PLC(2).xls 第37行：PLC硬件故障（急停、光栅、过载）"
+    },
+    {
+      "id": "PC_Communication_Alarm",
+      "label": "上位机与下位机通信报警",
+      "direction": "PLC->PC",
+      "mw": 3018,
+      "mb": 6036,
+      "type": "BoolByte",
+      "enabled": true,
+      "writeEnabled": false,
+      "min": null,
+      "max": null,
+      "allowedValues": [
+        0,
+        1
+      ],
+      "note": "PLC(2).xls 第38行：上位机与下位机通信报警；0=无报警；1=报警。"
+    },
+    {
+      "id": "PC_Alarm",
+      "label": "上位机其他报警",
+      "direction": "PLC->PC",
+      "mw": 3018,
+      "mb": 6037,
+      "type": "BoolByte",
+      "enabled": true,
+      "writeEnabled": false,
+      "min": null,
+      "max": null,
+      "allowedValues": [
+        0,
+        1
+      ],
+      "note": "PLC(2).xls 第39行：上位机其他报警"
+    },
+    {
+      "id": "PLC_Heartbeat_Req",
+      "label": "PLC心跳脉冲",
+      "direction": "PLC->PC",
+      "mw": 3019,
+      "mb": 6038,
+      "type": "BoolByte",
+      "enabled": true,
+      "writeEnabled": false,
+      "min": null,
+      "max": null,
+      "allowedValues": [
+        0,
+        1
+      ],
+      "note": "PLC(2).xls 第40行：PLC心跳脉冲（翻转）"
+    },
+    {
+      "id": "X_Pos_Confirmed",
+      "label": "X_Pos_Confirmed",
+      "direction": "PLC->PC",
+      "mw": 3020,
+      "mb": 6040,
+      "type": "Int16",
+      "enabled": true,
+      "writeEnabled": false,
+      "min": null,
+      "max": null,
+      "allowedValues": [],
+      "note": "PLC(2).xls 第41行：0=运动中, 1=到位, 2=超时未到位"
+    },
+    {
+      "id": "Y_Pos_Confirmed",
+      "label": "Y_Pos_Confirmed",
+      "direction": "PLC->PC",
+      "mw": 3021,
+      "mb": 6042,
+      "type": "Int16",
+      "enabled": true,
+      "writeEnabled": false,
+      "min": null,
+      "max": null,
+      "allowedValues": [],
+      "note": "PLC(2).xls 第42行：0=运动中, 1=到位, 2=超时未到位"
+    },
+    {
+      "id": "Z_Camera_Pos_Confirmed",
+      "label": "Z_Camera_Pos_Confirmed",
+      "direction": "PLC->PC",
+      "mw": 3022,
+      "mb": 6044,
+      "type": "Int16",
+      "enabled": true,
+      "writeEnabled": false,
+      "min": null,
+      "max": null,
+      "allowedValues": [],
+      "note": "PLC(2).xls 第43行：0=运动中, 1=到位, 2=超时未到位"
+    },
+    {
+      "id": "Z_Scan_Pos_Confirmed",
+      "label": "Z_Scan_Pos_Confirmed",
+      "direction": "PLC->PC",
+      "mw": 3023,
+      "mb": 6046,
+      "type": "Int16",
+      "enabled": true,
+      "writeEnabled": false,
+      "min": null,
+      "max": null,
+      "allowedValues": [],
+      "note": "PLC(2).xls 第44行：0=运动中, 1=到位, 2=超时未到位"
+    },
+    {
+      "id": "Z_Grap_Pos_Confirmed",
+      "label": "Z_Grap_Pos_Confirmed",
+      "direction": "PLC->PC",
+      "mw": 3024,
+      "mb": 6048,
+      "type": "Int16",
+      "enabled": true,
+      "writeEnabled": false,
+      "min": null,
+      "max": null,
+      "allowedValues": [],
+      "note": "PLC(2).xls 第45行：0=运动中, 1=到位, 2=超时未到位"
+    },
+    {
+      "id": "Flip_Status",
+      "label": "Flip_Status",
+      "direction": "PLC->PC",
+      "mw": 3025,
+      "mb": 6050,
+      "type": "Int16",
+      "enabled": true,
+      "writeEnabled": false,
+      "min": null,
+      "max": null,
+      "allowedValues": [],
+      "note": "PLC(2).xls 第46行：0=空闲, 1=执行中, 2=翻面完成, 3=翻面失败(伺服故障、超时判断=翻面失败）上位机下发翻面坐标，翻完一个发送翻面完成给上位机，等待上位机下发放料坐标"
+    },
+    {
+      "id": "Flip_Unload_Status",
+      "label": "Flip_Unload_Status",
+      "direction": "PLC->PC",
+      "mw": 3026,
+      "mb": 6052,
+      "type": "Int16",
+      "enabled": true,
+      "writeEnabled": false,
+      "min": null,
+      "max": null,
+      "allowedValues": [],
+      "note": "PLC(2).xls 第47行：0=空闲, 1=执行中, 2=放料完成, 3=翻面失败"
+    },
+    {
+      "id": "Sorting_Exec_Status",
+      "label": "公共取放料反馈，普通分拣、旋转工位上料及旋转零件分拣共用",
+      "direction": "PLC->PC",
+      "mw": 3027,
+      "mb": 6054,
+      "type": "Int16",
+      "enabled": true,
+      "writeEnabled": false,
+      "min": null,
+      "max": null,
+      "allowedValues": [],
+      "note": "PLC(2).xls 第48行：公共取放料反馈，普通分拣、旋转工位上料及旋转零件分拣共用。0=空闲；1=取料成功；2=分拣成功（放料完成）；3=抓取空/失败（锁停）。"
+    },
+    {
+      "id": "Alarm_Code",
+      "label": "报警码",
+      "direction": "PLC->PC",
+      "mw": 3028,
+      "mb": 6056,
+      "type": "Int16",
+      "enabled": true,
+      "writeEnabled": false,
+      "min": null,
+      "max": null,
+      "allowedValues": [],
+      "note": "PLC(2).xls 第49行：报警码；按位表示光栅、急停、安全门、伺服过载、通信、下位机内部故障、心跳及上位机报警，位定义见“报警位定义”页。"
+    },
+    {
+      "id": "Alarm_Level",
+      "label": "报警等级",
+      "direction": "PLC->PC",
+      "mw": 3029,
+      "mb": 6058,
+      "type": "Int16",
+      "enabled": true,
+      "writeEnabled": false,
+      "min": null,
+      "max": null,
+      "allowedValues": [],
+      "note": "PLC(2).xls 第50行：报警等级；1=警告；2=一般故障；3=严重故障。"
+    },
+    {
+      "id": "R_Pos_Confirmed",
+      "label": "R_Pos_Confirmed",
+      "direction": "PLC->PC",
+      "mw": 3030,
+      "mb": 6060,
+      "type": "Int16",
+      "enabled": true,
+      "writeEnabled": false,
+      "min": null,
+      "max": null,
+      "allowedValues": [],
+      "note": "PLC(2).xls 第51行：0=运动中，1=到位，2=超时未到位"
+    },
+    {
+      "id": "Grab_Active_ID",
+      "label": "Grab_Active_ID",
+      "direction": "PLC->PC",
+      "mw": 3031,
+      "mb": 6062,
+      "type": "Int16",
+      "enabled": true,
+      "writeEnabled": false,
+      "min": null,
+      "max": null,
+      "allowedValues": [],
+      "note": "PLC(2).xls 第52行：0=无有效选择；1=已选定抓手1；2=已选定抓手2，编号不绑定用途。PLC反馈实际选用抓手，正常保持旧值；接收不同 Grab_ID 并完成抓手选择后更新。PC仅在更换或重新建立选择时确认反馈，同编号且当前选择有效时直接沿用，闭环中不校验。翻面不使用。"
+    },
+    {
+      "id": "Machine_Current_Pos_X",
+      "label": "PLC实时反馈当前X物理坐标，供上位机校验",
+      "direction": "PLC->PC",
+      "mw": 3032,
+      "mb": 6064,
+      "type": "Float32",
+      "enabled": true,
+      "writeEnabled": false,
+      "min": null,
+      "max": null,
+      "allowedValues": [],
+      "note": "PLC(2).xls 第53行：PLC实时反馈当前X物理坐标，供上位机校验"
+    },
+    {
+      "id": "Machine_Current_Pos_R",
+      "label": "R轴实际角度，供上位机核对旋转目标",
+      "direction": "PLC->PC",
+      "mw": 3034,
+      "mb": 6068,
+      "type": "Float32",
+      "enabled": true,
+      "writeEnabled": false,
+      "min": null,
+      "max": null,
+      "allowedValues": [],
+      "note": "PLC(2).xls 第54行：R轴实际角度，供上位机核对旋转目标"
+    },
+    {
+      "id": "X_Actual_Speed",
+      "label": "X轴实际速度",
+      "direction": "PLC->PC",
+      "mw": 3036,
+      "mb": 6072,
+      "type": "Float32",
+      "enabled": true,
+      "writeEnabled": false,
+      "min": null,
+      "max": null,
+      "allowedValues": [],
+      "note": "PLC(2).xls 第55行：X轴实际速度。"
+    },
+    {
+      "id": "Machine_Current_Pos_Y",
+      "label": "PLC实时反馈当前Y物理坐标，供上位机校验",
+      "direction": "PLC->PC",
+      "mw": 3038,
+      "mb": 6076,
+      "type": "Float32",
+      "enabled": true,
+      "writeEnabled": false,
+      "min": null,
+      "max": null,
+      "allowedValues": [],
+      "note": "PLC(2).xls 第56行：PLC实时反馈当前Y物理坐标，供上位机校验"
+    },
+    {
+      "id": "Y_Actual_Speed",
+      "label": "Y轴实际速度",
+      "direction": "PLC->PC",
+      "mw": 3040,
+      "mb": 6080,
+      "type": "Float32",
+      "enabled": true,
+      "writeEnabled": false,
+      "min": null,
+      "max": null,
+      "allowedValues": [],
+      "note": "PLC(2).xls 第57行：Y轴实际速度。"
+    },
+    {
+      "id": "Machine_Current_Pos_Z",
+      "label": "PLC实时反馈检测Z物理坐标，供上位机校验",
+      "direction": "PLC->PC",
+      "mw": 3042,
+      "mb": 6084,
+      "type": "Float32",
+      "enabled": true,
+      "writeEnabled": false,
+      "min": null,
+      "max": null,
+      "allowedValues": [],
+      "note": "PLC(2).xls 第58行：PLC实时反馈检测Z物理坐标，供上位机校验"
+    },
+    {
+      "id": "Scan_Current_Pos_Z",
+      "label": "PLC实时反馈扫码Z物理坐标，供上位机校验",
+      "direction": "PLC->PC",
+      "mw": 3044,
+      "mb": 6088,
+      "type": "Float32",
+      "enabled": true,
+      "writeEnabled": false,
+      "min": null,
+      "max": null,
+      "allowedValues": [],
+      "note": "PLC(2).xls 第59行：PLC实时反馈扫码Z物理坐标，供上位机校验"
+    },
+    {
+      "id": "Flip_Grap_Current_Pos_Z",
+      "label": "PLC实时反馈翻面Z物理坐标，供上位机校验",
+      "direction": "PLC->PC",
+      "mw": 3046,
+      "mb": 6092,
+      "type": "Float32",
+      "enabled": true,
+      "writeEnabled": false,
+      "min": null,
+      "max": null,
+      "allowedValues": [],
+      "note": "PLC(2).xls 第60行：PLC实时反馈翻面Z物理坐标，供上位机校验"
+    }
+  ],
+  "axes": [
+    {
+      "name": "X",
+      "target": "Camera_Target_X",
+      "start": "X_Move_Start",
+      "feedback": "X_Pos_Confirmed",
+      "actual": "Machine_Current_Pos_X",
+      "confirmed": false,
+      "min": null,
+      "max": null,
+      "tolerance": null,
+      "unit": "",
+      "frame": "",
+      "timeoutMs": null,
+      "startValue": 1,
+      "idleValue": 0,
+      "movingValue": 0,
+      "doneValue": 1,
+      "errorValues": [
+        2
+      ]
+    },
+    {
+      "name": "Y",
+      "target": "Camera_Target_Y",
+      "start": "Y_Move_Start",
+      "feedback": "Y_Pos_Confirmed",
+      "actual": "Machine_Current_Pos_Y",
+      "confirmed": false,
+      "min": null,
+      "max": null,
+      "tolerance": null,
+      "unit": "",
+      "frame": "",
+      "timeoutMs": null,
+      "startValue": 1,
+      "idleValue": 0,
+      "movingValue": 0,
+      "doneValue": 1,
+      "errorValues": [
+        2
+      ]
+    },
+    {
+      "name": "CameraZ",
+      "target": "Camera_Target_Z",
+      "start": "Z_Camera_Move_Start",
+      "feedback": "Z_Camera_Pos_Confirmed",
+      "actual": "Machine_Current_Pos_Z",
+      "confirmed": false,
+      "min": null,
+      "max": null,
+      "tolerance": null,
+      "unit": "",
+      "frame": "",
+      "timeoutMs": null,
+      "startValue": 1,
+      "idleValue": 0,
+      "movingValue": 0,
+      "doneValue": 1,
+      "errorValues": [
+        2
+      ]
+    },
+    {
+      "name": "ScanZ",
+      "target": "Scan_Target_Z",
+      "start": "Z_Scan_Move_Start",
+      "feedback": "Z_Scan_Pos_Confirmed",
+      "actual": "Scan_Current_Pos_Z",
+      "confirmed": false,
+      "min": null,
+      "max": null,
+      "tolerance": null,
+      "unit": "",
+      "frame": "",
+      "timeoutMs": null,
+      "startValue": 1,
+      "idleValue": 0,
+      "movingValue": 0,
+      "doneValue": 1,
+      "errorValues": [
+        2
+      ]
+    },
+    {
+      "name": "GrabZ",
+      "target": "Grab_Target_Z",
+      "start": "Z_Grab_Move_Start",
+      "feedback": "Z_Grap_Pos_Confirmed",
+      "actual": "Flip_Grap_Current_Pos_Z",
+      "confirmed": false,
+      "min": null,
+      "max": null,
+      "tolerance": null,
+      "unit": "",
+      "frame": "",
+      "timeoutMs": null,
+      "startValue": 1,
+      "idleValue": 0,
+      "movingValue": 0,
+      "doneValue": 1,
+      "errorValues": [
+        2
+      ]
+    },
+    {
+      "name": "R",
+      "target": "Rotate_Target_R",
+      "start": "Rotate_Start",
+      "feedback": "R_Pos_Confirmed",
+      "actual": "Machine_Current_Pos_R",
+      "confirmed": false,
+      "min": null,
+      "max": null,
+      "tolerance": null,
+      "unit": "",
+      "frame": "",
+      "timeoutMs": null,
+      "startValue": 1,
+      "idleValue": 0,
+      "movingValue": 0,
+      "doneValue": 1,
+      "errorValues": [
+        2
+      ]
+    }
+  ]
+}

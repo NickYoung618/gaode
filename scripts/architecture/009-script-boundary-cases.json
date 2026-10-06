@@ -1,0 +1,357 @@
+{
+  "schemaVersion": "009-script-boundary-cases/1",
+  "casePurpose": "Same production AST checker; negative pass means specified rejection, never product pass. Inventory/parser process failure negatives added at the orchestration boundary.",
+  "cases": [
+    {
+      "caseId": "N11-cjs-alarm/alias",
+      "language": "javascript",
+      "path": "fixture.cjs",
+      "source": "const d=facts.run.startupDiagnostic; const f=d.reliableFeedback; check(f?.alarmBits===2,\"emergency\");",
+      "role": "business-script",
+      "kind": "negative",
+      "expectedRule": "A08"
+    },
+    {
+      "caseId": "N12-python-sorting/pick",
+      "language": "python",
+      "path": "fixture.py",
+      "source": "evidence=prop(event,\"positionEvidence\")\nvalue=next((prop(s,\"status\") for s in evidence if s),None)\nassert value==2",
+      "role": "business-script",
+      "kind": "negative",
+      "expectedRule": "A08"
+    },
+    {
+      "caseId": "N12-python-sorting/place",
+      "language": "python",
+      "path": "fixture.py",
+      "source": "evidence=prop(event,\"positionEvidence\")\nvalue=next((prop(s,\"status\") for s in evidence if s),None)\nassert value==3",
+      "role": "business-script",
+      "kind": "negative",
+      "expectedRule": "A08"
+    },
+    {
+      "caseId": "N12-python-sorting/cleared",
+      "language": "python",
+      "path": "fixture.py",
+      "source": "evidence=prop(event,\"positionEvidence\")\nvalue=next((prop(s,\"status\") for s in evidence if s),None)\nassert value==0",
+      "role": "business-script",
+      "kind": "negative",
+      "expectedRule": "A08"
+    },
+    {
+      "caseId": "N13-script-bit/javascript",
+      "language": "javascript",
+      "path": "fixture.cjs",
+      "source": "const bits=response.plc.alarmBits; const renamed=bits; if ((renamed & 2)===0) complete();",
+      "role": "business-script",
+      "kind": "negative",
+      "expectedRule": "A08"
+    },
+    {
+      "caseId": "N13-script-bit/python",
+      "language": "python",
+      "path": "fixture.py",
+      "source": "bits=response[\"alarmBits\"]\nrenamed=bits\nassert (renamed & 2)==0",
+      "role": "business-script",
+      "kind": "negative",
+      "expectedRule": "A08"
+    },
+    {
+      "caseId": "N14-script-escape/dynamic",
+      "language": "javascript",
+      "path": "fixture.cjs",
+      "source": "const d=facts.run.startupDiagnostic.reliableFeedback; check(d[fieldName]===2);",
+      "role": "business-script",
+      "kind": "negative",
+      "expectedRule": "A09"
+    },
+    {
+      "caseId": "N14-script-escape/helper",
+      "language": "python",
+      "path": "fixture.py",
+      "source": "d=response[\"positionEvidence\"]\nunknown_helper(d)",
+      "role": "business-script",
+      "kind": "negative",
+      "expectedRule": "A09"
+    },
+    {
+      "caseId": "N16-script-parser/javascript",
+      "language": "javascript",
+      "path": "fixture.cjs",
+      "source": "const broken = ;",
+      "role": "business-script",
+      "kind": "negative",
+      "expectedRule": "PARSE"
+    },
+    {
+      "caseId": "N16-script-parser/python",
+      "language": "python",
+      "path": "fixture.py",
+      "source": "def broken(:",
+      "role": "business-script",
+      "kind": "negative",
+      "expectedRule": "PARSE"
+    },
+    {
+      "caseId": "N16-script-parser/powershell",
+      "language": "powershell",
+      "path": "fixture.ps1",
+      "source": "if (",
+      "role": "business-script",
+      "kind": "negative",
+      "expectedRule": "PARSE"
+    },
+    {
+      "caseId": "N17-ps-raw/where",
+      "language": "powershell",
+      "path": "fixture.ps1",
+      "source": "$writes | Where-Object {$_.documentNumber -eq 9 -and $_.value -eq 1}",
+      "role": "business-script",
+      "kind": "negative",
+      "expectedRule": "A08"
+    },
+    {
+      "caseId": "P07-js-semantics/basic",
+      "language": "javascript",
+      "path": "fixture.cjs",
+      "source": "check(response.status===202); check(facts.safetyAssessment===\"Unconfirmed\"); const {reasonCodes}=facts; check(reasonCodes.includes(\"RequiredEvidenceUnavailable\")); const axes=response.plc.axisObservations;",
+      "role": "business-script",
+      "kind": "positive",
+      "expectedRule": null
+    },
+    {
+      "caseId": "P08-python-semantics/basic",
+      "language": "python",
+      "path": "fixture.py",
+      "source": "assert receipt[\"receiptValidity\"]==\"ValidCurrent\"\nassert request[\"physicalSlotIndex\"]==3\nassert len(images)==2",
+      "role": "business-script",
+      "kind": "positive",
+      "expectedRule": null
+    },
+    {
+      "caseId": "P09-opaque-orchestration/javascript",
+      "language": "javascript",
+      "path": "fixture.cjs",
+      "source": "const reference=response.diagnosticEvidenceReference; console.log(reference);",
+      "role": "business-script",
+      "kind": "positive",
+      "expectedRule": null
+    },
+    {
+      "caseId": "P09-opaque-orchestration/python",
+      "language": "python",
+      "path": "fixture.py",
+      "source": "reference=response[\"diagnosticEvidenceReference\"]\nprint(reference)",
+      "role": "business-script",
+      "kind": "positive",
+      "expectedRule": null
+    },
+    {
+      "caseId": "P09-opaque-orchestration/powershell",
+      "language": "powershell",
+      "path": "fixture.ps1",
+      "source": "if ($LASTEXITCODE -ne 0) { throw \"ChildFailed\" }; Test-Path -LiteralPath $evidencePath",
+      "role": "business-script",
+      "kind": "positive",
+      "expectedRule": null
+    },
+    {
+      "caseId": "P10-wire-oracle/javascript",
+      "language": "javascript",
+      "path": "fixture.cjs",
+      "source": "check(response.alarmBits===2); check(response.protocolStatus===3);",
+      "role": "communication-probe",
+      "kind": "positive",
+      "expectedRule": null
+    },
+    {
+      "caseId": "P10-wire-oracle/python",
+      "language": "python",
+      "path": "fixture.py",
+      "source": "assert evidence[\"protocolStatus\"]==2\nassert evidence[\"sortingAckCleared\"]",
+      "role": "communication-probe",
+      "kind": "positive",
+      "expectedRule": null
+    },
+    {
+      "caseId": "N14-script-escape/semantic-dynamic",
+      "language": "javascript",
+      "path": "fixture.cjs",
+      "source": "const p=facts.plc; check(p[fieldName]===2);",
+      "role": "business-script",
+      "kind": "negative",
+      "expectedRule": "A09"
+    },
+    {
+      "caseId": "N14-script-escape/unknown-shape",
+      "language": "javascript",
+      "path": "fixture.cjs",
+      "source": "const p=facts.plc; check(p.devicePhase===2);",
+      "role": "business-script",
+      "kind": "negative",
+      "expectedRule": "A10"
+    },
+    {
+      "caseId": "N14-script-escape/python-unknown-shape",
+      "language": "python",
+      "path": "fixture.py",
+      "source": "p=facts[\"plc\"]\nassert p[\"devicePhase\"]==2",
+      "role": "business-script",
+      "kind": "negative",
+      "expectedRule": "A10"
+    },
+    {
+      "caseId": "N11-cjs-alarm/destructure",
+      "language": "javascript",
+      "path": "fixture.cjs",
+      "source": "const {alarmBits: phase}=facts; check(phase===2);",
+      "role": "business-script",
+      "kind": "negative",
+      "expectedRule": "A08"
+    },
+    {
+      "caseId": "N15-script-unclassified/business-as-probe",
+      "language": "javascript",
+      "path": "fixture.cjs",
+      "source": "check(facts.run.finalOutcome===1);",
+      "role": "communication-probe",
+      "kind": "negative",
+      "expectedRule": "A10"
+    },
+    {
+      "caseId": "P07-js-semantics/http-capital-status",
+      "language": "javascript",
+      "path": "fixture.cjs",
+      "source": "check(response.Status===202); check(response.status===403);",
+      "role": "business-script",
+      "kind": "positive",
+      "expectedRule": null
+    },
+    {
+      "caseId": "P07-js-semantics/device-schema",
+      "language": "javascript",
+      "path": "fixture.cjs",
+      "source": "const p=facts.plc; check(p.safetyAssessment===\"Clear\");",
+      "role": "business-script",
+      "kind": "positive",
+      "expectedRule": null
+    },
+    {
+      "caseId": "P08-python-semantics/device-schema",
+      "language": "python",
+      "path": "fixture.py",
+      "source": "p=facts[\"plc\"]\nassert p[\"reliability\"]==\"Reliable\"\nassert isinstance(response[\"plc\"], dict)\naxes=response[\"plc\"][\"axisObservations\"]",
+      "role": "business-script",
+      "kind": "positive",
+      "expectedRule": null
+    },
+    {
+      "caseId": "P07-js-semantics/startup-current-shape",
+      "language": "javascript",
+      "path": "fixture.cjs",
+      "source": "const d=facts.run.startupDiagnostic; check(d.connectionEpoch===1 && d.recordNature===\"Derived\");",
+      "role": "business-script",
+      "kind": "positive",
+      "expectedRule": null
+    },
+    {
+      "caseId": "N11-cjs-alarm/startup-obsolete-field",
+      "language": "javascript",
+      "path": "fixture.cjs",
+      "source": "const d=facts.run.startupDiagnostic; check(d.observationId===1);",
+      "role": "business-script",
+      "kind": "negative",
+      "expectedRule": "A10"
+    },
+    {
+      "caseId": "N12-python-sorting/audit-get",
+      "language": "python",
+      "path": "fixture.py",
+      "source": "batch=facts.get(\"plcWriteAudit\")\nactions=batch.get(\"actions\",[])\nassert any(a.get(\"command\")==2 for a in actions)",
+      "role": "business-script",
+      "kind": "negative",
+      "expectedRule": "A08"
+    },
+    {
+      "caseId": "N12-python-sorting/changes-alias",
+      "language": "python",
+      "path": "fixture.py",
+      "source": "changes=facts[\"plcChanges\"][\"changes\"]\nassert any(c.get(\"name\")==\"Flip_OK\" and c.get(\"current\")==\"1\" for c in changes)",
+      "role": "business-script",
+      "kind": "negative",
+      "expectedRule": "A08"
+    },
+    {
+      "caseId": "P08-python-semantics/business-get",
+      "language": "python",
+      "path": "fixture.py",
+      "source": "value=run.get(\"finalOutcome\")\nassert value==1",
+      "role": "business-script",
+      "kind": "positive",
+      "expectedRule": null
+    },
+    {
+      "caseId": "N12-handshake-fact/python",
+      "language": "python",
+      "path": "fixture.py",
+      "source": "assert payload.get(\"kind\")==\"DetectionResetConfirmed\"",
+      "role": "business-script",
+      "kind": "negative",
+      "expectedRule": "A08"
+    },
+    {
+      "caseId": "P09-semantic-action-fact/python",
+      "language": "python",
+      "path": "fixture.py",
+      "source": "assert payload.get(\"kind\")==\"AcquisitionReleased\"",
+      "role": "business-script",
+      "kind": "positive",
+      "expectedRule": null
+    },
+    {
+      "caseId": "N12-handshake-fact/javascript",
+      "language": "javascript",
+      "path": "fixture.cjs",
+      "source": "check(payload.kind===\"ManualFlipCompletionCleared\");",
+      "role": "business-script",
+      "kind": "negative",
+      "expectedRule": "A08"
+    },
+    {
+      "caseId": "P09-semantic-action-fact/javascript",
+      "language": "javascript",
+      "path": "fixture.cjs",
+      "source": "check(payload.kind===\"ManualFaceEstablished\");",
+      "role": "business-script",
+      "kind": "positive",
+      "expectedRule": null
+    },
+    {
+      "caseId": "N12-handshake-fact/powershell",
+      "language": "powershell",
+      "path": "fixture.ps1",
+      "source": "if($payload.kind -eq 'FlipAckCleared'){Write-Output 'done'}",
+      "role": "business-script",
+      "kind": "negative",
+      "expectedRule": "A08"
+    },
+    {
+      "caseId": "P09-semantic-action-fact/powershell",
+      "language": "powershell",
+      "path": "fixture.ps1",
+      "source": "if($payload.kind -eq 'FaceEstablished'){Write-Output 'done'}",
+      "role": "business-script",
+      "kind": "positive",
+      "expectedRule": null
+    }
+  ],
+  "internalHandshakeIdentities": [
+    "FlipAckCleared",
+    "ManualFlipCompletionCleared",
+    "ManualCompletionAndClear",
+    "DetectionResetConfirmed",
+    "RescanResetConfirmed",
+    "ThreeDHandshakeIncomplete",
+    "FHandshakeIncomplete"
+  ]
+}

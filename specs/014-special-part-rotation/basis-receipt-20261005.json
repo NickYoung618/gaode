@@ -1,0 +1,112 @@
+{
+  "recordedDate": "2026-10-05 Asia/Shanghai",
+  "workspace": "E:/dzk/gaode-1",
+  "kind": "ReadOnlyBasisReceipt/NotBuildOrSoftwareValidation",
+  "files": [
+    {
+      "path": "AGENTS.md",
+      "sha256": "f89ea961226ff699ed28ab0f6d6f36183ec2be8a9057540bacdf42500a19797d"
+    },
+    {
+      "path": ".specify/memory/constitution.md",
+      "sha256": "5b9cd445de3ce622a93a2e90d0e58e1c88940a8564cbbd6b225e5cbaeac291ed"
+    },
+    {
+      "path": ".specify/memory/constitution-alignment.md",
+      "sha256": "d1a1acf0a9f27e62de245e8edf8f29cf9187b4e9a3f8629c6d6a63b614420219"
+    },
+    {
+      "path": "高德_文档/new-1/PLC与上位机通信接口协议.docx",
+      "sha256": "0f8e404b0c8a1ca955a96adb6a712cbed7afcefe72af6ad11172f9ba8fa15547"
+    },
+    {
+      "path": "高德_文档/new-1/上下位机通讯交互信号表.xlsx",
+      "sha256": "1c3d267ae04b85391fbb13a7096f3b7d2d49e8b10e8364f7476e94d45e86641d"
+    },
+    {
+      "path": "artifacts/recipe-ui-fix-012/main-integration-20261005-report.md",
+      "sha256": "cb273ed8fd2a1309cc28b4e593504a1099be22c6db64915c77f267aa5879af99"
+    },
+    {
+      "path": "backend/src/Gaode.Application/Recipes/RecipeContracts.cs",
+      "sha256": "7cc76e0054c5548547ecc5933458d8f137029f1d435905d3cbb9e0c5b2ca3099"
+    },
+    {
+      "path": "backend/src/Gaode.Application/Recipes/RecipeRunPlanner.cs",
+      "sha256": "8949c847c0f528b77043a31802031b761a67481b3156f5ce595224496b08cd97"
+    },
+    {
+      "path": "backend/src/Gaode.Application/Workflow/RecipeDetectionExecutor.cs",
+      "sha256": "1785ee27240928412c671f5845856597cc6c701d1899cd915cc4b96615eb9888"
+    },
+    {
+      "path": "backend/src/Gaode.Infrastructure/Devices/Plc/LatestProtocolStageActionAdapter.Transfer.cs",
+      "sha256": "c209ca1aea7870da2d832cc3739b39774d0980f4147f8572965e9f2271657a39"
+    },
+    {
+      "path": "frontend/src/recipe-authoring.js",
+      "sha256": "ad14a1a9ab3bf94f44f1790e521fd841278b73fc0209edc6e940ce3b0f71bcee"
+    },
+    {
+      "path": "specs/006-frontend-station01-console/spec.md",
+      "sha256": "e365046f0d359fcb02d8bca4e92e2c4796da9917ce88a61f27ac5407de078778"
+    },
+    {
+      "path": "specs/008-recipe-driven-inspection/spec.md",
+      "sha256": "e44ff64dfbe9df684b3474b4170bea5c298b205b8ea9187feae1cb676680de3f"
+    },
+    {
+      "path": "specs/009-plc-protocol-isolation/spec.md",
+      "sha256": "34d76c1d8f12897f52614f90b0452a0dae4173173da3d58c7a18612a8e662636"
+    },
+    {
+      "path": "specs/010-recipe-execution-isolation/spec.md",
+      "sha256": "33f6d00aa21d4f908ed158ac1e3a543f352e92c7e46dba77b527b889eafe64f1"
+    },
+    {
+      "path": "specs/011-plc-interaction-update/spec.md",
+      "sha256": "77c8406f85da7bd6579e4fd2334719c5a2fc81c5e69b539c9c91e3b41125798b"
+    },
+    {
+      "path": "specs/012-recipe-authoring/spec.md",
+      "sha256": "b306ee9931c1be3a4dc4092761379384aef944e5b3431795e9abf8c96735a6b9"
+    },
+    {
+      "path": "specs/013-plc-polling-optimization/spec.md",
+      "sha256": "6f19e8ca96c7bee9cfe365e78036bb971f1690d8b4f5d68febe44822422b0ca6"
+    }
+  ],
+  "prototype": {
+    "path": "C:\\Users\\codexsandboxonline.10_3_0_13\\.codex\\visualizations\\2026\\10\\05\\01a109ca-eecf-74c2-9bfc-0335d8594c5f\\recipe-layout-10x10-review.html",
+    "sha256": "5ce8fa6bfeb73561860d2a40119e3d21f065e20e8ba43c934ec291cc8466c2a3",
+    "readOnly": true
+  },
+  "integration": {
+    "record": "E:/dzk/deliveries/main-ui-integration-20261005/applied-files.json",
+    "files": 53,
+    "currentHashesMatchExpected": 52,
+    "other": "009-boundary-inventory.json retained merged 013 registration; not a missing integration"
+  },
+  "inspectedUnchanged013": [
+    {
+      "path": "specs/013-plc-polling-optimization/spec.md",
+      "sha256": "6f19e8ca96c7bee9cfe365e78036bb971f1690d8b4f5d68febe44822422b0ca6",
+      "disposition": "ReadOnly/Retain013Acceptance2AndOriginalDeviations"
+    },
+    {
+      "path": "specs/013-plc-polling-optimization/plan.md",
+      "sha256": "9cd8dc463eb1891006faf4d4d692027d5b6abff18b569654affeeec964b7c116",
+      "disposition": "ReadOnly/Retain013Acceptance2AndOriginalDeviations"
+    },
+    {
+      "path": "specs/013-plc-polling-optimization/tasks.md",
+      "sha256": "fc4d0937ec8a477a289f81354f9d40825c89cb43bb7286a5e820bec01020ad42",
+      "disposition": "ReadOnly/Retain013Acceptance2AndOriginalDeviations"
+    },
+    {
+      "path": "specs/013-plc-polling-optimization/contracts/verification.md",
+      "sha256": "81faaf19c09d40c39c5597f3271804ba7040dfd800e397393caf5b4772643099",
+      "disposition": "ReadOnly/Retain013Acceptance2AndOriginalDeviations"
+    }
+  ]
+}

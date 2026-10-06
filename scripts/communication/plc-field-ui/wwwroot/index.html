@@ -1,0 +1,38 @@
+<!doctype html>
+<html lang="zh-CN"><head><meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1"><title>高德 · PLC 现场联调台</title><link rel="stylesheet" href="/style.css"></head>
+<body>
+<header><div><div class="eyebrow">GAODE / FIELD COMMISSIONING</div><h1>PLC 现场联调台 <small>虚拟上位机 0.4</small></h1><p>下发目标与指令 → PLC 执行动作 → 接收反馈并核对结果</p></div><div class="identity"><span id="purpose" class="tag">现场配置</span><span id="status" class="tag gray">未连接</span><div id="session">尚未开始测试</div></div></header>
+<div class="toolbar"><button id="connect" class="primary">连接 · 只读监视</button><button id="disconnect" disabled>断开（不是急停）</button><span class="divider"></span><button id="writes" disabled>启用写入</button><button id="heartbeat" disabled>启用心跳应答</button><button id="export" class="right">导出回传包</button></div>
+<div id="notice" role="status">连接前先到「现场配置」填写参数。MW 是 PLC 内存地址，不等于已确认的 Modbus 地址。</div>
+<nav><button data-tab="live" class="active">01 实时联调</button><button data-tab="config">02 现场配置</button><button data-tab="notes">03 现场记录与回传</button></nav>
+<main>
+<section id="live" class="page">
+<div class="overview"><div><span>请求 TX / 应答 RX</span><strong id="counts">0 / 0</strong></div><div><span>写请求</span><strong id="writeCount">0</strong></div><div><span>PLC 心跳变化</span><strong id="edges">0</strong></div><div><span>最近采样</span><strong id="sampleTime">—</strong></div></div>
+<div class="section-title"><div><h2>双向信号</h2><p id="freshness">尚无采样。界面不生成演示信号。</p></div><input id="signalFilter" placeholder="筛选信号名或中文含义" aria-label="筛选信号"></div>
+<div class="signal-grid"><article class="card"><div class="card-title"><h3>上位机 → PLC <span class="tag">PC</span></h3><p>输入待发值，点击发送；当前值来自 PLC 读回。</p></div><div class="table-wrap"><table><thead><tr><th>信号 / 地址 / 类型</th><th>当前值 / 原始字</th><th>人工发送</th></tr></thead><tbody id="pcSignals"></tbody></table></div></article>
+<article class="card"><div class="card-title"><h3>PLC → 上位机 <span class="tag gray">PLC</span></h3><p>只读反馈；采样可能漏掉短于采样周期的脉冲。</p></div><div class="table-wrap"><table><thead><tr><th>信号 / 地址 / 类型</th><th>当前值 / 原始字</th><th>采样时间</th></tr></thead><tbody id="plcSignals"></tbody></table></div></article></div>
+<div id="lastWrite" class="result">人工写入结果将在这里显示。写入应答、读回一致与机械动作完成是不同的事。</div>
+<article id="axisTargets" class="card"><h3>1. 填写目标坐标，对照 PLC 实际值</h3><p>目标由你填写，实际位置由PLC返回。填写后点“带入单轴测试”，再在下方执行完整测试。“只写目标”用于分步排查，不会启动运动。</p><div class="table-wrap"><table><thead><tr><th>轴 / 含义</th><th>PLC 实际位置</th><th>手工填写目标</th><th>单位 / 允许范围</th><th>操作</th></tr></thead><tbody id="coordinateRows"></tbody></table></div><p class="muted">R 已有目标和启动信号，但资料缺少明确的实际角度及到位反馈；当前可写目标，自动完成验证暂不可用。单位和坐标系按现场配置。</p></article>
+<article id="singleAxis" class="card motion"><div><h3>2. 执行一次动作闭环测试</h3><p>虚拟上位机写目标 → 发启动 → 观察PLC本次运动 → 到位 → 核对实际位置 → 清零。只有反馈证据完整才显示通过；现场请同时观察机构是否正确动作。</p></div><div class="inline"><select id="axis" aria-label="选择轴"></select><input id="target" type="number" step="any" placeholder="目标位置" aria-label="单轴目标"><button id="move" class="primary" disabled>执行一次完整测试</button></div><div id="axisInfo" class="muted"></div><ol class="steps"><li>写目标 / 读回</li><li>发启动 / 应答</li><li>PLC 运动中</li><li>PLC 到位</li><li>核实测 / 清零</li></ol><div id="moveResult" class="result">尚未开始单轴测试</div></article>
+<article class="card logs"><div class="section-title"><div><h3>交互记录</h3><p>页面保留最近记录；完整记录持续写入 runs 文件夹。</p></div><div class="inline"><input id="logFilter" placeholder="按信号 / 操作标识筛选"><label><input type="checkbox" id="hidePoll" checked>隐藏轮询报文</label></div></div><div class="log-grid"><div><h4>操作与状态变化</h4><div id="events" class="log-list"></div></div><div><h4>原始报文 · TX 发送 / RX 接收 / ERROR 失败</h4><div id="wire" class="log-list"></div></div></div></article>
+</section>
+<section id="config" class="page" hidden><article class="card"><h2>现场连接与地址映射</h2><p>IP、端口、站号和 PDU 地址需根据 PLC 工程或厂家设置填写。只有“Modbus”还不能确定 TCP 或 RTU；此版本支持 TCP。</p>
+<div class="form-grid">
+<label>用途<select id="cfg-purpose"><option value="Field">现场 PLC</option><option value="Virtual">本机测试 PLC</option></select></label>
+<label>PLC IP / 主机<input id="cfg-host" placeholder="现场填写"></label><label>端口<input id="cfg-port" type="number" placeholder="待确认"></label><label>站号 Unit ID<input id="cfg-unitId" type="number" placeholder="待确认"></label>
+<label>通信超时 ms<input id="cfg-timeoutMs" type="number"></label><label>采样间隔 ms<input id="cfg-pollMs" type="number"></label>
+<label>MW1000 对应 PDU 起点<input id="cfg-pcPduBase" type="number" placeholder="零基十进制，待确认"></label><label>MW3000 对应 PDU 起点<input id="cfg-plcPduBase" type="number" placeholder="零基十进制，待确认"></label>
+<label>PLC 反馈数据区<select id="cfg-plcArea"><option value="HoldingRegister">保持寄存器 FC03</option><option value="InputRegister">输入寄存器 FC04</option></select></label>
+<label>BOOL：偶数 MB 在一个字的哪边<select id="cfg-boolByteOrder"><option value="">待确认</option><option value="EvenLow">低字节（EvenLow）</option><option value="EvenHigh">高字节（EvenHigh）</option></select></label>
+<label>REAL 四字节顺序<select id="cfg-floatOrder"><option value="">待确认</option><option>Abcd</option><option>Cdab</option><option>Badc</option><option>Dcba</option></select></label>
+<label>PLC 程序版本<input id="cfg-plcProgramVersion" placeholder="现场填写"></label>
+<label class="wide">点表来源<input id="cfg-sourceReference"></label><label class="wide">映射 / 字序确认依据<input id="cfg-source" placeholder="工程设置、已知值核对、确认人及日期"></label>
+</div>
+<div class="checks"><label><input id="cfg-confirmed" type="checkbox">地址映射和字序已核对</label><label><input id="cfg-writesConfirmed" type="checkbox">现场允许本次配置范围内的写入</label><label><input id="cfg-singleWriterConfirmed" type="checkbox">已确认无其他上位机竞争写入</label><label><input id="cfg-heartbeatConfirmed" type="checkbox">心跳已确认采用同值应答</label></div>
+<div class="explain"><strong>两个 BOOL 共享一个 WORD：</strong>例如 MB2000 与 MB2001 都位于 MW1000，但各占一个字节。后端会先读原字，保留邻字节，再写入指定字节。INT 占 1 个字，REAL 占 2 个字。这里只确认内存布局，Modbus 起点仍由现场填写。</div>
+<div class="inline"><button id="saveConfig" class="primary">保存配置</button><button id="reloadConfig">重新载入已保存配置</button><span class="muted">保存不会自动连接或写入；会话期间配置锁定。</span></div></article>
+<article class="card"><h3>开放本次需要的信号</h3><p>默认所有点只读。数值写入还需确认允许枚举或上下限；轴启动使用单轴入口。现场 Codex 可以直接维护 site.json。</p><div class="table-wrap config-table"><table><thead><tr><th>信号</th><th>参与采样</th><th>允许写</th><th>最小值</th><th>最大值</th><th>允许枚举（逗号分隔）</th></tr></thead><tbody id="pointConfig"></tbody></table></div><button id="savePoints" class="primary">保存配置</button></article>
+<article class="card"><h3>高级配置 · 单轴握手与完整点表</h3><p>这里显示完整 JSON，便于中控机 Codex 配置 axes 中的范围、坐标系、容差、启动/空闲码。未知含义不要猜；需要保存此框修改时使用下方专用按钮。</p><button id="syncJson">把上方表单复制到 JSON</button><textarea id="advanced" spellcheck="false" rows="18" aria-label="完整配置JSON"></textarea><button id="saveJson">保存 JSON 配置</button></article>
+</section>
+<section id="notes" class="page" hidden><article class="card"><h2>现场观察与交接</h2><p>通信日志由程序保存；设备实际动作、PLC程序版本和未决问题由现场补充。未测试请写“未测”，不要记成通过。</p><div class="form-grid"><label>PLC 型号<input id="note-plcModel"></label><label>程序版本<input id="note-programVersion"></label><label>记录人<input id="note-operator"></label></div><label>现场观察（动作 / 目标 / 现象 / 对应会话）<textarea id="note-observations" rows="5"></textarea></label><label>仍未确认或未测试的内容<textarea id="note-remainingQuestions" rows="4"></textarea></label><label>现场 Codex 修改了哪些文件 / 如何验证<textarea id="note-localCodeChanges" rows="3"></textarea></label><button id="saveNotes" class="primary">保存现场记录</button></article><article class="card"><h3>一键回传</h3><p>先断开，再导出。包内包含所有会话（包括失败和中断）、配置快照、原始收发、语义记录、现场记录、来源文件、运行程序及源码、文件哈希。不会自动上传。</p><button id="exportNotes">保存记录并导出回传包</button><div id="exportResult" class="result">尚未导出</div><p>中控机 Codex 的执行说明在 FIELD-CODEX.md；正式软件衔接差异在 INTEGRATION.md。</p></article></section>
+</main><footer>独立通信联调工具 · 关闭网页不会停止后台 · 断开不是急停 · 现场结果不等于整机验收</footer><script src="/app.js"></script></body></html>

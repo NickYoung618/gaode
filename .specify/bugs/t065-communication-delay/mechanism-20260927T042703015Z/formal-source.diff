@@ -1,0 +1,146 @@
+--- before/backend/src/Gaode.Host/Program.cs
++++ after/backend/src/Gaode.Host/Program.cs
+@@ -9,7 +9,7 @@
+ // loopback reads queued behind the pool's slow starvation recovery for >3 seconds.
+ ThreadPool.GetMinThreads(out var previousWorkerMinimum, out var ioMinimum);
+ ThreadPool.GetMaxThreads(out var workerMaximum, out _);
+-var workerMinimum = Math.Min(workerMaximum,
++var workerMinimum = Gaode.Diagnostics.ThreadPoolRuntimePolicy.WindowsNative ? previousWorkerMinimum : Math.Min(workerMaximum,
+     Math.Max(previousWorkerMinimum, Math.Max(8, Environment.ProcessorCount + 4)));
+ if (workerMinimum > previousWorkerMinimum && !ThreadPool.SetMinThreads(workerMinimum, ioMinimum))
+     throw new InvalidOperationException("Cannot reserve Host worker capacity for PLC heartbeat continuations.");
+--- before/backend/src/Gaode.Infrastructure/Devices/Plc/LatestProtocolPlcDevice.cs
++++ after/backend/src/Gaode.Infrastructure/Devices/Plc/LatestProtocolPlcDevice.cs
+@@ -96,11 +96,13 @@
+         if (pump is not null) throw new InvalidOperationException("AlreadyStarted");
+         ThreadPool.GetMinThreads(out var workerMinimum, out var ioMinimum);
+         ThreadPool.GetMaxThreads(out var workerMaximum, out _);
+-        var requiredWorkers = Math.Min(workerMaximum,
++        var requiredWorkers = ThreadPoolRuntimePolicy.WindowsNative ? workerMinimum : Math.Min(workerMaximum,
+             Math.Max(workerMinimum, Math.Max(8, Environment.ProcessorCount + 4)));
+         if (requiredWorkers > workerMinimum &&
+             !ThreadPool.SetMinThreads(requiredWorkers, ioMinimum))
+             throw new InvalidOperationException("PlcHeartbeatThreadPoolCapacityUnavailable");
++        logger.LogInformation("PLC threadpool provider: windowsNative={WindowsNative}; minimum API supported={MinimumSupported}",
++            ThreadPoolRuntimePolicy.WindowsNative, !ThreadPoolRuntimePolicy.WindowsNative);
+         logger.LogInformation("PLC heartbeat worker minimum: previous={Previous}, effective={Effective}",
+             workerMinimum, requiredWorkers);
+         logger.LogInformation("PLC starting: {Host}:{Port}, pollMs={PollMs}, ioTimeoutMs={IoTimeoutMs}, heartbeatTimeoutMs={HeartbeatTimeoutMs}",
+--- before/VirtualPlc/Program.cs
++++ after/VirtualPlc/Program.cs
+@@ -2,7 +2,7 @@
+ 
+ ThreadPool.GetMinThreads(out var previousWorkerMinimum, out var ioMinimum);
+ ThreadPool.GetMaxThreads(out var workerMaximum, out _);
+-var workerMinimum = Math.Min(workerMaximum,
++var workerMinimum = Gaode.Diagnostics.ThreadPoolRuntimePolicy.WindowsNative ? previousWorkerMinimum : Math.Min(workerMaximum,
+     Math.Max(previousWorkerMinimum, Math.Max(8, Environment.ProcessorCount + 4)));
+ if (workerMinimum > previousWorkerMinimum && !ThreadPool.SetMinThreads(workerMinimum, ioMinimum))
+     throw new InvalidOperationException("VirtualPlcHeartbeatThreadPoolCapacityUnavailable");
+--- before/VirtualPlc/VirtualPlc.csproj
++++ after/VirtualPlc/VirtualPlc.csproj
+@@ -8,6 +8,7 @@
+   </PropertyGroup>
+ 
+   <ItemGroup>
++    <Compile Include="../backend/src/Gaode.Infrastructure/Devices/Plc/ThreadPoolRuntimePolicy.cs" Link="Diagnostics/ThreadPoolRuntimePolicy.cs" />
+     <Compile Include="../backend/src/Gaode.Infrastructure/Devices/Plc/HeartbeatDiagnosticWindow.cs"
+              Link="Diagnostics/HeartbeatDiagnosticWindow.cs" />
+   </ItemGroup>
+--- before/scripts/start-station01-virtual-loop.ps1
++++ after/scripts/start-station01-virtual-loop.ps1
+@@ -13,12 +13,15 @@
+     [switch]$HostSocketInlineCompletions,
+     [switch]$PlcSocketInlineCompletions,
+     [switch]$SkipDesktop,
++    [switch]$WindowsNativeThreadPool,
+     [switch]$DiagnosticEarlyReady
+ )
+ $ErrorActionPreference = 'Stop'
+ $repo = (Resolve-Path (Join-Path $PSScriptRoot '..')).Path
+ $feature = Join-Path $repo 'specs/007-station01-integrated-loop'
+ $fixture = $null
++if ($WindowsNativeThreadPool -and (-not $FixtureManifest -or -not $IsWindows)) { throw 'WindowsNativeThreadPool requires a Windows Test fixture.' }
++if ($WindowsNativeThreadPool -and ($HostSocketInlineCompletions -or $PlcSocketInlineCompletions)) { throw 'Native threadpool verification requires inline=0 on both processes.' }
+ if ($TestPageReadOnlyToken -and -not $FixtureManifest) { throw 'Read-only page credential requires a validated Test fixture.' }
+ if ($HostSocketInlineCompletions -and -not $FixtureManifest) {
+     throw 'HostSocketInlineCompletions requires a validated Test fixture.'
+@@ -174,12 +177,14 @@
+ $record.configuration.hostDllSha256 = (Get-FileHash $hostDll -Algorithm SHA256).Hash
+ $record.configuration.plcDllSha256 = (Get-FileHash $plcDll -Algorithm SHA256).Hash
+ $record.configuration.dotnetVersion = (& dotnet --version | Select-Object -First 1)
++$record.configuration.windowsNativeThreadPool = [bool]$WindowsNativeThreadPool
+ $startedProcesses = [System.Collections.Generic.List[System.Diagnostics.Process]]::new()
+ try {
+     $plcHealthy = $false
+     try { $null = Invoke-RestMethod -Uri "$PlcApiBase/health" -TimeoutSec 2; $plcHealthy = $true } catch { }
+     if (-not $plcHealthy) {
+         $plcLaunchOptions = @{}
++        if ($WindowsNativeThreadPool) { $plcLaunchOptions.Environment = @{ DOTNET_ThreadPool_UseWindowsThreadPool = '1'; DOTNET_SYSTEM_NET_SOCKETS_INLINE_COMPLETIONS = '0' } }
+         if ($PlcSocketInlineCompletions) {
+             $plcLaunchOptions.Environment = @{ DOTNET_SYSTEM_NET_SOCKETS_INLINE_COMPLETIONS = '1' }
+             $record.configuration.plcSocketInlineCompletions = '1;ExplicitTestOwnPlcOnly'
+@@ -203,6 +208,7 @@
+     if (-not $plcHealthy) { throw 'Owned VirtualPlc failed its finite startup health gate.' }
+     $record.plcReadyBeforeHostUtc = [datetime]::UtcNow.ToString('o')
+     $hostLaunchOptions = @{}
++    if ($WindowsNativeThreadPool) { $hostLaunchOptions.Environment = @{ DOTNET_ThreadPool_UseWindowsThreadPool = '1'; DOTNET_SYSTEM_NET_SOCKETS_INLINE_COMPLETIONS = '0' } }
+     if ($HostSocketInlineCompletions) {
+         $hostLaunchOptions.Environment = @{ DOTNET_SYSTEM_NET_SOCKETS_INLINE_COMPLETIONS = '1' }
+         $record.configuration.hostSocketInlineCompletions = '1;ExplicitTestOwnHostOnly'
+--- before/scripts/verify-q01-q02-test-page.ps1
++++ after/scripts/verify-q01-q02-test-page.ps1
+@@ -1,6 +1,6 @@
+ param([switch]$Interactive, [switch]$PreflightOnly, [Parameter(Mandatory)][string]$EvidenceRoot,
+       [string[]]$Cases = @('Q01','Q02'), [string]$HostDll = '', [string]$PlcDll = '',
+-      [switch]$HostSocketInlineCompletions, [switch]$PlcSocketInlineCompletions,
++      [switch]$WindowsNativeThreadPool, [switch]$HostSocketInlineCompletions, [switch]$PlcSocketInlineCompletions,
+       [ValidateSet('','Auth401','Auth403')][string]$AuthorizationMode = '')
+ $ErrorActionPreference = 'Stop'
+ $PSDefaultParameterValues['Invoke-RestMethod:TimeoutSec'] = 10
+@@ -62,7 +62,7 @@
+         changes = $all.ToArray(); pageCount = $pages; completeThroughFrozenSequence = $cursor }
+ }
+ if (-not $Interactive -and -not $directInteractive) {
+-    if ($HostDll -or $PlcDll -or $HostSocketInlineCompletions -or $PlcSocketInlineCompletions -or $AuthorizationMode) { throw 'Frozen-build WPF verification must use the current interactive worker.' }
++    if ($HostDll -or $PlcDll -or $WindowsNativeThreadPool -or $HostSocketInlineCompletions -or $PlcSocketInlineCompletions -or $AuthorizationMode) { throw 'Frozen-build WPF verification must use the current interactive worker.' }
+     $taskName = 'GaodeQ01Q02-' + [guid]::NewGuid().ToString('N')
+     $scheduler = New-Object -ComObject Schedule.Service
+     $scheduler.Connect()
+@@ -130,6 +130,8 @@
+ function Stop-Owned([int]$id, [string]$expected) {
+     $process = Get-Process -Id $id -ErrorAction SilentlyContinue
+     if (-not $process) { return }
++    $known = @($owned | Where-Object id -eq $id)
++    if ($known.Count -ne 1 -or $process.StartTime.ToUniversalTime() -ne $known[0].created) { throw "Owned PID $id creation identity changed; preserve it." }
+     if (-not [string]::Equals([IO.Path]::GetFullPath([string]$process.Path),
+         [IO.Path]::GetFullPath($expected), [StringComparison]::OrdinalIgnoreCase)) {
+         throw "Owned PID $id changed identity; refusing to stop it."
+@@ -193,10 +195,10 @@
+         $null = & (Join-Path $repo 'scripts/start-station01-virtual-loop.ps1') `
+             -OperatorToken $operatorToken -TestPageAdministratorToken $pageAdminToken -TestPageReadOnlyToken $readOnlyToken -TestRoot $caseRoot -ApiBase $api -PlcApiBase $plcApi `
+             -PlcPort $ports[2] -HostDll $hostDll -PlcDll $plcDll -FixtureManifest $fixture -SkipDesktop `
+-            -HostSocketInlineCompletions:$HostSocketInlineCompletions -PlcSocketInlineCompletions:$PlcSocketInlineCompletions
++            -HostSocketInlineCompletions:$HostSocketInlineCompletions -PlcSocketInlineCompletions:$PlcSocketInlineCompletions -WindowsNativeThreadPool:$WindowsNativeThreadPool
+         $platform = Get-Content (Join-Path $caseRoot 'process.json') -Raw | ConvertFrom-Json
+-        $owned.Add([pscustomobject]@{ id = [int]$platform.hostPid; expected = (Get-Command dotnet).Source })
+-        $owned.Add([pscustomobject]@{ id = [int]$platform.plcPid; expected = (Get-Command dotnet).Source })
++        $owned.Add([pscustomobject]@{ id = [int]$platform.hostPid; created = (Get-Process -Id ([int]$platform.hostPid)).StartTime.ToUniversalTime(); expected = (Get-Command dotnet).Source })
++        $owned.Add([pscustomobject]@{ id = [int]$platform.plcPid; created = (Get-Process -Id ([int]$platform.plcPid)).StartTime.ToUniversalTime(); expected = (Get-Command dotnet).Source })
+         # Only these newly created Test processes get scheduling preference. The
+         # protocol's 1-second I/O and 3-second heartbeat limits are unchanged.
+         $hostProcess = Get-Process -Id ([int]$platform.hostPid) -ErrorAction Stop
+@@ -234,7 +236,7 @@
+         $phase = "$case-page"
+         $desktop = Start-Process -FilePath $desktopExe -WorkingDirectory (Split-Path $desktopExe) `
+             -WindowStyle Normal -PassThru
+-        $owned.Add([pscustomobject]@{ id = $desktop.Id; expected = $desktopExe })
++        $owned.Add([pscustomobject]@{ id = $desktop.Id; created = $desktop.StartTime.ToUniversalTime(); expected = $desktopExe })
+         Save-Json (Join-Path $caseRoot 'interactive-desktop.json') @{
+             pid = $desktop.Id; sessionId = (Get-Process -Id $desktop.Id).SessionId
+             exeSha256 = (Get-FileHash $desktopExe -Algorithm SHA256).Hash
+@@ -346,3 +348,4 @@
+     }
+ }
+ exit $exitCode
++

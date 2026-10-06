@@ -1,0 +1,39 @@
+{
+  "schemaVersion": "station01-fixture/1.0",
+  "caseId": "010-E-Q02",
+  "purpose": "Test",
+  "scenarioId": "S1",
+  "occupiedSlots": [
+    "P01",
+    "P03"
+  ],
+  "recipeRef": {
+    "recipeId": "010-CONTENT-CD",
+    "version": "1.0-test",
+    "catalogDigest": "2CD09AA2D62F7ACDC97B40D33BA6B0C33B6625CCAF26B600DF049CD05EE18AF6"
+  },
+  "fCode": "SAMPLE|TRAY|CD-010",
+  "availability": "Available",
+  "configRoot": "E:\\dzk\\gaode-1\\backend\\tests\\Gaode.Integration.Tests\\Fixtures\\RecipeExecution010\\content-config",
+  "recipeCatalogPath": "E:\\dzk\\gaode-1\\backend\\tests\\Gaode.Integration.Tests\\Fixtures\\RecipeExecution010\\semantic-catalog.json",
+  "imageManifestPath": "E:\\dzk\\gaode-1\\backend\\tests\\Gaode.Integration.Tests\\Fixtures\\RecipeExecution010\\content-images.json",
+  "workerManifestPath": "E:\\dzk\\gaode-1\\backend\\tests\\Gaode.Integration.Tests\\Fixtures\\RecipeExecution010\\content-worker.json",
+  "workerScriptPath": "E:\\dzk\\gaode-1\\scripts\\010-content-sample-worker.py",
+  "publicConfigRef": {
+    "id": "s01-public-virtual-loop",
+    "version": "1.2.0"
+  },
+  "budgetRef": {
+    "id": "s01-budget-virtual-loop",
+    "version": "3.0.0"
+  },
+  "simulationRef": {
+    "id": "s01-sim-virtual-loop",
+    "version": "3.0.0"
+  },
+  "restrictions": [
+    "TestVirtualOnly;ProductionCalibrationNotApproved"
+  ],
+  "catalogProvider": "Semantic",
+  "trayCodeMapPath": "E:\\dzk\\gaode-1\\backend\\tests\\Gaode.Integration.Tests\\Fixtures\\RecipeExecution010\\code-map.json"
+}

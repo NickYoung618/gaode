@@ -1,0 +1,191 @@
+{
+  "schema": "016-supplemental/1",
+  "originalRequiredCount": 46,
+  "scope": "received 012/014 direct guards and active migration T39/T44; no all-suite",
+  "selectors": {
+    "Contracts": [
+      "ThreeStageWorkflowExecutorTests.TwoSpecialUnitCyclesHaveDistinctDurableEventKeysAndOneTrayUnload",
+      "ReceiptContractTests",
+      "RecipeBindingSaveProtectionTests",
+      "RuntimeObservationProjectionTests",
+      "ThreeStageWorkflowExecutorTests.AlgorithmTimeoutsUseInitialAttemptPlusTwoRetriesAndTwoFiveBackoff",
+      "ThreeStageWorkflowExecutorTests.CommunicationFailuresUseInitialAttemptPlusThreeRetriesAndOneTwoFourBackoff",
+      "ThreeStageWorkflowExecutorTests.CompleteMappingExecutesOnlyDetectionSortingAndUnloadPreparationInOrder",
+      "ThreeStageWorkflowExecutorTests.DetectionDisconnectedRemainsDetectionFailureInsteadOfPlcUnknownHeld",
+      "ThreeStageWorkflowExecutorTests.DetectionExecutionAtStageDeadlineCannotDispatchSorting",
+      "ThreeStageWorkflowExecutorTests.DetectionMotionUnknownRemainsHeldBeforeAndAfterStageDeadline",
+      "ThreeStageWorkflowExecutorTests.FailedPhysicalDetectionAtDeadlineCannotBecomePendingOrDispatchUnload",
+      "ThreeStageWorkflowExecutorTests.MappingFailedPausesDetectionAndNeverCallsPlcPort",
+      "ThreeStageWorkflowExecutorTests.MissingSortingTargetBlocksBeforeUnloadMotion",
+      "ThreeStageWorkflowExecutorTests.MixedTrayCommitsNormalMemberRetentionWithoutAnotherSortingAction",
+      "ThreeStageWorkflowExecutorTests.OccupiedSourceCellCannotBeAssignedAsSortingDestination",
+      "ThreeStageWorkflowExecutorTests.PlcUnknownHeldKeepsAssociationAndNeverRetriesOrAdvances",
+      "ThreeStageWorkflowExecutorTests.RecoveryBlocksUnknownPlcActionAndPreservesItsOperationAndEpoch",
+      "ThreeStageWorkflowExecutorTests.ReservationSaveFailurePreventsEvenUnloadDispatch",
+      "ThreeStageWorkflowExecutorTests.SharedStageDeadlineStopsRetryBeforeItCanCrossOneHundredTwentySeconds",
+      "ThreeStageWorkflowExecutorTests.StaleOperationOrEpochFeedbackBecomesUnknownHeldAndCannotCompleteCurrentAction",
+      "ThreeStageWorkflowExecutorTests.TwoProblemEntitiesCannotReserveTheSameTargetCell"
+    ],
+    "Communication": [
+      "RotationFeedbackArbiterTests",
+      "ActionHandshakeTests.RemovedUnlockStageCannotDispatchLegacyDeviceCommands",
+      "ProductionDefinitionTests.CurrentAxesAndMechanicalFeedbackMatchIndependentLiteralOracle"
+    ],
+    "Integration": [
+      "RecipeMigration016Tests",
+      "CommittedResultProjectionTests.HierarchyFacesAndFusionShareStageIdentityWithoutDuplicatingHistory"
+    ]
+  },
+  "frontend": [
+    "recipe-authoring.test.ts",
+    "recipe-layout-review.test.ts"
+  ],
+  "countPolicy": "Fixed46 unchanged plus seven actual process rows and received minimal protections; no component replaces process duty; original failure rows retained; 19 previously declared shared executor guards added because source changed by received014 and016, excluding fixed46 overlaps",
+  "historicalReceipt": {
+    "method": "RecipeApplicationReceiptTests.CommittedBindingOrHandoffCannotAuthorizeAfterItsReceiptExpires",
+    "state": "RetainedBaselineFailureNotCountedPassed",
+    "basis": "Unchanged source and original FullSimulation configuration/algorithm in original archive; not in fixed46 or current BoundaryMinimum/light set; lower-layer current actual commit/late/cancel guards remain independently required; no original obligation removed"
+  },
+  "migrationRows": [
+    "group-normal",
+    "group-mixed",
+    "group-four",
+    "assembly-code",
+    "assembly-missing",
+    "assembly-error",
+    "assembly-ng-pending"
+  ],
+  "browser": {
+    "script": "scripts/016-authoring-browser.py",
+    "cases": [
+      "group-normal",
+      "assembly-code"
+    ],
+    "scope": "same five registered process rows; actual UI save/full API/reopen plus that row final/restart; no extra Host run"
+  },
+  "suites": [
+    {
+      "suite": "Gaode.Contracts.Tests",
+      "selectors": [
+        "ThreeStageWorkflowExecutorTests.TwoSpecialUnitCyclesHaveDistinctDurableEventKeysAndOneTrayUnload",
+        "ReceiptContractTests",
+        "RecipeBindingSaveProtectionTests",
+        "RuntimeObservationProjectionTests",
+        "ThreeStageWorkflowExecutorTests.AlgorithmTimeoutsUseInitialAttemptPlusTwoRetriesAndTwoFiveBackoff",
+        "ThreeStageWorkflowExecutorTests.CommunicationFailuresUseInitialAttemptPlusThreeRetriesAndOneTwoFourBackoff",
+        "ThreeStageWorkflowExecutorTests.CompleteMappingExecutesOnlyDetectionSortingAndUnloadPreparationInOrder",
+        "ThreeStageWorkflowExecutorTests.DetectionDisconnectedRemainsDetectionFailureInsteadOfPlcUnknownHeld",
+        "ThreeStageWorkflowExecutorTests.DetectionExecutionAtStageDeadlineCannotDispatchSorting",
+        "ThreeStageWorkflowExecutorTests.DetectionMotionUnknownRemainsHeldBeforeAndAfterStageDeadline",
+        "ThreeStageWorkflowExecutorTests.FailedPhysicalDetectionAtDeadlineCannotBecomePendingOrDispatchUnload",
+        "ThreeStageWorkflowExecutorTests.MappingFailedPausesDetectionAndNeverCallsPlcPort",
+        "ThreeStageWorkflowExecutorTests.MissingSortingTargetBlocksBeforeUnloadMotion",
+        "ThreeStageWorkflowExecutorTests.MixedTrayCommitsNormalMemberRetentionWithoutAnotherSortingAction",
+        "ThreeStageWorkflowExecutorTests.OccupiedSourceCellCannotBeAssignedAsSortingDestination",
+        "ThreeStageWorkflowExecutorTests.PlcUnknownHeldKeepsAssociationAndNeverRetriesOrAdvances",
+        "ThreeStageWorkflowExecutorTests.RecoveryBlocksUnknownPlcActionAndPreservesItsOperationAndEpoch",
+        "ThreeStageWorkflowExecutorTests.ReservationSaveFailurePreventsEvenUnloadDispatch",
+        "ThreeStageWorkflowExecutorTests.SharedStageDeadlineStopsRetryBeforeItCanCrossOneHundredTwentySeconds",
+        "ThreeStageWorkflowExecutorTests.StaleOperationOrEpochFeedbackBecomesUnknownHeldAndCannotCompleteCurrentAction",
+        "ThreeStageWorkflowExecutorTests.TwoProblemEntitiesCannotReserveTheSameTargetCell"
+      ],
+      "cases": [
+        "Gaode.Contracts.Tests.Workflow.ThreeStageWorkflowExecutorTests.TwoSpecialUnitCyclesHaveDistinctDurableEventKeysAndOneTrayUnload",
+        "Gaode.Contracts.Tests.Station01.RuntimeObservationProjectionTests.AxisProjectionUsesCommittedActualValuesAndLeavesMissingAxesUnknown",
+        "Gaode.Contracts.Tests.Station01.RuntimeObservationProjectionTests.MissingOrUncommittedObservationDoesNotBecomeNormalOrCreateRecipe",
+        "Gaode.Contracts.Tests.Station01.RuntimeObservationProjectionTests.PhysicalSlotNumbersAndExclusionSurviveRecheckWithoutInventingMissingObservations",
+        "Gaode.Contracts.Tests.Station01.RuntimeObservationProjectionTests.ActionIntentIsWaitingAndOnlyCommittedMatchingFactShowsCompletion",
+        "Gaode.Contracts.Tests.Station01.RuntimeObservationProjectionTests.FrozenIntentAloneCannotInventBoundRecipeAndConfirmedRunUsesFrozenValues",
+        "Gaode.Contracts.Tests.Station01.RuntimeObservationProjectionTests.SortingStateUsesMatchingCommittedOperations(outcome: Completed, allComplete: False, expected: \"Executing\")",
+        "Gaode.Contracts.Tests.Station01.RuntimeObservationProjectionTests.SortingStateUsesMatchingCommittedOperations(outcome: Completed, allComplete: True, expected: \"Completed\")",
+        "Gaode.Contracts.Tests.Station01.RuntimeObservationProjectionTests.SortingStateUsesMatchingCommittedOperations(outcome: UnknownHeld, allComplete: False, expected: \"UnknownHeld\")",
+        "Gaode.Contracts.Tests.Station01.RuntimeObservationProjectionTests.SortingStateUsesMatchingCommittedOperations(outcome: Failed, allComplete: False, expected: \"Failed\")",
+        "Gaode.Contracts.Tests.Station01.RuntimeObservationProjectionTests.CommittedCanonicalHandoffAndFinalFactsRestoreHistoryWithoutLiveSnapshot",
+        "Gaode.Contracts.Tests.Station01.RuntimeObservationProjectionTests.CommittedPickPayloadDoesNotBecomeFullActionEvidenceOrFinishTransfer",
+        "Gaode.Contracts.Tests.Recipes.RecipeBindingSaveProtectionTests.OnlyCurrentActualRequiredSavesAuthorizeBinding(condition: \"Timely\")",
+        "Gaode.Contracts.Tests.Recipes.RecipeBindingSaveProtectionTests.OnlyCurrentActualRequiredSavesAuthorizeBinding(condition: \"BoundRollback\")",
+        "Gaode.Contracts.Tests.Recipes.RecipeBindingSaveProtectionTests.OnlyCurrentActualRequiredSavesAuthorizeBinding(condition: \"BoundLate\")",
+        "Gaode.Contracts.Tests.Recipes.RecipeBindingSaveProtectionTests.OnlyCurrentActualRequiredSavesAuthorizeBinding(condition: \"HandoffLate\")",
+        "Gaode.Contracts.Tests.Recipes.RecipeBindingSaveProtectionTests.OnlyCurrentActualRequiredSavesAuthorizeBinding(condition: \"CancelAtBound\")",
+        "Gaode.Contracts.Tests.Persistence.ReceiptContractTests.QueuedReceiptDoesNotClaimCommitAndTerminalPayloadsAreConstrained",
+        "Gaode.Contracts.Tests.Workflow.ThreeStageWorkflowExecutorTests.AlgorithmTimeoutsUseInitialAttemptPlusTwoRetriesAndTwoFiveBackoff",
+        "Gaode.Contracts.Tests.Workflow.ThreeStageWorkflowExecutorTests.CommunicationFailuresUseInitialAttemptPlusThreeRetriesAndOneTwoFourBackoff",
+        "Gaode.Contracts.Tests.Workflow.ThreeStageWorkflowExecutorTests.CompleteMappingExecutesOnlyDetectionSortingAndUnloadPreparationInOrder",
+        "Gaode.Contracts.Tests.Workflow.ThreeStageWorkflowExecutorTests.DetectionDisconnectedRemainsDetectionFailureInsteadOfPlcUnknownHeld",
+        "Gaode.Contracts.Tests.Workflow.ThreeStageWorkflowExecutorTests.DetectionExecutionAtStageDeadlineCannotDispatchSorting",
+        "Gaode.Contracts.Tests.Workflow.ThreeStageWorkflowExecutorTests.DetectionMotionUnknownRemainsHeldBeforeAndAfterStageDeadline(atDeadline: False)",
+        "Gaode.Contracts.Tests.Workflow.ThreeStageWorkflowExecutorTests.DetectionMotionUnknownRemainsHeldBeforeAndAfterStageDeadline(atDeadline: True)",
+        "Gaode.Contracts.Tests.Workflow.ThreeStageWorkflowExecutorTests.FailedPhysicalDetectionAtDeadlineCannotBecomePendingOrDispatchUnload(caseId: \"F04-COMPONENT/physical-failure/false\", afterDeadline: False)",
+        "Gaode.Contracts.Tests.Workflow.ThreeStageWorkflowExecutorTests.FailedPhysicalDetectionAtDeadlineCannotBecomePendingOrDispatchUnload(caseId: \"F04-COMPONENT/physical-failure/true\", afterDeadline: True)",
+        "Gaode.Contracts.Tests.Workflow.ThreeStageWorkflowExecutorTests.MappingFailedPausesDetectionAndNeverCallsPlcPort",
+        "Gaode.Contracts.Tests.Workflow.ThreeStageWorkflowExecutorTests.MissingSortingTargetBlocksBeforeUnloadMotion",
+        "Gaode.Contracts.Tests.Workflow.ThreeStageWorkflowExecutorTests.MixedTrayCommitsNormalMemberRetentionWithoutAnotherSortingAction",
+        "Gaode.Contracts.Tests.Workflow.ThreeStageWorkflowExecutorTests.OccupiedSourceCellCannotBeAssignedAsSortingDestination",
+        "Gaode.Contracts.Tests.Workflow.ThreeStageWorkflowExecutorTests.PlcUnknownHeldKeepsAssociationAndNeverRetriesOrAdvances",
+        "Gaode.Contracts.Tests.Workflow.ThreeStageWorkflowExecutorTests.RecoveryBlocksUnknownPlcActionAndPreservesItsOperationAndEpoch",
+        "Gaode.Contracts.Tests.Workflow.ThreeStageWorkflowExecutorTests.ReservationSaveFailurePreventsEvenUnloadDispatch",
+        "Gaode.Contracts.Tests.Workflow.ThreeStageWorkflowExecutorTests.SharedStageDeadlineStopsRetryBeforeItCanCrossOneHundredTwentySeconds",
+        "Gaode.Contracts.Tests.Workflow.ThreeStageWorkflowExecutorTests.StaleOperationOrEpochFeedbackBecomesUnknownHeldAndCannotCompleteCurrentAction",
+        "Gaode.Contracts.Tests.Workflow.ThreeStageWorkflowExecutorTests.TwoProblemEntitiesCannotReserveTheSameTargetCell"
+      ]
+    },
+    {
+      "suite": "Gaode.Communication.Tests",
+      "selectors": [
+        "RotationFeedbackArbiterTests",
+        "ActionHandshakeTests.RemovedUnlockStageCannotDispatchLegacyDeviceCommands",
+        "ProductionDefinitionTests.CurrentAxesAndMechanicalFeedbackMatchIndependentLiteralOracle"
+      ],
+      "cases": [
+        "Gaode.Communication.Tests.Devices.RotationFeedbackArbiterTests.NewNormalFeedbackSharesExistingBaseAndPositionFairnessOverActualTcp",
+        "Gaode.Communication.Tests.Devices.RotationFeedbackArbiterTests.PromptWireReplyStillReportsAndRejectsTheOriginalAbsoluteDeadline",
+        "Gaode.Communication.Tests.Devices.RotationFeedbackArbiterTests.MovingWatchPreservesActualShortStateButRejectsStaleUnsentAndForeignEpoch",
+        "Gaode.Communication.Tests.Devices.RotationFeedbackArbiterTests.CancelledQueuedReadCanReenterWithoutSendingTheObsoleteRequest",
+        "Gaode.Communication.Tests.Devices.ActionHandshakeTests.RemovedUnlockStageCannotDispatchLegacyDeviceCommands",
+        "Gaode.Communication.Tests.ProtocolOracle.ProductionDefinitionTests.CurrentAxesAndMechanicalFeedbackMatchIndependentLiteralOracle"
+      ]
+    },
+    {
+      "suite": "Gaode.Integration.Tests",
+      "selectors": [
+        "RecipeMigration016Tests",
+        "CommittedResultProjectionTests.HierarchyFacesAndFusionShareStageIdentityWithoutDuplicatingHistory"
+      ],
+      "cases": [
+        "Gaode.Integration.Tests.Station01.RecipeMigration016Tests.GroupsAndAssemblyRetainIndependentResultsThroughActualFinalAndRestart(input: \"group-normal\")",
+        "Gaode.Integration.Tests.Station01.RecipeMigration016Tests.GroupsAndAssemblyRetainIndependentResultsThroughActualFinalAndRestart(input: \"group-mixed\")",
+        "Gaode.Integration.Tests.Station01.RecipeMigration016Tests.GroupsAndAssemblyRetainIndependentResultsThroughActualFinalAndRestart(input: \"group-four\")",
+        "Gaode.Integration.Tests.Station01.RecipeMigration016Tests.GroupsAndAssemblyRetainIndependentResultsThroughActualFinalAndRestart(input: \"assembly-code\")",
+        "Gaode.Integration.Tests.Station01.RecipeMigration016Tests.GroupsAndAssemblyRetainIndependentResultsThroughActualFinalAndRestart(input: \"assembly-missing\")",
+        "Gaode.Integration.Tests.Station01.RecipeMigration016Tests.GroupsAndAssemblyRetainIndependentResultsThroughActualFinalAndRestart(input: \"assembly-ng-pending\")",
+        "Gaode.Integration.Tests.Station01.RecipeMigration016Tests.GroupsAndAssemblyRetainIndependentResultsThroughActualFinalAndRestart(input: \"assembly-error\")",
+        "Gaode.Integration.Tests.Api.CommittedResultProjectionTests.HierarchyFacesAndFusionShareStageIdentityWithoutDuplicatingHistory(stageId: null)",
+        "Gaode.Integration.Tests.Api.CommittedResultProjectionTests.HierarchyFacesAndFusionShareStageIdentityWithoutDuplicatingHistory(stageId: \"stage:1\")",
+        "Gaode.Integration.Tests.Station01.RecipeMigration016Tests.ReceivedTwoSpecialUnitsKeepOriginalSlotsAndDistinctEventsThroughActualFinalAndRestart"
+      ]
+    }
+  ],
+  "requiredCSharpCount": 53,
+  "registrationBasis": "Reviewed source declarations and separate pre-execution compiler discovery preserved in reception-20261006; execution cannot change this list",
+  "received014Process": {
+    "input": "examples/received-014-special/run-special.json",
+    "basis": "Exact main014 two-unit content-worker input and protected assertions; only explicit current schema/member physical mapping prepared, original source retained",
+    "level": "FullRun"
+  },
+  "operationalChecks": [
+    {
+      "id": "MAIN-REAL-TEST-V2-UPGRADE",
+      "level": "Controlled offline operational integration, separate from CSharp count",
+      "source": "Actual accepted main014 Test /2 closed DB/WAL/SHM snapshot and SQLite backup; provenance E:/dzk-delivery/016-integration-20261006/schema-upgrade-test/backup-provenance.json",
+      "executor": "Merged main current Gaode.StorePrep --upgrade-public-tray-test <allowed-root> <owned-store-root>",
+      "assertions": [
+        "Exact original business row digests unchanged",
+        "Exact real media unchanged",
+        "StoreId and non-schema manifest fields unchanged",
+        "Actual U3 upgrade receipt and s01-store/3 Test manifest",
+        "No default, unknown-purpose or production database upgraded",
+        "Host does not perform DDL"
+      ]
+    }
+  ]
+}

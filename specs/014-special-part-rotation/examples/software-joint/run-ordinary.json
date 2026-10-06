@@ -1,0 +1,79 @@
+{
+  "schemaVersion": "station01-fixture/2.0",
+  "caseId": "014-ordinary",
+  "purpose": "Test",
+  "scenarioId": "011-joint",
+  "occupiedSlots": [
+    "s1"
+  ],
+  "fCode": "011-TEST-TRAY-1",
+  "configRoot": "config",
+  "recipeInputPath": "catalog.json",
+  "recipeInputSha256": "5FA7A1E447B8BDC3D498E60F5E314ADD0A73BF7D327993FC55C3D03F2987CB6A",
+  "imageManifestPath": "images-ordinary.json",
+  "workerManifestPath": "worker.json",
+  "workerScriptPath": "scripts/010-content-sample-worker.py",
+  "plcMechanicsPath": "mechanics.json",
+  "publicConfigRef": {
+    "id": "s01-public-011-joint",
+    "version": "1"
+  },
+  "budgetRef": {
+    "id": "s01-budget-011-joint",
+    "version": "2"
+  },
+  "simulationRef": {
+    "id": "s01-sim-011-joint",
+    "version": "2"
+  },
+  "simulation": {
+    "putBackDurationMs": 150,
+    "flipPutBackSafeZ": 150
+  },
+  "expected": {
+    "cameraOrder": [
+      "A",
+      "B"
+    ],
+    "flipCount": 0,
+    "putBackCount": 0,
+    "poseObservationCount": 1,
+    "productMediaCount": 2,
+    "totalMediaCount": 4,
+    "algorithmFactCount": 5,
+    "disposition": "OK",
+    "physicalSlotIndex": 1,
+    "fLocation": {
+      "x": 125,
+      "y": 100
+    },
+    "workerVersion": "ContentSampleWorker/1",
+    "detectionTargets": [
+      {
+        "x": 110,
+        "y": 100,
+        "z": 51
+      },
+      {
+        "x": 110,
+        "y": 100,
+        "z": 51
+      }
+    ],
+    "cameraDispositions": [
+      "OK",
+      "OK"
+    ],
+    "faceDispositions": [
+      "OK"
+    ]
+  },
+  "restrictions": [
+    "014 explicitly qualified software input; original Worker threshold/media processing, TCP virtual PLC, real SQLite; no hardware/production approval",
+    "Two distinct physical slots originate in the declared virtual 3D sample, not inferred from numbering; hardware mappings remain unverified"
+  ],
+  "saveIsolation": {
+    "beforeBindQualityProfile": "011-quality-saved-before-F",
+    "afterBindQualityProfile": "011-quality-saved-after-freeze"
+  }
+}

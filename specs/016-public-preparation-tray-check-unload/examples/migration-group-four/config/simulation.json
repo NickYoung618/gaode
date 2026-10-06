@@ -1,0 +1,109 @@
+{
+  "schemaVersion": "1.0",
+  "id": "s01-sim-011-joint",
+  "version": "2",
+  "purpose": "Test",
+  "source": "011 Test runtime limits; actual camera/worker/TCP used",
+  "clockMode": "RealElapsed",
+  "virtualStartUtc": "2026-09-20T00:00:00Z",
+  "publicConfigRef": {
+    "id": "s01-public-011-joint",
+    "version": "1"
+  },
+  "budgetRef": {
+    "id": "s01-budget-011-joint",
+    "version": "2"
+  },
+  "stages": {
+    "plcAcceptance": {
+      "delayMs": 80,
+      "strategy": "Respond",
+      "outcome": "Success",
+      "failureCode": null,
+      "duplicateOffsetsMs": [],
+      "ignoreCancel": false
+    },
+    "clampCompletion": {
+      "delayMs": 250,
+      "strategy": "Respond",
+      "outcome": "Success",
+      "failureCode": null,
+      "duplicateOffsetsMs": [],
+      "ignoreCancel": false
+    },
+    "xyCompletion": {
+      "delayMs": 500,
+      "strategy": "Respond",
+      "outcome": "Success",
+      "failureCode": null,
+      "duplicateOffsetsMs": [],
+      "ignoreCancel": false
+    },
+    "capture3d": {
+      "delayMs": 400,
+      "strategy": "Respond",
+      "outcome": "Success",
+      "failureCode": null,
+      "duplicateOffsetsMs": [],
+      "ignoreCancel": false
+    },
+    "heightAlgorithm": {
+      "delayMs": 600,
+      "strategy": "Respond",
+      "outcome": "Success",
+      "failureCode": null,
+      "duplicateOffsetsMs": [],
+      "ignoreCancel": false
+    },
+    "captureF": {
+      "delayMs": 150,
+      "strategy": "Respond",
+      "outcome": "Success",
+      "failureCode": null,
+      "duplicateOffsetsMs": [],
+      "ignoreCancel": false
+    },
+    "fDecode": {
+      "delayMs": 200,
+      "strategy": "Respond",
+      "outcome": "Success",
+      "failureCode": null,
+      "duplicateOffsetsMs": [],
+      "ignoreCancel": false
+    }
+  },
+  "deviceInitial": {
+    "connected": true,
+    "automatic": true,
+    "safetyClear": true,
+    "clamped": false,
+    "x": 0,
+    "y": 0
+  },
+  "stop": {
+    "acceptedDelayMs": 80,
+    "completedDelayMs": 200,
+    "respond": true
+  },
+  "lateObservationWindowMs": 10000,
+  "fixtures": {
+    "heightSamples": [
+      {
+        "sourceElementId": "sample-a",
+        "value": 10.5,
+        "unit": "mm",
+        "datum": "SIM_REFERENCE"
+      },
+      {
+        "sourceElementId": "sample-b",
+        "value": 12,
+        "unit": "mm",
+        "datum": "SIM_REFERENCE"
+      }
+    ],
+    "rawCodes": [
+      "RC:R-S1-A-CAP:0.4.0-review"
+    ],
+    "mediaSource": "SyntheticTestFixture"
+  }
+}

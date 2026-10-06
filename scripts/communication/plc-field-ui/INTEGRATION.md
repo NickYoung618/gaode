@@ -1,0 +1,11 @@
+# 0.4 地址合入与正式软件衔接
+
+当前来源：PC.xls（26项，SHA256 37095748a61574d9a1c9bf17ad0ac9118d554fa73ac8f5e10003718b6627511d）和PLC(2).xls（59项，SHA256 8e846d0f71351f87b42db1bf40790f40766a392fd0a9e0968201f8c2056eb476）。共享源在configuration/plc/confirmed-20261006/points.json，布局标识confirmed-20261006-v2。
+
+本轮已接到Gaode.Plc.Protocol：原表嵌入资源、ConfirmedMemoryLayout/FieldAddressProfile、PlcPoint.BoolByte及ByteOffset、读取分组、邻字节保护。PlcSignalAccessor的业务和心跳连接共享字节写锁。工具复用同一个BOOL及REAL编解码实现，模板从共享点表生成。
+
+Host通过Gaode:PlcFieldProfilePath加载profile.template.json的现场副本。该入口显式要求Real提供已校准Profile；它与工具允许未校准只读监视的范围不同。当前只支持HoldingRegister反馈。现场填写PDU起点/字序/来源后投影同名信号，再执行现有Definition准入。
+
+地址已合入不意味着生产流程已闭环：新版表未包含旧ManualZoneOccupied/Teach等字段；Model_Number REAL没有到旧ModelPayload Words的型号编码合同；Alarm_Code与旧AlarmBits、Alarm_Level与旧AlarmSeverity没有自动别名。准入保留具体缺项错误，不能添加虚拟地址填空或删校验伪造完成。PC_Start_Cmd等新增字段在点表和工具可见，正式动作语义另行对齐。
+
+回传时比较本包package-manifest和主工程变更清单。现场修改界面在独立目录进行，携带原件、配置快照、TX/RX、动作结果、源文件和规格增量。先合并共享合同及代码，再用正式软件和真实配方验证；工具读回通过不替代正式设备和算法主流程验证。

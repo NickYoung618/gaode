@@ -1,0 +1,326 @@
+{
+  "date": "2026-09-24",
+  "scope": "plan-only; static documents, source boundaries; no business execution",
+  "businessImplementationStarted": false,
+  "businessTestsRun": false,
+  "tasksRegenerated": false,
+  "analysisRegenerated": false,
+  "featureLabel": "008-recipe-driven-inspection",
+  "gitBranchCreated": false,
+  "hooks": {},
+  "sequences": {
+    "spec.md": {
+      "count": 22,
+      "matches22Expected": true,
+      "duplicates": []
+    },
+    "recipe-cases.md": {
+      "count": 22,
+      "matches22Expected": true,
+      "duplicates": []
+    },
+    "coverage-matrix.md": {
+      "count": 22,
+      "matches22Expected": true,
+      "duplicates": []
+    }
+  },
+  "coverage": {
+    "spec.md": {
+      "business": [
+        "C01",
+        "C02",
+        "C03",
+        "C04",
+        "C05",
+        "C06",
+        "C07",
+        "C08"
+      ],
+      "failures": [
+        "F1",
+        "F2",
+        "F3",
+        "F4",
+        "F5",
+        "F6"
+      ]
+    },
+    "coverage-matrix.md": {
+      "business": [
+        "C01",
+        "C02",
+        "C03",
+        "C04",
+        "C05",
+        "C06",
+        "C07",
+        "C08"
+      ],
+      "failures": [
+        "F1",
+        "F2",
+        "F3",
+        "F4",
+        "F5",
+        "F6"
+      ]
+    }
+  },
+  "relativeLinkCount": 121,
+  "missingLinks": [],
+  "protectedFiles": [
+    {
+      "path": "E:/dzk/gaode-1/AGENTS.md",
+      "unchanged": true
+    },
+    {
+      "path": "E:/dzk/gaode/原型.zip",
+      "unchanged": true
+    },
+    {
+      "path": "E:/dzk/gaode-1/.specify/memory/constitution.md",
+      "unchanged": true
+    },
+    {
+      "path": "E:/dzk/gaode-1/specs/001-station01-public-preparation/data-model.md",
+      "unchanged": true
+    },
+    {
+      "path": "E:/dzk/gaode-1/specs/001-station01-public-preparation/plan.md",
+      "unchanged": true
+    },
+    {
+      "path": "E:/dzk/gaode-1/specs/001-station01-public-preparation/quickstart.md",
+      "unchanged": true
+    },
+    {
+      "path": "E:/dzk/gaode-1/specs/001-station01-public-preparation/research.md",
+      "unchanged": true
+    },
+    {
+      "path": "E:/dzk/gaode-1/specs/001-station01-public-preparation/sequences.md",
+      "unchanged": true
+    },
+    {
+      "path": "E:/dzk/gaode-1/specs/001-station01-public-preparation/spec.md",
+      "unchanged": true
+    },
+    {
+      "path": "E:/dzk/gaode-1/specs/001-station01-public-preparation/tasks.md",
+      "unchanged": true
+    },
+    {
+      "path": "E:/dzk/gaode-1/specs/001-station01-public-preparation/verification.md",
+      "unchanged": true
+    },
+    {
+      "path": "E:/dzk/gaode-1/specs/002-plc-xyz-recipes/plan.md",
+      "unchanged": true
+    },
+    {
+      "path": "E:/dzk/gaode-1/specs/002-plc-xyz-recipes/research.md",
+      "unchanged": true
+    },
+    {
+      "path": "E:/dzk/gaode-1/specs/002-plc-xyz-recipes/spec.md",
+      "unchanged": true
+    },
+    {
+      "path": "E:/dzk/gaode-1/specs/002-plc-xyz-recipes/tasks.md",
+      "unchanged": true
+    },
+    {
+      "path": "E:/dzk/gaode-1/specs/002-plc-xyz-recipes/verification.md",
+      "unchanged": true
+    },
+    {
+      "path": "E:/dzk/gaode-1/specs/003-plc-latest-protocol/tasks-history.md",
+      "unchanged": true
+    },
+    {
+      "path": "E:/dzk/gaode-1/specs/003-plc-latest-protocol/tasks.md",
+      "unchanged": true
+    },
+    {
+      "path": "E:/dzk/gaode-1/specs/006-frontend-station01-console/tasks.md",
+      "unchanged": true
+    },
+    {
+      "path": "E:/dzk/gaode-1/specs/007-station01-integrated-loop/tasks.md",
+      "unchanged": true
+    },
+    {
+      "path": "E:/dzk/gaode-1/specs/008-recipe-driven-inspection/analysis.md",
+      "unchanged": true
+    },
+    {
+      "path": "E:/dzk/gaode-1/specs/008-recipe-driven-inspection/tasks.md",
+      "unchanged": true
+    },
+    {
+      "path": "E:/dzk/gaode-1/specs/001-station01-public-preparation/checklists/design.md",
+      "unchanged": true
+    },
+    {
+      "path": "E:/dzk/gaode-1/specs/001-station01-public-preparation/checklists/requirements.md",
+      "unchanged": true
+    },
+    {
+      "path": "E:/dzk/gaode-1/specs/001-station01-public-preparation/contracts/acquisition-algorithm.md",
+      "unchanged": true
+    },
+    {
+      "path": "E:/dzk/gaode-1/specs/001-station01-public-preparation/contracts/api.md",
+      "unchanged": true
+    },
+    {
+      "path": "E:/dzk/gaode-1/specs/001-station01-public-preparation/contracts/common.md",
+      "unchanged": true
+    },
+    {
+      "path": "E:/dzk/gaode-1/specs/001-station01-public-preparation/contracts/configuration-time.md",
+      "unchanged": true
+    },
+    {
+      "path": "E:/dzk/gaode-1/specs/001-station01-public-preparation/contracts/device.md",
+      "unchanged": true
+    },
+    {
+      "path": "E:/dzk/gaode-1/specs/001-station01-public-preparation/contracts/persistence-handoff.md",
+      "unchanged": true
+    },
+    {
+      "path": "E:/dzk/gaode-1/specs/001-station01-public-preparation/examples/README.md",
+      "unchanged": true
+    },
+    {
+      "path": "E:/dzk/gaode-1/specs/002-plc-xyz-recipes/contracts/recipe-execution.md",
+      "unchanged": true
+    }
+  ],
+  "protectedGroupHashesMatched": {
+    "backend": {
+      "count": 296,
+      "expectedCount": 296,
+      "matchingAlgorithm": [
+        [
+          "str",
+          "",
+          ""
+        ]
+      ]
+    },
+    "frontend": {
+      "count": 123,
+      "expectedCount": 123,
+      "matchingAlgorithm": [
+        [
+          "str",
+          "",
+          ""
+        ]
+      ]
+    },
+    "desktop": {
+      "count": 18,
+      "expectedCount": 18,
+      "matchingAlgorithm": [
+        [
+          "str",
+          "",
+          ""
+        ]
+      ]
+    },
+    "VirtualPlc": {
+      "count": 13,
+      "expectedCount": 13,
+      "matchingAlgorithm": [
+        [
+          "str",
+          "",
+          ""
+        ]
+      ]
+    },
+    "软件需求规格说明书": {
+      "count": 9,
+      "expectedCount": 9,
+      "matchingAlgorithm": [
+        [
+          "str",
+          "",
+          ""
+        ]
+      ]
+    },
+    "高德_文档/上下位机对接": {
+      "count": 22,
+      "expectedCount": 22,
+      "matchingAlgorithm": [
+        [
+          "str",
+          "",
+          ""
+        ]
+      ]
+    }
+  },
+  "changedExistingDocuments": [
+    "E:/dzk/gaode-1/specs/003-plc-latest-protocol/plan.md",
+    "E:/dzk/gaode-1/specs/003-plc-latest-protocol/spec.md",
+    "E:/dzk/gaode-1/specs/006-frontend-station01-console/plan.md",
+    "E:/dzk/gaode-1/specs/006-frontend-station01-console/spec.md",
+    "E:/dzk/gaode-1/specs/007-station01-integrated-loop/plan.md",
+    "E:/dzk/gaode-1/specs/007-station01-integrated-loop/spec.md",
+    "E:/dzk/gaode-1/specs/008-recipe-driven-inspection/alignment-audit.md",
+    "E:/dzk/gaode-1/specs/008-recipe-driven-inspection/coverage-matrix.md",
+    "E:/dzk/gaode-1/specs/008-recipe-driven-inspection/data-model.md",
+    "E:/dzk/gaode-1/specs/008-recipe-driven-inspection/plan.md",
+    "E:/dzk/gaode-1/specs/008-recipe-driven-inspection/quickstart.md",
+    "E:/dzk/gaode-1/specs/008-recipe-driven-inspection/recipe-cases.md",
+    "E:/dzk/gaode-1/specs/008-recipe-driven-inspection/research.md",
+    "E:/dzk/gaode-1/specs/008-recipe-driven-inspection/spec.md",
+    "E:/dzk/gaode-1/specs/003-plc-latest-protocol/contracts/component-source-matrix.md",
+    "E:/dzk/gaode-1/specs/003-plc-latest-protocol/contracts/detection-port.md",
+    "E:/dzk/gaode-1/specs/003-plc-latest-protocol/contracts/plc-stage-action-port.md",
+    "E:/dzk/gaode-1/specs/003-plc-latest-protocol/contracts/public-preparation-handoff.md",
+    "E:/dzk/gaode-1/specs/003-plc-latest-protocol/contracts/stage-events.md",
+    "E:/dzk/gaode-1/specs/003-plc-latest-protocol/contracts/station01-main-flow-api.md",
+    "E:/dzk/gaode-1/specs/003-plc-latest-protocol/contracts/status-notifications.md",
+    "E:/dzk/gaode-1/specs/003-plc-latest-protocol/contracts/virtual-plc-boundary.md",
+    "E:/dzk/gaode-1/specs/003-plc-latest-protocol/contracts/whole-tray-workflow.md",
+    "E:/dzk/gaode-1/specs/006-frontend-station01-console/contracts/api.md",
+    "E:/dzk/gaode-1/specs/006-frontend-station01-console/contracts/gaps.md",
+    "E:/dzk/gaode-1/specs/006-frontend-station01-console/contracts/prototype-mapping.md",
+    "E:/dzk/gaode-1/specs/007-station01-integrated-loop/contracts/virtual-integration.md",
+    "E:/dzk/gaode-1/specs/008-recipe-driven-inspection/contracts/api-results.md",
+    "E:/dzk/gaode-1/specs/008-recipe-driven-inspection/contracts/evidence.md",
+    "E:/dzk/gaode-1/specs/008-recipe-driven-inspection/contracts/execution.md",
+    "E:/dzk/gaode-1/specs/008-recipe-driven-inspection/evidence/index.md"
+  ],
+  "writtenDocumentCount": 31,
+  "protocolEdit": {
+    "file": "E:\\dzk\\gaode-1\\高德_文档\\PLC与上位机通信接口协议_最新版.docx",
+    "backup": "C:\\Users\\Administrator\\AppData\\Local\\Temp\\gaode-f-scan-protocol-20260924-before.docx",
+    "sha256": "cf5adcd1efc5af86a4af254317c7d0a8697212bddfb66d061d4ab5c421b1addf",
+    "modifiedParts": [
+      "word/document.xml"
+    ],
+    "unchangedOtherParts": 15,
+    "changedCells": 2,
+    "addedBodyParagraphs": 7,
+    "originalParagraphTextPreserved": true,
+    "zipReadable": true,
+    "renderingVerified": false
+  },
+  "errors": [],
+  "passed": true,
+  "remaining": [
+    "001/002 owner documents need scoped alignment before affected implementation",
+    "tasks/analysis remain old and require follow-up commands",
+    "B01-F/B09-U design resolved, implementation and runtime validation pending",
+    "Other B inputs remain local blockers; no complete E2E evidence"
+  ]
+}

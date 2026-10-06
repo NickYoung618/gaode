@@ -1,0 +1,555 @@
+{
+  "schemaVersion": "semantic-recipe-input/1",
+  "purpose": "Test",
+  "definitions": [
+    {
+      "definition": {
+        "recipeId": "010-CONTENT-CD",
+        "version": "1.0-test",
+        "releaseStatus": "simulationOnly",
+        "scenarioId": "S1",
+        "model": "CD-declared-input",
+        "fCode": "010-CONTENT-CD/1",
+        "unitKind": "independentPart",
+        "primaryMaterial": "BASE",
+        "layoutProfile": "SIM_TRAY_5X3",
+        "capacity": 15,
+        "positions": [
+          {
+            "slotId": "P01",
+            "unitPattern": "{TrayRunId}:P:P01",
+            "members": [
+              {
+                "material": "BASE",
+                "memberPattern": "{UnitId}:M01",
+                "handling": "individualPart",
+                "pointRefs": {}
+              }
+            ],
+            "protocolSlotIndex": 1,
+            "pointRefs": {
+              "C": "Q02-P01-C-test-virtual-mapping/1.0.1",
+              "D": "Q02-P01-D-test-virtual-mapping/1.0.1"
+            }
+          },
+          {
+            "slotId": "P02",
+            "unitPattern": "{TrayRunId}:P:P02",
+            "members": [
+              {
+                "material": "BASE",
+                "memberPattern": "{UnitId}:M01",
+                "handling": "individualPart",
+                "pointRefs": {}
+              }
+            ],
+            "protocolSlotIndex": null,
+            "pointRefs": {}
+          },
+          {
+            "slotId": "P03",
+            "unitPattern": "{TrayRunId}:P:P03",
+            "members": [
+              {
+                "material": "BASE",
+                "memberPattern": "{UnitId}:M01",
+                "handling": "individualPart",
+                "pointRefs": {}
+              }
+            ],
+            "protocolSlotIndex": 3,
+            "pointRefs": {
+              "C": "Q02-P03-C-test-virtual-mapping/1.0.1",
+              "D": "Q02-P03-D-test-virtual-mapping/1.0.1"
+            }
+          },
+          {
+            "slotId": "P04",
+            "unitPattern": "{TrayRunId}:P:P04",
+            "members": [
+              {
+                "material": "BASE",
+                "memberPattern": "{UnitId}:M01",
+                "handling": "individualPart",
+                "pointRefs": {}
+              }
+            ],
+            "protocolSlotIndex": null,
+            "pointRefs": {}
+          },
+          {
+            "slotId": "P05",
+            "unitPattern": "{TrayRunId}:P:P05",
+            "members": [
+              {
+                "material": "BASE",
+                "memberPattern": "{UnitId}:M01",
+                "handling": "individualPart",
+                "pointRefs": {}
+              }
+            ],
+            "protocolSlotIndex": null,
+            "pointRefs": {}
+          },
+          {
+            "slotId": "P06",
+            "unitPattern": "{TrayRunId}:P:P06",
+            "members": [
+              {
+                "material": "BASE",
+                "memberPattern": "{UnitId}:M01",
+                "handling": "individualPart",
+                "pointRefs": {}
+              }
+            ],
+            "protocolSlotIndex": null,
+            "pointRefs": {}
+          },
+          {
+            "slotId": "P07",
+            "unitPattern": "{TrayRunId}:P:P07",
+            "members": [
+              {
+                "material": "BASE",
+                "memberPattern": "{UnitId}:M01",
+                "handling": "individualPart",
+                "pointRefs": {}
+              }
+            ],
+            "protocolSlotIndex": null,
+            "pointRefs": {}
+          },
+          {
+            "slotId": "P08",
+            "unitPattern": "{TrayRunId}:P:P08",
+            "members": [
+              {
+                "material": "BASE",
+                "memberPattern": "{UnitId}:M01",
+                "handling": "individualPart",
+                "pointRefs": {}
+              }
+            ],
+            "protocolSlotIndex": null,
+            "pointRefs": {}
+          },
+          {
+            "slotId": "P09",
+            "unitPattern": "{TrayRunId}:P:P09",
+            "members": [
+              {
+                "material": "BASE",
+                "memberPattern": "{UnitId}:M01",
+                "handling": "individualPart",
+                "pointRefs": {}
+              }
+            ],
+            "protocolSlotIndex": null,
+            "pointRefs": {}
+          },
+          {
+            "slotId": "P10",
+            "unitPattern": "{TrayRunId}:P:P10",
+            "members": [
+              {
+                "material": "BASE",
+                "memberPattern": "{UnitId}:M01",
+                "handling": "individualPart",
+                "pointRefs": {}
+              }
+            ],
+            "protocolSlotIndex": null,
+            "pointRefs": {}
+          },
+          {
+            "slotId": "P11",
+            "unitPattern": "{TrayRunId}:P:P11",
+            "members": [
+              {
+                "material": "BASE",
+                "memberPattern": "{UnitId}:M01",
+                "handling": "individualPart",
+                "pointRefs": {}
+              }
+            ],
+            "protocolSlotIndex": null,
+            "pointRefs": {}
+          },
+          {
+            "slotId": "P12",
+            "unitPattern": "{TrayRunId}:P:P12",
+            "members": [
+              {
+                "material": "BASE",
+                "memberPattern": "{UnitId}:M01",
+                "handling": "individualPart",
+                "pointRefs": {}
+              }
+            ],
+            "protocolSlotIndex": null,
+            "pointRefs": {}
+          },
+          {
+            "slotId": "P13",
+            "unitPattern": "{TrayRunId}:P:P13",
+            "members": [
+              {
+                "material": "BASE",
+                "memberPattern": "{UnitId}:M01",
+                "handling": "individualPart",
+                "pointRefs": {}
+              }
+            ],
+            "protocolSlotIndex": null,
+            "pointRefs": {}
+          },
+          {
+            "slotId": "P14",
+            "unitPattern": "{TrayRunId}:P:P14",
+            "members": [
+              {
+                "material": "BASE",
+                "memberPattern": "{UnitId}:M01",
+                "handling": "individualPart",
+                "pointRefs": {}
+              }
+            ],
+            "protocolSlotIndex": null,
+            "pointRefs": {}
+          },
+          {
+            "slotId": "P15",
+            "unitPattern": "{TrayRunId}:P:P15",
+            "members": [
+              {
+                "material": "BASE",
+                "memberPattern": "{UnitId}:M01",
+                "handling": "individualPart",
+                "pointRefs": {}
+              }
+            ],
+            "protocolSlotIndex": null,
+            "pointRefs": {}
+          }
+        ],
+        "composition": [
+          {
+            "material": "BASE",
+            "localFaces": [
+              1
+            ]
+          }
+        ],
+        "route": "ordinaryBatch",
+        "stages": [
+          {
+            "number": 1,
+            "action": "none",
+            "coordinateRule": "initial3D",
+            "angleDeg": null,
+            "targets": [
+              {
+                "material": "BASE",
+                "localFace": 1,
+                "cameraPair": "CD",
+                "captureProfile": "SIM_CAPTURE_CD",
+                "algorithmProfile": "SIM_ALGORITHM_CD"
+              }
+            ]
+          }
+        ],
+        "eCode": {
+          "enabled": false,
+          "representativeMaterial": null,
+          "bindTo": null,
+          "requiredForOk": false,
+          "readAt": null,
+          "captureProfile": null,
+          "algorithmProfile": null
+        },
+        "disposition": {
+          "ok": "originalSlot",
+          "ng": "NGReservedCell",
+          "pending": "PendingReservedCell",
+          "physicalUnit": "singlePart"
+        },
+        "motionProfile": "SIM_MOTION",
+        "qualityProfile": "SIM_QUALITY",
+        "captureProfiles": {
+          "SIM_CAPTURE_AB": {
+            "id": "SIM_CAPTURE_AB",
+            "version": "input-semantic/1",
+            "settings": {
+              "profileId": "SIM_CAPTURE_AB",
+              "exposureUs": 10000,
+              "gain": 1,
+              "roiPixels": [
+                0,
+                0,
+                1024,
+                1024
+              ],
+              "lightChannel": "SIM_WHITE",
+              "brightnessPercent": 60,
+              "settleMs": 100
+            }
+          },
+          "SIM_CAPTURE_CD": {
+            "id": "SIM_CAPTURE_CD",
+            "version": "input-semantic/1",
+            "settings": {
+              "profileId": "SIM_CAPTURE_CD",
+              "exposureUs": 10000,
+              "gain": 1,
+              "roiPixels": [
+                0,
+                0,
+                1024,
+                1024
+              ],
+              "lightChannel": "SIM_WHITE",
+              "brightnessPercent": 60,
+              "settleMs": 100
+            }
+          }
+        },
+        "executionPositions": {
+          "P01": {
+            "slotId": "P01",
+            "physicalEntity": {
+              "source": {
+                "point": {
+                  "id": "P01",
+                  "version": "test-virtual-mapping/1.0.1",
+                  "x": 100,
+                  "y": 100,
+                  "z": 150,
+                  "unit": "mm",
+                  "frame": "SIM_MACHINE"
+                },
+                "coordinateEvidenceReference": "declared-coordinate-table/1:P01"
+              },
+              "coordinates": [],
+              "flip": null,
+              "rotation": null,
+              "sorting": {}
+            },
+            "members": {}
+          },
+          "P02": {
+            "slotId": "P02",
+            "physicalEntity": {
+              "source": null,
+              "coordinates": [],
+              "flip": null,
+              "rotation": null,
+              "sorting": {}
+            },
+            "members": {}
+          },
+          "P03": {
+            "slotId": "P03",
+            "physicalEntity": {
+              "source": {
+                "point": {
+                  "id": "P03",
+                  "version": "test-virtual-mapping/1.0.1",
+                  "x": 300,
+                  "y": 100,
+                  "z": 150,
+                  "unit": "mm",
+                  "frame": "SIM_MACHINE"
+                },
+                "coordinateEvidenceReference": "declared-coordinate-table/1:P03"
+              },
+              "coordinates": [],
+              "flip": null,
+              "rotation": null,
+              "sorting": {}
+            },
+            "members": {}
+          },
+          "P04": {
+            "slotId": "P04",
+            "physicalEntity": {
+              "source": null,
+              "coordinates": [],
+              "flip": null,
+              "rotation": null,
+              "sorting": {}
+            },
+            "members": {}
+          },
+          "P05": {
+            "slotId": "P05",
+            "physicalEntity": {
+              "source": null,
+              "coordinates": [],
+              "flip": null,
+              "rotation": null,
+              "sorting": {}
+            },
+            "members": {}
+          },
+          "P06": {
+            "slotId": "P06",
+            "physicalEntity": {
+              "source": null,
+              "coordinates": [],
+              "flip": null,
+              "rotation": null,
+              "sorting": {}
+            },
+            "members": {}
+          },
+          "P07": {
+            "slotId": "P07",
+            "physicalEntity": {
+              "source": null,
+              "coordinates": [],
+              "flip": null,
+              "rotation": null,
+              "sorting": {}
+            },
+            "members": {}
+          },
+          "P08": {
+            "slotId": "P08",
+            "physicalEntity": {
+              "source": null,
+              "coordinates": [],
+              "flip": null,
+              "rotation": null,
+              "sorting": {}
+            },
+            "members": {}
+          },
+          "P09": {
+            "slotId": "P09",
+            "physicalEntity": {
+              "source": null,
+              "coordinates": [],
+              "flip": null,
+              "rotation": null,
+              "sorting": {}
+            },
+            "members": {}
+          },
+          "P10": {
+            "slotId": "P10",
+            "physicalEntity": {
+              "source": null,
+              "coordinates": [],
+              "flip": null,
+              "rotation": null,
+              "sorting": {}
+            },
+            "members": {}
+          },
+          "P11": {
+            "slotId": "P11",
+            "physicalEntity": {
+              "source": null,
+              "coordinates": [],
+              "flip": null,
+              "rotation": null,
+              "sorting": {}
+            },
+            "members": {}
+          },
+          "P12": {
+            "slotId": "P12",
+            "physicalEntity": {
+              "source": null,
+              "coordinates": [],
+              "flip": null,
+              "rotation": null,
+              "sorting": {}
+            },
+            "members": {}
+          },
+          "P13": {
+            "slotId": "P13",
+            "physicalEntity": {
+              "source": null,
+              "coordinates": [],
+              "flip": null,
+              "rotation": null,
+              "sorting": {}
+            },
+            "members": {}
+          },
+          "P14": {
+            "slotId": "P14",
+            "physicalEntity": {
+              "source": null,
+              "coordinates": [],
+              "flip": null,
+              "rotation": null,
+              "sorting": {}
+            },
+            "members": {}
+          },
+          "P15": {
+            "slotId": "P15",
+            "physicalEntity": {
+              "source": null,
+              "coordinates": [],
+              "flip": null,
+              "rotation": null,
+              "sorting": {}
+            },
+            "members": {}
+          }
+        },
+        "catalogDigest": "supplied-by-provider",
+        "plcRecipeId": 1,
+        "ngCapacity": null,
+        "pendingCapacity": null,
+        "approval": {
+          "id": "010-controlled-representative",
+          "version": "1",
+          "digest": "supplied-by-provider",
+          "purpose": "Test",
+          "allowedSlots": [
+            "P01",
+            "P03"
+          ],
+          "evidenceReference": "010-reviewed-input/1"
+        },
+        "algorithmRequirements": {
+          "SIM_ALGORITHM": {
+            "id": "SIM_ALGORITHM",
+            "parametersVersion": "sample-threshold/1",
+            "purpose": 2,
+            "inputCount": 1,
+            "resultContract": "image-quality/1"
+          },
+          "SIM_ALGORITHM/fusion": {
+            "id": "SIM_ALGORITHM/fusion",
+            "parametersVersion": "sample-threshold/1",
+            "purpose": 3,
+            "inputCount": 2,
+            "resultContract": "face-quality/1"
+          },
+          "SIM_ALGORITHM_CD": {
+            "id": "SIM_ALGORITHM_CD",
+            "parametersVersion": "sample-threshold/1",
+            "purpose": 2,
+            "inputCount": 1,
+            "resultContract": "image-quality/1"
+          },
+          "SIM_ALGORITHM_CD/fusion": {
+            "id": "SIM_ALGORITHM_CD/fusion",
+            "parametersVersion": "sample-threshold/1",
+            "purpose": 3,
+            "inputCount": 2,
+            "resultContract": "face-quality/1"
+          }
+        }
+      },
+      "coordinatesFile": "coordinates.csv",
+      "coordinatesSha256": "3F79057500F113CFFFE14ECE8674BC45F661F1C7BD8D089780DDC27CA76E8155"
+    }
+  ]
+}

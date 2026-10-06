@@ -1,0 +1,14 @@
+<Project Sdk="Microsoft.NET.Sdk">
+  <PropertyGroup><IsTestProject>true</IsTestProject></PropertyGroup>
+  <ItemGroup>
+    <Compile Include="../Shared/ApprovedTestRoot.cs" Link="Support/ApprovedTestRoot.cs" />
+    <ProjectReference Include="../../src/Gaode.Host/Gaode.Host.csproj" />
+    <ProjectReference Include="../../../VirtualPlc/VirtualPlc.csproj" Aliases="virtualplc" />
+    <PackageReference Include="Microsoft.NET.Test.Sdk" />
+    <PackageReference Include="xunit" />
+    <PackageReference Include="xunit.runner.visualstudio" />
+    <PackageReference Include="Microsoft.AspNetCore.Mvc.Testing" />
+    <PackageReference Include="Microsoft.Extensions.TimeProvider.Testing" />
+  </ItemGroup>
+  <ItemGroup><ProjectReference Include="../../tools/Gaode.StorePrep/Gaode.StorePrep.csproj" ReferenceOutputAssembly="false" /></ItemGroup>
+</Project>

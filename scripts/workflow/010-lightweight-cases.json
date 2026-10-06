@@ -1,0 +1,938 @@
+{
+  "schemaVersion": "010-lightweight-cases/1",
+  "scope": "LightweightBoundaryOnly",
+  "requiredFiles": [
+    "scripts/workflow/recipe_execution_010.py",
+    "scripts/workflow/test_recipe_execution_010.py",
+    "scripts/workflow/migration_audit.py",
+    "scripts/architecture/010-script-boundary-cases.json",
+    "backend/tests/Gaode.Rules.Tests/Architecture/RecipeExecutionBoundaryChecker.cs",
+    "backend/tests/Gaode.Rules.Tests/Architecture/RecipeExecutionBoundaryTests.cs",
+    "backend/tests/Gaode.Rules.Tests/Architecture/009-boundary-inventory.json",
+    "backend/tests/Gaode.Rules.Tests/Architecture/009-public-shapes.json"
+  ],
+  "cases": [
+    {
+      "caseId": "B01",
+      "kind": "dotnet",
+      "set": "L",
+      "evidenceLevel": "StaticComponent",
+      "requiredEvidence": [
+        "current-context",
+        "raw-report"
+      ],
+      "suite": "Gaode.Rules.Tests",
+      "method": "Gaode.Rules.Tests.Architecture.RecipeExecutionBoundaryTests.CurrentBusinessClosureSatisfiesRule",
+      "dataRow": "rule: \"B01\"",
+      "dataRowId": "B01"
+    },
+    {
+      "caseId": "B02",
+      "kind": "dotnet",
+      "set": "L",
+      "evidenceLevel": "StaticComponent",
+      "requiredEvidence": [
+        "current-context",
+        "raw-report"
+      ],
+      "suite": "Gaode.Rules.Tests",
+      "method": "Gaode.Rules.Tests.Architecture.RecipeExecutionBoundaryTests.CurrentBusinessClosureSatisfiesRule",
+      "dataRow": "rule: \"B02\"",
+      "dataRowId": "B02"
+    },
+    {
+      "caseId": "B03",
+      "kind": "dotnet",
+      "set": "L",
+      "evidenceLevel": "StaticComponent",
+      "requiredEvidence": [
+        "current-context",
+        "raw-report"
+      ],
+      "suite": "Gaode.Rules.Tests",
+      "method": "Gaode.Rules.Tests.Architecture.RecipeExecutionBoundaryTests.CurrentBusinessClosureSatisfiesRule",
+      "dataRow": "rule: \"B03\"",
+      "dataRowId": "B03"
+    },
+    {
+      "caseId": "B04",
+      "kind": "dotnet",
+      "set": "L",
+      "evidenceLevel": "StaticComponent",
+      "requiredEvidence": [
+        "current-context",
+        "raw-report"
+      ],
+      "suite": "Gaode.Rules.Tests",
+      "method": "Gaode.Rules.Tests.Architecture.RecipeExecutionBoundaryTests.CurrentBusinessClosureSatisfiesRule",
+      "dataRow": "rule: \"B04\"",
+      "dataRowId": "B04"
+    },
+    {
+      "caseId": "B05",
+      "kind": "dotnet",
+      "set": "L",
+      "evidenceLevel": "StaticComponent",
+      "requiredEvidence": [
+        "current-context",
+        "raw-report"
+      ],
+      "suite": "Gaode.Rules.Tests",
+      "method": "Gaode.Rules.Tests.Architecture.RecipeExecutionBoundaryTests.CurrentBusinessClosureSatisfiesRule",
+      "dataRow": "rule: \"B05\"",
+      "dataRowId": "B05"
+    },
+    {
+      "caseId": "N01a",
+      "kind": "dotnet",
+      "set": "L",
+      "evidenceLevel": "StaticComponent",
+      "requiredEvidence": [
+        "current-context",
+        "raw-report"
+      ],
+      "suite": "Gaode.Rules.Tests",
+      "method": "Gaode.Rules.Tests.Architecture.RecipeExecutionBoundaryTests.IllegalArchitectureIsRejectedByTheRepositoryChecker",
+      "dataRow": "sample: \"N01a\", requiredRule: \"B01\"",
+      "dataRowId": "N01a"
+    },
+    {
+      "caseId": "N01b",
+      "kind": "dotnet",
+      "set": "L",
+      "evidenceLevel": "StaticComponent",
+      "requiredEvidence": [
+        "current-context",
+        "raw-report"
+      ],
+      "suite": "Gaode.Rules.Tests",
+      "method": "Gaode.Rules.Tests.Architecture.RecipeExecutionBoundaryTests.IllegalArchitectureIsRejectedByTheRepositoryChecker",
+      "dataRow": "sample: \"N01b\", requiredRule: \"B01\"",
+      "dataRowId": "N01b"
+    },
+    {
+      "caseId": "N01c",
+      "kind": "dotnet",
+      "set": "L",
+      "evidenceLevel": "StaticComponent",
+      "requiredEvidence": [
+        "current-context",
+        "raw-report"
+      ],
+      "suite": "Gaode.Rules.Tests",
+      "method": "Gaode.Rules.Tests.Architecture.RecipeExecutionBoundaryTests.IllegalArchitectureIsRejectedByTheRepositoryChecker",
+      "dataRow": "sample: \"N01c\", requiredRule: \"B01\"",
+      "dataRowId": "N01c"
+    },
+    {
+      "caseId": "N02",
+      "kind": "dotnet",
+      "set": "L",
+      "evidenceLevel": "StaticComponent",
+      "requiredEvidence": [
+        "current-context",
+        "raw-report"
+      ],
+      "suite": "Gaode.Rules.Tests",
+      "method": "Gaode.Rules.Tests.Architecture.RecipeExecutionBoundaryTests.IllegalArchitectureIsRejectedByTheRepositoryChecker",
+      "dataRow": "sample: \"N02\", requiredRule: \"B02\"",
+      "dataRowId": "N02"
+    },
+    {
+      "caseId": "N03a",
+      "kind": "dotnet",
+      "set": "L",
+      "evidenceLevel": "StaticComponent",
+      "requiredEvidence": [
+        "current-context",
+        "raw-report"
+      ],
+      "suite": "Gaode.Rules.Tests",
+      "method": "Gaode.Rules.Tests.Architecture.RecipeExecutionBoundaryTests.IllegalArchitectureIsRejectedByTheRepositoryChecker",
+      "dataRow": "sample: \"N03a\", requiredRule: \"B03\"",
+      "dataRowId": "N03a"
+    },
+    {
+      "caseId": "N03b",
+      "kind": "dotnet",
+      "set": "L",
+      "evidenceLevel": "StaticComponent",
+      "requiredEvidence": [
+        "current-context",
+        "raw-report"
+      ],
+      "suite": "Gaode.Rules.Tests",
+      "method": "Gaode.Rules.Tests.Architecture.RecipeExecutionBoundaryTests.IllegalArchitectureIsRejectedByTheRepositoryChecker",
+      "dataRow": "sample: \"N03b\", requiredRule: \"B03\"",
+      "dataRowId": "N03b"
+    },
+    {
+      "caseId": "N04",
+      "kind": "dotnet",
+      "set": "L",
+      "evidenceLevel": "StaticComponent",
+      "requiredEvidence": [
+        "current-context",
+        "raw-report"
+      ],
+      "suite": "Gaode.Rules.Tests",
+      "method": "Gaode.Rules.Tests.Architecture.RecipeExecutionBoundaryTests.IllegalArchitectureIsRejectedByTheRepositoryChecker",
+      "dataRow": "sample: \"N04\", requiredRule: \"B04\"",
+      "dataRowId": "N04"
+    },
+    {
+      "caseId": "N05a",
+      "kind": "dotnet",
+      "set": "L",
+      "evidenceLevel": "StaticComponent",
+      "requiredEvidence": [
+        "current-context",
+        "raw-report"
+      ],
+      "suite": "Gaode.Rules.Tests",
+      "method": "Gaode.Rules.Tests.Architecture.RecipeExecutionBoundaryTests.IllegalArchitectureIsRejectedByTheRepositoryChecker",
+      "dataRow": "sample: \"N05a\", requiredRule: \"B01\"",
+      "dataRowId": "N05a"
+    },
+    {
+      "caseId": "N05b",
+      "kind": "dotnet",
+      "set": "L",
+      "evidenceLevel": "StaticComponent",
+      "requiredEvidence": [
+        "current-context",
+        "raw-report"
+      ],
+      "suite": "Gaode.Rules.Tests",
+      "method": "Gaode.Rules.Tests.Architecture.RecipeExecutionBoundaryTests.IllegalArchitectureIsRejectedByTheRepositoryChecker",
+      "dataRow": "sample: \"N05b\", requiredRule: \"B02\"",
+      "dataRowId": "N05b"
+    },
+    {
+      "caseId": "P01",
+      "kind": "dotnet",
+      "set": "L",
+      "evidenceLevel": "StaticComponent",
+      "requiredEvidence": [
+        "current-context",
+        "raw-report"
+      ],
+      "suite": "Gaode.Rules.Tests",
+      "method": "Gaode.Rules.Tests.Architecture.RecipeExecutionBoundaryTests.LegitimateOriginDecodingAndAdmissionRemainAllowed",
+      "dataRow": "sample: \"P01\"",
+      "dataRowId": "P01"
+    },
+    {
+      "caseId": "P02",
+      "kind": "dotnet",
+      "set": "L",
+      "evidenceLevel": "StaticComponent",
+      "requiredEvidence": [
+        "current-context",
+        "raw-report"
+      ],
+      "suite": "Gaode.Rules.Tests",
+      "method": "Gaode.Rules.Tests.Architecture.RecipeExecutionBoundaryTests.LegitimateOriginDecodingAndAdmissionRemainAllowed",
+      "dataRow": "sample: \"P02\"",
+      "dataRowId": "P02"
+    },
+    {
+      "caseId": "P03",
+      "kind": "dotnet",
+      "set": "L",
+      "evidenceLevel": "StaticComponent",
+      "requiredEvidence": [
+        "current-context",
+        "raw-report"
+      ],
+      "suite": "Gaode.Rules.Tests",
+      "method": "Gaode.Rules.Tests.Architecture.RecipeExecutionBoundaryTests.LegitimateOriginDecodingAndAdmissionRemainAllowed",
+      "dataRow": "sample: \"P03\"",
+      "dataRowId": "P03"
+    },
+    {
+      "caseId": "009-ProductionBusinessSourceBoundary",
+      "kind": "dotnet",
+      "set": "L",
+      "evidenceLevel": "StaticComponent",
+      "requiredEvidence": [
+        "current-context",
+        "raw-report"
+      ],
+      "suite": "Gaode.Rules.Tests",
+      "method": "Gaode.Rules.Tests.Architecture.ProtocolRepositoryBoundaryTests.ProductionBusinessSourceBoundary",
+      "dataRow": null,
+      "dataRowId": "0"
+    },
+    {
+      "caseId": "009-PublicPortShapesAreReviewed",
+      "kind": "dotnet",
+      "set": "L",
+      "evidenceLevel": "StaticComponent",
+      "requiredEvidence": [
+        "current-context",
+        "raw-report"
+      ],
+      "suite": "Gaode.Rules.Tests",
+      "method": "Gaode.Rules.Tests.Architecture.ProtocolRepositoryBoundaryTests.PublicPortShapesAreReviewed",
+      "dataRow": null,
+      "dataRowId": "0"
+    },
+    {
+      "caseId": "009-BusinessContractsAndTestsDoNotRequireWireDetails",
+      "kind": "dotnet",
+      "set": "L",
+      "evidenceLevel": "StaticComponent",
+      "requiredEvidence": [
+        "current-context",
+        "raw-report"
+      ],
+      "suite": "Gaode.Rules.Tests",
+      "method": "Gaode.Rules.Tests.Architecture.ProtocolRepositoryBoundaryTests.BusinessContractsAndTestsDoNotRequireWireDetails",
+      "dataRow": null,
+      "dataRowId": "0"
+    },
+    {
+      "caseId": "009-FormalAdaptersUseNamedSignalAccess",
+      "kind": "dotnet",
+      "set": "L",
+      "evidenceLevel": "StaticComponent",
+      "requiredEvidence": [
+        "current-context",
+        "raw-report"
+      ],
+      "suite": "Gaode.Rules.Tests",
+      "method": "Gaode.Rules.Tests.Architecture.ProtocolRepositoryBoundaryTests.FormalAdaptersUseNamedSignalAccess",
+      "dataRow": null,
+      "dataRowId": "0"
+    },
+    {
+      "caseId": "SCRIPT-Repository",
+      "kind": "scripts",
+      "set": "L",
+      "evidenceLevel": "StaticComponent",
+      "requiredEvidence": [
+        "current-context",
+        "raw-report"
+      ]
+    },
+    {
+      "caseId": "SCRIPT-N-Continuation",
+      "kind": "scripts",
+      "set": "L",
+      "evidenceLevel": "StaticComponent",
+      "requiredEvidence": [
+        "current-context",
+        "raw-report"
+      ]
+    },
+    {
+      "caseId": "SCRIPT-N-CompletionWrite",
+      "kind": "scripts",
+      "set": "L",
+      "evidenceLevel": "StaticComponent",
+      "requiredEvidence": [
+        "current-context",
+        "raw-report"
+      ]
+    },
+    {
+      "caseId": "SCRIPT-P-FormalApi",
+      "kind": "scripts",
+      "set": "L",
+      "evidenceLevel": "StaticComponent",
+      "requiredEvidence": [
+        "current-context",
+        "raw-report"
+      ]
+    },
+    {
+      "caseId": "SCRIPT-P-Origin",
+      "kind": "scripts",
+      "set": "L",
+      "evidenceLevel": "StaticComponent",
+      "requiredEvidence": [
+        "current-context",
+        "raw-report"
+      ]
+    },
+    {
+      "caseId": "SCRIPT-N-PowerShellContinuation",
+      "kind": "scripts",
+      "set": "L",
+      "evidenceLevel": "StaticComponent",
+      "requiredEvidence": [
+        "current-context",
+        "raw-report"
+      ]
+    },
+    {
+      "caseId": "SCRIPT-P-PowerShellApi",
+      "kind": "scripts",
+      "set": "L",
+      "evidenceLevel": "StaticComponent",
+      "requiredEvidence": [
+        "current-context",
+        "raw-report"
+      ]
+    },
+    {
+      "caseId": "G01/manifest",
+      "kind": "selfcheck",
+      "set": "L",
+      "evidenceLevel": "StaticComponent",
+      "requiredEvidence": [
+        "current-context",
+        "raw-report"
+      ],
+      "method": "test_recipe_execution_010.selfcheck",
+      "dataRowId": "manifest"
+    },
+    {
+      "caseId": "G01/scanner",
+      "kind": "selfcheck",
+      "set": "L",
+      "evidenceLevel": "StaticComponent",
+      "requiredEvidence": [
+        "current-context",
+        "raw-report"
+      ],
+      "method": "test_recipe_execution_010.selfcheck",
+      "dataRowId": "scanner"
+    },
+    {
+      "caseId": "G01/case",
+      "kind": "selfcheck",
+      "set": "L",
+      "evidenceLevel": "StaticComponent",
+      "requiredEvidence": [
+        "current-context",
+        "raw-report"
+      ],
+      "method": "test_recipe_execution_010.selfcheck",
+      "dataRowId": "case"
+    },
+    {
+      "caseId": "G02/discovery",
+      "kind": "selfcheck",
+      "set": "L",
+      "evidenceLevel": "StaticComponent",
+      "requiredEvidence": [
+        "current-context",
+        "raw-report"
+      ],
+      "method": "test_recipe_execution_010.selfcheck",
+      "dataRowId": "discovery"
+    },
+    {
+      "caseId": "G02/execution",
+      "kind": "selfcheck",
+      "set": "L",
+      "evidenceLevel": "StaticComponent",
+      "requiredEvidence": [
+        "current-context",
+        "raw-report"
+      ],
+      "method": "test_recipe_execution_010.selfcheck",
+      "dataRowId": "execution"
+    },
+    {
+      "caseId": "G03/skip",
+      "kind": "selfcheck",
+      "set": "L",
+      "evidenceLevel": "StaticComponent",
+      "requiredEvidence": [
+        "current-context",
+        "raw-report"
+      ],
+      "method": "test_recipe_execution_010.selfcheck",
+      "dataRowId": "skip"
+    },
+    {
+      "caseId": "G03/filter",
+      "kind": "selfcheck",
+      "set": "L",
+      "evidenceLevel": "StaticComponent",
+      "requiredEvidence": [
+        "current-context",
+        "raw-report"
+      ],
+      "method": "test_recipe_execution_010.selfcheck",
+      "dataRowId": "filter"
+    },
+    {
+      "caseId": "G04/trx",
+      "kind": "selfcheck",
+      "set": "L",
+      "evidenceLevel": "StaticComponent",
+      "requiredEvidence": [
+        "current-context",
+        "raw-report"
+      ],
+      "method": "test_recipe_execution_010.selfcheck",
+      "dataRowId": "trx"
+    },
+    {
+      "caseId": "G04/script",
+      "kind": "selfcheck",
+      "set": "L",
+      "evidenceLevel": "StaticComponent",
+      "requiredEvidence": [
+        "current-context",
+        "raw-report"
+      ],
+      "method": "test_recipe_execution_010.selfcheck",
+      "dataRowId": "script"
+    },
+    {
+      "caseId": "G04/source",
+      "kind": "selfcheck",
+      "set": "L",
+      "evidenceLevel": "StaticComponent",
+      "requiredEvidence": [
+        "current-context",
+        "raw-report"
+      ],
+      "method": "test_recipe_execution_010.selfcheck",
+      "dataRowId": "source"
+    },
+    {
+      "caseId": "G04/manifest",
+      "kind": "selfcheck",
+      "set": "L",
+      "evidenceLevel": "StaticComponent",
+      "requiredEvidence": [
+        "current-context",
+        "raw-report"
+      ],
+      "method": "test_recipe_execution_010.selfcheck",
+      "dataRowId": "manifest"
+    },
+    {
+      "caseId": "G04/extra-parse",
+      "kind": "selfcheck",
+      "set": "L",
+      "evidenceLevel": "StaticComponent",
+      "requiredEvidence": [
+        "current-context",
+        "raw-report"
+      ],
+      "method": "test_recipe_execution_010.selfcheck",
+      "dataRowId": "extra-parse"
+    },
+    {
+      "caseId": "G05/time",
+      "kind": "selfcheck",
+      "set": "L",
+      "evidenceLevel": "StaticComponent",
+      "requiredEvidence": [
+        "current-context",
+        "raw-report"
+      ],
+      "method": "test_recipe_execution_010.selfcheck",
+      "dataRowId": "time"
+    },
+    {
+      "caseId": "G05/attempt",
+      "kind": "selfcheck",
+      "set": "L",
+      "evidenceLevel": "StaticComponent",
+      "requiredEvidence": [
+        "current-context",
+        "raw-report"
+      ],
+      "method": "test_recipe_execution_010.selfcheck",
+      "dataRowId": "attempt"
+    },
+    {
+      "caseId": "G05/source",
+      "kind": "selfcheck",
+      "set": "L",
+      "evidenceLevel": "StaticComponent",
+      "requiredEvidence": [
+        "current-context",
+        "raw-report"
+      ],
+      "method": "test_recipe_execution_010.selfcheck",
+      "dataRowId": "source"
+    },
+    {
+      "caseId": "G05/build",
+      "kind": "selfcheck",
+      "set": "L",
+      "evidenceLevel": "StaticComponent",
+      "requiredEvidence": [
+        "current-context",
+        "raw-report"
+      ],
+      "method": "test_recipe_execution_010.selfcheck",
+      "dataRowId": "build"
+    },
+    {
+      "caseId": "G05/input",
+      "kind": "selfcheck",
+      "set": "L",
+      "evidenceLevel": "StaticComponent",
+      "requiredEvidence": [
+        "current-context",
+        "raw-report"
+      ],
+      "method": "test_recipe_execution_010.selfcheck",
+      "dataRowId": "input"
+    },
+    {
+      "caseId": "G05/manifest",
+      "kind": "selfcheck",
+      "set": "L",
+      "evidenceLevel": "StaticComponent",
+      "requiredEvidence": [
+        "current-context",
+        "raw-report"
+      ],
+      "method": "test_recipe_execution_010.selfcheck",
+      "dataRowId": "manifest"
+    },
+    {
+      "caseId": "G05/report",
+      "kind": "selfcheck",
+      "set": "L",
+      "evidenceLevel": "StaticComponent",
+      "requiredEvidence": [
+        "current-context",
+        "raw-report"
+      ],
+      "method": "test_recipe_execution_010.selfcheck",
+      "dataRowId": "report"
+    },
+    {
+      "caseId": "G06/data-row",
+      "kind": "selfcheck",
+      "set": "L",
+      "evidenceLevel": "StaticComponent",
+      "requiredEvidence": [
+        "current-context",
+        "raw-report"
+      ],
+      "method": "test_recipe_execution_010.selfcheck",
+      "dataRowId": "data-row"
+    },
+    {
+      "caseId": "G06/moved-role",
+      "kind": "selfcheck",
+      "set": "L",
+      "evidenceLevel": "StaticComponent",
+      "requiredEvidence": [
+        "current-context",
+        "raw-report"
+      ],
+      "method": "test_recipe_execution_010.selfcheck",
+      "dataRowId": "moved-role"
+    },
+    {
+      "caseId": "G06/evidence",
+      "kind": "selfcheck",
+      "set": "L",
+      "evidenceLevel": "StaticComponent",
+      "requiredEvidence": [
+        "current-context",
+        "raw-report"
+      ],
+      "method": "test_recipe_execution_010.selfcheck",
+      "dataRowId": "evidence"
+    },
+    {
+      "caseId": "G06/duplicate",
+      "kind": "selfcheck",
+      "set": "L",
+      "evidenceLevel": "StaticComponent",
+      "requiredEvidence": [
+        "current-context",
+        "raw-report"
+      ],
+      "method": "test_recipe_execution_010.selfcheck",
+      "dataRowId": "duplicate"
+    },
+    {
+      "caseId": "G07/current",
+      "kind": "selfcheck",
+      "set": "L",
+      "evidenceLevel": "StaticComponent",
+      "requiredEvidence": [
+        "current-context",
+        "raw-report"
+      ],
+      "method": "test_recipe_execution_010.selfcheck",
+      "dataRowId": "current"
+    },
+    {
+      "caseId": "C01/Default009",
+      "kind": "selfcheck",
+      "set": "L",
+      "evidenceLevel": "StaticComponent",
+      "requiredEvidence": [
+        "current-context",
+        "raw-report"
+      ],
+      "method": "test_recipe_execution_010.selfcheck",
+      "dataRowId": "Default009"
+    },
+    {
+      "caseId": "C01/OtherFeature",
+      "kind": "selfcheck",
+      "set": "L",
+      "evidenceLevel": "StaticComponent",
+      "requiredEvidence": [
+        "current-context",
+        "raw-report"
+      ],
+      "method": "test_recipe_execution_010.selfcheck",
+      "dataRowId": "OtherFeature"
+    },
+    {
+      "caseId": "C01/BoundaryMinimum",
+      "kind": "selfcheck",
+      "set": "L",
+      "evidenceLevel": "StaticComponent",
+      "requiredEvidence": [
+        "current-context",
+        "raw-report"
+      ],
+      "method": "test_recipe_execution_010.selfcheck",
+      "dataRowId": "BoundaryMinimum"
+    },
+    {
+      "caseId": "C01/SelectedCasesOnly",
+      "kind": "selfcheck",
+      "set": "L",
+      "evidenceLevel": "StaticComponent",
+      "requiredEvidence": [
+        "current-context",
+        "raw-report"
+      ],
+      "method": "test_recipe_execution_010.selfcheck",
+      "dataRowId": "SelectedCasesOnly"
+    },
+    {
+      "caseId": "C02/_run_verify",
+      "kind": "selfcheck",
+      "set": "L",
+      "evidenceLevel": "StaticComponent",
+      "requiredEvidence": [
+        "current-context",
+        "raw-report"
+      ],
+      "method": "test_recipe_execution_010.selfcheck",
+      "dataRowId": "_run_verify"
+    },
+    {
+      "caseId": "C02/assess",
+      "kind": "selfcheck",
+      "set": "L",
+      "evidenceLevel": "StaticComponent",
+      "requiredEvidence": [
+        "current-context",
+        "raw-report"
+      ],
+      "method": "test_recipe_execution_010.selfcheck",
+      "dataRowId": "assess"
+    },
+    {
+      "caseId": "C02/finish",
+      "kind": "selfcheck",
+      "set": "L",
+      "evidenceLevel": "StaticComponent",
+      "requiredEvidence": [
+        "current-context",
+        "raw-report"
+      ],
+      "method": "test_recipe_execution_010.selfcheck",
+      "dataRowId": "finish"
+    },
+    {
+      "caseId": "C02/boundary_minimum",
+      "kind": "selfcheck",
+      "set": "L",
+      "evidenceLevel": "StaticComponent",
+      "requiredEvidence": [
+        "current-context",
+        "raw-report"
+      ],
+      "method": "test_recipe_execution_010.selfcheck",
+      "dataRowId": "boundary_minimum"
+    },
+    {
+      "caseId": "C02/protocol_isolation",
+      "kind": "selfcheck",
+      "set": "L",
+      "evidenceLevel": "StaticComponent",
+      "requiredEvidence": [
+        "current-context",
+        "raw-report"
+      ],
+      "method": "test_recipe_execution_010.selfcheck",
+      "dataRowId": "protocol_isolation"
+    },
+    {
+      "caseId": "C03/current",
+      "kind": "selfcheck",
+      "set": "L",
+      "evidenceLevel": "StaticComponent",
+      "requiredEvidence": [
+        "current-context",
+        "raw-report"
+      ],
+      "method": "test_recipe_execution_010.selfcheck",
+      "dataRowId": "current"
+    },
+    {
+      "caseId": "C03/shared",
+      "kind": "selfcheck",
+      "set": "L",
+      "evidenceLevel": "StaticComponent",
+      "requiredEvidence": [
+        "current-context",
+        "raw-report"
+      ],
+      "method": "test_recipe_execution_010.selfcheck",
+      "dataRowId": "shared"
+    },
+    {
+      "caseId": "C03/unchanged-reference",
+      "kind": "selfcheck",
+      "set": "L",
+      "evidenceLevel": "StaticComponent",
+      "requiredEvidence": [
+        "current-context",
+        "raw-report"
+      ],
+      "method": "test_recipe_execution_010.selfcheck",
+      "dataRowId": "unchanged-reference"
+    },
+    {
+      "caseId": "N02-return-direct",
+      "kind": "dotnet",
+      "set": "L",
+      "evidenceLevel": "StaticComponent",
+      "requiredEvidence": [
+        "current-context",
+        "raw-report"
+      ],
+      "suite": "Gaode.Rules.Tests",
+      "method": "Gaode.Rules.Tests.Architecture.RecipeExecutionBoundaryTests.EnvironmentalEarlyReturnIsRejected",
+      "dataRow": "sample: \"N02-return-direct\"",
+      "dataRowId": "N02-return-direct"
+    },
+    {
+      "caseId": "N02-return-helper-alias",
+      "kind": "dotnet",
+      "set": "L",
+      "evidenceLevel": "StaticComponent",
+      "requiredEvidence": [
+        "current-context",
+        "raw-report"
+      ],
+      "suite": "Gaode.Rules.Tests",
+      "method": "Gaode.Rules.Tests.Architecture.RecipeExecutionBoundaryTests.EnvironmentalEarlyReturnIsRejected",
+      "dataRow": "sample: \"N02-return-helper-alias\"",
+      "dataRowId": "N02-return-helper-alias"
+    },
+    {
+      "caseId": "P-return-throw",
+      "kind": "dotnet",
+      "set": "L",
+      "evidenceLevel": "StaticComponent",
+      "requiredEvidence": [
+        "current-context",
+        "raw-report"
+      ],
+      "suite": "Gaode.Rules.Tests",
+      "method": "Gaode.Rules.Tests.Architecture.RecipeExecutionBoundaryTests.LegitimateEarlyReturnAndOriginUseRemainAllowed",
+      "dataRow": "sample: \"P-return-throw\"",
+      "dataRowId": "P-return-throw"
+    },
+    {
+      "caseId": "P-return-rejected-result",
+      "kind": "dotnet",
+      "set": "L",
+      "evidenceLevel": "StaticComponent",
+      "requiredEvidence": [
+        "current-context",
+        "raw-report"
+      ],
+      "suite": "Gaode.Rules.Tests",
+      "method": "Gaode.Rules.Tests.Architecture.RecipeExecutionBoundaryTests.LegitimateEarlyReturnAndOriginUseRemainAllowed",
+      "dataRow": "sample: \"P-return-rejected-result\"",
+      "dataRowId": "P-return-rejected-result"
+    },
+    {
+      "caseId": "P-return-origin-log",
+      "kind": "dotnet",
+      "set": "L",
+      "evidenceLevel": "StaticComponent",
+      "requiredEvidence": [
+        "current-context",
+        "raw-report"
+      ],
+      "suite": "Gaode.Rules.Tests",
+      "method": "Gaode.Rules.Tests.Architecture.RecipeExecutionBoundaryTests.LegitimateEarlyReturnAndOriginUseRemainAllowed",
+      "dataRow": "sample: \"P-return-origin-log\"",
+      "dataRowId": "P-return-origin-log"
+    },
+    {
+      "caseId": "P-return-business",
+      "kind": "dotnet",
+      "set": "L",
+      "evidenceLevel": "StaticComponent",
+      "requiredEvidence": [
+        "current-context",
+        "raw-report"
+      ],
+      "suite": "Gaode.Rules.Tests",
+      "method": "Gaode.Rules.Tests.Architecture.RecipeExecutionBoundaryTests.LegitimateEarlyReturnAndOriginUseRemainAllowed",
+      "dataRow": "sample: \"P-return-business\"",
+      "dataRowId": "P-return-business"
+    },
+    {
+      "caseId": "P-stage-return-PausedForManualReview",
+      "kind": "dotnet",
+      "set": "L",
+      "evidenceLevel": "StaticComponent",
+      "requiredEvidence": [
+        "current-context",
+        "raw-report"
+      ],
+      "suite": "Gaode.Rules.Tests",
+      "method": "Gaode.Rules.Tests.Architecture.RecipeExecutionBoundaryTests.TypedStageRefusalRemainsDistinctFromSuccessfulEarlyExit",
+      "dataRow": "status: \"PausedForManualReview\", rejected: False",
+      "dataRowId": "PausedForManualReview"
+    },
+    {
+      "caseId": "N-stage-return-StagesCompleted",
+      "kind": "dotnet",
+      "set": "L",
+      "evidenceLevel": "StaticComponent",
+      "requiredEvidence": [
+        "current-context",
+        "raw-report"
+      ],
+      "suite": "Gaode.Rules.Tests",
+      "method": "Gaode.Rules.Tests.Architecture.RecipeExecutionBoundaryTests.TypedStageRefusalRemainsDistinctFromSuccessfulEarlyExit",
+      "dataRow": "status: \"StagesCompleted\", rejected: True",
+      "dataRowId": "StagesCompleted"
+    },
+    {
+      "caseId": "N-stage-return-UnitCompleted",
+      "kind": "dotnet",
+      "set": "L",
+      "evidenceLevel": "StaticComponent",
+      "requiredEvidence": [
+        "current-context",
+        "raw-report"
+      ],
+      "suite": "Gaode.Rules.Tests",
+      "method": "Gaode.Rules.Tests.Architecture.RecipeExecutionBoundaryTests.TypedStageRefusalRemainsDistinctFromSuccessfulEarlyExit",
+      "dataRow": "status: \"UnitCompleted\", rejected: True",
+      "dataRowId": "UnitCompleted"
+    }
+  ]
+}

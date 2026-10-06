@@ -1,0 +1,361 @@
+{
+  "schemaVersion": "009-process-cases/1",
+  "basis": "Fixed authored obligations from VG V07/V09; selection is never discovery or full acceptance",
+  "cases": [
+    {
+      "caseId": "L01",
+      "kind": "main-flow",
+      "fixtures": [
+        "specs/008-recipe-driven-inspection/fixtures/fixture.json"
+      ],
+      "basis": "009 quickstart section 3; VG V07"
+    },
+    {
+      "caseId": "L02",
+      "kind": "main-flow",
+      "fixtures": [
+        "specs/008-recipe-driven-inspection/fixtures/fixture-q02.json"
+      ],
+      "basis": "009 quickstart section 3; VG V07"
+    },
+    {
+      "caseId": "L03",
+      "kind": "main-flow",
+      "fixtures": [
+        "specs/008-recipe-driven-inspection/fixtures/usr-e-1.0.2/fixture-q03.json",
+        "specs/008-recipe-driven-inspection/fixtures/usr-e-1.0.2/fixture-q04.json",
+        "specs/008-recipe-driven-inspection/fixtures/usr-e-1.0.2/fixture-q05.json",
+        "specs/008-recipe-driven-inspection/fixtures/usr-e-1.0.2/fixture-q06.json"
+      ],
+      "basis": "009 quickstart section 3; VG V07"
+    },
+    {
+      "caseId": "L04",
+      "kind": "main-flow",
+      "fixtures": [
+        "specs/008-recipe-driven-inspection/fixtures/usr-e-1.0.2/fixture-q09.json",
+        "specs/008-recipe-driven-inspection/fixtures/usr-e-1.0.2/fixture-q18.json"
+      ],
+      "basis": "009 quickstart section 3; VG V07"
+    },
+    {
+      "caseId": "L05",
+      "kind": "main-flow",
+      "fixtures": [
+        "specs/008-recipe-driven-inspection/fixtures/disposition-p03-1.1.4/fixture-q02-pending-p03.json"
+      ],
+      "basis": "009 quickstart section 3; VG V07"
+    },
+    {
+      "caseId": "L06",
+      "kind": "main-flow",
+      "fixtures": [
+        "specs/008-recipe-driven-inspection/fixtures/usr-e-1.0.2/fixture-group-a-e.json",
+        "specs/008-recipe-driven-inspection/fixtures/usr-e-1.0.2/fixture-group-f-mixed.json"
+      ],
+      "basis": "009 quickstart section 3; VG V07"
+    },
+    {
+      "caseId": "L07",
+      "kind": "main-flow",
+      "fixtures": [
+        "specs/008-recipe-driven-inspection/fixtures/usr-e-1.0.2/fixture-assembly-a-e.json",
+        "specs/008-recipe-driven-inspection/fixtures/usr-e-1.0.2/fixture-assembly-a-e-no-code.json"
+      ],
+      "basis": "009 quickstart section 3; VG V07"
+    },
+    {
+      "caseId": "L08",
+      "kind": "main-flow",
+      "fixtures": [
+        "specs/008-recipe-driven-inspection/fixtures/usr-e-1.0.2/fixture-q04-manual.json"
+      ],
+      "basis": "009 quickstart section 3; VG V07"
+    },
+    {
+      "caseId": "L09",
+      "kind": "main-flow",
+      "fixtures": [
+        "specs/008-recipe-driven-inspection/fixtures/usr-e-1.0.2/fixture-rot-part-ok.json",
+        "specs/008-recipe-driven-inspection/fixtures/usr-e-1.0.2/fixture-rot-assembly-ok.json"
+      ],
+      "basis": "009 quickstart section 3; VG V07"
+    },
+    {
+      "caseId": "L10",
+      "kind": "main-flow",
+      "fixtures": [
+        "specs/008-recipe-driven-inspection/fixtures/usr-e-1.0.2/fixture-recovery-3d.json"
+      ],
+      "basis": "009 quickstart section 3; VG V07"
+    },
+    {
+      "caseId": "F01-missing",
+      "kind": "necessary-failure",
+      "fixtures": [
+        "specs/008-recipe-driven-inspection/fixtures/disposition-p03-1.1.4/fixture-q02-pending-p03.json"
+      ],
+      "basis": "009 VG V07 F01-missing"
+    },
+    {
+      "caseId": "F01-stale",
+      "kind": "necessary-failure",
+      "fixtures": [
+        "specs/008-recipe-driven-inspection/fixtures/disposition-p03-1.1.4/fixture-q02-pending-p03.json"
+      ],
+      "basis": "009 VG V07 F01-stale"
+    },
+    {
+      "caseId": "F01-old-action",
+      "kind": "necessary-failure",
+      "fixtures": [
+        "specs/008-recipe-driven-inspection/fixtures/disposition-p03-1.1.4/fixture-q02-pending-p03.json"
+      ],
+      "basis": "009 VG V07 F01-old-action"
+    },
+    {
+      "caseId": "F02-position",
+      "kind": "necessary-failure",
+      "fixtures": [
+        "specs/008-recipe-driven-inspection/fixtures/disposition-p03-1.1.4/fixture-q02-pending-p03.json"
+      ],
+      "basis": "009 VG V07 F02-position"
+    },
+    {
+      "caseId": "F02-face",
+      "kind": "necessary-failure",
+      "fixtures": [
+        "specs/008-recipe-driven-inspection/fixtures/usr-e-1.0.2/fixture-q03.json"
+      ],
+      "basis": "009 VG V07 F02-face"
+    },
+    {
+      "caseId": "F03-uncertain",
+      "kind": "necessary-failure",
+      "fixtures": [
+        "specs/008-recipe-driven-inspection/fixtures/disposition-p03-1.1.4/fixture-q02-pending-p03.json"
+      ],
+      "basis": "009 VG V07 F03-uncertain"
+    },
+    {
+      "caseId": "F04-handshake",
+      "kind": "necessary-failure",
+      "fixtures": [
+        "specs/008-recipe-driven-inspection/fixtures/usr-e-1.0.2/fixture-q03.json"
+      ],
+      "basis": "009 VG V07 F04-handshake"
+    },
+    {
+      "caseId": "F04-reset",
+      "kind": "necessary-failure",
+      "fixtures": [
+        "specs/008-recipe-driven-inspection/fixtures/disposition-p03-1.1.4/fixture-q02-pending-p03.json"
+      ],
+      "basis": "009 VG V07 F04-reset"
+    },
+    {
+      "caseId": "F05-A",
+      "kind": "necessary-failure",
+      "fixtures": [
+        "specs/008-recipe-driven-inspection/fixtures/disposition-p03-1.1.4/fixture-q02-pending-p03.json"
+      ],
+      "basis": "009 VG V07 F05-A"
+    },
+    {
+      "caseId": "F05-B",
+      "kind": "necessary-failure",
+      "fixtures": [
+        "specs/008-recipe-driven-inspection/fixtures/disposition-p03-1.1.4/fixture-q02-pending-p03.json"
+      ],
+      "basis": "009 VG V07 F05-B"
+    },
+    {
+      "caseId": "F05-C",
+      "kind": "necessary-failure",
+      "fixtures": [
+        "specs/008-recipe-driven-inspection/fixtures/disposition-p03-1.1.4/fixture-q02-pending-p03.json"
+      ],
+      "basis": "009 VG V07 F05-C"
+    },
+    {
+      "caseId": "F06-A",
+      "kind": "necessary-failure",
+      "fixtures": [
+        "specs/008-recipe-driven-inspection/fixtures/disposition-p03-1.1.4/fixture-q02-pending-p03.json"
+      ],
+      "basis": "009 VG V07 F06-A"
+    },
+    {
+      "caseId": "F06-B",
+      "kind": "necessary-failure",
+      "fixtures": [
+        "specs/008-recipe-driven-inspection/fixtures/disposition-p03-1.1.4/fixture-q02-pending-p03.json"
+      ],
+      "basis": "009 VG V07 F06-B"
+    },
+    {
+      "caseId": "F06-C",
+      "kind": "necessary-failure",
+      "fixtures": [
+        "specs/008-recipe-driven-inspection/fixtures/disposition-p03-1.1.4/fixture-q02-pending-p03.json"
+      ],
+      "basis": "009 VG V07 F06-C"
+    },
+    {
+      "caseId": "BA02-success/capacity",
+      "kind": "binding",
+      "fixtures": [
+        "specs/008-recipe-driven-inspection/fixtures/fixture.json"
+      ],
+      "basis": "009 VG V09 BA02-success/capacity"
+    },
+    {
+      "caseId": "BA02-success/none",
+      "kind": "binding",
+      "fixtures": [
+        "specs/008-recipe-driven-inspection/fixtures/fixture.json"
+      ],
+      "basis": "009 VG V09 BA02-success/none"
+    },
+    {
+      "caseId": "BA02-success/api-existing-handoff",
+      "kind": "binding",
+      "fixtures": [
+        "specs/008-recipe-driven-inspection/fixtures/fixture.json"
+      ],
+      "basis": "009 VG V09 BA02-success/api-existing-handoff"
+    },
+    {
+      "caseId": "BA03-healthy-wait/capacity",
+      "kind": "binding",
+      "fixtures": [
+        "specs/008-recipe-driven-inspection/fixtures/fixture.json"
+      ],
+      "basis": "009 VG V09 BA03-healthy-wait/capacity"
+    },
+    {
+      "caseId": "BA03-healthy-wait/none",
+      "kind": "binding",
+      "fixtures": [
+        "specs/008-recipe-driven-inspection/fixtures/fixture.json"
+      ],
+      "basis": "009 VG V09 BA03-healthy-wait/none"
+    },
+    {
+      "caseId": "BA04-boundary/late-bound-PROCESS",
+      "kind": "binding",
+      "fixtures": [
+        "specs/008-recipe-driven-inspection/fixtures/fixture.json"
+      ],
+      "basis": "009 VG V09 BA04-boundary/late-bound"
+    },
+    {
+      "caseId": "BA04-boundary/late-handoff-PROCESS",
+      "kind": "binding",
+      "fixtures": [
+        "specs/008-recipe-driven-inspection/fixtures/fixture.json"
+      ],
+      "basis": "009 VG V09 BA04-boundary/late-handoff"
+    },
+    {
+      "caseId": "BA05-cancel/pending",
+      "kind": "binding",
+      "fixtures": [
+        "specs/008-recipe-driven-inspection/fixtures/fixture.json"
+      ],
+      "basis": "009 VG V09 BA05-cancel/pending"
+    },
+    {
+      "caseId": "BA05-cancel/inflight",
+      "kind": "binding",
+      "fixtures": [
+        "specs/008-recipe-driven-inspection/fixtures/fixture.json"
+      ],
+      "basis": "009 VG V09 BA05-cancel/inflight"
+    },
+    {
+      "caseId": "BA06-downstream/strict-before-port-PROCESS",
+      "kind": "binding",
+      "fixtures": [
+        "specs/008-recipe-driven-inspection/fixtures/fixture.json"
+      ],
+      "basis": "009 VG V09 BA06-downstream/strict-before-port"
+    },
+    {
+      "caseId": "BA06-downstream/strict-during-save-PROCESS",
+      "kind": "binding",
+      "fixtures": [
+        "specs/008-recipe-driven-inspection/fixtures/fixture.json"
+      ],
+      "basis": "009 VG V09 BA06-downstream/strict-during-save"
+    },
+    {
+      "caseId": "BA06-downstream/strict-before-next-PROCESS",
+      "kind": "binding",
+      "fixtures": [
+        "specs/008-recipe-driven-inspection/fixtures/fixture.json"
+      ],
+      "basis": "009 VG V09 BA06-downstream/strict-before-next"
+    },
+    {
+      "caseId": "BA06-downstream/legacy-PROCESS",
+      "kind": "binding",
+      "fixtures": [
+        "specs/008-recipe-driven-inspection/fixtures/fixture.json"
+      ],
+      "basis": "009 VG V09 BA06-downstream/legacy"
+    },
+    {
+      "caseId": "BA06-downstream/api-existing-PROCESS",
+      "kind": "binding",
+      "fixtures": [
+        "specs/008-recipe-driven-inspection/fixtures/fixture.json"
+      ],
+      "basis": "009 VG V09 BA06-downstream/api-existing"
+    },
+    {
+      "caseId": "BA06-downstream/api-none-PROCESS",
+      "kind": "binding",
+      "fixtures": [
+        "specs/008-recipe-driven-inspection/fixtures/fixture.json"
+      ],
+      "basis": "009 VG V09 BA06-downstream/api-none"
+    },
+    {
+      "caseId": "SU01-before-commit/after-ddl",
+      "kind": "controlled-store",
+      "fixtures": [],
+      "basis": "009 VG V07 SU; data-model 6.1"
+    },
+    {
+      "caseId": "SU01-before-commit/after-history",
+      "kind": "controlled-store",
+      "fixtures": [],
+      "basis": "009 VG V07 SU; data-model 6.1"
+    },
+    {
+      "caseId": "SU01-before-commit/after-manifest",
+      "kind": "controlled-store",
+      "fixtures": [],
+      "basis": "009 VG V07 SU; data-model 6.1"
+    },
+    {
+      "caseId": "SU02-after-commit/before-receipt",
+      "kind": "controlled-store",
+      "fixtures": [],
+      "basis": "009 VG V07 SU; data-model 6.1"
+    },
+    {
+      "caseId": "SU03-unresolved/hold",
+      "kind": "controlled-store",
+      "fixtures": [],
+      "basis": "009 VG V07 SU; data-model 6.1"
+    },
+    {
+      "caseId": "SU04-inconsistent/reject-restore",
+      "kind": "controlled-store",
+      "fixtures": [],
+      "basis": "009 VG V07 SU; data-model 6.1"
+    }
+  ]
+}

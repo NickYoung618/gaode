@@ -1,0 +1,917 @@
+{
+  "schemaVersion": "013-required-cases/1",
+  "scope": "SoftwareLoopOnly",
+  "frozenAt": "2026-10-04",
+  "obligations": [
+    "| I-ACQ | 新PlcPolling013AcquisitionTests：真空闲分频、未完动作/复位/握手不误闲、立即切档、共享反馈单源和2秒API查询不触采集；以实际TCP时间线/事务为依据 | T010→T028；长窗口仅T029 |",
+    "| I-HB | T065OriginalDeadlineTests.RealOriginalDeadlineStillLatchesAndRejectsNewMotion的false/true两行；HeartbeatInterlockTests.TwoThousandNineHundredNinetyNineMillisecondsDoesNotTrip、ThreeSecondsWithoutEdgeLocksActionsRaisesAlarmAndProjectsRestricted。覆盖2999/3000ms、原截止、慢/迟到响应不能先续期再判；不扩恢复专项 | T010→T028 |",
+    "| I-AX | IndependentAxisTests.ScanAndDetectionUseTheirOwnZAndCaptureReleaseWritesNoLegacyAcknowledgement；CancellationAtXyAcceptanceCannotDispatchDependentDetectionZ。承接本轴反馈、实测坐标及取消后不派发从属Z | T014→T028 |",
+    "| I-FU | ActionHandshakeTests.FreshFlipAndPutBackUseSeparateFeedbackAndPreparedProgram；UnrelatedOrOldFeedbackCannotAuthorizeFlip的old-complete、stale-epoch、wrong-entity三行；SameTargetWithoutDistinguishableFeedbackIsUnknownHeld；原HeldFlipRetainsCommittedSegmentsWithoutDeclaringCompletion迁为HeldFlipPersistsFailureWithoutDeclaringCompletion：原5000ms窗口/故障/时序，实际失败持久化及关联、无完成/无PutBack；低于阈值不要求分段引用 | T014→T028；分段接续独立I-SEG承接 |",
+    "| I-TR | ActionHandshakeTests.InitiallyMatchingPickPointCannotSurviveLaterWrongXy；MissingTargetStageObservationNeverSubmitsPlaceOrSortingOk；ExpiredWindowCannotReleaseCommittedCapture；SortingMotionCannotConsumeTheLongerTrayDeadline；SortingPickPlaceRequiresRealInTransitCommitAndFinalLift | T014→T028；真实取放链复用T029 |",
+    "| I-SAVE | ActionHandshakeTests.ActualPickAndDatabaseOutcomeRemainSeparateFromPlacePermission三行：(rollback-before-commit,false,false)、(committed-receipt-withheld,true,false)、(committed-temporarily-unreadable,true,true)，字符串均保留原PICK-STORE/前缀；实际已取料/已提交与当前可放料分别判断 | T014→T028 |",
+    "| I-OBS / N2 | 新PlcPolling013ObservationTests：新心跳不能给旧基础/位置续期、跨代次观察不得授权、到位后坐标因果/最终位置真实发布；N2直接复用“新心跳+旧坐标”实际拒绝派发证据。断言Position独立可靠性，普通位置陈旧不伪造设备断线 | T014/T015→T028，不重复建立N2 |",
+    "| I-FAST | 三个定向行：axis-150ms、flip-80ms、putback-80ms；各核原时序下200ms可能漏态时不得放行，有限50ms真实观察、同批全部轴观察齐后恢复200ms、退出和原截止。保留当前VirtualPlc扫描与时长；代表PutBack150ms由原run-2链承接 | T014→T028；代表时序T029，不增加完整链 |",
+    "| I-SLOW | 新PlcPolling013SlowCycleTests：慢PDU/跨轮请求无重叠追赶、等待新版本无重复缓存唤醒、取消/期限独立且后继不能越权；受控慢组件不套正常V06性能门槛 | T019→T028 |",
+    "| I-MAP | ProtocolDefinitionAdmissionTests.FormalEntryAdmission全部12行，见下表；增加最少固定计划一次准备/循环零准备/映射身份不混用的直接行为承接。非法映射须在实际通信前拒绝，已确认不连续布局合法拆分 | T019→T028；009复用同一结果 |",
+    "| I-GAP | FailureEvidenceTests中增加/调整一个CommunicationEvidenceRecorder原始证据缺口拒绝例；不得以监控游标gap代替原始持久证据缺口。保存门复用I-SAVE；独立缺口拒绝不能被I-SEG正常分段抵扣 | T019/T021→T028 |",
+    "| I-SEG | FailureEvidenceTests.AutomaticThresholdCheckpointPrecedesRealFailureContinuation：真实TCP交换1023→无段，1024→同一生产自动阈值入口/Recorder真SQLite提交，再后续真实交换及生产失败记录核precedingEvidenceReferences指向已提交段、关联/字节/无完成；内部组件层级，不宣称运行了业务Flip或用force验证自动阈值 | T019定义/T021生产边界→T028；不增加完整链，不改1024、期限或模拟时序 |",
+    "| I-CONFIG | JointInputDefinitionTests.CurrentJointInputsUseUniqueSharedDefinitionsAndLoadExplicitPoseBudgets；Station01RunConfigurationTests.FrozenSnapshotKeepsVersionsCapabilitiesPurposeAndClampBudget；定向承接2.0活动输入、引用/摘要核对及废字段拒绝。只补真实命中的加载/准入义务，不重建配置异常矩阵 | T009→T028 |",
+    "| I-PROJ | RuntimeObservationProjectionTests.AxisProjectionUsesCommittedActualValuesAndLeavesMissingAxesUnknown；承接新位置身份/可靠性及已提交实际值，不运行全部投影专项 | T015→T028 |",
+    "| N1 | 新PlcPolling013NegativeTests：测试侧注入第二持续读取来源，以独立TCP发送/原报告校验真实拒绝；合法对照必须成立，不能只依赖设备自报统计 | T023→T028 |",
+    "| N3 | 新scripts/workflow/test_plc_polling_013.py：冻结组件子清单（不含N3自身）在同attempt真实完整账本下先被接受，再删一条已执行case/dataRow，G02/G03必须拒绝；原报告保留，不能用本来就不完整的输入证明漏项识别 | T023→T028 |",
+    "| 010 L / 009 | 010-lightweight-cases.json现声明70项：27个dotnet项、7个脚本项、36个自校验项；不得缩为只跑ProtocolBoundary。按实际发现/dataRow展开核对；ProtocolRepositoryBoundary已在L覆盖的不再跑。009只跑T024冻结的受影响ProtocolBoundary正负例及复用I-MAP | T024→T027/T028；同身份同attempt只引用一次 |",
+    "| 代表链 | ThreeStageMainFlowIntegrationTests.CommittedV2HandoffContinuesThroughThreeStagesOverFormalTcpAndSqlite，经RecipeExecution010RunHarness及同一run-2输入。before/after各一次，其他必要路径由组件补齐 | T008/T029，不再运行run-1或010动态全专项 |",
+    "I-TIME-01: V06.1 real TCP response followed by controlled slow diagnostic; response collection precedes service end and end-to-end delay remains recorded. Additional direct component only, no new full chain."
+  ],
+  "criteria": {
+    "A": [
+      "same complete run-2 and counts",
+      "real stores,feedback,Final",
+      "original deadlines and protections",
+      "comparable inputs/identities/raw measurement"
+    ],
+    "B": {
+      "periodsMs": {
+        "H": 300,
+        "B_active": 200,
+        "B_idle": 500,
+        "F": 200,
+        "U": 200,
+        "T": 200,
+        "P_moving": 500,
+        "P_static": 1000,
+        "first_state": 50
+      },
+      "idleSeconds": 60,
+      "idleMaxRequests": 1110,
+      "demandMax": 283,
+      "coreWrites": 108,
+      "axisBatches": 21,
+      "axisStarts": 33,
+      "newTimingContract": "specs/013-plc-polling-optimization/contracts/verification.md#v06",
+      "zero": [
+        "RepeatedCacheWakeups",
+        "LoopPlanPreparations"
+      ]
+    },
+    "C": [
+      "idle requests/sec strictly decrease",
+      "same completed flow total transactions strictly decrease",
+      "evidence and duplicate preparation/processing decrease",
+      "after_ms <= before_ms + 4950"
+    ]
+  },
+  "rowsBinding": "T024 before final discovery; obligations cannot shrink with discovered cases",
+  "cases": [
+    {
+      "caseId": "I-FU-01",
+      "kind": "dotnet",
+      "side": "after",
+      "suite": "Gaode.Communication.Tests",
+      "method": "Gaode.Communication.Tests.Devices.ActionHandshakeTests.FreshFlipAndPutBackUseSeparateFeedbackAndPreparedProgram",
+      "dataRow": null,
+      "dataRowId": null,
+      "obligation": "I-FU",
+      "source": "backend/tests/Gaode.Communication.Tests/Devices/ActionHandshakeTests.Flip.cs",
+      "requiredEvidence": [
+        "current-context",
+        "raw-report"
+      ]
+    },
+    {
+      "caseId": "I-FU-02",
+      "kind": "dotnet",
+      "side": "after",
+      "suite": "Gaode.Communication.Tests",
+      "method": "Gaode.Communication.Tests.Devices.ActionHandshakeTests.UnrelatedOrOldFeedbackCannotAuthorizeFlip",
+      "dataRow": "mismatch: \"old-complete\"",
+      "dataRowId": "old-complete",
+      "obligation": "I-FU",
+      "source": "backend/tests/Gaode.Communication.Tests/Devices/ActionHandshakeTests.Flip.cs",
+      "requiredEvidence": [
+        "current-context",
+        "raw-report"
+      ]
+    },
+    {
+      "caseId": "I-FU-03",
+      "kind": "dotnet",
+      "side": "after",
+      "suite": "Gaode.Communication.Tests",
+      "method": "Gaode.Communication.Tests.Devices.ActionHandshakeTests.UnrelatedOrOldFeedbackCannotAuthorizeFlip",
+      "dataRow": "mismatch: \"stale-epoch\"",
+      "dataRowId": "stale-epoch",
+      "obligation": "I-FU",
+      "source": "backend/tests/Gaode.Communication.Tests/Devices/ActionHandshakeTests.Flip.cs",
+      "requiredEvidence": [
+        "current-context",
+        "raw-report"
+      ]
+    },
+    {
+      "caseId": "I-FU-04",
+      "kind": "dotnet",
+      "side": "after",
+      "suite": "Gaode.Communication.Tests",
+      "method": "Gaode.Communication.Tests.Devices.ActionHandshakeTests.UnrelatedOrOldFeedbackCannotAuthorizeFlip",
+      "dataRow": "mismatch: \"wrong-entity\"",
+      "dataRowId": "wrong-entity",
+      "obligation": "I-FU",
+      "source": "backend/tests/Gaode.Communication.Tests/Devices/ActionHandshakeTests.Flip.cs",
+      "requiredEvidence": [
+        "current-context",
+        "raw-report"
+      ]
+    },
+    {
+      "caseId": "I-FU-05",
+      "kind": "dotnet",
+      "side": "after",
+      "suite": "Gaode.Communication.Tests",
+      "method": "Gaode.Communication.Tests.Devices.ActionHandshakeTests.HeldFlipPersistsFailureWithoutDeclaringCompletion",
+      "dataRow": null,
+      "dataRowId": null,
+      "obligation": "I-FU",
+      "source": "backend/tests/Gaode.Communication.Tests/Devices/ActionHandshakeTests.Flip.cs",
+      "requiredEvidence": [
+        "current-context",
+        "raw-report"
+      ]
+    },
+    {
+      "caseId": "I-FAST-01",
+      "kind": "dotnet",
+      "side": "after",
+      "suite": "Gaode.Communication.Tests",
+      "method": "Gaode.Communication.Tests.Devices.ActionHandshakeTests.FirstIntermediateStateIsRequiredAndFiniteFastSamplingObservesIt",
+      "dataRow": "caseId: \"axis-150ms\"",
+      "dataRowId": "axis-150ms",
+      "obligation": "I-FAST",
+      "source": "backend/tests/Gaode.Communication.Tests/Devices/ActionHandshakeTests.Polling013.cs",
+      "requiredEvidence": [
+        "current-context",
+        "raw-report"
+      ]
+    },
+    {
+      "caseId": "I-FAST-02",
+      "kind": "dotnet",
+      "side": "after",
+      "suite": "Gaode.Communication.Tests",
+      "method": "Gaode.Communication.Tests.Devices.ActionHandshakeTests.FirstIntermediateStateIsRequiredAndFiniteFastSamplingObservesIt",
+      "dataRow": "caseId: \"flip-80ms\"",
+      "dataRowId": "flip-80ms",
+      "obligation": "I-FAST",
+      "source": "backend/tests/Gaode.Communication.Tests/Devices/ActionHandshakeTests.Polling013.cs",
+      "requiredEvidence": [
+        "current-context",
+        "raw-report"
+      ]
+    },
+    {
+      "caseId": "I-FAST-03",
+      "kind": "dotnet",
+      "side": "after",
+      "suite": "Gaode.Communication.Tests",
+      "method": "Gaode.Communication.Tests.Devices.ActionHandshakeTests.FirstIntermediateStateIsRequiredAndFiniteFastSamplingObservesIt",
+      "dataRow": "caseId: \"putback-80ms\"",
+      "dataRowId": "putback-80ms",
+      "obligation": "I-FAST",
+      "source": "backend/tests/Gaode.Communication.Tests/Devices/ActionHandshakeTests.Polling013.cs",
+      "requiredEvidence": [
+        "current-context",
+        "raw-report"
+      ]
+    },
+    {
+      "caseId": "I-SAVE-01",
+      "kind": "dotnet",
+      "side": "after",
+      "suite": "Gaode.Communication.Tests",
+      "method": "Gaode.Communication.Tests.Devices.ActionHandshakeTests.ActualPickAndDatabaseOutcomeRemainSeparateFromPlacePermission",
+      "dataRow": "caseId: \"PICK-STORE/rollback-before-commit\", afterCommit: False, unreadable: False",
+      "dataRowId": "PICK-STORE/rollback-before-commit",
+      "obligation": "I-SAVE",
+      "source": "backend/tests/Gaode.Communication.Tests/Devices/ActionHandshakeTests.SaveFailure.cs",
+      "requiredEvidence": [
+        "current-context",
+        "raw-report"
+      ]
+    },
+    {
+      "caseId": "I-SAVE-02",
+      "kind": "dotnet",
+      "side": "after",
+      "suite": "Gaode.Communication.Tests",
+      "method": "Gaode.Communication.Tests.Devices.ActionHandshakeTests.ActualPickAndDatabaseOutcomeRemainSeparateFromPlacePermission",
+      "dataRow": "caseId: \"PICK-STORE/committed-receipt-withheld\", afterCommit: True, unreadable: False",
+      "dataRowId": "PICK-STORE/committed-receipt-withheld",
+      "obligation": "I-SAVE",
+      "source": "backend/tests/Gaode.Communication.Tests/Devices/ActionHandshakeTests.SaveFailure.cs",
+      "requiredEvidence": [
+        "current-context",
+        "raw-report"
+      ]
+    },
+    {
+      "caseId": "I-SAVE-03",
+      "kind": "dotnet",
+      "side": "after",
+      "suite": "Gaode.Communication.Tests",
+      "method": "Gaode.Communication.Tests.Devices.ActionHandshakeTests.ActualPickAndDatabaseOutcomeRemainSeparateFromPlacePermission",
+      "dataRow": "caseId: \"PICK-STORE/committed-temporarily-unreadable\", afterCommit: True, unreadable: True",
+      "dataRowId": "PICK-STORE/committed-temporarily-unreadable",
+      "obligation": "I-SAVE",
+      "source": "backend/tests/Gaode.Communication.Tests/Devices/ActionHandshakeTests.SaveFailure.cs",
+      "requiredEvidence": [
+        "current-context",
+        "raw-report"
+      ]
+    },
+    {
+      "caseId": "I-SAVE-04",
+      "kind": "dotnet",
+      "side": "after",
+      "suite": "Gaode.Communication.Tests",
+      "method": "Gaode.Communication.Tests.Devices.ActionHandshakeTests.SortingPickPlaceRequiresRealInTransitCommitAndFinalLift",
+      "dataRow": null,
+      "dataRowId": null,
+      "obligation": "I-SAVE",
+      "source": "backend/tests/Gaode.Communication.Tests/Devices/ActionHandshakeTests.StageMigration.cs",
+      "requiredEvidence": [
+        "current-context",
+        "raw-report"
+      ]
+    },
+    {
+      "caseId": "I-TR-01",
+      "kind": "dotnet",
+      "side": "after",
+      "suite": "Gaode.Communication.Tests",
+      "method": "Gaode.Communication.Tests.Devices.ActionHandshakeTests.SortingMotionCannotConsumeTheLongerTrayDeadline",
+      "dataRow": null,
+      "dataRowId": null,
+      "obligation": "I-TR",
+      "source": "backend/tests/Gaode.Communication.Tests/Devices/ActionHandshakeTests.StageMigration.cs",
+      "requiredEvidence": [
+        "current-context",
+        "raw-report"
+      ]
+    },
+    {
+      "caseId": "I-TR-02",
+      "kind": "dotnet",
+      "side": "after",
+      "suite": "Gaode.Communication.Tests",
+      "method": "Gaode.Communication.Tests.Devices.ActionHandshakeTests.InitiallyMatchingPickPointCannotSurviveLaterWrongXy",
+      "dataRow": null,
+      "dataRowId": null,
+      "obligation": "I-TR",
+      "source": "backend/tests/Gaode.Communication.Tests/Devices/ActionHandshakeTests.StaleStages.cs",
+      "requiredEvidence": [
+        "current-context",
+        "raw-report"
+      ]
+    },
+    {
+      "caseId": "I-TR-03",
+      "kind": "dotnet",
+      "side": "after",
+      "suite": "Gaode.Communication.Tests",
+      "method": "Gaode.Communication.Tests.Devices.ActionHandshakeTests.ExpiredWindowCannotReleaseCommittedCapture",
+      "dataRow": null,
+      "dataRowId": null,
+      "obligation": "I-TR",
+      "source": "backend/tests/Gaode.Communication.Tests/Devices/ActionHandshakeTests.StaleStages.cs",
+      "requiredEvidence": [
+        "current-context",
+        "raw-report"
+      ]
+    },
+    {
+      "caseId": "I-TR-04",
+      "kind": "dotnet",
+      "side": "after",
+      "suite": "Gaode.Communication.Tests",
+      "method": "Gaode.Communication.Tests.Devices.ActionHandshakeTests.MissingTargetStageObservationNeverSubmitsPlaceOrSortingOk",
+      "dataRow": null,
+      "dataRowId": null,
+      "obligation": "I-TR",
+      "source": "backend/tests/Gaode.Communication.Tests/Devices/ActionHandshakeTests.StaleStages.cs",
+      "requiredEvidence": [
+        "current-context",
+        "raw-report"
+      ]
+    },
+    {
+      "caseId": "I-FU-06",
+      "kind": "dotnet",
+      "side": "after",
+      "suite": "Gaode.Communication.Tests",
+      "method": "Gaode.Communication.Tests.Devices.ActionHandshakeTests.SameTargetWithoutDistinguishableFeedbackIsUnknownHeld",
+      "dataRow": null,
+      "dataRowId": null,
+      "obligation": "I-FU",
+      "source": "backend/tests/Gaode.Communication.Tests/Devices/ActionHandshakeTests.StaleStages.cs",
+      "requiredEvidence": [
+        "current-context",
+        "raw-report"
+      ]
+    },
+    {
+      "caseId": "I-GAP-01",
+      "kind": "dotnet",
+      "side": "after",
+      "suite": "Gaode.Communication.Tests",
+      "method": "Gaode.Communication.Tests.Devices.FailureEvidenceTests.RecorderRejectsAnActualRawJournalGap",
+      "dataRow": null,
+      "dataRowId": null,
+      "obligation": "I-GAP",
+      "source": "backend/tests/Gaode.Communication.Tests/Devices/FailureEvidenceTests.cs",
+      "requiredEvidence": [
+        "current-context",
+        "raw-report"
+      ]
+    },
+    {
+      "caseId": "I-SEG-01",
+      "kind": "dotnet",
+      "side": "after",
+      "suite": "Gaode.Communication.Tests",
+      "method": "Gaode.Communication.Tests.Devices.FailureEvidenceTests.AutomaticThresholdCheckpointPrecedesRealFailureContinuation",
+      "dataRow": null,
+      "dataRowId": null,
+      "obligation": "I-SEG",
+      "source": "backend/tests/Gaode.Communication.Tests/Devices/FailureEvidenceTests.cs",
+      "requiredEvidence": [
+        "current-context",
+        "raw-report"
+      ]
+    },
+    {
+      "caseId": "I-HB-01",
+      "kind": "dotnet",
+      "side": "after",
+      "suite": "Gaode.Communication.Tests",
+      "method": "Gaode.Communication.Tests.Devices.HeartbeatInterlockTests.TwoThousandNineHundredNinetyNineMillisecondsDoesNotTrip",
+      "dataRow": null,
+      "dataRowId": null,
+      "obligation": "I-HB",
+      "source": "backend/tests/Gaode.Communication.Tests/Devices/HeartbeatInterlockTests.cs",
+      "requiredEvidence": [
+        "current-context",
+        "raw-report"
+      ]
+    },
+    {
+      "caseId": "I-HB-02",
+      "kind": "dotnet",
+      "side": "after",
+      "suite": "Gaode.Communication.Tests",
+      "method": "Gaode.Communication.Tests.Devices.HeartbeatInterlockTests.ThreeSecondsWithoutEdgeLocksActionsRaisesAlarmAndProjectsRestricted",
+      "dataRow": null,
+      "dataRowId": null,
+      "obligation": "I-HB",
+      "source": "backend/tests/Gaode.Communication.Tests/Devices/HeartbeatInterlockTests.cs",
+      "requiredEvidence": [
+        "current-context",
+        "raw-report"
+      ]
+    },
+    {
+      "caseId": "I-AX-01",
+      "kind": "dotnet",
+      "side": "after",
+      "suite": "Gaode.Communication.Tests",
+      "method": "Gaode.Communication.Tests.Devices.IndependentAxisTests.ScanAndDetectionUseTheirOwnZAndCaptureReleaseWritesNoLegacyAcknowledgement",
+      "dataRow": null,
+      "dataRowId": null,
+      "obligation": "I-AX",
+      "source": "backend/tests/Gaode.Communication.Tests/Devices/IndependentAxisTests.cs",
+      "requiredEvidence": [
+        "current-context",
+        "raw-report"
+      ]
+    },
+    {
+      "caseId": "I-AX-02",
+      "kind": "dotnet",
+      "side": "after",
+      "suite": "Gaode.Communication.Tests",
+      "method": "Gaode.Communication.Tests.Devices.IndependentAxisTests.CancellationAtXyAcceptanceCannotDispatchDependentDetectionZ",
+      "dataRow": null,
+      "dataRowId": null,
+      "obligation": "I-AX",
+      "source": "backend/tests/Gaode.Communication.Tests/Devices/IndependentAxisTests.cs",
+      "requiredEvidence": [
+        "current-context",
+        "raw-report"
+      ]
+    },
+    {
+      "caseId": "I-ACQ-01",
+      "kind": "dotnet",
+      "side": "after",
+      "suite": "Gaode.Communication.Tests",
+      "method": "Gaode.Communication.Tests.Devices.PlcPolling013AcquisitionTests.IdleSourcesAreBoundedAndActionWakesWithoutWaitingForIdleTimer",
+      "dataRow": null,
+      "dataRowId": null,
+      "obligation": "I-ACQ",
+      "source": "backend/tests/Gaode.Communication.Tests/Devices/PlcPolling013AcquisitionTests.cs",
+      "requiredEvidence": [
+        "current-context",
+        "raw-report"
+      ]
+    },
+    {
+      "caseId": "I-MAP-PLAN-01",
+      "kind": "dotnet",
+      "side": "after",
+      "suite": "Gaode.Communication.Tests",
+      "method": "Gaode.Communication.Tests.Devices.PlcPolling013AcquisitionTests.FrozenPlansAreReusedAndAnotherMappingCannotIssueIo",
+      "dataRow": null,
+      "dataRowId": null,
+      "obligation": "I-MAP-PLAN",
+      "source": "backend/tests/Gaode.Communication.Tests/Devices/PlcPolling013AcquisitionTests.cs",
+      "requiredEvidence": [
+        "current-context",
+        "raw-report"
+      ]
+    },
+    {
+      "caseId": "N1-01",
+      "kind": "dotnet",
+      "side": "after",
+      "suite": "Gaode.Communication.Tests",
+      "method": "Gaode.Communication.Tests.Devices.PlcPolling013NegativeTests.IndependentWireBudgetRejectsAnActualSecondContinuousReader",
+      "dataRow": null,
+      "dataRowId": null,
+      "obligation": "N1",
+      "source": "backend/tests/Gaode.Communication.Tests/Devices/PlcPolling013NegativeTests.cs",
+      "requiredEvidence": [
+        "current-context",
+        "raw-report"
+      ]
+    },
+    {
+      "caseId": "I-OBS-N2-01",
+      "kind": "dotnet",
+      "side": "after",
+      "suite": "Gaode.Communication.Tests",
+      "method": "Gaode.Communication.Tests.Devices.PlcPolling013ObservationTests.NewHeartbeatCannotRenewOldPositionOrAuthorizeTheNextMotion",
+      "dataRow": null,
+      "dataRowId": null,
+      "obligation": "I-OBS-N2",
+      "source": "backend/tests/Gaode.Communication.Tests/Devices/PlcPolling013ObservationTests.cs",
+      "requiredEvidence": [
+        "current-context",
+        "raw-report"
+      ]
+    },
+    {
+      "caseId": "I-SLOW-01",
+      "kind": "dotnet",
+      "side": "after",
+      "suite": "Gaode.Communication.Tests",
+      "method": "Gaode.Communication.Tests.Devices.PlcPolling013SlowCycleTests.SlowRoundsRemainSerialAndNeverCatchUpMissedRounds",
+      "dataRow": null,
+      "dataRowId": null,
+      "obligation": "I-SLOW",
+      "source": "backend/tests/Gaode.Communication.Tests/Devices/PlcPolling013SlowCycleTests.cs",
+      "requiredEvidence": [
+        "current-context",
+        "raw-report"
+      ]
+    },
+    {
+      "caseId": "I-MAP-01",
+      "kind": "dotnet",
+      "side": "after",
+      "suite": "Gaode.Communication.Tests",
+      "method": "Gaode.Communication.Tests.Devices.ProtocolDefinitionAdmissionTests.FormalEntryAdmission",
+      "dataRow": "caseId: \"PD-N01-overlap/same-area\", expectedReason: \"FieldOverlap\"",
+      "dataRowId": "PD-N01-overlap/same-area",
+      "obligation": "I-MAP",
+      "source": "backend/tests/Gaode.Communication.Tests/Devices/ProtocolDefinitionAdmissionTests.cs",
+      "requiredEvidence": [
+        "current-context",
+        "raw-report"
+      ]
+    },
+    {
+      "caseId": "I-MAP-02",
+      "kind": "dotnet",
+      "side": "after",
+      "suite": "Gaode.Communication.Tests",
+      "method": "Gaode.Communication.Tests.Devices.ProtocolDefinitionAdmissionTests.FormalEntryAdmission",
+      "dataRow": "caseId: \"PD-N02-width/float32-one-word\", expectedReason: \"TypeWidthMismatch\"",
+      "dataRowId": "PD-N02-width/float32-one-word",
+      "obligation": "I-MAP",
+      "source": "backend/tests/Gaode.Communication.Tests/Devices/ProtocolDefinitionAdmissionTests.cs",
+      "requiredEvidence": [
+        "current-context",
+        "raw-report"
+      ]
+    },
+    {
+      "caseId": "I-MAP-03",
+      "kind": "dotnet",
+      "side": "after",
+      "suite": "Gaode.Communication.Tests",
+      "method": "Gaode.Communication.Tests.Devices.ProtocolDefinitionAdmissionTests.FormalEntryAdmission",
+      "dataRow": "caseId: \"PD-N03-bit/out-of-field\", expectedReason: \"BitOutOfRange\"",
+      "dataRowId": "PD-N03-bit/out-of-field",
+      "obligation": "I-MAP",
+      "source": "backend/tests/Gaode.Communication.Tests/Devices/ProtocolDefinitionAdmissionTests.cs",
+      "requiredEvidence": [
+        "current-context",
+        "raw-report"
+      ]
+    },
+    {
+      "caseId": "I-MAP-04",
+      "kind": "dotnet",
+      "side": "after",
+      "suite": "Gaode.Communication.Tests",
+      "method": "Gaode.Communication.Tests.Devices.ProtocolDefinitionAdmissionTests.FormalEntryAdmission",
+      "dataRow": "caseId: \"PD-N04-owner/read-direction\", expectedReason: \"ReadDirectionConflict\"",
+      "dataRowId": "PD-N04-owner/read-direction",
+      "obligation": "I-MAP",
+      "source": "backend/tests/Gaode.Communication.Tests/Devices/ProtocolDefinitionAdmissionTests.cs",
+      "requiredEvidence": [
+        "current-context",
+        "raw-report"
+      ]
+    },
+    {
+      "caseId": "I-MAP-05",
+      "kind": "dotnet",
+      "side": "after",
+      "suite": "Gaode.Communication.Tests",
+      "method": "Gaode.Communication.Tests.Devices.ProtocolDefinitionAdmissionTests.FormalEntryAdmission",
+      "dataRow": "caseId: \"PD-N04-owner/write-responsibility\", expectedReason: \"WriteResponsibilityConflict\"",
+      "dataRowId": "PD-N04-owner/write-responsibility",
+      "obligation": "I-MAP",
+      "source": "backend/tests/Gaode.Communication.Tests/Devices/ProtocolDefinitionAdmissionTests.cs",
+      "requiredEvidence": [
+        "current-context",
+        "raw-report"
+      ]
+    },
+    {
+      "caseId": "I-MAP-06",
+      "kind": "dotnet",
+      "side": "after",
+      "suite": "Gaode.Communication.Tests",
+      "method": "Gaode.Communication.Tests.Devices.ProtocolDefinitionAdmissionTests.FormalEntryAdmission",
+      "dataRow": "caseId: \"PD-N05-required/missing\", expectedReason: \"RequiredSignalMissing\"",
+      "dataRowId": "PD-N05-required/missing",
+      "obligation": "I-MAP",
+      "source": "backend/tests/Gaode.Communication.Tests/Devices/ProtocolDefinitionAdmissionTests.cs",
+      "requiredEvidence": [
+        "current-context",
+        "raw-report"
+      ]
+    },
+    {
+      "caseId": "I-MAP-07",
+      "kind": "dotnet",
+      "side": "after",
+      "suite": "Gaode.Communication.Tests",
+      "method": "Gaode.Communication.Tests.Devices.ProtocolDefinitionAdmissionTests.FormalEntryAdmission",
+      "dataRow": "caseId: \"PD-N06-range/address-capacity\", expectedReason: \"AddressRangeInvalid\"",
+      "dataRowId": "PD-N06-range/address-capacity",
+      "obligation": "I-MAP",
+      "source": "backend/tests/Gaode.Communication.Tests/Devices/ProtocolDefinitionAdmissionTests.cs",
+      "requiredEvidence": [
+        "current-context",
+        "raw-report"
+      ]
+    },
+    {
+      "caseId": "I-MAP-08",
+      "kind": "dotnet",
+      "side": "after",
+      "suite": "Gaode.Communication.Tests",
+      "method": "Gaode.Communication.Tests.Devices.ProtocolDefinitionAdmissionTests.FormalEntryAdmission",
+      "dataRow": "caseId: \"PD-N06-range/access-length\", expectedReason: \"AccessLengthInvalid\"",
+      "dataRowId": "PD-N06-range/access-length",
+      "obligation": "I-MAP",
+      "source": "backend/tests/Gaode.Communication.Tests/Devices/ProtocolDefinitionAdmissionTests.cs",
+      "requiredEvidence": [
+        "current-context",
+        "raw-report"
+      ]
+    },
+    {
+      "caseId": "I-MAP-09",
+      "kind": "dotnet",
+      "side": "after",
+      "suite": "Gaode.Communication.Tests",
+      "method": "Gaode.Communication.Tests.Devices.ProtocolDefinitionAdmissionTests.FormalEntryAdmission",
+      "dataRow": "caseId: \"PD-P01-area/same-number\", expectedReason: null",
+      "dataRowId": "PD-P01-area/same-number",
+      "obligation": "I-MAP",
+      "source": "backend/tests/Gaode.Communication.Tests/Devices/ProtocolDefinitionAdmissionTests.cs",
+      "requiredEvidence": [
+        "current-context",
+        "raw-report"
+      ]
+    },
+    {
+      "caseId": "I-MAP-10",
+      "kind": "dotnet",
+      "side": "after",
+      "suite": "Gaode.Communication.Tests",
+      "method": "Gaode.Communication.Tests.Devices.ProtocolDefinitionAdmissionTests.FormalEntryAdmission",
+      "dataRow": "caseId: \"PD-P02-width/float32-two-words\", expectedReason: null",
+      "dataRowId": "PD-P02-width/float32-two-words",
+      "obligation": "I-MAP",
+      "source": "backend/tests/Gaode.Communication.Tests/Devices/ProtocolDefinitionAdmissionTests.cs",
+      "requiredEvidence": [
+        "current-context",
+        "raw-report"
+      ]
+    },
+    {
+      "caseId": "I-MAP-11",
+      "kind": "dotnet",
+      "side": "after",
+      "suite": "Gaode.Communication.Tests",
+      "method": "Gaode.Communication.Tests.Devices.ProtocolDefinitionAdmissionTests.FormalEntryAdmission",
+      "dataRow": "caseId: \"PD-P03-layout/noncontiguous-split\", expectedReason: null",
+      "dataRowId": "PD-P03-layout/noncontiguous-split",
+      "obligation": "I-MAP",
+      "source": "backend/tests/Gaode.Communication.Tests/Devices/ProtocolDefinitionAdmissionTests.cs",
+      "requiredEvidence": [
+        "current-context",
+        "raw-report"
+      ]
+    },
+    {
+      "caseId": "I-MAP-12",
+      "kind": "dotnet",
+      "side": "after",
+      "suite": "Gaode.Communication.Tests",
+      "method": "Gaode.Communication.Tests.Devices.ProtocolDefinitionAdmissionTests.FormalEntryAdmission",
+      "dataRow": "caseId: \"PD-P04-owner/confirmed-read-write-clear\", expectedReason: null",
+      "dataRowId": "PD-P04-owner/confirmed-read-write-clear",
+      "obligation": "I-MAP",
+      "source": "backend/tests/Gaode.Communication.Tests/Devices/ProtocolDefinitionAdmissionTests.cs",
+      "requiredEvidence": [
+        "current-context",
+        "raw-report"
+      ]
+    },
+    {
+      "caseId": "I-HB-03",
+      "kind": "dotnet",
+      "side": "after",
+      "suite": "Gaode.Communication.Tests",
+      "method": "Gaode.Communication.Tests.Devices.T065OriginalDeadlineTests.RealOriginalDeadlineStillLatchesAndRejectsNewMotion",
+      "dataRow": "heartbeatFault: False",
+      "dataRowId": "False",
+      "obligation": "I-HB",
+      "source": "backend/tests/Gaode.Communication.Tests/Devices/T065OriginalDeadlineTests.cs",
+      "requiredEvidence": [
+        "current-context",
+        "raw-report"
+      ]
+    },
+    {
+      "caseId": "I-HB-04",
+      "kind": "dotnet",
+      "side": "after",
+      "suite": "Gaode.Communication.Tests",
+      "method": "Gaode.Communication.Tests.Devices.T065OriginalDeadlineTests.RealOriginalDeadlineStillLatchesAndRejectsNewMotion",
+      "dataRow": "heartbeatFault: True",
+      "dataRowId": "True",
+      "obligation": "I-HB",
+      "source": "backend/tests/Gaode.Communication.Tests/Devices/T065OriginalDeadlineTests.cs",
+      "requiredEvidence": [
+        "current-context",
+        "raw-report"
+      ]
+    },
+    {
+      "caseId": "I-CONFIG-01",
+      "kind": "dotnet",
+      "side": "after",
+      "suite": "Gaode.Contracts.Tests",
+      "method": "Gaode.Contracts.Tests.Configuration.Station01RunConfigurationTests.FrozenSnapshotKeepsVersionsCapabilitiesPurposeAndClampBudget",
+      "dataRow": null,
+      "dataRowId": null,
+      "obligation": "I-CONFIG",
+      "source": "backend/tests/Gaode.Contracts.Tests/Configuration/Station01RunConfigurationTests.cs",
+      "requiredEvidence": [
+        "current-context",
+        "raw-report"
+      ]
+    },
+    {
+      "caseId": "I-CONFIG-02",
+      "kind": "dotnet",
+      "side": "after",
+      "suite": "Gaode.Contracts.Tests",
+      "method": "Gaode.Contracts.Tests.Recipes.JointInputDefinitionTests.CurrentJointInputsUseUniqueSharedDefinitionsAndLoadExplicitPoseBudgets",
+      "dataRow": null,
+      "dataRowId": null,
+      "obligation": "I-CONFIG",
+      "source": "backend/tests/Gaode.Contracts.Tests/Recipes/JointInputDefinitionTests.cs",
+      "requiredEvidence": [
+        "current-context",
+        "raw-report"
+      ]
+    },
+    {
+      "caseId": "I-PROJ-01",
+      "kind": "dotnet",
+      "side": "after",
+      "suite": "Gaode.Contracts.Tests",
+      "method": "Gaode.Contracts.Tests.Station01.RuntimeObservationProjectionTests.AxisProjectionUsesCommittedActualValuesAndLeavesMissingAxesUnknown",
+      "dataRow": null,
+      "dataRowId": null,
+      "obligation": "I-PROJ",
+      "source": "backend/tests/Gaode.Contracts.Tests/Station01/RuntimeObservationProjectionTests.cs",
+      "requiredEvidence": [
+        "current-context",
+        "raw-report"
+      ]
+    },
+    {
+      "caseId": "009-01",
+      "kind": "dotnet",
+      "side": "after",
+      "suite": "Gaode.Rules.Tests",
+      "method": "Gaode.Rules.Tests.Architecture.ProtocolBoundaryTests.CurrentCompositionOptionsRemainAcceptedWithoutRetiredPollingKnob",
+      "dataRow": null,
+      "dataRowId": null,
+      "obligation": "009",
+      "source": "backend/tests/Gaode.Rules.Tests/Architecture/ProtocolBoundaryTests.cs",
+      "requiredEvidence": [
+        "current-context",
+        "raw-report"
+      ]
+    },
+    {
+      "caseId": "009-02",
+      "kind": "dotnet",
+      "side": "after",
+      "suite": "Gaode.Rules.Tests",
+      "method": "Gaode.Rules.Tests.Architecture.ProtocolBoundaryTests.CommunicationCollectionPolicyCannotEnterTheCommonBusinessLayer",
+      "dataRow": null,
+      "dataRowId": null,
+      "obligation": "009",
+      "source": "backend/tests/Gaode.Rules.Tests/Architecture/ProtocolBoundaryTests.cs",
+      "requiredEvidence": [
+        "current-context",
+        "raw-report"
+      ]
+    },
+    {
+      "caseId": "I-TIME-01",
+      "kind": "dotnet",
+      "side": "after",
+      "suite": "Gaode.Communication.Tests",
+      "method": "Gaode.Communication.Tests.Devices.HeartbeatWindowDiagnosticsTests.ResponseCollectionPrecedesSlowDiagnosticButServiceEndIncludesIt",
+      "dataRow": null,
+      "dataRowId": null,
+      "obligation": "I-TIME",
+      "source": "backend/tests/Gaode.Communication.Tests/Devices/HeartbeatWindowDiagnosticsTests.cs",
+      "requiredEvidence": [
+        "current-context",
+        "raw-report"
+      ]
+    },
+    {
+      "caseId": "I-DIAG-01",
+      "kind": "dotnet",
+      "side": "after",
+      "suite": "Gaode.Communication.Tests",
+      "method": "Gaode.Communication.Tests.Devices.HeartbeatWindowDiagnosticsTests.PlcWindowRetainsFastResponsesAndDistinguishesInvalidEchoFromAcceptedWrite",
+      "dataRow": null,
+      "dataRowId": null,
+      "obligation": "I-DIAG",
+      "source": "backend/tests/Gaode.Communication.Tests/Devices/HeartbeatWindowDiagnosticsTests.cs",
+      "requiredEvidence": [
+        "current-context",
+        "raw-report"
+      ]
+    },
+    {
+      "caseId": "I-DIAG-02",
+      "kind": "dotnet",
+      "side": "after",
+      "suite": "Gaode.Communication.Tests",
+      "method": "Gaode.Communication.Tests.Devices.HeartbeatWindowDiagnosticsTests.ActualDelayedServerResponseStillProducesSlowResponseDiagnostic",
+      "dataRow": null,
+      "dataRowId": null,
+      "obligation": "I-DIAG",
+      "source": "backend/tests/Gaode.Communication.Tests/Devices/HeartbeatWindowDiagnosticsTests.cs",
+      "requiredEvidence": [
+        "current-context",
+        "raw-report"
+      ]
+    },
+    {
+      "caseId": "I-DIAG-03",
+      "kind": "dotnet",
+      "side": "after",
+      "suite": "Gaode.Communication.Tests",
+      "method": "Gaode.Communication.Tests.Devices.HeartbeatWindowDiagnosticsTests.ArbiterTimingSeparatesEligibilityWaitFromQueuedActualTcpWork",
+      "dataRow": null,
+      "dataRowId": null,
+      "obligation": "I-DIAG",
+      "source": "backend/tests/Gaode.Communication.Tests/Devices/HeartbeatWindowDiagnosticsTests.cs",
+      "requiredEvidence": [
+        "current-context",
+        "raw-report"
+      ]
+    },
+    {
+      "caseId": "I-TIME-02",
+      "kind": "dotnet",
+      "side": "after",
+      "suite": "Gaode.Communication.Tests",
+      "method": "Gaode.Communication.Tests.Devices.HeartbeatWindowDiagnosticsTests.AbsoluteIoDeadlineRejectsExpiredWorkWithoutWaitingForCancellation",
+      "dataRow": "lateResponse: False",
+      "dataRowId": "lateResponse-false",
+      "obligation": "I-TIME",
+      "source": "backend/tests/Gaode.Communication.Tests/Devices/HeartbeatWindowDiagnosticsTests.cs",
+      "requiredEvidence": [
+        "current-context",
+        "raw-report"
+      ]
+    },
+    {
+      "caseId": "I-TIME-03",
+      "kind": "dotnet",
+      "side": "after",
+      "suite": "Gaode.Communication.Tests",
+      "method": "Gaode.Communication.Tests.Devices.HeartbeatWindowDiagnosticsTests.AbsoluteIoDeadlineRejectsExpiredWorkWithoutWaitingForCancellation",
+      "dataRow": "lateResponse: True",
+      "dataRowId": "lateResponse-true",
+      "obligation": "I-TIME",
+      "source": "backend/tests/Gaode.Communication.Tests/Devices/HeartbeatWindowDiagnosticsTests.cs",
+      "requiredEvidence": [
+        "current-context",
+        "raw-report"
+      ]
+    }
+  ],
+  "requiredFiles": [
+    "backend/tests/Gaode.Communication.Tests/Devices/ActionHandshakeTests.Flip.cs",
+    "backend/tests/Gaode.Communication.Tests/Devices/ActionHandshakeTests.Polling013.cs",
+    "backend/tests/Gaode.Communication.Tests/Devices/ActionHandshakeTests.SaveFailure.cs",
+    "backend/tests/Gaode.Communication.Tests/Devices/ActionHandshakeTests.StageMigration.cs",
+    "backend/tests/Gaode.Communication.Tests/Devices/ActionHandshakeTests.StaleStages.cs",
+    "backend/tests/Gaode.Communication.Tests/Devices/FailureEvidenceTests.cs",
+    "backend/tests/Gaode.Communication.Tests/Devices/HeartbeatInterlockTests.cs",
+    "backend/tests/Gaode.Communication.Tests/Devices/IndependentAxisTests.cs",
+    "backend/tests/Gaode.Communication.Tests/Devices/PlcPolling013AcquisitionTests.cs",
+    "backend/tests/Gaode.Communication.Tests/Devices/PlcPolling013NegativeTests.cs",
+    "backend/tests/Gaode.Communication.Tests/Devices/PlcPolling013ObservationTests.cs",
+    "backend/tests/Gaode.Communication.Tests/Devices/PlcPolling013SlowCycleTests.cs",
+    "backend/tests/Gaode.Communication.Tests/Devices/ProtocolDefinitionAdmissionTests.cs",
+    "backend/tests/Gaode.Communication.Tests/Devices/T065OriginalDeadlineTests.cs",
+    "backend/tests/Gaode.Contracts.Tests/Configuration/Station01RunConfigurationTests.cs",
+    "backend/tests/Gaode.Contracts.Tests/Recipes/JointInputDefinitionTests.cs",
+    "backend/tests/Gaode.Contracts.Tests/Station01/RuntimeObservationProjectionTests.cs",
+    "backend/tests/Gaode.Rules.Tests/Architecture/009-boundary-inventory.json",
+    "backend/tests/Gaode.Rules.Tests/Architecture/ProtocolBoundaryTests.cs",
+    "scripts/013-api-observer.py",
+    "scripts/workflow/010-lightweight-cases.json",
+    "scripts/workflow/plc_polling_013.py",
+    "scripts/workflow/plc_polling_013_compare.py"
+  ],
+  "additionalRequired": [
+    {
+      "caseId": "N3",
+      "kind": "real-ledger-negative",
+      "side": "after",
+      "positive": "all required dotnet rows qualified; excludes N3 itself"
+    },
+    {
+      "caseId": "L",
+      "kind": "complete-lightweight",
+      "manifest": "scripts/workflow/010-lightweight-cases.json"
+    },
+    {
+      "caseId": "before",
+      "kind": "one-idle-and-run2",
+      "side": "before"
+    },
+    {
+      "caseId": "after",
+      "kind": "one-idle-and-run2",
+      "side": "after"
+    },
+    {
+      "caseId": "compare",
+      "kind": "cross-side",
+      "side": "cross"
+    }
+  ],
+  "acceptanceVersion": "013-acceptance/2",
+  "acceptanceInterpretation": "V06.2: engineering performance targets retained as non-blocking observations; original deadlines, true feedback, local first-state 75ms, budgets, benefit, complete L and all 53 protection rows remain mandatory. No component cases removed or relabeled."
+}
