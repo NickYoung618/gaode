@@ -1,0 +1,297 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "title": "Station01 Development Budgets",
+  "type": "object",
+  "additionalProperties": false,
+  "required": [
+    "schemaVersion",
+    "id",
+    "version",
+    "purpose",
+    "source",
+    "businessMs",
+    "limits",
+    "physicalButtonWait",
+    "timeoutBoundary"
+  ],
+  "properties": {
+    "schemaVersion": {
+      "const": "2.0"
+    },
+    "id": {
+      "type": "string",
+      "minLength": 1
+    },
+    "version": {
+      "type": "string",
+      "minLength": 1
+    },
+    "purpose": {
+      "enum": [
+        "Test",
+        "Production"
+      ]
+    },
+    "source": {
+      "type": "string",
+      "minLength": 1
+    },
+    "businessMs": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "plcAcceptance",
+        "xyCompletion",
+        "capture3d",
+        "captureF",
+        "fDecode",
+        "safetyReady",
+        "stopAcceptance",
+        "stopCompletion",
+        "criticalSave",
+        "workerReleaseGrace",
+        "heartbeatFlip",
+        "heartbeatDisconnect",
+        "query",
+        "plcIo",
+        "recipeApplication"
+      ],
+      "properties": {
+        "plcAcceptance": {
+          "type": "integer",
+          "minimum": 1
+        },
+        "clampCompletion": {
+          "type": "integer",
+          "minimum": 1
+        },
+        "xyCompletion": {
+          "type": "integer",
+          "minimum": 1
+        },
+        "capture3d": {
+          "type": "integer",
+          "minimum": 1
+        },
+        "heightAlgorithm": {
+          "anyOf": [
+            {
+              "type": "integer",
+              "minimum": 1
+            },
+            {
+              "type": "null"
+            }
+          ]
+        },
+        "captureF": {
+          "type": "integer",
+          "minimum": 1
+        },
+        "fDecode": {
+          "anyOf": [
+            {
+              "type": "integer",
+              "minimum": 1
+            },
+            {
+              "type": "null"
+            }
+          ]
+        },
+        "safetyReady": {
+          "type": "integer",
+          "minimum": 1
+        },
+        "stopAcceptance": {
+          "type": "integer",
+          "minimum": 1
+        },
+        "stopCompletion": {
+          "type": "integer",
+          "minimum": 1
+        },
+        "criticalSave": {
+          "type": "integer",
+          "minimum": 1
+        },
+        "workerReleaseGrace": {
+          "type": "integer",
+          "minimum": 1
+        },
+        "heartbeatFlip": {
+          "type": "integer",
+          "minimum": 1
+        },
+        "heartbeatDisconnect": {
+          "type": "integer",
+          "minimum": 1
+        },
+        "query": {
+          "type": "integer",
+          "minimum": 1
+        },
+        "plcIo": {
+          "type": "integer",
+          "minimum": 1
+        },
+        "recipeApplication": {
+          "type": "integer",
+          "minimum": 1,
+          "maximum": 2147483647,
+          "description": "Independent frozen business recipe-application budget, milliseconds. Test initial 10000; Production requires approved source and must not fall back to Test."
+        },
+        "trayPoseAlgorithm": {
+          "anyOf": [
+            {
+              "type": "integer",
+              "minimum": 1
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "description": "Explicit current action budget. Absence blocks only the dependent action; no legacy budget fallback."
+        },
+        "flipCompletion": {
+          "anyOf": [
+            {
+              "type": "integer",
+              "minimum": 1
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "description": "Explicit current action budget. Absence blocks only the dependent action; no legacy budget fallback."
+        },
+        "putBackCompletion": {
+          "anyOf": [
+            {
+              "type": "integer",
+              "minimum": 1
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "description": "Explicit current action budget. Absence blocks only the dependent action; no legacy budget fallback."
+        }
+      }
+    },
+    "limits": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "flowNormal",
+        "flowControl",
+        "terminalReservations",
+        "writer",
+        "mediaJobs",
+        "algorithmQueuePerRole",
+        "workerPerRole",
+        "notificationsPerClient",
+        "notificationClients",
+        "queryConcurrency",
+        "queryPageMax",
+        "mediaMemoryBytes",
+        "runMediaQuotaBytes",
+        "dataQuotaBytes",
+        "minFreeDiskBytes",
+        "fReservedMemoryBytes",
+        "lateEvidencePerOperation",
+        "duplicateSummariesPerOperation",
+        "maxIpcMessageBytes",
+        "maxPendingTimerEvents"
+      ],
+      "properties": {
+        "flowNormal": {
+          "type": "integer",
+          "minimum": 1
+        },
+        "flowControl": {
+          "type": "integer",
+          "minimum": 1
+        },
+        "terminalReservations": {
+          "type": "integer",
+          "minimum": 1
+        },
+        "writer": {
+          "type": "integer",
+          "minimum": 1
+        },
+        "mediaJobs": {
+          "type": "integer",
+          "minimum": 1
+        },
+        "algorithmQueuePerRole": {
+          "type": "integer",
+          "minimum": 1
+        },
+        "workerPerRole": {
+          "type": "integer",
+          "minimum": 1
+        },
+        "notificationsPerClient": {
+          "type": "integer",
+          "minimum": 1
+        },
+        "notificationClients": {
+          "type": "integer",
+          "minimum": 1
+        },
+        "queryConcurrency": {
+          "type": "integer",
+          "minimum": 1
+        },
+        "queryPageMax": {
+          "type": "integer",
+          "minimum": 1
+        },
+        "mediaMemoryBytes": {
+          "type": "integer",
+          "minimum": 1
+        },
+        "runMediaQuotaBytes": {
+          "type": "integer",
+          "minimum": 1
+        },
+        "dataQuotaBytes": {
+          "type": "integer",
+          "minimum": 1
+        },
+        "minFreeDiskBytes": {
+          "type": "integer",
+          "minimum": 1
+        },
+        "fReservedMemoryBytes": {
+          "type": "integer",
+          "minimum": 1
+        },
+        "lateEvidencePerOperation": {
+          "type": "integer",
+          "minimum": 1
+        },
+        "duplicateSummariesPerOperation": {
+          "type": "integer",
+          "minimum": 1
+        },
+        "maxIpcMessageBytes": {
+          "type": "integer",
+          "minimum": 1
+        },
+        "maxPendingTimerEvents": {
+          "type": "integer",
+          "minimum": 1
+        }
+      }
+    },
+    "physicalButtonWait": {
+      "const": "ExplicitHumanInput"
+    },
+    "timeoutBoundary": {
+      "const": "ResponseBeforeDeadline"
+    }
+  }
+}

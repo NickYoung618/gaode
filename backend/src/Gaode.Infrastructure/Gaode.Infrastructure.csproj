@@ -1,0 +1,11 @@
+<Project Sdk="Microsoft.NET.Sdk">
+  <ItemGroup>
+    <ProjectReference Include="../Gaode.Application/Gaode.Application.csproj" />
+    <PackageReference Include="Microsoft.EntityFrameworkCore.Sqlite" />
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="../Gaode.Application/Diagnostics/RuntimeDiagnostics.cs" Link="Diagnostics/RuntimeDiagnostics.cs" />
+  </ItemGroup>
+  <ItemGroup><ProjectReference Include="../Gaode.Plc.Protocol/Gaode.Plc.Protocol.csproj" /></ItemGroup>
+  <ItemGroup><InternalsVisibleTo Include="Gaode.Communication.Tests" /><InternalsVisibleTo Include="Gaode.Integration.Tests" /></ItemGroup>
+</Project>

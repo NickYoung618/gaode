@@ -1,0 +1,1 @@
+export function runConsoleViewModel(snapshot: any, permissions: string[] = []) { return { snapshot, canStart: permissions.includes('Run.Start'), canPause: permissions.includes('Run.Pause'), canCancel: permissions.includes('Run.Cancel') }; }

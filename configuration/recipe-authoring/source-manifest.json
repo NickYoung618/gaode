@@ -1,0 +1,73 @@
+{
+  "schemaVersion": "authoring-source-preparation/1",
+  "purpose": "Test",
+  "scope": "explicit isolated VirtualPlc authoring input; not production fallback and not runtime catalog",
+  "baseSources": [
+    {
+      "path": "specs/011-plc-interaction-update/examples/joint/catalog.json",
+      "sha256": "4aa7289a7e36b040fd6c1324ffa648d33ef82bc9d6af2e628ceed60caf9f8b85"
+    }
+  ],
+  "explicitSoftwareChoices": {
+    "grid": [
+      "NG r2:c1",
+      "OK r2:c4 physical1",
+      "Pending r2:c10"
+    ],
+    "rotationGroups": "AB/AB",
+    "anglesDeg": [
+      90,
+      180
+    ],
+    "stationPlace": [
+      210,
+      100,
+      50
+    ],
+    "stationPick": [
+      210,
+      100,
+      52
+    ],
+    "originPutBack": [
+      110,
+      100,
+      52
+    ],
+    "grippers": {
+      "loading": 2,
+      "sorting": 1
+    }
+  },
+  "notes": "Coordinates/angles/map/grippers here are explicitly declared virtual configuration input, not measured hardware or operator defaults. Editor blanks editable points and parameters; preparation writes unapproved drafts to the one SQLite store. Production deployment owner must supply calibrated mapping/mechanics independently.",
+  "files": [
+    {
+      "path": "configuration/recipe-authoring/ordinary-source.json",
+      "sha256": "33909b006b0301a26dd5d19445f69a77950b0726d94342d34811254f72742629",
+      "scenarioId": "011-joint",
+      "model": "011-TestModel",
+      "inspectionKind": "ordinary",
+      "productionApproved": false
+    },
+    {
+      "path": "configuration/recipe-authoring/special-rotation-source.json",
+      "sha256": "cbef83e174b462f0172010f9730a949a9b23656df9e395092a36249c9c0b8e0a",
+      "scenarioId": "011-joint",
+      "model": "011-TestModel",
+      "inspectionKind": "specialRotation",
+      "productionApproved": false
+    }
+  ],
+  "preparedSourceStatus": "v1 prepared and full read at artifacts/014-special-part-rotation/source-preparation-314349cd846342b09a6c32a12a448d8e; v2 camera-source metadata increment pending same-store preparation",
+  "cameraMetadata": "A/B/C/D actual configured source metadata retained for each Stage; newly selected camera items blank coordinates and three parameters, not source numeric defaults",
+  "preparedStatus": {
+    "state": "PreparedAndReread",
+    "evidenceRoot": "artifacts/recipe-layout-012/page-1791191088018",
+    "receiptFiles": [
+      "ordinary-source.log",
+      "special-rotation-source.log"
+    ],
+    "sameStore": "data/recipes/recipes.db",
+    "scope": "Current explicit software authoring inputs only; not production approval"
+  }
+}
