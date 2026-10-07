@@ -6,10 +6,11 @@ using Gaode.Infrastructure.Persistence;
 using System.Text.Json;
 using Microsoft.EntityFrameworkCore;
 using Xunit;
+using Xunit.Abstractions;
 
 namespace Gaode.Communication.Tests;
 
-public sealed class CameraWorkerLifecycleTests
+public sealed class CameraWorkerLifecycleTests(ITestOutputHelper output)
 {
     [Fact]
     public async Task ActualWorkerExitRevokesReadyAndRecoveryRequiresFaultAndNewSession()
@@ -27,16 +28,19 @@ public sealed class CameraWorkerLifecycleTests
         while (!File.ReadAllText(log).Contains("CameraWorkerExitedUnexpectedly")) await Task.Delay(20, deadline.Token);
         var failed = Assert.Single(gateway.Status);
         Assert.Equal("Faulted", failed.State); Assert.Null(failed.ProcessId); Assert.NotNull(failed.Error); Assert.Equal(0, failed.MaxBytes);
+        output.WriteLine("Offline actual process exit evidence: " + File.ReadAllText(log));
         await Assert.ThrowsAsync<InvalidOperationException>(() => gateway.TriggerAsync("A", "1"));
         Assert.False(File.Exists(Path.Combine(fixture.Root,"triggers.txt")));
         File.Delete(Path.Combine(fixture.Root, "exit"));
         await fixture.Mode("init-fail");
         var failure = await Assert.ThrowsAsync<CameraRecoveryFailedException>(() => gateway.RecoverAsync("A", default));
         Assert.Equal("Faulted", failure.Status.State);
+        output.WriteLine("Recovery failed (no successful Task result): " + JsonSerializer.Serialize(failure.Status));
         await fixture.Mode("normal");
         await gateway.RecoverAsync("A", default);
         var recovered = Assert.Single(gateway.Status);
         Assert.Equal("Ready", recovered.State); Assert.NotEqual(initial.SessionId, recovered.SessionId); Assert.Equal(2, recovered.OpenCount);
+        output.WriteLine("Recovery succeeded with new session: " + JsonSerializer.Serialize(recovered));
         await Task.Delay(50); // Old process exit callbacks queued behind recovery must not change the new session.
         Assert.Equal(recovered, Assert.Single(gateway.Status));
         await fixture.Mode("old-session");

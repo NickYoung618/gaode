@@ -17,6 +17,7 @@ try {
         if ($LASTEXITCODE) { throw "Publish failed: $project" }
     }
     Copy-Item -LiteralPath (Join-Path $PSScriptRoot 'Start-CameraSubsystem.ps1'),(Join-Path $PSScriptRoot 'Invoke-CameraAcceptance.ps1') -Destination $target
+    Copy-Item -LiteralPath (Join-Path $PSScriptRoot 'Freeze-CameraEvidence.py') -Destination $target
     Copy-Item -LiteralPath (Join-Path $repo 'specs/019-real-camera-subsystem/quickstart.md') -Destination (Join-Path $target 'README.md')
     foreach ($document in @('validation.md','research.md')) {
         Copy-Item -LiteralPath (Join-Path $repo "specs/019-real-camera-subsystem/$document") -Destination $target

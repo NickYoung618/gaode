@@ -14,6 +14,8 @@ using var pipe = new NamedPipeClientStream(".", options["--pipe"], PipeDirection
 await pipe.ConnectAsync(5000);
 var init = (await CameraWorkerProtocol.ReadAsync(pipe, 0, default)).Header;
 var binding = init.Binding!;
+var previousSessionPath=Path.Combine(root,"previous-session.txt");
+var previousSession=File.Exists(previousSessionPath)?Guid.Parse(File.ReadAllText(previousSessionPath)):Guid.NewGuid();
 if (Mode() == "init-fail")
 {
     await CameraWorkerProtocol.WriteAsync(pipe, new("error", session, init.RequestId) { Error = "InjectedOpenFailure" }, ReadOnlyMemory<byte>.Empty, default);
@@ -27,6 +29,7 @@ CaptureFrameMetadata Metadata(long sequence, long length, IReadOnlyList<FramePay
         (ulong)sequence, 123 + sequence, sequence, DateTimeOffset.UtcNow, DateTimeOffset.UtcNow, 2, 2,
         binding.Role == "3D" ? "CameraPro XYZ-f32 Depth-f32 IR-u8" : "GX_PIXEL_FORMAT_MONO8", length, parameters, payloads);
 await CameraWorkerProtocol.WriteAsync(pipe, new("ready", session, init.RequestId) { MaxBytes = 4096, Metadata = Metadata(0,0,[]) }, ReadOnlyMemory<byte>.Empty, default);
+File.WriteAllText(previousSessionPath,session.ToString());
 _ = Task.Run(async () => { while (true) { if (File.Exists(Path.Combine(root, "exit"))) Environment.Exit(17); await Task.Delay(10); } });
 long sequence = 0;
 while (true)
@@ -66,6 +69,6 @@ while (true)
     var metadata = Metadata(sequence, bytes.Length, payloads);
     if (Mode() == "bad-role") metadata = metadata with { Role = "B" };
     if (Mode() == "bad-size") metadata = metadata with { Width = 3 };
-    if (Mode() == "old-session") metadata = metadata with { WorkerSessionId = Guid.NewGuid() };
-    await CameraWorkerProtocol.WriteAsync(pipe, new("frame", session, request.RequestId) { Metadata=metadata,Format=format }, bytes, default);
+    if (Mode() == "old-session") metadata = metadata with { WorkerSessionId = previousSession };
+    await CameraWorkerProtocol.WriteAsync(pipe, new("frame", Mode()=="old-session"?previousSession:session, request.RequestId) { Metadata=metadata,Format=format }, bytes, default);
 }

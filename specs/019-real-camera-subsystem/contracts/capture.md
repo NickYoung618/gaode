@@ -40,3 +40,5 @@ MediaCapacity.RestoreFilesUsed恢复启动存量一次，不创建内存预约�
 独立验收固定预期points.xyz.f32(float32,irWidth*irHeight*3)、depth.f32(float32,depthType1=textureWidth*textureHeight/2=irWidth*irHeight)、ir.bytes(uint8/uint16,irWidth*irHeight*2planes*cameraGroups，reconstructionType0=2组/2=1组)、metadata.json。实际元素数乘elementBytes必须等于通道字节长度，核对内外manifest身份/帧号/会话/触发关联。2D已知像素格式按其明确容器布局校验；其他格式以SDK PayloadSize/Width/Height/PixelFormat一致性及显式布局限制核查，不武断猜解码公式。
 
 独立验收脚本要求SitePath作为独立设备身份来源；未定义几何解码规则的像素格式明确拒绝给出验收通过，保留SDK原始载荷不等于已解释其布局。
+
+存量配额细化：runFileLimit与dataLimit沿用旧实现，均对同一MediaStore的FilesUsed总量门禁，不按业务Run或重启清零。FilesUsed包含库存载荷和在途磁盘预约；元数据/数据库/日志排除此载荷额度，应另外保证磁盘余量。此修复不引入清理器。

@@ -1,0 +1,62 @@
+{
+  "source": "FormalHostWithActualSDKAndRealDevices",
+  "openCountUnchanged": true,
+  "statusCode": 409,
+  "body": {
+    "error": "CameraRecoveryNotAllowed:Ready",
+    "status": {
+      "role": "A",
+      "serial": "GBZ26080956",
+      "expectedNicMac": "A0-14-6D-01-36-34",
+      "state": "Ready",
+      "processId": 31708,
+      "sessionId": "b9bdca44-ce71-485b-bc67-70221dd07be8",
+      "epoch": 639269564179784520,
+      "maxBytes": 26214400,
+      "openCount": 1,
+      "error": null,
+      "metadata": {
+        "schema": "gaode.capture.frame.v1",
+        "role": "A",
+        "serial": "GBZ26080956",
+        "nicMac": "A0146D013634",
+        "cameraIp": "192.168.3.11",
+        "hostIp": "192.168.3.20",
+        "workerSessionId": "b9bdca44-ce71-485b-bc67-70221dd07be8",
+        "frameId": 0,
+        "deviceTimestamp": 0,
+        "triggerSequence": 0,
+        "triggeredUtc": "2026-10-07T15:53:40.0677053+08:00",
+        "receivedUtc": "2026-10-07T15:53:40.067827+08:00",
+        "width": 5120,
+        "height": 5120,
+        "pixelFormat": "Mono8",
+        "payloadBytes": 0,
+        "actualParameters": {
+          "AcquisitionMode": "Continuous",
+          "TriggerSelector": "FrameStart",
+          "TriggerMode": "On",
+          "TriggerSource": "Software",
+          "PixelFormat": "Mono8",
+          "ExposureAuto": "Off",
+          "GainAuto": "Off",
+          "ExposureTime": "60000",
+          "Gain": "0",
+          "AcquisitionFrameRate": "4.5",
+          "Width": "5120",
+          "Height": "5120",
+          "OffsetX": "0",
+          "OffsetY": "0",
+          "PayloadSize": "26214400",
+          "SdkNativeFileVersion": "2.0.2603.8121",
+          "SdkNativeSha256": "6F30A5600E7B83AFC64E268D932F85BA9771FA98E00B85E55F15B9AD0F8D7A63",
+          "SdkNativeDirectory": "D:\\GalaxySDK\\APIDll\\Win64"
+        },
+        "payloads": []
+      }
+    },
+    "automaticReplay": false
+  },
+  "processUnchanged": true,
+  "sessionUnchanged": true
+}

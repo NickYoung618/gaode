@@ -62,3 +62,9 @@ Wait-Process -Id ([int](Get-Content D:\gaode\camera-data\host.pid)) -Timeout 30
 ## 67e4a57审查修复部署增补
 
 独立验收现在必须传SitePath，用现场配置独立核对身份；3D按固定四条目及厂家元素/尺寸规则校验，未知2D像素布局不会猜测通过。磁盘限额仍是media子树载荷字节（含保留失败载荷和partial），排除sidecar/DB/日志；启动恢复存量，不清理历史文件。Ready或忙态recover返回409，故障恢复失败503；仅Faulted允许重建，服务关闭后不可重启。新修复回退标签camera-review-baseline-67e4a57和bundle artifacts/camera-review-baseline-67e4a57/source.bundle。必须先正常停止并读回恢复，再在独立目录取回旧源码/包；保留新旧数据根，Git回退不代替硬件参数恢复。
+
+## 封存与复核
+
+新修复运行包的二进制源码提交a0e70e3。复核流程使用Python3.12标准库（仅证据工具依赖，不是Host运行依赖）：正常关闭Host/worker后执行Freeze-CameraEvidence.py --root <绝对DataRoot> --captures <绝对验收目录> --output <新绝对JSON路径>。该工具不拍照、不改DB、不删除数据，拒绝活跃Host所有权锁和非空WAL；输出媒体ID/文件/sidecar/SQLite写ID和文件清单。冻结目录不要重新启动Host；以后另选DataRoot。
+
+旧214项清单及11项差异、旧最终21份媒体核查、新219项冻结清单分别登记在evidence/review-67e4a57/，入口runtime-inventory.json指向各轮，不再以运行中清单冒充最终冻结。配置仅交付去token快照及原配置摘要，SDK与运行二进制摘要随轮次保存。当前未完成的故障HTTP验证和两项独立审批拒绝详见validation.md；不得以正常路径通过推导最终收敛。
