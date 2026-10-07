@@ -9,7 +9,7 @@ public sealed record DetectionCaptureSettings(string ProfileId, int ExposureUs, 
     int[] RoiPixels, string LightChannel, int BrightnessPercent, int SettleMs);
 public sealed record CaptureRequest(PortEnvelope Envelope, Guid CaptureId, CaptureRole Role,
     string PointId, string PointVersion, string? ScopeId, string? ScopeVersion,
-    string CameraBindingId, string LightBindingId, Guid IntentWriteId, long MaxBytes)
+    string CameraBindingId, string? LightBindingId, Guid IntentWriteId, long MaxBytes)
 {
     public DetectionCaptureSettings? DetectionSettings { get; init; }
 }
@@ -29,6 +29,8 @@ public sealed record MediaRef(Guid MediaId, Guid RunId, Guid CaptureId, string K
         "img" => "image/jpeg",
         "png" => "image/png",
         "bin" => "application/octet-stream",
+        "CameraProFrameZipV1" => "application/zip",
+        "GalaxyRaw" => "application/octet-stream",
         _ => "application/octet-stream"
     };
     public string? Purpose { get; init; }
@@ -41,7 +43,10 @@ public sealed record CorrelatedCaptureFact(Guid RunId, Guid CaptureId, Guid Oper
     long ConnectionEpoch, string RequestedSettingsDigest, string MediaSource,
     ComponentExecutionOrigin CameraOrigin, ComponentExecutionOrigin LightOrigin,
     CaptureApplicationState ApplicationState, DetectionCaptureSettings? ActualSettings,
-    bool Replayed, IReadOnlyList<string> EvidenceReferences);
+    bool Replayed, IReadOnlyList<string> EvidenceReferences)
+{
+    public CaptureFrameMetadata? FrameMetadata { get; init; }
+}
 
 public enum AlgorithmRole { Height, FDecode, Detection, EDecode, TrayPose }
 public enum AlgorithmEventKind { Accepted, Running, Result, Failed, InputReleased, WorkerExited }

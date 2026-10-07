@@ -28,6 +28,8 @@ public static class Station01Registration
     {
         if (options.Mode is not ("FullSimulation" or "VirtualPlcIntegration" or "Production"))
             throw new InvalidOperationException("未知运行模式");
+        if (options.Cameras is not null && options.Mode != "Production")
+            throw new InvalidOperationException("RealCameraWorkersRequireProductionMode");
         if (options.PlcProvider is not ("Virtual" or "Real"))
             throw new InvalidOperationException("Gaode:PlcProvider必须为Virtual或Real");
         if (options.TestPersistenceFaultCase is { } faultCase &&
@@ -99,7 +101,8 @@ public static class Station01Registration
             else
             {
                 services.AddSingleton<TimeProvider>(_ => TimeProvider.System);
-                services.AddSingleton<ICapturePort, NotIntegratedCapture>();
+                if (options.Cameras is null) services.AddSingleton<ICapturePort, NotIntegratedCapture>();
+                else services.AddRealCameras(options.Cameras);
                 services.AddSingleton<IAlgorithmPort, NotIntegratedAlgorithm>();
             }
             var plcOptions = new PlcRuntimeOptions
@@ -222,6 +225,8 @@ public static class Station01Registration
                 budget.Value.Limits.MediaJobs);
         });
         services.AddSingleton<IMediaStore>(sp => sp.GetRequiredService<MediaStore>());
+        services.AddSingleton<Gaode.Infrastructure.Persistence.CameraCaptureJournal>();
+        services.AddSingleton<CameraAcquisitionService>();
         services.AddSingleton<AcquisitionCoordinator>();
         services.AddSingleton<AlgorithmLeaseSupervisor>();
         services.AddSingleton(sp => new AlgorithmRuntime(

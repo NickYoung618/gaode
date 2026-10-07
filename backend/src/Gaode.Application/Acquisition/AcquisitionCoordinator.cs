@@ -26,6 +26,8 @@ public sealed class AcquisitionCoordinator(ICapturePort camera, IMediaStore medi
         string cameraBinding, string lightBinding, long maxBytes,
         CancellationToken cancellationToken)
     {
+        if (role == CaptureRole.F) run.ReserveSingleFCapture();
+        maxBytes = camera.GetMaxCaptureBytes(cameraBinding, maxBytes);
         var captureId = Guid.NewGuid();
         var operationId = Guid.NewGuid();
         var intent = new OperationIntentPayload(operationId, role == CaptureRole.F ? "CaptureF" : "Capture3D",
@@ -43,7 +45,7 @@ public sealed class AcquisitionCoordinator(ICapturePort camera, IMediaStore medi
         var request = new CaptureRequest(envelope, captureId, role, point.Id, point.Version,
             scopeId, scopeVersion, cameraBinding, lightBinding, intentReceipt.WriteId, maxBytes);
         var gate = new CaptureEvidenceGate();
-        var expectedEpoch = camera.ConnectionEpoch;
+        var expectedEpoch = camera.GetConnectionEpoch(cameraBinding);
         var callbackLogs = 0;
         RuntimeDiagnostics.Record("Capture", "Requesting", run.RunId,
             new { operationId, captureId, expectedEpoch, window.StartTick, window.DueTick,
@@ -59,7 +61,7 @@ public sealed class AcquisitionCoordinator(ICapturePort camera, IMediaStore medi
                         actualOperationId = e.Request.Envelope.OperationId,
                         actualCaptureId = e.Request.CaptureId }, warning: !matched || e.Kind == CaptureEventKind.Failed);
             if (!matched) return;
-            if (e.Kind == CaptureEventKind.Failed)
+            if (e.Kind is CaptureEventKind.Failed or CaptureEventKind.Unknown)
             {
                 ingress.Receive(key, e.ErrorCode ?? "CaptureFailed");
                 return;
@@ -69,7 +71,9 @@ public sealed class AcquisitionCoordinator(ICapturePort camera, IMediaStore medi
             if (gate.Observe(e)) ingress.Receive(key, "EndedAndMediaTaken");
         }
         await run.ReportAsync(capture: CaptureState.Requested);
-        await camera.RequestCaptureAsync(request, OnEvent, cancellationToken);
+        using var captureDeadline = CancellationTokenSource.CreateLinkedTokenSource(cancellationToken);
+        captureDeadline.CancelAfter(budget);
+        var received = await new CameraAcquisitionService(camera, media).ReceiveAsync(request, captureDeadline.Token, OnEvent);
         var decision = await window.Completion;
         RuntimeDiagnostics.Record("Capture", "Decision", run.RunId,
             new { operationId, captureId, outcome = decision.Outcome.ToString(), decision.Reason,
@@ -80,13 +84,13 @@ public sealed class AcquisitionCoordinator(ICapturePort camera, IMediaStore medi
             throw new InvalidOperationException($"采集完成未知或超时，禁止依赖算法与运动; role={role}; " +
                 $"operation={operationId}; start={window.StartTick}; due={window.DueTick}; " +
                 $"received={decision.ReceivedTick}; outcome={decision.Outcome}; reason={decision.Reason}");
-        var (buffer, format) = gate.Take();
-        var captureFact = gate.TakeFact(request, expectedEpoch);
+        var (buffer, format) = (received.Bytes, received.Format);
+        var captureFact = received.Fact;
         RuntimeDiagnostics.Record("MediaFileSave", "Started", run.RunId, new { operationId, captureId, format });
-        var reference = await media.SaveAsync(run.RunId, captureId,
+        var reference = await media.SaveCaptureAsync(run.RunId, captureId,
             role == CaptureRole.ThreeD ? "3D" : "F", point.Version,
             scopeVersion ?? "NotApplicable", buffer, format,
-            captureFact.MediaSource, cancellationToken);
+            captureFact.MediaSource, captureFact, cancellationToken);
         reference = reference with { Purpose = run.Config.Public.Purpose };
         RuntimeDiagnostics.Record("MediaFileSave", "Returned", run.RunId,
             new { operationId, captureId, reference.MediaId, reference.RelativeKey });
@@ -97,6 +101,7 @@ public sealed class AcquisitionCoordinator(ICapturePort camera, IMediaStore medi
                 pointVersion = point.Version, scopeVersion, triggerCount = camera.TriggerCount(role),
                 requestedCapture = request, captureFact },
             cancellationToken: cancellationToken);
+        await media.MarkCommittedAsync(reference, cancellationToken);
         if (role == CaptureRole.ThreeD) {
             run.InitialThreeDCapture = captureFact;
             run.InitialThreeDCaptureWriteId = captureCommit.WriteId;

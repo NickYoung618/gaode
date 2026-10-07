@@ -4,6 +4,12 @@ using Gaode.Domain.Configuration;
 using Gaode.Application.Recipes;
 using Gaode.Infrastructure.Recipes;
 
+if (args.Length == 2 && args[0] == "--prepare-camera-store")
+{
+    Gaode.Infrastructure.Persistence.CameraCaptureJournal.Prepare(args[1]);
+    return;
+}
+
 // The PLC heartbeat uses asynchronous socket completions on the process worker pool.
 // On small-CPU hosts, blocking startup/SQLite work can otherwise leave completed
 // loopback reads queued behind the pool's slow starvation recovery for >3 seconds.
@@ -21,6 +27,11 @@ builder.Logging.AddConsole();
 // Page polling is frequent; Gaode command/stage/device diagnostics retain their own categories.
 builder.Logging.AddFilter("Microsoft.AspNetCore", LogLevel.Warning);
 var section = builder.Configuration.GetSection("Gaode");
+if (section.GetValue("CaptureOnly", false))
+{
+    await RealCameraRegistration.RunCaptureOnlyAsync(builder);
+    return;
+}
 var options = new Station01RuntimeOptions(
     section["Mode"] ?? throw new InvalidOperationException("Gaode:Mode缺失"),
     section["TestRoot"] ?? throw new InvalidOperationException("Gaode:TestRoot缺失"),
@@ -38,7 +49,8 @@ var options = new Station01RuntimeOptions(
     section["WorkerScriptPath"], section["WorkerManifestPath"],
     section.GetValue<int?>("TestRecoveryWaitMs") ?? 120000, section["TestPersistenceFaultCase"],
     PlcMechanicsPath: section["PlcMechanicsPath"],
-    PlcFieldProfilePath: section["PlcFieldProfilePath"]);
+    PlcFieldProfilePath: section["PlcFieldProfilePath"],
+    Cameras: section.GetValue("Cameras:Enabled", false) ? RealCameraRegistration.ReadOptions(builder.Configuration) : null);
 builder.Services.AddStation01(options);
 var recipeStoreOptions = new RecipeStoreOptions
 {
@@ -109,6 +121,7 @@ app.UseAuthentication();
 app.UseAuthorization();
 app.MapStation01Api();
 app.MapRecipeEndpoints();
+if (options.Cameras is not null) app.MapRealCameraEndpoints();
 // Cold EF model/query and recovered-run initialization must finish before PLC
 // polling starts its unchanged communication and heartbeat deadlines.
 await app.Services.GetRequiredService<Gaode.Host.Lifecycle.Station01HostedService>()

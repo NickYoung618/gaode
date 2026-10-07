@@ -12,4 +12,5 @@ public sealed record Station01RuntimeOptions(string Mode, string TestRoot,
     string? WorkerExecutablePath = null, string? WorkerScriptPath = null,
     string? WorkerManifestPath = null, int TestRecoveryWaitMs = 120000,
     string? TestPersistenceFaultCase = null, string? PlcMechanicsPath = null,
-    string? PlcFieldProfilePath = null);
+    string? PlcFieldProfilePath = null,
+    Gaode.Infrastructure.Devices.Cameras.RealCameraOptions? Cameras = null);

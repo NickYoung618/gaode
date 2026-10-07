@@ -2,13 +2,13 @@
 
 ## 业务采集
 
-CaptureRequest 保留既有信封/captureId/intentWriteId、Role、CameraBindingId、point/scope/version、MaxBytes；LightBindingId 允许 null。真实适配器拒绝 DetectionSettings 套用并保持当前设备参数，报告外部光源 NotApplied；不会调用光源。ICapturePort.GetConnectionEpoch(binding) / GetMaxCaptureBytes(binding, fallback) 提供按设备 epoch 与实际预约上限，默认沿用旧实现以保持模拟消费者。ConnectionEpoch 旧成员只作旧路径默认，真实多设备必须按 binding 获取。
+CaptureRequest 保留既有信封/captureId/intentWriteId、Role、CameraBindingId、point/scope/version、MaxBytes；LightBindingId 允许 null。真实适配器不应用 DetectionSettings并保持当前设备参数，报告外部光源 NotApplied；不会调用光源。ICapturePort.GetConnectionEpoch(binding) / GetMaxCaptureBytes(binding, fallback) 提供按设备 epoch 与实际预约上限，默认沿用旧实现以保持模拟消费者。ConnectionEpoch 旧成员只作旧路径默认，真实多设备必须按 binding 获取。
 
-CaptureFrameMetadata：schema/role/serial/expected及实际NIC MAC/cameraIP/hostIP、workerSessionId、frameId/deviceTimestamp、triggerSequence、triggeredUtc/receivedUtc、width/height/pixelFormat/payloadBytes、actualParameters（string map）、payloads（name/elementCount/elementBytes/byteLength/sha256）、SDK版本与触发前后读回。CorrelatedCaptureFact 添加 FrameMetadata。CameraFrame 同样附 metadata，并原样保留 Format/ContentType。
+CaptureFrameMetadata：schema/role/serial/实际NIC MAC（预期值见配置及status）/cameraIP/hostIP、workerSessionId、frameId/deviceTimestamp、triggerSequence、triggeredUtc/receivedUtc、width/height/pixelFormat/payloadBytes、actualParameters（string map）、payloads（name/elementCount/elementBytes/byteLength/sha256）、SDK版本（actualParameters）；触发备份/读回保存于会话诊断。CorrelatedCaptureFact 添加 FrameMetadata。CameraFrame 同样附 metadata，并原样保留 Format/ContentType。
 
-CameraAcquisitionService.ReceiveAsync(request, ct) 经 ICapturePort 和 CaptureEvidenceGate 接管 Ended+MediaTaken，同次 Fact/session/epoch/identity 校验后返回 bytes/format/fact；不保存算法结果或发 PLC。CaptureAsync(request,ct) 用于独立采集，经 ReserveCapture、Receive、MediaStore staged保存及 ICameraCaptureJournal.CommitAsync、MarkCommitted 后返回。调用前 ICameraCaptureJournal.RecordIntentAsync 持久保存意图；应用服务不能制造意图成功。
+CameraAcquisitionService.ReceiveAsync(request, ct) 经 ICapturePort 和 CaptureEvidenceGate 接管 Ended+MediaTaken，同次 Fact/session/epoch/identity 校验后返回 bytes/format/fact；不保存算法结果或发 PLC。CaptureAsync(request,journal,ct) 用于独立采集，经 ReserveCapture、Receive、MediaStore staged保存及 ICameraCaptureJournal.CommitAsync、MarkCommitted 后返回。CaptureAsync 内首先调用 ICameraCaptureJournal.RecordIntentAsync 持久保存意图；应用服务不能制造意图成功。
 
-IMediaStore.SaveCaptureAsync 与原 SaveAsync 参数相同并添加 CorrelatedCaptureFact；MarkCommittedAsync(MediaRef,ct) 发布可读；旧实现可默认委托，正式 MediaStore 实现真实附加元数据保存及发布。所有实际业务保存 Media/CaptureFact 后调用 MarkCommitted。ICameraCaptureJournal RecordIntent/Commit/ListCommitted/GetMetadata/RecordFailure 留基础设施实现；独立采集复用现有 Runs/Writes/Media 表，不允许 orphan file 被猜为成功。
+IMediaStore.SaveCaptureAsync 与原 SaveAsync 参数相同并添加 CorrelatedCaptureFact；MarkCommittedAsync(MediaRef,ct) 发布可读；旧实现可默认委托，正式 MediaStore 实现真实附加元数据保存及发布。所有实际业务保存 Media/CaptureFact 后调用 MarkCommitted。ICameraCaptureJournal 定义 RecordIntent/Commit/RecordFailure；ListCommitted/GetMetadata 为基础设施 journal 查询；独立采集复用现有 Runs/Writes/Media 表，不允许 orphan file 被猜为成功。
 
 ## 控制及二进制 framing
 
@@ -27,4 +27,6 @@ worker 的参数备份和诊断目录用于恢复，不作为数据交付。完�
 - POST /api/v1/cameras/{role}/recover：当前请求完成/隔离后重建该相机，禁止重放原请求。
 - GET /api/v1/camera-media/{id}：提交后的引用/元数据；GET /api/v1/camera-media/{id}/content：读取原始数据。
 
-复用现有本地 Bearer 权限（Read/Start/Recovery.Check/Media.Read），token配置来自部署环境，不硬编码令牌。绑定冲突/未就绪409，采集未知504/明确失败502，保存失败500，不返回成功媒体。诊断带captureId/runId/session/阶段。接口仅纯采集，不表示整机生产就绪。
+复用现有本地 Bearer 权限（Read/Start/Recovery.Check/Media.Read），token配置来自部署环境，不硬编码令牌。绑定冲突/未就绪409，调用取消504；采集/保存失败或未知500，未就绪/无效操作409，不返回成功媒体。诊断带captureId/runId/session/阶段。接口仅纯采集，不表示整机生产就绪。
+
+纯采集Host新增 POST /api/v1/cameras/shutdown（Recovery.Check）：受理关闭后经Host正常退出各worker并记录参数恢复；202仅受理不代表恢复成功。纯采集介质根为CameraStoreRoot/media，沿用MediaStore相对media/...路径。

@@ -19,14 +19,14 @@ P01/P02：符合，用户明确纯采集终点优先，spec 清晰；P03：不�
 - Application/Ports：CaptureFrameMetadata、FramePayload；ICapturePort 增加按 binding 获取会话/容量的默认成员，不改变模拟实现。
 - Application/Acquisition：CameraAcquisitionService 接受已保存意图的 CaptureRequest，经既有 CaptureEvidenceGate 获取证据；独立入口及 AcquisitionCoordinator/RecipeDetectionExecutor 共用此服务的数据接管逻辑，不调用算法。
 - Infrastructure/Devices/Cameras：CameraWorkerProtocol（有界二进制管道）；PersistentCameraGateway（每设备进程/管道/串行锁）；CameraCaptureAdapter（正式采集事件转译）。
-- CameraWorker：GalaxyDevice/CameraProDevice，发现/绑定/备份/触发/原始数据接管/恢复；正常只初始化一次。不包含媒体最终索引。
+- CameraWorker：GalaxyDriver/CameraProDriver，发现/绑定/备份/触发/原始数据接管/恢复；正常只初始化一次。不包含媒体最终索引。
 - Infrastructure/Media：MediaStore 阶段文件/元数据，提交前不进入可读 _ready；从现有持久索引恢复。
 - Infrastructure/Persistence：CameraCaptureJournal 复用 Runs/Writes/Media 保存独立采集意图/事实/媒体，并提供索引恢复，使用现有 schema。
 - Host：真实相机 hosted service、独立采集后端入口/既有鉴权、配置/生命周期与日志；CaptureOnly 不构造 PLC 服务。
 
 ## 状态、协议与所有权
 
-见 contracts/capture.md、data-model.md。启动 Disabled→Starting→Binding→Opening→Ready；请求 Ready→Capturing→Ready；任何未知触发/传输/超时→Faulted；显式 recover 在单相机锁内正常关闭原 worker（超时才杀进程）、换 session/epoch，重新绑定打开。未知原请求从不重放。不同相机初始化/采集不共用锁，3D 固定发现端口由仅一台 3D 使用。
+见 contracts/capture.md、data-model.md。启动 Disabled→Starting→Binding→Opening→Ready；请求 Ready→Capturing→Ready；任何未知触发/传输/超时→Faulted；显式 recover 在单相机锁内正常关闭原 worker（超时才杀进程）、换 session/epoch，重新绑定打开。未知原请求从不重放。首次启动准备按配置逐台等待，避免 Galaxy 全网卡发现广播相互干扰；单台失败记录后继续下一台，无自动重试。不同相机正常采集/显式恢复不共用锁，3D 固定发现端口由仅一台 3D 使用。
 
 同一持久 NamedPipeServerStream（CurrentUserOnly）与一个 worker 连接，byte 模式。控制/元数据为长度前缀 UTF8 JSON，帧字节单独 length-prefix raw binary；无 Base64、无临时交付目录。每消息 protocol=1/session/requestId，响应 identity 必须匹配；ready 包含实际绑定/参数/所需最大数据量。数据使用 long 长度上限后分块读，当前 byte[] 实现限定 <=768 MiB。收到完整帧后 SDK 缓冲释放；Host 持有复制数据直至持久保存，无算法租约。
 
@@ -59,3 +59,7 @@ ICapturePort 的模拟/FileBacked/NotIntegrated 实现保留默认成员；Acqui
 ## 验证与证据
 
 最少正式后端实跑：A 连续3帧→3D 连续3帧→七台各3帧；绑定/原始结构/进程复用/元数据/SQLite索引/重启下载摘要。必要失败：超时/断管、错误绑定/旧session、保存失败及退出恢复。离线测试验证协议帧/关联和媒体提交/重启，既有6个通信测试回归。所有未执行硬件项写未验证；前端不在范围。证据与部署命令见 quickstart.md。
+
+## 实施核实补充（2026-10-07）
+
+首次七台并行初始化时 B/F 未被 SDK 发现，显式恢复后成功。SDK 无按 NIC 定向发现接口，采用启动准备顺序执行这一最小修正；不串行化采集、不重放原请求。补充 discovery.json、imaging-before.json、restoration.json 作为真实绑定和只读成像参数比较证据。Observation 消费者同样改用共用 ReceiveAsync/按 binding epoch/实际容量/提交后发布。实际状态使用 Starting/Opening/Ready/Capturing/Faulted/Stopping/Stopped；绑定校验发生 Opening 内，Recover 在设备锁内重建新会话。纯采集存储为 CameraStoreRoot/camera.db、CameraStoreRoot/media 下的相对媒体路径。

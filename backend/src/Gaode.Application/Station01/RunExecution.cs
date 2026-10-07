@@ -19,6 +19,12 @@ public sealed class RunExecution(Guid runId, Guid commandId, string requestId, s
     string contextJson, FrozenConfiguration config, ITraceWriter writer,
     TimeProvider clock, Guid sessionId, string clockId)
 {
+    private int _fCaptureRequested;
+    internal void ReserveSingleFCapture()
+    {
+        if (Interlocked.Exchange(ref _fCaptureRequested, 1) != 0)
+            throw new InvalidOperationException("FAlreadyRequestedInThisRun_NoAutomaticReplay");
+    }
     private static readonly JsonSerializerOptions JsonOptions = new(JsonSerializerDefaults.Web);
     public Guid RunId { get; } = runId;
     public Guid CommandId { get; } = commandId;

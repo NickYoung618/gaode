@@ -230,23 +230,24 @@ public sealed partial class RecipeDetectionExecutor(ICapturePort camera, IAlgori
                         null, captureId, $"step:{step.Sequence}:{step.MemberId}",
                         request.PlanRevision, Guid.Empty), cancellationToken);
                 var mediaKind = isECode ? "E" : "Detection";
-                using var reservation = media.ReserveCapture(captureId, mediaKind, 4 * 1024 * 1024);
+                var maxCaptureBytes = camera.GetMaxCaptureBytes(step.Camera ?? throw new InvalidDataException("CaptureCameraMissing"), 4 * 1024 * 1024);
+                using var reservation = media.ReserveCapture(captureId, mediaKind, maxCaptureBytes);
                 var envelope = Envelope(request, captureOperation);
                 var settings = ReadCaptureSettings(request.Plan, step);
                 var capture = new CaptureRequest(envelope, captureId, isECode ? CaptureRole.E : CaptureRole.Detection,
                     step.MemberId ?? step.UnitId, request.PlanRevision, step.SlotId,
                     request.PlanRevision, step.Camera ?? throw new InvalidDataException("CaptureCameraMissing"), settings.LightChannel,
                     captureIntent.WriteId,
-                    4 * 1024 * 1024) { DetectionSettings = settings };
+                    maxCaptureBytes) { DetectionSettings = settings };
                 var finished = new TaskCompletionSource<bool>(
                     TaskCreationOptions.RunContinuationsAsynchronously);
                 var captureGate = new CaptureEvidenceGate();
-                var captureEpoch = camera.ConnectionEpoch;
+                var captureEpoch = camera.GetConnectionEpoch(capture.CameraBindingId);
                 void OnCapture(CaptureEvent value)
                 {
                     if (!AcquisitionContract.Matches(value, capture, captureEpoch) || value.Request.Envelope.Attempt != capture.Envelope.Attempt)
                         return;
-                    if (value.Kind == CaptureEventKind.Failed)
+                    if (value.Kind is CaptureEventKind.Failed or CaptureEventKind.Unknown)
                         finished.TrySetException(new IOException(value.ErrorCode ?? "CaptureFailed"));
                     if (captureGate.Observe(value)) finished.TrySetResult(true);
                 }
@@ -255,17 +256,19 @@ public sealed partial class RecipeDetectionExecutor(ICapturePort camera, IAlgori
                     new { request.OperationId, captureOperation, captureId, step.Sequence, step.Camera,
                         settings, request.DeadlineUtc, maximumWaitMs = request.Inputs!.CostProfile.CaptureWaitMs });
                 await Task.Delay(TimeSpan.FromMilliseconds(settings.SettleMs), cancellationToken);
-                await camera.RequestCaptureAsync(capture, OnCapture, cancellationToken);
+                using var captureDeadline = CancellationTokenSource.CreateLinkedTokenSource(cancellationToken);
+                captureDeadline.CancelAfter(request.Inputs!.CostProfile.CaptureWaitMs);
+                var received = await new CameraAcquisitionService(camera, media).ReceiveAsync(capture, captureDeadline.Token, OnCapture);
                 var wait = request.DeadlineUtc - DateTimeOffset.UtcNow;
                 await finished.Task.WaitAsync(
                     Remaining(wait, TimeSpan.FromMilliseconds(request.Inputs!.CostProfile.CaptureWaitMs)), cancellationToken);
-                var (buffer, format) = captureGate.Take();
-                var captureFact = captureGate.TakeFact(capture, captureEpoch);
+                var (buffer, format) = (received.Bytes, received.Format);
+                var captureFact = received.Fact;
                 captures.Add(captureFact);
                 phase = "MediaSave";
-                var saved = await media.SaveAsync(request.RunId, captureId, mediaKind,
+                var saved = await media.SaveCaptureAsync(request.RunId, captureId, mediaKind,
                     request.PlanRevision, request.PlanRevision, buffer, format,
-                    captureFact.MediaSource, cancellationToken);
+                    captureFact.MediaSource, captureFact, cancellationToken);
                 saved = saved with { Purpose = request.Purpose };
                 await SaveTraceAsync(request, WriteKind.Media, saved, cancellationToken);
                 await SaveTraceAsync(request, WriteKind.CaptureFact,
@@ -273,6 +276,7 @@ public sealed partial class RecipeDetectionExecutor(ICapturePort camera, IAlgori
                         step.Sequence, objectId = step.MemberId ?? step.UnitId, step.LocalFace,
                         step.Camera, step.CaptureProfile, requestedCaptureSettings = settings,
                         captureEnded = true, captureFact, requestedCapture = capture }, cancellationToken);
+                await media.MarkCommittedAsync(saved, cancellationToken);
                 var digest = Convert.ToHexString(SHA256.HashData(buffer));
                 references.Add($"media://{saved.MediaId:D}");
                 await AppendAsync(request, captureOperation, step, StageEventType.Executing,

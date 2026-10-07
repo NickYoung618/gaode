@@ -1,0 +1,17 @@
+<Project Sdk="Microsoft.NET.Sdk">
+  <PropertyGroup>
+    <OutputType>Exe</OutputType>
+    <TargetFramework>net10.0-windows</TargetFramework>
+    <PlatformTarget>x64</PlatformTarget>
+    <AllowUnsafeBlocks>true</AllowUnsafeBlocks>
+    <GalaxyWrapperPath Condition="'$(GalaxyWrapperPath)' == ''">C:\Users\Administrator\Desktop\相机接入调试\commissioning-0.1.2-work-20261003-141852\source\vendor\GxIAPINET.dll</GalaxyWrapperPath>
+    <CameraProIncludeRoot Condition="'$(CameraProIncludeRoot)' == ''">D:\软件开发sdk\3DCameraViewer\CamSDK\CamSDK_CSharp\include</CameraProIncludeRoot>
+    <NoWarn>$(NoWarn);CS8600;CS8601;CS8602;CS8603;CS8604;CS8618;CS8625;CS8622;CS8767;CS8981</NoWarn>
+  </PropertyGroup>
+  <ItemGroup>
+    <ProjectReference Include="../Gaode.Application/Gaode.Application.csproj" />
+    <Compile Include="../Gaode.Infrastructure/Devices/Cameras/CameraWorkerProtocol.cs" Link="CameraWorkerProtocol.cs" />
+    <Reference Include="GxIAPINET"><HintPath>$(GalaxyWrapperPath)</HintPath><Private>true</Private></Reference>
+    <Compile Include="$(CameraProIncludeRoot)/*.cs" Link="Vendor/CameraPro/%(Filename)%(Extension)" />
+  </ItemGroup>
+</Project>

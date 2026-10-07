@@ -1,94 +1,50 @@
+using System.Collections.Concurrent;
 using Gaode.Application.Ports;
+using Gaode.Domain.Station01;
 using Gaode.Diagnostics;
 
 namespace Gaode.Infrastructure.Devices.Cameras;
 
-/// <summary>
-/// Converts one SDK trigger into the application capture evidence sequence. It does not
-/// interpret images, persist files, or retry an uncertain trigger.
-/// </summary>
-public sealed class CameraCaptureAdapter(ICameraSdkGateway camera, ILightGateway lights) : ICapturePort
+/// <summary>Translates the persistent camera gateway into application evidence; no light, PLC or algorithm calls.</summary>
+public sealed class CameraCaptureAdapter(ICameraSdkGateway camera) : ICapturePort
 {
-    private int _threeD, _f;
-    public string MediaSource => "Unknown";
-    public Gaode.Domain.Station01.ComponentExecutionOrigin CameraOrigin => Gaode.Domain.Station01.ComponentExecutionOrigin.Unknown;
-    public Gaode.Domain.Station01.ComponentExecutionOrigin LightOrigin => Gaode.Domain.Station01.ComponentExecutionOrigin.Unknown;
+    private readonly ConcurrentDictionary<CaptureRole, int> _counts = new();
+    public string MediaSource => "RealCamera";
+    public ComponentExecutionOrigin CameraOrigin => new(ComponentEvidenceSource.Real,
+        typeof(CameraCaptureAdapter).Assembly.FullName!, "RawCapture");
+    public ComponentExecutionOrigin LightOrigin => ComponentExecutionOrigin.Unknown;
     public long ConnectionEpoch => camera.ConnectionEpoch;
-    public int TriggerCount(CaptureRole role) => role == CaptureRole.ThreeD
-        ? Volatile.Read(ref _threeD) : Volatile.Read(ref _f);
+    public long GetConnectionEpoch(string binding) => camera.GetConnectionEpoch(binding);
+    public long GetMaxCaptureBytes(string binding, long fallback) => camera.GetMaxCaptureBytes(binding, fallback);
+    public int TriggerCount(CaptureRole role) => _counts.GetValueOrDefault(role);
 
-    public async ValueTask RequestCaptureAsync(CaptureRequest request,
-        Action<CaptureEvent> onEvent, CancellationToken cancellationToken)
+    public async ValueTask RequestCaptureAsync(CaptureRequest request, Action<CaptureEvent> onEvent, CancellationToken ct)
     {
-        if (!request.Envelope.IsValid || request.CaptureId == Guid.Empty ||
-            request.IntentWriteId == Guid.Empty || request.MaxBytes <= 0 ||
-            string.IsNullOrWhiteSpace(request.CameraBindingId) ||
-            string.IsNullOrWhiteSpace(request.LightBindingId))
-            throw new ArgumentException("相机采集请求无效");
-        if (request.Role == CaptureRole.F && Interlocked.Increment(ref _f) != 1)
-            throw new InvalidOperationException("F已触发，不允许重拍");
-        if (request.Role == CaptureRole.ThreeD) Interlocked.Increment(ref _threeD);
-        var epoch = ConnectionEpoch;
-        var phase = "CameraOpen";
+        if (!request.Envelope.IsValid || request.CaptureId == Guid.Empty || request.IntentWriteId == Guid.Empty ||
+            request.MaxBytes <= 0 || string.IsNullOrWhiteSpace(request.CameraBindingId))
+            throw new ArgumentException("CameraCaptureRequestInvalid");
+        var epoch = GetConnectionEpoch(request.CameraBindingId);
         try
         {
-            await camera.OpenAsync(request.CameraBindingId, cancellationToken);
-            if (request.Role is CaptureRole.Detection or CaptureRole.E && request.DetectionSettings is { } settings)
-            {
-                phase = "CameraConfigure";
-                await camera.ConfigureAsync(request.CameraBindingId, settings.ExposureUs, settings.Gain, cancellationToken);
-                phase = "LightConfigure";
-                await lights.SetBrightnessAsync(request.LightBindingId, settings.LightChannel,
-                    settings.BrightnessPercent, cancellationToken);
-                RuntimeDiagnostics.Record("CameraSdk", "SettingsRequested", request.Envelope.RunId,
-                    new { request.CaptureId, request.CameraBindingId, settings.ExposureUs, settings.Gain,
-                        settings.BrightnessPercent, applicationState = "Unknown" });
-            }
-            phase = "LightOn";
-            await lights.SetAsync(request.LightBindingId, true, cancellationToken);
-            phase = "CameraTrigger";
             onEvent(new(request, CaptureEventKind.Accepted, epoch));
             onEvent(new(request, CaptureEventKind.Capturing, epoch));
-            var frame = await camera.TriggerAsync(request.CameraBindingId,
-                request.PointVersion, cancellationToken);
-            if (frame.ConnectionEpoch != epoch || frame.Bytes.LongLength > request.MaxBytes)
-            {
-                onEvent(new(request, CaptureEventKind.Failed, frame.ConnectionEpoch,
-                    ErrorCode: frame.Bytes.LongLength > request.MaxBytes ? "MediaOverLimit" : "CameraEpochChanged"));
-                return;
-            }
-            onEvent(new(request, CaptureEventKind.Ended, frame.ConnectionEpoch));
-            onEvent(new(request, CaptureEventKind.MediaTaken, frame.ConnectionEpoch,
-                frame.Bytes, request.Role == CaptureRole.ThreeD ? "bin" : "img")
-            {
-                Fact = new(request.Envelope.RunId, request.CaptureId, request.Envelope.OperationId,
-                    frame.ConnectionEpoch, AcquisitionContract.RequestedSettingsDigest(request), MediaSource,
-                    CameraOrigin, LightOrigin, CaptureApplicationState.Unknown, null, false, [])
-            });
+            _counts.AddOrUpdate(request.Role, 1, (_, count) => count + 1);
+            var frame = await camera.TriggerAsync(request.CameraBindingId, request.PointVersion, ct);
+            if (frame.ConnectionEpoch != epoch || frame.Metadata is null || frame.Bytes.LongLength > request.MaxBytes)
+                throw new InvalidDataException("CameraFrameEpochMetadataOrCapacityMismatch");
+            var fact = new CorrelatedCaptureFact(request.Envelope.RunId, request.CaptureId,
+                request.Envelope.OperationId, epoch, AcquisitionContract.RequestedSettingsDigest(request),
+                MediaSource, CameraOrigin, LightOrigin, CaptureApplicationState.NotApplied, null, false,
+                [$"worker-session:{frame.Metadata.WorkerSessionId}", $"trigger:{frame.Metadata.TriggerSequence}", $"frame:{frame.Metadata.FrameId}"])
+                { FrameMetadata = frame.Metadata };
+            onEvent(new(request, CaptureEventKind.Ended, epoch));
+            onEvent(new(request, CaptureEventKind.MediaTaken, epoch, frame.Bytes, frame.Format) { Fact = fact });
         }
-        catch (OperationCanceledException error) when (cancellationToken.IsCancellationRequested)
+        catch (Exception e)
         {
-            RuntimeDiagnostics.Record("CameraSdk", "Cancelled", request.Envelope.RunId,
-                new { request.CaptureId, request.Envelope.OperationId, epoch, phase }, error);
-            onEvent(new(request, CaptureEventKind.Unknown, epoch, ErrorCode: "CaptureCancelledOrUnknown"));
-        }
-        catch (Exception error)
-        {
-            RuntimeDiagnostics.Record("CameraSdk", "Failed", request.Envelope.RunId,
-                new { request.CaptureId, request.Envelope.OperationId, epoch, phase,
-                    request.CameraBindingId, request.LightBindingId }, error);
-            onEvent(new(request, CaptureEventKind.Unknown, epoch,
-                ErrorCode: "CameraFailure:" + error.GetType().Name));
-        }
-        finally
-        {
-            try { await lights.SetAsync(request.LightBindingId, false, CancellationToken.None); }
-            catch (Exception error)
-            {
-                RuntimeDiagnostics.Record("LightCleanup", "Failed", request.Envelope.RunId,
-                    new { request.CaptureId, request.Envelope.OperationId, request.LightBindingId,
-                        disposition = "LightOffNotConfirmed" }, error);
-            }
+            RuntimeDiagnostics.Record("CameraSdk", "CaptureUnknown_NoAutomaticReplay", request.Envelope.RunId,
+                new { request.CaptureId, request.Envelope.OperationId, request.CameraBindingId, epoch }, e);
+            onEvent(new(request, CaptureEventKind.Unknown, epoch, ErrorCode: e.Message));
         }
     }
 }
