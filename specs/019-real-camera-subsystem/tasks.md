@@ -44,8 +44,8 @@
 ## Phase 6: Delivery
 
 - [x] T019 正式后端逐台覆盖七台、跨相机独立性/必要故障和退出于 specs/019-real-camera-subsystem/evidence/（SC-001–007）。
-- [ ] T020 交付发布脚本/可运行包、依赖配置及回退说明于 scripts/Publish-CameraSubsystem.ps1 和 specs/019-real-camera-subsystem/quickstart.md（FR-020/SC-008）。
-- [ ] T021 执行converge并如实记录未验证/限制于 specs/019-real-camera-subsystem/tasks.md（FR-019）。
+- [x] T020 交付发布脚本/可运行包、依赖配置及回退说明于 scripts/Publish-CameraSubsystem.ps1 和 specs/019-real-camera-subsystem/quickstart.md（FR-020/SC-008）。
+- [x] T021 执行converge并如实记录未验证/限制于 specs/019-real-camera-subsystem/tasks.md（FR-019）。
 
 ## 依赖与实施策略
 
@@ -53,6 +53,8 @@ T001/002→T003/004→T005–009；一台2D验证T010后3D硬件T018，再七台
 
 ## Phase 7: Convergence
 
-- [ ] T022 完成最终发布包清理、精确源码revision/文件SHA256清单、ZIP与摘要，并同步最终验证和部署记录 per FR-020/SC-008（partial）。
+- [x] T022 完成最终发布包清理、精确源码revision/文件SHA256清单、ZIP与摘要，并同步最终验证和部署记录 per FR-020/SC-008（partial）。
 
 收敛核对20 FR/8 SC/3用户故事、plan关键决策与宪章P01–P13：当前可实现源码未发现阻断缺口；交付包清单尚需与正式提交对齐，追加T022。SC-005实机超时/物理断线未验证，如validation.md所列；不由离线通过推导硬件通过。
+
+实施回合已完成T022：交付清单见evidence/delivery.json，运行二进制对应7f1b1ac，交付文档对应9c13c53，ZIP不包含运行token、现场配置、数据库、CameraPro native DLL。T013/T017/T019必要故障覆盖为协议/离线超时和实际SQLite/文件失败；实机SDK超时及物理断线仍未验证，不以勾选任务声称硬件故障验收通过。
