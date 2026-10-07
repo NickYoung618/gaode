@@ -18,6 +18,9 @@ try {
     }
     Copy-Item -LiteralPath (Join-Path $PSScriptRoot 'Start-CameraSubsystem.ps1'),(Join-Path $PSScriptRoot 'Invoke-CameraAcceptance.ps1') -Destination $target
     Copy-Item -LiteralPath (Join-Path $repo 'specs/019-real-camera-subsystem/quickstart.md') -Destination (Join-Path $target 'README.md')
+    foreach ($document in @('validation.md','research.md')) {
+        Copy-Item -LiteralPath (Join-Path $repo "specs/019-real-camera-subsystem/$document") -Destination $target
+    }
     $notice = 'C:\Users\Administrator\Desktop\相机接入调试\commissioning-0.1.2-work-20261003-141852\app\third-party-notices\galaxy-10400682-license.rtf'
     if (!(Test-Path -LiteralPath $notice)) { throw 'Galaxy redistribution notice missing.' }
     New-Item -ItemType Directory -Path (Join-Path $target 'notices') | Out-Null

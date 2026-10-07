@@ -38,3 +38,5 @@ SC-005硬件故障实测仍有上述限制，当前只有离线证据；其余�
 紧凑JSON、两次最终会话的binding/discovery/backup/imaging/restoration、测试结果和运行文件摘要清单在evidence/。大体积原始内容及实际SQLite位于D:\gaode\artifacts\camera-runtime与D:\gaode\artifacts\camera-final-validation，未推入源码Git。令牌不归档进证据或发布ZIP。runtime-inventory.json列数据/文件SHA256，用于后续核对。
 
 部署与回退见quickstart.md。CameraPro再分发许可未证实，交付依赖现场安装native SDK，不宣称可向其他客户再分发厂家文件。
+
+最终交付二进制由正式提交7f1b1ac重新发布；重新执行七台各3帧和同包重启读取21份数据，全部通过。对应release-seven-*.json/release-restart-checks.json；发布与重启两次共14份关闭记录restored/imagingUnchanged均true（release-restoration-checks.json）。包仅随后补入文档及清理运行配置，运行二进制不变。全部Host/worker正常退出。
