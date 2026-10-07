@@ -3,7 +3,14 @@
 <ItemGroup>
 <ProjectReference Include="../../src/Gaode.Infrastructure/Gaode.Infrastructure.csproj" />
 <ProjectReference Include="../../../VirtualPlc/VirtualPlc.csproj" />
+<ProjectReference Include="../Gaode.CameraWorkerFixture/Gaode.CameraWorkerFixture.csproj" ReferenceOutputAssembly="false" />
 <PackageReference Include="Microsoft.NET.Test.Sdk" />
 <PackageReference Include="xunit" />
 <PackageReference Include="xunit.runner.visualstudio" />
-</ItemGroup></Project>
+<None Update="Fixtures/CameraReview/*.json" CopyToOutputDirectory="PreserveNewest" />
+</ItemGroup>
+<Target Name="CopyCameraWorkerFixture" AfterTargets="Build">
+  <ItemGroup><CameraFixtureFiles Include="../Gaode.CameraWorkerFixture/bin/$(Configuration)/net10.0/*" /></ItemGroup>
+  <Copy SourceFiles="@(CameraFixtureFiles)" DestinationFolder="$(OutDir)CameraWorkerFixture" />
+</Target>
+</Project>

@@ -61,12 +61,12 @@ T001/002→T003/004→T005–009；一台2D验证T010后3D硬件T018，再七台
 
 ## Phase 8: Review fixes（67e4a57）
 
-- [ ] T023 核实审查问题/建立修复回退点/同步spec contracts plan tasks，保持历史证据（FR-019）。
-- [ ] T024 修复PersistentCameraGateway进程退出观察、状态同步和停止准入，使用真实离线可控worker进程验证Ready后退出/迟到事件/不重拍（FR-003/011/017）。
-- [ ] T025 修复MediaCapacity/MediaStore存量载荷配额恢复及失败文件结算，验证满额重启/重复恢复/失败残留/已提交仍可读（FR-013/014）。
+- [x] T023 核实审查问题/建立修复回退点/同步spec contracts plan tasks，保持历史证据（FR-019）。
+- [x] T024 修复PersistentCameraGateway进程退出观察、状态同步和停止准入，使用真实离线可控worker进程验证Ready后退出/迟到事件/不重拍（FR-003/011/017）。
+- [x] T025 修复MediaCapacity/MediaStore存量载荷配额恢复及失败文件结算，验证满额重启/重复恢复/失败残留/已提交仍可读（FR-013/014）。
 - [ ] T026 修复recover Faulted门禁/新会话成功/失败异常及HTTP状态映射；离线真实gateway验证，受拒的模拟Host HTTP不执行且明确未验证（FR-017）。
 - [ ] T027 完善独立验收及产品真实帧结构门禁，固定3D通道和元素/尺寸关系、2D身份/格式/可解释布局，实际服务负例验证（FR-001/011/018）。
-- [ ] T028 选择AcquisitionCoordinator/RecipeDetectionExecutor/Observation必要虚拟业务回归，确认来源/意图/期限/取消/动作关联/保存门禁（FR-004/009/014/016）。
+- [x] T028 选择AcquisitionCoordinator/RecipeDetectionExecutor/Observation必要虚拟业务回归，确认来源/意图/期限/取消/动作关联/保存门禁（FR-004/009/014/016）。
 - [ ] T029 审计并保留旧清单差异与最终21份媒体对应关系；发布确切新源码二进制，必要新版本实机正常链/退出/重启验证，停止后冻结新证据/包清单（FR-020/SC-001–008）。
 - [ ] T030 更新validation quickstart workflow及交付/回退，执行converge；未满足的产品入口/硬件条件保持未完成（FR-019/020）。
 

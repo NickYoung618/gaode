@@ -31,6 +31,30 @@ public sealed class MediaStore : IMediaStore
         _capacity = capacity;
         _leases = leases;
         _jobs = new(Math.Max(1, jobs), Math.Max(1, jobs));
+        _capacity.RestoreFilesUsed(ExistingPayloadBytes());
+    }
+
+    private long ExistingPayloadBytes()
+    {
+        var media = Path.Combine(_root, "media");
+        if (!Directory.Exists(media)) return 0;
+        long bytes = 0;
+        var pending = new Stack<string>(); pending.Push(media);
+        while (pending.TryPop(out var directory))
+        {
+            if ((File.GetAttributes(directory) & FileAttributes.ReparsePoint) != 0)
+                throw new UnauthorizedAccessException("媒体存量目录不允许链接");
+            foreach (var child in Directory.EnumerateDirectories(directory)) pending.Push(child);
+            foreach (var file in Directory.EnumerateFiles(directory))
+            {
+                if ((File.GetAttributes(file) & FileAttributes.ReparsePoint) != 0)
+                    throw new UnauthorizedAccessException("媒体存量文件不允许链接");
+                if (file.EndsWith(".metadata.json", StringComparison.OrdinalIgnoreCase) ||
+                    file.EndsWith(".metadata.json.partial", StringComparison.OrdinalIgnoreCase)) continue;
+                bytes = checked(bytes + new FileInfo(file).Length);
+            }
+        }
+        return bytes;
     }
 
     public ValueTask<MediaRef> SaveAsync(Guid runId, Guid captureId, string role,
@@ -68,6 +92,8 @@ public sealed class MediaStore : IMediaStore
             throw new ArgumentException("真实帧元数据缺失或长度不符");
         if (!_reservations.ContainsKey(captureId))
             throw new InvalidOperationException("采集前未预约媒体容量");
+        if (buffer.LongLength > _reservations[captureId].MaxBytes)
+            throw new InvalidOperationException("媒体载荷超过预约容量");
         await _jobs.WaitAsync(cancellationToken);
         Interlocked.Increment(ref _activeJobs);
         try
@@ -97,13 +123,19 @@ public sealed class MediaStore : IMediaStore
                         partialFile = temp, disposition = "PartialFileRetained_NoMediaReadyClaim" }, error);
                 throw;
             }
+            finally
+            {
+                // A retained payload consumes quota even if sidecar or index saving later fails.
+                var retained = File.Exists(full) ? new FileInfo(full).Length :
+                    File.Exists(temp) ? new FileInfo(temp).Length : 0;
+                if (retained > 0) _reservations[captureId].Commit(retained);
+            }
             var reference = new MediaRef(mediaId, runId, captureId,
                 role == "3D" ? "PointCloud" : role == "Detection" ? "DetectionImage" : "Image",
                 relative.Replace('\\', '/'), buffer.LongLength, format, source,
                 scopeVersion, pointVersion, "FileCompleted");
             var evidence = new StoredEvidence(reference, fact, Convert.ToHexString(SHA256.HashData(buffer)));
             await WriteEvidenceAsync(full + ".metadata.json", evidence, cancellationToken);
-            _reservations[captureId].Commit(buffer.LongLength);
             return reference;
         }
         finally { Interlocked.Decrement(ref _activeJobs); _jobs.Release(); }

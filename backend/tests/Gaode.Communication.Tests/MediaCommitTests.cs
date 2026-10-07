@@ -13,6 +13,66 @@ public sealed class MediaCommitTests : IDisposable
     private readonly string _root = Path.Combine(Path.GetTempPath(), "gaode-media-test-" + Guid.NewGuid().ToString("N"));
 
     [Fact]
+    public async Task FullPayloadQuotaSurvivesRestartAndRepeatedIndexRestoreWithoutMemoryReservation()
+    {
+        var journal = new CameraCaptureJournal(CameraCaptureJournal.Prepare(_root));
+        var capacity = new MediaCapacity(1024,0,4,4);
+        var store = new MediaStore(_root,capacity,new MediaLeaseRegistry(),1);
+        var (request,fact,data)=Capture();
+        await journal.RecordIntentAsync(request,default);
+        MediaRef reference;
+        using(store.ReserveCapture(request.CaptureId,"A",4))
+        {
+            reference=await Save(store,request,fact,data);
+            await journal.CommitAsync(request,reference,fact,default);
+            await store.MarkCommittedAsync(reference,default);
+        }
+        Assert.Equal(4,capacity.FilesUsed); Assert.Equal(0,capacity.MemoryUsed);
+        var restoredCapacity=new MediaCapacity(1024,0,4,4);
+        var restored=new MediaStore(_root,restoredCapacity,new MediaLeaseRegistry(),1);
+        await journal.RestoreAsync(restored,default); await journal.RestoreAsync(restored,default);
+        Assert.Equal(4,restoredCapacity.FilesUsed); Assert.Equal(0,restoredCapacity.MemoryUsed);
+        Assert.Throws<InvalidOperationException>(()=>restored.ReserveCapture(Guid.NewGuid(),"A",4));
+        Assert.True(restored.IsReady(reference.MediaId));
+        await using var stream=await restored.OpenReadAsync(reference.MediaId,default);
+        using var copy=new MemoryStream(); await stream.CopyToAsync(copy); Assert.Equal(data,copy.ToArray());
+    }
+
+    [Fact]
+    public async Task SidecarFailureAndPartialOrphanPayloadRemainChargedButNeverPublished()
+    {
+        var journal=new CameraCaptureJournal(CameraCaptureJournal.Prepare(_root));
+        var capacity=new MediaCapacity(1024,0,4,4);
+        var store=new MediaStore(_root,capacity,new MediaLeaseRegistry(),1);
+        var (request,fact,data)=Capture();
+        await journal.RecordIntentAsync(request,default);
+        // A nonserializable actual-parameters map fails only after the payload is durably written.
+        var broken = fact with { FrameMetadata = fact.FrameMetadata! with { ActualParameters = new ThrowingParameters() } };
+        using(store.ReserveCapture(request.CaptureId,"A",4))
+            await Assert.ThrowsAsync<InvalidOperationException>(()=>Save(store,request,broken,data).AsTask());
+        Assert.Equal(4,capacity.FilesUsed); Assert.Equal(0,capacity.MemoryUsed);
+        Assert.Throws<InvalidOperationException>(()=>store.ReserveCapture(Guid.NewGuid(),"A",4));
+        var full=Directory.GetFiles(Path.Combine(_root,"media"),"*.raw",SearchOption.AllDirectories).Single();
+        File.Move(full,full+".partial"); // Retained interrupted payload, not a committed media candidate.
+        var restoredCapacity=new MediaCapacity(1024,0,4,4);
+        var restored=new MediaStore(_root,restoredCapacity,new MediaLeaseRegistry(),1);
+        await journal.RestoreAsync(restored,default);
+        Assert.Equal(4,restoredCapacity.FilesUsed);
+        Assert.Throws<InvalidOperationException>(()=>restored.ReserveCapture(Guid.NewGuid(),"A",4));
+        Assert.Empty(await journal.ListCommittedAsync(default));
+    }
+
+    private sealed class ThrowingParameters : IReadOnlyDictionary<string,string>
+    {
+        public string this[string key]=>throw new InvalidOperationException("Injected sidecar failure");
+        public IEnumerable<string> Keys=>[]; public IEnumerable<string> Values=>[]; public int Count=>1;
+        public bool ContainsKey(string key)=>false;
+        public bool TryGetValue(string key,out string value){value="";return false;}
+        public IEnumerator<KeyValuePair<string,string>> GetEnumerator()=>throw new InvalidOperationException("Injected sidecar failure");
+        System.Collections.IEnumerator System.Collections.IEnumerable.GetEnumerator()=>GetEnumerator();
+    }
+
+    [Fact]
     public async Task DurableCommitPublishesRawDataAndRestoresMetadataAfterRestart()
     {
         var options = CameraCaptureJournal.Prepare(_root);

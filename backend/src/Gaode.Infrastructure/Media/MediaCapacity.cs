@@ -5,8 +5,22 @@ public sealed class MediaCapacity(long memoryLimit, long fReserve, long runFileL
     private readonly object _gate = new();
     private long _memory;
     private long _files;
+    private bool _inventoryRestored;
     public long MemoryUsed { get { lock (_gate) return _memory; } }
     public long FilesUsed { get { lock (_gate) return _files; } }
+
+    // Payload bytes only. Startup inventory is separate from in-flight memory/disk reservations.
+    public void RestoreFilesUsed(long bytes)
+    {
+        if (bytes < 0) throw new ArgumentOutOfRangeException(nameof(bytes));
+        lock (_gate)
+        {
+            if (_inventoryRestored) return;
+            if (_memory != 0) throw new InvalidOperationException("Restore media inventory before reserving captures");
+            _files = checked(_files + bytes);
+            _inventoryRestored = true;
+        }
+    }
 
     public Reservation Reserve(string role, long bytes)
     {
@@ -24,6 +38,7 @@ public sealed class MediaCapacity(long memoryLimit, long fReserve, long runFileL
 
     public sealed class Reservation(MediaCapacity owner, long bytes) : IDisposable
     {
+        public long MaxBytes => bytes;
         private int _done;
         private int _committed;
         public void Commit(long actualBytes)

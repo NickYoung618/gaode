@@ -38,3 +38,5 @@ RecoverAsync仅Faulted允许，立即尝试设备锁，忙态明确拒绝而非�
 MediaCapacity.RestoreFilesUsed恢复启动存量一次，不创建内存预约；MediaStore构造时枚举media子树普通载荷文件，排除*.metadata.json及*.metadata.json.partial；拒绝链接目录。索引恢复仅发布已提交完整文件，不负责存量累计。保存结束或失败都根据实际留存载荷提交预约；sidecar失败仍计载荷，索引失败保持占用，不重复累计MarkCommitted/Restore。配额不是整个磁盘空间保证，sidecar/DB/日志须由部署磁盘余量保障。
 
 独立验收固定预期points.xyz.f32(float32,irWidth*irHeight*3)、depth.f32(float32,depthType1=textureWidth*textureHeight/2=irWidth*irHeight)、ir.bytes(uint8/uint16,irWidth*irHeight*2planes*cameraGroups，reconstructionType0=2组/2=1组)、metadata.json。实际元素数乘elementBytes必须等于通道字节长度，核对内外manifest身份/帧号/会话/触发关联。2D已知像素格式按其明确容器布局校验；其他格式以SDK PayloadSize/Width/Height/PixelFormat一致性及显式布局限制核查，不武断猜解码公式。
+
+独立验收脚本要求SitePath作为独立设备身份来源；未定义几何解码规则的像素格式明确拒绝给出验收通过，保留SDK原始载荷不等于已解释其布局。

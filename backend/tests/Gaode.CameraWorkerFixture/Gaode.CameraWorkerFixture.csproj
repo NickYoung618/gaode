@@ -1,0 +1,7 @@
+<Project Sdk="Microsoft.NET.Sdk">
+  <PropertyGroup><OutputType>Exe</OutputType></PropertyGroup>
+  <ItemGroup>
+    <ProjectReference Include="../../src/Gaode.Application/Gaode.Application.csproj" />
+    <Compile Include="../../src/Gaode.Infrastructure/Devices/Cameras/CameraWorkerProtocol.cs" Link="CameraWorkerProtocol.cs" />
+  </ItemGroup>
+</Project>

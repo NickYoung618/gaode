@@ -44,8 +44,18 @@ public static class RealCameraEndpoints
         }).RequireAuthorization(Station01Authorization.Start);
         app.MapPost("/api/v1/cameras/{role}/recover", async (string role, PersistentCameraGateway gateway, CancellationToken ct) =>
         {
-            await gateway.RecoverAsync(role, ct);
-            return Results.Ok(gateway.Status.Single(x => x.Role == role));
+            if (!gateway.Status.Any(x => x.Role == role)) return Results.NotFound(new { error = "CameraNotConfigured" });
+            try
+            {
+                await gateway.RecoverAsync(role, ct);
+                var recovered = gateway.Status.Single(x => x.Role == role);
+                return recovered.State == "Ready" ? Results.Ok(recovered) :
+                    Results.Json(new { error = "CameraRecoveryFailed", status = recovered, automaticReplay = false }, statusCode: 503);
+            }
+            catch (CameraRecoveryRejectedException e)
+            { return Results.Conflict(new { error = e.Message, status = e.Status, automaticReplay = false }); }
+            catch (CameraRecoveryFailedException e)
+            { return Results.Json(new { error = "CameraRecoveryFailed", status = e.Status, automaticReplay = false }, statusCode: 503); }
         }).RequireAuthorization(Station01Authorization.RecoveryCheck);
         app.MapGet("/api/v1/camera-media", async (CameraCaptureJournal journal, CancellationToken ct) =>
             Results.Ok(await journal.ListCommittedAsync(ct))).RequireAuthorization(Station01Authorization.MediaRead);
