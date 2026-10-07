@@ -30,3 +30,11 @@ worker 的参数备份和诊断目录用于恢复，不作为数据交付。完�
 复用现有本地 Bearer 权限（Read/Start/Recovery.Check/Media.Read），token配置来自部署环境，不硬编码令牌。绑定冲突/未就绪409，调用取消504；采集/保存失败或未知500，未就绪/无效操作409，不返回成功媒体。诊断带captureId/runId/session/阶段。接口仅纯采集，不表示整机生产就绪。
 
 纯采集Host新增 POST /api/v1/cameras/shutdown（Recovery.Check）：受理关闭后经Host正常退出各worker并记录参数恢复；202仅受理不代表恢复成功。纯采集介质根为CameraStoreRoot/media，沿用MediaStore相对media/...路径。
+
+## 审查修复合同增补
+
+RecoverAsync仅Faulted允许，立即尝试设备锁，忙态明确拒绝而非等待后重建健康连接；CameraRecoveryRejectedException映射409，CameraRecoveryFailedException映射503，携带状态。返回200前校验新session及Ready。关闭准入先于等待设备锁，服务关闭不可复活worker。当前进程退出事件关联Process实例+session，经设备状态锁和操作锁处理；Snapshot亦不得把已退出进程报告Ready。
+
+MediaCapacity.RestoreFilesUsed恢复启动存量一次，不创建内存预约；MediaStore构造时枚举media子树普通载荷文件，排除*.metadata.json及*.metadata.json.partial；拒绝链接目录。索引恢复仅发布已提交完整文件，不负责存量累计。保存结束或失败都根据实际留存载荷提交预约；sidecar失败仍计载荷，索引失败保持占用，不重复累计MarkCommitted/Restore。配额不是整个磁盘空间保证，sidecar/DB/日志须由部署磁盘余量保障。
+
+独立验收固定预期points.xyz.f32(float32,irWidth*irHeight*3)、depth.f32(float32,depthType1=textureWidth*textureHeight/2=irWidth*irHeight)、ir.bytes(uint8/uint16,irWidth*irHeight*2planes*cameraGroups，reconstructionType0=2组/2=1组)、metadata.json。实际元素数乘elementBytes必须等于通道字节长度，核对内外manifest身份/帧号/会话/触发关联。2D已知像素格式按其明确容器布局校验；其他格式以SDK PayloadSize/Width/Height/PixelFormat一致性及显式布局限制核查，不武断猜解码公式。

@@ -63,3 +63,13 @@ ICapturePort 的模拟/FileBacked/NotIntegrated 实现保留默认成员；Acqui
 ## 实施核实补充（2026-10-07）
 
 首次七台并行初始化时 B/F 未被 SDK 发现，显式恢复后成功。SDK 无按 NIC 定向发现接口，采用启动准备顺序执行这一最小修正；不串行化采集、不重放原请求。补充 discovery.json、imaging-before.json、restoration.json 作为真实绑定和只读成像参数比较证据。Observation 消费者同样改用共用 ReceiveAsync/按 binding epoch/实际容量/提交后发布。实际状态使用 Starting/Opening/Ready/Capturing/Faulted/Stopping/Stopped；绑定校验发生 Opening 内，Recover 在设备锁内重建新会话。纯采集存储为 CameraStoreRoot/camera.db、CameraStoreRoot/media 下的相对媒体路径。
+
+## 审查修复实施方案
+
+沿用现有职责。gateway增加同步状态锁保护Snapshot/状态/Process关联，原每设备SemaphoreSlim继续覆盖异步操作；Exited回调只处理当前Process+session，正常关闭和迟到事件忽略；快照/采集最终准入同步检查HasExited。服务停止标志先置位，禁止后续启动/恢复。recover使用非等待准入，Faulted检查在设备锁内，启动后显式验证结果并由正式入口映射错误。
+
+配额保持原载荷口径，不把元数据改算进4字节测试。构造MediaStore在开始预约前恢复文件库存一次；成功/失败写后按实际full或partial载荷结算，重复索引恢复只校验发布不累计。保留旧索引读取/摘要/提交门禁，不引入清理器或新schema。
+
+新增最小离线可控worker fixture（仅测试工程，无SDK/无HostHTTP），经真实PersistentCameraGateway/管道/CameraCaptureAdapter/CameraAcquisitionService/SQLite验证退出与恢复、缺通道/错映射/错尺寸及失败不发布；不作为产品驱动或兼容层。独立验收脚本按现场site身份及厂家尺寸规则做独立断言；Host基础设施也验证真实帧结构。针对AcquisitionCoordinator、RecipeDetectionExecutor与Observation按实际API选择必要虚拟业务执行验证，不仅直接调用Receive辅助服务。
+
+证据：旧runtime-inventory保留并记录差异；新版本单独数据根和包，实机正常链至少各相机新帧并验证复用/保存/重启；冻结时Host/worker退出，将配置摘要（不含token明文）、SDK、DB、媒体、二进制和包关联。日志/DB可能变化的旧清单明确是历史运行快照。不得启动已被拒的模拟worker Host HTTP复验；其HTTP故障验证标未验证。
