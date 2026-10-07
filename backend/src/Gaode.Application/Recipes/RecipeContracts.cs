@@ -33,7 +33,11 @@ public sealed record RecipePosition(string SlotId, string UnitPattern, IReadOnly
     [JsonIgnore(Condition = JsonIgnoreCondition.WhenWritingNull)]
     public string? CellId { get; init; }
 }
-public sealed record RecipeMaterial(string Material, IReadOnlyList<int> LocalFaces);
+public sealed record RecipeMaterial(string Material, IReadOnlyList<int> LocalFaces)
+{
+    [JsonIgnore(Condition = JsonIgnoreCondition.WhenWritingNull)]
+    public int? SortingGripperId { get; init; }
+}
 public sealed record RecipeTarget(string Material, int LocalFace, string CameraPair,
     string CaptureProfile, string AlgorithmProfile);
 public sealed record RecipeStage(int Number, string Action,
@@ -165,6 +169,8 @@ public sealed record RecipeRunPlan(string TrayRunId, string ScenarioId, string F
     IReadOnlyList<RecipeStep> Steps,
     int? PlcRecipeId, int? NgCapacity = null, int? PendingCapacity = null)
 {
+    [JsonIgnore(Condition = JsonIgnoreCondition.WhenWritingNull)]
+    public IReadOnlyDictionary<string, int>? SortingGrippersByMaterial { get; init; }
     public required string Model { get; init; }
     [JsonIgnore(Condition = JsonIgnoreCondition.WhenWritingNull)]
     public int? SortingGripperId { get; init; }

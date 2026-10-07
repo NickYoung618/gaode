@@ -1,0 +1,2 @@
+# 数据边界
+recipe-definition/5添加可选composition[].sortingGripperId（1或2）。旧正文缺字段仍可读取，成组保存/执行校验必须齐全；非成组保留根sortingGripperId。运行计划添加sortingGrippersByMaterial，只在成组生成并复制冻结，参与既有摘要。业务从SortUnit步骤的成员/槽位/对象身份确定Material，解析编号后通过既有RequestedGripperId传给通信层。通信层不得读取Material或配方，不新增协议字段。分拣开始前解析全部本次动作，避免前件已搬运后才发现后件缺配置。

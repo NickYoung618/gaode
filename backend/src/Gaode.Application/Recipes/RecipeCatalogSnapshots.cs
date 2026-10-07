@@ -24,6 +24,7 @@ public static class RecipeCatalogSnapshots
     public static RecipeRunPlan Freeze(RecipeRunPlan plan) => plan with
     {
         TrayLayout = Layout(plan.TrayLayout), TraySlotMapping = Mapping(plan.TraySlotMapping, plan.TrayLayout),
+        SortingGrippersByMaterial = plan.SortingGrippersByMaterial is null ? null : Map(plan.SortingGrippersByMaterial),
         OriginalSlots = plan.OriginalSlots is null ? null : Map(plan.OriginalSlots),
         CaptureProfiles = Map(plan.CaptureProfiles),
         ExecutionPositions = Positions(plan.ExecutionPositions),

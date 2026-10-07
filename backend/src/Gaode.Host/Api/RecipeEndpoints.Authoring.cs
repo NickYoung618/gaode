@@ -155,6 +155,7 @@ public static partial class RecipeEndpoints
                     return BadAuthoringRequest(http, "特殊类型缺少两组检测和旋转工位的真实后台配置。");
                 var draft = source with { RecipeId = "", Version = "", DefinitionDigest = "", CatalogDigest = "",
                     SchemaVersion = RecipeDefinitionSerialization.CurrentSchema, FCode = "", SortingGripperId = null,
+                    Composition = source.Composition.Select(m => m with { SortingGripperId = null }).ToArray(),
                     InspectionKind = request.InspectionKind, RotationLoadingGripperId = null,
                     TrayLayout = new(10, 10, []), TraySlotMapping = null, Positions = [],
                     ExecutionPositions = new Dictionary<string, SlotExecutionInputs>(),

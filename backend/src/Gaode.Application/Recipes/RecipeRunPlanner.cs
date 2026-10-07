@@ -143,7 +143,9 @@ public static class RecipeRunPlanner
             recipe.Disposition, recipe.MotionProfile, recipe.QualityProfile, recipe.CaptureProfiles, ResolveSorting(recipe),
             recipe.Positions.Where(p => !occupiedSlots.Contains(p.SlotId, StringComparer.Ordinal)).Select(p => p.SlotId).ToArray(),
             steps, recipe.PlcRecipeId, recipe.NgCapacity, recipe.PendingCapacity)
-        { Model = recipe.Model, SortingGripperId = recipe.SortingGripperId, DefinitionDigest = recipe.DefinitionDigest, ECode = recipe.ECode,
+        { SortingGrippersByMaterial = recipe.UnitKind == "looseGroup"
+                ? recipe.Composition.ToDictionary(m => m.Material, m => m.SortingGripperId!.Value, StringComparer.Ordinal) : null,
+            Model = recipe.Model, SortingGripperId = recipe.SortingGripperId, DefinitionDigest = recipe.DefinitionDigest, ECode = recipe.ECode,
             InspectionKind = recipe.InspectionKind, TrayLayout = recipe.TrayLayout, TraySlotMapping = recipe.TraySlotMapping,
             RotationLoadingGripperId = recipe.RotationLoadingGripperId, RotationWorkstation = recipe.RotationWorkstation,
             OriginalSlots = recipe.InspectionKind == RecipeInspectionKind.SpecialRotation

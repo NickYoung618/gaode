@@ -198,6 +198,21 @@ public sealed class ThreeStageWorkflowExecutor(
                 await ProjectionAsync(request, WholeTrayWorkflowStage.Detection, cancellationToken));
         }
 
+        // Resolve every member before any sorting motion; never ask the transport to interpret a recipe.
+        Dictionary<Guid, int> sortingGrippers;
+        try { sortingGrippers = mapped.Actions.ToDictionary(a => a.OperationId,
+            a => RecipeSortingGripperSelection.Resolve(request.Plan, a)); }
+        catch (InvalidOperationException error)
+        {
+            RuntimeDiagnostics.Record("Sorting", "Blocked", request.Detection.RunId,
+                new { reason = error.Message, noPlcDispatch = true }, warning: true);
+            await AppendAsync(request, WholeTrayWorkflowStage.Sorting, request.MappingOperationId, 1,
+                StageEventType.ManualReviewRequested, error.Message, "sorting:gripper-unconfigured",
+                detection.Result!.Source, detection.Result.Quality, cancellationToken);
+            return new(ThreeStageExecutionStatus.PausedForManualReview, WholeTrayWorkflowStage.Sorting,
+                error.Message, [], await ProjectionAsync(request, WholeTrayWorkflowStage.Sorting, cancellationToken));
+        }
+
         var reservation = await sortingAllocator.ReserveAsync(request, detection.Result!, mapped.Actions,
             sortingTargets, cancellationToken);
         if (!reservation.Reserved)
@@ -243,8 +258,11 @@ public sealed class ThreeStageWorkflowExecutor(
                 TargetPurpose: request.TargetPurpose, SortingSource: action.Position,
                 SortingTarget: sortingTargets[action.OperationId], ReservationReference: assignment.ReservationReference)
             { Scope=request.Detection.Scope, TransferPurpose = action.ReturnsToOrigin ? TransferPurpose.ReturnToOrigin :
-                    request.Plan.SortingGripperId is 1 or 2 ? TransferPurpose.Sorting : null,
-                RequestedGripperId = request.Plan.SortingGripperId };
+                    TransferPurpose.Sorting,
+                RequestedGripperId = sortingGrippers[action.OperationId] };
+            RuntimeDiagnostics.Record("SortingGripper", "Resolved", request.Detection.RunId,
+                new { action.OperationId, action.ObjectId, action.MemberId, action.SlotId,
+                    requestForAction.RequestedGripperId });
             var outcome = await ExecutePlcActionAsync(requestForAction, WholeTrayWorkflowStage.Sorting,
                 sortingDeadline, cancellationToken);
             associations.Add(outcome.Association);

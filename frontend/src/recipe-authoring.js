@@ -19,7 +19,7 @@
       rotationWorkstation: { place:handling, pick:handling }, sortingTargets:{ '*':handling },
       approval: fields('id version digest purpose allowedSlots evidenceReference'),
       positions: [{ ...fields('slotId cellId physicalSlotIndex unitPattern'), members: [fields('material memberPattern handling cellId physicalSlotIndex')] }],
-      composition: [fields('material localFaces')],
+      composition: [fields('material localFaces sortingGripperId')],
       stages: [{ ...fields('number action angleDeg'), targets: [fields('material localFace cameraPair captureProfile algorithmProfile')] }],
       executionPositions: { '*': { slotId: null, physicalEntity: object, members: { '*': object } } },
       captureProfiles: { '*': { id: null, version: null, settings: fields('profileId exposureUs gain roiPixels lightChannel brightnessPercent settleMs') } },
@@ -462,7 +462,7 @@
     function summary(parent, d) {
       parent.append(node('h2', d.fCode || '未命名配方'));
       for (const [label, value] of [['待检槽', (d.trayLayout?.cells.filter(c=>c.region==='OK').length??d.positions.length) + '个'], ['检测面', [...new Set(d.composition?.flatMap(c => c.localFaces) || [])].join(' / ')],
-        ['E扫码', d.eCode?.enabled ? '需要' : '不需要'], ['分拣夹爪', d.sortingGripperId ? '夹爪' + d.sortingGripperId : '未配置']])
+        ['E扫码', d.eCode?.enabled ? '需要' : '不需要'], ['分拣夹爪', d.unitKind === 'looseGroup' ? d.composition.map(m => m.material + '：' + (m.sortingGripperId ? '夹爪' + m.sortingGripperId : '未配置')).join('、') : d.sortingGripperId ? '夹爪' + d.sortingGripperId : '未配置']])
         parent.append(node('p', label + '：' + value));
       parent.append(node('p', '所有OK件最终在本件原始槽；特殊件检测后实际回放，NG / Pending进入对应区域。', 'recipe-note'));
     }
@@ -491,7 +491,7 @@
         input(grid, '检测场景', d.unitKind, v => { session.edit(x => { x.unitKind = v; x.inspectionKind = v === 'independentPart' ? x.inspectionKind : 'ordinary'; const scenarios = [...new Set(state.catalog.filter(c => c.unitKind === v && c.model === x.model).map(c => c.scenarioId))]; x.scenarioId = scenarios.length === 1 ? scenarios[0] : ''; }); void session.configure(); }, 'text', [['independentPart','单品'],['looseGroup','成组'],['assembledEntity','半成品']]);
         input(grid, '零件型号', d.model, v => { session.edit(x => { x.model = v; const scenarios = [...new Set(state.catalog.filter(c => c.unitKind === x.unitKind && c.model === v).map(c => c.scenarioId))]; x.scenarioId = scenarios.length === 1 ? scenarios[0] : ''; }); void session.configure(); }, 'text',
           [...new Set([...next.catalog.map(c => c.model), ...(d.model ? [d.model] : [])])].map(model => [model,model]));
-        input(grid, '分拣夹爪', d.sortingGripperId, v => session.edit(x => x.sortingGripperId = v), 'number', [[1,'夹爪1'],[2,'夹爪2']]);
+        if (d.unitKind !== 'looseGroup') input(grid, '分拣夹爪', d.sortingGripperId, v => session.edit(x => x.sortingGripperId = v), 'number', [[1,'夹爪1'],[2,'夹爪2']]);
         if (d.inspectionKind !== 'specialRotation') input(grid, '检测面数', d.composition.length ? Math.max(...d.composition.flatMap(c => c.localFaces)) : null, v => void session.layout({ faces: v }));
         if (d.unitKind === 'independentPart') input(grid, '检测类型', d.inspectionKind,
           v => { session.edit(x => x.inspectionKind = v); void session.configure(); }, 'text', [['ordinary','普通零件'],['specialRotation','特殊旋转零件']]);
@@ -500,7 +500,12 @@
         if (d.unitKind === 'looseGroup') {
           input(grid,'每组成员数',d.composition.length || null,v => void session.layout({ members:v }));
           form.append(node('h3', '成员组合模板'));
-          for (const member of d.composition) input(form, member.material + '检测面数', member.localFaces.length, v => void session.layout({ material: member.material, faces: v }));
+          for (const member of d.composition) {
+            input(form, member.material + '检测面数', member.localFaces.length, v => void session.layout({ material: member.material, faces: v }));
+            input(form, member.material + '分拣夹爪', member.sortingGripperId,
+              v => session.edit(x => x.composition.find(m => m.material === member.material).sortingGripperId = v),
+              'number', [[1,'夹爪1'],[2,'夹爪2']]);
+          }
         }
         input(grid,'额外E扫码姿态',d.eCode?.extraPose ? 'yes' : 'no',v => void session.layout({ extraE:v === 'yes' }), 'text', [['no','不需要'],['yes','需要']]);
         summary(overview, d); renderMatrix(panel,d,true); button(form, '下一步：配置坐标 →', () => session.section('points'));
