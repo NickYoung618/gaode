@@ -1,0 +1,161 @@
+{
+  "Date": "2026-10-07",
+  "Timezone": "Asia/Shanghai",
+  "Source": "D:\\gm26\\Gaode-Migration-20261006\\E-drive\\dzk\\gaode-1",
+  "SpeckitVersion": "1.0.5.dev0",
+  "Constitution": "9.0.0",
+  "Files": [
+    {
+      "Path": ".specify/.gitignore",
+      "Sha256": "8C908410D177A1EF3D0DEE16D7AD55F2AC3333DF3104C4D4ADEE1C9B82F1DBC1"
+    },
+    {
+      "Path": ".specify/extensions.yml",
+      "Sha256": "B81EC38949968EF524FE59A08F30756C63F48E8A33F3D5AF35409F473E024600"
+    },
+    {
+      "Path": ".specify/init-options.json",
+      "Sha256": "CA8EBEBF7042ACDD6C0B3FF010FE8B5EBCBEF5DC7C1F26847B6237F392F40247"
+    },
+    {
+      "Path": ".specify/integration.json",
+      "Sha256": "E9CB68EB9E2DF3E993E161795BF4173271134869D1D8DEC10AA66F472C3D5CCA"
+    },
+    {
+      "Path": ".specify/extensions/.registry",
+      "Sha256": "26C8636F2D65806757077DC4F603D60AFD21C5C7F7A08E7F42BC17885C10F5D7"
+    },
+    {
+      "Path": ".specify/extensions/bug/extension.yml",
+      "Sha256": "1D0DA5458F3C18FF08CF1602D88CECC33FAD07068208951FB7128090CFA90C90"
+    },
+    {
+      "Path": ".specify/extensions/bug/README.md",
+      "Sha256": "5E5F966DDD45714CE547B526E94C45A69EE2946F3D873916BA0148418DE106BA"
+    },
+    {
+      "Path": ".specify/extensions/bug/commands/speckit.bug.assess.md",
+      "Sha256": "6786963D1F89D129E63AC60E570AD28702D59813455FC95284D2FACC1EB6B52F"
+    },
+    {
+      "Path": ".specify/extensions/bug/commands/speckit.bug.fix.md",
+      "Sha256": "DF8B28B3687617FA883998D060E5402A2BAABD34023BEF3D1FBCDE9E014C5BF6"
+    },
+    {
+      "Path": ".specify/extensions/bug/commands/speckit.bug.test.md",
+      "Sha256": "AC2AB5542B0A9B098AF75BAAD0B23B49E3763B8893EDA8497BF234FB5A0DF2FF"
+    },
+    {
+      "Path": ".specify/integrations/codex.manifest.json",
+      "Sha256": "E62D5FD526F77991E8D506E6F49E033DE5097B65BC72A5210F7225DBF9334C85"
+    },
+    {
+      "Path": ".specify/integrations/speckit.manifest.json",
+      "Sha256": "F25DB500A5E5D4B657A116B6C999AED685C791FC90D0453541E88BCD9B516360"
+    },
+    {
+      "Path": ".specify/memory/constitution-alignment.md",
+      "Sha256": "D30892D974CF4BEC696BDB39FD818A84EF29EC99A10AA120212D9EF2DB3444A9"
+    },
+    {
+      "Path": ".specify/memory/constitution.md",
+      "Sha256": "ED0357438285C16D7FCBCDAF5DB51092EB6D31519BFE8F0A477B0BFBBEF4B575"
+    },
+    {
+      "Path": ".specify/scripts/powershell/check-prerequisites.ps1",
+      "Sha256": "EF7FE740091441E5AEADCCB8DC36B08D840F524513D79E2FCF258133EE6568B4"
+    },
+    {
+      "Path": ".specify/scripts/powershell/common.ps1",
+      "Sha256": "B7DE830A085419F82D2469D0DE3DDE9157842006A95E1A2953B53E0D81B1AFC8"
+    },
+    {
+      "Path": ".specify/scripts/powershell/create-new-feature.ps1",
+      "Sha256": "4B6E1ED5F2E95D8890BFBA4F03264E6CB3DF01C620F80781C91803BC9E7534E4"
+    },
+    {
+      "Path": ".specify/scripts/powershell/resolve-template.ps1",
+      "Sha256": "E49C565A09902E4EBD4B5A51C4E014D5067FDEE5B1592F15CB44EF31F430D745"
+    },
+    {
+      "Path": ".specify/scripts/powershell/setup-plan.ps1",
+      "Sha256": "3B8173F1553BBF67AE021AF949A29E2D3E3BB35805BE95E4BA8D0AB83173C66F"
+    },
+    {
+      "Path": ".specify/scripts/powershell/setup-tasks.ps1",
+      "Sha256": "578C19C7FA196327C1C6791E3179ACCFFAB049FE62851961139D67BD699F336E"
+    },
+    {
+      "Path": ".specify/templates/checklist-template.md",
+      "Sha256": "70BBC48E884FAB372FFB09E83E78FF983E28B69CAEBF8CD9964A02B6836683AC"
+    },
+    {
+      "Path": ".specify/templates/constitution-template.md",
+      "Sha256": "CE7549540FA45543CCA797A150201D868E64495FDFF39DC38246FB17BD4024B3"
+    },
+    {
+      "Path": ".specify/templates/plan-template.md",
+      "Sha256": "D8BB26127B3DF6251F9BDA37E1A025BA507B134DD2C90EA3866796D62E3E7F31"
+    },
+    {
+      "Path": ".specify/templates/spec-template.md",
+      "Sha256": "952FD944F95C08C03207585D938F6C8C31492FBF118BC2C0B65793EE1716572A"
+    },
+    {
+      "Path": ".specify/templates/tasks-template.md",
+      "Sha256": "19216030BF81A44E9CF9B661C30DD8F9147FE4B9F09A60FB60A3503B7978F9F5"
+    },
+    {
+      "Path": ".agents/skills/speckit-analyze/SKILL.md",
+      "Sha256": "CE7DCD9DEABEE04A1A6DF4726F2B905E894FDEE2F68042C26E5E70F3756D0C7B"
+    },
+    {
+      "Path": ".agents/skills/speckit-bug-assess/SKILL.md",
+      "Sha256": "E6FA33318829DB39BAE00891BD0D041C99C5A6C60BA80CF9592745164E58ABD7"
+    },
+    {
+      "Path": ".agents/skills/speckit-bug-fix/SKILL.md",
+      "Sha256": "6BC791147CDF5EBE62AA1EB734F9D5DD8643F37F17D1B76C1DC4340D9D7F8EC4"
+    },
+    {
+      "Path": ".agents/skills/speckit-bug-test/SKILL.md",
+      "Sha256": "61E628789F2AAE8DBEF52FECD25E0C56D9F6D23D80DAFEFE0D809BE46656117E"
+    },
+    {
+      "Path": ".agents/skills/speckit-checklist/SKILL.md",
+      "Sha256": "BFDEFAA37C17B0E6A18EE828508D8878A98A79BA1F2EE92431751A743B645908"
+    },
+    {
+      "Path": ".agents/skills/speckit-clarify/SKILL.md",
+      "Sha256": "206D3FB47C302CD15502B83C1B5B5CF7A76C4581E4EC95D60110C8C00301A1F4"
+    },
+    {
+      "Path": ".agents/skills/speckit-constitution/SKILL.md",
+      "Sha256": "209DB6BFAE60611B524A370D4219DF54083967BE7C00C4E1D8B73345E440DC64"
+    },
+    {
+      "Path": ".agents/skills/speckit-converge/SKILL.md",
+      "Sha256": "BA96EE37F88358606465557F86CCC02641EB66C610F490B479467EB89C9F9611"
+    },
+    {
+      "Path": ".agents/skills/speckit-implement/SKILL.md",
+      "Sha256": "9352EEF4200D6927F724DDCFB273BFFC15EE516F0CA4116CA10B0A9FFBED8049"
+    },
+    {
+      "Path": ".agents/skills/speckit-plan/SKILL.md",
+      "Sha256": "F9ED380081A25E631EC060E0532B0372352E13E4FF66E3BE9A18B787986FFC74"
+    },
+    {
+      "Path": ".agents/skills/speckit-specify/SKILL.md",
+      "Sha256": "88D7FAB201DE66297F16B6C271A418A0F2C198D714456DFD707E623348EC47C1"
+    },
+    {
+      "Path": ".agents/skills/speckit-tasks/SKILL.md",
+      "Sha256": "94BC194D1737A2AABF604137959F9A72AE479F2DBD82F53C77983CD9274C0216"
+    },
+    {
+      "Path": ".agents/skills/speckit-taskstoissues/SKILL.md",
+      "Sha256": "58C3528552256F2FEE98540F20FA07E5744EB814A180F4D96698533F783598F1"
+    }
+  ]
+}
