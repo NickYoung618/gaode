@@ -67,3 +67,11 @@ SC-005硬件故障实测仍有上述限制，当前只有离线证据；其余�
 - 实机SDK阻塞超时、拔网线/物理断线仍未实测。旧实测仅证明旧版本；本轮正常实测证据单独登记，不扩大为故障实测通过。
 
 CameraPro再分发许可仍未证实，包只使用现场安装native SDK，未擅自携带。回退先正常关闭并核对参数恢复，再使用camera-review-baseline-67e4a57/已校验bundle或旧包，在独立目录/独立配置恢复，不删除新旧媒体或用Git操作代替硬件恢复。
+
+## 重新授权后的正式HTTP故障验收（当前补充）
+
+2026-10-07用户明确重新授权本机隔离模拟worker＋正式Host HTTP复验。执行scripts/Invoke-CameraHttpFaultAcceptance.ps1 -DataRoot D:\gaode\artifacts\camera-http-fault-20261007-r1 -Port 5197，工具退出码0，无新的策略拒绝；之前APR-001/002仍保留历史事实，本节取代“故障HTTP尚未实测”的当前状态，不改写历史证据。
+
+正式Host为已发布a0e70e3二进制，测试worker为现有Gaode.CameraWorkerFixture，不载入厂家SDK；仅一台虚构A，SDK目录为空，Host实际监听仅127.0.0.1:5197。独立根/SQLite，不运行真实相机、PLC、算法。依次验证：健康recover409且PID/session不变；Ready后Exit(17)，等待退出监听故障日志后才读状态，Faulted/PID=null/MaxBytes=0；POST采集409/CameraNotReady；注入初始化失败recover503/CameraRecoveryFailed/Faulted/automaticReplay=false；随后显式recover200/Ready且新session。无triggers.txt，SQLite Media=0/Writes=0，没有触发或发布媒体。shutdown202，Host和fixture均正常退出。
+
+证据evidence/http-fault-20261007/包含HTTP响应、监听/模块清单、Host与gateway日志、去token配置和停止后frozen-round.json（10个运行文件摘要、正式运行6项二进制摘要、fixture文件摘要及实际命令）。原大包、旧封存根和219项清单不修改。模拟worker的Ready/恢复不宣称实机参数恢复。T026完成；T030/T031的实机SDK超时及物理断线仍未验证。具体设备、命令、参数备份和受控恢复见hardware-fault-acceptance-plan.md，待用户确认后执行，019仍未最终收敛。

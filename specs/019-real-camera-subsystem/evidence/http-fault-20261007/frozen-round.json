@@ -1,0 +1,135 @@
+{
+  "recordedUtc": "2026-10-07T08:43:27.225784+00:00",
+  "kind": "stopped-offline-http-fault-round",
+  "root": "D:\\gaode\\artifacts\\camera-http-fault-20261007-r1",
+  "databaseCounts": {
+    "Media": 0,
+    "Writes": 0
+  },
+  "files": [
+    {
+      "path": "D:\\gaode\\artifacts\\camera-http-fault-20261007-r1\\appsettings.json",
+      "bytes": 1006,
+      "sha256": "7F5FC4A53F0C8DD68CC9F8D9FDB1A04278EB72DF1BC39E466701C9394D366E1C"
+    },
+    {
+      "path": "D:\\gaode\\artifacts\\camera-http-fault-20261007-r1\\host.stderr.log",
+      "bytes": 0,
+      "sha256": "E3B0C44298FC1C149AFBF4C8996FB92427AE41E4649B934CA495991B7852B855"
+    },
+    {
+      "path": "D:\\gaode\\artifacts\\camera-http-fault-20261007-r1\\host.stdout.log",
+      "bytes": 728,
+      "sha256": "29204B20E17067A7005A361406D2569BE2A8E25EEAF82100891E95E48AD24D3C"
+    },
+    {
+      "path": "D:\\gaode\\artifacts\\camera-http-fault-20261007-r1\\http-fault-checks.json",
+      "bytes": 15551,
+      "sha256": "B73E3B3215221011719C586F5BA2684CB66FACEC342A9361A12286343CAB2D07"
+    },
+    {
+      "path": "D:\\gaode\\artifacts\\camera-http-fault-20261007-r1\\mode.txt",
+      "bytes": 6,
+      "sha256": "317B32C143692B9939C197F6A5DF54F9698DF9A4882FE8BF19608968662BE4FA"
+    },
+    {
+      "path": "D:\\gaode\\artifacts\\camera-http-fault-20261007-r1\\previous-session.txt",
+      "bytes": 36,
+      "sha256": "ACF96ECB091AD1039E7C90474F71A453EFDA5C6DB60871EB50E3E4CBFC9DAB7E"
+    },
+    {
+      "path": "D:\\gaode\\artifacts\\camera-http-fault-20261007-r1\\site.json",
+      "bytes": 163,
+      "sha256": "4B46F793B76EF7EAA0DF9351CD7B1047DF4F9678C5A52ACE331C83A275848209"
+    },
+    {
+      "path": "D:\\gaode\\artifacts\\camera-http-fault-20261007-r1\\state\\A.host.jsonl",
+      "bytes": 4760,
+      "sha256": "CA4AD32A4247D78062D616A9C18E9BE249A7CBC0032A0F99C46F792C5CC3E2A4"
+    },
+    {
+      "path": "D:\\gaode\\artifacts\\camera-http-fault-20261007-r1\\store\\.camera-host.lock",
+      "bytes": 0,
+      "sha256": "E3B0C44298FC1C149AFBF4C8996FB92427AE41E4649B934CA495991B7852B855"
+    },
+    {
+      "path": "D:\\gaode\\artifacts\\camera-http-fault-20261007-r1\\store\\camera.db",
+      "bytes": 294912,
+      "sha256": "2379EC8739FD862D550FFB4CE01D85718FD79210B6FD8CDF8E57467D7666DC8E"
+    }
+  ],
+  "runtime": [
+    {
+      "path": "D:\\gaode\\artifacts\\gaode-camera-019-review-a0e70e3\\host\\Gaode.Application.dll",
+      "bytes": 1479680,
+      "sha256": "EDD9B02F4211B1F6069848E05617ACFDA3C2737A499207FB9E4CFA94E6206AFA"
+    },
+    {
+      "path": "D:\\gaode\\artifacts\\gaode-camera-019-review-a0e70e3\\host\\Gaode.Domain.dll",
+      "bytes": 304128,
+      "sha256": "BC5E1D5F67CB744D7D908CFC80C93F13A1AC5465CD7EFBF775EC50A5FE6861DC"
+    },
+    {
+      "path": "D:\\gaode\\artifacts\\gaode-camera-019-review-a0e70e3\\host\\Gaode.Host.dll",
+      "bytes": 380928,
+      "sha256": "20A4E452CA04EDA63FEAE6D97B42B124BE2FABE3B844C912458BD1CE6B8897C7"
+    },
+    {
+      "path": "D:\\gaode\\artifacts\\gaode-camera-019-review-a0e70e3\\host\\Gaode.Host.exe",
+      "bytes": 162304,
+      "sha256": "06A699448A0DDA2048F8C68D9FC78EC292DFA43C880F374821E7413672749856"
+    },
+    {
+      "path": "D:\\gaode\\artifacts\\gaode-camera-019-review-a0e70e3\\host\\Gaode.Infrastructure.dll",
+      "bytes": 1165824,
+      "sha256": "767B2964EF6D7BB3677067A4E808940FE378B5564C8711EBAD5EE873AF6AFA45"
+    },
+    {
+      "path": "D:\\gaode\\artifacts\\gaode-camera-019-review-a0e70e3\\host\\Gaode.Plc.Protocol.dll",
+      "bytes": 84992,
+      "sha256": "83EA3862AADD7A8AAFDFF7DCA9AB1CE9CF391027DF5FB46DED1F054CC6CAE857"
+    }
+  ],
+  "fixtureFiles": [
+    {
+      "path": "D:\\gaode\\backend\\tests\\Gaode.CameraWorkerFixture\\bin\\Debug\\net10.0\\Gaode.Application.dll",
+      "sha256": "773C22527377424421CBFE528DE5E3A4BD5AC7DBB54E277A8CBF05E8A5101C32"
+    },
+    {
+      "path": "D:\\gaode\\backend\\tests\\Gaode.CameraWorkerFixture\\bin\\Debug\\net10.0\\Gaode.Application.pdb",
+      "sha256": "32E37C3084E53FC0F2EE712FC09FF620072FD6DE67FD7B4DB76F301BBE178DED"
+    },
+    {
+      "path": "D:\\gaode\\backend\\tests\\Gaode.CameraWorkerFixture\\bin\\Debug\\net10.0\\Gaode.CameraWorkerFixture.deps.json",
+      "sha256": "94AB0D54F88E8AD69B716316A4298419BE7BD8FA851CEE5CA25C03E832F7ADD4"
+    },
+    {
+      "path": "D:\\gaode\\backend\\tests\\Gaode.CameraWorkerFixture\\bin\\Debug\\net10.0\\Gaode.CameraWorkerFixture.dll",
+      "sha256": "C24FC22D80028900E962A1C5C863F4C77DE0AB48C6347C860B40558278168B3B"
+    },
+    {
+      "path": "D:\\gaode\\backend\\tests\\Gaode.CameraWorkerFixture\\bin\\Debug\\net10.0\\Gaode.CameraWorkerFixture.exe",
+      "sha256": "8852D36AB70B4A67C2618AB6D835D17041214B98AA542B462435E9CB4EE36E59"
+    },
+    {
+      "path": "D:\\gaode\\backend\\tests\\Gaode.CameraWorkerFixture\\bin\\Debug\\net10.0\\Gaode.CameraWorkerFixture.pdb",
+      "sha256": "B04F785D479DEFE785734F2C9D177956AB3FC6266A1B89BF41F716ADDCEB3F60"
+    },
+    {
+      "path": "D:\\gaode\\backend\\tests\\Gaode.CameraWorkerFixture\\bin\\Debug\\net10.0\\Gaode.CameraWorkerFixture.runtimeconfig.json",
+      "sha256": "256DDA2706E1151BB95987B6B5BE610BF68D64E058285B19E7E958222FC90414"
+    },
+    {
+      "path": "D:\\gaode\\backend\\tests\\Gaode.CameraWorkerFixture\\bin\\Debug\\net10.0\\Gaode.Domain.dll",
+      "sha256": "07946D43C6F725082C6A06A32B0590E614D916E42FE82DD610CB5C8E417E4309"
+    },
+    {
+      "path": "D:\\gaode\\backend\\tests\\Gaode.CameraWorkerFixture\\bin\\Debug\\net10.0\\Gaode.Domain.pdb",
+      "sha256": "754056DF49E5E85791DC996934259D6656AC3E789D1DFFEE447F969FA759C5FF"
+    }
+  ],
+  "command": "pwsh -NoProfile -File D:\\gaode\\scripts\\Invoke-CameraHttpFaultAcceptance.ps1 -DataRoot D:\\gaode\\artifacts\\camera-http-fault-20261007-r1 -Port 5197",
+  "newPolicyRejection": null,
+  "realHardwareValidated": false,
+  "previousRoundUnchanged": "review-67e4a57/frozen-round.json"
+}

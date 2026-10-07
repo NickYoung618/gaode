@@ -73,3 +73,7 @@ ICapturePort 的模拟/FileBacked/NotIntegrated 实现保留默认成员；Acqui
 新增最小离线可控worker fixture（仅测试工程，无SDK/无HostHTTP），经真实PersistentCameraGateway/管道/CameraCaptureAdapter/CameraAcquisitionService/SQLite验证退出与恢复、缺通道/错映射/错尺寸及失败不发布；不作为产品驱动或兼容层。独立验收脚本按现场site身份及厂家尺寸规则做独立断言；Host基础设施也验证真实帧结构。针对AcquisitionCoordinator、RecipeDetectionExecutor与Observation按实际API选择必要虚拟业务执行验证，不仅直接调用Receive辅助服务。
 
 证据：旧runtime-inventory保留并记录差异；新版本单独数据根和包，实机正常链至少各相机新帧并验证复用/保存/重启；冻结时Host/worker退出，将配置摘要（不含token明文）、SDK、DB、媒体、二进制和包关联。日志/DB可能变化的旧清单明确是历史运行快照。不得启动已被拒的模拟worker Host HTTP复验；其HTTP故障验证标未验证。
+
+## 2026-10-07剩余故障验收授权
+
+用户明确重新授权隔离模拟worker＋正式Host的127.0.0.1 HTTP复验，使用全新独立目录/SQLite，不连接真实设备；先前APR-002保留为历史拒绝，不再将其解释为本轮用户禁止。执行脚本scripts/Invoke-CameraHttpFaultAcceptance.ps1，固定测试fixture且SDK路径指向空目录，核实监听地址、无SDK模块、Ready后Exit(17)记录、HTTP409拒绝、显式恢复失败503及新会话Ready，最后正常关闭。发生新的系统拒绝则原样保存并停止，不改写命令。实机SDK超时/物理断线仅形成设备/步骤/参数备份与恢复方案，待用户另行确认；T031仍按实际证据分项关闭，不以HTTP离线结果替代实机。

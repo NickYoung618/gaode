@@ -64,7 +64,7 @@ T001/002→T003/004→T005–009；一台2D验证T010后3D硬件T018，再七台
 - [x] T023 核实审查问题/建立修复回退点/同步spec contracts plan tasks，保持历史证据（FR-019）。
 - [x] T024 修复PersistentCameraGateway进程退出观察、状态同步和停止准入，使用真实离线可控worker进程验证Ready后退出/迟到事件/不重拍（FR-003/011/017）。
 - [x] T025 修复MediaCapacity/MediaStore存量载荷配额恢复及失败文件结算，验证满额重启/重复恢复/失败残留/已提交仍可读（FR-013/014）。
-- [ ] T026 修复recover Faulted门禁/新会话成功/失败异常及HTTP状态映射；离线真实gateway验证，受拒的模拟Host HTTP不执行且明确未验证（FR-017）。
+- [x] T026 修复recover Faulted门禁/新会话成功/失败异常及HTTP状态映射；离线真实gateway验证，受拒的模拟Host HTTP不执行且明确未验证（FR-017）。
 - [x] T027 完善独立验收及产品真实帧结构门禁，固定3D通道和元素/尺寸关系、2D身份/格式/可解释布局，实际服务负例验证（FR-001/011/018）。
 - [x] T028 选择AcquisitionCoordinator/RecipeDetectionExecutor/Observation必要虚拟业务回归，确认来源/意图/期限/取消/动作关联/保存门禁（FR-004/009/014/016）。
 - [x] T029 审计并保留旧清单差异与最终21份媒体对应关系；发布确切新源码二进制，必要新版本实机正常链/退出/重启验证，停止后冻结新证据/包清单（FR-020/SC-001–008）。
@@ -81,3 +81,9 @@ T029交付已完成：新ZIP/manifest见evidence/delivery.json，确切运行源
 - [ ] T031 在允许的审批及运行条件下补齐正式入口故障恢复HTTP503、worker意外退出后HTTP采集拒绝的验收证据，并补齐SC-005实机SDK超时/物理断线证据；沿用现有实现，关联validation.md中的APR-002/APR-001，不改写命令绕过拒绝，不以离线验证替代产品入口或实机结论（FR-017/SC-005，partial/HIGH；承接T026/T030）。
 
 本轮converge核对20 FR、8 SC、3用户故事及验收场景、计划关键决策和宪章P01–P13。源码修复与正常实机链有证据，剩余故障验收门禁为partial/HIGH；追加T031，T026/T030保持未完成。结果为tasks_appended，019尚未最终收敛。
+
+## 2026-10-07剩余故障验收授权
+
+用户明确重新授权隔离模拟worker＋正式Host的127.0.0.1 HTTP复验，使用全新独立目录/SQLite，不连接真实设备；先前APR-002保留为历史拒绝，不再将其解释为本轮用户禁止。执行脚本scripts/Invoke-CameraHttpFaultAcceptance.ps1，固定测试fixture且SDK路径指向空目录，核实监听地址、无SDK模块、Ready后Exit(17)记录、HTTP409拒绝、显式恢复失败503及新会话Ready，最后正常关闭。发生新的系统拒绝则原样保存并停止，不改写命令。实机SDK超时/物理断线仅形成设备/步骤/参数备份与恢复方案，待用户另行确认；T031仍按实际证据分项关闭，不以HTTP离线结果替代实机。
+
+T031进展：重新授权的正式Host HTTP退出采集409、失败恢复503及新会话Ready200已完成，见evidence/http-fault-20261007/；剩余实机两场景见hardware-fault-acceptance-plan.md，尚未执行/等待用户确认，因此T031/T030保持未完成。

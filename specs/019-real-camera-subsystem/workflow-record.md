@@ -23,3 +23,9 @@
 本轮converge结果：tasks_appended，追加T031；1项partial/HIGH故障验收缺口，T026/T030/T031保持未完成，019未最终收敛。此前已经明确的实机SDK超时/物理断线限制一并承接，不新增架构或降低验收。converge只追加tasks，结束后本段记录由交付文档维护步骤写入。
 
 最终修复包为artifacts/gaode-camera-019-review-a0e70e3-win-x64.zip，运行源码a0e70e3，包内交付材料aff4a92；SHA256为6AE8281E9A00D76FA942BAC1C0017D71998EDB05F5A5C6505957AA81CED148A0。包内132项文件已逐项从ZIP读取校验；封存根219项文件在打包后再次校验一致。确切关联见evidence/delivery.json，旧交付见evidence/review-67e4a57/delivery-before-review.json。本段及追加任务仅记录交付后的未完成状态，不改变运行源码、包和已封存证据。Host/worker已停止，封存根禁止复用运行。
+
+## 剩余故障验收续办（重新授权）
+
+工作区起点87dab8c、019分支干净，用户明确允许隔离模拟worker正式Host HTTP；沿用speckit-implement处理T031，不改共享接口或runtime源码。先更新plan/tasks授权边界并准备可审查脚本，在commentary展示完整执行命令后执行，退出0，无新的策略拒绝。正式a0e70e3 Host仅127.0.0.1:5197，新独立根/SQLite/空SDK目录；健康409、退出后采集409、恢复失败503、显式新会话Ready200通过，无触发/媒体/写记录，正常shutdown退出。
+
+停止后新增独立HTTP证据轮次，不修改此前219项封存和原发布ZIP。T026勾选完成；T030/T031仍有实机SDK超时/物理断线条件，保持未完成。hardware-fault-acceptance-plan.md提供具体A设备、网络注入命令、物理拔线步骤、参数备份/读回及故障句柄恢复失败时的人工恢复门禁。本轮未启动真实设备或实施任何网络注入；等待用户确认方案。未宣称最终converge。

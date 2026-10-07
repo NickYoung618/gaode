@@ -68,3 +68,9 @@ Wait-Process -Id ([int](Get-Content D:\gaode\camera-data\host.pid)) -Timeout 30
 新修复运行包的二进制源码提交a0e70e3。复核流程使用Python3.12标准库（仅证据工具依赖，不是Host运行依赖）：正常关闭Host/worker后执行Freeze-CameraEvidence.py --root <绝对DataRoot> --captures <绝对验收目录> --output <新绝对JSON路径>。该工具不拍照、不改DB、不删除数据，拒绝活跃Host所有权锁和非空WAL；输出媒体ID/文件/sidecar/SQLite写ID和文件清单。冻结目录不要重新启动Host；以后另选DataRoot。
 
 旧214项清单及11项差异、旧最终21份媒体核查、新219项冻结清单分别登记在evidence/review-67e4a57/，入口runtime-inventory.json指向各轮，不再以运行中清单冒充最终冻结。配置仅交付去token快照及原配置摘要，SDK与运行二进制摘要随轮次保存。当前未完成的故障HTTP验证和两项独立审批拒绝详见validation.md；不得以正常路径通过推导最终收敛。
+
+## 故障验收补充（重新授权后）
+
+隔离HTTP验收已通过，命令及停止后证据见validation.md和evidence/http-fault-20261007/。可复核脚本scripts/Invoke-CameraHttpFaultAcceptance.ps1仅允许现有fixture，使用新DataRoot及127.0.0.1端口，不能用作真实设备验收；不进入生产包。原ZIP与a0e70e3二进制不变，本轮为独立验收证据补充。
+
+实机故障仍待确认：hardware-fault-acceptance-plan.md指定Galaxy A/GBZ26080956/MAC A0-14-6D-01-36-34（当前Windows名称B），单设备新根、短时UDP回包阻断验证实际SDK超时、人工拔该数据网线验证断线。先完成故障前参数备份及正常帧，再注入；清理、原参数读回及正常退出不能省略，恢复不重放未知请求。不触碰PLC、不写相机永久配置。本文不是执行授权。
