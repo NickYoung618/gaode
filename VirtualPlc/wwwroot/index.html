@@ -1,0 +1,118 @@
+<!doctype html>
+<html lang="zh-CN">
+<head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1"><meta name="color-scheme" content="dark">
+<title>Virtual PLC · 测试监控</title><link rel="stylesheet" href="/styles.css?v=unlock-history-r9"></head>
+<body><div class="page-shell">
+<header class="topbar"><div class="brand"><p class="eyebrow">MODBUS TCP / TEST</p><h1>Virtual PLC <span>实时监控</span></h1><span class="readonly-tag">只读</span></div>
+<div class="connection-panel" id="connectionPanel"><span class="status-dot" id="connectionDot"></span><strong id="connectionText">正在连接</strong></div></header>
+<div class="status-message" id="lastRefresh" role="status">尚未收到状态</div>
+<section class="overview-grid" aria-label="运行概览">
+<article><span>当前动作</span><strong id="activeAction">等待状态</strong></article>
+<article><span>活动故障</span><strong id="faultCount">—</strong><small id="faultNames">等待状态</small></article>
+<article><span>已加载信号</span><strong id="signalCount">0</strong><small id="signalBreakdown">等待地址表</small></article>
+<article><span>本次记录</span><strong id="changeCount">0</strong></article>
+</section>
+<main class="workspace" id="workspace">
+<section class="history-panel" aria-label="最近数值变化">
+<div class="history-heading"><div><p class="section-kicker">SIGNAL HISTORY</p><h2>最近数值变化</h2></div><span id="historyCount">0 条</span></div>
+<div class="history-toolbar">
+<label class="search-control"><span class="sr-only">搜索记录</span><input id="historySearch" type="search" placeholder="搜索信号、地址、含义、事务…"></label>
+<label><span class="sr-only">记录方向</span><select id="historyDirection"><option value="">全部方向</option><option value="PcToPlc">PC → PLC</option><option value="PlcToPc">PLC → PC</option></select></label>
+<button id="pauseButton" class="button" type="button" aria-pressed="false">暂停查看</button>
+<button id="focusButton" class="button" type="button" aria-pressed="false">专注记录</button>
+<button id="clearHistoryButton" class="button button-ghost" type="button">清空记录</button>
+</div>
+<div class="history-columns" aria-hidden="true"><span>时间 / 序号</span><span>方向 / 类型</span><span>信号与关联</span><span>数值 / 含义</span></div>
+<div class="history-list" id="historyList" data-history-version="unlock-history-r9" tabindex="0" aria-label="信号记录，可滚动查看"><p class="history-empty">等待真实通信记录…</p></div>
+<div class="history-footer"><span id="historyStatus">实时接收 · 最新在前</span><span id="timeZoneLabel">本机时间</span></div>
+</section>
+<aside class="monitor-panel" aria-label="地址实时状态">
+<div class="panel-toolbar"><div><p class="section-kicker">LIVE VALUES</p><h2>实时点位</h2></div></div>
+<label class="search-control sidebar-search"><span class="sr-only">筛选地址或信号</span><input id="searchInput" type="search" placeholder="搜索当前点位…"></label>
+<div class="point-scroll">
+        <div class="direction-grid">
+          <section class="direction-lane plc-to-pc-lane">
+            <div class="lane-heading">
+              <div>
+                <span class="lane-label">左侧 · 状态与反馈</span>
+                <h3>PLC <span class="lane-arrow">→</span> 上位机</h3>
+              </div>
+              <span class="lane-total" id="plcToPcTotal">0 个点位</span>
+            </div>
+
+            <article class="signal-card">
+              <div class="signal-card-title">
+                <div><span class="area-tag coil-tag">0x</span><h3>线圈区</h3></div>
+                <span class="row-count" id="plcToPcCoilCount">0 个信号</span>
+              </div>
+              <div class="table-scroll">
+                <table>
+                  <thead><tr><th>地址</th><th>信号</th><th class="value-column">当前值</th></tr></thead>
+                  <tbody id="plcToPcCoilRows">
+                    <tr><td colspan="3" class="empty-cell">正在读取 PLC 状态…</td></tr>
+                  </tbody>
+                </table>
+              </div>
+            </article>
+
+            <article class="signal-card">
+              <div class="signal-card-title">
+                <div><span class="area-tag register-tag">4x</span><h3>保持寄存器区</h3></div>
+                <span class="row-count" id="plcToPcRegisterCount">0 个信号</span>
+              </div>
+              <div class="table-scroll">
+                <table>
+                  <thead><tr><th>地址</th><th>信号</th><th class="value-column">当前值</th></tr></thead>
+                  <tbody id="plcToPcRegisterRows">
+                    <tr><td colspan="3" class="empty-cell">正在读取 PLC 反馈…</td></tr>
+                  </tbody>
+                </table>
+              </div>
+            </article>
+          </section>
+
+          <section class="direction-lane pc-to-plc-lane">
+            <div class="lane-heading">
+              <div>
+                <span class="lane-label">右侧 · 命令与参数</span>
+                <h3>上位机 <span class="lane-arrow">→</span> PLC</h3>
+              </div>
+              <span class="lane-total" id="pcToPlcTotal">0 个点位</span>
+            </div>
+
+            <article class="signal-card">
+              <div class="signal-card-title">
+                <div><span class="area-tag coil-tag">0x</span><h3>线圈区</h3></div>
+                <span class="row-count" id="pcToPlcCoilCount">0 个信号</span>
+              </div>
+              <div class="table-scroll">
+                <table>
+                  <thead><tr><th>地址</th><th>信号</th><th class="value-column">当前值</th></tr></thead>
+                  <tbody id="pcToPlcCoilRows">
+                    <tr><td colspan="3" class="empty-cell">正在读取上位机信号…</td></tr>
+                  </tbody>
+                </table>
+              </div>
+            </article>
+
+            <article class="signal-card">
+              <div class="signal-card-title">
+                <div><span class="area-tag register-tag">4x</span><h3>保持寄存器区</h3></div>
+                <span class="row-count" id="pcToPlcRegisterCount">0 个信号</span>
+              </div>
+              <div class="table-scroll">
+                <table>
+                  <thead><tr><th>地址</th><th>信号</th><th class="value-column">当前值</th></tr></thead>
+                  <tbody id="pcToPlcRegisterRows">
+                    <tr><td colspan="3" class="empty-cell">正在读取上位机命令…</td></tr>
+                  </tbody>
+                </table>
+              </div>
+            </article>
+          </section>
+        </div>
+
+</div><p class="sidebar-note">当前快照 · 0是实际值<br>状态与命令分开，历史仅来源于真实记录。</p>
+</aside></main>
+<footer><span>同值XYZ与解锁写入也记录 · 心跳不进入历史 · 缺失证据不补造</span><span>只读GET · 状态100 ms / 审计500 ms</span></footer>
+</div><script src="/app.js?v=unlock-history-r9" defer></script></body></html>

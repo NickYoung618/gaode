@@ -3,6 +3,7 @@ using Gaode.Application.Ports;
 using Gaode.Domain.Configuration;
 using Gaode.Domain.Station01;
 using Gaode.Plc.Protocol;
+using Microsoft.Extensions.Logging;
 
 namespace Gaode.Infrastructure.Devices.Plc;
 
@@ -72,9 +73,31 @@ public sealed partial class LatestProtocolPlcDevice
     {
         using var dispatch = ActionDispatchEligibility(window, expectedEpoch, token);
         CheckAxisWindow(window, expectedEpoch, token);
-        var baseline = await signals.ReadAsync(axes.Select(a => a.Start), token);
+        var allAxes = axes;
+        // Read the current wire values, never decide reuse from cached arrival flags.
+        var baseline = await signals.ReadAsync([.. PreparedPlcReadPlans.Base, .. PreparedPlcReadPlans.Position], token);
         CheckAxisWindow(window, expectedEpoch, token);
         if (axes.Any(a => baseline.Bit(a.Start))) throw new IOException("StaleAxisTrigger");
+        foreach (var axis in axes)
+        {
+            var state = baseline.Word(axis.Confirmed);
+            if (state != SignalCodes.Value(axis.Confirmed, "Moving") && state != SignalCodes.Value(axis.Confirmed, "Arrived"))
+                throw new IOException("AxisFeedbackUnknown:" + axis.Confirmed);
+            if (!float.IsFinite(baseline.Float(axis.Actual)) || !float.IsFinite((float)axis.Value))
+                throw new IOException("AxisPositionInvalid:" + axis.Actual);
+        }
+        var reused = axes.Where(a => baseline.Word(a.Confirmed) == SignalCodes.Value(a.Confirmed, "Arrived") &&
+            Math.Abs(baseline.Float(a.Actual) - (float)a.Value) <= PositionTolerance).ToArray();
+        foreach (var axis in reused)
+            logger.LogInformation("AxisPositionReused: action={ActionId} epoch={Epoch} axis={Axis} target={Target} actual={Actual} tolerance={Tolerance}",
+                pending?.Id, expectedEpoch, axis.Confirmed, axis.Value, baseline.Float(axis.Actual), PositionTolerance);
+        axes = axes.Except(reused).ToArray();
+        if (axes.Length == 0)
+        {
+            await VerifyAxisPositionsAsync(allAxes, reused, window, expectedEpoch, token);
+            accepted?.Invoke(); // Local positioning request satisfied; no PLC motion was dispatched.
+            return;
+        }
         foreach (var axis in axes)
         {
             CheckAxisWindow(window, expectedEpoch, token);
@@ -136,6 +159,7 @@ public sealed partial class LatestProtocolPlcDevice
                         await signals.WriteBitAsync(axis.Start, false, token);
                     }
                     CheckAxisWindow(window, expectedEpoch, token);
+                    await VerifyAxisPositionsAsync(allAxes, reused, window, expectedEpoch, token);
                     return;
                 }
                 after = sample.Ended + 1;
@@ -147,6 +171,21 @@ public sealed partial class LatestProtocolPlcDevice
             SetFeedback("X", false);
         }
     }
+    private async Task VerifyAxisPositionsAsync(AxisMove[] allAxes, AxisMove[] reused,
+        ActionWindow window, long expectedEpoch, CancellationToken token)
+    {
+        CheckAxisWindow(window, expectedEpoch, token);
+        var current = await signals.ReadAsync([.. PreparedPlcReadPlans.Base, .. PreparedPlcReadPlans.Position], token);
+        CheckAxisWindow(window, expectedEpoch, token);
+        foreach (var axis in allAxes)
+        {
+            if (current.Bit(axis.Start) || !float.IsFinite(current.Float(axis.Actual)) ||
+                Math.Abs(current.Float(axis.Actual) - (float)axis.Value) > PositionTolerance ||
+                reused.Contains(axis) && current.Word(axis.Confirmed) != SignalCodes.Value(axis.Confirmed, "Arrived"))
+                throw new IOException("AxisFinalPositionUnconfirmed:" + axis.Confirmed);
+        }
+    }
+
     internal IDisposable ActionDispatchEligibility(ActionWindow window, long expectedEpoch, CancellationToken token)
     {
         var previous = PlcScheduledTransport.Eligibility.Value;
