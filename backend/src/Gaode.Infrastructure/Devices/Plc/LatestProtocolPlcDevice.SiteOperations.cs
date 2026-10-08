@@ -23,15 +23,21 @@ public sealed partial class LatestProtocolPlcDevice
                 throw new IOException("StartupSafeZeroUnconfirmed:" + id);
     }
 
-    private void SiteOperationLog(string state, object detail, bool warning = false) =>
+    private void SiteOperationLog(string state, object detail, bool warning = false)
+    {
+        handshakeDiagnostic = new { phase = state, epoch, detail };
         RuntimeDiagnostics.Record("PlcSiteHandshake", state, diagnosticEnvelope?.RunId,
             new { epoch, source = options.SiteOperations?.SourceReference, detail }, warning: warning);
+    }
 
     private async Task ResetSiteHandshakeAsync(CancellationToken token)
     {
         RequireSiteOperations();
         var resetEpoch = epoch;
-        if (await signals.ReadBitAsync(SignalId.SystemResetCmd, token))
+        SiteOperationLog("ResetRequestReadStarted", new { resetEpoch });
+        var previousRequest = await signals.ReadBitAsync(SignalId.SystemResetCmd, token);
+        SiteOperationLog("ResetRequestObserved", new { resetEpoch, request = previousRequest }, previousRequest);
+        if (previousRequest)
             throw new IOException("PreviousResetRequestNotReleased");
         // PLC cannot reset while PC soft-stop is asserted. Wire readiness here
         // permits reset only; internal pcReady remains false until verification.
@@ -40,11 +46,15 @@ public sealed partial class LatestProtocolPlcDevice
         var preconditions = await signals.ReadAsync(PreparedPlcReadPlans.ResetPreconditions, token);
         lock (sync)
             if (epoch != resetEpoch || unknown) throw new IOException("ResetObservationEpochLost");
+        SiteOperationLog("ResetPreconditionsRead", new { resetEpoch,
+            pcReady = preconditions.Bit(SignalId.PcSystemReady),
+            softStop = preconditions.Bit(SignalId.SoftStopCmd), request = preconditions.Bit(SignalId.SystemResetCmd) });
         if (!preconditions.Bit(SignalId.PcSystemReady) || preconditions.Bit(SignalId.SoftStopCmd))
             throw new IOException("ResetPreconditionsNotConfirmed:MB2006=1,MB2008=0");
         if (preconditions.Bit(SignalId.SystemResetCmd))
             throw new IOException("PreviousResetRequestNotReleased");
         SiteOperationLog("ResetPreconditionsConfirmed", new { resetEpoch, pcReady = true, softStop = false });
+        SiteOperationLog("ResetRequestWriteStarted", new { resetEpoch, request = "MB2009", value = true });
         await signals.WriteBitAsync(SignalId.SystemResetCmd, true, token);
         SiteOperationLog("ResetRequested", new { request = "MB2009", feedback = "MB6015", resetEpoch });
         lock (sync) acquisitionPaused = false;
@@ -64,14 +74,21 @@ public sealed partial class LatestProtocolPlcDevice
             }
             else if (sawNotReady)
             {
+                SiteOperationLog("ResetReadyObserved", new { resetEpoch, readyFallingThenRisingObserved = true });
                 var started = DateTimeOffset.UtcNow;
                 var values = await signals.ReadAsync([.. PreparedPlcReadPlans.Base, .. PreparedPlcReadPlans.Position], token);
                 lock (sync)
                     if (epoch != resetEpoch || unknown) throw new IOException("ResetObservationEpochLost");
-                if (!Sample(values, resetEpoch, started).SafetyClear || !values.Bit(SignalId.PlcReadyState))
+                var safetyClear = Sample(values, resetEpoch, started).SafetyClear;
+                SiteOperationLog("ResetVerificationObserved", new { resetEpoch, safetyClear,
+                    ready = values.Bit(SignalId.PlcReadyState), positionTolerance = PositionTolerance,
+                    x = values.Float(SignalId.MachineCurrentPosX), y = values.Float(SignalId.MachineCurrentPosY),
+                    z = values.Float(SignalId.MachineCurrentPosZ) });
+                if (!safetyClear || !values.Bit(SignalId.PlcReadyState))
                     throw new IOException("ResetCompletionSafetyUnconfirmed");
                 RequireSafeZero(values);
                 await signals.WriteBitAsync(SignalId.SystemResetCmd, false, token);
+                SiteOperationLog("ResetRequestClearWriteResponded", new { resetEpoch, readbackConfirmed = false });
                 // An explicit completed system reset releases the prior start/stop commands.
                 await signals.WriteBitAsync(SignalId.PcStartCmd, false, token);
                 await signals.WriteBitAsync(SignalId.SoftStopCmd, false, token);

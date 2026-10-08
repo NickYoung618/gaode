@@ -102,7 +102,7 @@ public sealed class CommissioningRecoveryTests
         internal bool Exited = true, Resources = true;
         private readonly DbContextOptions<Station01DbContext> options;
         private readonly IDisposable logging;
-        internal Fixture(bool rejectCancel = false, bool confirmed = true)
+        internal Fixture(bool rejectCancel = false, bool confirmed = true, int resetBudgetMs = 2000)
         {
             Directory.CreateDirectory(Root);
             options = new DbContextOptionsBuilder<Station01DbContext>().UseSqlite($"Data Source={Path.Combine(Root, "run.db")};Pooling=False").Options;
@@ -126,7 +126,7 @@ public sealed class CommissioningRecoveryTests
             }, .1);
             foreach (var mb in new[] { 6064, 6076, 6084, 6088, 6092 }) { Plc.SetWord(mb, 0); Plc.SetWord(mb + 2, 0); }
             Recovery = new(Device, new(Device, Device, Device, Device, Lease), Commands, Coordinator, Writer, Query,
-                _ => Exited, () => Resources, 2000, 2000);
+                _ => Exited, () => Resources, resetBudgetMs, 2000);
             Coordinator.Start();
         }
         internal async Task Seed(bool rehydrated, CancellationToken ct)
@@ -227,5 +227,37 @@ public sealed class CommissioningRecoveryTests
         await Assert.ThrowsAsync<InvalidOperationException>(() => operation);
         Assert.Equal(f.RunId, f.Commands.PhysicalOwner); Assert.Equal(0, f.Plc.StartEdges);
         f.Evidence(new { policyMissing = true, released = false });
+    }
+
+    [Theory]
+    [InlineData(true)]
+    [InlineData(false)]
+    public async Task InterruptedResetRecordsCancellationObservationAndKeepsOldRunHeld(bool cancelRequest)
+    {
+        using var outer = new CancellationTokenSource(10000);
+        using var request = new CancellationTokenSource();
+        await using var f = new Fixture(resetBudgetMs: 1500); await f.Seed(true, outer.Token);
+        var operation = f.Recovery.ResetAsync("operator", request.Token);
+        while (f.Plc.Byte(2009) == 0) await Task.Delay(10, outer.Token);
+        if (cancelRequest) request.Cancel();
+        await Assert.ThrowsAnyAsync<OperationCanceledException>(() => operation.WaitAsync(outer.Token));
+        var log = File.ReadLines(Path.Combine(f.Root, "runtime.log"))
+            .Single(x => x.Contains("\"step\":\"CommissioningRecovery\"") && x.Contains("\"outcome\":\"Blocked\""));
+        var jsonStart = log.IndexOf("RuntimeFlow ", StringComparison.Ordinal) + "RuntimeFlow ".Length;
+        var jsonEnd = log.IndexOf(" exception=", jsonStart, StringComparison.Ordinal);
+        var entry = JsonSerializer.Deserialize<JsonElement>(log[jsonStart..jsonEnd]);
+        var facts = entry.GetProperty("facts");
+        Assert.Equal("PlcReset", facts.GetProperty("phase").GetString());
+        Assert.Equal(cancelRequest, facts.GetProperty("requestCancellationObserved").GetBoolean());
+        Assert.Equal(!cancelRequest, facts.GetProperty("resetBudgetExpired").GetBoolean());
+        Assert.Equal(cancelRequest ? "Request" : "ResetBudget", facts.GetProperty("cancellationObservation").GetString());
+        Assert.True(entry.GetProperty("elapsedMs").GetDouble() > 0);
+        var writes = await f.Query.GetWritesAsync(f.RunId, outer.Token);
+        Assert.Contains(writes, w => w.PayloadJson.Contains(facts.GetProperty("resetId").GetString()!));
+        Assert.Null(CommissioningRecoveryService.ReadProof(await f.Query.GetRunAsync(f.RunId, outer.Token), writes));
+        Assert.Equal(f.RunId, f.Commands.PhysicalOwner);
+        Assert.Equal(1, f.Plc.Byte(2009)); Assert.Equal(1, f.Plc.ResetEdges);
+        Assert.Equal(0, f.Plc.StartEdges); Assert.Equal(0, f.Plc.MotionEdges);
+        f.Evidence(new { cancelRequest, facts, released = false });
     }
 }

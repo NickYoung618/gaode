@@ -84,3 +84,9 @@ GET Run新增commissioningRecovery投影，仅依据已提交取消终态和恢�
 用户要求更新现有final-4目录及同名ZIP，不创建新部署包编号。更新前备份原manifest/ZIP摘要及改动文件，保留历史验证与回退；重新发布受影响Host/Prep/Worker等消费程序集，重新冻结源码和清单并校验同名ZIP，不触发真实复位/运动或替换运行中安装。
 
 R4定向回归修复：清零确认首次可请求立即新读；未清零后沿用已启用反馈组的正式采样周期，始终核对本次清请求之后的新鲜读数及原动作期限。不连续强制即时读造成通信证据环覆盖，不把采样间隔当作清零确认。
+
+## 2026-10-09 复位诊断增量
+
+不改变/reset请求/响应、授权、PLC端口、清零顺序及持久取消条件。CommissioningRecovery的Blocked日志增加phase、elapsedMs、requestCancellationObserved、resetBudgetExpired及cancellationObservation；预算到期与外部请求取消用独立CancellationTokenSource观察，两者同时发生则同时记录，均未观察到时为Unclassified。仍使用原30秒配置预算起点和原调用取消传播，不转为后台自动恢复。
+
+PlcSiteHandshake记录ResetRequestObserved、ResetReadyObserved、ResetVerificationObserved、ResetRequestClearWriteResponded等低频事实；handshakeDiagnostic用于失败窗口保留最后阶段。异常前未读取的数据不填默认成功，清写响应不冒充读回清零证明。resetId与PLC事件仍通过现有运行/epoch/时间核对，本次不声称端到端唯一ID已贯通。

@@ -245,3 +245,7 @@ Commissioning正式POST /reset在原Run.Start权限下串行执行维护：阻�
 GET Run新增commissioningRecovery投影，仅依据已提交取消终态和恢复审计；页面沿既有故障/人工操作区域提供“复位并结束旧任务”，调用同一正式/reset入口。成功后明确旧任务已结束，启动控件只在GET确认恢复证明及Available时可创建新的requestId/Run；不自动启动、不续接旧步骤，不复用旧冻结配置。StartPublicRequest可选commissioningRestartFrom={runId,recoveryWriteId}，后端验证所引用取消及恢复提交事实，并保存在新Run原始启动上下文中；普通启动和旧Test故障restartFrom合同不变。Host重启读取Cancelled持久终态，不再次恢复或自动重发旧Run；未完成恢复仍Held。
 
 用户要求更新现有final-4目录及同名ZIP，不创建新部署包编号。更新前备份原manifest/ZIP摘要及改动文件，保留历史验证与回退；重新发布受影响Host/Prep/Worker等消费程序集，重新冻结源码和清单并校验同名ZIP，不触发真实复位/运动或替换运行中安装。
+
+## 2026-10-09 诊断最小修正
+
+先核附件校验值、SQLite和原始帧，再修改Start-CommissioningConsole.ps1的启动前日志保全、CommissioningRecoveryService的取消/阶段诊断、LatestProtocolPlcDevice.SiteOperations的关键事实日志。恢复门禁和设备写入时序不变，不以追加日志宣称解决旧请求恢复。验证采用隔离目录的真实启动脚本（进程/身份等待替身，无设备访问）、原PLC握手/恢复loopback测试及请求取消/预算到期定向用例。新任务独立编号，历史勾选不变；现场未知请求的释放规则单独待确认。

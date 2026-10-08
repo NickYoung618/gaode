@@ -39,6 +39,16 @@ function Set-SettingsEnvironment($value,[string]$prefix) {
     if($null -ne $value){[Environment]::SetEnvironmentVariable($prefix,[string]$value,'Process')}
 }
 Set-SettingsEnvironment $settings ''
+# Preserve the previous Host's failure evidence before Start-Process truncates
+# the fixed current-log paths. A failed copy must prevent that truncation.
+$previousLogs=@('host.stdout.log','host.stderr.log' | ForEach-Object { Join-Path $root ('data/'+$_) } | Where-Object { Test-Path -LiteralPath $_ })
+if($previousLogs.Count){
+    $archiveName=[DateTimeOffset]::UtcNow.ToString('yyyyMMdd-HHmmssfff')+'-'+[Guid]::NewGuid().ToString('N')
+    $archivePath=Join-Path $root ('data/host-log-history/'+$archiveName)
+    [IO.Directory]::CreateDirectory($archivePath)|Out-Null
+    foreach($previousLog in $previousLogs){Copy-Item -LiteralPath $previousLog -Destination $archivePath -ErrorAction Stop}
+    Write-Output ('上次后台日志已保留：'+$archivePath)
+}
 $hostProcess=Start-Process -FilePath $hostExe -WorkingDirectory (Join-Path $root 'app/host') -WindowStyle Hidden -PassThru -RedirectStandardOutput (Join-Path $root 'data/host.stdout.log') -RedirectStandardError (Join-Path $root 'data/host.stderr.log')
 $hostProcess.Id|Set-Content -LiteralPath (Join-Path $root 'data/host.pid')
 Write-Output ('Host启动 PID='+$hostProcess.Id+'；等待后台身份接口就绪。')

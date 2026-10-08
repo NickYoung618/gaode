@@ -1,3 +1,4 @@
+using System.Diagnostics;
 using System.Security.Cryptography;
 using System.Text;
 using System.Text.Json;
@@ -47,6 +48,10 @@ public sealed class CommissioningRecoveryService(IPlcResetPort reset, MotionCoor
         var maintenance = false;
         Guid? owner = null;
         var resetId = Guid.NewGuid();
+        var started = Stopwatch.GetTimestamp();
+        var phase = "Admission";
+        CancellationTokenSource? resetDeadline = null;
+        CancellationTokenSource? linked = null;
         try
         {
             owner = commands.BeginMaintenance(); maintenance = true;
@@ -67,23 +72,28 @@ public sealed class CommissioningRecoveryService(IPlcResetPort reset, MotionCoor
             var failedEpoch = motion.Observe().ConnectionEpoch;
             if (old is { Terminal: TerminalOutcome.None })
             {
+                phase = "SaveResetIntent";
                 await SaveAsync(old, WriteKind.Audit, new { kind = "CommissioningResetRequested", resetId,
                     actor, failedEpoch, oldRunId = old.RunId, automaticRetry = false }, ct);
                 old = await traces.GetRunAsync(old.RunId, ct) ?? throw new InvalidOperationException("RecoveryRunNotPersisted");
             }
-            RuntimeDiagnostics.Record("CommissioningRecovery", "ResetRequested", owner, new { resetId, actor, failedEpoch });
-            using var deadline = CancellationTokenSource.CreateLinkedTokenSource(ct);
-            deadline.CancelAfter(resetBudgetMs);
-            await reset.ResetAsync(deadline.Token);
+            phase = "PlcReset";
+            RuntimeDiagnostics.Record("CommissioningRecovery", "ResetRequested", owner, new { resetId, actor, failedEpoch, resetBudgetMs });
+            // Keep the same budget/propagation, but distinguish the budget from
+            // external cancellation when recording an interrupted handshake.
+            resetDeadline = new CancellationTokenSource(resetBudgetMs);
+            linked = CancellationTokenSource.CreateLinkedTokenSource(ct, resetDeadline.Token);
+            await reset.ResetAsync(linked.Token);
+            phase = "InitialStateVerification";
             InitialReadinessAssessment initial;
             while (true)
             {
-                initial = await reset.ReadInitialStateAsync(deadline.Token);
+                initial = await reset.ReadInitialStateAsync(linked.Token);
                 if (initial.Passed) break;
                 if (initial.BlockedReasons.Any(r => r != "DeviceWorkNotReleased"))
                     throw new InvalidOperationException("RecoveryInitialStateIncomplete:" + string.Join(',', initial.BlockedReasons));
                 // Scheduling only. Every pass requires a new device read, never a delay-based acknowledgement.
-                await Task.Delay(50, deadline.Token);
+                await Task.Delay(50, linked.Token);
             }
             if (initial.ResetGeneration is not { } resetEpoch || resetEpoch <= failedEpoch ||
                 initial.Observation.ConnectionEpoch != resetEpoch)
@@ -92,6 +102,7 @@ public sealed class CommissioningRecoveryService(IPlcResetPort reset, MotionCoor
             Guid? recoveryWriteId = priorProof?.RecoveryWriteId;
             if (old is { Terminal: TerminalOutcome.None })
             {
+                phase = "SaveRecoveryClosure";
                 var receipt = await SaveAsync(old, WriteKind.Cancel, new { kind = "CommissioningRecoveryClosed",
                     resetId, actor, failedEpoch, initial, oldRunId = old.RunId,
                     physicalBasis = "User:2026-10-08-system-reset-restores-workpiece-gripper-flip",
@@ -101,6 +112,7 @@ public sealed class CommissioningRecoveryService(IPlcResetPort reset, MotionCoor
             }
             if (owner is { } closedRun)
             {
+                phase = "ReleaseOwnership";
                 // Durable cancellation precedes releasing either software owner.
                 motion.ReleaseAfterVerifiedSystemReset(closedRun, initial);
                 await coordinator.SetAsync(closedRun, s => s.Next(RunState.Cancelled) with {
@@ -111,16 +123,28 @@ public sealed class CommissioningRecoveryService(IPlcResetPort reset, MotionCoor
                 commands.ReleaseAfterCommissioningRecovery(closedRun);
             }
             RuntimeDiagnostics.Record("CommissioningRecovery", "ClosedAfterVerifiedReset", owner,
-                new { resetId, recoveryWriteId, initial, manualStartRequired = true });
+                new { resetId, recoveryWriteId, initial, manualStartRequired = true },
+                elapsedMs: Stopwatch.GetElapsedTime(started).TotalMilliseconds);
             return new(true, true, owner is not null, owner, recoveryWriteId);
         }
         catch (Exception error)
         {
+            var requestCancellationObserved = ct.IsCancellationRequested;
+            var resetBudgetExpired = resetDeadline?.IsCancellationRequested == true;
+            var cancellationObservation = error is not OperationCanceledException ? "NotCancelled" :
+                requestCancellationObserved && resetBudgetExpired ? "RequestAndBudget" :
+                requestCancellationObserved ? "Request" : resetBudgetExpired ? "ResetBudget" : "Unclassified";
             RuntimeDiagnostics.Record("CommissioningRecovery", "Blocked", owner,
-                new { resetId, actor, automaticRetry = false }, error);
+                new { resetId, actor, phase, resetBudgetMs, requestCancellationObserved,
+                    resetBudgetExpired, cancellationObservation, automaticRetry = false }, error,
+                elapsedMs: Stopwatch.GetElapsedTime(started).TotalMilliseconds);
             throw;
         }
-        finally { if (maintenance) commands.EndMaintenance(); gate.Release(); }
+        finally
+        {
+            linked?.Dispose(); resetDeadline?.Dispose();
+            if (maintenance) commands.EndMaintenance(); gate.Release();
+        }
     }
     private void RequireReleased(Guid? owner)
     {

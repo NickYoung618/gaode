@@ -247,3 +247,9 @@ Commissioning正式POST /reset在原Run.Start权限下串行执行维护：阻�
 GET Run新增commissioningRecovery投影，仅依据已提交取消终态和恢复审计；页面沿既有故障/人工操作区域提供“复位并结束旧任务”，调用同一正式/reset入口。成功后明确旧任务已结束，启动控件只在GET确认恢复证明及Available时可创建新的requestId/Run；不自动启动、不续接旧步骤，不复用旧冻结配置。StartPublicRequest可选commissioningRestartFrom={runId,recoveryWriteId}，后端验证所引用取消及恢复提交事实，并保存在新Run原始启动上下文中；普通启动和旧Test故障restartFrom合同不变。Host重启读取Cancelled持久终态，不再次恢复或自动重发旧Run；未完成恢复仍Held。
 
 用户要求更新现有final-4目录及同名ZIP，不创建新部署包编号。更新前备份原manifest/ZIP摘要及改动文件，保留历史验证与回退；重新发布受影响Host/Prep/Worker等消费程序集，重新冻结源码和清单并校验同名ZIP，不触发真实复位/运动或替换运行中安装。
+
+## 2026-10-09 现场复位诊断证据保全（FR-014增量）
+
+用户提供现场诊断包并要求深层诊断、最小修改。已核对事实见reset-diagnosis-review-20261009.md：旧Run在启动阶段即因旧MB2007拒绝，不具有本轮配方完成事实；后续旧MB2009拒绝与首次取消必须分别诊断。
+
+实际启动Host前须保全旧stdout/stderr，CheckOnly不归档；归档失败不覆盖旧日志。复位失败诊断须保留resetId、实际阶段、耗时、请求取消/预算到期两个独立观察及原异常。PLC关键读回与Ready变化沿已有低频结构化日志记录，不增加高频逐帧打印、不改变设备调用和既有恢复门禁。本次不补造旧请求释放规则，当前现场旧任务解除仍依赖可核定的PLC恢复条件。

@@ -97,6 +97,8 @@ public sealed class SiteOperationHandshakeTests
         var log = File.ReadAllText(Path.Combine(evidence.Root, "runtime.log"));
         Assert.Contains("ResetNotReadyObserved", log); Assert.Contains("ResetCompleted", log);
         Assert.Contains("ResetPreconditionsConfirmed", log);
+        Assert.Contains("ResetRequestObserved", log); Assert.Contains("ResetReadyObserved", log);
+        Assert.Contains("ResetVerificationObserved", log); Assert.Contains("ResetRequestClearWriteResponded", log);
         evidence.Save(plc, "Reset edge and persistent log verified");
     }
     [Fact]
