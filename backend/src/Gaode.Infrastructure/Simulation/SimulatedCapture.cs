@@ -6,6 +6,7 @@ namespace Gaode.Infrastructure.Simulation;
 public sealed class SimulatedCapture(SimulationProfile profile, SimulationEventScheduler scheduler) : ICapturePort
 {
     private int _threeD, _f;
+    private readonly System.Collections.Concurrent.ConcurrentDictionary<Guid, byte> _fTriggeredRuns = new();
     private long _epoch = 1;
     public long ConnectionEpoch => Volatile.Read(ref _epoch);
     public string MediaSource => profile.Fixtures.MediaSource;
@@ -23,7 +24,9 @@ public sealed class SimulatedCapture(SimulationProfile profile, SimulationEventS
             throw new ArgumentException("采集请求无效");
         if (request.Role == CaptureRole.F)
         {
-            if (Interlocked.Increment(ref _f) > 1) throw new InvalidOperationException("F已触发，不允许重拍");
+            if (!_fTriggeredRuns.TryAdd(request.Envelope.RunId, 0))
+                throw new InvalidOperationException("F已触发，不允许重拍");
+            Interlocked.Increment(ref _f);
         }
         else Interlocked.Increment(ref _threeD);
         var stage = request.Role == CaptureRole.ThreeD ? profile.Stages.Capture3d : profile.Stages.CaptureF;
@@ -54,6 +57,9 @@ public sealed class SimulatedCapture(SimulationProfile profile, SimulationEventS
                     epoch, AcquisitionContract.RequestedSettingsDigest(request), MediaSource,
                     CameraOrigin, LightOrigin, CaptureApplicationState.ConfiguredOnly, null,
                     false, [$"simulation:{profile.Id}/{profile.Version}"])
+                    { ActualPublicSettings = request.PublicSettings,
+                        CameraApplicationState = CaptureApplicationState.ConfiguredOnly,
+                        LightApplicationState = CaptureApplicationState.ConfiguredOnly }
             };
             onEvent(captured);
             scheduler.Duplicates(stage, () => onEvent(captured));

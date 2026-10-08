@@ -1,0 +1,107 @@
+{
+  "scope": "OFFLINE:actual-desktop-identity-only",
+  "checkedAtUtc": "2026-10-07T21:34:57.0391938Z",
+  "results": [
+    {
+      "scope": "OFFLINE:actual-HostRuntime-WebView2-DOM",
+      "state": "Passed",
+      "mode": "RealDeviceCommissioning",
+      "devToolsEnabled": false,
+      "observations": [
+        {
+          "id": "confirmed-user",
+          "result": "true"
+        },
+        {
+          "id": "role-mismatch-rejected",
+          "result": "true"
+        },
+        {
+          "id": "accepted-login",
+          "result": "true"
+        },
+        {
+          "id": "formal-running-page",
+          "result": "true"
+        },
+        {
+          "id": "no-query-or-global-config",
+          "result": "true"
+        },
+        {
+          "id": "no-persistent-credential",
+          "result": "true"
+        },
+        {
+          "id": "no-frame-host-config",
+          "result": "true"
+        },
+        {
+          "id": "recipe-permission",
+          "result": "true"
+        }
+      ]
+    },
+    {
+      "scope": "OFFLINE:actual-HostRuntime-WebView2-DOM",
+      "state": "Passed",
+      "mode": "RealDeviceCommissioning",
+      "devToolsEnabled": false,
+      "observations": [
+        {
+          "id": "confirmed-user",
+          "result": "true"
+        },
+        {
+          "id": "role-mismatch-rejected",
+          "result": "true"
+        },
+        {
+          "id": "accepted-login",
+          "result": "true"
+        },
+        {
+          "id": "formal-running-page",
+          "result": "true"
+        },
+        {
+          "id": "no-query-or-global-config",
+          "result": "true"
+        },
+        {
+          "id": "no-persistent-credential",
+          "result": "true"
+        },
+        {
+          "id": "no-frame-host-config",
+          "result": "true"
+        },
+        {
+          "id": "recipe-permission",
+          "result": "true"
+        }
+      ]
+    },
+    {
+      "scope": "OFFLINE:actual-HostRuntime-WebView2-DOM",
+      "state": "Passed",
+      "mode": "RealDeviceCommissioning",
+      "devToolsEnabled": false,
+      "observations": [
+        {
+          "id": "invalid-identity-refused",
+          "result": "true"
+        }
+      ]
+    },
+    {
+      "scope": "OFFLINE:actual-HostRuntime-WebView2-DOM",
+      "state": "PassedExpectedRejection",
+      "errorType": "InvalidOperationException",
+      "observations": []
+    }
+  ],
+  "credentialFoundInReportsOrDesktopLogs": false,
+  "localSession": "C:\\Users\\Administrator\\AppData\\Local\\Temp\\gaode-021-probe-4ad2e30122cc4ffbb6ea1d640644677f",
+  "fieldValidation": "T055/T056 Blocked"
+}

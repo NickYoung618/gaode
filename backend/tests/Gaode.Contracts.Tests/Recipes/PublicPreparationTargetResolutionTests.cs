@@ -96,6 +96,8 @@ public sealed class PublicPreparationTargetResolutionTests
             Task.FromResult<CommittedPublicPreparationHandoffV2?>(Value);
         private sealed class CurrentTrace(FixedHandoffQuery owner) : ITraceQuery
         {
+            public Task<Gaode.Application.Station01.StartReceipt?> GetStartReceiptAsync(string subject, string requestId, CancellationToken token) =>
+                owner.Inputs.GetStartReceiptAsync(subject, requestId, token);
             public Task<PersistedRun?> GetRunAsync(Guid id, CancellationToken token) => owner.Inputs.GetRunAsync(id, token);
             public Task<IReadOnlyList<PersistedWrite>> GetWritesAsync(Guid id, CancellationToken token) => owner.Inputs.GetWritesAsync(id, token);
             public Task<PersistedWrite?> GetWriteAsync(Guid id, CancellationToken token) => owner.Inputs.GetWriteAsync(id, token);

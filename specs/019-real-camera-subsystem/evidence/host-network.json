@@ -1,0 +1,133 @@
+{
+  "Adapters": [
+    {
+      "Name": "以太网 2",
+      "InterfaceDescription": "Intel(R) Ethernet Connection (17) I219-V",
+      "MacAddress": "A0-14-6D-00-4B-4A",
+      "Status": "Up"
+    },
+    {
+      "Name": "D",
+      "InterfaceDescription": "Intel(R) I210 Gigabit Network Connection #4",
+      "MacAddress": "A0-14-6D-01-36-37",
+      "Status": "Up"
+    },
+    {
+      "Name": "E",
+      "InterfaceDescription": "Intel(R) I210 Gigabit Network Connection #5",
+      "MacAddress": "A0-14-6D-01-36-39",
+      "Status": "Up"
+    },
+    {
+      "Name": "C",
+      "InterfaceDescription": "Intel(R) I210 Gigabit Network Connection #6",
+      "MacAddress": "A0-14-6D-01-36-36",
+      "Status": "Up"
+    },
+    {
+      "Name": "MES",
+      "InterfaceDescription": "Intel(R) I210 Gigabit Network Connection",
+      "MacAddress": "A0-14-6D-00-4B-4B",
+      "Status": "Disconnected"
+    },
+    {
+      "Name": "A",
+      "InterfaceDescription": "Intel(R) I210 Gigabit Network Connection #3",
+      "MacAddress": "A0-14-6D-01-36-35",
+      "Status": "Up"
+    },
+    {
+      "Name": "F",
+      "InterfaceDescription": "Intel(R) I210 Gigabit Network Connection #8",
+      "MacAddress": "A0-14-6D-01-36-38",
+      "Status": "Up"
+    },
+    {
+      "Name": "PLC",
+      "InterfaceDescription": "Intel(R) I210 Gigabit Network Connection #2",
+      "MacAddress": "A0-14-6D-01-36-3B",
+      "Status": "Up"
+    },
+    {
+      "Name": "3D",
+      "InterfaceDescription": "Intel(R) I210 Gigabit Network Connection #7",
+      "MacAddress": "A0-14-6D-01-36-3A",
+      "Status": "Up"
+    },
+    {
+      "Name": "B",
+      "InterfaceDescription": "Intel(R) I210 Gigabit Network Connection #9",
+      "MacAddress": "A0-14-6D-01-36-34",
+      "Status": "Up"
+    },
+    {
+      "Name": "Meta",
+      "InterfaceDescription": "Meta Tunnel",
+      "MacAddress": "",
+      "Status": "Up"
+    }
+  ],
+  "IPv4": [
+    {
+      "InterfaceAlias": "B",
+      "IPAddress": "192.168.3.20",
+      "PrefixLength": 24
+    },
+    {
+      "InterfaceAlias": "F",
+      "IPAddress": "192.168.6.20",
+      "PrefixLength": 24
+    },
+    {
+      "InterfaceAlias": "3D",
+      "IPAddress": "192.168.1.20",
+      "PrefixLength": 24
+    },
+    {
+      "InterfaceAlias": "C",
+      "IPAddress": "192.168.0.20",
+      "PrefixLength": 24
+    },
+    {
+      "InterfaceAlias": "E",
+      "IPAddress": "192.168.5.20",
+      "PrefixLength": 24
+    },
+    {
+      "InterfaceAlias": "D",
+      "IPAddress": "192.168.2.20",
+      "PrefixLength": 24
+    },
+    {
+      "InterfaceAlias": "A",
+      "IPAddress": "192.168.4.20",
+      "PrefixLength": 24
+    },
+    {
+      "InterfaceAlias": "PLC",
+      "IPAddress": "192.168.0.88",
+      "PrefixLength": 24
+    },
+    {
+      "InterfaceAlias": "以太网 2",
+      "IPAddress": "192.168.50.9",
+      "PrefixLength": 22
+    },
+    {
+      "InterfaceAlias": "MES",
+      "IPAddress": "169.254.5.211",
+      "PrefixLength": 16
+    },
+    {
+      "InterfaceAlias": "Meta",
+      "IPAddress": "198.18.0.1",
+      "PrefixLength": 30
+    },
+    {
+      "InterfaceAlias": "Loopback Pseudo-Interface 1",
+      "IPAddress": "127.0.0.1",
+      "PrefixLength": 8
+    }
+  ],
+  "Notice": "Read-only host snapshot. Adapter Up does not prove camera online. No device opened."
+}

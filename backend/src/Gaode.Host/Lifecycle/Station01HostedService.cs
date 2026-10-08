@@ -41,6 +41,7 @@ public sealed class Station01HostedService(StoreAccessGuard guard, TraceWriter w
         logger.LogInformation("StartupPersistence category=Lifecycle phase=Started deviceServicesStarted=false");
         _ = guard.Root;
         _ = writer;
+        await new CameraCaptureJournal(databaseOptions).RestoreAsync(media, cancellationToken);
         coordinator.Start();
         await using (var startupDb = new Station01DbContext(databaseOptions))
         {

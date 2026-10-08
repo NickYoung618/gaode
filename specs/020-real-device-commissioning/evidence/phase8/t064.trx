@@ -1,0 +1,67 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<TestRun id="f5ca2a30-19e6-492a-af3f-54327a72badb" name="Administrator@DEMO 2026-10-08 04:12:49" runUser="demo\Administrator" xmlns="http://microsoft.com/schemas/VisualStudio/TeamTest/2010">
+  <Times creation="2026-10-08T04:12:49.6248761+08:00" queuing="2026-10-08T04:12:49.6248763+08:00" start="2026-10-08T04:12:47.7416328+08:00" finish="2026-10-08T04:12:49.6289366+08:00" />
+  <TestSettings name="default" id="fd7dfa3b-f696-410e-86d8-757874a63599">
+    <Deployment runDeploymentRoot="Administrator_DEMO_2026-10-08_04_12_49" />
+  </TestSettings>
+  <Results>
+    <UnitTestResult executionId="2b6d49fa-17a5-4553-8c2d-5aa13efb63ae" testId="1709347c-ea08-b5e0-6184-9398696bf5a5" testName="Gaode.Communication.Tests.ControlledCommissioningTests.FormalCommissioningStartBlocksWithoutSafeInputsOrConfirmedSiteSafety(missingInput: False)" computerName="DEMO" duration="00:00:00.1156973" startTime="2026-10-08T04:12:49.4474508+08:00" endTime="2026-10-08T04:12:49.5614489+08:00" testType="13cdc9d9-ddb5-4fa4-a97d-d965ccfc6d4b" outcome="Failed" testListId="8c84fa94-04c1-424b-9868-57a2d4851a1d" relativeResultsDirectory="2b6d49fa-17a5-4553-8c2d-5aa13efb63ae">
+      <Output>
+        <ErrorInfo>
+          <Message>Assert.Contains() Failure: Sub-string not found&#xD;
+String:    "Information RuntimeFlow {"schema":"statio"···&#xD;
+Not found: "BlockedNoDeviceAction"</Message>
+          <StackTrace>   at Gaode.Communication.Tests.ControlledCommissioningTests.FormalCommissioningStartBlocksWithoutSafeInputsOrConfirmedSiteSafety(Boolean missingInput) in D:\gaode\backend\tests\Gaode.Communication.Tests\ControlledCommissioningTests.cs:line 80&#xD;
+   at Gaode.Communication.Tests.ControlledCommissioningTests.FormalCommissioningStartBlocksWithoutSafeInputsOrConfirmedSiteSafety(Boolean missingInput) in D:\gaode\backend\tests\Gaode.Communication.Tests\ControlledCommissioningTests.cs:line 88&#xD;
+   at Gaode.Communication.Tests.ControlledCommissioningTests.FormalCommissioningStartBlocksWithoutSafeInputsOrConfirmedSiteSafety(Boolean missingInput) in D:\gaode\backend\tests\Gaode.Communication.Tests\ControlledCommissioningTests.cs:line 88&#xD;
+   at Gaode.Communication.Tests.ControlledCommissioningTests.FormalCommissioningStartBlocksWithoutSafeInputsOrConfirmedSiteSafety(Boolean missingInput) in D:\gaode\backend\tests\Gaode.Communication.Tests\ControlledCommissioningTests.cs:line 88&#xD;
+--- End of stack trace from previous location ---</StackTrace>
+        </ErrorInfo>
+      </Output>
+    </UnitTestResult>
+    <UnitTestResult executionId="f4ed264b-166e-4a78-860d-099964159a49" testId="4f100c36-d0dd-4864-c999-f08003a3a0bf" testName="Gaode.Communication.Tests.ControlledCommissioningTests.FormalCommissioningStartBlocksWithoutSafeInputsOrConfirmedSiteSafety(missingInput: True)" computerName="DEMO" duration="00:00:01.3469177" startTime="2026-10-08T04:12:48.0901089+08:00" endTime="2026-10-08T04:12:49.4421209+08:00" testType="13cdc9d9-ddb5-4fa4-a97d-d965ccfc6d4b" outcome="Passed" testListId="8c84fa94-04c1-424b-9868-57a2d4851a1d" relativeResultsDirectory="f4ed264b-166e-4a78-860d-099964159a49" />
+  </Results>
+  <TestDefinitions>
+    <UnitTest name="Gaode.Communication.Tests.ControlledCommissioningTests.FormalCommissioningStartBlocksWithoutSafeInputsOrConfirmedSiteSafety(missingInput: False)" storage="d:\gaode\backend\tests\gaode.communication.tests\bin\debug\net10.0\gaode.communication.tests.dll" id="1709347c-ea08-b5e0-6184-9398696bf5a5">
+      <Execution id="2b6d49fa-17a5-4553-8c2d-5aa13efb63ae" />
+      <TestMethod codeBase="D:\gaode\backend\tests\Gaode.Communication.Tests\bin\Debug\net10.0\Gaode.Communication.Tests.dll" adapterTypeName="executor://xunit/VsTestRunner3/netcore/" className="Gaode.Communication.Tests.ControlledCommissioningTests" name="FormalCommissioningStartBlocksWithoutSafeInputsOrConfirmedSiteSafety" />
+    </UnitTest>
+    <UnitTest name="Gaode.Communication.Tests.ControlledCommissioningTests.FormalCommissioningStartBlocksWithoutSafeInputsOrConfirmedSiteSafety(missingInput: True)" storage="d:\gaode\backend\tests\gaode.communication.tests\bin\debug\net10.0\gaode.communication.tests.dll" id="4f100c36-d0dd-4864-c999-f08003a3a0bf">
+      <Execution id="f4ed264b-166e-4a78-860d-099964159a49" />
+      <TestMethod codeBase="D:\gaode\backend\tests\Gaode.Communication.Tests\bin\Debug\net10.0\Gaode.Communication.Tests.dll" adapterTypeName="executor://xunit/VsTestRunner3/netcore/" className="Gaode.Communication.Tests.ControlledCommissioningTests" name="FormalCommissioningStartBlocksWithoutSafeInputsOrConfirmedSiteSafety" />
+    </UnitTest>
+  </TestDefinitions>
+  <TestEntries>
+    <TestEntry testId="1709347c-ea08-b5e0-6184-9398696bf5a5" executionId="2b6d49fa-17a5-4553-8c2d-5aa13efb63ae" testListId="8c84fa94-04c1-424b-9868-57a2d4851a1d" />
+    <TestEntry testId="4f100c36-d0dd-4864-c999-f08003a3a0bf" executionId="f4ed264b-166e-4a78-860d-099964159a49" testListId="8c84fa94-04c1-424b-9868-57a2d4851a1d" />
+  </TestEntries>
+  <TestLists>
+    <TestList name="列表中未列出的结果" id="8c84fa94-04c1-424b-9868-57a2d4851a1d" />
+    <TestList name="所有已加载的结果" id="19431567-8539-422a-85d7-44ee4e166bda" />
+  </TestLists>
+  <ResultSummary outcome="Failed">
+    <Counters total="2" executed="2" passed="1" failed="1" error="0" timeout="0" aborted="0" inconclusive="0" passedButRunAborted="0" notRunnable="0" notExecuted="0" disconnected="0" warning="0" completed="0" inProgress="0" pending="0" />
+    <Output>
+      <StdOut>[xUnit.net 00:00:00.00] xUnit.net VSTest Adapter v3.1.5+1b188a7b0a (64-bit .NET 10.0.12)&#xD;
+[xUnit.net 00:00:00.06]   Discovering: Gaode.Communication.Tests&#xD;
+[xUnit.net 00:00:00.09]   Discovered:  Gaode.Communication.Tests&#xD;
+[xUnit.net 00:00:00.11]   Starting:    Gaode.Communication.Tests&#xD;
+[xUnit.net 00:00:01.59]       Assert.Contains() Failure: Sub-string not found&#xD;
+[xUnit.net 00:00:01.59]       String:    "Information RuntimeFlow {"schema":"statio"···&#xD;
+[xUnit.net 00:00:01.59]       Not found: "BlockedNoDeviceAction"&#xD;
+[xUnit.net 00:00:01.59]       Stack Trace:&#xD;
+[xUnit.net 00:00:01.59]         D:\gaode\backend\tests\Gaode.Communication.Tests\ControlledCommissioningTests.cs(80,0): at Gaode.Communication.Tests.ControlledCommissioningTests.FormalCommissioningStartBlocksWithoutSafeInputsOrConfirmedSiteSafety(Boolean missingInput)&#xD;
+[xUnit.net 00:00:01.59]         D:\gaode\backend\tests\Gaode.Communication.Tests\ControlledCommissioningTests.cs(88,0): at Gaode.Communication.Tests.ControlledCommissioningTests.FormalCommissioningStartBlocksWithoutSafeInputsOrConfirmedSiteSafety(Boolean missingInput)&#xD;
+[xUnit.net 00:00:01.59]         D:\gaode\backend\tests\Gaode.Communication.Tests\ControlledCommissioningTests.cs(88,0): at Gaode.Communication.Tests.ControlledCommissioningTests.FormalCommissioningStartBlocksWithoutSafeInputsOrConfirmedSiteSafety(Boolean missingInput)&#xD;
+[xUnit.net 00:00:01.59]         D:\gaode\backend\tests\Gaode.Communication.Tests\ControlledCommissioningTests.cs(88,0): at Gaode.Communication.Tests.ControlledCommissioningTests.FormalCommissioningStartBlocksWithoutSafeInputsOrConfirmedSiteSafety(Boolean missingInput)&#xD;
+[xUnit.net 00:00:01.59]         --- End of stack trace from previous location ---&#xD;
+[xUnit.net 00:00:01.60]   Finished:    Gaode.Communication.Tests&#xD;
+</StdOut>
+    </Output>
+    <RunInfos>
+      <RunInfo computerName="DEMO" outcome="Error" timestamp="2026-10-08T04:12:49.5629555+08:00">
+        <Text>[xUnit.net 00:00:01.59]     Gaode.Communication.Tests.ControlledCommissioningTests.FormalCommissioningStartBlocksWithoutSafeInputsOrConfirmedSiteSafety(missingInput: False) [FAIL]</Text>
+      </RunInfo>
+    </RunInfos>
+  </ResultSummary>
+</TestRun>

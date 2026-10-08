@@ -105,3 +105,12 @@ USR-D目标绑定：复用既有manualRemovalButton/manualRemovalReason承接授
 共同字段/序列化唯一定义见011 recipe-contract RC10（设计1.5、正文4/冻结3；实际代码仍1.4）。执行增量见014 contracts/execution.md EX14-01—05，012界面/HTTP见layout-design与recipe-authoring-api；均为本会话统一设计，无第二模型/校验/身份/执行器。本轮不代码/构建/测试、不新增tasks；后续代码前须准确任务/消费者/注册扫描承接，不能称待同步已完成。旧source、任务勾选、历史验证和013单源降频/性能偏差保持。
 
 012:T046本次既有页头状态绑定：仍使用原“设备在线·检测中”所在行，不增控件/页面。stationOperationalStatus直接消费GET status的连接/可靠性及当前run实际executionState；后端明确currentRun=null才表示未运行，缺失信息表示未提供。质量、计划和填写状态不推导运行。stationConnectionDot只反映可靠连接，不能固定为绿色。实现HTML挂点归012:T041，运行绑定归T046，精确差异归T043。
+
+
+## 021受控联调用途增量（2026-10-08）
+
+本次仅定向更新021消费者合同，旧用途/历史证据保持原范围。独立规格与设计见[021规格](../../021-commissioning-console/spec.md)、[计划](../../021-commissioning-console/plan.md)、[任务](../../021-commissioning-console/tasks.md)。新用途为RealDeviceCommissioning，运行purpose为Commissioning。
+
+预配置单身份由后台核权，Operator运行/ProcessEngineer编辑，不用Test令牌或客户端角色授权；identity GET、固定appassets.local来源、头认证和宿主内存凭据按[IH合同](../../021-commissioning-console/contracts/identity-host.md)。按主体/requestId只读启动查询、Final持久提交后同Run普通释放及只读start-admission按[SC合同](../../021-commissioning-console/contracts/start-and-completion.md)；未知不重发，保留原故障恢复。
+
+七格显示已由用户确认C/D/A/B/E/3D/F；本新用途的对应问题关闭，旧Test临时映射证据不改。当前Run已提交图像/结果、未参与不补图和三页既有承载按[RM合同](../../021-commissioning-console/contracts/recipe-media-ui.md)，不改变采集工艺/硬件绑定或原型布局。

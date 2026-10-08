@@ -1,0 +1,167 @@
+{
+  "schemaVersion": "1.0",
+  "id": "station01-public-commissioning",
+  "version": "1",
+  "purpose": "RealDeviceCommissioning",
+  "source": "User-confirmed 2026-10-08 mm/XY0..100/Z0..10/startupXYZ0; existing successful local recipe sha256:a898bc7001febf8e0d626f0542bacdac7ae7a8c493c80b3dd4d7202c81ff9a75",
+  "bindings": [
+    {
+      "id": "site-plc",
+      "provider": "Real",
+      "role": "PLC"
+    },
+    {
+      "id": "3D",
+      "provider": "Real",
+      "role": "Camera3D"
+    },
+    {
+      "id": "F",
+      "provider": "Real",
+      "role": "CameraF"
+    },
+    {
+      "id": "virtual-Light3D",
+      "provider": "Simulated",
+      "role": "Light3D"
+    },
+    {
+      "id": "virtual-LightF",
+      "provider": "Simulated",
+      "role": "LightF"
+    },
+    {
+      "id": "virtual-TrayPose",
+      "provider": "Simulated",
+      "role": "TrayPose"
+    },
+    {
+      "id": "virtual-FDecode",
+      "provider": "Simulated",
+      "role": "FDecode"
+    }
+  ],
+  "motion": {
+    "capability": {
+      "id": "xyz.fixed",
+      "contractVersion": "1.0"
+    },
+    "axes": [
+      "X",
+      "Y",
+      "Z"
+    ],
+    "frame": "COMMISSIONING_MACHINE",
+    "unit": "mm",
+    "limits": {
+      "xMin": 0,
+      "xMax": 100,
+      "yMin": 0,
+      "yMax": 100,
+      "zMin": 0,
+      "zMax": 10
+    },
+    "points": {
+      "threeD": {
+        "id": "site-3d",
+        "version": "local-1.1.6",
+        "x": 25,
+        "y": 80,
+        "z": 0,
+        "unit": "mm",
+        "frame": "COMMISSIONING_MACHINE"
+      },
+      "f": {
+        "id": "site-f",
+        "version": "local-1.1.6",
+        "x": 65,
+        "y": 50,
+        "z": 0,
+        "unit": "mm",
+        "frame": "COMMISSIONING_MACHINE"
+      },
+      "unload": {
+        "id": "site-unload",
+        "version": "local-1.1.6",
+        "x": 0,
+        "y": 0,
+        "z": 0,
+        "unit": "mm",
+        "frame": "COMMISSIONING_MACHINE"
+      }
+    },
+    "positionTolerance": 0.1,
+    "coordinateSource": "User-confirmed 2026-10-08 mm/XY0..100/Z0..10/startupXYZ0; existing successful local recipe sha256:a898bc7001febf8e0d626f0542bacdac7ae7a8c493c80b3dd4d7202c81ff9a75",
+    "coordinateDigest": "B296C9591FB76D0E12A959945B5E4378A659EA4AFBF50CCEB457499E0C79027C"
+  },
+  "capture3d": {
+    "capability": {
+      "id": "capture.whole-tray",
+      "contractVersion": "1.0"
+    },
+    "bindingId": "3D",
+    "lightBindingId": "virtual-Light3D",
+    "scope": {
+      "id": "site-whole-tray",
+      "version": "local-1.1.6",
+      "kind": "WholeTray",
+      "unit": "mm",
+      "frame": "COMMISSIONING_MACHINE",
+      "bounds": {
+        "xMin": 0,
+        "xMax": 100,
+        "yMin": 0,
+        "yMax": 100
+      }
+    },
+    "parameters": {
+      "exposureUs": 40000
+    },
+    "maxCaptureBytes": 32505856
+  },
+  "captureF": {
+    "capability": {
+      "id": "capture.single-frame",
+      "contractVersion": "1.0"
+    },
+    "bindingId": "F",
+    "lightBindingId": "virtual-LightF",
+    "frameCount": 1,
+    "automaticRetry": false,
+    "parameters": {
+      "exposureUs": 40000
+    },
+    "maxCaptureBytes": 5013504
+  },
+  "algorithms": {
+    "fDecode": {
+      "capability": {
+        "id": "code.raw-candidates",
+        "contractVersion": "1.0"
+      },
+      "bindingId": "virtual-FDecode",
+      "parametersVersion": "1"
+    },
+    "trayPose": {
+      "capability": {
+        "id": "tray.observation",
+        "contractVersion": "1.0"
+      },
+      "bindingId": "virtual-TrayPose",
+      "parametersVersion": "1"
+    }
+  },
+  "parser": {
+    "capability": {
+      "id": "decoded-content-exact",
+      "contractVersion": "1.0"
+    },
+    "parametersVersion": "1"
+  },
+  "stopAfter": "PublicHandoff",
+  "qualityState": "NotEvaluated",
+  "lightExecution": {
+    "schemaVersion": "light-execution/1",
+    "mode": "Simulated"
+  }
+}

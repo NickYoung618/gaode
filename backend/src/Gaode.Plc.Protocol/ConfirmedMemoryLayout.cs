@@ -31,9 +31,7 @@ public sealed class ConfirmedMemoryLayout
         var fields = new List<PlcPoint>();
         foreach (var point in Points)
         {
-            // Only exact existing semantic names are projected. No invented aliases for
-            // Model_Number/Alarm_Code/Teach/ManualZone or other absent business signals.
-            var required = ConfirmedProtocol.RequiredFields.Values.SingleOrDefault(f => f.Name == point.Id);
+            var required = SemanticField(point);
             if (required is null) continue;
             var type = Enum.Parse<PlcValueType>(point.ValueType);
             fields.Add(required with
@@ -46,12 +44,48 @@ public sealed class ConfirmedMemoryLayout
                 ByteOffset = type == PlcValueType.BoolByte ? point.MemoryByteAddress % 2 : 0
             });
         }
-        return new(fields, [], 1, 65536, Enum.Parse<Float32ByteOrder>(profile.FloatOrder))
+        return new(fields, SiteAlarmBits, 1, 65536, Enum.Parse<Float32ByteOrder>(profile.FloatOrder))
         {
-            Purpose = "Production", ByteOrderForBools = Enum.Parse<BoolByteOrder>(profile.BoolByteOrder),
+            Purpose = "Production", LayoutId = LayoutId, ByteOrderForBools = Enum.Parse<BoolByteOrder>(profile.BoolByteOrder),
             SourceReference = $"{LayoutId};{string.Join(';', Sources.Select(s => s.File + ':' + s.Sha256))};field:{profile.Source}"
         };
     }
+    public IReadOnlyDictionary<SignalId, PlcPoint> RequiredSemanticFields => Points.Select(SemanticField)
+        .OfType<PlcPoint>().ToDictionary(p => p.Id);
+    private static PlcPoint? SemanticField(ConfirmedMemoryPoint point)
+    {
+        var required = point.Id switch
+        {
+            "PC_Start_Cmd" => new PlcPoint(SignalId.PcStartCmd, 1, "%MB2007", "PC_Start_Cmd",
+                PlcDirection.PcToPlc, PlcValueType.BoolByte) { Writer = PlcWriter.Pc, ClearWriter = PlcWriter.Pc },
+            "Alarm_Code" => ConfirmedProtocol.RequiredFields[SignalId.AlarmBits],
+            "Alarm_Level" => ConfirmedProtocol.RequiredFields[SignalId.AlarmSeverity],
+            "Model_Number" => ConfirmedProtocol.RequiredFields[SignalId.ModelPayload] with { Id = SignalId.ModelNumber },
+            _ => ConfirmedProtocol.RequiredFields.Values.SingleOrDefault(f => f.Name == point.Id)
+        };
+        if (required is null && IndependentSafetySignals.TryGetValue(point.Id, out var safetyId))
+            required = new(safetyId, 1, "%MB" + point.MemoryByteAddress, point.Id,
+                PlcDirection.PlcToPc, PlcValueType.BoolByte)
+                { Writer = PlcWriter.Plc, ClearWriter = PlcWriter.Plc };
+        if (required is null) return null;
+        var type = Enum.Parse<PlcValueType>(point.ValueType);
+        return required with { Name = point.Id, ValueType = type, Area = PlcArea.HoldingRegister,
+            RegisterCount = type == PlcValueType.Float32 ? 2 : 1,
+            ByteOffset = type == PlcValueType.BoolByte ? point.MemoryByteAddress % 2 : 0 };
+    }
+    public static readonly IReadOnlyDictionary<string, SignalId> IndependentSafetySignals = new Dictionary<string, SignalId>
+    {
+        ["EStop_Active"] = SignalId.EStopActive, ["X_Axis_Alarm"] = SignalId.XAxisAlarm,
+        ["Y_Axis_Alarm"] = SignalId.YAxisAlarm, ["Z_Camera_Axis_Alarm"] = SignalId.ZCameraAxisAlarm,
+        ["Z_Scan_Axis_Alarm"] = SignalId.ZScanAxisAlarm, ["Z_Flip_Axis_Alarm"] = SignalId.ZFlipAxisAlarm,
+        ["Rotate_Axis_Alarm"] = SignalId.RotateAxisAlarm, ["Flip_Axis_Alarm"] = SignalId.FlipAxisAlarm,
+        ["PC_Communication_Alarm"] = SignalId.PcCommunicationAlarm, ["PC_Alarm"] = SignalId.PcAlarm
+    };
+    private static readonly AlarmBitDefinition[] SiteAlarmBits =
+    [new("LightCurtain", SignalId.AlarmBits, 0, 3), new("EmergencyStop", SignalId.AlarmBits, 1, 3),
+     new("SafetyDoor", SignalId.AlarmBits, 2, 3), new("ServoOverload", SignalId.AlarmBits, 3, 3),
+     new("Communication", SignalId.AlarmBits, 4, 3), new("PlcInternal", SignalId.AlarmBits, 5, 3),
+     new("Heartbeat", SignalId.AlarmBits, 6, 0), new("PcAlarm", SignalId.AlarmBits, 7, 3)];
 }
 
 public sealed class FieldAddressProfile

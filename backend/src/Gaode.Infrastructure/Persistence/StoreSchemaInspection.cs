@@ -38,7 +38,7 @@ internal static class StoreSchemaInspection
     private static string Normalize(string sql) => Regex.Replace(sql.Trim().TrimEnd(';'), @"\s+", " ");
     private static string Text(object? value) => Convert.ToString(value, System.Globalization.CultureInfo.InvariantCulture) ?? "";
 
-    internal static StoreInspection Inspect(SqliteConnection connection, string root, bool hashes)
+    internal static StoreInspection Inspect(SqliteConnection connection, string root, bool hashes, string expectedProfile = "Test")
     {
         Guid? storeId = null; string? version = null; string? profile = null;
         try
@@ -47,7 +47,9 @@ internal static class StoreSchemaInspection
             if (manifests.Count != 1 || !Guid.TryParse(Text(manifests[0][0]), out var id) || id == Guid.Empty)
                 return Bad("ManifestIdentityInvalid");
             storeId = id; version = Text(manifests[0][1]); profile = Text(manifests[0][2]);
-            if (profile != "Test" || version is not ("s01-store/1" or "s01-store/2" or "s01-store/3") ||
+            if (expectedProfile is not ("Test" or Gaode.Domain.Configuration.RuntimePurposes.RealDeviceCommissioning) ||
+                profile != expectedProfile || expectedProfile != "Test" && version != "s01-store/3" ||
+                version is not ("s01-store/1" or "s01-store/2" or "s01-store/3") ||
                 !Guid.TryParse(Text(manifests[0][3]), out var preparationId) || preparationId == Guid.Empty ||
                 !DateTimeOffset.TryParse(Text(manifests[0][4]), out _)) return Bad("ManifestIncompatible");
             var target = version is "s01-store/2" or "s01-store/3";

@@ -1,0 +1,212 @@
+[
+  {
+    "fixture": "gaode-stage-a-DelayedClearHoldsOwnershipAndPreservesArrivalEvidence-a1fc41f67bc34f47a143f5ec6c5ec423",
+    "databaseSha256": "e6de89d0e906457d5fe800469ef151d6aecb7cececd18d728ccb8d5635ed3aa1",
+    "rows": {
+      "StageEvents": 0,
+      "StageIdempotencies": 0,
+      "PlcCommunicationEvidence": 2
+    },
+    "portableEvidence": "evidence/formal-stage-a/final/gaode-stage-a-DelayedClearHoldsOwnershipAndPreservesArrivalEvidence-a1fc41f67bc34f47a143f5ec6c5ec423/sqlite-evidence.json"
+  },
+  {
+    "fixture": "gaode-stage-a-DisconnectWhileWaitingClearCannotStartSuccessor-618c6d3f0e204f3ea26372ecccf1849a",
+    "databaseSha256": "332134962e257c5afc3c66a25af807f79f6320193a9f9f7368c08c88fe831149",
+    "rows": {
+      "StageEvents": 0,
+      "StageIdempotencies": 0,
+      "PlcCommunicationEvidence": 2
+    },
+    "portableEvidence": "evidence/formal-stage-a/final/gaode-stage-a-DisconnectWhileWaitingClearCannotStartSuccessor-618c6d3f0e204f3ea26372ecccf1849a/sqlite-evidence.json"
+  },
+  {
+    "fixture": "gaode-stage-a-ExistingCommunicationHandshakeSwitchesOneTwoAndReusesTwo-0ef7928476d5403ca183fb4eb87948d4",
+    "databaseSha256": "90177e91b52cea9f4ee7c7efd2c05edaa4ed4c6401b9b5ec1cb0d25a8fa85651",
+    "rows": {
+      "StageEvents": 0,
+      "StageIdempotencies": 0,
+      "PlcCommunicationEvidence": 0
+    },
+    "portableEvidence": "evidence/formal-stage-a/final/gaode-stage-a-ExistingCommunicationHandshakeSwitchesOneTwoAndReusesTwo-0ef7928476d5403ca183fb4eb87948d4/sqlite-evidence.json"
+  },
+  {
+    "fixture": "gaode-stage-a-FlipHoldsParentUntilPutBackWithItsOwnWindow-b7f8d1ceab864c3488479ebed9426ab8",
+    "databaseSha256": "8dc3bc8595d74b6d4ae45b2899fe9934b453e5e66b72dd01447152eafc88bfe2",
+    "rows": {
+      "StageEvents": 0,
+      "StageIdempotencies": 0,
+      "PlcCommunicationEvidence": 9
+    },
+    "portableEvidence": "evidence/formal-stage-a/final/gaode-stage-a-FlipHoldsParentUntilPutBackWithItsOwnWindow-b7f8d1ceab864c3488479ebed9426ab8/sqlite-evidence.json"
+  },
+  {
+    "fixture": "gaode-stage-a-NoClearTimeoutAndLateZeroNeverAuthorizeAnotherRequest-76526cd18e134a9b8c6f84d95fcdfde6",
+    "databaseSha256": "ef03710d209f18fcc8bc2afcb076863bbfd74b4530afc0cf2f965411f54b4240",
+    "rows": {
+      "StageEvents": 0,
+      "StageIdempotencies": 0,
+      "PlcCommunicationEvidence": 2
+    },
+    "portableEvidence": "evidence/formal-stage-a/final/gaode-stage-a-NoClearTimeoutAndLateZeroNeverAuthorizeAnotherRequest-76526cd18e134a9b8c6f84d95fcdfde6/sqlite-evidence.json"
+  },
+  {
+    "fixture": "gaode-stage-a-RepeatedTargetsReuseOnlySatisfiedAxes-3131347d93bd48079ab21873c4259800",
+    "databaseSha256": "e2e0fbbe91c8127ccfea1a3961e3467f7a69a6989509866b874a26798142e534",
+    "rows": {
+      "StageEvents": 0,
+      "StageIdempotencies": 0,
+      "PlcCommunicationEvidence": 7
+    },
+    "portableEvidence": "evidence/formal-stage-a/final/gaode-stage-a-RepeatedTargetsReuseOnlySatisfiedAxes-3131347d93bd48079ab21873c4259800/sqlite-evidence.json"
+  },
+  {
+    "fixture": "gaode-stage-a-RepeatedTargetsReuseOnlySatisfiedAxes-4c401c4f4a204775a56de2c86bfab479",
+    "databaseSha256": "1d3f55d9dec5d8e99e4a9aa8fe69bce923a11bede4a1c9ed1642c492040eb5cb",
+    "rows": {
+      "StageEvents": 0,
+      "StageIdempotencies": 0,
+      "PlcCommunicationEvidence": 7
+    },
+    "portableEvidence": "evidence/formal-stage-a/final/gaode-stage-a-RepeatedTargetsReuseOnlySatisfiedAxes-4c401c4f4a204775a56de2c86bfab479/sqlite-evidence.json"
+  },
+  {
+    "fixture": "gaode-stage-a-RepeatedTargetsReuseOnlySatisfiedAxes-4fde00ab837e41e7b20ff5b240fc5c79",
+    "databaseSha256": "0b339e60e91f51c22280026f7b61dcf2dab032926bbe8907069a0021a9361bb9",
+    "rows": {
+      "StageEvents": 0,
+      "StageIdempotencies": 0,
+      "PlcCommunicationEvidence": 7
+    },
+    "portableEvidence": "evidence/formal-stage-a/final/gaode-stage-a-RepeatedTargetsReuseOnlySatisfiedAxes-4fde00ab837e41e7b20ff5b240fc5c79/sqlite-evidence.json"
+  },
+  {
+    "fixture": "gaode-stage-a-SixAxisMappingsClearIndependentlyAndRepeat-87d77fce45204e6e99db654e346d2bf3",
+    "databaseSha256": "e98813f60cb09c82978c67b8844d1ef0949ecf6d1ae8a941e95f2ed30cf52c0b",
+    "rows": {
+      "StageEvents": 0,
+      "StageIdempotencies": 0,
+      "PlcCommunicationEvidence": 10
+    },
+    "portableEvidence": "evidence/formal-stage-a/final/gaode-stage-a-SixAxisMappingsClearIndependentlyAndRepeat-87d77fce45204e6e99db654e346d2bf3/sqlite-evidence.json"
+  },
+  {
+    "fixture": "gaode-stage-a-SortingUsesActualCommitAndFinalSafetyBeforeParentClear-5d76c416a37641ebae4bf2de087b714f",
+    "databaseSha256": "3ed3390c52d608eacfff23af39fb5cfcd50562a2de07aa7d2f112fb8357fcc56",
+    "rows": {
+      "StageEvents": 6,
+      "StageIdempotencies": 6,
+      "PlcCommunicationEvidence": 5
+    },
+    "portableEvidence": "evidence/formal-stage-a/final/gaode-stage-a-SortingUsesActualCommitAndFinalSafetyBeforeParentClear-5d76c416a37641ebae4bf2de087b714f/sqlite-evidence.json"
+  },
+  {
+    "fixture": "gaode-stage-a-SortingUsesActualCommitAndFinalSafetyBeforeParentClear-ebb29488b9184a15ba2a7e7c29822271",
+    "databaseSha256": "b137fa68ab7f21130a61b95da7480b52492bf489eb6ed46db151435cc96b4d09",
+    "rows": {
+      "StageEvents": 1,
+      "StageIdempotencies": 1,
+      "PlcCommunicationEvidence": 2
+    },
+    "portableEvidence": "evidence/formal-stage-a/final/gaode-stage-a-SortingUsesActualCommitAndFinalSafetyBeforeParentClear-ebb29488b9184a15ba2a7e7c29822271/sqlite-evidence.json"
+  },
+  {
+    "fixture": "gaode-stage-a-StaticPositionWithoutCurrentClosureMustActuallyDispatch-164b3e6508d344839db3230585f982c8",
+    "databaseSha256": "eb54d6dfbe187fb9187625ca290a1de7b2b417f8c06182a30ec766e14492193e",
+    "rows": {
+      "StageEvents": 0,
+      "StageIdempotencies": 0,
+      "PlcCommunicationEvidence": 4
+    },
+    "portableEvidence": "evidence/formal-stage-a/final/gaode-stage-a-StaticPositionWithoutCurrentClosureMustActuallyDispatch-164b3e6508d344839db3230585f982c8/sqlite-evidence.json"
+  },
+  {
+    "fixture": "gaode-stage-a-StaticPositionWithoutCurrentClosureMustActuallyDispatch-1854de2ea7d3413db8ca7842f7288de9",
+    "databaseSha256": "30073430e19c825086ada973bb1a91516c4360fa4f90c24a24dd259069d93269",
+    "rows": {
+      "StageEvents": 0,
+      "StageIdempotencies": 0,
+      "PlcCommunicationEvidence": 7
+    },
+    "portableEvidence": "evidence/formal-stage-a/final/gaode-stage-a-StaticPositionWithoutCurrentClosureMustActuallyDispatch-1854de2ea7d3413db8ca7842f7288de9/sqlite-evidence.json"
+  },
+  {
+    "fixture": "gaode-stage-a-StaticPositionWithoutCurrentClosureMustActuallyDispatch-d5d8da8d7cb34ee585d828d79ff1a4fd",
+    "databaseSha256": "9babb176892c6b9aa4cb8f481ba2ef115097f73958aa31fe4eb0e2a49d6bee34",
+    "rows": {
+      "StageEvents": 0,
+      "StageIdempotencies": 0,
+      "PlcCommunicationEvidence": 8
+    },
+    "portableEvidence": "evidence/formal-stage-a/final/gaode-stage-a-StaticPositionWithoutCurrentClosureMustActuallyDispatch-d5d8da8d7cb34ee585d828d79ff1a4fd/sqlite-evidence.json"
+  },
+  {
+    "fixture": "gaode-stage-a-TransitionOwnsDeviceUntilRealSqliteSaveReceipt-13b923e131b5411dbc8358fc54edee00",
+    "databaseSha256": "e96383f04d4b797364fe86be8474f1ed2da6f72c60b21f54da285a1fb6e50c78",
+    "rows": {
+      "StageEvents": 0,
+      "StageIdempotencies": 0,
+      "PlcCommunicationEvidence": 3
+    },
+    "portableEvidence": "evidence/formal-stage-a/final/gaode-stage-a-TransitionOwnsDeviceUntilRealSqliteSaveReceipt-13b923e131b5411dbc8358fc54edee00/sqlite-evidence.json"
+  },
+  {
+    "fixture": "gaode-stage-a-TransitionOwnsDeviceUntilRealSqliteSaveReceipt-16d8ad81c0b949eebfaa196836bced9b",
+    "databaseSha256": "9ef33e0f502592764a5dacdbe9d47e9b160d3a47a7fcc64a2334d7d8a68aab64",
+    "rows": {
+      "StageEvents": 0,
+      "StageIdempotencies": 0,
+      "PlcCommunicationEvidence": 6
+    },
+    "portableEvidence": "evidence/formal-stage-a/final/gaode-stage-a-TransitionOwnsDeviceUntilRealSqliteSaveReceipt-16d8ad81c0b949eebfaa196836bced9b/sqlite-evidence.json"
+  },
+  {
+    "fixture": "gaode-stage-a-TransitionOwnsDeviceUntilRealSqliteSaveReceipt-34a4ca4430384c488893045446eef7d0",
+    "databaseSha256": "007fabdd0900b0be4347da206aaa2a2c0a519e1f10fb9635fb4e3a7d8f783b18",
+    "rows": {
+      "StageEvents": 0,
+      "StageIdempotencies": 0,
+      "PlcCommunicationEvidence": 4
+    },
+    "portableEvidence": "evidence/formal-stage-a/final/gaode-stage-a-TransitionOwnsDeviceUntilRealSqliteSaveReceipt-34a4ca4430384c488893045446eef7d0/sqlite-evidence.json"
+  },
+  {
+    "fixture": "gaode-stage-a-TransitionOwnsDeviceUntilRealSqliteSaveReceipt-cb732abea5404014b88c5d43b307b389",
+    "databaseSha256": "99f23e88df4d45167f42fd4c356a4d1809606e78a674c683c87eb489704deb62",
+    "rows": {
+      "StageEvents": 0,
+      "StageIdempotencies": 0,
+      "PlcCommunicationEvidence": 5
+    },
+    "portableEvidence": "evidence/formal-stage-a/final/gaode-stage-a-TransitionOwnsDeviceUntilRealSqliteSaveReceipt-cb732abea5404014b88c5d43b307b389/sqlite-evidence.json"
+  },
+  {
+    "fixture": "gaode-stage-a-UnknownWriteOrDelayedTransportDoesNotReplay-52fb1b2aabd144bdadc6300d9032e189",
+    "databaseSha256": "123f8cc393562009222868f93951dbea11ab7f46b17b9abc72717bcab36139b1",
+    "rows": {
+      "StageEvents": 0,
+      "StageIdempotencies": 0,
+      "PlcCommunicationEvidence": 2
+    },
+    "portableEvidence": "evidence/formal-stage-a/final/gaode-stage-a-UnknownWriteOrDelayedTransportDoesNotReplay-52fb1b2aabd144bdadc6300d9032e189/sqlite-evidence.json"
+  },
+  {
+    "fixture": "gaode-stage-a-UnknownWriteOrDelayedTransportDoesNotReplay-7b95600a84794cef86b5bc0acc475f96",
+    "databaseSha256": "fec440598753fe33e6a978eedb62d1f5e8ac1aadcf635ff11855a152cc362b3f",
+    "rows": {
+      "StageEvents": 0,
+      "StageIdempotencies": 0,
+      "PlcCommunicationEvidence": 2
+    },
+    "portableEvidence": "evidence/formal-stage-a/final/gaode-stage-a-UnknownWriteOrDelayedTransportDoesNotReplay-7b95600a84794cef86b5bc0acc475f96/sqlite-evidence.json"
+  },
+  {
+    "fixture": "gaode-stage-a-UnknownWriteOrDelayedTransportDoesNotReplay-e1c765cb1a004ac1a0d01865ac291c20",
+    "databaseSha256": "187012e00405b0dcbcdc192357b1719a3a29bedf6a0add0d8dbbcd8efd64c1ab",
+    "rows": {
+      "StageEvents": 0,
+      "StageIdempotencies": 0,
+      "PlcCommunicationEvidence": 2
+    },
+    "portableEvidence": "evidence/formal-stage-a/final/gaode-stage-a-UnknownWriteOrDelayedTransportDoesNotReplay-e1c765cb1a004ac1a0d01865ac291c20/sqlite-evidence.json"
+  }
+]

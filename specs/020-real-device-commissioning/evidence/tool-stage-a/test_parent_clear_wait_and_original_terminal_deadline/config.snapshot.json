@@ -1,0 +1,62 @@
+{
+  "host": "127.0.0.1",
+  "port": 59869,
+  "unitId": 1,
+  "pcBase": 1000,
+  "plcBase": 3000,
+  "feedbackFc": 3,
+  "boolOrder": "EvenLow",
+  "realOrder": "Abcd",
+  "byteWrite": "RMW",
+  "timeout": 2,
+  "pollMs": 500,
+  "actionTimeout": 30,
+  "calibrated": false,
+  "axes": {
+    "X": {
+      "minimum": null,
+      "maximum": null,
+      "tolerance": null,
+      "unit": "",
+      "safeHeight": null
+    },
+    "Y": {
+      "minimum": null,
+      "maximum": null,
+      "tolerance": null,
+      "unit": "",
+      "safeHeight": null
+    },
+    "ZCamera": {
+      "minimum": null,
+      "maximum": null,
+      "tolerance": null,
+      "unit": "",
+      "safeHeight": null
+    },
+    "ZScan": {
+      "minimum": null,
+      "maximum": null,
+      "tolerance": null,
+      "unit": "",
+      "safeHeight": null
+    },
+    "ZGrab": {
+      "minimum": null,
+      "maximum": null,
+      "tolerance": null,
+      "unit": "",
+      "safeHeight": null
+    },
+    "R": {
+      "minimum": null,
+      "maximum": null,
+      "tolerance": null,
+      "unit": "",
+      "safeHeight": null
+    }
+  },
+  "realWriteOrder": "Cdab",
+  "realReadOrder": "Cdab",
+  "sourceAddress": ""
+}

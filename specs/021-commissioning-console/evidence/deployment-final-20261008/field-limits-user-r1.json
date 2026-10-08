@@ -1,0 +1,89 @@
+{
+  "schemaVersion": "commissioning-field-limits/1",
+  "source": "user reply: xy在0-100，z轴0-10",
+  "xMin": 0,
+  "xMax": 100,
+  "yMin": 0,
+  "yMax": 100,
+  "zMin": 0,
+  "zMax": 10,
+  "unitConfirmation": "pending",
+  "zAxisRolesConfirmation": "pending; asked whether detection/scan/grab all apply",
+  "motionAuthorized": false,
+  "recipeId": "5e8ab0f51041427f8946108b84b46b81",
+  "recipeVersion": "ac5b30ee8d264939bb53be38042862ef",
+  "coordinateChecks": [
+    {
+      "path": "recipe.executionPositions.s1.physicalEntity.source.point",
+      "x": 10,
+      "y": 10,
+      "z": 6,
+      "withinReportedBounds": true
+    },
+    {
+      "path": "recipe.executionPositions.s1.physicalEntity.coordinates[0].point",
+      "x": 15,
+      "y": 20,
+      "z": null,
+      "withinReportedBounds": true
+    },
+    {
+      "path": "recipe.executionPositions.s1.physicalEntity.coordinates[1].point",
+      "x": 35,
+      "y": 20,
+      "z": null,
+      "withinReportedBounds": true
+    },
+    {
+      "path": "recipe.executionPositions.s1.physicalEntity.coordinates[2].point",
+      "x": 65,
+      "y": 20,
+      "z": null,
+      "withinReportedBounds": true
+    },
+    {
+      "path": "recipe.executionPositions.s1.physicalEntity.coordinates[3].point",
+      "x": 85,
+      "y": 20,
+      "z": null,
+      "withinReportedBounds": true
+    },
+    {
+      "path": "recipe.executionPositions.s1.physicalEntity.purposePoints.flip-pick.point",
+      "x": 10,
+      "y": 10,
+      "z": null,
+      "withinReportedBounds": true
+    },
+    {
+      "path": "recipe.executionPositions.s1.physicalEntity.purposePoints.flip-put.point",
+      "x": 10,
+      "y": 10,
+      "z": null,
+      "withinReportedBounds": true
+    },
+    {
+      "path": "recipe.commissioningFPosition",
+      "x": 65,
+      "y": 50,
+      "z": null,
+      "withinReportedBounds": true
+    },
+    {
+      "path": "recipe.sortingTargets.r2:c1.point",
+      "x": 80,
+      "y": 10,
+      "z": 7,
+      "withinReportedBounds": true
+    },
+    {
+      "path": "recipe.sortingTargets.r2:c10.point",
+      "x": 95,
+      "y": 10,
+      "z": 7,
+      "withinReportedBounds": true
+    }
+  ],
+  "allSavedPointsWithinReportedNumericBounds": true,
+  "doesNotConfirmStartupOrRecoverySemantics": true
+}

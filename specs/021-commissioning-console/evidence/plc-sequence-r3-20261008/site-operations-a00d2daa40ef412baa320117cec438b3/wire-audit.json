@@ -1,0 +1,24 @@
+{
+  "environment": "OFFLINE_LOOPBACK",
+  "result": "Nonzero startup position rejected without start or automatic homing",
+  "ResetEdges": 0,
+  "StartEdges": 0,
+  "MotionEdges": 0,
+  "writes": [
+    {
+      "Offset": 1005,
+      "Words": [
+        256
+      ],
+      "Accepted": true
+    },
+    {
+      "Offset": 1003,
+      "Words": [
+        1
+      ],
+      "Accepted": true
+    }
+  ],
+  "startClears": []
+}

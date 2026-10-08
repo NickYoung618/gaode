@@ -1,0 +1,5 @@
+Command: dotnet test backend/tests/Gaode.Communication.Tests/Gaode.Communication.Tests.csproj --no-restore -v minimal
+2026-10-07: passed 14, failed 0, skipped 0; duration 5 seconds.
+Baseline communication tests: 6. Added: protocol 3, media transaction/restart/failure 3, simulation/service/cancellation 2.
+Release Host/worker win-x64 framework-dependent publish completed successfully from locked package versions.
+No physical unplug or real SDK timeout injection was performed; offline cancellation/truncation/session rejection tests are not physical-device fault validation.

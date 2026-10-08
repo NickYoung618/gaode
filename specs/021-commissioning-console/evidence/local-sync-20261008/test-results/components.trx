@@ -1,0 +1,1242 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<TestRun id="a07b7225-f1cc-4229-8f54-fa5ee714569c" name="codexsandboxonline@10_3_0_13 2026-10-08 23:46:51" runUser="10_3_0_13\CodexSandboxOnline" xmlns="http://microsoft.com/schemas/VisualStudio/TeamTest/2010">
+  <Times creation="2026-10-08T23:46:51.3648990+08:00" queuing="2026-10-08T23:46:51.3648995+08:00" start="2026-10-08T23:46:39.7311158+08:00" finish="2026-10-08T23:48:16.6742390+08:00" />
+  <TestSettings name="default" id="a3477213-5277-490c-ab93-c930eed71dfb">
+    <Deployment runDeploymentRoot="codexsandboxonline_10_3_0_13_2026-10-08_23_46_51" />
+  </TestSettings>
+  <Results>
+    <UnitTestResult executionId="6abc08a7-1d67-46aa-87e2-28a15c947c59" testId="b572591f-b4af-586f-0997-828280395be5" testName="Gaode.Communication.Tests.CommissioningWorkflowTests.LegacyTestHostRunsPublicPreparationBindingFlipAndDurableWholeTrayWorkflow" computerName="10_3_0_13" duration="00:00:08.0613672" startTime="2026-10-08T23:48:07.3563586+08:00" endTime="2026-10-08T23:48:16.1902640+08:00" testType="13cdc9d9-ddb5-4fa4-a97d-d965ccfc6d4b" outcome="Failed" testListId="8c84fa94-04c1-424b-9868-57a2d4851a1d" relativeResultsDirectory="6abc08a7-1d67-46aa-87e2-28a15c947c59">
+      <Output>
+        <ErrorInfo>
+          <Message>state=RecoveryRequired; XY动作完成未知或超时; evidence=E:/dzk/gaode-1/artifacts/sync-020-20261008/components/commissioning\legacy-test-workflow.json</Message>
+          <StackTrace>   at Gaode.Communication.Tests.CommissioningWorkflowTests.LegacyTestHostRunsPublicPreparationBindingFlipAndDurableWholeTrayWorkflow() in E:\dzk\gaode-1\backend\tests\Gaode.Communication.Tests\CommissioningWorkflowTests.cs:line 107&#xD;
+   at Gaode.Communication.Tests.CommissioningWorkflowTests.LegacyTestHostRunsPublicPreparationBindingFlipAndDurableWholeTrayWorkflow() in E:\dzk\gaode-1\backend\tests\Gaode.Communication.Tests\CommissioningWorkflowTests.cs:line 208&#xD;
+   at Gaode.Communication.Tests.CommissioningWorkflowTests.LegacyTestHostRunsPublicPreparationBindingFlipAndDurableWholeTrayWorkflow() in E:\dzk\gaode-1\backend\tests\Gaode.Communication.Tests\CommissioningWorkflowTests.cs:line 208&#xD;
+   at Gaode.Communication.Tests.CommissioningWorkflowTests.LegacyTestHostRunsPublicPreparationBindingFlipAndDurableWholeTrayWorkflow() in E:\dzk\gaode-1\backend\tests\Gaode.Communication.Tests\CommissioningWorkflowTests.cs:line 208&#xD;
+   at Gaode.Communication.Tests.CommissioningWorkflowTests.LegacyTestHostRunsPublicPreparationBindingFlipAndDurableWholeTrayWorkflow() in E:\dzk\gaode-1\backend\tests\Gaode.Communication.Tests\CommissioningWorkflowTests.cs:line 208&#xD;
+--- End of stack trace from previous location ---</StackTrace>
+        </ErrorInfo>
+      </Output>
+    </UnitTestResult>
+    <UnitTestResult executionId="68b001d3-fdc9-4330-959b-884ccff7a9e9" testId="85c95fb7-6adf-d007-3601-ce27f48ec091" testName="Gaode.Communication.Tests.MediaCommitTests.DurableCommitPublishesRawDataAndRestoresMetadataAfterRestart" computerName="10_3_0_13" duration="00:00:00.5664842" startTime="2026-10-08T23:47:28.7955609+08:00" endTime="2026-10-08T23:47:29.3628751+08:00" testType="13cdc9d9-ddb5-4fa4-a97d-d965ccfc6d4b" outcome="Passed" testListId="8c84fa94-04c1-424b-9868-57a2d4851a1d" relativeResultsDirectory="68b001d3-fdc9-4330-959b-884ccff7a9e9" />
+    <UnitTestResult executionId="266fbaf6-2866-4233-b907-69c27b81ca36" testId="9ae2ccb8-e2eb-2b34-959d-9b86704fcceb" testName="Gaode.Communication.Tests.ImportedCommissioningRecipeTests.LocalFlipSourceSavesReloadsAndExecutesFormalDetectionChain" computerName="10_3_0_13" duration="00:00:03.4580224" startTime="2026-10-08T23:47:02.3145818+08:00" endTime="2026-10-08T23:47:05.7758345+08:00" testType="13cdc9d9-ddb5-4fa4-a97d-d965ccfc6d4b" outcome="Passed" testListId="8c84fa94-04c1-424b-9868-57a2d4851a1d" relativeResultsDirectory="266fbaf6-2866-4233-b907-69c27b81ca36" />
+    <UnitTestResult executionId="f039f3c2-55e3-4a1a-9d0b-bc13e35a788e" testId="965de380-168d-6a30-b293-64164d1a7bf7" testName="Gaode.Communication.Tests.CameraServiceSimulationTests.FixedImageDeadlineCancelsOnceWithoutAutomaticReplay" computerName="10_3_0_13" duration="00:00:01.2121836" startTime="2026-10-08T23:46:57.7360053+08:00" endTime="2026-10-08T23:46:59.1713976+08:00" testType="13cdc9d9-ddb5-4fa4-a97d-d965ccfc6d4b" outcome="Passed" testListId="8c84fa94-04c1-424b-9868-57a2d4851a1d" relativeResultsDirectory="f039f3c2-55e3-4a1a-9d0b-bc13e35a788e" />
+    <UnitTestResult executionId="c6b650aa-7faa-4f58-876c-5451bc6cfcaa" testId="acc1b58a-c152-4882-bf80-bec9be8cf327" testName="Gaode.Communication.Tests.Devices.MemberGripperTests.SaveReloadFreezeAndResolveMembersWithoutChangingSinglePart" computerName="10_3_0_13" duration="00:00:00.2106269" startTime="2026-10-08T23:47:02.0870368+08:00" endTime="2026-10-08T23:47:02.2985855+08:00" testType="13cdc9d9-ddb5-4fa4-a97d-d965ccfc6d4b" outcome="Passed" testListId="8c84fa94-04c1-424b-9868-57a2d4851a1d" relativeResultsDirectory="c6b650aa-7faa-4f58-876c-5451bc6cfcaa" />
+    <UnitTestResult executionId="ed8870da-3780-4143-a901-8238204f1833" testId="d20312b6-1b16-ea86-6bf4-6a4b28895680" testName="Gaode.Communication.Tests.CommissioningIdentityTests.MissingOrDisallowedIdentityConfigurationFailsWithoutTestFallback(role: &quot;SystemAdministrator&quot;)" computerName="10_3_0_13" duration="00:00:00.0092739" startTime="2026-10-08T23:46:52.9860318+08:00" endTime="2026-10-08T23:46:52.9945798+08:00" testType="13cdc9d9-ddb5-4fa4-a97d-d965ccfc6d4b" outcome="Passed" testListId="8c84fa94-04c1-424b-9868-57a2d4851a1d" relativeResultsDirectory="ed8870da-3780-4143-a901-8238204f1833" />
+    <UnitTestResult executionId="95aec65b-fbb9-4631-ac63-5c2648eff5b2" testId="5b2af9cc-9212-51e7-8d1e-bb150b9ed4ea" testName="Gaode.Communication.Tests.CommissioningIdentityTests.BackendConfirmsIdentityAndEnforcesPermissions(role: &quot;Operator&quot;, canRun: True, canEdit: False)" computerName="10_3_0_13" duration="00:00:06.8190959" startTime="2026-10-08T23:46:44.0040591+08:00" endTime="2026-10-08T23:46:51.2827094+08:00" testType="13cdc9d9-ddb5-4fa4-a97d-d965ccfc6d4b" outcome="Failed" testListId="8c84fa94-04c1-424b-9868-57a2d4851a1d" relativeResultsDirectory="95aec65b-fbb9-4631-ac63-5c2648eff5b2">
+      <Output>
+        <ErrorInfo>
+          <Message>System.Net.Http.HttpRequestException : An error occurred while sending the request.&#xD;
+---- System.Net.Http.HttpIOException : The response ended prematurely. (ResponseEnded)</Message>
+          <StackTrace>   at System.Net.Http.HttpConnection.SendAsync(HttpRequestMessage request, Boolean async, CancellationToken cancellationToken)&#xD;
+   at System.Net.Http.HttpConnectionPool.SendWithVersionDetectionAndRetryAsync(HttpRequestMessage request, Boolean async, Boolean doRequestAuth, CancellationToken cancellationToken)&#xD;
+   at System.Net.Http.RedirectHandler.SendAsync(HttpRequestMessage request, Boolean async, CancellationToken cancellationToken)&#xD;
+   at System.Net.Http.HttpClient.&lt;SendAsync&gt;g__Core|83_0(HttpRequestMessage request, HttpCompletionOption completionOption, CancellationTokenSource cts, Boolean disposeCts, CancellationTokenSource pendingRequestsCts, CancellationToken originalCancellationToken)&#xD;
+   at Gaode.Communication.Tests.CommissioningIdentityTests.BackendConfirmsIdentityAndEnforcesPermissions(String role, Boolean canRun, Boolean canEdit) in E:\dzk\gaode-1\backend\tests\Gaode.Communication.Tests\CommissioningIdentityTests.cs:line 54&#xD;
+   at Gaode.Communication.Tests.CommissioningIdentityTests.BackendConfirmsIdentityAndEnforcesPermissions(String role, Boolean canRun, Boolean canEdit) in E:\dzk\gaode-1\backend\tests\Gaode.Communication.Tests\CommissioningIdentityTests.cs:line 57&#xD;
+   at Gaode.Communication.Tests.CommissioningIdentityTests.BackendConfirmsIdentityAndEnforcesPermissions(String role, Boolean canRun, Boolean canEdit) in E:\dzk\gaode-1\backend\tests\Gaode.Communication.Tests\CommissioningIdentityTests.cs:line 57&#xD;
+--- End of stack trace from previous location ---&#xD;
+----- Inner Stack Trace -----&#xD;
+   at System.Net.Http.HttpConnection.SendAsync(HttpRequestMessage request, Boolean async, CancellationToken cancellationToken)</StackTrace>
+        </ErrorInfo>
+      </Output>
+    </UnitTestResult>
+    <UnitTestResult executionId="be8f0724-93d9-475c-944e-85fcc38020df" testId="4f100c36-d0dd-4864-c999-f08003a3a0bf" testName="Gaode.Communication.Tests.ControlledCommissioningTests.FormalCommissioningStartBlocksWithoutSafeInputsOrConfirmedSiteSafety(missingInput: True)" computerName="10_3_0_13" duration="00:00:09.4569156" startTime="2026-10-08T23:46:43.3083156+08:00" endTime="2026-10-08T23:46:52.7578735+08:00" testType="13cdc9d9-ddb5-4fa4-a97d-d965ccfc6d4b" outcome="Passed" testListId="8c84fa94-04c1-424b-9868-57a2d4851a1d" relativeResultsDirectory="be8f0724-93d9-475c-944e-85fcc38020df" />
+    <UnitTestResult executionId="391592c0-d106-406d-8d59-284894742349" testId="8dcc896c-36c0-9c9f-b814-a6c551f73d46" testName="Gaode.Communication.Tests.CommissioningIdentityTests.BackendConfirmsIdentityAndEnforcesPermissions(role: &quot;ProcessEngineer&quot;, canRun: False, canEdit: True)" computerName="10_3_0_13" duration="00:00:01.4799019" startTime="2026-10-08T23:46:51.3323617+08:00" endTime="2026-10-08T23:46:52.9691392+08:00" testType="13cdc9d9-ddb5-4fa4-a97d-d965ccfc6d4b" outcome="Failed" testListId="8c84fa94-04c1-424b-9868-57a2d4851a1d" relativeResultsDirectory="391592c0-d106-406d-8d59-284894742349">
+      <Output>
+        <ErrorInfo>
+          <Message>System.Net.Http.HttpRequestException : An error occurred while sending the request.&#xD;
+---- System.Net.Http.HttpIOException : The response ended prematurely. (ResponseEnded)</Message>
+          <StackTrace>   at System.Net.Http.HttpConnection.SendAsync(HttpRequestMessage request, Boolean async, CancellationToken cancellationToken)&#xD;
+   at System.Net.Http.HttpConnectionPool.SendWithVersionDetectionAndRetryAsync(HttpRequestMessage request, Boolean async, Boolean doRequestAuth, CancellationToken cancellationToken)&#xD;
+   at System.Net.Http.RedirectHandler.SendAsync(HttpRequestMessage request, Boolean async, CancellationToken cancellationToken)&#xD;
+   at System.Net.Http.HttpClient.&lt;SendAsync&gt;g__Core|83_0(HttpRequestMessage request, HttpCompletionOption completionOption, CancellationTokenSource cts, Boolean disposeCts, CancellationTokenSource pendingRequestsCts, CancellationToken originalCancellationToken)&#xD;
+   at Gaode.Communication.Tests.CommissioningIdentityTests.BackendConfirmsIdentityAndEnforcesPermissions(String role, Boolean canRun, Boolean canEdit) in E:\dzk\gaode-1\backend\tests\Gaode.Communication.Tests\CommissioningIdentityTests.cs:line 54&#xD;
+   at Gaode.Communication.Tests.CommissioningIdentityTests.BackendConfirmsIdentityAndEnforcesPermissions(String role, Boolean canRun, Boolean canEdit) in E:\dzk\gaode-1\backend\tests\Gaode.Communication.Tests\CommissioningIdentityTests.cs:line 57&#xD;
+   at Gaode.Communication.Tests.CommissioningIdentityTests.BackendConfirmsIdentityAndEnforcesPermissions(String role, Boolean canRun, Boolean canEdit) in E:\dzk\gaode-1\backend\tests\Gaode.Communication.Tests\CommissioningIdentityTests.cs:line 57&#xD;
+--- End of stack trace from previous location ---&#xD;
+----- Inner Stack Trace -----&#xD;
+   at System.Net.Http.HttpConnection.SendAsync(HttpRequestMessage request, Boolean async, CancellationToken cancellationToken)</StackTrace>
+        </ErrorInfo>
+      </Output>
+    </UnitTestResult>
+    <UnitTestResult executionId="9bc27cb8-da2a-4170-99a9-088e93dff314" testId="b6d5c734-cb56-b5f1-0282-92ccd6c8ed5e" testName="Gaode.Communication.Tests.CommissioningStartQueryTests.PersistedLookupIsSubjectScopedAndDatabaseFailureIsNotNotFound" computerName="10_3_0_13" duration="00:00:00.3553711" startTime="2026-10-08T23:46:59.7716684+08:00" endTime="2026-10-08T23:47:00.1269892+08:00" testType="13cdc9d9-ddb5-4fa4-a97d-d965ccfc6d4b" outcome="Passed" testListId="8c84fa94-04c1-424b-9868-57a2d4851a1d" relativeResultsDirectory="9bc27cb8-da2a-4170-99a9-088e93dff314" />
+    <UnitTestResult executionId="dc225c94-dc57-4d73-bcdb-0d932ca8a389" testId="65a3f506-02d5-f464-83df-9f8f189108de" testName="Gaode.Communication.Tests.CommissioningFPositionTests.SavedVersionLocationIsFrozenPerRunAndOutOfTravelIsRejected" computerName="10_3_0_13" duration="00:00:00.9011533" startTime="2026-10-08T23:47:25.1596500+08:00" endTime="2026-10-08T23:47:26.3779447+08:00" testType="13cdc9d9-ddb5-4fa4-a97d-d965ccfc6d4b" outcome="Passed" testListId="8c84fa94-04c1-424b-9868-57a2d4851a1d" relativeResultsDirectory="dc225c94-dc57-4d73-bcdb-0d932ca8a389" />
+    <UnitTestResult executionId="453f4050-53e2-4a0d-aa49-8fa5ce4a9522" testId="29541768-4852-5730-9ece-c2a86d398daa" testName="Gaode.Communication.Tests.CameraServiceSimulationTests.FixedImageUsesFormalReceiptAndDurableMediaWithoutRealFrameMetadata" computerName="10_3_0_13" duration="00:00:04.5546368" startTime="2026-10-08T23:46:53.0296228+08:00" endTime="2026-10-08T23:46:57.7353693+08:00" testType="13cdc9d9-ddb5-4fa4-a97d-d965ccfc6d4b" outcome="Passed" testListId="8c84fa94-04c1-424b-9868-57a2d4851a1d" relativeResultsDirectory="453f4050-53e2-4a0d-aa49-8fa5ce4a9522" />
+    <UnitTestResult executionId="90d24f00-7cfb-4a8c-ad03-7251c3e7f729" testId="7d95e59c-4768-a33b-c506-a65b087fdde2" testName="Gaode.Communication.Tests.CameraWorkerLifecycleTests.AtomicSettingsHaveSeparateReadbacksAndFreshFramesAndNormalRestoration" computerName="10_3_0_13" duration="00:00:05.0698435" startTime="2026-10-08T23:47:55.7109470+08:00" endTime="2026-10-08T23:48:00.9654743+08:00" testType="13cdc9d9-ddb5-4fa4-a97d-d965ccfc6d4b" outcome="Passed" testListId="8c84fa94-04c1-424b-9868-57a2d4851a1d" relativeResultsDirectory="90d24f00-7cfb-4a8c-ad03-7251c3e7f729" />
+    <UnitTestResult executionId="ba3d6762-b187-41f0-ba41-7a5ecdfd49de" testId="914c1316-2da8-34d6-b8c9-78e339df1275" testName="Gaode.Communication.Tests.CameraWorkerLifecycleTests.SettingsRejectedBeforeTriggerFaultSessionAndNeverReplay(mode: &quot;settings-readback-fail&quot;)" computerName="10_3_0_13" duration="00:00:04.6900082" startTime="2026-10-08T23:47:39.2370784+08:00" endTime="2026-10-08T23:47:43.9751488+08:00" testType="13cdc9d9-ddb5-4fa4-a97d-d965ccfc6d4b" outcome="Passed" testListId="8c84fa94-04c1-424b-9868-57a2d4851a1d" relativeResultsDirectory="ba3d6762-b187-41f0-ba41-7a5ecdfd49de" />
+    <UnitTestResult executionId="beb3a3dc-f49c-4836-bf1c-606f8b767863" testId="38e640a5-9743-854c-fc90-9726601830e0" testName="Gaode.Communication.Tests.CameraWorkerLifecycleTests.InvalidFrameThroughActualProcessAndFormalServiceCannotCommit(role: &quot;A&quot;, mode: &quot;bad-size&quot;)" computerName="10_3_0_13" duration="00:00:04.9494495" startTime="2026-10-08T23:47:20.5835468+08:00" endTime="2026-10-08T23:47:25.5912362+08:00" testType="13cdc9d9-ddb5-4fa4-a97d-d965ccfc6d4b" outcome="Passed" testListId="8c84fa94-04c1-424b-9868-57a2d4851a1d" relativeResultsDirectory="beb3a3dc-f49c-4836-bf1c-606f8b767863" />
+    <UnitTestResult executionId="18de3bcc-9038-440f-90af-9b9d999e69ed" testId="1c4b9ec4-0ab4-2e40-1081-06d4bf82c5ea" testName="Gaode.Communication.Tests.Devices.SamePositionTests.RepeatedTargetsReuseOnlySatisfiedAxes(x: 11, y: 23, z: 34, expected: &quot;Y,DetectionZ&quot;)" computerName="10_3_0_13" duration="00:00:04.5675649" startTime="2026-10-08T23:47:03.9590677+08:00" endTime="2026-10-08T23:47:08.7842465+08:00" testType="13cdc9d9-ddb5-4fa4-a97d-d965ccfc6d4b" outcome="Passed" testListId="8c84fa94-04c1-424b-9868-57a2d4851a1d" relativeResultsDirectory="18de3bcc-9038-440f-90af-9b9d999e69ed" />
+    <UnitTestResult executionId="64e763dc-f177-4b84-8c10-a2cdddb0620c" testId="d352b8c5-ba58-0d3a-8deb-6428f267a266" testName="Gaode.Communication.Tests.CameraProtocolTests.WireV2CarriesSettingsAndRejectsV1InsteadOfDowngrading" computerName="10_3_0_13" duration="00:00:00.0261002" startTime="2026-10-08T23:47:13.2654119+08:00" endTime="2026-10-08T23:47:13.2919234+08:00" testType="13cdc9d9-ddb5-4fa4-a97d-d965ccfc6d4b" outcome="Passed" testListId="8c84fa94-04c1-424b-9868-57a2d4851a1d" relativeResultsDirectory="64e763dc-f177-4b84-8c10-a2cdddb0620c" />
+    <UnitTestResult executionId="0601af8a-30d4-43a0-8a8c-a45348ccaddd" testId="9f5e65b6-4446-b2ea-0d62-5b482a74e4fd" testName="Gaode.Communication.Tests.MediaCommitTests.FileWriteFailureCannotProduceReadyMedia" computerName="10_3_0_13" duration="00:00:00.7588935" startTime="2026-10-08T23:47:27.9856795+08:00" endTime="2026-10-08T23:47:28.7949511+08:00" testType="13cdc9d9-ddb5-4fa4-a97d-d965ccfc6d4b" outcome="Passed" testListId="8c84fa94-04c1-424b-9868-57a2d4851a1d" relativeResultsDirectory="0601af8a-30d4-43a0-8a8c-a45348ccaddd" />
+    <UnitTestResult executionId="0bbfd740-7601-4490-aa96-b4ec277a78b6" testId="4c4eeedb-af5e-9911-d90c-b855386db931" testName="Gaode.Communication.Tests.ControlledCommissioningTests.ControlledAlgorithmReadsCurrentFilesAndReleasesInputsWithPersistentFailureDiagnostics" computerName="10_3_0_13" duration="00:00:00.9816885" startTime="2026-10-08T23:46:56.7467906+08:00" endTime="2026-10-08T23:46:57.8183686+08:00" testType="13cdc9d9-ddb5-4fa4-a97d-d965ccfc6d4b" outcome="Passed" testListId="8c84fa94-04c1-424b-9868-57a2d4851a1d" relativeResultsDirectory="0bbfd740-7601-4490-aa96-b4ec277a78b6" />
+    <UnitTestResult executionId="ee3ae1c4-7d4e-463c-bb3c-784225fd4cb0" testId="3e8d2de8-4852-3d7f-32d4-94163d960312" testName="Gaode.Communication.Tests.CameraWorkerLifecycleTests.ActualWorkerExitRevokesReadyAndRecoveryRequiresFaultAndNewSession" computerName="10_3_0_13" duration="00:00:11.3607836" startTime="2026-10-08T23:47:43.9765360+08:00" endTime="2026-10-08T23:47:55.7015904+08:00" testType="13cdc9d9-ddb5-4fa4-a97d-d965ccfc6d4b" outcome="Passed" testListId="8c84fa94-04c1-424b-9868-57a2d4851a1d" relativeResultsDirectory="ee3ae1c4-7d4e-463c-bb3c-784225fd4cb0">
+      <Output>
+        <StdOut>Offline actual process exit evidence: {"utc":"2026-10-08T15:47:44.0430403+00:00","role":"A","serial":"fixture-serial","stage":"ProcessStarted","state":"Starting","session":"0adeb30f-d3c1-4405-8dd5-9383782de9f7","epoch":639270712639980011,"detail":{"pid":11972}}&#xD;
+{"utc":"2026-10-08T15:47:45.0938773+00:00","role":"A","serial":"fixture-serial","stage":"Ready","state":"Ready","session":"0adeb30f-d3c1-4405-8dd5-9383782de9f7","epoch":639270712639980011,"detail":{"MaxBytes":4096,"_openCount":1,"metadata":{"Schema":"gaode.capture.frame.v1","Role":"A","Serial":"fixture-serial","NicMac":"001122334455","CameraIp":"192.0.2.2","HostIp":"192.0.2.1","WorkerSessionId":"0adeb30f-d3c1-4405-8dd5-9383782de9f7","FrameId":0,"DeviceTimestamp":123,"TriggerSequence":0,"TriggeredUtc":"2026-10-08T15:47:45.0069925+00:00","ReceivedUtc":"2026-10-08T15:47:45.0069935+00:00","Width":2,"Height":2,"PixelFormat":"GX_PIXEL_FORMAT_MONO8","PayloadBytes":0,"ActualParameters":{"Width":"2","Height":"2","PayloadSize":"4","PixelFormat":"Mono8","irWidth":"2","irHeight":"2","textureWidth":"2","textureHeight":"2","pixelBytes":"1","depthType":"2","reconstructionType":"2","irImagesPerCamera":"2","irCameraGroups":"1","irImageBytes":"4","byteOrder":"little-endian"},"Payloads":[]}}}&#xD;
+{"utc":"2026-10-08T15:47:45.6408256+00:00","role":"A","serial":"fixture-serial","stage":"Faulted_NoAutomaticReplay","state":"Faulted","session":"0adeb30f-d3c1-4405-8dd5-9383782de9f7","epoch":639270712639980011,"detail":"System.IO.IOException: CameraWorkerExitedUnexpectedly: exitCode=17"}&#xD;
+&#xD;
+Recovery failed (no successful Task result): {"Role":"A","Serial":"fixture-serial","ExpectedNicMac":"001122334455","State":"Faulted","ProcessId":null,"SessionId":"9a8105a5-1490-4a5f-a391-9dab74d9a385","Epoch":639270712660871884,"MaxBytes":0,"OpenCount":1,"Error":"System.IO.IOException: CameraSdkError:InjectedOpenFailure\r\n   at Gaode.Infrastructure.Devices.Cameras.CameraWorkerProtocol.ValidateResponse(CameraWireMessage request, CameraWireMessage response, String expectedKind) in E:\\dzk\\gaode-1\\backend\\src\\Gaode.Infrastructure\\Devices\\Cameras\\CameraWorkerProtocol.cs:line 32\r\n   at Gaode.Infrastructure.Devices.Cameras.PersistentCameraGateway.Worker.ExchangeAsync(CameraWireMessage request, String expected, Int64 maxBytes, CancellationToken ct) in E:\\dzk\\gaode-1\\backend\\src\\Gaode.Infrastructure\\Devices\\Cameras\\PersistentCameraGateway.cs:line 211\r\n   at Gaode.Infrastructure.Devices.Cameras.PersistentCameraGateway.Worker.StartCoreAsync(CancellationToken ct) in E:\\dzk\\gaode-1\\backend\\src\\Gaode.Infrastructure\\Devices\\Cameras\\PersistentCameraGateway.cs:line 187","Metadata":{"Schema":"gaode.capture.frame.v1","Role":"A","Serial":"fixture-serial","NicMac":"001122334455","CameraIp":"192.0.2.2","HostIp":"192.0.2.1","WorkerSessionId":"0adeb30f-d3c1-4405-8dd5-9383782de9f7","FrameId":0,"DeviceTimestamp":123,"TriggerSequence":0,"TriggeredUtc":"2026-10-08T15:47:45.0069925+00:00","ReceivedUtc":"2026-10-08T15:47:45.0069935+00:00","Width":2,"Height":2,"PixelFormat":"GX_PIXEL_FORMAT_MONO8","PayloadBytes":0,"ActualParameters":{"Width":"2","Height":"2","PayloadSize":"4","PixelFormat":"Mono8","irWidth":"2","irHeight":"2","textureWidth":"2","textureHeight":"2","pixelBytes":"1","depthType":"2","reconstructionType":"2","irImagesPerCamera":"2","irCameraGroups":"1","irImageBytes":"4","byteOrder":"little-endian"},"Payloads":[]}}&#xD;
+Recovery succeeded with new session: {"Role":"A","Serial":"fixture-serial","ExpectedNicMac":"001122334455","State":"Ready","ProcessId":10756,"SessionId":"7532f3f0-3152-458b-9085-8ef804cfa0ae","Epoch":639270712683613019,"MaxBytes":4096,"OpenCount":2,"Error":null,"Metadata":{"Schema":"gaode.capture.frame.v1","Role":"A","Serial":"fixture-serial","NicMac":"001122334455","CameraIp":"192.0.2.2","HostIp":"192.0.2.1","WorkerSessionId":"7532f3f0-3152-458b-9085-8ef804cfa0ae","FrameId":0,"DeviceTimestamp":123,"TriggerSequence":0,"TriggeredUtc":"2026-10-08T15:47:51.2243628+00:00","ReceivedUtc":"2026-10-08T15:47:51.2243634+00:00","Width":2,"Height":2,"PixelFormat":"GX_PIXEL_FORMAT_MONO8","PayloadBytes":0,"ActualParameters":{"Width":"2","Height":"2","PayloadSize":"4","PixelFormat":"Mono8","irWidth":"2","irHeight":"2","textureWidth":"2","textureHeight":"2","pixelBytes":"1","depthType":"2","reconstructionType":"2","irImagesPerCamera":"2","irCameraGroups":"1","irImageBytes":"4","byteOrder":"little-endian"},"Payloads":[]}}</StdOut>
+      </Output>
+    </UnitTestResult>
+    <UnitTestResult executionId="f14eac79-94cf-4d6a-acca-6731c6736886" testId="98ca9c73-5985-d763-20be-d1f61c44c00b" testName="Gaode.Communication.Tests.Devices.MemberGripperTests.ExistingCommunicationHandshakeSwitchesOneTwoAndReusesTwo" computerName="10_3_0_13" duration="00:00:01.6504990" startTime="2026-10-08T23:47:00.4312456+08:00" endTime="2026-10-08T23:47:02.0837059+08:00" testType="13cdc9d9-ddb5-4fa4-a97d-d965ccfc6d4b" outcome="Passed" testListId="8c84fa94-04c1-424b-9868-57a2d4851a1d" relativeResultsDirectory="f14eac79-94cf-4d6a-acca-6731c6736886" />
+    <UnitTestResult executionId="5d4148bb-0bbc-41d0-ab21-ea077122d76d" testId="b70a563a-d3d6-c9ed-2c12-d4694a978c87" testName="Gaode.Communication.Tests.CommissioningIdentityTests.MissingOrDisallowedIdentityConfigurationFailsWithoutTestFallback(role: &quot;Operator&quot;)" computerName="10_3_0_13" duration="00:00:00.0030032" startTime="2026-10-08T23:46:52.9995965+08:00" endTime="2026-10-08T23:46:53.0021283+08:00" testType="13cdc9d9-ddb5-4fa4-a97d-d965ccfc6d4b" outcome="Passed" testListId="8c84fa94-04c1-424b-9868-57a2d4851a1d" relativeResultsDirectory="5d4148bb-0bbc-41d0-ab21-ea077122d76d" />
+    <UnitTestResult executionId="15d48930-fa96-48c5-9cc8-dd897ecd73b7" testId="5325532f-13c8-ccde-264b-626edf41672c" testName="Gaode.Communication.Tests.CameraWorkerLifecycleTests.SettingsRejectedBeforeTriggerFaultSessionAndNeverReplay(mode: &quot;settings-unsupported&quot;)" computerName="10_3_0_13" duration="00:00:04.9229325" startTime="2026-10-08T23:47:34.3094070+08:00" endTime="2026-10-08T23:47:39.2344596+08:00" testType="13cdc9d9-ddb5-4fa4-a97d-d965ccfc6d4b" outcome="Passed" testListId="8c84fa94-04c1-424b-9868-57a2d4851a1d" relativeResultsDirectory="15d48930-fa96-48c5-9cc8-dd897ecd73b7" />
+    <UnitTestResult executionId="a57e138b-29cf-424b-8c29-42514764311b" testId="c3728530-6ff8-2bed-619a-3a16a72ea4b2" testName="Gaode.Communication.Tests.CameraProtocolTests.OversizedOrTruncatedTransferCannotProduceAFrame" computerName="10_3_0_13" duration="00:00:00.0040847" startTime="2026-10-08T23:47:13.3187112+08:00" endTime="2026-10-08T23:47:13.3231953+08:00" testType="13cdc9d9-ddb5-4fa4-a97d-d965ccfc6d4b" outcome="Passed" testListId="8c84fa94-04c1-424b-9868-57a2d4851a1d" relativeResultsDirectory="a57e138b-29cf-424b-8c29-42514764311b" />
+    <UnitTestResult executionId="fb49cfc2-2a38-4de1-8b71-9ad98da0b811" testId="47675aff-3a4d-eeb6-cf81-89be75b16f06" testName="Gaode.Communication.Tests.Devices.SamePositionTests.RepeatedTargetsReuseOnlySatisfiedAxes(x: 12, y: 22, z: 33, expected: &quot;X&quot;)" computerName="10_3_0_13" duration="00:00:04.4446857" startTime="2026-10-08T23:47:08.7855673+08:00" endTime="2026-10-08T23:47:13.2455500+08:00" testType="13cdc9d9-ddb5-4fa4-a97d-d965ccfc6d4b" outcome="Passed" testListId="8c84fa94-04c1-424b-9868-57a2d4851a1d" relativeResultsDirectory="fb49cfc2-2a38-4de1-8b71-9ad98da0b811" />
+    <UnitTestResult executionId="fad0283d-e6b1-4852-9f91-1ca1ba28c1cd" testId="1eb9480a-d78e-244e-b782-acd237a91fa0" testName="Gaode.Communication.Tests.MediaCommitTests.IndexCommitFailureDoesNotPublishOrRestoreOrphanFile" computerName="10_3_0_13" duration="00:00:01.3656746" startTime="2026-10-08T23:47:26.3809835+08:00" endTime="2026-10-08T23:47:27.9850478+08:00" testType="13cdc9d9-ddb5-4fa4-a97d-d965ccfc6d4b" outcome="Passed" testListId="8c84fa94-04c1-424b-9868-57a2d4851a1d" relativeResultsDirectory="fad0283d-e6b1-4852-9f91-1ca1ba28c1cd" />
+    <UnitTestResult executionId="b7ed750e-d604-421a-a3ff-b39156f31704" testId="fb0b3f64-c84f-0d7e-7acb-456850a4a6d7" testName="Gaode.Communication.Tests.CommissioningLightModeTests.ExplicitModeControlsLightButNeverSkipsCamera(mode: &quot;Real&quot;, realAdapter: True, expectedCapture: True)" computerName="10_3_0_13" duration="00:00:00.0024957" startTime="2026-10-08T23:46:59.7658787+08:00" endTime="2026-10-08T23:46:59.7681063+08:00" testType="13cdc9d9-ddb5-4fa4-a97d-d965ccfc6d4b" outcome="Passed" testListId="8c84fa94-04c1-424b-9868-57a2d4851a1d" relativeResultsDirectory="b7ed750e-d604-421a-a3ff-b39156f31704" />
+    <UnitTestResult executionId="9d55ee9a-ffb2-4207-a128-024bdf287769" testId="f6644778-3524-87fe-2441-d1f863f1a4ad" testName="Gaode.Communication.Tests.CameraWorkerLifecycleTests.InvalidFrameThroughActualProcessAndFormalServiceCannotCommit(role: &quot;3D&quot;, mode: &quot;missing-ir&quot;)" computerName="10_3_0_13" duration="00:00:04.5862551" startTime="2026-10-08T23:47:15.9937926+08:00" endTime="2026-10-08T23:47:20.5826972+08:00" testType="13cdc9d9-ddb5-4fa4-a97d-d965ccfc6d4b" outcome="Passed" testListId="8c84fa94-04c1-424b-9868-57a2d4851a1d" relativeResultsDirectory="9d55ee9a-ffb2-4207-a128-024bdf287769" />
+    <UnitTestResult executionId="b86046fd-ea7f-4e64-a656-cf5a034f7f35" testId="cca1d089-36bd-436f-fe4d-16b83a4f6652" testName="Gaode.Communication.Tests.CameraProtocolTests.OldSessionOrOldRequestCannotSatisfyCurrentCapture" computerName="10_3_0_13" duration="00:00:00.0026382" startTime="2026-10-08T23:47:13.2613946+08:00" endTime="2026-10-08T23:47:13.2645913+08:00" testType="13cdc9d9-ddb5-4fa4-a97d-d965ccfc6d4b" outcome="Passed" testListId="8c84fa94-04c1-424b-9868-57a2d4851a1d" relativeResultsDirectory="b86046fd-ea7f-4e64-a656-cf5a034f7f35" />
+    <UnitTestResult executionId="45997b90-c618-4de4-8e4b-b066dacd7d80" testId="566177ee-cf2a-6081-26a4-6ba342d32c59" testName="Gaode.Communication.Tests.CommissioningLightModeTests.ExplicitModeControlsLightButNeverSkipsCamera(mode: &quot;Real&quot;, realAdapter: False, expectedCapture: False)" computerName="10_3_0_13" duration="00:00:00.0158267" startTime="2026-10-08T23:46:59.7238776+08:00" endTime="2026-10-08T23:46:59.7393653+08:00" testType="13cdc9d9-ddb5-4fa4-a97d-d965ccfc6d4b" outcome="Passed" testListId="8c84fa94-04c1-424b-9868-57a2d4851a1d" relativeResultsDirectory="45997b90-c618-4de4-8e4b-b066dacd7d80" />
+    <UnitTestResult executionId="c0e09815-2446-4a06-9ffd-26b6d1fb5f0f" testId="0231be4f-664e-ccb9-0e6c-56d22b90300d" testName="Gaode.Communication.Tests.MixedRuntimeCommissioningTests.StoreManifestPurposeCannotBeMixedWithLegacyTestRoot" computerName="10_3_0_13" duration="00:00:00.4689931" startTime="2026-10-08T23:46:59.1874154+08:00" endTime="2026-10-08T23:46:59.6570402+08:00" testType="13cdc9d9-ddb5-4fa4-a97d-d965ccfc6d4b" outcome="Passed" testListId="8c84fa94-04c1-424b-9868-57a2d4851a1d" relativeResultsDirectory="c0e09815-2446-4a06-9ffd-26b6d1fb5f0f" />
+    <UnitTestResult executionId="5abb989d-c4e6-420a-87ab-868fad08b2e8" testId="30f9ee47-f79e-a5cf-e299-de4d9de2a3a9" testName="Gaode.Communication.Tests.RecipeCommissioningChainTests.NewRecipeReloadsWithoutApprovalAndFreezesCurrentVersion" computerName="10_3_0_13" duration="00:00:00.2195967" startTime="2026-10-08T23:47:05.7778745+08:00" endTime="2026-10-08T23:47:05.9974594+08:00" testType="13cdc9d9-ddb5-4fa4-a97d-d965ccfc6d4b" outcome="Passed" testListId="8c84fa94-04c1-424b-9868-57a2d4851a1d" relativeResultsDirectory="5abb989d-c4e6-420a-87ab-868fad08b2e8" />
+    <UnitTestResult executionId="89e67631-41b1-4614-a217-816b9b49ca1a" testId="7ff0add2-2bd5-08aa-7096-761682ed89de" testName="Gaode.Communication.Tests.RecipeCommissioningChainTests.LegacyTestAdmissionStillRequiresItsExistingApproval" computerName="10_3_0_13" duration="00:00:00.0029220" startTime="2026-10-08T23:47:05.9979987+08:00" endTime="2026-10-08T23:47:06.0006660+08:00" testType="13cdc9d9-ddb5-4fa4-a97d-d965ccfc6d4b" outcome="Passed" testListId="8c84fa94-04c1-424b-9868-57a2d4851a1d" relativeResultsDirectory="89e67631-41b1-4614-a217-816b9b49ca1a" />
+    <UnitTestResult executionId="918c0b8f-94cd-4710-ac50-30109804f6ed" testId="ba6c7508-d975-37ef-4407-54b865ae3c0a" testName="Gaode.Communication.Tests.Devices.MemberGripperTests.OldGroupCanBeReadButCannotSaveOrStartWithMissingMemberGripper" computerName="10_3_0_13" duration="00:00:00.0136232" startTime="2026-10-08T23:47:02.2991007+08:00" endTime="2026-10-08T23:47:02.3124320+08:00" testType="13cdc9d9-ddb5-4fa4-a97d-d965ccfc6d4b" outcome="Passed" testListId="8c84fa94-04c1-424b-9868-57a2d4851a1d" relativeResultsDirectory="918c0b8f-94cd-4710-ac50-30109804f6ed" />
+    <UnitTestResult executionId="239fdbeb-5239-49fc-8f39-6c26b420608f" testId="ab3afd0d-2808-2ad4-cd36-f144b83f6b92" testName="Gaode.Communication.Tests.MediaCommitTests.FullPayloadQuotaSurvivesRestartAndRepeatedIndexRestoreWithoutMemoryReservation" computerName="10_3_0_13" duration="00:00:00.3983264" startTime="2026-10-08T23:47:29.3636516+08:00" endTime="2026-10-08T23:47:29.7635170+08:00" testType="13cdc9d9-ddb5-4fa4-a97d-d965ccfc6d4b" outcome="Passed" testListId="8c84fa94-04c1-424b-9868-57a2d4851a1d" relativeResultsDirectory="239fdbeb-5239-49fc-8f39-6c26b420608f" />
+    <UnitTestResult executionId="8ddf45b7-abf0-4901-a118-245d3db8c5d2" testId="58d52dfd-1957-b90b-963b-2791ad3a9e5c" testName="Gaode.Communication.Tests.ControlledCommissioningTests.PoseSingleAndFusionUseFrozenRecipeScopesAndCurrentMedia" computerName="10_3_0_13" duration="00:00:02.5361169" startTime="2026-10-08T23:46:57.8196651+08:00" endTime="2026-10-08T23:47:00.4217859+08:00" testType="13cdc9d9-ddb5-4fa4-a97d-d965ccfc6d4b" outcome="Passed" testListId="8c84fa94-04c1-424b-9868-57a2d4851a1d" relativeResultsDirectory="8ddf45b7-abf0-4901-a118-245d3db8c5d2" />
+    <UnitTestResult executionId="4923c9d1-4a9b-491d-92d6-69c0b4a9f4fb" testId="6178d0ab-c574-8059-a9d1-c553b27e7cc3" testName="Gaode.Communication.Tests.CommissioningIdentityTests.CompleteButConflictingIdentityConfigurationIsRejected(invalid: &quot;duplicate&quot;)" computerName="10_3_0_13" duration="00:00:00.0047834" startTime="2026-10-08T23:46:53.0033250+08:00" endTime="2026-10-08T23:46:53.0072415+08:00" testType="13cdc9d9-ddb5-4fa4-a97d-d965ccfc6d4b" outcome="Passed" testListId="8c84fa94-04c1-424b-9868-57a2d4851a1d" relativeResultsDirectory="4923c9d1-4a9b-491d-92d6-69c0b4a9f4fb" />
+    <UnitTestResult executionId="23dc2814-fad0-49ae-bd4e-c1f7b348150b" testId="1709347c-ea08-b5e0-6184-9398696bf5a5" testName="Gaode.Communication.Tests.ControlledCommissioningTests.FormalCommissioningStartBlocksWithoutSafeInputsOrConfirmedSiteSafety(missingInput: False)" computerName="10_3_0_13" duration="00:00:02.7333172" startTime="2026-10-08T23:46:52.7618013+08:00" endTime="2026-10-08T23:46:55.6135951+08:00" testType="13cdc9d9-ddb5-4fa4-a97d-d965ccfc6d4b" outcome="Passed" testListId="8c84fa94-04c1-424b-9868-57a2d4851a1d" relativeResultsDirectory="23dc2814-fad0-49ae-bd4e-c1f7b348150b" />
+    <UnitTestResult executionId="5eadabc3-7ded-4678-bfd5-bb6f426fc008" testId="bbae3bea-eb75-31d2-5588-c014ea1f4075" testName="Gaode.Communication.Tests.MixedRuntimeCommissioningTests.CommissioningUsesExplicitCostBudgetAndNeverFallsBackToTestConstants" computerName="10_3_0_13" duration="00:00:00.0066069" startTime="2026-10-08T23:46:59.1743593+08:00" endTime="2026-10-08T23:46:59.1814913+08:00" testType="13cdc9d9-ddb5-4fa4-a97d-d965ccfc6d4b" outcome="Passed" testListId="8c84fa94-04c1-424b-9868-57a2d4851a1d" relativeResultsDirectory="5eadabc3-7ded-4678-bfd5-bb6f426fc008" />
+    <UnitTestResult executionId="ec40af16-9e94-460f-8987-0243eb619b34" testId="d74647f5-3e1b-5e7a-b3b2-b4eb8494419a" testName="Gaode.Communication.Tests.CameraWorkerLifecycleTests.RecoveryDuringCaptureIsRejectedAndNormalShutdownIsNotUnexpectedExit" computerName="10_3_0_13" duration="00:00:03.6300214" startTime="2026-10-08T23:47:30.6581671+08:00" endTime="2026-10-08T23:47:34.3071458+08:00" testType="13cdc9d9-ddb5-4fa4-a97d-d965ccfc6d4b" outcome="Passed" testListId="8c84fa94-04c1-424b-9868-57a2d4851a1d" relativeResultsDirectory="ec40af16-9e94-460f-8987-0243eb619b34" />
+    <UnitTestResult executionId="313e1939-36a3-4e0a-90c4-c445c2dec6cd" testId="a98c32c8-ff4e-4206-99bd-95c8b1675a47" testName="Gaode.Communication.Tests.RecipeCommissioningChainTests.FormalApiValidatesSavesSelectsAndEditsAgainstRealSqlite" computerName="10_3_0_13" duration="00:00:07.2437848" startTime="2026-10-08T23:47:06.0012160+08:00" endTime="2026-10-08T23:47:13.2589392+08:00" testType="13cdc9d9-ddb5-4fa4-a97d-d965ccfc6d4b" outcome="Passed" testListId="8c84fa94-04c1-424b-9868-57a2d4851a1d" relativeResultsDirectory="313e1939-36a3-4e0a-90c4-c445c2dec6cd" />
+    <UnitTestResult executionId="5f9386f3-3f99-4592-b58f-dd2c04f14153" testId="7ba8dada-4b1b-c067-19d9-0121d046bbb4" testName="Gaode.Communication.Tests.CommissioningIdentityTests.CompleteButConflictingIdentityConfigurationIsRejected(invalid: &quot;TestCredential&quot;)" computerName="10_3_0_13" duration="00:00:00.0035183" startTime="2026-10-08T23:46:53.0115207+08:00" endTime="2026-10-08T23:46:53.0145710+08:00" testType="13cdc9d9-ddb5-4fa4-a97d-d965ccfc6d4b" outcome="Passed" testListId="8c84fa94-04c1-424b-9868-57a2d4851a1d" relativeResultsDirectory="5f9386f3-3f99-4592-b58f-dd2c04f14153" />
+    <UnitTestResult executionId="c16d0811-e54a-4362-9013-8d23e0700f74" testId="11ffcb30-a5be-deba-542a-033405ae1bf2" testName="Gaode.Communication.Tests.CameraWorkerLifecycleTests.InvalidFrameThroughActualProcessAndFormalServiceCannotCommit(role: &quot;A&quot;, mode: &quot;bad-role&quot;)" computerName="10_3_0_13" duration="00:00:05.0454876" startTime="2026-10-08T23:47:25.5916480+08:00" endTime="2026-10-08T23:47:30.6565472+08:00" testType="13cdc9d9-ddb5-4fa4-a97d-d965ccfc6d4b" outcome="Passed" testListId="8c84fa94-04c1-424b-9868-57a2d4851a1d" relativeResultsDirectory="c16d0811-e54a-4362-9013-8d23e0700f74" />
+    <UnitTestResult executionId="57368eb4-81f8-43d6-b6c7-90621f1fbf92" testId="93adbd8d-cc3f-3a26-233e-157e502fdb21" testName="Gaode.Communication.Tests.CommissioningIdentityTests.CompleteButConflictingIdentityConfigurationIsRejected(invalid: &quot;TestPurpose&quot;)" computerName="10_3_0_13" duration="00:00:00.0036207" startTime="2026-10-08T23:46:53.0077432+08:00" endTime="2026-10-08T23:46:53.0109725+08:00" testType="13cdc9d9-ddb5-4fa4-a97d-d965ccfc6d4b" outcome="Passed" testListId="8c84fa94-04c1-424b-9868-57a2d4851a1d" relativeResultsDirectory="57368eb4-81f8-43d6-b6c7-90621f1fbf92" />
+    <UnitTestResult executionId="5e1a0bee-d89b-4d01-b40a-b08c38073d06" testId="db43c1fa-3220-c2b6-30e1-e0108d28d6a3" testName="Gaode.Communication.Tests.CameraWorkerLifecycleTests.FormalServiceIndexFailureRetainsChargedPayloadWithoutPublishingMedia" computerName="10_3_0_13" duration="00:00:05.8846455" startTime="2026-10-08T23:48:00.9674102+08:00" endTime="2026-10-08T23:48:07.3532794+08:00" testType="13cdc9d9-ddb5-4fa4-a97d-d965ccfc6d4b" outcome="Passed" testListId="8c84fa94-04c1-424b-9868-57a2d4851a1d" relativeResultsDirectory="5e1a0bee-d89b-4d01-b40a-b08c38073d06" />
+    <UnitTestResult executionId="0a867736-58f7-4ae8-807d-6f130fd4960d" testId="4c698a9b-30df-41f6-c863-afc843941a2f" testName="Gaode.Communication.Tests.CommissioningLightModeTests.ExplicitModeControlsLightButNeverSkipsCamera(mode: &quot;Simulated&quot;, realAdapter: False, expectedCapture: True)" computerName="10_3_0_13" duration="00:00:00.0257707" startTime="2026-10-08T23:46:59.7397586+08:00" endTime="2026-10-08T23:46:59.7654120+08:00" testType="13cdc9d9-ddb5-4fa4-a97d-d965ccfc6d4b" outcome="Passed" testListId="8c84fa94-04c1-424b-9868-57a2d4851a1d" relativeResultsDirectory="0a867736-58f7-4ae8-807d-6f130fd4960d" />
+    <UnitTestResult executionId="d1159dbe-e02f-4b70-b4b8-fc85a96db1cb" testId="8a5b5a5b-4b83-5374-db30-4131b53f2708" testName="Gaode.Communication.Tests.CameraProtocolTests.PersistentStreamDeliversConsecutiveBinaryFramesWithoutBase64" computerName="10_3_0_13" duration="00:00:00.0256683" startTime="2026-10-08T23:47:13.2925641+08:00" endTime="2026-10-08T23:47:13.3176866+08:00" testType="13cdc9d9-ddb5-4fa4-a97d-d965ccfc6d4b" outcome="Passed" testListId="8c84fa94-04c1-424b-9868-57a2d4851a1d" relativeResultsDirectory="d1159dbe-e02f-4b70-b4b8-fc85a96db1cb" />
+    <UnitTestResult executionId="c926c8d2-1912-40a7-b8f8-0a5de41def43" testId="bf219c63-fc96-0d65-5fac-fa7753b73e5b" testName="Gaode.Communication.Tests.MediaCommitTests.SidecarFailureAndPartialOrphanPayloadRemainChargedButNeverPublished" computerName="10_3_0_13" duration="00:00:00.3203016" startTime="2026-10-08T23:47:29.7640913+08:00" endTime="2026-10-08T23:47:30.0848932+08:00" testType="13cdc9d9-ddb5-4fa4-a97d-d965ccfc6d4b" outcome="Passed" testListId="8c84fa94-04c1-424b-9868-57a2d4851a1d" relativeResultsDirectory="c926c8d2-1912-40a7-b8f8-0a5de41def43" />
+    <UnitTestResult executionId="6fc06f27-1976-4997-9bcb-6db77cf44720" testId="3c5d4162-ff76-8c58-c986-e3f55b02d763" testName="Gaode.Communication.Tests.Devices.SamePositionTests.RepeatedTargetsReuseOnlySatisfiedAxes(x: 11, y: 22, z: 33, expected: &quot;&quot;)" computerName="10_3_0_13" duration="00:00:03.4034792" startTime="2026-10-08T23:47:00.1279046+08:00" endTime="2026-10-08T23:47:03.9584844+08:00" testType="13cdc9d9-ddb5-4fa4-a97d-d965ccfc6d4b" outcome="Passed" testListId="8c84fa94-04c1-424b-9868-57a2d4851a1d" relativeResultsDirectory="6fc06f27-1976-4997-9bcb-6db77cf44720" />
+    <UnitTestResult executionId="3af361cf-4c62-4aee-bdb9-9f58cf7e146a" testId="1cf235fc-6d61-ae37-5556-563edcf2d264" testName="Gaode.Communication.Tests.CommissioningLightModeTests.MissingLightParametersOnlyAllowedInExplicitVirtualModeAndFPositionRoundTrips" computerName="10_3_0_13" duration="00:00:00.0657362" startTime="2026-10-08T23:46:59.6580315+08:00" endTime="2026-10-08T23:46:59.7233305+08:00" testType="13cdc9d9-ddb5-4fa4-a97d-d965ccfc6d4b" outcome="Passed" testListId="8c84fa94-04c1-424b-9868-57a2d4851a1d" relativeResultsDirectory="3af361cf-4c62-4aee-bdb9-9f58cf7e146a" />
+    <UnitTestResult executionId="77b2622f-8014-43dd-9fed-fcf77510818f" testId="1261ce25-b5c7-054b-0dc6-7e0278347d75" testName="Gaode.Communication.Tests.Devices.SamePositionTests.StaticPositionWithoutCurrentClosureMustActuallyDispatch(cause: &quot;drift&quot;)" computerName="10_3_0_13" duration="00:00:04.2464749" startTime="2026-10-08T23:47:16.1122216+08:00" endTime="2026-10-08T23:47:20.5270050+08:00" testType="13cdc9d9-ddb5-4fa4-a97d-d965ccfc6d4b" outcome="Passed" testListId="8c84fa94-04c1-424b-9868-57a2d4851a1d" relativeResultsDirectory="77b2622f-8014-43dd-9fed-fcf77510818f" />
+    <UnitTestResult executionId="f76a921c-e559-40c4-8b0e-09cc6f3291a8" testId="b8344a57-4fc5-a248-4d46-efe079900628" testName="Gaode.Communication.Tests.ControlledCommissioningTests.HostComposesRealPortsAndControlledSimulationWithoutLoadingTestSimulation" computerName="10_3_0_13" duration="00:00:00.9443740" startTime="2026-10-08T23:46:55.6161351+08:00" endTime="2026-10-08T23:46:56.7458232+08:00" testType="13cdc9d9-ddb5-4fa4-a97d-d965ccfc6d4b" outcome="Passed" testListId="8c84fa94-04c1-424b-9868-57a2d4851a1d" relativeResultsDirectory="f76a921c-e559-40c4-8b0e-09cc6f3291a8" />
+    <UnitTestResult executionId="d4485043-6a29-40a7-9cf6-3cf6a56ec089" testId="33b7965e-168e-f3cd-2ab0-1b9073b87661" testName="Gaode.Communication.Tests.Devices.SamePositionTests.StaticPositionWithoutCurrentClosureMustActuallyDispatch(cause: &quot;initial&quot;)" computerName="10_3_0_13" duration="00:00:02.7746439" startTime="2026-10-08T23:47:13.2518421+08:00" endTime="2026-10-08T23:47:16.1115962+08:00" testType="13cdc9d9-ddb5-4fa4-a97d-d965ccfc6d4b" outcome="Passed" testListId="8c84fa94-04c1-424b-9868-57a2d4851a1d" relativeResultsDirectory="d4485043-6a29-40a7-9cf6-3cf6a56ec089" />
+    <UnitTestResult executionId="d3e90ce7-f0f9-4fac-aa60-8e80a2174971" testId="97682c73-c9f2-aa9f-dfec-878c815c0e4e" testName="Gaode.Communication.Tests.CameraWorkerLifecycleTests.ConfiguredCapturePersistsSeparateCameraAndSimulatedLightFacts" computerName="10_3_0_13" duration="00:00:02.3831325" startTime="2026-10-08T23:47:13.3254586+08:00" endTime="2026-10-08T23:47:15.9931374+08:00" testType="13cdc9d9-ddb5-4fa4-a97d-d965ccfc6d4b" outcome="Passed" testListId="8c84fa94-04c1-424b-9868-57a2d4851a1d" relativeResultsDirectory="d3e90ce7-f0f9-4fac-aa60-8e80a2174971" />
+    <UnitTestResult executionId="abd72694-abb9-4065-b9f9-0a1f627f59c6" testId="fa4d4887-c499-e285-2f8d-768e6554fc22" testName="Gaode.Communication.Tests.Devices.SamePositionTests.StaticPositionWithoutCurrentClosureMustActuallyDispatch(cause: &quot;reset&quot;)" computerName="10_3_0_13" duration="00:00:04.4796763" startTime="2026-10-08T23:47:20.5283124+08:00" endTime="2026-10-08T23:47:25.1559818+08:00" testType="13cdc9d9-ddb5-4fa4-a97d-d965ccfc6d4b" outcome="Passed" testListId="8c84fa94-04c1-424b-9868-57a2d4851a1d" relativeResultsDirectory="abd72694-abb9-4065-b9f9-0a1f627f59c6" />
+    <UnitTestResult executionId="d58bfeb1-bfbb-431d-8fe2-ba88ba6681f4" testId="5d713dea-4c59-3866-9470-d1c8ffdfcc23" testName="Gaode.Communication.Tests.CommissioningStartQueryTests.LookupDoesNotRegisterOrReleaseAndOldCompletionCannotReleaseNewOwner" computerName="10_3_0_13" duration="00:00:00.0026262" startTime="2026-10-08T23:46:59.7687354+08:00" endTime="2026-10-08T23:46:59.7712211+08:00" testType="13cdc9d9-ddb5-4fa4-a97d-d965ccfc6d4b" outcome="Passed" testListId="8c84fa94-04c1-424b-9868-57a2d4851a1d" relativeResultsDirectory="d58bfeb1-bfbb-431d-8fe2-ba88ba6681f4" />
+    <UnitTestResult executionId="9765c13b-f2b9-4b50-b6ab-8616cb78bf53" testId="75a9be63-02b7-42f8-c9b0-0df51b17c49e" testName="Gaode.Communication.Tests.CommissioningIdentityTests.MissingOrDisallowedIdentityConfigurationFailsWithoutTestFallback(role: &quot;EquipmentEngineer&quot;)" computerName="10_3_0_13" duration="00:00:00.0045235" startTime="2026-10-08T23:46:52.9952288+08:00" endTime="2026-10-08T23:46:52.9989952+08:00" testType="13cdc9d9-ddb5-4fa4-a97d-d965ccfc6d4b" outcome="Passed" testListId="8c84fa94-04c1-424b-9868-57a2d4851a1d" relativeResultsDirectory="9765c13b-f2b9-4b50-b6ab-8616cb78bf53" />
+  </Results>
+  <TestDefinitions>
+    <UnitTest name="Gaode.Communication.Tests.CommissioningIdentityTests.MissingOrDisallowedIdentityConfigurationFailsWithoutTestFallback(role: &quot;EquipmentEngineer&quot;)" storage="e:\dzk\gaode-1\backend\tests\gaode.communication.tests\bin\debug\net10.0\gaode.communication.tests.dll" id="75a9be63-02b7-42f8-c9b0-0df51b17c49e">
+      <Execution id="9765c13b-f2b9-4b50-b6ab-8616cb78bf53" />
+      <TestMethod codeBase="E:\dzk\gaode-1\backend\tests\Gaode.Communication.Tests\bin\Debug\net10.0\Gaode.Communication.Tests.dll" adapterTypeName="executor://xunit/VsTestRunner3/netcore/" className="Gaode.Communication.Tests.CommissioningIdentityTests" name="MissingOrDisallowedIdentityConfigurationFailsWithoutTestFallback" />
+    </UnitTest>
+    <UnitTest name="Gaode.Communication.Tests.CameraWorkerLifecycleTests.ActualWorkerExitRevokesReadyAndRecoveryRequiresFaultAndNewSession" storage="e:\dzk\gaode-1\backend\tests\gaode.communication.tests\bin\debug\net10.0\gaode.communication.tests.dll" id="3e8d2de8-4852-3d7f-32d4-94163d960312">
+      <Execution id="ee3ae1c4-7d4e-463c-bb3c-784225fd4cb0" />
+      <TestMethod codeBase="E:\dzk\gaode-1\backend\tests\Gaode.Communication.Tests\bin\Debug\net10.0\Gaode.Communication.Tests.dll" adapterTypeName="executor://xunit/VsTestRunner3/netcore/" className="Gaode.Communication.Tests.CameraWorkerLifecycleTests" name="ActualWorkerExitRevokesReadyAndRecoveryRequiresFaultAndNewSession" />
+    </UnitTest>
+    <UnitTest name="Gaode.Communication.Tests.Devices.MemberGripperTests.OldGroupCanBeReadButCannotSaveOrStartWithMissingMemberGripper" storage="e:\dzk\gaode-1\backend\tests\gaode.communication.tests\bin\debug\net10.0\gaode.communication.tests.dll" id="ba6c7508-d975-37ef-4407-54b865ae3c0a">
+      <Execution id="918c0b8f-94cd-4710-ac50-30109804f6ed" />
+      <TestMethod codeBase="E:\dzk\gaode-1\backend\tests\Gaode.Communication.Tests\bin\Debug\net10.0\Gaode.Communication.Tests.dll" adapterTypeName="executor://xunit/VsTestRunner3/netcore/" className="Gaode.Communication.Tests.Devices.MemberGripperTests" name="OldGroupCanBeReadButCannotSaveOrStartWithMissingMemberGripper" />
+    </UnitTest>
+    <UnitTest name="Gaode.Communication.Tests.CameraProtocolTests.WireV2CarriesSettingsAndRejectsV1InsteadOfDowngrading" storage="e:\dzk\gaode-1\backend\tests\gaode.communication.tests\bin\debug\net10.0\gaode.communication.tests.dll" id="d352b8c5-ba58-0d3a-8deb-6428f267a266">
+      <Execution id="64e763dc-f177-4b84-8c10-a2cdddb0620c" />
+      <TestMethod codeBase="E:\dzk\gaode-1\backend\tests\Gaode.Communication.Tests\bin\Debug\net10.0\Gaode.Communication.Tests.dll" adapterTypeName="executor://xunit/VsTestRunner3/netcore/" className="Gaode.Communication.Tests.CameraProtocolTests" name="WireV2CarriesSettingsAndRejectsV1InsteadOfDowngrading" />
+    </UnitTest>
+    <UnitTest name="Gaode.Communication.Tests.ControlledCommissioningTests.FormalCommissioningStartBlocksWithoutSafeInputsOrConfirmedSiteSafety(missingInput: True)" storage="e:\dzk\gaode-1\backend\tests\gaode.communication.tests\bin\debug\net10.0\gaode.communication.tests.dll" id="4f100c36-d0dd-4864-c999-f08003a3a0bf">
+      <Execution id="be8f0724-93d9-475c-944e-85fcc38020df" />
+      <TestMethod codeBase="E:\dzk\gaode-1\backend\tests\Gaode.Communication.Tests\bin\Debug\net10.0\Gaode.Communication.Tests.dll" adapterTypeName="executor://xunit/VsTestRunner3/netcore/" className="Gaode.Communication.Tests.ControlledCommissioningTests" name="FormalCommissioningStartBlocksWithoutSafeInputsOrConfirmedSiteSafety" />
+    </UnitTest>
+    <UnitTest name="Gaode.Communication.Tests.Devices.SamePositionTests.StaticPositionWithoutCurrentClosureMustActuallyDispatch(cause: &quot;reset&quot;)" storage="e:\dzk\gaode-1\backend\tests\gaode.communication.tests\bin\debug\net10.0\gaode.communication.tests.dll" id="fa4d4887-c499-e285-2f8d-768e6554fc22">
+      <Execution id="abd72694-abb9-4065-b9f9-0a1f627f59c6" />
+      <TestMethod codeBase="E:\dzk\gaode-1\backend\tests\Gaode.Communication.Tests\bin\Debug\net10.0\Gaode.Communication.Tests.dll" adapterTypeName="executor://xunit/VsTestRunner3/netcore/" className="Gaode.Communication.Tests.Devices.SamePositionTests" name="StaticPositionWithoutCurrentClosureMustActuallyDispatch" />
+    </UnitTest>
+    <UnitTest name="Gaode.Communication.Tests.Devices.MemberGripperTests.ExistingCommunicationHandshakeSwitchesOneTwoAndReusesTwo" storage="e:\dzk\gaode-1\backend\tests\gaode.communication.tests\bin\debug\net10.0\gaode.communication.tests.dll" id="98ca9c73-5985-d763-20be-d1f61c44c00b">
+      <Execution id="f14eac79-94cf-4d6a-acca-6731c6736886" />
+      <TestMethod codeBase="E:\dzk\gaode-1\backend\tests\Gaode.Communication.Tests\bin\Debug\net10.0\Gaode.Communication.Tests.dll" adapterTypeName="executor://xunit/VsTestRunner3/netcore/" className="Gaode.Communication.Tests.Devices.MemberGripperTests" name="ExistingCommunicationHandshakeSwitchesOneTwoAndReusesTwo" />
+    </UnitTest>
+    <UnitTest name="Gaode.Communication.Tests.ControlledCommissioningTests.PoseSingleAndFusionUseFrozenRecipeScopesAndCurrentMedia" storage="e:\dzk\gaode-1\backend\tests\gaode.communication.tests\bin\debug\net10.0\gaode.communication.tests.dll" id="58d52dfd-1957-b90b-963b-2791ad3a9e5c">
+      <Execution id="8ddf45b7-abf0-4901-a118-245d3db8c5d2" />
+      <TestMethod codeBase="E:\dzk\gaode-1\backend\tests\Gaode.Communication.Tests\bin\Debug\net10.0\Gaode.Communication.Tests.dll" adapterTypeName="executor://xunit/VsTestRunner3/netcore/" className="Gaode.Communication.Tests.ControlledCommissioningTests" name="PoseSingleAndFusionUseFrozenRecipeScopesAndCurrentMedia" />
+    </UnitTest>
+    <UnitTest name="Gaode.Communication.Tests.MediaCommitTests.SidecarFailureAndPartialOrphanPayloadRemainChargedButNeverPublished" storage="e:\dzk\gaode-1\backend\tests\gaode.communication.tests\bin\debug\net10.0\gaode.communication.tests.dll" id="bf219c63-fc96-0d65-5fac-fa7753b73e5b">
+      <Execution id="c926c8d2-1912-40a7-b8f8-0a5de41def43" />
+      <TestMethod codeBase="E:\dzk\gaode-1\backend\tests\Gaode.Communication.Tests\bin\Debug\net10.0\Gaode.Communication.Tests.dll" adapterTypeName="executor://xunit/VsTestRunner3/netcore/" className="Gaode.Communication.Tests.MediaCommitTests" name="SidecarFailureAndPartialOrphanPayloadRemainChargedButNeverPublished" />
+    </UnitTest>
+    <UnitTest name="Gaode.Communication.Tests.CommissioningIdentityTests.CompleteButConflictingIdentityConfigurationIsRejected(invalid: &quot;TestPurpose&quot;)" storage="e:\dzk\gaode-1\backend\tests\gaode.communication.tests\bin\debug\net10.0\gaode.communication.tests.dll" id="93adbd8d-cc3f-3a26-233e-157e502fdb21">
+      <Execution id="57368eb4-81f8-43d6-b6c7-90621f1fbf92" />
+      <TestMethod codeBase="E:\dzk\gaode-1\backend\tests\Gaode.Communication.Tests\bin\Debug\net10.0\Gaode.Communication.Tests.dll" adapterTypeName="executor://xunit/VsTestRunner3/netcore/" className="Gaode.Communication.Tests.CommissioningIdentityTests" name="CompleteButConflictingIdentityConfigurationIsRejected" />
+    </UnitTest>
+    <UnitTest name="Gaode.Communication.Tests.ImportedCommissioningRecipeTests.LocalFlipSourceSavesReloadsAndExecutesFormalDetectionChain" storage="e:\dzk\gaode-1\backend\tests\gaode.communication.tests\bin\debug\net10.0\gaode.communication.tests.dll" id="9ae2ccb8-e2eb-2b34-959d-9b86704fcceb">
+      <Execution id="266fbaf6-2866-4233-b907-69c27b81ca36" />
+      <TestMethod codeBase="E:\dzk\gaode-1\backend\tests\Gaode.Communication.Tests\bin\Debug\net10.0\Gaode.Communication.Tests.dll" adapterTypeName="executor://xunit/VsTestRunner3/netcore/" className="Gaode.Communication.Tests.ImportedCommissioningRecipeTests" name="LocalFlipSourceSavesReloadsAndExecutesFormalDetectionChain" />
+    </UnitTest>
+    <UnitTest name="Gaode.Communication.Tests.Devices.SamePositionTests.RepeatedTargetsReuseOnlySatisfiedAxes(x: 11, y: 22, z: 33, expected: &quot;&quot;)" storage="e:\dzk\gaode-1\backend\tests\gaode.communication.tests\bin\debug\net10.0\gaode.communication.tests.dll" id="3c5d4162-ff76-8c58-c986-e3f55b02d763">
+      <Execution id="6fc06f27-1976-4997-9bcb-6db77cf44720" />
+      <TestMethod codeBase="E:\dzk\gaode-1\backend\tests\Gaode.Communication.Tests\bin\Debug\net10.0\Gaode.Communication.Tests.dll" adapterTypeName="executor://xunit/VsTestRunner3/netcore/" className="Gaode.Communication.Tests.Devices.SamePositionTests" name="RepeatedTargetsReuseOnlySatisfiedAxes" />
+    </UnitTest>
+    <UnitTest name="Gaode.Communication.Tests.CommissioningStartQueryTests.PersistedLookupIsSubjectScopedAndDatabaseFailureIsNotNotFound" storage="e:\dzk\gaode-1\backend\tests\gaode.communication.tests\bin\debug\net10.0\gaode.communication.tests.dll" id="b6d5c734-cb56-b5f1-0282-92ccd6c8ed5e">
+      <Execution id="9bc27cb8-da2a-4170-99a9-088e93dff314" />
+      <TestMethod codeBase="E:\dzk\gaode-1\backend\tests\Gaode.Communication.Tests\bin\Debug\net10.0\Gaode.Communication.Tests.dll" adapterTypeName="executor://xunit/VsTestRunner3/netcore/" className="Gaode.Communication.Tests.CommissioningStartQueryTests" name="PersistedLookupIsSubjectScopedAndDatabaseFailureIsNotNotFound" />
+    </UnitTest>
+    <UnitTest name="Gaode.Communication.Tests.CommissioningIdentityTests.CompleteButConflictingIdentityConfigurationIsRejected(invalid: &quot;TestCredential&quot;)" storage="e:\dzk\gaode-1\backend\tests\gaode.communication.tests\bin\debug\net10.0\gaode.communication.tests.dll" id="7ba8dada-4b1b-c067-19d9-0121d046bbb4">
+      <Execution id="5f9386f3-3f99-4592-b58f-dd2c04f14153" />
+      <TestMethod codeBase="E:\dzk\gaode-1\backend\tests\Gaode.Communication.Tests\bin\Debug\net10.0\Gaode.Communication.Tests.dll" adapterTypeName="executor://xunit/VsTestRunner3/netcore/" className="Gaode.Communication.Tests.CommissioningIdentityTests" name="CompleteButConflictingIdentityConfigurationIsRejected" />
+    </UnitTest>
+    <UnitTest name="Gaode.Communication.Tests.CameraWorkerLifecycleTests.FormalServiceIndexFailureRetainsChargedPayloadWithoutPublishingMedia" storage="e:\dzk\gaode-1\backend\tests\gaode.communication.tests\bin\debug\net10.0\gaode.communication.tests.dll" id="db43c1fa-3220-c2b6-30e1-e0108d28d6a3">
+      <Execution id="5e1a0bee-d89b-4d01-b40a-b08c38073d06" />
+      <TestMethod codeBase="E:\dzk\gaode-1\backend\tests\Gaode.Communication.Tests\bin\Debug\net10.0\Gaode.Communication.Tests.dll" adapterTypeName="executor://xunit/VsTestRunner3/netcore/" className="Gaode.Communication.Tests.CameraWorkerLifecycleTests" name="FormalServiceIndexFailureRetainsChargedPayloadWithoutPublishingMedia" />
+    </UnitTest>
+    <UnitTest name="Gaode.Communication.Tests.CameraServiceSimulationTests.FixedImageDeadlineCancelsOnceWithoutAutomaticReplay" storage="e:\dzk\gaode-1\backend\tests\gaode.communication.tests\bin\debug\net10.0\gaode.communication.tests.dll" id="965de380-168d-6a30-b293-64164d1a7bf7">
+      <Execution id="f039f3c2-55e3-4a1a-9d0b-bc13e35a788e" />
+      <TestMethod codeBase="E:\dzk\gaode-1\backend\tests\Gaode.Communication.Tests\bin\Debug\net10.0\Gaode.Communication.Tests.dll" adapterTypeName="executor://xunit/VsTestRunner3/netcore/" className="Gaode.Communication.Tests.CameraServiceSimulationTests" name="FixedImageDeadlineCancelsOnceWithoutAutomaticReplay" />
+    </UnitTest>
+    <UnitTest name="Gaode.Communication.Tests.MediaCommitTests.DurableCommitPublishesRawDataAndRestoresMetadataAfterRestart" storage="e:\dzk\gaode-1\backend\tests\gaode.communication.tests\bin\debug\net10.0\gaode.communication.tests.dll" id="85c95fb7-6adf-d007-3601-ce27f48ec091">
+      <Execution id="68b001d3-fdc9-4330-959b-884ccff7a9e9" />
+      <TestMethod codeBase="E:\dzk\gaode-1\backend\tests\Gaode.Communication.Tests\bin\Debug\net10.0\Gaode.Communication.Tests.dll" adapterTypeName="executor://xunit/VsTestRunner3/netcore/" className="Gaode.Communication.Tests.MediaCommitTests" name="DurableCommitPublishesRawDataAndRestoresMetadataAfterRestart" />
+    </UnitTest>
+    <UnitTest name="Gaode.Communication.Tests.CameraProtocolTests.PersistentStreamDeliversConsecutiveBinaryFramesWithoutBase64" storage="e:\dzk\gaode-1\backend\tests\gaode.communication.tests\bin\debug\net10.0\gaode.communication.tests.dll" id="8a5b5a5b-4b83-5374-db30-4131b53f2708">
+      <Execution id="d1159dbe-e02f-4b70-b4b8-fc85a96db1cb" />
+      <TestMethod codeBase="E:\dzk\gaode-1\backend\tests\Gaode.Communication.Tests\bin\Debug\net10.0\Gaode.Communication.Tests.dll" adapterTypeName="executor://xunit/VsTestRunner3/netcore/" className="Gaode.Communication.Tests.CameraProtocolTests" name="PersistentStreamDeliversConsecutiveBinaryFramesWithoutBase64" />
+    </UnitTest>
+    <UnitTest name="Gaode.Communication.Tests.CommissioningWorkflowTests.LegacyTestHostRunsPublicPreparationBindingFlipAndDurableWholeTrayWorkflow" storage="e:\dzk\gaode-1\backend\tests\gaode.communication.tests\bin\debug\net10.0\gaode.communication.tests.dll" id="b572591f-b4af-586f-0997-828280395be5">
+      <Execution id="6abc08a7-1d67-46aa-87e2-28a15c947c59" />
+      <TestMethod codeBase="E:\dzk\gaode-1\backend\tests\Gaode.Communication.Tests\bin\Debug\net10.0\Gaode.Communication.Tests.dll" adapterTypeName="executor://xunit/VsTestRunner3/netcore/" className="Gaode.Communication.Tests.CommissioningWorkflowTests" name="LegacyTestHostRunsPublicPreparationBindingFlipAndDurableWholeTrayWorkflow" />
+    </UnitTest>
+    <UnitTest name="Gaode.Communication.Tests.CameraServiceSimulationTests.FixedImageUsesFormalReceiptAndDurableMediaWithoutRealFrameMetadata" storage="e:\dzk\gaode-1\backend\tests\gaode.communication.tests\bin\debug\net10.0\gaode.communication.tests.dll" id="29541768-4852-5730-9ece-c2a86d398daa">
+      <Execution id="453f4050-53e2-4a0d-aa49-8fa5ce4a9522" />
+      <TestMethod codeBase="E:\dzk\gaode-1\backend\tests\Gaode.Communication.Tests\bin\Debug\net10.0\Gaode.Communication.Tests.dll" adapterTypeName="executor://xunit/VsTestRunner3/netcore/" className="Gaode.Communication.Tests.CameraServiceSimulationTests" name="FixedImageUsesFormalReceiptAndDurableMediaWithoutRealFrameMetadata" />
+    </UnitTest>
+    <UnitTest name="Gaode.Communication.Tests.CameraWorkerLifecycleTests.SettingsRejectedBeforeTriggerFaultSessionAndNeverReplay(mode: &quot;settings-readback-fail&quot;)" storage="e:\dzk\gaode-1\backend\tests\gaode.communication.tests\bin\debug\net10.0\gaode.communication.tests.dll" id="914c1316-2da8-34d6-b8c9-78e339df1275">
+      <Execution id="ba3d6762-b187-41f0-ba41-7a5ecdfd49de" />
+      <TestMethod codeBase="E:\dzk\gaode-1\backend\tests\Gaode.Communication.Tests\bin\Debug\net10.0\Gaode.Communication.Tests.dll" adapterTypeName="executor://xunit/VsTestRunner3/netcore/" className="Gaode.Communication.Tests.CameraWorkerLifecycleTests" name="SettingsRejectedBeforeTriggerFaultSessionAndNeverReplay" />
+    </UnitTest>
+    <UnitTest name="Gaode.Communication.Tests.CameraWorkerLifecycleTests.SettingsRejectedBeforeTriggerFaultSessionAndNeverReplay(mode: &quot;settings-unsupported&quot;)" storage="e:\dzk\gaode-1\backend\tests\gaode.communication.tests\bin\debug\net10.0\gaode.communication.tests.dll" id="5325532f-13c8-ccde-264b-626edf41672c">
+      <Execution id="15d48930-fa96-48c5-9cc8-dd897ecd73b7" />
+      <TestMethod codeBase="E:\dzk\gaode-1\backend\tests\Gaode.Communication.Tests\bin\Debug\net10.0\Gaode.Communication.Tests.dll" adapterTypeName="executor://xunit/VsTestRunner3/netcore/" className="Gaode.Communication.Tests.CameraWorkerLifecycleTests" name="SettingsRejectedBeforeTriggerFaultSessionAndNeverReplay" />
+    </UnitTest>
+    <UnitTest name="Gaode.Communication.Tests.RecipeCommissioningChainTests.FormalApiValidatesSavesSelectsAndEditsAgainstRealSqlite" storage="e:\dzk\gaode-1\backend\tests\gaode.communication.tests\bin\debug\net10.0\gaode.communication.tests.dll" id="a98c32c8-ff4e-4206-99bd-95c8b1675a47">
+      <Execution id="313e1939-36a3-4e0a-90c4-c445c2dec6cd" />
+      <TestMethod codeBase="E:\dzk\gaode-1\backend\tests\Gaode.Communication.Tests\bin\Debug\net10.0\Gaode.Communication.Tests.dll" adapterTypeName="executor://xunit/VsTestRunner3/netcore/" className="Gaode.Communication.Tests.RecipeCommissioningChainTests" name="FormalApiValidatesSavesSelectsAndEditsAgainstRealSqlite" />
+    </UnitTest>
+    <UnitTest name="Gaode.Communication.Tests.CameraWorkerLifecycleTests.InvalidFrameThroughActualProcessAndFormalServiceCannotCommit(role: &quot;A&quot;, mode: &quot;bad-role&quot;)" storage="e:\dzk\gaode-1\backend\tests\gaode.communication.tests\bin\debug\net10.0\gaode.communication.tests.dll" id="11ffcb30-a5be-deba-542a-033405ae1bf2">
+      <Execution id="c16d0811-e54a-4362-9013-8d23e0700f74" />
+      <TestMethod codeBase="E:\dzk\gaode-1\backend\tests\Gaode.Communication.Tests\bin\Debug\net10.0\Gaode.Communication.Tests.dll" adapterTypeName="executor://xunit/VsTestRunner3/netcore/" className="Gaode.Communication.Tests.CameraWorkerLifecycleTests" name="InvalidFrameThroughActualProcessAndFormalServiceCannotCommit" />
+    </UnitTest>
+    <UnitTest name="Gaode.Communication.Tests.CameraWorkerLifecycleTests.InvalidFrameThroughActualProcessAndFormalServiceCannotCommit(role: &quot;A&quot;, mode: &quot;bad-size&quot;)" storage="e:\dzk\gaode-1\backend\tests\gaode.communication.tests\bin\debug\net10.0\gaode.communication.tests.dll" id="38e640a5-9743-854c-fc90-9726601830e0">
+      <Execution id="beb3a3dc-f49c-4836-bf1c-606f8b767863" />
+      <TestMethod codeBase="E:\dzk\gaode-1\backend\tests\Gaode.Communication.Tests\bin\Debug\net10.0\Gaode.Communication.Tests.dll" adapterTypeName="executor://xunit/VsTestRunner3/netcore/" className="Gaode.Communication.Tests.CameraWorkerLifecycleTests" name="InvalidFrameThroughActualProcessAndFormalServiceCannotCommit" />
+    </UnitTest>
+    <UnitTest name="Gaode.Communication.Tests.CommissioningIdentityTests.MissingOrDisallowedIdentityConfigurationFailsWithoutTestFallback(role: &quot;SystemAdministrator&quot;)" storage="e:\dzk\gaode-1\backend\tests\gaode.communication.tests\bin\debug\net10.0\gaode.communication.tests.dll" id="d20312b6-1b16-ea86-6bf4-6a4b28895680">
+      <Execution id="ed8870da-3780-4143-a901-8238204f1833" />
+      <TestMethod codeBase="E:\dzk\gaode-1\backend\tests\Gaode.Communication.Tests\bin\Debug\net10.0\Gaode.Communication.Tests.dll" adapterTypeName="executor://xunit/VsTestRunner3/netcore/" className="Gaode.Communication.Tests.CommissioningIdentityTests" name="MissingOrDisallowedIdentityConfigurationFailsWithoutTestFallback" />
+    </UnitTest>
+    <UnitTest name="Gaode.Communication.Tests.RecipeCommissioningChainTests.LegacyTestAdmissionStillRequiresItsExistingApproval" storage="e:\dzk\gaode-1\backend\tests\gaode.communication.tests\bin\debug\net10.0\gaode.communication.tests.dll" id="7ff0add2-2bd5-08aa-7096-761682ed89de">
+      <Execution id="89e67631-41b1-4614-a217-816b9b49ca1a" />
+      <TestMethod codeBase="E:\dzk\gaode-1\backend\tests\Gaode.Communication.Tests\bin\Debug\net10.0\Gaode.Communication.Tests.dll" adapterTypeName="executor://xunit/VsTestRunner3/netcore/" className="Gaode.Communication.Tests.RecipeCommissioningChainTests" name="LegacyTestAdmissionStillRequiresItsExistingApproval" />
+    </UnitTest>
+    <UnitTest name="Gaode.Communication.Tests.CameraProtocolTests.OversizedOrTruncatedTransferCannotProduceAFrame" storage="e:\dzk\gaode-1\backend\tests\gaode.communication.tests\bin\debug\net10.0\gaode.communication.tests.dll" id="c3728530-6ff8-2bed-619a-3a16a72ea4b2">
+      <Execution id="a57e138b-29cf-424b-8c29-42514764311b" />
+      <TestMethod codeBase="E:\dzk\gaode-1\backend\tests\Gaode.Communication.Tests\bin\Debug\net10.0\Gaode.Communication.Tests.dll" adapterTypeName="executor://xunit/VsTestRunner3/netcore/" className="Gaode.Communication.Tests.CameraProtocolTests" name="OversizedOrTruncatedTransferCannotProduceAFrame" />
+    </UnitTest>
+    <UnitTest name="Gaode.Communication.Tests.ControlledCommissioningTests.ControlledAlgorithmReadsCurrentFilesAndReleasesInputsWithPersistentFailureDiagnostics" storage="e:\dzk\gaode-1\backend\tests\gaode.communication.tests\bin\debug\net10.0\gaode.communication.tests.dll" id="4c4eeedb-af5e-9911-d90c-b855386db931">
+      <Execution id="0bbfd740-7601-4490-aa96-b4ec277a78b6" />
+      <TestMethod codeBase="E:\dzk\gaode-1\backend\tests\Gaode.Communication.Tests\bin\Debug\net10.0\Gaode.Communication.Tests.dll" adapterTypeName="executor://xunit/VsTestRunner3/netcore/" className="Gaode.Communication.Tests.ControlledCommissioningTests" name="ControlledAlgorithmReadsCurrentFilesAndReleasesInputsWithPersistentFailureDiagnostics" />
+    </UnitTest>
+    <UnitTest name="Gaode.Communication.Tests.CameraWorkerLifecycleTests.RecoveryDuringCaptureIsRejectedAndNormalShutdownIsNotUnexpectedExit" storage="e:\dzk\gaode-1\backend\tests\gaode.communication.tests\bin\debug\net10.0\gaode.communication.tests.dll" id="d74647f5-3e1b-5e7a-b3b2-b4eb8494419a">
+      <Execution id="ec40af16-9e94-460f-8987-0243eb619b34" />
+      <TestMethod codeBase="E:\dzk\gaode-1\backend\tests\Gaode.Communication.Tests\bin\Debug\net10.0\Gaode.Communication.Tests.dll" adapterTypeName="executor://xunit/VsTestRunner3/netcore/" className="Gaode.Communication.Tests.CameraWorkerLifecycleTests" name="RecoveryDuringCaptureIsRejectedAndNormalShutdownIsNotUnexpectedExit" />
+    </UnitTest>
+    <UnitTest name="Gaode.Communication.Tests.CommissioningIdentityTests.MissingOrDisallowedIdentityConfigurationFailsWithoutTestFallback(role: &quot;Operator&quot;)" storage="e:\dzk\gaode-1\backend\tests\gaode.communication.tests\bin\debug\net10.0\gaode.communication.tests.dll" id="b70a563a-d3d6-c9ed-2c12-d4694a978c87">
+      <Execution id="5d4148bb-0bbc-41d0-ab21-ea077122d76d" />
+      <TestMethod codeBase="E:\dzk\gaode-1\backend\tests\Gaode.Communication.Tests\bin\Debug\net10.0\Gaode.Communication.Tests.dll" adapterTypeName="executor://xunit/VsTestRunner3/netcore/" className="Gaode.Communication.Tests.CommissioningIdentityTests" name="MissingOrDisallowedIdentityConfigurationFailsWithoutTestFallback" />
+    </UnitTest>
+    <UnitTest name="Gaode.Communication.Tests.Devices.SamePositionTests.StaticPositionWithoutCurrentClosureMustActuallyDispatch(cause: &quot;drift&quot;)" storage="e:\dzk\gaode-1\backend\tests\gaode.communication.tests\bin\debug\net10.0\gaode.communication.tests.dll" id="1261ce25-b5c7-054b-0dc6-7e0278347d75">
+      <Execution id="77b2622f-8014-43dd-9fed-fcf77510818f" />
+      <TestMethod codeBase="E:\dzk\gaode-1\backend\tests\Gaode.Communication.Tests\bin\Debug\net10.0\Gaode.Communication.Tests.dll" adapterTypeName="executor://xunit/VsTestRunner3/netcore/" className="Gaode.Communication.Tests.Devices.SamePositionTests" name="StaticPositionWithoutCurrentClosureMustActuallyDispatch" />
+    </UnitTest>
+    <UnitTest name="Gaode.Communication.Tests.CommissioningLightModeTests.ExplicitModeControlsLightButNeverSkipsCamera(mode: &quot;Real&quot;, realAdapter: False, expectedCapture: False)" storage="e:\dzk\gaode-1\backend\tests\gaode.communication.tests\bin\debug\net10.0\gaode.communication.tests.dll" id="566177ee-cf2a-6081-26a4-6ba342d32c59">
+      <Execution id="45997b90-c618-4de4-8e4b-b066dacd7d80" />
+      <TestMethod codeBase="E:\dzk\gaode-1\backend\tests\Gaode.Communication.Tests\bin\Debug\net10.0\Gaode.Communication.Tests.dll" adapterTypeName="executor://xunit/VsTestRunner3/netcore/" className="Gaode.Communication.Tests.CommissioningLightModeTests" name="ExplicitModeControlsLightButNeverSkipsCamera" />
+    </UnitTest>
+    <UnitTest name="Gaode.Communication.Tests.CameraWorkerLifecycleTests.AtomicSettingsHaveSeparateReadbacksAndFreshFramesAndNormalRestoration" storage="e:\dzk\gaode-1\backend\tests\gaode.communication.tests\bin\debug\net10.0\gaode.communication.tests.dll" id="7d95e59c-4768-a33b-c506-a65b087fdde2">
+      <Execution id="90d24f00-7cfb-4a8c-ad03-7251c3e7f729" />
+      <TestMethod codeBase="E:\dzk\gaode-1\backend\tests\Gaode.Communication.Tests\bin\Debug\net10.0\Gaode.Communication.Tests.dll" adapterTypeName="executor://xunit/VsTestRunner3/netcore/" className="Gaode.Communication.Tests.CameraWorkerLifecycleTests" name="AtomicSettingsHaveSeparateReadbacksAndFreshFramesAndNormalRestoration" />
+    </UnitTest>
+    <UnitTest name="Gaode.Communication.Tests.MixedRuntimeCommissioningTests.StoreManifestPurposeCannotBeMixedWithLegacyTestRoot" storage="e:\dzk\gaode-1\backend\tests\gaode.communication.tests\bin\debug\net10.0\gaode.communication.tests.dll" id="0231be4f-664e-ccb9-0e6c-56d22b90300d">
+      <Execution id="c0e09815-2446-4a06-9ffd-26b6d1fb5f0f" />
+      <TestMethod codeBase="E:\dzk\gaode-1\backend\tests\Gaode.Communication.Tests\bin\Debug\net10.0\Gaode.Communication.Tests.dll" adapterTypeName="executor://xunit/VsTestRunner3/netcore/" className="Gaode.Communication.Tests.MixedRuntimeCommissioningTests" name="StoreManifestPurposeCannotBeMixedWithLegacyTestRoot" />
+    </UnitTest>
+    <UnitTest name="Gaode.Communication.Tests.MixedRuntimeCommissioningTests.CommissioningUsesExplicitCostBudgetAndNeverFallsBackToTestConstants" storage="e:\dzk\gaode-1\backend\tests\gaode.communication.tests\bin\debug\net10.0\gaode.communication.tests.dll" id="bbae3bea-eb75-31d2-5588-c014ea1f4075">
+      <Execution id="5eadabc3-7ded-4678-bfd5-bb6f426fc008" />
+      <TestMethod codeBase="E:\dzk\gaode-1\backend\tests\Gaode.Communication.Tests\bin\Debug\net10.0\Gaode.Communication.Tests.dll" adapterTypeName="executor://xunit/VsTestRunner3/netcore/" className="Gaode.Communication.Tests.MixedRuntimeCommissioningTests" name="CommissioningUsesExplicitCostBudgetAndNeverFallsBackToTestConstants" />
+    </UnitTest>
+    <UnitTest name="Gaode.Communication.Tests.MediaCommitTests.FullPayloadQuotaSurvivesRestartAndRepeatedIndexRestoreWithoutMemoryReservation" storage="e:\dzk\gaode-1\backend\tests\gaode.communication.tests\bin\debug\net10.0\gaode.communication.tests.dll" id="ab3afd0d-2808-2ad4-cd36-f144b83f6b92">
+      <Execution id="239fdbeb-5239-49fc-8f39-6c26b420608f" />
+      <TestMethod codeBase="E:\dzk\gaode-1\backend\tests\Gaode.Communication.Tests\bin\Debug\net10.0\Gaode.Communication.Tests.dll" adapterTypeName="executor://xunit/VsTestRunner3/netcore/" className="Gaode.Communication.Tests.MediaCommitTests" name="FullPayloadQuotaSurvivesRestartAndRepeatedIndexRestoreWithoutMemoryReservation" />
+    </UnitTest>
+    <UnitTest name="Gaode.Communication.Tests.CameraWorkerLifecycleTests.InvalidFrameThroughActualProcessAndFormalServiceCannotCommit(role: &quot;3D&quot;, mode: &quot;missing-ir&quot;)" storage="e:\dzk\gaode-1\backend\tests\gaode.communication.tests\bin\debug\net10.0\gaode.communication.tests.dll" id="f6644778-3524-87fe-2441-d1f863f1a4ad">
+      <Execution id="9d55ee9a-ffb2-4207-a128-024bdf287769" />
+      <TestMethod codeBase="E:\dzk\gaode-1\backend\tests\Gaode.Communication.Tests\bin\Debug\net10.0\Gaode.Communication.Tests.dll" adapterTypeName="executor://xunit/VsTestRunner3/netcore/" className="Gaode.Communication.Tests.CameraWorkerLifecycleTests" name="InvalidFrameThroughActualProcessAndFormalServiceCannotCommit" />
+    </UnitTest>
+    <UnitTest name="Gaode.Communication.Tests.CameraProtocolTests.OldSessionOrOldRequestCannotSatisfyCurrentCapture" storage="e:\dzk\gaode-1\backend\tests\gaode.communication.tests\bin\debug\net10.0\gaode.communication.tests.dll" id="cca1d089-36bd-436f-fe4d-16b83a4f6652">
+      <Execution id="b86046fd-ea7f-4e64-a656-cf5a034f7f35" />
+      <TestMethod codeBase="E:\dzk\gaode-1\backend\tests\Gaode.Communication.Tests\bin\Debug\net10.0\Gaode.Communication.Tests.dll" adapterTypeName="executor://xunit/VsTestRunner3/netcore/" className="Gaode.Communication.Tests.CameraProtocolTests" name="OldSessionOrOldRequestCannotSatisfyCurrentCapture" />
+    </UnitTest>
+    <UnitTest name="Gaode.Communication.Tests.RecipeCommissioningChainTests.NewRecipeReloadsWithoutApprovalAndFreezesCurrentVersion" storage="e:\dzk\gaode-1\backend\tests\gaode.communication.tests\bin\debug\net10.0\gaode.communication.tests.dll" id="30f9ee47-f79e-a5cf-e299-de4d9de2a3a9">
+      <Execution id="5abb989d-c4e6-420a-87ab-868fad08b2e8" />
+      <TestMethod codeBase="E:\dzk\gaode-1\backend\tests\Gaode.Communication.Tests\bin\Debug\net10.0\Gaode.Communication.Tests.dll" adapterTypeName="executor://xunit/VsTestRunner3/netcore/" className="Gaode.Communication.Tests.RecipeCommissioningChainTests" name="NewRecipeReloadsWithoutApprovalAndFreezesCurrentVersion" />
+    </UnitTest>
+    <UnitTest name="Gaode.Communication.Tests.CommissioningFPositionTests.SavedVersionLocationIsFrozenPerRunAndOutOfTravelIsRejected" storage="e:\dzk\gaode-1\backend\tests\gaode.communication.tests\bin\debug\net10.0\gaode.communication.tests.dll" id="65a3f506-02d5-f464-83df-9f8f189108de">
+      <Execution id="dc225c94-dc57-4d73-bcdb-0d932ca8a389" />
+      <TestMethod codeBase="E:\dzk\gaode-1\backend\tests\Gaode.Communication.Tests\bin\Debug\net10.0\Gaode.Communication.Tests.dll" adapterTypeName="executor://xunit/VsTestRunner3/netcore/" className="Gaode.Communication.Tests.CommissioningFPositionTests" name="SavedVersionLocationIsFrozenPerRunAndOutOfTravelIsRejected" />
+    </UnitTest>
+    <UnitTest name="Gaode.Communication.Tests.CommissioningIdentityTests.BackendConfirmsIdentityAndEnforcesPermissions(role: &quot;ProcessEngineer&quot;, canRun: False, canEdit: True)" storage="e:\dzk\gaode-1\backend\tests\gaode.communication.tests\bin\debug\net10.0\gaode.communication.tests.dll" id="8dcc896c-36c0-9c9f-b814-a6c551f73d46">
+      <Execution id="391592c0-d106-406d-8d59-284894742349" />
+      <TestMethod codeBase="E:\dzk\gaode-1\backend\tests\Gaode.Communication.Tests\bin\Debug\net10.0\Gaode.Communication.Tests.dll" adapterTypeName="executor://xunit/VsTestRunner3/netcore/" className="Gaode.Communication.Tests.CommissioningIdentityTests" name="BackendConfirmsIdentityAndEnforcesPermissions" />
+    </UnitTest>
+    <UnitTest name="Gaode.Communication.Tests.Devices.MemberGripperTests.SaveReloadFreezeAndResolveMembersWithoutChangingSinglePart" storage="e:\dzk\gaode-1\backend\tests\gaode.communication.tests\bin\debug\net10.0\gaode.communication.tests.dll" id="acc1b58a-c152-4882-bf80-bec9be8cf327">
+      <Execution id="c6b650aa-7faa-4f58-876c-5451bc6cfcaa" />
+      <TestMethod codeBase="E:\dzk\gaode-1\backend\tests\Gaode.Communication.Tests\bin\Debug\net10.0\Gaode.Communication.Tests.dll" adapterTypeName="executor://xunit/VsTestRunner3/netcore/" className="Gaode.Communication.Tests.Devices.MemberGripperTests" name="SaveReloadFreezeAndResolveMembersWithoutChangingSinglePart" />
+    </UnitTest>
+    <UnitTest name="Gaode.Communication.Tests.Devices.SamePositionTests.RepeatedTargetsReuseOnlySatisfiedAxes(x: 11, y: 23, z: 34, expected: &quot;Y,DetectionZ&quot;)" storage="e:\dzk\gaode-1\backend\tests\gaode.communication.tests\bin\debug\net10.0\gaode.communication.tests.dll" id="1c4b9ec4-0ab4-2e40-1081-06d4bf82c5ea">
+      <Execution id="18de3bcc-9038-440f-90af-9b9d999e69ed" />
+      <TestMethod codeBase="E:\dzk\gaode-1\backend\tests\Gaode.Communication.Tests\bin\Debug\net10.0\Gaode.Communication.Tests.dll" adapterTypeName="executor://xunit/VsTestRunner3/netcore/" className="Gaode.Communication.Tests.Devices.SamePositionTests" name="RepeatedTargetsReuseOnlySatisfiedAxes" />
+    </UnitTest>
+    <UnitTest name="Gaode.Communication.Tests.CommissioningIdentityTests.CompleteButConflictingIdentityConfigurationIsRejected(invalid: &quot;duplicate&quot;)" storage="e:\dzk\gaode-1\backend\tests\gaode.communication.tests\bin\debug\net10.0\gaode.communication.tests.dll" id="6178d0ab-c574-8059-a9d1-c553b27e7cc3">
+      <Execution id="4923c9d1-4a9b-491d-92d6-69c0b4a9f4fb" />
+      <TestMethod codeBase="E:\dzk\gaode-1\backend\tests\Gaode.Communication.Tests\bin\Debug\net10.0\Gaode.Communication.Tests.dll" adapterTypeName="executor://xunit/VsTestRunner3/netcore/" className="Gaode.Communication.Tests.CommissioningIdentityTests" name="CompleteButConflictingIdentityConfigurationIsRejected" />
+    </UnitTest>
+    <UnitTest name="Gaode.Communication.Tests.CommissioningLightModeTests.MissingLightParametersOnlyAllowedInExplicitVirtualModeAndFPositionRoundTrips" storage="e:\dzk\gaode-1\backend\tests\gaode.communication.tests\bin\debug\net10.0\gaode.communication.tests.dll" id="1cf235fc-6d61-ae37-5556-563edcf2d264">
+      <Execution id="3af361cf-4c62-4aee-bdb9-9f58cf7e146a" />
+      <TestMethod codeBase="E:\dzk\gaode-1\backend\tests\Gaode.Communication.Tests\bin\Debug\net10.0\Gaode.Communication.Tests.dll" adapterTypeName="executor://xunit/VsTestRunner3/netcore/" className="Gaode.Communication.Tests.CommissioningLightModeTests" name="MissingLightParametersOnlyAllowedInExplicitVirtualModeAndFPositionRoundTrips" />
+    </UnitTest>
+    <UnitTest name="Gaode.Communication.Tests.ControlledCommissioningTests.HostComposesRealPortsAndControlledSimulationWithoutLoadingTestSimulation" storage="e:\dzk\gaode-1\backend\tests\gaode.communication.tests\bin\debug\net10.0\gaode.communication.tests.dll" id="b8344a57-4fc5-a248-4d46-efe079900628">
+      <Execution id="f76a921c-e559-40c4-8b0e-09cc6f3291a8" />
+      <TestMethod codeBase="E:\dzk\gaode-1\backend\tests\Gaode.Communication.Tests\bin\Debug\net10.0\Gaode.Communication.Tests.dll" adapterTypeName="executor://xunit/VsTestRunner3/netcore/" className="Gaode.Communication.Tests.ControlledCommissioningTests" name="HostComposesRealPortsAndControlledSimulationWithoutLoadingTestSimulation" />
+    </UnitTest>
+    <UnitTest name="Gaode.Communication.Tests.ControlledCommissioningTests.FormalCommissioningStartBlocksWithoutSafeInputsOrConfirmedSiteSafety(missingInput: False)" storage="e:\dzk\gaode-1\backend\tests\gaode.communication.tests\bin\debug\net10.0\gaode.communication.tests.dll" id="1709347c-ea08-b5e0-6184-9398696bf5a5">
+      <Execution id="23dc2814-fad0-49ae-bd4e-c1f7b348150b" />
+      <TestMethod codeBase="E:\dzk\gaode-1\backend\tests\Gaode.Communication.Tests\bin\Debug\net10.0\Gaode.Communication.Tests.dll" adapterTypeName="executor://xunit/VsTestRunner3/netcore/" className="Gaode.Communication.Tests.ControlledCommissioningTests" name="FormalCommissioningStartBlocksWithoutSafeInputsOrConfirmedSiteSafety" />
+    </UnitTest>
+    <UnitTest name="Gaode.Communication.Tests.MediaCommitTests.IndexCommitFailureDoesNotPublishOrRestoreOrphanFile" storage="e:\dzk\gaode-1\backend\tests\gaode.communication.tests\bin\debug\net10.0\gaode.communication.tests.dll" id="1eb9480a-d78e-244e-b782-acd237a91fa0">
+      <Execution id="fad0283d-e6b1-4852-9f91-1ca1ba28c1cd" />
+      <TestMethod codeBase="E:\dzk\gaode-1\backend\tests\Gaode.Communication.Tests\bin\Debug\net10.0\Gaode.Communication.Tests.dll" adapterTypeName="executor://xunit/VsTestRunner3/netcore/" className="Gaode.Communication.Tests.MediaCommitTests" name="IndexCommitFailureDoesNotPublishOrRestoreOrphanFile" />
+    </UnitTest>
+    <UnitTest name="Gaode.Communication.Tests.Devices.SamePositionTests.RepeatedTargetsReuseOnlySatisfiedAxes(x: 12, y: 22, z: 33, expected: &quot;X&quot;)" storage="e:\dzk\gaode-1\backend\tests\gaode.communication.tests\bin\debug\net10.0\gaode.communication.tests.dll" id="47675aff-3a4d-eeb6-cf81-89be75b16f06">
+      <Execution id="fb49cfc2-2a38-4de1-8b71-9ad98da0b811" />
+      <TestMethod codeBase="E:\dzk\gaode-1\backend\tests\Gaode.Communication.Tests\bin\Debug\net10.0\Gaode.Communication.Tests.dll" adapterTypeName="executor://xunit/VsTestRunner3/netcore/" className="Gaode.Communication.Tests.Devices.SamePositionTests" name="RepeatedTargetsReuseOnlySatisfiedAxes" />
+    </UnitTest>
+    <UnitTest name="Gaode.Communication.Tests.CameraWorkerLifecycleTests.ConfiguredCapturePersistsSeparateCameraAndSimulatedLightFacts" storage="e:\dzk\gaode-1\backend\tests\gaode.communication.tests\bin\debug\net10.0\gaode.communication.tests.dll" id="97682c73-c9f2-aa9f-dfec-878c815c0e4e">
+      <Execution id="d3e90ce7-f0f9-4fac-aa60-8e80a2174971" />
+      <TestMethod codeBase="E:\dzk\gaode-1\backend\tests\Gaode.Communication.Tests\bin\Debug\net10.0\Gaode.Communication.Tests.dll" adapterTypeName="executor://xunit/VsTestRunner3/netcore/" className="Gaode.Communication.Tests.CameraWorkerLifecycleTests" name="ConfiguredCapturePersistsSeparateCameraAndSimulatedLightFacts" />
+    </UnitTest>
+    <UnitTest name="Gaode.Communication.Tests.CommissioningLightModeTests.ExplicitModeControlsLightButNeverSkipsCamera(mode: &quot;Real&quot;, realAdapter: True, expectedCapture: True)" storage="e:\dzk\gaode-1\backend\tests\gaode.communication.tests\bin\debug\net10.0\gaode.communication.tests.dll" id="fb0b3f64-c84f-0d7e-7acb-456850a4a6d7">
+      <Execution id="b7ed750e-d604-421a-a3ff-b39156f31704" />
+      <TestMethod codeBase="E:\dzk\gaode-1\backend\tests\Gaode.Communication.Tests\bin\Debug\net10.0\Gaode.Communication.Tests.dll" adapterTypeName="executor://xunit/VsTestRunner3/netcore/" className="Gaode.Communication.Tests.CommissioningLightModeTests" name="ExplicitModeControlsLightButNeverSkipsCamera" />
+    </UnitTest>
+    <UnitTest name="Gaode.Communication.Tests.MediaCommitTests.FileWriteFailureCannotProduceReadyMedia" storage="e:\dzk\gaode-1\backend\tests\gaode.communication.tests\bin\debug\net10.0\gaode.communication.tests.dll" id="9f5e65b6-4446-b2ea-0d62-5b482a74e4fd">
+      <Execution id="0601af8a-30d4-43a0-8a8c-a45348ccaddd" />
+      <TestMethod codeBase="E:\dzk\gaode-1\backend\tests\Gaode.Communication.Tests\bin\Debug\net10.0\Gaode.Communication.Tests.dll" adapterTypeName="executor://xunit/VsTestRunner3/netcore/" className="Gaode.Communication.Tests.MediaCommitTests" name="FileWriteFailureCannotProduceReadyMedia" />
+    </UnitTest>
+    <UnitTest name="Gaode.Communication.Tests.Devices.SamePositionTests.StaticPositionWithoutCurrentClosureMustActuallyDispatch(cause: &quot;initial&quot;)" storage="e:\dzk\gaode-1\backend\tests\gaode.communication.tests\bin\debug\net10.0\gaode.communication.tests.dll" id="33b7965e-168e-f3cd-2ab0-1b9073b87661">
+      <Execution id="d4485043-6a29-40a7-9cf6-3cf6a56ec089" />
+      <TestMethod codeBase="E:\dzk\gaode-1\backend\tests\Gaode.Communication.Tests\bin\Debug\net10.0\Gaode.Communication.Tests.dll" adapterTypeName="executor://xunit/VsTestRunner3/netcore/" className="Gaode.Communication.Tests.Devices.SamePositionTests" name="StaticPositionWithoutCurrentClosureMustActuallyDispatch" />
+    </UnitTest>
+    <UnitTest name="Gaode.Communication.Tests.CommissioningIdentityTests.BackendConfirmsIdentityAndEnforcesPermissions(role: &quot;Operator&quot;, canRun: True, canEdit: False)" storage="e:\dzk\gaode-1\backend\tests\gaode.communication.tests\bin\debug\net10.0\gaode.communication.tests.dll" id="5b2af9cc-9212-51e7-8d1e-bb150b9ed4ea">
+      <Execution id="95aec65b-fbb9-4631-ac63-5c2648eff5b2" />
+      <TestMethod codeBase="E:\dzk\gaode-1\backend\tests\Gaode.Communication.Tests\bin\Debug\net10.0\Gaode.Communication.Tests.dll" adapterTypeName="executor://xunit/VsTestRunner3/netcore/" className="Gaode.Communication.Tests.CommissioningIdentityTests" name="BackendConfirmsIdentityAndEnforcesPermissions" />
+    </UnitTest>
+    <UnitTest name="Gaode.Communication.Tests.CommissioningStartQueryTests.LookupDoesNotRegisterOrReleaseAndOldCompletionCannotReleaseNewOwner" storage="e:\dzk\gaode-1\backend\tests\gaode.communication.tests\bin\debug\net10.0\gaode.communication.tests.dll" id="5d713dea-4c59-3866-9470-d1c8ffdfcc23">
+      <Execution id="d58bfeb1-bfbb-431d-8fe2-ba88ba6681f4" />
+      <TestMethod codeBase="E:\dzk\gaode-1\backend\tests\Gaode.Communication.Tests\bin\Debug\net10.0\Gaode.Communication.Tests.dll" adapterTypeName="executor://xunit/VsTestRunner3/netcore/" className="Gaode.Communication.Tests.CommissioningStartQueryTests" name="LookupDoesNotRegisterOrReleaseAndOldCompletionCannotReleaseNewOwner" />
+    </UnitTest>
+    <UnitTest name="Gaode.Communication.Tests.CommissioningLightModeTests.ExplicitModeControlsLightButNeverSkipsCamera(mode: &quot;Simulated&quot;, realAdapter: False, expectedCapture: True)" storage="e:\dzk\gaode-1\backend\tests\gaode.communication.tests\bin\debug\net10.0\gaode.communication.tests.dll" id="4c698a9b-30df-41f6-c863-afc843941a2f">
+      <Execution id="0a867736-58f7-4ae8-807d-6f130fd4960d" />
+      <TestMethod codeBase="E:\dzk\gaode-1\backend\tests\Gaode.Communication.Tests\bin\Debug\net10.0\Gaode.Communication.Tests.dll" adapterTypeName="executor://xunit/VsTestRunner3/netcore/" className="Gaode.Communication.Tests.CommissioningLightModeTests" name="ExplicitModeControlsLightButNeverSkipsCamera" />
+    </UnitTest>
+  </TestDefinitions>
+  <TestEntries>
+    <TestEntry testId="b572591f-b4af-586f-0997-828280395be5" executionId="6abc08a7-1d67-46aa-87e2-28a15c947c59" testListId="8c84fa94-04c1-424b-9868-57a2d4851a1d" />
+    <TestEntry testId="85c95fb7-6adf-d007-3601-ce27f48ec091" executionId="68b001d3-fdc9-4330-959b-884ccff7a9e9" testListId="8c84fa94-04c1-424b-9868-57a2d4851a1d" />
+    <TestEntry testId="9ae2ccb8-e2eb-2b34-959d-9b86704fcceb" executionId="266fbaf6-2866-4233-b907-69c27b81ca36" testListId="8c84fa94-04c1-424b-9868-57a2d4851a1d" />
+    <TestEntry testId="965de380-168d-6a30-b293-64164d1a7bf7" executionId="f039f3c2-55e3-4a1a-9d0b-bc13e35a788e" testListId="8c84fa94-04c1-424b-9868-57a2d4851a1d" />
+    <TestEntry testId="acc1b58a-c152-4882-bf80-bec9be8cf327" executionId="c6b650aa-7faa-4f58-876c-5451bc6cfcaa" testListId="8c84fa94-04c1-424b-9868-57a2d4851a1d" />
+    <TestEntry testId="d20312b6-1b16-ea86-6bf4-6a4b28895680" executionId="ed8870da-3780-4143-a901-8238204f1833" testListId="8c84fa94-04c1-424b-9868-57a2d4851a1d" />
+    <TestEntry testId="5b2af9cc-9212-51e7-8d1e-bb150b9ed4ea" executionId="95aec65b-fbb9-4631-ac63-5c2648eff5b2" testListId="8c84fa94-04c1-424b-9868-57a2d4851a1d" />
+    <TestEntry testId="4f100c36-d0dd-4864-c999-f08003a3a0bf" executionId="be8f0724-93d9-475c-944e-85fcc38020df" testListId="8c84fa94-04c1-424b-9868-57a2d4851a1d" />
+    <TestEntry testId="8dcc896c-36c0-9c9f-b814-a6c551f73d46" executionId="391592c0-d106-406d-8d59-284894742349" testListId="8c84fa94-04c1-424b-9868-57a2d4851a1d" />
+    <TestEntry testId="b6d5c734-cb56-b5f1-0282-92ccd6c8ed5e" executionId="9bc27cb8-da2a-4170-99a9-088e93dff314" testListId="8c84fa94-04c1-424b-9868-57a2d4851a1d" />
+    <TestEntry testId="65a3f506-02d5-f464-83df-9f8f189108de" executionId="dc225c94-dc57-4d73-bcdb-0d932ca8a389" testListId="8c84fa94-04c1-424b-9868-57a2d4851a1d" />
+    <TestEntry testId="29541768-4852-5730-9ece-c2a86d398daa" executionId="453f4050-53e2-4a0d-aa49-8fa5ce4a9522" testListId="8c84fa94-04c1-424b-9868-57a2d4851a1d" />
+    <TestEntry testId="7d95e59c-4768-a33b-c506-a65b087fdde2" executionId="90d24f00-7cfb-4a8c-ad03-7251c3e7f729" testListId="8c84fa94-04c1-424b-9868-57a2d4851a1d" />
+    <TestEntry testId="914c1316-2da8-34d6-b8c9-78e339df1275" executionId="ba3d6762-b187-41f0-ba41-7a5ecdfd49de" testListId="8c84fa94-04c1-424b-9868-57a2d4851a1d" />
+    <TestEntry testId="38e640a5-9743-854c-fc90-9726601830e0" executionId="beb3a3dc-f49c-4836-bf1c-606f8b767863" testListId="8c84fa94-04c1-424b-9868-57a2d4851a1d" />
+    <TestEntry testId="1c4b9ec4-0ab4-2e40-1081-06d4bf82c5ea" executionId="18de3bcc-9038-440f-90af-9b9d999e69ed" testListId="8c84fa94-04c1-424b-9868-57a2d4851a1d" />
+    <TestEntry testId="d352b8c5-ba58-0d3a-8deb-6428f267a266" executionId="64e763dc-f177-4b84-8c10-a2cdddb0620c" testListId="8c84fa94-04c1-424b-9868-57a2d4851a1d" />
+    <TestEntry testId="9f5e65b6-4446-b2ea-0d62-5b482a74e4fd" executionId="0601af8a-30d4-43a0-8a8c-a45348ccaddd" testListId="8c84fa94-04c1-424b-9868-57a2d4851a1d" />
+    <TestEntry testId="4c4eeedb-af5e-9911-d90c-b855386db931" executionId="0bbfd740-7601-4490-aa96-b4ec277a78b6" testListId="8c84fa94-04c1-424b-9868-57a2d4851a1d" />
+    <TestEntry testId="3e8d2de8-4852-3d7f-32d4-94163d960312" executionId="ee3ae1c4-7d4e-463c-bb3c-784225fd4cb0" testListId="8c84fa94-04c1-424b-9868-57a2d4851a1d" />
+    <TestEntry testId="98ca9c73-5985-d763-20be-d1f61c44c00b" executionId="f14eac79-94cf-4d6a-acca-6731c6736886" testListId="8c84fa94-04c1-424b-9868-57a2d4851a1d" />
+    <TestEntry testId="b70a563a-d3d6-c9ed-2c12-d4694a978c87" executionId="5d4148bb-0bbc-41d0-ab21-ea077122d76d" testListId="8c84fa94-04c1-424b-9868-57a2d4851a1d" />
+    <TestEntry testId="5325532f-13c8-ccde-264b-626edf41672c" executionId="15d48930-fa96-48c5-9cc8-dd897ecd73b7" testListId="8c84fa94-04c1-424b-9868-57a2d4851a1d" />
+    <TestEntry testId="c3728530-6ff8-2bed-619a-3a16a72ea4b2" executionId="a57e138b-29cf-424b-8c29-42514764311b" testListId="8c84fa94-04c1-424b-9868-57a2d4851a1d" />
+    <TestEntry testId="47675aff-3a4d-eeb6-cf81-89be75b16f06" executionId="fb49cfc2-2a38-4de1-8b71-9ad98da0b811" testListId="8c84fa94-04c1-424b-9868-57a2d4851a1d" />
+    <TestEntry testId="1eb9480a-d78e-244e-b782-acd237a91fa0" executionId="fad0283d-e6b1-4852-9f91-1ca1ba28c1cd" testListId="8c84fa94-04c1-424b-9868-57a2d4851a1d" />
+    <TestEntry testId="fb0b3f64-c84f-0d7e-7acb-456850a4a6d7" executionId="b7ed750e-d604-421a-a3ff-b39156f31704" testListId="8c84fa94-04c1-424b-9868-57a2d4851a1d" />
+    <TestEntry testId="f6644778-3524-87fe-2441-d1f863f1a4ad" executionId="9d55ee9a-ffb2-4207-a128-024bdf287769" testListId="8c84fa94-04c1-424b-9868-57a2d4851a1d" />
+    <TestEntry testId="cca1d089-36bd-436f-fe4d-16b83a4f6652" executionId="b86046fd-ea7f-4e64-a656-cf5a034f7f35" testListId="8c84fa94-04c1-424b-9868-57a2d4851a1d" />
+    <TestEntry testId="566177ee-cf2a-6081-26a4-6ba342d32c59" executionId="45997b90-c618-4de4-8e4b-b066dacd7d80" testListId="8c84fa94-04c1-424b-9868-57a2d4851a1d" />
+    <TestEntry testId="0231be4f-664e-ccb9-0e6c-56d22b90300d" executionId="c0e09815-2446-4a06-9ffd-26b6d1fb5f0f" testListId="8c84fa94-04c1-424b-9868-57a2d4851a1d" />
+    <TestEntry testId="30f9ee47-f79e-a5cf-e299-de4d9de2a3a9" executionId="5abb989d-c4e6-420a-87ab-868fad08b2e8" testListId="8c84fa94-04c1-424b-9868-57a2d4851a1d" />
+    <TestEntry testId="7ff0add2-2bd5-08aa-7096-761682ed89de" executionId="89e67631-41b1-4614-a217-816b9b49ca1a" testListId="8c84fa94-04c1-424b-9868-57a2d4851a1d" />
+    <TestEntry testId="ba6c7508-d975-37ef-4407-54b865ae3c0a" executionId="918c0b8f-94cd-4710-ac50-30109804f6ed" testListId="8c84fa94-04c1-424b-9868-57a2d4851a1d" />
+    <TestEntry testId="ab3afd0d-2808-2ad4-cd36-f144b83f6b92" executionId="239fdbeb-5239-49fc-8f39-6c26b420608f" testListId="8c84fa94-04c1-424b-9868-57a2d4851a1d" />
+    <TestEntry testId="58d52dfd-1957-b90b-963b-2791ad3a9e5c" executionId="8ddf45b7-abf0-4901-a118-245d3db8c5d2" testListId="8c84fa94-04c1-424b-9868-57a2d4851a1d" />
+    <TestEntry testId="6178d0ab-c574-8059-a9d1-c553b27e7cc3" executionId="4923c9d1-4a9b-491d-92d6-69c0b4a9f4fb" testListId="8c84fa94-04c1-424b-9868-57a2d4851a1d" />
+    <TestEntry testId="1709347c-ea08-b5e0-6184-9398696bf5a5" executionId="23dc2814-fad0-49ae-bd4e-c1f7b348150b" testListId="8c84fa94-04c1-424b-9868-57a2d4851a1d" />
+    <TestEntry testId="bbae3bea-eb75-31d2-5588-c014ea1f4075" executionId="5eadabc3-7ded-4678-bfd5-bb6f426fc008" testListId="8c84fa94-04c1-424b-9868-57a2d4851a1d" />
+    <TestEntry testId="d74647f5-3e1b-5e7a-b3b2-b4eb8494419a" executionId="ec40af16-9e94-460f-8987-0243eb619b34" testListId="8c84fa94-04c1-424b-9868-57a2d4851a1d" />
+    <TestEntry testId="a98c32c8-ff4e-4206-99bd-95c8b1675a47" executionId="313e1939-36a3-4e0a-90c4-c445c2dec6cd" testListId="8c84fa94-04c1-424b-9868-57a2d4851a1d" />
+    <TestEntry testId="7ba8dada-4b1b-c067-19d9-0121d046bbb4" executionId="5f9386f3-3f99-4592-b58f-dd2c04f14153" testListId="8c84fa94-04c1-424b-9868-57a2d4851a1d" />
+    <TestEntry testId="11ffcb30-a5be-deba-542a-033405ae1bf2" executionId="c16d0811-e54a-4362-9013-8d23e0700f74" testListId="8c84fa94-04c1-424b-9868-57a2d4851a1d" />
+    <TestEntry testId="93adbd8d-cc3f-3a26-233e-157e502fdb21" executionId="57368eb4-81f8-43d6-b6c7-90621f1fbf92" testListId="8c84fa94-04c1-424b-9868-57a2d4851a1d" />
+    <TestEntry testId="db43c1fa-3220-c2b6-30e1-e0108d28d6a3" executionId="5e1a0bee-d89b-4d01-b40a-b08c38073d06" testListId="8c84fa94-04c1-424b-9868-57a2d4851a1d" />
+    <TestEntry testId="4c698a9b-30df-41f6-c863-afc843941a2f" executionId="0a867736-58f7-4ae8-807d-6f130fd4960d" testListId="8c84fa94-04c1-424b-9868-57a2d4851a1d" />
+    <TestEntry testId="8a5b5a5b-4b83-5374-db30-4131b53f2708" executionId="d1159dbe-e02f-4b70-b4b8-fc85a96db1cb" testListId="8c84fa94-04c1-424b-9868-57a2d4851a1d" />
+    <TestEntry testId="bf219c63-fc96-0d65-5fac-fa7753b73e5b" executionId="c926c8d2-1912-40a7-b8f8-0a5de41def43" testListId="8c84fa94-04c1-424b-9868-57a2d4851a1d" />
+    <TestEntry testId="3c5d4162-ff76-8c58-c986-e3f55b02d763" executionId="6fc06f27-1976-4997-9bcb-6db77cf44720" testListId="8c84fa94-04c1-424b-9868-57a2d4851a1d" />
+    <TestEntry testId="1cf235fc-6d61-ae37-5556-563edcf2d264" executionId="3af361cf-4c62-4aee-bdb9-9f58cf7e146a" testListId="8c84fa94-04c1-424b-9868-57a2d4851a1d" />
+    <TestEntry testId="1261ce25-b5c7-054b-0dc6-7e0278347d75" executionId="77b2622f-8014-43dd-9fed-fcf77510818f" testListId="8c84fa94-04c1-424b-9868-57a2d4851a1d" />
+    <TestEntry testId="b8344a57-4fc5-a248-4d46-efe079900628" executionId="f76a921c-e559-40c4-8b0e-09cc6f3291a8" testListId="8c84fa94-04c1-424b-9868-57a2d4851a1d" />
+    <TestEntry testId="33b7965e-168e-f3cd-2ab0-1b9073b87661" executionId="d4485043-6a29-40a7-9cf6-3cf6a56ec089" testListId="8c84fa94-04c1-424b-9868-57a2d4851a1d" />
+    <TestEntry testId="97682c73-c9f2-aa9f-dfec-878c815c0e4e" executionId="d3e90ce7-f0f9-4fac-aa60-8e80a2174971" testListId="8c84fa94-04c1-424b-9868-57a2d4851a1d" />
+    <TestEntry testId="fa4d4887-c499-e285-2f8d-768e6554fc22" executionId="abd72694-abb9-4065-b9f9-0a1f627f59c6" testListId="8c84fa94-04c1-424b-9868-57a2d4851a1d" />
+    <TestEntry testId="5d713dea-4c59-3866-9470-d1c8ffdfcc23" executionId="d58bfeb1-bfbb-431d-8fe2-ba88ba6681f4" testListId="8c84fa94-04c1-424b-9868-57a2d4851a1d" />
+    <TestEntry testId="75a9be63-02b7-42f8-c9b0-0df51b17c49e" executionId="9765c13b-f2b9-4b50-b6ab-8616cb78bf53" testListId="8c84fa94-04c1-424b-9868-57a2d4851a1d" />
+  </TestEntries>
+  <TestLists>
+    <TestList name="列表中未列出的结果" id="8c84fa94-04c1-424b-9868-57a2d4851a1d" />
+    <TestList name="所有已加载的结果" id="19431567-8539-422a-85d7-44ee4e166bda" />
+  </TestLists>
+  <ResultSummary outcome="Failed">
+    <Counters total="57" executed="57" passed="54" failed="3" error="0" timeout="0" aborted="0" inconclusive="0" passedButRunAborted="0" notRunnable="0" notExecuted="0" disconnected="0" warning="0" completed="0" inProgress="0" pending="0" />
+    <Output>
+      <StdOut>[xUnit.net 00:00:00.00] xUnit.net VSTest Adapter v3.1.5+1b188a7b0a (64-bit .NET 10.0.12)&#xD;
+[xUnit.net 00:00:00.41]   Discovering: Gaode.Communication.Tests&#xD;
+[xUnit.net 00:00:01.73]   Discovered:  Gaode.Communication.Tests&#xD;
+[xUnit.net 00:00:01.85]   Starting:    Gaode.Communication.Tests&#xD;
+info: Microsoft.Hosting.Lifetime[14]&#xD;
+      Now listening on: http://127.0.0.1:49577&#xD;
+info: Microsoft.Hosting.Lifetime[0]&#xD;
+      Application started. Press Ctrl+C to shut down.&#xD;
+info: Microsoft.Hosting.Lifetime[0]&#xD;
+      Hosting environment: Production&#xD;
+info: Microsoft.Hosting.Lifetime[0]&#xD;
+      Content root path: E:\dzk\gaode-1\backend\tests\Gaode.Communication.Tests\bin\Debug\net10.0&#xD;
+info: Gaode.Host.Api.CommissioningAuthenticationHandler[12]&#xD;
+      AuthenticationScheme: Station01Commissioning was challenged.&#xD;
+info: CommissioningIdentity[0]&#xD;
+      IdentityChecked offline:Operator offline-Operator RealDeviceCommissioning 0HNP5ADEOUHQ3:00000002&#xD;
+info: Gaode.Host.Api.CommissioningAuthenticationHandler[13]&#xD;
+      AuthenticationScheme: Station01Commissioning was forbidden.&#xD;
+warn: Gaode.Host.Api.CommissioningAuthenticationHandler[0]&#xD;
+      CommissioningIdentityRejected InvalidCredential 0HNP5ADEOUHQ3:00000007&#xD;
+fail: Microsoft.AspNetCore.Server.Kestrel[13]&#xD;
+      Connection id "0HNP5ADEOUHQ3", Request id "0HNP5ADEOUHQ3:00000007": An unhandled exception was thrown by the application.&#xD;
+      System.AggregateException: An error occurred while writing to logger(s). (Cannot open log for source '.NET Runtime'. You may not have write access.)&#xD;
+       ---&gt; System.InvalidOperationException: Cannot open log for source '.NET Runtime'. You may not have write access.&#xD;
+       ---&gt; System.ComponentModel.Win32Exception (5): �ܾ����ʡ�&#xD;
+         --- End of inner exception stack trace ---&#xD;
+         at System.Diagnostics.EventLogInternal.OpenForWrite(String currentMachineName)&#xD;
+         at System.Diagnostics.EventLogInternal.InternalWriteEvent(UInt32 eventID, UInt16 category, EventLogEntryType type, String[] strings, Byte[] rawData, String currentMachineName)&#xD;
+         at System.Diagnostics.EventLogInternal.WriteEvent(EventInstance instance, Byte[] data, Object[] values)&#xD;
+         at Microsoft.Extensions.Logging.EventLog.WindowsEventLog.WriteEntry(String message, EventLogEntryType type, Int32 eventID, Int16 category)&#xD;
+         at Microsoft.Extensions.Logging.EventLog.EventLogLogger.WriteMessage(String message, EventLogEntryType eventLogEntryType, Int32 eventId)&#xD;
+         at Microsoft.Extensions.Logging.EventLog.EventLogLogger.Log[TState](LogLevel logLevel, EventId eventId, TState state, Exception exception, Func`3 formatter)&#xD;
+         at Microsoft.Extensions.Logging.Logger.&lt;Log&gt;g__LoggerLog|14_0[TState](LogLevel logLevel, EventId eventId, ILogger logger, Exception exception, Func`3 formatter, List`1&amp; exceptions, TState&amp; state)&#xD;
+         --- End of inner exception stack trace ---&#xD;
+         at Microsoft.Extensions.Logging.Logger.ThrowLoggingError(List`1 exceptions)&#xD;
+         at Microsoft.Extensions.Logging.Logger.Log[TState](LogLevel logLevel, EventId eventId, TState state, Exception exception, Func`3 formatter)&#xD;
+         at Microsoft.Extensions.Logging.LoggerExtensions.Log(ILogger logger, LogLevel logLevel, EventId eventId, Exception exception, String message, Object[] args)&#xD;
+         at Microsoft.Extensions.Logging.LoggerExtensions.LogWarning(ILogger logger, String message, Object[] args)&#xD;
+         at Gaode.Host.Api.CommissioningAuthenticationHandler.HandleAuthenticateAsync() in E:\dzk\gaode-1\backend\src\Gaode.Host\Api\CommissioningAuthenticationHandler.cs:line 45&#xD;
+         at Microsoft.AspNetCore.Authentication.AuthenticationHandler`1.AuthenticateAsync()&#xD;
+         at Microsoft.AspNetCore.Authentication.AuthenticationService.AuthenticateAsync(HttpContext context, String scheme)&#xD;
+         at Microsoft.AspNetCore.Authentication.AuthenticationServiceImpl.AuthenticateAsync(HttpContext context, String scheme)&#xD;
+         at Microsoft.AspNetCore.Authentication.AuthenticationMiddleware.Invoke(HttpContext context)&#xD;
+         at Microsoft.AspNetCore.Server.Kestrel.Core.Internal.Http.HttpProtocol.ProcessRequests[TContext](IHttpApplication`1 application)&#xD;
+warn: Microsoft.AspNetCore.Server.Kestrel[0]&#xD;
+      Connection processing ended abnormally.&#xD;
+      System.AggregateException: An error occurred while writing to logger(s). (Cannot open log for source '.NET Runtime'. You may not have write access.)&#xD;
+       ---&gt; System.InvalidOperationException: Cannot open log for source '.NET Runtime'. You may not have write access.&#xD;
+       ---&gt; System.ComponentModel.Win32Exception (5): �ܾ����ʡ�&#xD;
+         --- End of inner exception stack trace ---&#xD;
+         at System.Diagnostics.EventLogInternal.OpenForWrite(String currentMachineName)&#xD;
+         at System.Diagnostics.EventLogInternal.InternalWriteEvent(UInt32 eventID, UInt16 category, EventLogEntryType type, String[] strings, Byte[] rawData, String currentMachineName)&#xD;
+         at System.Diagnostics.EventLogInternal.WriteEvent(EventInstance instance, Byte[] data, Object[] values)&#xD;
+         at Microsoft.Extensions.Logging.EventLog.WindowsEventLog.WriteEntry(String message, EventLogEntryType type, Int32 eventID, Int16 category)&#xD;
+         at Microsoft.Extensions.Logging.EventLog.EventLogLogger.WriteMessage(String message, EventLogEntryType eventLogEntryType, Int32 eventId)&#xD;
+         at Microsoft.Extensions.Logging.EventLog.EventLogLogger.Log[TState](LogLevel logLevel, EventId eventId, TState state, Exception exception, Func`3 formatter)&#xD;
+         at Microsoft.Extensions.Logging.Logger.&lt;Log&gt;g__LoggerLog|14_0[TState](LogLevel logLevel, EventId eventId, ILogger logger, Exception exception, Func`3 formatter, List`1&amp; exceptions, TState&amp; state)&#xD;
+         --- End of inner exception stack trace ---&#xD;
+         at Microsoft.Extensions.Logging.Logger.ThrowLoggingError(List`1 exceptions)&#xD;
+         at Microsoft.Extensions.Logging.Logger.Log[TState](LogLevel logLevel, EventId eventId, TState state, Exception exception, Func`3 formatter)&#xD;
+         at Microsoft.Extensions.Logging.LoggerMessage.&lt;&gt;c__DisplayClass12_0`2.&lt;Define&gt;g__Log|0(ILogger logger, T1 arg1, T2 arg2, Exception exception)&#xD;
+         at Microsoft.AspNetCore.Server.Kestrel.Core.Internal.Infrastructure.KestrelTrace.GeneralLog.ApplicationError(ILogger logger, String connectionId, String traceIdentifier, Exception ex)&#xD;
+         at Microsoft.AspNetCore.Server.Kestrel.Core.Internal.Http.HttpProtocol.ProcessRequests[TContext](IHttpApplication`1 application)&#xD;
+         at Microsoft.AspNetCore.Server.Kestrel.Core.Internal.Http.HttpProtocol.ProcessRequestsAsync[TContext](IHttpApplication`1 application)&#xD;
+crit: Microsoft.AspNetCore.Server.Kestrel[0]&#xD;
+      Unexpected exception in HttpConnection.ProcessRequestsAsync.&#xD;
+      System.AggregateException: An error occurred while writing to logger(s). (Cannot open log for source '.NET Runtime'. You may not have write access.)&#xD;
+       ---&gt; System.InvalidOperationException: Cannot open log for source '.NET Runtime'. You may not have write access.&#xD;
+       ---&gt; System.ComponentModel.Win32Exception (5): �ܾ����ʡ�&#xD;
+         --- End of inner exception stack trace ---&#xD;
+         at System.Diagnostics.EventLogInternal.OpenForWrite(String currentMachineName)&#xD;
+         at System.Diagnostics.EventLogInternal.InternalWriteEvent(UInt32 eventID, UInt16 category, EventLogEntryType type, String[] strings, Byte[] rawData, String currentMachineName)&#xD;
+         at System.Diagnostics.EventLogInternal.WriteEvent(EventInstance instance, Byte[] data, Object[] values)&#xD;
+         at Microsoft.Extensions.Logging.EventLog.WindowsEventLog.WriteEntry(String message, EventLogEntryType type, Int32 eventID, Int16 category)&#xD;
+         at Microsoft.Extensions.Logging.EventLog.EventLogLogger.WriteMessage(String message, EventLogEntryType eventLogEntryType, Int32 eventId)&#xD;
+         at Microsoft.Extensions.Logging.EventLog.EventLogLogger.Log[TState](LogLevel logLevel, EventId eventId, TState state, Exception exception, Func`3 formatter)&#xD;
+         at Microsoft.Extensions.Logging.Logger.&lt;Log&gt;g__LoggerLog|14_0[TState](LogLevel logLevel, EventId eventId, ILogger logger, Exception exception, Func`3 formatter, List`1&amp; exceptions, TState&amp; state)&#xD;
+         --- End of inner exception stack trace ---&#xD;
+         at Microsoft.Extensions.Logging.Logger.ThrowLoggingError(List`1 exceptions)&#xD;
+         at Microsoft.Extensions.Logging.Logger.Log[TState](LogLevel logLevel, EventId eventId, TState state, Exception exception, Func`3 formatter)&#xD;
+         at Microsoft.AspNetCore.Server.Kestrel.Core.Internal.Infrastructure.KestrelTrace.Log[TState](LogLevel logLevel, EventId eventId, TState state, Exception exception, Func`3 formatter)&#xD;
+         at Microsoft.Extensions.Logging.LoggerExtensions.Log(ILogger logger, LogLevel logLevel, EventId eventId, Exception exception, String message, Object[] args)&#xD;
+         at Microsoft.Extensions.Logging.LoggerExtensions.LogWarning(ILogger logger, EventId eventId, Exception exception, String message, Object[] args)&#xD;
+         at Microsoft.AspNetCore.Server.Kestrel.Core.Internal.Http.HttpProtocol.ProcessRequestsAsync[TContext](IHttpApplication`1 application)&#xD;
+         at Microsoft.AspNetCore.Server.Kestrel.Core.Internal.Http.HttpProtocol.ProcessRequestsAsync[TContext](IHttpApplication`1 application)&#xD;
+         at Microsoft.AspNetCore.Server.Kestrel.Core.Internal.HttpConnection.ProcessRequestsAsync[TContext](IHttpApplication`1 httpApplication)&#xD;
+fail: Microsoft.AspNetCore.Server.Kestrel[0]&#xD;
+      Unhandled exception while processing 0HNP5ADEOUHQ3.&#xD;
+      System.AggregateException: An error occurred while writing to logger(s). (Cannot open log for source '.NET Runtime'. You may not have write access.)&#xD;
+       ---&gt; System.InvalidOperationException: Cannot open log for source '.NET Runtime'. You may not have write access.&#xD;
+       ---&gt; System.ComponentModel.Win32Exception (5): �ܾ����ʡ�&#xD;
+         --- End of inner exception stack trace ---&#xD;
+         at System.Diagnostics.EventLogInternal.OpenForWrite(String currentMachineName)&#xD;
+         at System.Diagnostics.EventLogInternal.InternalWriteEvent(UInt32 eventID, UInt16 category, EventLogEntryType type, String[] strings, Byte[] rawData, String currentMachineName)&#xD;
+         at System.Diagnostics.EventLogInternal.WriteEvent(EventInstance instance, Byte[] data, Object[] values)&#xD;
+         at Microsoft.Extensions.Logging.EventLog.WindowsEventLog.WriteEntry(String message, EventLogEntryType type, Int32 eventID, Int16 category)&#xD;
+         at Microsoft.Extensions.Logging.EventLog.EventLogLogger.WriteMessage(String message, EventLogEntryType eventLogEntryType, Int32 eventId)&#xD;
+         at Microsoft.Extensions.Logging.EventLog.EventLogLogger.Log[TState](LogLevel logLevel, EventId eventId, TState state, Exception exception, Func`3 formatter)&#xD;
+         at Microsoft.Extensions.Logging.Logger.&lt;Log&gt;g__LoggerLog|14_0[TState](LogLevel logLevel, EventId eventId, ILogger logger, Exception exception, Func`3 formatter, List`1&amp; exceptions, TState&amp; state)&#xD;
+         --- End of inner exception stack trace ---&#xD;
+         at Microsoft.Extensions.Logging.Logger.ThrowLoggingError(List`1 exceptions)&#xD;
+         at Microsoft.Extensions.Logging.Logger.Log[TState](LogLevel logLevel, EventId eventId, TState state, Exception exception, Func`3 formatter)&#xD;
+         at Microsoft.AspNetCore.Server.Kestrel.Core.Internal.Infrastructure.KestrelTrace.Log[TState](LogLevel logLevel, EventId eventId, TState state, Exception exception, Func`3 formatter)&#xD;
+         at Microsoft.Extensions.Logging.LoggerExtensions.Log(ILogger logger, LogLevel logLevel, EventId eventId, Exception exception, String message, Object[] args)&#xD;
+         at Microsoft.Extensions.Logging.LoggerExtensions.LogCritical(ILogger logger, EventId eventId, Exception exception, String message, Object[] args)&#xD;
+         at Microsoft.AspNetCore.Server.Kestrel.Core.Internal.HttpConnection.ProcessRequestsAsync[TContext](IHttpApplication`1 httpApplication)&#xD;
+         at Microsoft.AspNetCore.Server.Kestrel.Core.Internal.Infrastructure.KestrelConnection`1.ExecuteAsync()&#xD;
+warn: Gaode.Host.Api.CommissioningAuthenticationHandler[0]&#xD;
+      CommissioningIdentityRejected InvalidCredential 0HNP5ADEOUHQ4:00000001&#xD;
+fail: Microsoft.AspNetCore.Server.Kestrel[13]&#xD;
+      Connection id "0HNP5ADEOUHQ4", Request id "0HNP5ADEOUHQ4:00000001": An unhandled exception was thrown by the application.&#xD;
+      System.AggregateException: An error occurred while writing to logger(s). (Cannot open log for source '.NET Runtime'. You may not have write access.)&#xD;
+       ---&gt; System.InvalidOperationException: Cannot open log for source '.NET Runtime'. You may not have write access.&#xD;
+       ---&gt; System.ComponentModel.Win32Exception (5): �ܾ����ʡ�&#xD;
+         --- End of inner exception stack trace ---&#xD;
+         at System.Diagnostics.EventLogInternal.OpenForWrite(String currentMachineName)&#xD;
+         at System.Diagnostics.EventLogInternal.InternalWriteEvent(UInt32 eventID, UInt16 category, EventLogEntryType type, String[] strings, Byte[] rawData, String currentMachineName)&#xD;
+         at System.Diagnostics.EventLogInternal.WriteEvent(EventInstance instance, Byte[] data, Object[] values)&#xD;
+         at Microsoft.Extensions.Logging.EventLog.WindowsEventLog.WriteEntry(String message, EventLogEntryType type, Int32 eventID, Int16 category)&#xD;
+         at Microsoft.Extensions.Logging.EventLog.EventLogLogger.WriteMessage(String message, EventLogEntryType eventLogEntryType, Int32 eventId)&#xD;
+         at Microsoft.Extensions.Logging.EventLog.EventLogLogger.Log[TState](LogLevel logLevel, EventId eventId, TState state, Exception exception, Func`3 formatter)&#xD;
+         at Microsoft.Extensions.Logging.Logger.&lt;Log&gt;g__LoggerLog|14_0[TState](LogLevel logLevel, EventId eventId, ILogger logger, Exception exception, Func`3 formatter, List`1&amp; exceptions, TState&amp; state)&#xD;
+         --- End of inner exception stack trace ---&#xD;
+         at Microsoft.Extensions.Logging.Logger.ThrowLoggingError(List`1 exceptions)&#xD;
+         at Microsoft.Extensions.Logging.Logger.Log[TState](LogLevel logLevel, EventId eventId, TState state, Exception exception, Func`3 formatter)&#xD;
+         at Microsoft.Extensions.Logging.LoggerExtensions.Log(ILogger logger, LogLevel logLevel, EventId eventId, Exception exception, String message, Object[] args)&#xD;
+         at Microsoft.Extensions.Logging.LoggerExtensions.LogWarning(ILogger logger, String message, Object[] args)&#xD;
+         at Gaode.Host.Api.CommissioningAuthenticationHandler.HandleAuthenticateAsync() in E:\dzk\gaode-1\backend\src\Gaode.Host\Api\CommissioningAuthenticationHandler.cs:line 45&#xD;
+         at Microsoft.AspNetCore.Authentication.AuthenticationHandler`1.AuthenticateAsync()&#xD;
+         at Microsoft.AspNetCore.Authentication.AuthenticationService.AuthenticateAsync(HttpContext context, String scheme)&#xD;
+         at Microsoft.AspNetCore.Authentication.AuthenticationServiceImpl.AuthenticateAsync(HttpContext context, String scheme)&#xD;
+         at Microsoft.AspNetCore.Authentication.AuthenticationMiddleware.Invoke(HttpContext context)&#xD;
+         at Microsoft.AspNetCore.Server.Kestrel.Core.Internal.Http.HttpProtocol.ProcessRequests[TContext](IHttpApplication`1 application)&#xD;
+warn: Microsoft.AspNetCore.Server.Kestrel[0]&#xD;
+      Connection processing ended abnormally.&#xD;
+      System.AggregateException: An error occurred while writing to logger(s). (Cannot open log for source '.NET Runtime'. You may not have write access.)&#xD;
+       ---&gt; System.InvalidOperationException: Cannot open log for source '.NET Runtime'. You may not have write access.&#xD;
+       ---&gt; System.ComponentModel.Win32Exception (5): �ܾ����ʡ�&#xD;
+         --- End of inner exception stack trace ---&#xD;
+         at System.Diagnostics.EventLogInternal.OpenForWrite(String currentMachineName)&#xD;
+         at System.Diagnostics.EventLogInternal.InternalWriteEvent(UInt32 eventID, UInt16 category, EventLogEntryType type, String[] strings, Byte[] rawData, String currentMachineName)&#xD;
+         at System.Diagnostics.EventLogInternal.WriteEvent(EventInstance instance, Byte[] data, Object[] values)&#xD;
+         at Microsoft.Extensions.Logging.EventLog.WindowsEventLog.WriteEntry(String message, EventLogEntryType type, Int32 eventID, Int16 category)&#xD;
+         at Microsoft.Extensions.Logging.EventLog.EventLogLogger.WriteMessage(String message, EventLogEntryType eventLogEntryType, Int32 eventId)&#xD;
+         at Microsoft.Extensions.Logging.EventLog.EventLogLogger.Log[TState](LogLevel logLevel, EventId eventId, TState state, Exception exception, Func`3 formatter)&#xD;
+         at Microsoft.Extensions.Logging.Logger.&lt;Log&gt;g__LoggerLog|14_0[TState](LogLevel logLevel, EventId eventId, ILogger logger, Exception exception, Func`3 formatter, List`1&amp; exceptions, TState&amp; state)&#xD;
+         --- End of inner exception stack trace ---&#xD;
+         at Microsoft.Extensions.Logging.Logger.ThrowLoggingError(List`1 exceptions)&#xD;
+         at Microsoft.Extensions.Logging.Logger.Log[TState](LogLevel logLevel, EventId eventId, TState state, Exception exception, Func`3 formatter)&#xD;
+         at Microsoft.Extensions.Logging.LoggerMessage.&lt;&gt;c__DisplayClass12_0`2.&lt;Define&gt;g__Log|0(ILogger logger, T1 arg1, T2 arg2, Exception exception)&#xD;
+         at Microsoft.AspNetCore.Server.Kestrel.Core.Internal.Infrastructure.KestrelTrace.GeneralLog.ApplicationError(ILogger logger, String connectionId, String traceIdentifier, Exception ex)&#xD;
+         at Microsoft.AspNetCore.Server.Kestrel.Core.Internal.Http.HttpProtocol.ProcessRequests[TContext](IHttpApplication`1 application)&#xD;
+         at Microsoft.AspNetCore.Server.Kestrel.Core.Internal.Http.HttpProtocol.ProcessRequestsAsync[TContext](IHttpApplication`1 application)&#xD;
+crit: Microsoft.AspNetCore.Server.Kestrel[0]&#xD;
+      Unexpected exception in HttpConnection.ProcessRequestsAsync.&#xD;
+      System.AggregateException: An error occurred while writing to logger(s). (Cannot open log for source '.NET Runtime'. You may not have write access.)&#xD;
+       ---&gt; System.InvalidOperationException: Cannot open log for source '.NET Runtime'. You may not have write access.&#xD;
+       ---&gt; System.ComponentModel.Win32Exception (5): �ܾ����ʡ�&#xD;
+         --- End of inner exception stack trace ---&#xD;
+         at System.Diagnostics.EventLogInternal.OpenForWrite(String currentMachineName)&#xD;
+         at System.Diagnostics.EventLogInternal.InternalWriteEvent(UInt32 eventID, UInt16 category, EventLogEntryType type, String[] strings, Byte[] rawData, String currentMachineName)&#xD;
+         at System.Diagnostics.EventLogInternal.WriteEvent(EventInstance instance, Byte[] data, Object[] values)&#xD;
+         at Microsoft.Extensions.Logging.EventLog.WindowsEventLog.WriteEntry(String message, EventLogEntryType type, Int32 eventID, Int16 category)&#xD;
+         at Microsoft.Extensions.Logging.EventLog.EventLogLogger.WriteMessage(String message, EventLogEntryType eventLogEntryType, Int32 eventId)&#xD;
+         at Microsoft.Extensions.Logging.EventLog.EventLogLogger.Log[TState](LogLevel logLevel, EventId eventId, TState state, Exception exception, Func`3 formatter)&#xD;
+         at Microsoft.Extensions.Logging.Logger.&lt;Log&gt;g__LoggerLog|14_0[TState](LogLevel logLevel, EventId eventId, ILogger logger, Exception exception, Func`3 formatter, List`1&amp; exceptions, TState&amp; state)&#xD;
+         --- End of inner exception stack trace ---&#xD;
+         at Microsoft.Extensions.Logging.Logger.ThrowLoggingError(List`1 exceptions)&#xD;
+         at Microsoft.Extensions.Logging.Logger.Log[TState](LogLevel logLevel, EventId eventId, TState state, Exception exception, Func`3 formatter)&#xD;
+         at Microsoft.AspNetCore.Server.Kestrel.Core.Internal.Infrastructure.KestrelTrace.Log[TState](LogLevel logLevel, EventId eventId, TState state, Exception exception, Func`3 formatter)&#xD;
+         at Microsoft.Extensions.Logging.LoggerExtensions.Log(ILogger logger, LogLevel logLevel, EventId eventId, Exception exception, String message, Object[] args)&#xD;
+         at Microsoft.Extensions.Logging.LoggerExtensions.LogWarning(ILogger logger, EventId eventId, Exception exception, String message, Object[] args)&#xD;
+         at Microsoft.AspNetCore.Server.Kestrel.Core.Internal.Http.HttpProtocol.ProcessRequestsAsync[TContext](IHttpApplication`1 application)&#xD;
+         at Microsoft.AspNetCore.Server.Kestrel.Core.Internal.Http.HttpProtocol.ProcessRequestsAsync[TContext](IHttpApplication`1 application)&#xD;
+         at Microsoft.AspNetCore.Server.Kestrel.Core.Internal.HttpConnection.ProcessRequestsAsync[TContext](IHttpApplication`1 httpApplication)&#xD;
+fail: Microsoft.AspNetCore.Server.Kestrel[0]&#xD;
+      Unhandled exception while processing 0HNP5ADEOUHQ4.&#xD;
+      System.AggregateException: An error occurred while writing to logger(s). (Cannot open log for source '.NET Runtime'. You may not have write access.)&#xD;
+       ---&gt; System.InvalidOperationException: Cannot open log for source '.NET Runtime'. You may not have write access.&#xD;
+       ---&gt; System.ComponentModel.Win32Exception (5): �ܾ����ʡ�&#xD;
+         --- End of inner exception stack trace ---&#xD;
+         at System.Diagnostics.EventLogInternal.OpenForWrite(String currentMachineName)&#xD;
+         at System.Diagnostics.EventLogInternal.InternalWriteEvent(UInt32 eventID, UInt16 category, EventLogEntryType type, String[] strings, Byte[] rawData, String currentMachineName)&#xD;
+         at System.Diagnostics.EventLogInternal.WriteEvent(EventInstance instance, Byte[] data, Object[] values)&#xD;
+         at Microsoft.Extensions.Logging.EventLog.WindowsEventLog.WriteEntry(String message, EventLogEntryType type, Int32 eventID, Int16 category)&#xD;
+         at Microsoft.Extensions.Logging.EventLog.EventLogLogger.WriteMessage(String message, EventLogEntryType eventLogEntryType, Int32 eventId)&#xD;
+         at Microsoft.Extensions.Logging.EventLog.EventLogLogger.Log[TState](LogLevel logLevel, EventId eventId, TState state, Exception exception, Func`3 formatter)&#xD;
+         at Microsoft.Extensions.Logging.Logger.&lt;Log&gt;g__LoggerLog|14_0[TState](LogLevel logLevel, EventId eventId, ILogger logger, Exception exception, Func`3 formatter, List`1&amp; exceptions, TState&amp; state)&#xD;
+         --- End of inner exception stack trace ---&#xD;
+         at Microsoft.Extensions.Logging.Logger.ThrowLoggingError(List`1 exceptions)&#xD;
+         at Microsoft.Extensions.Logging.Logger.Log[TState](LogLevel logLevel, EventId eventId, TState state, Exception exception, Func`3 formatter)&#xD;
+         at Microsoft.AspNetCore.Server.Kestrel.Core.Internal.Infrastructure.KestrelTrace.Log[TState](LogLevel logLevel, EventId eventId, TState state, Exception exception, Func`3 formatter)&#xD;
+         at Microsoft.Extensions.Logging.LoggerExtensions.Log(ILogger logger, LogLevel logLevel, EventId eventId, Exception exception, String message, Object[] args)&#xD;
+         at Microsoft.Extensions.Logging.LoggerExtensions.LogCritical(ILogger logger, EventId eventId, Exception exception, String message, Object[] args)&#xD;
+         at Microsoft.AspNetCore.Server.Kestrel.Core.Internal.HttpConnection.ProcessRequestsAsync[TContext](IHttpApplication`1 httpApplication)&#xD;
+         at Microsoft.AspNetCore.Server.Kestrel.Core.Internal.Infrastructure.KestrelConnection`1.ExecuteAsync()&#xD;
+warn: Gaode.Host.Api.CommissioningAuthenticationHandler[0]&#xD;
+      CommissioningIdentityRejected InvalidCredential 0HNP5ADEOUHQ5:00000001&#xD;
+fail: Microsoft.AspNetCore.Server.Kestrel[13]&#xD;
+      Connection id "0HNP5ADEOUHQ5", Request id "0HNP5ADEOUHQ5:00000001": An unhandled exception was thrown by the application.&#xD;
+      System.AggregateException: An error occurred while writing to logger(s). (Cannot open log for source '.NET Runtime'. You may not have write access.)&#xD;
+       ---&gt; System.InvalidOperationException: Cannot open log for source '.NET Runtime'. You may not have write access.&#xD;
+       ---&gt; System.ComponentModel.Win32Exception (5): �ܾ����ʡ�&#xD;
+         --- End of inner exception stack trace ---&#xD;
+         at System.Diagnostics.EventLogInternal.OpenForWrite(String currentMachineName)&#xD;
+         at System.Diagnostics.EventLogInternal.InternalWriteEvent(UInt32 eventID, UInt16 category, EventLogEntryType type, String[] strings, Byte[] rawData, String currentMachineName)&#xD;
+         at System.Diagnostics.EventLogInternal.WriteEvent(EventInstance instance, Byte[] data, Object[] values)&#xD;
+         at Microsoft.Extensions.Logging.EventLog.WindowsEventLog.WriteEntry(String message, EventLogEntryType type, Int32 eventID, Int16 category)&#xD;
+         at Microsoft.Extensions.Logging.EventLog.EventLogLogger.WriteMessage(String message, EventLogEntryType eventLogEntryType, Int32 eventId)&#xD;
+         at Microsoft.Extensions.Logging.EventLog.EventLogLogger.Log[TState](LogLevel logLevel, EventId eventId, TState state, Exception exception, Func`3 formatter)&#xD;
+         at Microsoft.Extensions.Logging.Logger.&lt;Log&gt;g__LoggerLog|14_0[TState](LogLevel logLevel, EventId eventId, ILogger logger, Exception exception, Func`3 formatter, List`1&amp; exceptions, TState&amp; state)&#xD;
+         --- End of inner exception stack trace ---&#xD;
+         at Microsoft.Extensions.Logging.Logger.ThrowLoggingError(List`1 exceptions)&#xD;
+         at Microsoft.Extensions.Logging.Logger.Log[TState](LogLevel logLevel, EventId eventId, TState state, Exception exception, Func`3 formatter)&#xD;
+         at Microsoft.Extensions.Logging.LoggerExtensions.Log(ILogger logger, LogLevel logLevel, EventId eventId, Exception exception, String message, Object[] args)&#xD;
+         at Microsoft.Extensions.Logging.LoggerExtensions.LogWarning(ILogger logger, String message, Object[] args)&#xD;
+         at Gaode.Host.Api.CommissioningAuthenticationHandler.HandleAuthenticateAsync() in E:\dzk\gaode-1\backend\src\Gaode.Host\Api\CommissioningAuthenticationHandler.cs:line 45&#xD;
+         at Microsoft.AspNetCore.Authentication.AuthenticationHandler`1.AuthenticateAsync()&#xD;
+         at Microsoft.AspNetCore.Authentication.AuthenticationService.AuthenticateAsync(HttpContext context, String scheme)&#xD;
+         at Microsoft.AspNetCore.Authentication.AuthenticationServiceImpl.AuthenticateAsync(HttpContext context, String scheme)&#xD;
+         at Microsoft.AspNetCore.Authentication.AuthenticationMiddleware.Invoke(HttpContext context)&#xD;
+         at Microsoft.AspNetCore.Server.Kestrel.Core.Internal.Http.HttpProtocol.ProcessRequests[TContext](IHttpApplication`1 application)&#xD;
+warn: Microsoft.AspNetCore.Server.Kestrel[0]&#xD;
+      Connection processing ended abnormally.&#xD;
+      System.AggregateException: An error occurred while writing to logger(s). (Cannot open log for source '.NET Runtime'. You may not have write access.)&#xD;
+       ---&gt; System.InvalidOperationException: Cannot open log for source '.NET Runtime'. You may not have write access.&#xD;
+       ---&gt; System.ComponentModel.Win32Exception (5): �ܾ����ʡ�&#xD;
+         --- End of inner exception stack trace ---&#xD;
+         at System.Diagnostics.EventLogInternal.OpenForWrite(String currentMachineName)&#xD;
+         at System.Diagnostics.EventLogInternal.InternalWriteEvent(UInt32 eventID, UInt16 category, EventLogEntryType type, String[] strings, Byte[] rawData, String currentMachineName)&#xD;
+         at System.Diagnostics.EventLogInternal.WriteEvent(EventInstance instance, Byte[] data, Object[] values)&#xD;
+         at Microsoft.Extensions.Logging.EventLog.WindowsEventLog.WriteEntry(String message, EventLogEntryType type, Int32 eventID, Int16 category)&#xD;
+         at Microsoft.Extensions.Logging.EventLog.EventLogLogger.WriteMessage(String message, EventLogEntryType eventLogEntryType, Int32 eventId)&#xD;
+         at Microsoft.Extensions.Logging.EventLog.EventLogLogger.Log[TState](LogLevel logLevel, EventId eventId, TState state, Exception exception, Func`3 formatter)&#xD;
+         at Microsoft.Extensions.Logging.Logger.&lt;Log&gt;g__LoggerLog|14_0[TState](LogLevel logLevel, EventId eventId, ILogger logger, Exception exception, Func`3 formatter, List`1&amp; exceptions, TState&amp; state)&#xD;
+         --- End of inner exception stack trace ---&#xD;
+         at Microsoft.Extensions.Logging.Logger.ThrowLoggingError(List`1 exceptions)&#xD;
+         at Microsoft.Extensions.Logging.Logger.Log[TState](LogLevel logLevel, EventId eventId, TState state, Exception exception, Func`3 formatter)&#xD;
+         at Microsoft.Extensions.Logging.LoggerMessage.&lt;&gt;c__DisplayClass12_0`2.&lt;Define&gt;g__Log|0(ILogger logger, T1 arg1, T2 arg2, Exception exception)&#xD;
+         at Microsoft.AspNetCore.Server.Kestrel.Core.Internal.Infrastructure.KestrelTrace.GeneralLog.ApplicationError(ILogger logger, String connectionId, String traceIdentifier, Exception ex)&#xD;
+         at Microsoft.AspNetCore.Server.Kestrel.Core.Internal.Http.HttpProtocol.ProcessRequests[TContext](IHttpApplication`1 application)&#xD;
+         at Microsoft.AspNetCore.Server.Kestrel.Core.Internal.Http.HttpProtocol.ProcessRequestsAsync[TContext](IHttpApplication`1 application)&#xD;
+crit: Microsoft.AspNetCore.Server.Kestrel[0]&#xD;
+      Unexpected exception in HttpConnection.ProcessRequestsAsync.&#xD;
+      System.AggregateException: An error occurred while writing to logger(s). (Cannot open log for source '.NET Runtime'. You may not have write access.)&#xD;
+       ---&gt; System.InvalidOperationException: Cannot open log for source '.NET Runtime'. You may not have write access.&#xD;
+       ---&gt; System.ComponentModel.Win32Exception (5): �ܾ����ʡ�&#xD;
+         --- End of inner exception stack trace ---&#xD;
+         at System.Diagnostics.EventLogInternal.OpenForWrite(String currentMachineName)&#xD;
+         at System.Diagnostics.EventLogInternal.InternalWriteEvent(UInt32 eventID, UInt16 category, EventLogEntryType type, String[] strings, Byte[] rawData, String currentMachineName)&#xD;
+         at System.Diagnostics.EventLogInternal.WriteEvent(EventInstance instance, Byte[] data, Object[] values)&#xD;
+         at Microsoft.Extensions.Logging.EventLog.WindowsEventLog.WriteEntry(String message, EventLogEntryType type, Int32 eventID, Int16 category)&#xD;
+         at Microsoft.Extensions.Logging.EventLog.EventLogLogger.WriteMessage(String message, EventLogEntryType eventLogEntryType, Int32 eventId)&#xD;
+         at Microsoft.Extensions.Logging.EventLog.EventLogLogger.Log[TState](LogLevel logLevel, EventId eventId, TState state, Exception exception, Func`3 formatter)&#xD;
+         at Microsoft.Extensions.Logging.Logger.&lt;Log&gt;g__LoggerLog|14_0[TState](LogLevel logLevel, EventId eventId, ILogger logger, Exception exception, Func`3 formatter, List`1&amp; exceptions, TState&amp; state)&#xD;
+         --- End of inner exception stack trace ---&#xD;
+         at Microsoft.Extensions.Logging.Logger.ThrowLoggingError(List`1 exceptions)&#xD;
+         at Microsoft.Extensions.Logging.Logger.Log[TState](LogLevel logLevel, EventId eventId, TState state, Exception exception, Func`3 formatter)&#xD;
+         at Microsoft.AspNetCore.Server.Kestrel.Core.Internal.Infrastructure.KestrelTrace.Log[TState](LogLevel logLevel, EventId eventId, TState state, Exception exception, Func`3 formatter)&#xD;
+         at Microsoft.Extensions.Logging.LoggerExtensions.Log(ILogger logger, LogLevel logLevel, EventId eventId, Exception exception, String message, Object[] args)&#xD;
+         at Microsoft.Extensions.Logging.LoggerExtensions.LogWarning(ILogger logger, EventId eventId, Exception exception, String message, Object[] args)&#xD;
+         at Microsoft.AspNetCore.Server.Kestrel.Core.Internal.Http.HttpProtocol.ProcessRequestsAsync[TContext](IHttpApplication`1 application)&#xD;
+         at Microsoft.AspNetCore.Server.Kestrel.Core.Internal.Http.HttpProtocol.ProcessRequestsAsync[TContext](IHttpApplication`1 application)&#xD;
+         at Microsoft.AspNetCore.Server.Kestrel.Core.Internal.HttpConnection.ProcessRequestsAsync[TContext](IHttpApplication`1 httpApplication)&#xD;
+fail: Microsoft.AspNetCore.Server.Kestrel[0]&#xD;
+      Unhandled exception while processing 0HNP5ADEOUHQ5.&#xD;
+      System.AggregateException: An error occurred while writing to logger(s). (Cannot open log for source '.NET Runtime'. You may not have write access.)&#xD;
+       ---&gt; System.InvalidOperationException: Cannot open log for source '.NET Runtime'. You may not have write access.&#xD;
+       ---&gt; System.ComponentModel.Win32Exception (5): �ܾ����ʡ�&#xD;
+         --- End of inner exception stack trace ---&#xD;
+         at System.Diagnostics.EventLogInternal.OpenForWrite(String currentMachineName)&#xD;
+         at System.Diagnostics.EventLogInternal.InternalWriteEvent(UInt32 eventID, UInt16 category, EventLogEntryType type, String[] strings, Byte[] rawData, String currentMachineName)&#xD;
+         at System.Diagnostics.EventLogInternal.WriteEvent(EventInstance instance, Byte[] data, Object[] values)&#xD;
+         at Microsoft.Extensions.Logging.EventLog.WindowsEventLog.WriteEntry(String message, EventLogEntryType type, Int32 eventID, Int16 category)&#xD;
+         at Microsoft.Extensions.Logging.EventLog.EventLogLogger.WriteMessage(String message, EventLogEntryType eventLogEntryType, Int32 eventId)&#xD;
+         at Microsoft.Extensions.Logging.EventLog.EventLogLogger.Log[TState](LogLevel logLevel, EventId eventId, TState state, Exception exception, Func`3 formatter)&#xD;
+         at Microsoft.Extensions.Logging.Logger.&lt;Log&gt;g__LoggerLog|14_0[TState](LogLevel logLevel, EventId eventId, ILogger logger, Exception exception, Func`3 formatter, List`1&amp; exceptions, TState&amp; state)&#xD;
+         --- End of inner exception stack trace ---&#xD;
+         at Microsoft.Extensions.Logging.Logger.ThrowLoggingError(List`1 exceptions)&#xD;
+         at Microsoft.Extensions.Logging.Logger.Log[TState](LogLevel logLevel, EventId eventId, TState state, Exception exception, Func`3 formatter)&#xD;
+         at Microsoft.AspNetCore.Server.Kestrel.Core.Internal.Infrastructure.KestrelTrace.Log[TState](LogLevel logLevel, EventId eventId, TState state, Exception exception, Func`3 formatter)&#xD;
+         at Microsoft.Extensions.Logging.LoggerExtensions.Log(ILogger logger, LogLevel logLevel, EventId eventId, Exception exception, String message, Object[] args)&#xD;
+         at Microsoft.Extensions.Logging.LoggerExtensions.LogCritical(ILogger logger, EventId eventId, Exception exception, String message, Object[] args)&#xD;
+         at Microsoft.AspNetCore.Server.Kestrel.Core.Internal.HttpConnection.ProcessRequestsAsync[TContext](IHttpApplication`1 httpApplication)&#xD;
+         at Microsoft.AspNetCore.Server.Kestrel.Core.Internal.Infrastructure.KestrelConnection`1.ExecuteAsync()&#xD;
+warn: Gaode.Host.Api.CommissioningAuthenticationHandler[0]&#xD;
+      CommissioningIdentityRejected InvalidCredential 0HNP5ADEOUHQ6:00000001&#xD;
+fail: Microsoft.AspNetCore.Server.Kestrel[13]&#xD;
+      Connection id "0HNP5ADEOUHQ6", Request id "0HNP5ADEOUHQ6:00000001": An unhandled exception was thrown by the application.&#xD;
+      System.AggregateException: An error occurred while writing to logger(s). (Cannot open log for source '.NET Runtime'. You may not have write access.)&#xD;
+       ---&gt; System.InvalidOperationException: Cannot open log for source '.NET Runtime'. You may not have write access.&#xD;
+       ---&gt; System.ComponentModel.Win32Exception (5): �ܾ����ʡ�&#xD;
+         --- End of inner exception stack trace ---&#xD;
+         at System.Diagnostics.EventLogInternal.OpenForWrite(String currentMachineName)&#xD;
+         at System.Diagnostics.EventLogInternal.InternalWriteEvent(UInt32 eventID, UInt16 category, EventLogEntryType type, String[] strings, Byte[] rawData, String currentMachineName)&#xD;
+         at System.Diagnostics.EventLogInternal.WriteEvent(EventInstance instance, Byte[] data, Object[] values)&#xD;
+         at Microsoft.Extensions.Logging.EventLog.WindowsEventLog.WriteEntry(String message, EventLogEntryType type, Int32 eventID, Int16 category)&#xD;
+         at Microsoft.Extensions.Logging.EventLog.EventLogLogger.WriteMessage(String message, EventLogEntryType eventLogEntryType, Int32 eventId)&#xD;
+         at Microsoft.Extensions.Logging.EventLog.EventLogLogger.Log[TState](LogLevel logLevel, EventId eventId, TState state, Exception exception, Func`3 formatter)&#xD;
+         at Microsoft.Extensions.Logging.Logger.&lt;Log&gt;g__LoggerLog|14_0[TState](LogLevel logLevel, EventId eventId, ILogger logger, Exception exception, Func`3 formatter, List`1&amp; exceptions, TState&amp; state)&#xD;
+         --- End of inner exception stack trace ---&#xD;
+         at Microsoft.Extensions.Logging.Logger.ThrowLoggingError(List`1 exceptions)&#xD;
+         at Microsoft.Extensions.Logging.Logger.Log[TState](LogLevel logLevel, EventId eventId, TState state, Exception exception, Func`3 formatter)&#xD;
+         at Microsoft.Extensions.Logging.LoggerExtensions.Log(ILogger logger, LogLevel logLevel, EventId eventId, Exception exception, String message, Object[] args)&#xD;
+         at Microsoft.Extensions.Logging.LoggerExtensions.LogWarning(ILogger logger, String message, Object[] args)&#xD;
+         at Gaode.Host.Api.CommissioningAuthenticationHandler.HandleAuthenticateAsync() in E:\dzk\gaode-1\backend\src\Gaode.Host\Api\CommissioningAuthenticationHandler.cs:line 45&#xD;
+         at Microsoft.AspNetCore.Authentication.AuthenticationHandler`1.AuthenticateAsync()&#xD;
+         at Microsoft.AspNetCore.Authentication.AuthenticationService.AuthenticateAsync(HttpContext context, String scheme)&#xD;
+         at Microsoft.AspNetCore.Authentication.AuthenticationServiceImpl.AuthenticateAsync(HttpContext context, String scheme)&#xD;
+         at Microsoft.AspNetCore.Authentication.AuthenticationMiddleware.Invoke(HttpContext context)&#xD;
+         at Microsoft.AspNetCore.Server.Kestrel.Core.Internal.Http.HttpProtocol.ProcessRequests[TContext](IHttpApplication`1 application)&#xD;
+warn: Microsoft.AspNetCore.Server.Kestrel[0]&#xD;
+      Connection processing ended abnormally.&#xD;
+      System.AggregateException: An error occurred while writing to logger(s). (Cannot open log for source '.NET Runtime'. You may not have write access.)&#xD;
+       ---&gt; System.InvalidOperationException: Cannot open log for source '.NET Runtime'. You may not have write access.&#xD;
+       ---&gt; System.ComponentModel.Win32Exception (5): �ܾ����ʡ�&#xD;
+         --- End of inner exception stack trace ---&#xD;
+         at System.Diagnostics.EventLogInternal.OpenForWrite(String currentMachineName)&#xD;
+         at System.Diagnostics.EventLogInternal.InternalWriteEvent(UInt32 eventID, UInt16 category, EventLogEntryType type, String[] strings, Byte[] rawData, String currentMachineName)&#xD;
+         at System.Diagnostics.EventLogInternal.WriteEvent(EventInstance instance, Byte[] data, Object[] values)&#xD;
+         at Microsoft.Extensions.Logging.EventLog.WindowsEventLog.WriteEntry(String message, EventLogEntryType type, Int32 eventID, Int16 category)&#xD;
+         at Microsoft.Extensions.Logging.EventLog.EventLogLogger.WriteMessage(String message, EventLogEntryType eventLogEntryType, Int32 eventId)&#xD;
+         at Microsoft.Extensions.Logging.EventLog.EventLogLogger.Log[TState](LogLevel logLevel, EventId eventId, TState state, Exception exception, Func`3 formatter)&#xD;
+         at Microsoft.Extensions.Logging.Logger.&lt;Log&gt;g__LoggerLog|14_0[TState](LogLevel logLevel, EventId eventId, ILogger logger, Exception exception, Func`3 formatter, List`1&amp; exceptions, TState&amp; state)&#xD;
+         --- End of inner exception stack trace ---&#xD;
+         at Microsoft.Extensions.Logging.Logger.ThrowLoggingError(List`1 exceptions)&#xD;
+         at Microsoft.Extensions.Logging.Logger.Log[TState](LogLevel logLevel, EventId eventId, TState state, Exception exception, Func`3 formatter)&#xD;
+         at Microsoft.Extensions.Logging.LoggerMessage.&lt;&gt;c__DisplayClass12_0`2.&lt;Define&gt;g__Log|0(ILogger logger, T1 arg1, T2 arg2, Exception exception)&#xD;
+         at Microsoft.AspNetCore.Server.Kestrel.Core.Internal.Infrastructure.KestrelTrace.GeneralLog.ApplicationError(ILogger logger, String connectionId, String traceIdentifier, Exception ex)&#xD;
+         at Microsoft.AspNetCore.Server.Kestrel.Core.Internal.Http.HttpProtocol.ProcessRequests[TContext](IHttpApplication`1 application)&#xD;
+         at Microsoft.AspNetCore.Server.Kestrel.Core.Internal.Http.HttpProtocol.ProcessRequestsAsync[TContext](IHttpApplication`1 application)&#xD;
+crit: Microsoft.AspNetCore.Server.Kestrel[0]&#xD;
+      Unexpected exception in HttpConnection.ProcessRequestsAsync.&#xD;
+      System.AggregateException: An error occurred while writing to logger(s). (Cannot open log for source '.NET Runtime'. You may not have write access.)&#xD;
+       ---&gt; System.InvalidOperationException: Cannot open log for source '.NET Runtime'. You may not have write access.&#xD;
+       ---&gt; System.ComponentModel.Win32Exception (5): �ܾ����ʡ�&#xD;
+         --- End of inner exception stack trace ---&#xD;
+         at System.Diagnostics.EventLogInternal.OpenForWrite(String currentMachineName)&#xD;
+         at System.Diagnostics.EventLogInternal.InternalWriteEvent(UInt32 eventID, UInt16 category, EventLogEntryType type, String[] strings, Byte[] rawData, String currentMachineName)&#xD;
+         at System.Diagnostics.EventLogInternal.WriteEvent(EventInstance instance, Byte[] data, Object[] values)&#xD;
+         at Microsoft.Extensions.Logging.EventLog.WindowsEventLog.WriteEntry(String message, EventLogEntryType type, Int32 eventID, Int16 category)&#xD;
+         at Microsoft.Extensions.Logging.EventLog.EventLogLogger.WriteMessage(String message, EventLogEntryType eventLogEntryType, Int32 eventId)&#xD;
+         at Microsoft.Extensions.Logging.EventLog.EventLogLogger.Log[TState](LogLevel logLevel, EventId eventId, TState state, Exception exception, Func`3 formatter)&#xD;
+         at Microsoft.Extensions.Logging.Logger.&lt;Log&gt;g__LoggerLog|14_0[TState](LogLevel logLevel, EventId eventId, ILogger logger, Exception exception, Func`3 formatter, List`1&amp; exceptions, TState&amp; state)&#xD;
+         --- End of inner exception stack trace ---&#xD;
+         at Microsoft.Extensions.Logging.Logger.ThrowLoggingError(List`1 exceptions)&#xD;
+         at Microsoft.Extensions.Logging.Logger.Log[TState](LogLevel logLevel, EventId eventId, TState state, Exception exception, Func`3 formatter)&#xD;
+         at Microsoft.AspNetCore.Server.Kestrel.Core.Internal.Infrastructure.KestrelTrace.Log[TState](LogLevel logLevel, EventId eventId, TState state, Exception exception, Func`3 formatter)&#xD;
+         at Microsoft.Extensions.Logging.LoggerExtensions.Log(ILogger logger, LogLevel logLevel, EventId eventId, Exception exception, String message, Object[] args)&#xD;
+         at Microsoft.Extensions.Logging.LoggerExtensions.LogWarning(ILogger logger, EventId eventId, Exception exception, String message, Object[] args)&#xD;
+         at Microsoft.AspNetCore.Server.Kestrel.Core.Internal.Http.HttpProtocol.ProcessRequestsAsync[TContext](IHttpApplication`1 application)&#xD;
+         at Microsoft.AspNetCore.Server.Kestrel.Core.Internal.Http.HttpProtocol.ProcessRequestsAsync[TContext](IHttpApplication`1 application)&#xD;
+         at Microsoft.AspNetCore.Server.Kestrel.Core.Internal.HttpConnection.ProcessRequestsAsync[TContext](IHttpApplication`1 httpApplication)&#xD;
+fail: Microsoft.AspNetCore.Server.Kestrel[0]&#xD;
+      Unhandled exception while processing 0HNP5ADEOUHQ6.&#xD;
+      System.AggregateException: An error occurred while writing to logger(s). (Cannot open log for source '.NET Runtime'. You may not have write access.)&#xD;
+       ---&gt; System.InvalidOperationException: Cannot open log for source '.NET Runtime'. You may not have write access.&#xD;
+       ---&gt; System.ComponentModel.Win32Exception (5): �ܾ����ʡ�&#xD;
+         --- End of inner exception stack trace ---&#xD;
+         at System.Diagnostics.EventLogInternal.OpenForWrite(String currentMachineName)&#xD;
+         at System.Diagnostics.EventLogInternal.InternalWriteEvent(UInt32 eventID, UInt16 category, EventLogEntryType type, String[] strings, Byte[] rawData, String currentMachineName)&#xD;
+         at System.Diagnostics.EventLogInternal.WriteEvent(EventInstance instance, Byte[] data, Object[] values)&#xD;
+         at Microsoft.Extensions.Logging.EventLog.WindowsEventLog.WriteEntry(String message, EventLogEntryType type, Int32 eventID, Int16 category)&#xD;
+         at Microsoft.Extensions.Logging.EventLog.EventLogLogger.WriteMessage(String message, EventLogEntryType eventLogEntryType, Int32 eventId)&#xD;
+         at Microsoft.Extensions.Logging.EventLog.EventLogLogger.Log[TState](LogLevel logLevel, EventId eventId, TState state, Exception exception, Func`3 formatter)&#xD;
+         at Microsoft.Extensions.Logging.Logger.&lt;Log&gt;g__LoggerLog|14_0[TState](LogLevel logLevel, EventId eventId, ILogger logger, Exception exception, Func`3 formatter, List`1&amp; exceptions, TState&amp; state)&#xD;
+         --- End of inner exception stack trace ---&#xD;
+         at Microsoft.Extensions.Logging.Logger.ThrowLoggingError(List`1 exceptions)&#xD;
+         at Microsoft.Extensions.Logging.Logger.Log[TState](LogLevel logLevel, EventId eventId, TState state, Exception exception, Func`3 formatter)&#xD;
+         at Microsoft.AspNetCore.Server.Kestrel.Core.Internal.Infrastructure.KestrelTrace.Log[TState](LogLevel logLevel, EventId eventId, TState state, Exception exception, Func`3 formatter)&#xD;
+         at Microsoft.Extensions.Logging.LoggerExtensions.Log(ILogger logger, LogLevel logLevel, EventId eventId, Exception exception, String message, Object[] args)&#xD;
+         at Microsoft.Extensions.Logging.LoggerExtensions.LogCritical(ILogger logger, EventId eventId, Exception exception, String message, Object[] args)&#xD;
+         at Microsoft.AspNetCore.Server.Kestrel.Core.Internal.HttpConnection.ProcessRequestsAsync[TContext](IHttpApplication`1 httpApplication)&#xD;
+         at Microsoft.AspNetCore.Server.Kestrel.Core.Internal.Infrastructure.KestrelConnection`1.ExecuteAsync()&#xD;
+info: Microsoft.Hosting.Lifetime[0]&#xD;
+      Application is shutting down...&#xD;
+[xUnit.net 00:00:09.94]       System.Net.Http.HttpRequestException : An error occurred while sending the request.&#xD;
+[xUnit.net 00:00:09.94]       ---- System.Net.Http.HttpIOException : The response ended prematurely. (ResponseEnded)&#xD;
+[xUnit.net 00:00:09.94]       Stack Trace:&#xD;
+[xUnit.net 00:00:09.94]            at System.Net.Http.HttpConnection.SendAsync(HttpRequestMessage request, Boolean async, CancellationToken cancellationToken)&#xD;
+[xUnit.net 00:00:09.94]            at System.Net.Http.HttpConnectionPool.SendWithVersionDetectionAndRetryAsync(HttpRequestMessage request, Boolean async, Boolean doRequestAuth, CancellationToken cancellationToken)&#xD;
+[xUnit.net 00:00:09.94]            at System.Net.Http.RedirectHandler.SendAsync(HttpRequestMessage request, Boolean async, CancellationToken cancellationToken)&#xD;
+[xUnit.net 00:00:09.95]            at System.Net.Http.HttpClient.&lt;SendAsync&gt;g__Core|83_0(HttpRequestMessage request, HttpCompletionOption completionOption, CancellationTokenSource cts, Boolean disposeCts, CancellationTokenSource pendingRequestsCts, CancellationToken originalCancellationToken)&#xD;
+[xUnit.net 00:00:09.95]         E:\dzk\gaode-1\backend\tests\Gaode.Communication.Tests\CommissioningIdentityTests.cs(54,0): at Gaode.Communication.Tests.CommissioningIdentityTests.BackendConfirmsIdentityAndEnforcesPermissions(String role, Boolean canRun, Boolean canEdit)&#xD;
+[xUnit.net 00:00:09.95]         E:\dzk\gaode-1\backend\tests\Gaode.Communication.Tests\CommissioningIdentityTests.cs(57,0): at Gaode.Communication.Tests.CommissioningIdentityTests.BackendConfirmsIdentityAndEnforcesPermissions(String role, Boolean canRun, Boolean canEdit)&#xD;
+[xUnit.net 00:00:09.95]         E:\dzk\gaode-1\backend\tests\Gaode.Communication.Tests\CommissioningIdentityTests.cs(57,0): at Gaode.Communication.Tests.CommissioningIdentityTests.BackendConfirmsIdentityAndEnforcesPermissions(String role, Boolean canRun, Boolean canEdit)&#xD;
+[xUnit.net 00:00:09.95]         --- End of stack trace from previous location ---&#xD;
+[xUnit.net 00:00:09.95]         ----- Inner Stack Trace -----&#xD;
+[xUnit.net 00:00:09.95]            at System.Net.Http.HttpConnection.SendAsync(HttpRequestMessage request, Boolean async, CancellationToken cancellationToken)&#xD;
+info: Microsoft.Hosting.Lifetime[14]&#xD;
+      Now listening on: http://127.0.0.1:49601&#xD;
+info: Microsoft.Hosting.Lifetime[0]&#xD;
+      Application started. Press Ctrl+C to shut down.&#xD;
+info: Microsoft.Hosting.Lifetime[0]&#xD;
+      Hosting environment: Production&#xD;
+info: Microsoft.Hosting.Lifetime[0]&#xD;
+      Content root path: E:\dzk\gaode-1\backend\tests\Gaode.Communication.Tests\bin\Debug\net10.0&#xD;
+info: Gaode.Host.Api.CommissioningAuthenticationHandler[12]&#xD;
+      AuthenticationScheme: Station01Commissioning was challenged.&#xD;
+info: CommissioningIdentity[0]&#xD;
+      IdentityChecked offline:ProcessEngineer offline-ProcessEngineer RealDeviceCommissioning 0HNP5ADEOUHQ7:00000002&#xD;
+info: Gaode.Host.Api.CommissioningAuthenticationHandler[13]&#xD;
+      AuthenticationScheme: Station01Commissioning was forbidden.&#xD;
+warn: Gaode.Host.Api.CommissioningAuthenticationHandler[0]&#xD;
+      CommissioningIdentityRejected InvalidCredential 0HNP5ADEOUHQ7:00000007&#xD;
+fail: Microsoft.AspNetCore.Server.Kestrel[13]&#xD;
+      Connection id "0HNP5ADEOUHQ7", Request id "0HNP5ADEOUHQ7:00000007": An unhandled exception was thrown by the application.&#xD;
+      System.AggregateException: An error occurred while writing to logger(s). (Cannot open log for source '.NET Runtime'. You may not have write access.)&#xD;
+       ---&gt; System.InvalidOperationException: Cannot open log for source '.NET Runtime'. You may not have write access.&#xD;
+       ---&gt; System.ComponentModel.Win32Exception (5): �ܾ����ʡ�&#xD;
+         --- End of inner exception stack trace ---&#xD;
+         at System.Diagnostics.EventLogInternal.OpenForWrite(String currentMachineName)&#xD;
+         at System.Diagnostics.EventLogInternal.InternalWriteEvent(UInt32 eventID, UInt16 category, EventLogEntryType type, String[] strings, Byte[] rawData, String currentMachineName)&#xD;
+         at System.Diagnostics.EventLogInternal.WriteEvent(EventInstance instance, Byte[] data, Object[] values)&#xD;
+         at Microsoft.Extensions.Logging.EventLog.WindowsEventLog.WriteEntry(String message, EventLogEntryType type, Int32 eventID, Int16 category)&#xD;
+         at Microsoft.Extensions.Logging.EventLog.EventLogLogger.WriteMessage(String message, EventLogEntryType eventLogEntryType, Int32 eventId)&#xD;
+         at Microsoft.Extensions.Logging.EventLog.EventLogLogger.Log[TState](LogLevel logLevel, EventId eventId, TState state, Exception exception, Func`3 formatter)&#xD;
+         at Microsoft.Extensions.Logging.Logger.&lt;Log&gt;g__LoggerLog|14_0[TState](LogLevel logLevel, EventId eventId, ILogger logger, Exception exception, Func`3 formatter, List`1&amp; exceptions, TState&amp; state)&#xD;
+         --- End of inner exception stack trace ---&#xD;
+         at Microsoft.Extensions.Logging.Logger.ThrowLoggingError(List`1 exceptions)&#xD;
+         at Microsoft.Extensions.Logging.Logger.Log[TState](LogLevel logLevel, EventId eventId, TState state, Exception exception, Func`3 formatter)&#xD;
+         at Microsoft.Extensions.Logging.LoggerExtensions.Log(ILogger logger, LogLevel logLevel, EventId eventId, Exception exception, String message, Object[] args)&#xD;
+         at Microsoft.Extensions.Logging.LoggerExtensions.LogWarning(ILogger logger, String message, Object[] args)&#xD;
+         at Gaode.Host.Api.CommissioningAuthenticationHandler.HandleAuthenticateAsync() in E:\dzk\gaode-1\backend\src\Gaode.Host\Api\CommissioningAuthenticationHandler.cs:line 45&#xD;
+         at Microsoft.AspNetCore.Authentication.AuthenticationHandler`1.AuthenticateAsync()&#xD;
+         at Microsoft.AspNetCore.Authentication.AuthenticationService.AuthenticateAsync(HttpContext context, String scheme)&#xD;
+         at Microsoft.AspNetCore.Authentication.AuthenticationServiceImpl.AuthenticateAsync(HttpContext context, String scheme)&#xD;
+         at Microsoft.AspNetCore.Authentication.AuthenticationMiddleware.Invoke(HttpContext context)&#xD;
+         at Microsoft.AspNetCore.Server.Kestrel.Core.Internal.Http.HttpProtocol.ProcessRequests[TContext](IHttpApplication`1 application)&#xD;
+warn: Microsoft.AspNetCore.Server.Kestrel[0]&#xD;
+      Connection processing ended abnormally.&#xD;
+      System.AggregateException: An error occurred while writing to logger(s). (Cannot open log for source '.NET Runtime'. You may not have write access.)&#xD;
+       ---&gt; System.InvalidOperationException: Cannot open log for source '.NET Runtime'. You may not have write access.&#xD;
+       ---&gt; System.ComponentModel.Win32Exception (5): �ܾ����ʡ�&#xD;
+         --- End of inner exception stack trace ---&#xD;
+         at System.Diagnostics.EventLogInternal.OpenForWrite(String currentMachineName)&#xD;
+         at System.Diagnostics.EventLogInternal.InternalWriteEvent(UInt32 eventID, UInt16 category, EventLogEntryType type, String[] strings, Byte[] rawData, String currentMachineName)&#xD;
+         at System.Diagnostics.EventLogInternal.WriteEvent(EventInstance instance, Byte[] data, Object[] values)&#xD;
+         at Microsoft.Extensions.Logging.EventLog.WindowsEventLog.WriteEntry(String message, EventLogEntryType type, Int32 eventID, Int16 category)&#xD;
+         at Microsoft.Extensions.Logging.EventLog.EventLogLogger.WriteMessage(String message, EventLogEntryType eventLogEntryType, Int32 eventId)&#xD;
+         at Microsoft.Extensions.Logging.EventLog.EventLogLogger.Log[TState](LogLevel logLevel, EventId eventId, TState state, Exception exception, Func`3 formatter)&#xD;
+         at Microsoft.Extensions.Logging.Logger.&lt;Log&gt;g__LoggerLog|14_0[TState](LogLevel logLevel, EventId eventId, ILogger logger, Exception exception, Func`3 formatter, List`1&amp; exceptions, TState&amp; state)&#xD;
+         --- End of inner exception stack trace ---&#xD;
+         at Microsoft.Extensions.Logging.Logger.ThrowLoggingError(List`1 exceptions)&#xD;
+         at Microsoft.Extensions.Logging.Logger.Log[TState](LogLevel logLevel, EventId eventId, TState state, Exception exception, Func`3 formatter)&#xD;
+         at Microsoft.Extensions.Logging.LoggerMessage.&lt;&gt;c__DisplayClass12_0`2.&lt;Define&gt;g__Log|0(ILogger logger, T1 arg1, T2 arg2, Exception exception)&#xD;
+         at Microsoft.AspNetCore.Server.Kestrel.Core.Internal.Infrastructure.KestrelTrace.GeneralLog.ApplicationError(ILogger logger, String connectionId, String traceIdentifier, Exception ex)&#xD;
+         at Microsoft.AspNetCore.Server.Kestrel.Core.Internal.Http.HttpProtocol.ProcessRequests[TContext](IHttpApplication`1 application)&#xD;
+         at Microsoft.AspNetCore.Server.Kestrel.Core.Internal.Http.HttpProtocol.ProcessRequestsAsync[TContext](IHttpApplication`1 application)&#xD;
+crit: Microsoft.AspNetCore.Server.Kestrel[0]&#xD;
+      Unexpected exception in HttpConnection.ProcessRequestsAsync.&#xD;
+      System.AggregateException: An error occurred while writing to logger(s). (Cannot open log for source '.NET Runtime'. You may not have write access.)&#xD;
+       ---&gt; System.InvalidOperationException: Cannot open log for source '.NET Runtime'. You may not have write access.&#xD;
+       ---&gt; System.ComponentModel.Win32Exception (5): �ܾ����ʡ�&#xD;
+         --- End of inner exception stack trace ---&#xD;
+         at System.Diagnostics.EventLogInternal.OpenForWrite(String currentMachineName)&#xD;
+         at System.Diagnostics.EventLogInternal.InternalWriteEvent(UInt32 eventID, UInt16 category, EventLogEntryType type, String[] strings, Byte[] rawData, String currentMachineName)&#xD;
+         at System.Diagnostics.EventLogInternal.WriteEvent(EventInstance instance, Byte[] data, Object[] values)&#xD;
+         at Microsoft.Extensions.Logging.EventLog.WindowsEventLog.WriteEntry(String message, EventLogEntryType type, Int32 eventID, Int16 category)&#xD;
+         at Microsoft.Extensions.Logging.EventLog.EventLogLogger.WriteMessage(String message, EventLogEntryType eventLogEntryType, Int32 eventId)&#xD;
+         at Microsoft.Extensions.Logging.EventLog.EventLogLogger.Log[TState](LogLevel logLevel, EventId eventId, TState state, Exception exception, Func`3 formatter)&#xD;
+         at Microsoft.Extensions.Logging.Logger.&lt;Log&gt;g__LoggerLog|14_0[TState](LogLevel logLevel, EventId eventId, ILogger logger, Exception exception, Func`3 formatter, List`1&amp; exceptions, TState&amp; state)&#xD;
+         --- End of inner exception stack trace ---&#xD;
+         at Microsoft.Extensions.Logging.Logger.ThrowLoggingError(List`1 exceptions)&#xD;
+         at Microsoft.Extensions.Logging.Logger.Log[TState](LogLevel logLevel, EventId eventId, TState state, Exception exception, Func`3 formatter)&#xD;
+         at Microsoft.AspNetCore.Server.Kestrel.Core.Internal.Infrastructure.KestrelTrace.Log[TState](LogLevel logLevel, EventId eventId, TState state, Exception exception, Func`3 formatter)&#xD;
+         at Microsoft.Extensions.Logging.LoggerExtensions.Log(ILogger logger, LogLevel logLevel, EventId eventId, Exception exception, String message, Object[] args)&#xD;
+         at Microsoft.Extensions.Logging.LoggerExtensions.LogWarning(ILogger logger, EventId eventId, Exception exception, String message, Object[] args)&#xD;
+         at Microsoft.AspNetCore.Server.Kestrel.Core.Internal.Http.HttpProtocol.ProcessRequestsAsync[TContext](IHttpApplication`1 application)&#xD;
+         at Microsoft.AspNetCore.Server.Kestrel.Core.Internal.Http.HttpProtocol.ProcessRequestsAsync[TContext](IHttpApplication`1 application)&#xD;
+         at Microsoft.AspNetCore.Server.Kestrel.Core.Internal.HttpConnection.ProcessRequestsAsync[TContext](IHttpApplication`1 httpApplication)&#xD;
+fail: Microsoft.AspNetCore.Server.Kestrel[0]&#xD;
+      Unhandled exception while processing 0HNP5ADEOUHQ7.&#xD;
+      System.AggregateException: An error occurred while writing to logger(s). (Cannot open log for source '.NET Runtime'. You may not have write access.)&#xD;
+       ---&gt; System.InvalidOperationException: Cannot open log for source '.NET Runtime'. You may not have write access.&#xD;
+       ---&gt; System.ComponentModel.Win32Exception (5): �ܾ����ʡ�&#xD;
+         --- End of inner exception stack trace ---&#xD;
+         at System.Diagnostics.EventLogInternal.OpenForWrite(String currentMachineName)&#xD;
+         at System.Diagnostics.EventLogInternal.InternalWriteEvent(UInt32 eventID, UInt16 category, EventLogEntryType type, String[] strings, Byte[] rawData, String currentMachineName)&#xD;
+         at System.Diagnostics.EventLogInternal.WriteEvent(EventInstance instance, Byte[] data, Object[] values)&#xD;
+         at Microsoft.Extensions.Logging.EventLog.WindowsEventLog.WriteEntry(String message, EventLogEntryType type, Int32 eventID, Int16 category)&#xD;
+         at Microsoft.Extensions.Logging.EventLog.EventLogLogger.WriteMessage(String message, EventLogEntryType eventLogEntryType, Int32 eventId)&#xD;
+         at Microsoft.Extensions.Logging.EventLog.EventLogLogger.Log[TState](LogLevel logLevel, EventId eventId, TState state, Exception exception, Func`3 formatter)&#xD;
+         at Microsoft.Extensions.Logging.Logger.&lt;Log&gt;g__LoggerLog|14_0[TState](LogLevel logLevel, EventId eventId, ILogger logger, Exception exception, Func`3 formatter, List`1&amp; exceptions, TState&amp; state)&#xD;
+         --- End of inner exception stack trace ---&#xD;
+         at Microsoft.Extensions.Logging.Logger.ThrowLoggingError(List`1 exceptions)&#xD;
+         at Microsoft.Extensions.Logging.Logger.Log[TState](LogLevel logLevel, EventId eventId, TState state, Exception exception, Func`3 formatter)&#xD;
+         at Microsoft.AspNetCore.Server.Kestrel.Core.Internal.Infrastructure.KestrelTrace.Log[TState](LogLevel logLevel, EventId eventId, TState state, Exception exception, Func`3 formatter)&#xD;
+         at Microsoft.Extensions.Logging.LoggerExtensions.Log(ILogger logger, LogLevel logLevel, EventId eventId, Exception exception, String message, Object[] args)&#xD;
+         at Microsoft.Extensions.Logging.LoggerExtensions.LogCritical(ILogger logger, EventId eventId, Exception exception, String message, Object[] args)&#xD;
+         at Microsoft.AspNetCore.Server.Kestrel.Core.Internal.HttpConnection.ProcessRequestsAsync[TContext](IHttpApplication`1 httpApplication)&#xD;
+         at Microsoft.AspNetCore.Server.Kestrel.Core.Internal.Infrastructure.KestrelConnection`1.ExecuteAsync()&#xD;
+warn: Gaode.Host.Api.CommissioningAuthenticationHandler[0]&#xD;
+      CommissioningIdentityRejected InvalidCredential 0HNP5ADEOUHQ8:00000001&#xD;
+fail: Microsoft.AspNetCore.Server.Kestrel[13]&#xD;
+      Connection id "0HNP5ADEOUHQ8", Request id "0HNP5ADEOUHQ8:00000001": An unhandled exception was thrown by the application.&#xD;
+      System.AggregateException: An error occurred while writing to logger(s). (Cannot open log for source '.NET Runtime'. You may not have write access.)&#xD;
+       ---&gt; System.InvalidOperationException: Cannot open log for source '.NET Runtime'. You may not have write access.&#xD;
+       ---&gt; System.ComponentModel.Win32Exception (5): �ܾ����ʡ�&#xD;
+         --- End of inner exception stack trace ---&#xD;
+         at System.Diagnostics.EventLogInternal.OpenForWrite(String currentMachineName)&#xD;
+         at System.Diagnostics.EventLogInternal.InternalWriteEvent(UInt32 eventID, UInt16 category, EventLogEntryType type, String[] strings, Byte[] rawData, String currentMachineName)&#xD;
+         at System.Diagnostics.EventLogInternal.WriteEvent(EventInstance instance, Byte[] data, Object[] values)&#xD;
+         at Microsoft.Extensions.Logging.EventLog.WindowsEventLog.WriteEntry(String message, EventLogEntryType type, Int32 eventID, Int16 category)&#xD;
+         at Microsoft.Extensions.Logging.EventLog.EventLogLogger.WriteMessage(String message, EventLogEntryType eventLogEntryType, Int32 eventId)&#xD;
+         at Microsoft.Extensions.Logging.EventLog.EventLogLogger.Log[TState](LogLevel logLevel, EventId eventId, TState state, Exception exception, Func`3 formatter)&#xD;
+         at Microsoft.Extensions.Logging.Logger.&lt;Log&gt;g__LoggerLog|14_0[TState](LogLevel logLevel, EventId eventId, ILogger logger, Exception exception, Func`3 formatter, List`1&amp; exceptions, TState&amp; state)&#xD;
+         --- End of inner exception stack trace ---&#xD;
+         at Microsoft.Extensions.Logging.Logger.ThrowLoggingError(List`1 exceptions)&#xD;
+         at Microsoft.Extensions.Logging.Logger.Log[TState](LogLevel logLevel, EventId eventId, TState state, Exception exception, Func`3 formatter)&#xD;
+         at Microsoft.Extensions.Logging.LoggerExtensions.Log(ILogger logger, LogLevel logLevel, EventId eventId, Exception exception, String message, Object[] args)&#xD;
+         at Microsoft.Extensions.Logging.LoggerExtensions.LogWarning(ILogger logger, String message, Object[] args)&#xD;
+         at Gaode.Host.Api.CommissioningAuthenticationHandler.HandleAuthenticateAsync() in E:\dzk\gaode-1\backend\src\Gaode.Host\Api\CommissioningAuthenticationHandler.cs:line 45&#xD;
+         at Microsoft.AspNetCore.Authentication.AuthenticationHandler`1.AuthenticateAsync()&#xD;
+         at Microsoft.AspNetCore.Authentication.AuthenticationService.AuthenticateAsync(HttpContext context, String scheme)&#xD;
+         at Microsoft.AspNetCore.Authentication.AuthenticationServiceImpl.AuthenticateAsync(HttpContext context, String scheme)&#xD;
+         at Microsoft.AspNetCore.Authentication.AuthenticationMiddleware.Invoke(HttpContext context)&#xD;
+         at Microsoft.AspNetCore.Server.Kestrel.Core.Internal.Http.HttpProtocol.ProcessRequests[TContext](IHttpApplication`1 application)&#xD;
+warn: Microsoft.AspNetCore.Server.Kestrel[0]&#xD;
+      Connection processing ended abnormally.&#xD;
+      System.AggregateException: An error occurred while writing to logger(s). (Cannot open log for source '.NET Runtime'. You may not have write access.)&#xD;
+       ---&gt; System.InvalidOperationException: Cannot open log for source '.NET Runtime'. You may not have write access.&#xD;
+       ---&gt; System.ComponentModel.Win32Exception (5): �ܾ����ʡ�&#xD;
+         --- End of inner exception stack trace ---&#xD;
+         at System.Diagnostics.EventLogInternal.OpenForWrite(String currentMachineName)&#xD;
+         at System.Diagnostics.EventLogInternal.InternalWriteEvent(UInt32 eventID, UInt16 category, EventLogEntryType type, String[] strings, Byte[] rawData, String currentMachineName)&#xD;
+         at System.Diagnostics.EventLogInternal.WriteEvent(EventInstance instance, Byte[] data, Object[] values)&#xD;
+         at Microsoft.Extensions.Logging.EventLog.WindowsEventLog.WriteEntry(String message, EventLogEntryType type, Int32 eventID, Int16 category)&#xD;
+         at Microsoft.Extensions.Logging.EventLog.EventLogLogger.WriteMessage(String message, EventLogEntryType eventLogEntryType, Int32 eventId)&#xD;
+         at Microsoft.Extensions.Logging.EventLog.EventLogLogger.Log[TState](LogLevel logLevel, EventId eventId, TState state, Exception exception, Func`3 formatter)&#xD;
+         at Microsoft.Extensions.Logging.Logger.&lt;Log&gt;g__LoggerLog|14_0[TState](LogLevel logLevel, EventId eventId, ILogger logger, Exception exception, Func`3 formatter, List`1&amp; exceptions, TState&amp; state)&#xD;
+         --- End of inner exception stack trace ---&#xD;
+         at Microsoft.Extensions.Logging.Logger.ThrowLoggingError(List`1 exceptions)&#xD;
+         at Microsoft.Extensions.Logging.Logger.Log[TState](LogLevel logLevel, EventId eventId, TState state, Exception exception, Func`3 formatter)&#xD;
+         at Microsoft.Extensions.Logging.LoggerMessage.&lt;&gt;c__DisplayClass12_0`2.&lt;Define&gt;g__Log|0(ILogger logger, T1 arg1, T2 arg2, Exception exception)&#xD;
+         at Microsoft.AspNetCore.Server.Kestrel.Core.Internal.Infrastructure.KestrelTrace.GeneralLog.ApplicationError(ILogger logger, String connectionId, String traceIdentifier, Exception ex)&#xD;
+         at Microsoft.AspNetCore.Server.Kestrel.Core.Internal.Http.HttpProtocol.ProcessRequests[TContext](IHttpApplication`1 application)&#xD;
+         at Microsoft.AspNetCore.Server.Kestrel.Core.Internal.Http.HttpProtocol.ProcessRequestsAsync[TContext](IHttpApplication`1 application)&#xD;
+crit: Microsoft.AspNetCore.Server.Kestrel[0]&#xD;
+      Unexpected exception in HttpConnection.ProcessRequestsAsync.&#xD;
+      System.AggregateException: An error occurred while writing to logger(s). (Cannot open log for source '.NET Runtime'. You may not have write access.)&#xD;
+       ---&gt; System.InvalidOperationException: Cannot open log for source '.NET Runtime'. You may not have write access.&#xD;
+       ---&gt; System.ComponentModel.Win32Exception (5): �ܾ����ʡ�&#xD;
+         --- End of inner exception stack trace ---&#xD;
+         at System.Diagnostics.EventLogInternal.OpenForWrite(String currentMachineName)&#xD;
+         at System.Diagnostics.EventLogInternal.InternalWriteEvent(UInt32 eventID, UInt16 category, EventLogEntryType type, String[] strings, Byte[] rawData, String currentMachineName)&#xD;
+         at System.Diagnostics.EventLogInternal.WriteEvent(EventInstance instance, Byte[] data, Object[] values)&#xD;
+         at Microsoft.Extensions.Logging.EventLog.WindowsEventLog.WriteEntry(String message, EventLogEntryType type, Int32 eventID, Int16 category)&#xD;
+         at Microsoft.Extensions.Logging.EventLog.EventLogLogger.WriteMessage(String message, EventLogEntryType eventLogEntryType, Int32 eventId)&#xD;
+         at Microsoft.Extensions.Logging.EventLog.EventLogLogger.Log[TState](LogLevel logLevel, EventId eventId, TState state, Exception exception, Func`3 formatter)&#xD;
+         at Microsoft.Extensions.Logging.Logger.&lt;Log&gt;g__LoggerLog|14_0[TState](LogLevel logLevel, EventId eventId, ILogger logger, Exception exception, Func`3 formatter, List`1&amp; exceptions, TState&amp; state)&#xD;
+         --- End of inner exception stack trace ---&#xD;
+         at Microsoft.Extensions.Logging.Logger.ThrowLoggingError(List`1 exceptions)&#xD;
+         at Microsoft.Extensions.Logging.Logger.Log[TState](LogLevel logLevel, EventId eventId, TState state, Exception exception, Func`3 formatter)&#xD;
+         at Microsoft.AspNetCore.Server.Kestrel.Core.Internal.Infrastructure.KestrelTrace.Log[TState](LogLevel logLevel, EventId eventId, TState state, Exception exception, Func`3 formatter)&#xD;
+         at Microsoft.Extensions.Logging.LoggerExtensions.Log(ILogger logger, LogLevel logLevel, EventId eventId, Exception exception, String message, Object[] args)&#xD;
+         at Microsoft.Extensions.Logging.LoggerExtensions.LogWarning(ILogger logger, EventId eventId, Exception exception, String message, Object[] args)&#xD;
+         at Microsoft.AspNetCore.Server.Kestrel.Core.Internal.Http.HttpProtocol.ProcessRequestsAsync[TContext](IHttpApplication`1 application)&#xD;
+         at Microsoft.AspNetCore.Server.Kestrel.Core.Internal.Http.HttpProtocol.ProcessRequestsAsync[TContext](IHttpApplication`1 application)&#xD;
+         at Microsoft.AspNetCore.Server.Kestrel.Core.Internal.HttpConnection.ProcessRequestsAsync[TContext](IHttpApplication`1 httpApplication)&#xD;
+fail: Microsoft.AspNetCore.Server.Kestrel[0]&#xD;
+      Unhandled exception while processing 0HNP5ADEOUHQ8.&#xD;
+      System.AggregateException: An error occurred while writing to logger(s). (Cannot open log for source '.NET Runtime'. You may not have write access.)&#xD;
+       ---&gt; System.InvalidOperationException: Cannot open log for source '.NET Runtime'. You may not have write access.&#xD;
+       ---&gt; System.ComponentModel.Win32Exception (5): �ܾ����ʡ�&#xD;
+         --- End of inner exception stack trace ---&#xD;
+         at System.Diagnostics.EventLogInternal.OpenForWrite(String currentMachineName)&#xD;
+         at System.Diagnostics.EventLogInternal.InternalWriteEvent(UInt32 eventID, UInt16 category, EventLogEntryType type, String[] strings, Byte[] rawData, String currentMachineName)&#xD;
+         at System.Diagnostics.EventLogInternal.WriteEvent(EventInstance instance, Byte[] data, Object[] values)&#xD;
+         at Microsoft.Extensions.Logging.EventLog.WindowsEventLog.WriteEntry(String message, EventLogEntryType type, Int32 eventID, Int16 category)&#xD;
+         at Microsoft.Extensions.Logging.EventLog.EventLogLogger.WriteMessage(String message, EventLogEntryType eventLogEntryType, Int32 eventId)&#xD;
+         at Microsoft.Extensions.Logging.EventLog.EventLogLogger.Log[TState](LogLevel logLevel, EventId eventId, TState state, Exception exception, Func`3 formatter)&#xD;
+         at Microsoft.Extensions.Logging.Logger.&lt;Log&gt;g__LoggerLog|14_0[TState](LogLevel logLevel, EventId eventId, ILogger logger, Exception exception, Func`3 formatter, List`1&amp; exceptions, TState&amp; state)&#xD;
+         --- End of inner exception stack trace ---&#xD;
+         at Microsoft.Extensions.Logging.Logger.ThrowLoggingError(List`1 exceptions)&#xD;
+         at Microsoft.Extensions.Logging.Logger.Log[TState](LogLevel logLevel, EventId eventId, TState state, Exception exception, Func`3 formatter)&#xD;
+         at Microsoft.AspNetCore.Server.Kestrel.Core.Internal.Infrastructure.KestrelTrace.Log[TState](LogLevel logLevel, EventId eventId, TState state, Exception exception, Func`3 formatter)&#xD;
+         at Microsoft.Extensions.Logging.LoggerExtensions.Log(ILogger logger, LogLevel logLevel, EventId eventId, Exception exception, String message, Object[] args)&#xD;
+         at Microsoft.Extensions.Logging.LoggerExtensions.LogCritical(ILogger logger, EventId eventId, Exception exception, String message, Object[] args)&#xD;
+         at Microsoft.AspNetCore.Server.Kestrel.Core.Internal.HttpConnection.ProcessRequestsAsync[TContext](IHttpApplication`1 httpApplication)&#xD;
+         at Microsoft.AspNetCore.Server.Kestrel.Core.Internal.Infrastructure.KestrelConnection`1.ExecuteAsync()&#xD;
+warn: Gaode.Host.Api.CommissioningAuthenticationHandler[0]&#xD;
+      CommissioningIdentityRejected InvalidCredential 0HNP5ADEOUHQ9:00000001&#xD;
+fail: Microsoft.AspNetCore.Server.Kestrel[13]&#xD;
+      Connection id "0HNP5ADEOUHQ9", Request id "0HNP5ADEOUHQ9:00000001": An unhandled exception was thrown by the application.&#xD;
+      System.AggregateException: An error occurred while writing to logger(s). (Cannot open log for source '.NET Runtime'. You may not have write access.)&#xD;
+       ---&gt; System.InvalidOperationException: Cannot open log for source '.NET Runtime'. You may not have write access.&#xD;
+       ---&gt; System.ComponentModel.Win32Exception (5): �ܾ����ʡ�&#xD;
+         --- End of inner exception stack trace ---&#xD;
+         at System.Diagnostics.EventLogInternal.OpenForWrite(String currentMachineName)&#xD;
+         at System.Diagnostics.EventLogInternal.InternalWriteEvent(UInt32 eventID, UInt16 category, EventLogEntryType type, String[] strings, Byte[] rawData, String currentMachineName)&#xD;
+         at System.Diagnostics.EventLogInternal.WriteEvent(EventInstance instance, Byte[] data, Object[] values)&#xD;
+         at Microsoft.Extensions.Logging.EventLog.WindowsEventLog.WriteEntry(String message, EventLogEntryType type, Int32 eventID, Int16 category)&#xD;
+         at Microsoft.Extensions.Logging.EventLog.EventLogLogger.WriteMessage(String message, EventLogEntryType eventLogEntryType, Int32 eventId)&#xD;
+         at Microsoft.Extensions.Logging.EventLog.EventLogLogger.Log[TState](LogLevel logLevel, EventId eventId, TState state, Exception exception, Func`3 formatter)&#xD;
+         at Microsoft.Extensions.Logging.Logger.&lt;Log&gt;g__LoggerLog|14_0[TState](LogLevel logLevel, EventId eventId, ILogger logger, Exception exception, Func`3 formatter, List`1&amp; exceptions, TState&amp; state)&#xD;
+         --- End of inner exception stack trace ---&#xD;
+         at Microsoft.Extensions.Logging.Logger.ThrowLoggingError(List`1 exceptions)&#xD;
+         at Microsoft.Extensions.Logging.Logger.Log[TState](LogLevel logLevel, EventId eventId, TState state, Exception exception, Func`3 formatter)&#xD;
+         at Microsoft.Extensions.Logging.LoggerExtensions.Log(ILogger logger, LogLevel logLevel, EventId eventId, Exception exception, String message, Object[] args)&#xD;
+         at Microsoft.Extensions.Logging.LoggerExtensions.LogWarning(ILogger logger, String message, Object[] args)&#xD;
+         at Gaode.Host.Api.CommissioningAuthenticationHandler.HandleAuthenticateAsync() in E:\dzk\gaode-1\backend\src\Gaode.Host\Api\CommissioningAuthenticationHandler.cs:line 45&#xD;
+         at Microsoft.AspNetCore.Authentication.AuthenticationHandler`1.AuthenticateAsync()&#xD;
+         at Microsoft.AspNetCore.Authentication.AuthenticationService.AuthenticateAsync(HttpContext context, String scheme)&#xD;
+         at Microsoft.AspNetCore.Authentication.AuthenticationServiceImpl.AuthenticateAsync(HttpContext context, String scheme)&#xD;
+         at Microsoft.AspNetCore.Authentication.AuthenticationMiddleware.Invoke(HttpContext context)&#xD;
+         at Microsoft.AspNetCore.Server.Kestrel.Core.Internal.Http.HttpProtocol.ProcessRequests[TContext](IHttpApplication`1 application)&#xD;
+warn: Microsoft.AspNetCore.Server.Kestrel[0]&#xD;
+      Connection processing ended abnormally.&#xD;
+      System.AggregateException: An error occurred while writing to logger(s). (Cannot open log for source '.NET Runtime'. You may not have write access.)&#xD;
+       ---&gt; System.InvalidOperationException: Cannot open log for source '.NET Runtime'. You may not have write access.&#xD;
+       ---&gt; System.ComponentModel.Win32Exception (5): �ܾ����ʡ�&#xD;
+         --- End of inner exception stack trace ---&#xD;
+         at System.Diagnostics.EventLogInternal.OpenForWrite(String currentMachineName)&#xD;
+         at System.Diagnostics.EventLogInternal.InternalWriteEvent(UInt32 eventID, UInt16 category, EventLogEntryType type, String[] strings, Byte[] rawData, String currentMachineName)&#xD;
+         at System.Diagnostics.EventLogInternal.WriteEvent(EventInstance instance, Byte[] data, Object[] values)&#xD;
+         at Microsoft.Extensions.Logging.EventLog.WindowsEventLog.WriteEntry(String message, EventLogEntryType type, Int32 eventID, Int16 category)&#xD;
+         at Microsoft.Extensions.Logging.EventLog.EventLogLogger.WriteMessage(String message, EventLogEntryType eventLogEntryType, Int32 eventId)&#xD;
+         at Microsoft.Extensions.Logging.EventLog.EventLogLogger.Log[TState](LogLevel logLevel, EventId eventId, TState state, Exception exception, Func`3 formatter)&#xD;
+         at Microsoft.Extensions.Logging.Logger.&lt;Log&gt;g__LoggerLog|14_0[TState](LogLevel logLevel, EventId eventId, ILogger logger, Exception exception, Func`3 formatter, List`1&amp; exceptions, TState&amp; state)&#xD;
+         --- End of inner exception stack trace ---&#xD;
+         at Microsoft.Extensions.Logging.Logger.ThrowLoggingError(List`1 exceptions)&#xD;
+         at Microsoft.Extensions.Logging.Logger.Log[TState](LogLevel logLevel, EventId eventId, TState state, Exception exception, Func`3 formatter)&#xD;
+         at Microsoft.Extensions.Logging.LoggerMessage.&lt;&gt;c__DisplayClass12_0`2.&lt;Define&gt;g__Log|0(ILogger logger, T1 arg1, T2 arg2, Exception exception)&#xD;
+         at Microsoft.AspNetCore.Server.Kestrel.Core.Internal.Infrastructure.KestrelTrace.GeneralLog.ApplicationError(ILogger logger, String connectionId, String traceIdentifier, Exception ex)&#xD;
+         at Microsoft.AspNetCore.Server.Kestrel.Core.Internal.Http.HttpProtocol.ProcessRequests[TContext](IHttpApplication`1 application)&#xD;
+         at Microsoft.AspNetCore.Server.Kestrel.Core.Internal.Http.HttpProtocol.ProcessRequestsAsync[TContext](IHttpApplication`1 application)&#xD;
+crit: Microsoft.AspNetCore.Server.Kestrel[0]&#xD;
+      Unexpected exception in HttpConnection.ProcessRequestsAsync.&#xD;
+      System.AggregateException: An error occurred while writing to logger(s). (Cannot open log for source '.NET Runtime'. You may not have write access.)&#xD;
+       ---&gt; System.InvalidOperationException: Cannot open log for source '.NET Runtime'. You may not have write access.&#xD;
+       ---&gt; System.ComponentModel.Win32Exception (5): �ܾ����ʡ�&#xD;
+         --- End of inner exception stack trace ---&#xD;
+         at System.Diagnostics.EventLogInternal.OpenForWrite(String currentMachineName)&#xD;
+         at System.Diagnostics.EventLogInternal.InternalWriteEvent(UInt32 eventID, UInt16 category, EventLogEntryType type, String[] strings, Byte[] rawData, String currentMachineName)&#xD;
+         at System.Diagnostics.EventLogInternal.WriteEvent(EventInstance instance, Byte[] data, Object[] values)&#xD;
+         at Microsoft.Extensions.Logging.EventLog.WindowsEventLog.WriteEntry(String message, EventLogEntryType type, Int32 eventID, Int16 category)&#xD;
+         at Microsoft.Extensions.Logging.EventLog.EventLogLogger.WriteMessage(String message, EventLogEntryType eventLogEntryType, Int32 eventId)&#xD;
+         at Microsoft.Extensions.Logging.EventLog.EventLogLogger.Log[TState](LogLevel logLevel, EventId eventId, TState state, Exception exception, Func`3 formatter)&#xD;
+         at Microsoft.Extensions.Logging.Logger.&lt;Log&gt;g__LoggerLog|14_0[TState](LogLevel logLevel, EventId eventId, ILogger logger, Exception exception, Func`3 formatter, List`1&amp; exceptions, TState&amp; state)&#xD;
+         --- End of inner exception stack trace ---&#xD;
+         at Microsoft.Extensions.Logging.Logger.ThrowLoggingError(List`1 exceptions)&#xD;
+         at Microsoft.Extensions.Logging.Logger.Log[TState](LogLevel logLevel, EventId eventId, TState state, Exception exception, Func`3 formatter)&#xD;
+         at Microsoft.AspNetCore.Server.Kestrel.Core.Internal.Infrastructure.KestrelTrace.Log[TState](LogLevel logLevel, EventId eventId, TState state, Exception exception, Func`3 formatter)&#xD;
+         at Microsoft.Extensions.Logging.LoggerExtensions.Log(ILogger logger, LogLevel logLevel, EventId eventId, Exception exception, String message, Object[] args)&#xD;
+         at Microsoft.Extensions.Logging.LoggerExtensions.LogWarning(ILogger logger, EventId eventId, Exception exception, String message, Object[] args)&#xD;
+         at Microsoft.AspNetCore.Server.Kestrel.Core.Internal.Http.HttpProtocol.ProcessRequestsAsync[TContext](IHttpApplication`1 application)&#xD;
+         at Microsoft.AspNetCore.Server.Kestrel.Core.Internal.Http.HttpProtocol.ProcessRequestsAsync[TContext](IHttpApplication`1 application)&#xD;
+         at Microsoft.AspNetCore.Server.Kestrel.Core.Internal.HttpConnection.ProcessRequestsAsync[TContext](IHttpApplication`1 httpApplication)&#xD;
+fail: Microsoft.AspNetCore.Server.Kestrel[0]&#xD;
+      Unhandled exception while processing 0HNP5ADEOUHQ9.&#xD;
+      System.AggregateException: An error occurred while writing to logger(s). (Cannot open log for source '.NET Runtime'. You may not have write access.)&#xD;
+       ---&gt; System.InvalidOperationException: Cannot open log for source '.NET Runtime'. You may not have write access.&#xD;
+       ---&gt; System.ComponentModel.Win32Exception (5): �ܾ����ʡ�&#xD;
+         --- End of inner exception stack trace ---&#xD;
+         at System.Diagnostics.EventLogInternal.OpenForWrite(String currentMachineName)&#xD;
+         at System.Diagnostics.EventLogInternal.InternalWriteEvent(UInt32 eventID, UInt16 category, EventLogEntryType type, String[] strings, Byte[] rawData, String currentMachineName)&#xD;
+         at System.Diagnostics.EventLogInternal.WriteEvent(EventInstance instance, Byte[] data, Object[] values)&#xD;
+         at Microsoft.Extensions.Logging.EventLog.WindowsEventLog.WriteEntry(String message, EventLogEntryType type, Int32 eventID, Int16 category)&#xD;
+         at Microsoft.Extensions.Logging.EventLog.EventLogLogger.WriteMessage(String message, EventLogEntryType eventLogEntryType, Int32 eventId)&#xD;
+         at Microsoft.Extensions.Logging.EventLog.EventLogLogger.Log[TState](LogLevel logLevel, EventId eventId, TState state, Exception exception, Func`3 formatter)&#xD;
+         at Microsoft.Extensions.Logging.Logger.&lt;Log&gt;g__LoggerLog|14_0[TState](LogLevel logLevel, EventId eventId, ILogger logger, Exception exception, Func`3 formatter, List`1&amp; exceptions, TState&amp; state)&#xD;
+         --- End of inner exception stack trace ---&#xD;
+         at Microsoft.Extensions.Logging.Logger.ThrowLoggingError(List`1 exceptions)&#xD;
+         at Microsoft.Extensions.Logging.Logger.Log[TState](LogLevel logLevel, EventId eventId, TState state, Exception exception, Func`3 formatter)&#xD;
+         at Microsoft.AspNetCore.Server.Kestrel.Core.Internal.Infrastructure.KestrelTrace.Log[TState](LogLevel logLevel, EventId eventId, TState state, Exception exception, Func`3 formatter)&#xD;
+         at Microsoft.Extensions.Logging.LoggerExtensions.Log(ILogger logger, LogLevel logLevel, EventId eventId, Exception exception, String message, Object[] args)&#xD;
+         at Microsoft.Extensions.Logging.LoggerExtensions.LogCritical(ILogger logger, EventId eventId, Exception exception, String message, Object[] args)&#xD;
+         at Microsoft.AspNetCore.Server.Kestrel.Core.Internal.HttpConnection.ProcessRequestsAsync[TContext](IHttpApplication`1 httpApplication)&#xD;
+         at Microsoft.AspNetCore.Server.Kestrel.Core.Internal.Infrastructure.KestrelConnection`1.ExecuteAsync()&#xD;
+warn: Gaode.Host.Api.CommissioningAuthenticationHandler[0]&#xD;
+      CommissioningIdentityRejected InvalidCredential 0HNP5ADEOUHQA:00000001&#xD;
+fail: Microsoft.AspNetCore.Server.Kestrel[13]&#xD;
+      Connection id "0HNP5ADEOUHQA", Request id "0HNP5ADEOUHQA:00000001": An unhandled exception was thrown by the application.&#xD;
+      System.AggregateException: An error occurred while writing to logger(s). (Cannot open log for source '.NET Runtime'. You may not have write access.)&#xD;
+       ---&gt; System.InvalidOperationException: Cannot open log for source '.NET Runtime'. You may not have write access.&#xD;
+       ---&gt; System.ComponentModel.Win32Exception (5): �ܾ����ʡ�&#xD;
+         --- End of inner exception stack trace ---&#xD;
+         at System.Diagnostics.EventLogInternal.OpenForWrite(String currentMachineName)&#xD;
+         at System.Diagnostics.EventLogInternal.InternalWriteEvent(UInt32 eventID, UInt16 category, EventLogEntryType type, String[] strings, Byte[] rawData, String currentMachineName)&#xD;
+         at System.Diagnostics.EventLogInternal.WriteEvent(EventInstance instance, Byte[] data, Object[] values)&#xD;
+         at Microsoft.Extensions.Logging.EventLog.WindowsEventLog.WriteEntry(String message, EventLogEntryType type, Int32 eventID, Int16 category)&#xD;
+         at Microsoft.Extensions.Logging.EventLog.EventLogLogger.WriteMessage(String message, EventLogEntryType eventLogEntryType, Int32 eventId)&#xD;
+         at Microsoft.Extensions.Logging.EventLog.EventLogLogger.Log[TState](LogLevel logLevel, EventId eventId, TState state, Exception exception, Func`3 formatter)&#xD;
+         at Microsoft.Extensions.Logging.Logger.&lt;Log&gt;g__LoggerLog|14_0[TState](LogLevel logLevel, EventId eventId, ILogger logger, Exception exception, Func`3 formatter, List`1&amp; exceptions, TState&amp; state)&#xD;
+         --- End of inner exception stack trace ---&#xD;
+         at Microsoft.Extensions.Logging.Logger.ThrowLoggingError(List`1 exceptions)&#xD;
+         at Microsoft.Extensions.Logging.Logger.Log[TState](LogLevel logLevel, EventId eventId, TState state, Exception exception, Func`3 formatter)&#xD;
+         at Microsoft.Extensions.Logging.LoggerExtensions.Log(ILogger logger, LogLevel logLevel, EventId eventId, Exception exception, String message, Object[] args)&#xD;
+         at Microsoft.Extensions.Logging.LoggerExtensions.LogWarning(ILogger logger, String message, Object[] args)&#xD;
+         at Gaode.Host.Api.CommissioningAuthenticationHandler.HandleAuthenticateAsync() in E:\dzk\gaode-1\backend\src\Gaode.Host\Api\CommissioningAuthenticationHandler.cs:line 45&#xD;
+         at Microsoft.AspNetCore.Authentication.AuthenticationHandler`1.AuthenticateAsync()&#xD;
+         at Microsoft.AspNetCore.Authentication.AuthenticationService.AuthenticateAsync(HttpContext context, String scheme)&#xD;
+         at Microsoft.AspNetCore.Authentication.AuthenticationServiceImpl.AuthenticateAsync(HttpContext context, String scheme)&#xD;
+         at Microsoft.AspNetCore.Authentication.AuthenticationMiddleware.Invoke(HttpContext context)&#xD;
+         at Microsoft.AspNetCore.Server.Kestrel.Core.Internal.Http.HttpProtocol.ProcessRequests[TContext](IHttpApplication`1 application)&#xD;
+warn: Microsoft.AspNetCore.Server.Kestrel[0]&#xD;
+      Connection processing ended abnormally.&#xD;
+      System.AggregateException: An error occurred while writing to logger(s). (Cannot open log for source '.NET Runtime'. You may not have write access.)&#xD;
+       ---&gt; System.InvalidOperationException: Cannot open log for source '.NET Runtime'. You may not have write access.&#xD;
+       ---&gt; System.ComponentModel.Win32Exception (5): �ܾ����ʡ�&#xD;
+         --- End of inner exception stack trace ---&#xD;
+         at System.Diagnostics.EventLogInternal.OpenForWrite(String currentMachineName)&#xD;
+         at System.Diagnostics.EventLogInternal.InternalWriteEvent(UInt32 eventID, UInt16 category, EventLogEntryType type, String[] strings, Byte[] rawData, String currentMachineName)&#xD;
+         at System.Diagnostics.EventLogInternal.WriteEvent(EventInstance instance, Byte[] data, Object[] values)&#xD;
+         at Microsoft.Extensions.Logging.EventLog.WindowsEventLog.WriteEntry(String message, EventLogEntryType type, Int32 eventID, Int16 category)&#xD;
+         at Microsoft.Extensions.Logging.EventLog.EventLogLogger.WriteMessage(String message, EventLogEntryType eventLogEntryType, Int32 eventId)&#xD;
+         at Microsoft.Extensions.Logging.EventLog.EventLogLogger.Log[TState](LogLevel logLevel, EventId eventId, TState state, Exception exception, Func`3 formatter)&#xD;
+         at Microsoft.Extensions.Logging.Logger.&lt;Log&gt;g__LoggerLog|14_0[TState](LogLevel logLevel, EventId eventId, ILogger logger, Exception exception, Func`3 formatter, List`1&amp; exceptions, TState&amp; state)&#xD;
+         --- End of inner exception stack trace ---&#xD;
+         at Microsoft.Extensions.Logging.Logger.ThrowLoggingError(List`1 exceptions)&#xD;
+         at Microsoft.Extensions.Logging.Logger.Log[TState](LogLevel logLevel, EventId eventId, TState state, Exception exception, Func`3 formatter)&#xD;
+         at Microsoft.Extensions.Logging.LoggerMessage.&lt;&gt;c__DisplayClass12_0`2.&lt;Define&gt;g__Log|0(ILogger logger, T1 arg1, T2 arg2, Exception exception)&#xD;
+         at Microsoft.AspNetCore.Server.Kestrel.Core.Internal.Infrastructure.KestrelTrace.GeneralLog.ApplicationError(ILogger logger, String connectionId, String traceIdentifier, Exception ex)&#xD;
+         at Microsoft.AspNetCore.Server.Kestrel.Core.Internal.Http.HttpProtocol.ProcessRequests[TContext](IHttpApplication`1 application)&#xD;
+         at Microsoft.AspNetCore.Server.Kestrel.Core.Internal.Http.HttpProtocol.ProcessRequestsAsync[TContext](IHttpApplication`1 application)&#xD;
+crit: Microsoft.AspNetCore.Server.Kestrel[0]&#xD;
+      Unexpected exception in HttpConnection.ProcessRequestsAsync.&#xD;
+      System.AggregateException: An error occurred while writing to logger(s). (Cannot open log for source '.NET Runtime'. You may not have write access.)&#xD;
+       ---&gt; System.InvalidOperationException: Cannot open log for source '.NET Runtime'. You may not have write access.&#xD;
+       ---&gt; System.ComponentModel.Win32Exception (5): �ܾ����ʡ�&#xD;
+         --- End of inner exception stack trace ---&#xD;
+         at System.Diagnostics.EventLogInternal.OpenForWrite(String currentMachineName)&#xD;
+         at System.Diagnostics.EventLogInternal.InternalWriteEvent(UInt32 eventID, UInt16 category, EventLogEntryType type, String[] strings, Byte[] rawData, String currentMachineName)&#xD;
+         at System.Diagnostics.EventLogInternal.WriteEvent(EventInstance instance, Byte[] data, Object[] values)&#xD;
+         at Microsoft.Extensions.Logging.EventLog.WindowsEventLog.WriteEntry(String message, EventLogEntryType type, Int32 eventID, Int16 category)&#xD;
+         at Microsoft.Extensions.Logging.EventLog.EventLogLogger.WriteMessage(String message, EventLogEntryType eventLogEntryType, Int32 eventId)&#xD;
+         at Microsoft.Extensions.Logging.EventLog.EventLogLogger.Log[TState](LogLevel logLevel, EventId eventId, TState state, Exception exception, Func`3 formatter)&#xD;
+         at Microsoft.Extensions.Logging.Logger.&lt;Log&gt;g__LoggerLog|14_0[TState](LogLevel logLevel, EventId eventId, ILogger logger, Exception exception, Func`3 formatter, List`1&amp; exceptions, TState&amp; state)&#xD;
+         --- End of inner exception stack trace ---&#xD;
+         at Microsoft.Extensions.Logging.Logger.ThrowLoggingError(List`1 exceptions)&#xD;
+         at Microsoft.Extensions.Logging.Logger.Log[TState](LogLevel logLevel, EventId eventId, TState state, Exception exception, Func`3 formatter)&#xD;
+         at Microsoft.AspNetCore.Server.Kestrel.Core.Internal.Infrastructure.KestrelTrace.Log[TState](LogLevel logLevel, EventId eventId, TState state, Exception exception, Func`3 formatter)&#xD;
+         at Microsoft.Extensions.Logging.LoggerExtensions.Log(ILogger logger, LogLevel logLevel, EventId eventId, Exception exception, String message, Object[] args)&#xD;
+         at Microsoft.Extensions.Logging.LoggerExtensions.LogWarning(ILogger logger, EventId eventId, Exception exception, String message, Object[] args)&#xD;
+         at Microsoft.AspNetCore.Server.Kestrel.Core.Internal.Http.HttpProtocol.ProcessRequestsAsync[TContext](IHttpApplication`1 application)&#xD;
+         at Microsoft.AspNetCore.Server.Kestrel.Core.Internal.Http.HttpProtocol.ProcessRequestsAsync[TContext](IHttpApplication`1 application)&#xD;
+         at Microsoft.AspNetCore.Server.Kestrel.Core.Internal.HttpConnection.ProcessRequestsAsync[TContext](IHttpApplication`1 httpApplication)&#xD;
+fail: Microsoft.AspNetCore.Server.Kestrel[0]&#xD;
+      Unhandled exception while processing 0HNP5ADEOUHQA.&#xD;
+      System.AggregateException: An error occurred while writing to logger(s). (Cannot open log for source '.NET Runtime'. You may not have write access.)&#xD;
+       ---&gt; System.InvalidOperationException: Cannot open log for source '.NET Runtime'. You may not have write access.&#xD;
+       ---&gt; System.ComponentModel.Win32Exception (5): �ܾ����ʡ�&#xD;
+         --- End of inner exception stack trace ---&#xD;
+         at System.Diagnostics.EventLogInternal.OpenForWrite(String currentMachineName)&#xD;
+         at System.Diagnostics.EventLogInternal.InternalWriteEvent(UInt32 eventID, UInt16 category, EventLogEntryType type, String[] strings, Byte[] rawData, String currentMachineName)&#xD;
+         at System.Diagnostics.EventLogInternal.WriteEvent(EventInstance instance, Byte[] data, Object[] values)&#xD;
+         at Microsoft.Extensions.Logging.EventLog.WindowsEventLog.WriteEntry(String message, EventLogEntryType type, Int32 eventID, Int16 category)&#xD;
+         at Microsoft.Extensions.Logging.EventLog.EventLogLogger.WriteMessage(String message, EventLogEntryType eventLogEntryType, Int32 eventId)&#xD;
+         at Microsoft.Extensions.Logging.EventLog.EventLogLogger.Log[TState](LogLevel logLevel, EventId eventId, TState state, Exception exception, Func`3 formatter)&#xD;
+         at Microsoft.Extensions.Logging.Logger.&lt;Log&gt;g__LoggerLog|14_0[TState](LogLevel logLevel, EventId eventId, ILogger logger, Exception exception, Func`3 formatter, List`1&amp; exceptions, TState&amp; state)&#xD;
+         --- End of inner exception stack trace ---&#xD;
+         at Microsoft.Extensions.Logging.Logger.ThrowLoggingError(List`1 exceptions)&#xD;
+         at Microsoft.Extensions.Logging.Logger.Log[TState](LogLevel logLevel, EventId eventId, TState state, Exception exception, Func`3 formatter)&#xD;
+         at Microsoft.AspNetCore.Server.Kestrel.Core.Internal.Infrastructure.KestrelTrace.Log[TState](LogLevel logLevel, EventId eventId, TState state, Exception exception, Func`3 formatter)&#xD;
+         at Microsoft.Extensions.Logging.LoggerExtensions.Log(ILogger logger, LogLevel logLevel, EventId eventId, Exception exception, String message, Object[] args)&#xD;
+         at Microsoft.Extensions.Logging.LoggerExtensions.LogCritical(ILogger logger, EventId eventId, Exception exception, String message, Object[] args)&#xD;
+         at Microsoft.AspNetCore.Server.Kestrel.Core.Internal.HttpConnection.ProcessRequestsAsync[TContext](IHttpApplication`1 httpApplication)&#xD;
+         at Microsoft.AspNetCore.Server.Kestrel.Core.Internal.Infrastructure.KestrelConnection`1.ExecuteAsync()&#xD;
+info: Microsoft.Hosting.Lifetime[0]&#xD;
+      Application is shutting down...&#xD;
+[xUnit.net 00:00:11.62]       System.Net.Http.HttpRequestException : An error occurred while sending the request.&#xD;
+[xUnit.net 00:00:11.62]       ---- System.Net.Http.HttpIOException : The response ended prematurely. (ResponseEnded)&#xD;
+[xUnit.net 00:00:11.62]       Stack Trace:&#xD;
+[xUnit.net 00:00:11.62]            at System.Net.Http.HttpConnection.SendAsync(HttpRequestMessage request, Boolean async, CancellationToken cancellationToken)&#xD;
+[xUnit.net 00:00:11.62]            at System.Net.Http.HttpConnectionPool.SendWithVersionDetectionAndRetryAsync(HttpRequestMessage request, Boolean async, Boolean doRequestAuth, CancellationToken cancellationToken)&#xD;
+[xUnit.net 00:00:11.62]            at System.Net.Http.RedirectHandler.SendAsync(HttpRequestMessage request, Boolean async, CancellationToken cancellationToken)&#xD;
+[xUnit.net 00:00:11.62]            at System.Net.Http.HttpClient.&lt;SendAsync&gt;g__Core|83_0(HttpRequestMessage request, HttpCompletionOption completionOption, CancellationTokenSource cts, Boolean disposeCts, CancellationTokenSource pendingRequestsCts, CancellationToken originalCancellationToken)&#xD;
+[xUnit.net 00:00:11.62]         E:\dzk\gaode-1\backend\tests\Gaode.Communication.Tests\CommissioningIdentityTests.cs(54,0): at Gaode.Communication.Tests.CommissioningIdentityTests.BackendConfirmsIdentityAndEnforcesPermissions(String role, Boolean canRun, Boolean canEdit)&#xD;
+[xUnit.net 00:00:11.62]         E:\dzk\gaode-1\backend\tests\Gaode.Communication.Tests\CommissioningIdentityTests.cs(57,0): at Gaode.Communication.Tests.CommissioningIdentityTests.BackendConfirmsIdentityAndEnforcesPermissions(String role, Boolean canRun, Boolean canEdit)&#xD;
+[xUnit.net 00:00:11.62]         E:\dzk\gaode-1\backend\tests\Gaode.Communication.Tests\CommissioningIdentityTests.cs(57,0): at Gaode.Communication.Tests.CommissioningIdentityTests.BackendConfirmsIdentityAndEnforcesPermissions(String role, Boolean canRun, Boolean canEdit)&#xD;
+[xUnit.net 00:00:11.62]         --- End of stack trace from previous location ---&#xD;
+[xUnit.net 00:00:11.62]         ----- Inner Stack Trace -----&#xD;
+[xUnit.net 00:00:11.62]            at System.Net.Http.HttpConnection.SendAsync(HttpRequestMessage request, Boolean async, CancellationToken cancellationToken)&#xD;
+info: Microsoft.Hosting.Lifetime[14]&#xD;
+      Now listening on: http://127.0.0.1:49659&#xD;
+info: Microsoft.Hosting.Lifetime[0]&#xD;
+      Application started. Press Ctrl+C to shut down.&#xD;
+info: Microsoft.Hosting.Lifetime[0]&#xD;
+      Hosting environment: Production&#xD;
+info: Microsoft.Hosting.Lifetime[0]&#xD;
+      Content root path: E:\dzk\gaode-1\backend\tests\Gaode.Communication.Tests\bin\Debug\net10.0&#xD;
+info: Microsoft.Hosting.Lifetime[0]&#xD;
+      Application is shutting down...&#xD;
+info: Microsoft.Hosting.Lifetime[14]&#xD;
+      Now listening on: http://127.0.0.1:49880&#xD;
+info: Microsoft.Hosting.Lifetime[0]&#xD;
+      Application started. Press Ctrl+C to shut down.&#xD;
+info: Microsoft.Hosting.Lifetime[0]&#xD;
+      Hosting environment: Production&#xD;
+info: Microsoft.Hosting.Lifetime[0]&#xD;
+      Content root path: E:\dzk\gaode-1\backend\tests\Gaode.Communication.Tests\bin\Debug\net10.0&#xD;
+info: Gaode.Host.Lifecycle.Station01HostedService[0]&#xD;
+      StartupPersistence category=Lifecycle phase=Started deviceServicesStarted=false&#xD;
+info: Gaode.Host.Lifecycle.Station01HostedService[0]&#xD;
+      Station01 Host������δ���������=0���ָ�״̬���Զ�����&#xD;
+info: Gaode.Host.Lifecycle.Station01HostedService[0]&#xD;
+      StartupPersistence category=Lifecycle phase=Completed unfinishedRuns=0; device startup may now proceed&#xD;
+info: Gaode.Infrastructure.Diagnostics.StructuredStageDiagnostics[0]&#xD;
+      StartupDiagnostic category=CommandFlow requestId=OFFLINE-normal-chain commandId=d1451cb8-507c-43f7-a04e-675fbf811c6f runId=e44fa589-a75f-4ddd-8846-2eb9f247d337 stage=Admission classification=Accepted disposition=RunCreated connectionEpoch=(null) observedAtUtc=(null) source=(null)&#xD;
+info: Microsoft.Hosting.Lifetime[0]&#xD;
+      Application is shutting down...&#xD;
+[xUnit.net 00:01:34.84]       state=RecoveryRequired; XY动作完成未知或超时; evidence=E:/dzk/gaode-1/artifacts/sync-020-20261008/components/commissioning\legacy-test-workflow.json&#xD;
+[xUnit.net 00:01:34.84]       Stack Trace:&#xD;
+[xUnit.net 00:01:34.84]         E:\dzk\gaode-1\backend\tests\Gaode.Communication.Tests\CommissioningWorkflowTests.cs(107,0): at Gaode.Communication.Tests.CommissioningWorkflowTests.LegacyTestHostRunsPublicPreparationBindingFlipAndDurableWholeTrayWorkflow()&#xD;
+[xUnit.net 00:01:34.84]         E:\dzk\gaode-1\backend\tests\Gaode.Communication.Tests\CommissioningWorkflowTests.cs(208,0): at Gaode.Communication.Tests.CommissioningWorkflowTests.LegacyTestHostRunsPublicPreparationBindingFlipAndDurableWholeTrayWorkflow()&#xD;
+[xUnit.net 00:01:34.84]         E:\dzk\gaode-1\backend\tests\Gaode.Communication.Tests\CommissioningWorkflowTests.cs(208,0): at Gaode.Communication.Tests.CommissioningWorkflowTests.LegacyTestHostRunsPublicPreparationBindingFlipAndDurableWholeTrayWorkflow()&#xD;
+[xUnit.net 00:01:34.84]         E:\dzk\gaode-1\backend\tests\Gaode.Communication.Tests\CommissioningWorkflowTests.cs(208,0): at Gaode.Communication.Tests.CommissioningWorkflowTests.LegacyTestHostRunsPublicPreparationBindingFlipAndDurableWholeTrayWorkflow()&#xD;
+[xUnit.net 00:01:34.84]         E:\dzk\gaode-1\backend\tests\Gaode.Communication.Tests\CommissioningWorkflowTests.cs(208,0): at Gaode.Communication.Tests.CommissioningWorkflowTests.LegacyTestHostRunsPublicPreparationBindingFlipAndDurableWholeTrayWorkflow()&#xD;
+[xUnit.net 00:01:34.84]         --- End of stack trace from previous location ---&#xD;
+[xUnit.net 00:01:34.85]   Finished:    Gaode.Communication.Tests&#xD;
+</StdOut>
+    </Output>
+    <RunInfos>
+      <RunInfo computerName="10_3_0_13" outcome="Error" timestamp="2026-10-08T23:46:51.3025084+08:00">
+        <Text>[xUnit.net 00:00:09.94]     Gaode.Communication.Tests.CommissioningIdentityTests.BackendConfirmsIdentityAndEnforcesPermissions(role: "Operator", canRun: True, canEdit: False) [FAIL]</Text>
+      </RunInfo>
+      <RunInfo computerName="10_3_0_13" outcome="Error" timestamp="2026-10-08T23:46:52.9723714+08:00">
+        <Text>[xUnit.net 00:00:11.62]     Gaode.Communication.Tests.CommissioningIdentityTests.BackendConfirmsIdentityAndEnforcesPermissions(role: "ProcessEngineer", canRun: False, canEdit: True) [FAIL]</Text>
+      </RunInfo>
+      <RunInfo computerName="10_3_0_13" outcome="Error" timestamp="2026-10-08T23:48:16.1910818+08:00">
+        <Text>[xUnit.net 00:01:34.84]     Gaode.Communication.Tests.CommissioningWorkflowTests.LegacyTestHostRunsPublicPreparationBindingFlipAndDurableWholeTrayWorkflow [FAIL]</Text>
+      </RunInfo>
+    </RunInfos>
+  </ResultSummary>
+</TestRun>

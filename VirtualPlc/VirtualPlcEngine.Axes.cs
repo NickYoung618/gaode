@@ -17,10 +17,20 @@ public sealed partial class VirtualPlcEngine
     ];
     private readonly Dictionary<SignalId, AxisExecution> movingAxes = [];
     private readonly HashSet<SignalId> assertedAxes = [];
+    private readonly HashSet<SignalId> completedAxes = [];
+    private readonly Dictionary<string, long> clearDue = [];
+    // Offline fault injection only; not PLC protocol fields.
+    public int FeedbackClearDelayMs { get; set; }
+    public bool HoldFeedbackClear { get; set; }
+    private bool ClearDue(string resource, long now)
+    {
+        if (!clearDue.TryGetValue(resource, out var due)) clearDue[resource] = due = now + FeedbackClearDelayMs;
+        return !HoldFeedbackClear && now >= due;
+    }
 
     private void ResetAxes()
     {
-        movingAxes.Clear(); assertedAxes.Clear();
+        movingAxes.Clear(); assertedAxes.Clear(); completedAxes.Clear(); clearDue.Clear();
         _store.SetHoldingRegisterFromPlc(_store.Definition[SignalId.GrabActiveId].DocumentNumber, 0);
         foreach (var axis in Axes)
         {
@@ -53,12 +63,20 @@ public sealed partial class VirtualPlcEngine
                     var failed = moving.Timeout;
                     _store.SetHoldingRegisterFromPlc(_store.Definition[axis.Confirmed].DocumentNumber,
                         SignalCodes.Value(axis.Confirmed, failed ? "Timeout" : "Arrived"));
+                    if (!failed) completedAxes.Add(axis.Start);
                     RecordAxis(moving, failed ? "timeout" : "completed"); movingAxes.Remove(axis.Start);
                 }
             }
             var asserted = _store.ReadCoilByDocumentNumber(_store.Definition[axis.Start].DocumentNumber);
-            if (!asserted) { assertedAxes.Remove(axis.Start); continue; }
+            if (!asserted)
+            {
+                assertedAxes.Remove(axis.Start);
+                if (completedAxes.Contains(axis.Start) && !movingAxes.ContainsKey(axis.Start) && ClearDue(axis.Name, now))
+                    _store.SetHoldingRegisterFromPlc(_store.Definition[axis.Confirmed].DocumentNumber, 0);
+                continue;
+            }
             if (!assertedAxes.Add(axis.Start)) continue;
+            completedAxes.Remove(axis.Start); clearDue.Remove(axis.Name);
             var number = _store.Definition[axis.Target].DocumentNumber;
             if (!safe || _active is not null || movingAxes.ContainsKey(axis.Start) || !_store.WasFloatWritten(number))
             {
@@ -74,6 +92,7 @@ public sealed partial class VirtualPlcEngine
                 .GroupBy(w => (w.Area, w.DocumentNumber)).Select(g => g.Last().Sequence).Order().ToArray();
             var execution = new AxisExecution(axis, _store.ReadActualFloat(_store.Definition[axis.Actual].DocumentNumber),
                 target, now, DueAt(now, _options.MotionDurationMs), ++_deviceActionSequence, references, Consume(SimulationFault.MoveTimeout));
+            completedAxes.Remove(axis.Start); clearDue.Remove(axis.Name);
             movingAxes.Add(axis.Start, execution);
             _store.SetHoldingRegisterFromPlc(_store.Definition[axis.Confirmed].DocumentNumber,
                 SignalCodes.Value(axis.Confirmed, "Moving"));

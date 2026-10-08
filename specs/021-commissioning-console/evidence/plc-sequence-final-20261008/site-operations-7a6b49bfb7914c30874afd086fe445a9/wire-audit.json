@@ -1,0 +1,38 @@
+{
+  "environment": "OFFLINE_LOOPBACK",
+  "result": "Old Ready is not completion; timeout blocks start and does not replay",
+  "ResetEdges": 1,
+  "StartEdges": 0,
+  "MotionEdges": 0,
+  "writes": [
+    {
+      "Offset": 1005,
+      "Words": [
+        256
+      ],
+      "Accepted": true
+    },
+    {
+      "Offset": 1003,
+      "Words": [
+        0
+      ],
+      "Accepted": true
+    },
+    {
+      "Offset": 1004,
+      "Words": [
+        256
+      ],
+      "Accepted": true
+    },
+    {
+      "Offset": 1005,
+      "Words": [
+        0
+      ],
+      "Accepted": true
+    }
+  ],
+  "startClears": []
+}

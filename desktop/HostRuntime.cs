@@ -15,6 +15,8 @@ public sealed class HostRuntime : IDisposable
 
     public async Task InitializeAsync(WebView2 browser, CancellationToken cancellationToken = default)
     {
+        if (Configuration.CommissioningProfile is { } profile)
+            DesktopRuntimeLog.ConfigureCommissioning(profile.LogRoot, Environment.GetEnvironmentVariable(profile.CredentialEnvironmentVariable)!);
         DesktopRuntimeLog.Write("Initializing", new { Configuration.Mode, Configuration.ResourceVersion });
         try { await InitializeCoreAsync(browser, cancellationToken); }
         catch (Exception error)
@@ -43,6 +45,7 @@ public sealed class HostRuntime : IDisposable
         _core.Settings.AreDevToolsEnabled = Configuration.Mode is "Test" or "Simulation";
         _core.Settings.AreDefaultContextMenusEnabled = Configuration.Mode is "Test" or "Simulation";
         _core.NavigationStarting += OnNavigationStarting;
+        _core.FrameNavigationStarting += OnNavigationStarting;
         _core.ProcessFailed += (_, e) =>
         {
             DesktopRuntimeLog.Write("WebViewProcessFailed", new { kind = e.ProcessFailedKind.ToString() });
@@ -101,7 +104,26 @@ public sealed class HostRuntime : IDisposable
             preparedStartRequest = prepared.RootElement.GetProperty("request").Clone();
         }
         // This script is injected into the controlled WebView2 process; the token is never written to a page file.
-        await _core.AddScriptToExecuteOnDocumentCreatedAsync($"window.__GAODE_HOST_CONFIG__ = Object.freeze({JsonSerializer.Serialize(new { apiBaseUrl = Configuration.ApiBaseUrl, signalrUrl = Configuration.SignalRUrl, mode = Configuration.Mode, resourceVersion = Configuration.ResourceVersion, prototypeSha256 = Configuration.PrototypeSha256, testToken = Configuration.Mode == "Test" ? Environment.GetEnvironmentVariable("GAODE_TEST_OPERATOR_TOKEN") : null, preparedStartRequest })});");
+        object? commissioningTemplate = null;
+        var commissioningProfile = Configuration.CommissioningProfile;
+        if (commissioningProfile is not null)
+        {
+            using var template = JsonDocument.Parse(File.ReadAllText(commissioningProfile.PreparedTemplatePath));
+            var root = template.RootElement;
+            if (root.GetProperty("schemaVersion").GetString() != "commissioning-console-template/1" ||
+                root.GetProperty("mode").GetString() != Configuration.Mode ||
+                root.GetProperty("contextTemplate").GetProperty("purpose").GetString() != "Commissioning")
+                throw new InvalidOperationException("CommissioningTemplateMismatch");
+            commissioningTemplate = root.Clone();
+        }
+        var injection = JsonSerializer.Serialize(new { apiBaseUrl = Configuration.ApiBaseUrl, signalrUrl = Configuration.SignalRUrl,
+            mode = Configuration.Mode, resourceVersion = Configuration.ResourceVersion, prototypeSha256 = Configuration.PrototypeSha256,
+            testToken = Configuration.Mode == "Test" ? Environment.GetEnvironmentVariable("GAODE_TEST_OPERATOR_TOKEN") : null,
+            preparedStartRequest, commissioningProfile, commissioningTemplate,
+            commissioningToken = commissioningProfile is not null ? Environment.GetEnvironmentVariable(commissioningProfile.CredentialEnvironmentVariable) : null },
+            new JsonSerializerOptions(JsonSerializerDefaults.Web));
+        await _core.AddScriptToExecuteOnDocumentCreatedAsync($"if(window.top===window && location.origin==='https://{VirtualHost}') window.__GAODE_HOST_CONFIG__=Object.freeze({injection});");
+
         _core.Navigate($"https://{VirtualHost}/login.html");
     }
 
@@ -122,7 +144,7 @@ public sealed class HostRuntime : IDisposable
     public void Dispose()
     {
         DesktopRuntimeLog.Write("Disposing", new { initialized = IsInitialized });
-        if (_core is not null) _core.NavigationStarting -= OnNavigationStarting;
+        if (_core is not null) { _core.NavigationStarting -= OnNavigationStarting; _core.FrameNavigationStarting -= OnNavigationStarting; }
         _browser?.Dispose(); _core = null; _browser = null;
     }
 }

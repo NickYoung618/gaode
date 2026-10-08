@@ -1,0 +1,242 @@
+{
+  "schemaVersion": "commissioning-field-limits/2",
+  "recordedUtc": "2026-10-07T23:21:34.5460929+00:00",
+  "source": "用户先确认xy在0-100，z轴0-10；再答是，确认单位毫米且检测Z、扫码Z、翻面抓取Z均适用0-10",
+  "unit": "mm",
+  "unitConfirmation": "confirmed",
+  "zAxisRolesConfirmation": "confirmed",
+  "ranges": {
+    "detectionZ": [
+      0,
+      10
+    ],
+    "flipGrabZ": [
+      0,
+      10
+    ],
+    "y": [
+      0,
+      100
+    ],
+    "scanZ": [
+      0,
+      10
+    ],
+    "x": [
+      0,
+      100
+    ]
+  },
+  "recipeId": "e40ca547e7e34242a69cfa08554c218c",
+  "recipeVersion": "08193b7a4c874157992bee90897f3c49",
+  "coordinateChecks": [
+    {
+      "path": "recipe.executionPositions.s1.physicalEntity.source.point.x",
+      "value": 10,
+      "min": 0,
+      "max": 100,
+      "withinBounds": true
+    },
+    {
+      "path": "recipe.executionPositions.s1.physicalEntity.source.point.y",
+      "value": 10,
+      "min": 0,
+      "max": 100,
+      "withinBounds": true
+    },
+    {
+      "path": "recipe.executionPositions.s1.physicalEntity.source.point.z",
+      "value": 6,
+      "min": 0,
+      "max": 10,
+      "withinBounds": true
+    },
+    {
+      "path": "recipe.executionPositions.s1.physicalEntity.coordinates[0].point.x",
+      "value": 15,
+      "min": 0,
+      "max": 100,
+      "withinBounds": true
+    },
+    {
+      "path": "recipe.executionPositions.s1.physicalEntity.coordinates[0].point.y",
+      "value": 20,
+      "min": 0,
+      "max": 100,
+      "withinBounds": true
+    },
+    {
+      "path": "recipe.executionPositions.s1.physicalEntity.coordinates[0].fixed.z",
+      "value": 5,
+      "min": 0,
+      "max": 10,
+      "withinBounds": true
+    },
+    {
+      "path": "recipe.executionPositions.s1.physicalEntity.coordinates[1].point.x",
+      "value": 35,
+      "min": 0,
+      "max": 100,
+      "withinBounds": true
+    },
+    {
+      "path": "recipe.executionPositions.s1.physicalEntity.coordinates[1].point.y",
+      "value": 20,
+      "min": 0,
+      "max": 100,
+      "withinBounds": true
+    },
+    {
+      "path": "recipe.executionPositions.s1.physicalEntity.coordinates[1].fixed.z",
+      "value": 5,
+      "min": 0,
+      "max": 10,
+      "withinBounds": true
+    },
+    {
+      "path": "recipe.executionPositions.s1.physicalEntity.coordinates[2].point.x",
+      "value": 65,
+      "min": 0,
+      "max": 100,
+      "withinBounds": true
+    },
+    {
+      "path": "recipe.executionPositions.s1.physicalEntity.coordinates[2].point.y",
+      "value": 20,
+      "min": 0,
+      "max": 100,
+      "withinBounds": true
+    },
+    {
+      "path": "recipe.executionPositions.s1.physicalEntity.coordinates[2].fixed.z",
+      "value": 5,
+      "min": 0,
+      "max": 10,
+      "withinBounds": true
+    },
+    {
+      "path": "recipe.executionPositions.s1.physicalEntity.coordinates[3].point.x",
+      "value": 85,
+      "min": 0,
+      "max": 100,
+      "withinBounds": true
+    },
+    {
+      "path": "recipe.executionPositions.s1.physicalEntity.coordinates[3].point.y",
+      "value": 20,
+      "min": 0,
+      "max": 100,
+      "withinBounds": true
+    },
+    {
+      "path": "recipe.executionPositions.s1.physicalEntity.coordinates[3].fixed.z",
+      "value": 5,
+      "min": 0,
+      "max": 10,
+      "withinBounds": true
+    },
+    {
+      "path": "recipe.executionPositions.s1.physicalEntity.purposePoints.flip-pick.point.x",
+      "value": 10,
+      "min": 0,
+      "max": 100,
+      "withinBounds": true
+    },
+    {
+      "path": "recipe.executionPositions.s1.physicalEntity.purposePoints.flip-pick.point.y",
+      "value": 10,
+      "min": 0,
+      "max": 100,
+      "withinBounds": true
+    },
+    {
+      "path": "recipe.executionPositions.s1.physicalEntity.purposePoints.flip-pick.fixed.z",
+      "value": 0,
+      "min": 0,
+      "max": 10,
+      "withinBounds": true
+    },
+    {
+      "path": "recipe.executionPositions.s1.physicalEntity.purposePoints.flip-put.point.x",
+      "value": 10,
+      "min": 0,
+      "max": 100,
+      "withinBounds": true
+    },
+    {
+      "path": "recipe.executionPositions.s1.physicalEntity.purposePoints.flip-put.point.y",
+      "value": 10,
+      "min": 0,
+      "max": 100,
+      "withinBounds": true
+    },
+    {
+      "path": "recipe.executionPositions.s1.physicalEntity.purposePoints.flip-put.fixed.z",
+      "value": 0,
+      "min": 0,
+      "max": 10,
+      "withinBounds": true
+    },
+    {
+      "path": "recipe.commissioningFPosition.x",
+      "value": 65,
+      "min": 0,
+      "max": 100,
+      "withinBounds": true
+    },
+    {
+      "path": "recipe.commissioningFPosition.y",
+      "value": 50,
+      "min": 0,
+      "max": 100,
+      "withinBounds": true
+    },
+    {
+      "path": "recipe.sortingTargets.r2:c1.point.x",
+      "value": 80,
+      "min": 0,
+      "max": 100,
+      "withinBounds": true
+    },
+    {
+      "path": "recipe.sortingTargets.r2:c1.point.y",
+      "value": 10,
+      "min": 0,
+      "max": 100,
+      "withinBounds": true
+    },
+    {
+      "path": "recipe.sortingTargets.r2:c1.point.z",
+      "value": 7,
+      "min": 0,
+      "max": 10,
+      "withinBounds": true
+    },
+    {
+      "path": "recipe.sortingTargets.r2:c10.point.x",
+      "value": 95,
+      "min": 0,
+      "max": 100,
+      "withinBounds": true
+    },
+    {
+      "path": "recipe.sortingTargets.r2:c10.point.y",
+      "value": 10,
+      "min": 0,
+      "max": 100,
+      "withinBounds": true
+    },
+    {
+      "path": "recipe.sortingTargets.r2:c10.point.z",
+      "value": 7,
+      "min": 0,
+      "max": 10,
+      "withinBounds": true
+    }
+  ],
+  "allSavedCoordinateComponentsWithinBounds": true,
+  "initialRecoveryPlcSemanticsConfirmed": false,
+  "motionAuthorized": false,
+  "hardwareConnected": false,
+  "note": "范围记录，不是完整运行配置，也不证明开机、复位或断线后允许运动。原历史待确认记录保留。"
+}

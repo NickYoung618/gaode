@@ -1,0 +1,24 @@
+{
+  "historicalFinal21Audit": "specs/019-real-camera-subsystem/evidence/review-67e4a57/old-final-21-audit.json",
+  "historicalDifferenceAudit": "specs/019-real-camera-subsystem/evidence/review-67e4a57/old-inventory-audit.json",
+  "historicalOriginalInventory": "specs/019-real-camera-subsystem/evidence/review-67e4a57/runtime-inventory-original.json",
+  "currentFiles": 219,
+  "frozenUtc": "2026-10-07T15:59:22.011757+08:00",
+  "note": "Frozen after normal shutdown; use a different DataRoot for future runs. Runtime tokens are excluded.",
+  "historicalVerifiedMedia": 21,
+  "schema": "gaode.camera.evidence.inventory.v2",
+  "currentFrozenRound": "specs/019-real-camera-subsystem/evidence/review-67e4a57/frozen-round.json",
+  "binarySourceRevision": "a0e70e3",
+  "currentVerifiedMedia": 21,
+  "currentFrozenSha256": "F8695172D1FF868A81F2A82BA714D4D066B9009293103D4586AA1D63F78BE300",
+  "dataRootSealed": "D:\\gaode\\artifacts\\camera-review-a0e70e3",
+  "supplementalHttpFaultRound": {
+    "sha256": "51E8699A2EE7D5DCE084B91C3AE2B190FCD83A819F294C88AACB6ADAF1B1C9F9",
+    "kind": "offline-worker-formal-host-http",
+    "realHardwareValidated": false,
+    "runtimeBinaryUnchanged": true,
+    "path": "http-fault-20261007/frozen-round.json",
+    "passed": true,
+    "originalZipUnchanged": true
+  }
+}

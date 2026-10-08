@@ -32,7 +32,7 @@ public sealed partial class LatestProtocolPlcDevice
     {
         ["B"] = new("B", PreparedPlcReadPlans.Base), ["P"] = new("P", PreparedPlcReadPlans.Position),
         ["X"] = new("X", PreparedPlcReadPlans.Axes), ["F"] = new("F", [SignalId.FlipStatus]),
-        ["U"] = new("U", [SignalId.FlipUnloadStatus]), ["T"] = new("T", PreparedPlcReadPlans.Transfer),
+        ["U"] = new("U", PreparedPlcReadPlans.FlipClear), ["T"] = new("T", PreparedPlcReadPlans.Transfer),
         ["G"] = new("G", PreparedPlcReadPlans.Gripper), ["R"] = new("R", PreparedPlcReadPlans.Rotation)
     };
     private readonly Dictionary<SignalId, ushort[]> sampledWords = [];
@@ -174,6 +174,7 @@ public sealed partial class LatestProtocolPlcDevice
             {
                 if (!Current()) return; // Completed old exchange remains raw evidence, never a new observation.
                 if (group.Name is "X" or "B") activeAxisMoving?.Observe(values, sampledEpoch);
+                ObserveAxisClosures(values, sampledEpoch);
                 foreach (var pair in values.Words) sampledWords[pair.Key] = pair.Value;
                 foreach (var pair in values.Stamps) sampledStamps[pair.Key] = pair.Value;
                 if (group.Name == "B" && !fields.Contains(SignalId.XPosConfirmed))

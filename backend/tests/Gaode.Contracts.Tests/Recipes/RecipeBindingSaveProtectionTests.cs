@@ -69,6 +69,7 @@ public sealed class RecipeBindingSaveProtectionTests
         var context = JsonSerializer.Serialize(new { schemaVersion = StartRunContext.CurrentSchemaVersion, trayId = tray,
             stationId = Guid.NewGuid(), lineId = Guid.NewGuid(), scenarioId = plan.ScenarioId, occupiedSlots = new[] { "s1" }, purpose = "Test" });
         var run = new RunExecution(runId, Guid.NewGuid(), "component", "Test", context, config, writer, clock, Guid.NewGuid(), "declared-clock");
+        Assert.NotNull(config.Simulation);
         var identity = new WorkflowIdentity(runId, tray, Guid.NewGuid().ToString(), Guid.NewGuid().ToString(),
             "component", plan.ScenarioId, ["s1"], clock.GetUtcNow(), "Test", RunPurpose.Test,
             config.Public.Version, config.Budget.Version, config.Simulation.Version);

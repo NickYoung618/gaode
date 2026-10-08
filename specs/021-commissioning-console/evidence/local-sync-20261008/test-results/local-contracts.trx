@@ -1,0 +1,403 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<TestRun id="d5748d22-62dd-4907-b790-68b6ecf0776b" name="codexsandboxonline@10_3_0_13 2026-10-08 23:54:56" runUser="10_3_0_13\CodexSandboxOnline" xmlns="http://microsoft.com/schemas/VisualStudio/TeamTest/2010">
+  <Times creation="2026-10-08T23:54:56.3714572+08:00" queuing="2026-10-08T23:54:56.3714576+08:00" start="2026-10-08T23:54:40.4616328+08:00" finish="2026-10-08T23:55:45.5230040+08:00" />
+  <TestSettings name="default" id="dbceec02-c66f-463f-ab51-5b4668a82598">
+    <Deployment runDeploymentRoot="codexsandboxonline_10_3_0_13_2026-10-08_23_54_56" />
+  </TestSettings>
+  <Results>
+    <UnitTestResult executionId="7e81bb0d-cdb6-4292-8d9d-e75f86c8d3b3" testId="d97b0edf-6bda-5260-ed4b-fd58aff2eed6" testName="Gaode.Contracts.Tests.Recipes.CommittedRecipePlanReaderTests.MissingFrozenPayloadCannotBeRebuiltFromRecipeHead" computerName="10_3_0_13" duration="00:00:00.0383299" startTime="2026-10-08T23:55:17.2287073+08:00" endTime="2026-10-08T23:55:17.2663345+08:00" testType="13cdc9d9-ddb5-4fa4-a97d-d965ccfc6d4b" outcome="Passed" testListId="8c84fa94-04c1-424b-9868-57a2d4851a1d" relativeResultsDirectory="7e81bb0d-cdb6-4292-8d9d-e75f86c8d3b3" />
+    <UnitTestResult executionId="01bdde26-d05a-4345-a31b-c3197fbe6c29" testId="15b1f25f-838f-dc66-c540-0613f97072e0" testName="Gaode.Contracts.Tests.Workflow.WholeTrayWorkflowOrchestratorTests.UnknownProducerCannotBeFilledFromPurposeOrHistoricalResultCategory(missingCamera: True, missingAlgorithm: False, component: &quot;Camera&quot;)" computerName="10_3_0_13" duration="00:00:01.3959410" startTime="2026-10-08T23:54:54.8440087+08:00" endTime="2026-10-08T23:54:56.2923028+08:00" testType="13cdc9d9-ddb5-4fa4-a97d-d965ccfc6d4b" outcome="Failed" testListId="8c84fa94-04c1-424b-9868-57a2d4851a1d" relativeResultsDirectory="01bdde26-d05a-4345-a31b-c3197fbe6c29">
+      <Output>
+        <ErrorInfo>
+          <Message>Assert.Throws() Failure: No exception was thrown&#xD;
+Expected: typeof(System.InvalidOperationException)</Message>
+          <StackTrace>   at Gaode.Contracts.Tests.Workflow.WholeTrayWorkflowOrchestratorTests.UnknownProducerCannotBeFilledFromPurposeOrHistoricalResultCategory(Boolean missingCamera, Boolean missingAlgorithm, String component) in E:\dzk\gaode-1\backend\tests\Gaode.Contracts.Tests\Workflow\WholeTrayWorkflowOrchestratorTests.cs:line 47&#xD;
+--- End of stack trace from previous location ---</StackTrace>
+        </ErrorInfo>
+      </Output>
+    </UnitTestResult>
+    <UnitTestResult executionId="3f8ab360-bdb7-4a0f-b792-da880b2c0381" testId="48be0944-469e-4b38-4c07-a190077c4e52" testName="Gaode.Contracts.Tests.Workflow.WholeTrayWorkflowOrchestratorTests.AllowanceCannotBypassPersistedWholeTrayEvidence" computerName="10_3_0_13" duration="00:00:00.0207544" startTime="2026-10-08T23:54:56.5340556+08:00" endTime="2026-10-08T23:54:56.5528308+08:00" testType="13cdc9d9-ddb5-4fa4-a97d-d965ccfc6d4b" outcome="Passed" testListId="8c84fa94-04c1-424b-9868-57a2d4851a1d" relativeResultsDirectory="3f8ab360-bdb7-4a0f-b792-da880b2c0381" />
+    <UnitTestResult executionId="72acbec2-4e76-4905-b4dc-45ce8003b526" testId="c3b8e4d7-1229-7734-3e0e-1212afbae3ac" testName="Gaode.Contracts.Tests.Recipes.PublicPreparationTargetResolutionTests.CommittedHandoffResolvesBothFacesFromFrozenConfiguration" computerName="10_3_0_13" duration="00:00:00.1102884" startTime="2026-10-08T23:55:17.3840260+08:00" endTime="2026-10-08T23:55:17.4941768+08:00" testType="13cdc9d9-ddb5-4fa4-a97d-d965ccfc6d4b" outcome="Passed" testListId="8c84fa94-04c1-424b-9868-57a2d4851a1d" relativeResultsDirectory="72acbec2-4e76-4905-b4dc-45ce8003b526" />
+    <UnitTestResult executionId="5eab6e9c-e53a-4126-bfd8-c1d5af4d1fdf" testId="a98e8fd5-e1d4-7eae-3eea-69bccd60ca10" testName="Gaode.Contracts.Tests.Recipes.RecipeBindingSaveProtectionTests.OnlyCurrentActualRequiredSavesAuthorizeBinding(condition: &quot;CancelAtBound&quot;)" computerName="10_3_0_13" duration="00:00:03.3096592" startTime="2026-10-08T23:55:34.6261239+08:00" endTime="2026-10-08T23:55:38.9469716+08:00" testType="13cdc9d9-ddb5-4fa4-a97d-d965ccfc6d4b" outcome="Passed" testListId="8c84fa94-04c1-424b-9868-57a2d4851a1d" relativeResultsDirectory="5eab6e9c-e53a-4126-bfd8-c1d5af4d1fdf" />
+    <UnitTestResult executionId="4c7d74df-26ba-471a-a86c-a3841df08fc5" testId="73891675-af82-f5eb-9bb1-c3f6888bc945" testName="Gaode.Contracts.Tests.Workflow.WholeTrayWorkflowOrchestratorTests.TestPurposeDoesNotReplaceEachActualProducerWithSimulatedSource" computerName="10_3_0_13" duration="00:00:00.0039206" startTime="2026-10-08T23:54:56.5549943+08:00" endTime="2026-10-08T23:54:56.5565486+08:00" testType="13cdc9d9-ddb5-4fa4-a97d-d965ccfc6d4b" outcome="Failed" testListId="8c84fa94-04c1-424b-9868-57a2d4851a1d" relativeResultsDirectory="4c7d74df-26ba-471a-a86c-a3841df08fc5">
+      <Output>
+        <ErrorInfo>
+          <Message>System.NullReferenceException : Object reference not set to an instance of an object.</Message>
+          <StackTrace>   at Gaode.Contracts.Tests.Workflow.WholeTrayWorkflowOrchestratorTests.TestPurposeDoesNotReplaceEachActualProducerWithSimulatedSource() in E:\dzk\gaode-1\backend\tests\Gaode.Contracts.Tests\Workflow\WholeTrayWorkflowOrchestratorTests.cs:line 31&#xD;
+--- End of stack trace from previous location ---</StackTrace>
+        </ErrorInfo>
+      </Output>
+    </UnitTestResult>
+    <UnitTestResult executionId="3048cad1-e26b-4b67-ad63-3f76997525ad" testId="ba579dfd-bd12-0a8c-b802-a06f054af8dc" testName="Gaode.Contracts.Tests.Recipes.RecipeBindingSaveProtectionTests.OnlyCurrentActualRequiredSavesAuthorizeBinding(condition: &quot;HandoffLate&quot;)" computerName="10_3_0_13" duration="00:00:07.1477202" startTime="2026-10-08T23:55:19.1164510+08:00" endTime="2026-10-08T23:55:27.6021458+08:00" testType="13cdc9d9-ddb5-4fa4-a97d-d965ccfc6d4b" outcome="Passed" testListId="8c84fa94-04c1-424b-9868-57a2d4851a1d" relativeResultsDirectory="3048cad1-e26b-4b67-ad63-3f76997525ad" />
+    <UnitTestResult executionId="d040402b-bafe-42aa-8e9d-1912417b220a" testId="a076747b-1794-89fd-e42a-410fa3d93672" testName="Gaode.Contracts.Tests.Acquisition.CaptureCoordinationTests.EndedAndMediaTakenAreIndependentAndFirstOwnedBufferWins" computerName="10_3_0_13" duration="00:00:00.0073949" startTime="2026-10-08T23:54:56.5786153+08:00" endTime="2026-10-08T23:54:56.5860796+08:00" testType="13cdc9d9-ddb5-4fa4-a97d-d965ccfc6d4b" outcome="Passed" testListId="8c84fa94-04c1-424b-9868-57a2d4851a1d" relativeResultsDirectory="d040402b-bafe-42aa-8e9d-1912417b220a" />
+    <UnitTestResult executionId="19545951-84e6-4e99-a49d-482966216953" testId="b1e125f4-ce52-4dbe-bbee-0832755be92f" testName="Gaode.Contracts.Tests.Workflow.WholeTrayWorkflowOrchestratorTests.CancelledExpiredOrWrongUnloadEpochCannotGrantRemoval" computerName="10_3_0_13" duration="00:00:00.0049756" startTime="2026-10-08T23:54:56.5578347+08:00" endTime="2026-10-08T23:54:56.5621719+08:00" testType="13cdc9d9-ddb5-4fa4-a97d-d965ccfc6d4b" outcome="Failed" testListId="8c84fa94-04c1-424b-9868-57a2d4851a1d" relativeResultsDirectory="19545951-84e6-4e99-a49d-482966216953">
+      <Output>
+        <ErrorInfo>
+          <Message>System.NullReferenceException : Object reference not set to an instance of an object.</Message>
+          <StackTrace>   at Gaode.Contracts.Tests.Workflow.WholeTrayWorkflowOrchestratorTests.CancelledExpiredOrWrongUnloadEpochCannotGrantRemoval() in E:\dzk\gaode-1\backend\tests\Gaode.Contracts.Tests\Workflow\WholeTrayWorkflowOrchestratorTests.cs:line 110&#xD;
+--- End of stack trace from previous location ---</StackTrace>
+        </ErrorInfo>
+      </Output>
+    </UnitTestResult>
+    <UnitTestResult executionId="ac5dd66e-76bb-4926-822b-cdf0534728d4" testId="aadb95a6-8937-02b8-56f8-ba931bd771b4" testName="Gaode.Contracts.Tests.Acquisition.CaptureCoordinationTests.CaptureFactMustMatchCurrentRequestAndFirstOwnedBuffer(mismatch: &quot;run&quot;)" computerName="10_3_0_13" duration="00:00:00.0008319" startTime="2026-10-08T23:54:56.6152341+08:00" endTime="2026-10-08T23:54:56.9258585+08:00" testType="13cdc9d9-ddb5-4fa4-a97d-d965ccfc6d4b" outcome="Passed" testListId="8c84fa94-04c1-424b-9868-57a2d4851a1d" relativeResultsDirectory="ac5dd66e-76bb-4926-822b-cdf0534728d4" />
+    <UnitTestResult executionId="b6253a03-6d31-4620-98be-6d17f58cbd2b" testId="77aa1454-57aa-ff8f-cf32-34a5de60b87b" testName="Gaode.Contracts.Tests.Acquisition.CaptureCoordinationTests.MissingAdapterFactCannotBeFilledFromRequestedSettings" computerName="10_3_0_13" duration="00:00:00.0008326" startTime="2026-10-08T23:54:56.9293764+08:00" endTime="2026-10-08T23:54:56.9296467+08:00" testType="13cdc9d9-ddb5-4fa4-a97d-d965ccfc6d4b" outcome="Passed" testListId="8c84fa94-04c1-424b-9868-57a2d4851a1d" relativeResultsDirectory="b6253a03-6d31-4620-98be-6d17f58cbd2b" />
+    <UnitTestResult executionId="4b78b8cf-a815-4bf9-b2d4-fb12b51a08f4" testId="0b521b11-4a6a-5b56-e513-18b916a0385f" testName="Gaode.Contracts.Tests.Acquisition.CaptureCoordinationTests.ActualUnknownMediaSourceIsNotFilledFromSimulationFixture" computerName="10_3_0_13" duration="00:00:18.5163634" startTime="2026-10-08T23:54:56.9301981+08:00" endTime="2026-10-08T23:55:17.0634486+08:00" testType="13cdc9d9-ddb5-4fa4-a97d-d965ccfc6d4b" outcome="Failed" testListId="8c84fa94-04c1-424b-9868-57a2d4851a1d" relativeResultsDirectory="4b78b8cf-a815-4bf9-b2d4-fb12b51a08f4">
+      <Output>
+        <ErrorInfo>
+          <Message>System.InvalidOperationException : InitialTrayObservationUnavailable:InvalidResult</Message>
+          <StackTrace>   at Gaode.Application.Station01.Steps.ThreeDStep.ExecuteAsync(RunExecution run, ControlLatch control, CancellationToken cancellationToken) in E:\dzk\gaode-1\backend\src\Gaode.Application\Station01\Steps\ThreeDStep.cs:line 53&#xD;
+   at Gaode.Application.Station01.Steps.ThreeDStep.ExecuteAsync(RunExecution run, ControlLatch control, CancellationToken cancellationToken) in E:\dzk\gaode-1\backend\src\Gaode.Application\Station01\Steps\ThreeDStep.cs:line 87&#xD;
+   at Gaode.Contracts.Tests.Support.Station01StepHarness.DriveAsync[T](Task`1 operation) in E:\dzk\gaode-1\backend\tests\Gaode.Contracts.Tests\Support\Station01StepHarness.cs:line 82&#xD;
+   at Gaode.Contracts.Tests.Acquisition.CaptureCoordinationTests.ActualUnknownMediaSourceIsNotFilledFromSimulationFixture() in E:\dzk\gaode-1\backend\tests\Gaode.Contracts.Tests\Acquisition\CaptureCoordinationTests.cs:line 78&#xD;
+   at Gaode.Contracts.Tests.Acquisition.CaptureCoordinationTests.ActualUnknownMediaSourceIsNotFilledFromSimulationFixture() in E:\dzk\gaode-1\backend\tests\Gaode.Contracts.Tests\Acquisition\CaptureCoordinationTests.cs:line 85&#xD;
+--- End of stack trace from previous location ---</StackTrace>
+        </ErrorInfo>
+      </Output>
+    </UnitTestResult>
+    <UnitTestResult executionId="acf67dd2-8f91-4c1a-84ce-edf294f7847e" testId="46888867-9979-2e63-92ce-af363e827ce9" testName="Gaode.Contracts.Tests.Recipes.CommittedRecipePlanReaderTests.DifferentScenarioOrPhysicalScopeCannotUseTheFrozenPlan" computerName="10_3_0_13" duration="00:00:00.0512117" startTime="2026-10-08T23:55:17.1766343+08:00" endTime="2026-10-08T23:55:17.2277876+08:00" testType="13cdc9d9-ddb5-4fa4-a97d-d965ccfc6d4b" outcome="Passed" testListId="8c84fa94-04c1-424b-9868-57a2d4851a1d" relativeResultsDirectory="acf67dd2-8f91-4c1a-84ce-edf294f7847e" />
+    <UnitTestResult executionId="79547fa4-50f2-4b39-9ca9-807304fe2e6a" testId="1959b5b3-1155-50f0-5452-de5acf18d46d" testName="Gaode.Contracts.Tests.Workflow.WholeTrayWorkflowOrchestratorTests.UnknownProducerCannotBeFilledFromPurposeOrHistoricalResultCategory(missingCamera: False, missingAlgorithm: True, component: &quot;Algorithm&quot;)" computerName="10_3_0_13" duration="00:00:00.0149013" startTime="2026-10-08T23:54:56.3375456+08:00" endTime="2026-10-08T23:54:56.3378823+08:00" testType="13cdc9d9-ddb5-4fa4-a97d-d965ccfc6d4b" outcome="Failed" testListId="8c84fa94-04c1-424b-9868-57a2d4851a1d" relativeResultsDirectory="79547fa4-50f2-4b39-9ca9-807304fe2e6a">
+      <Output>
+        <ErrorInfo>
+          <Message>Assert.Throws() Failure: No exception was thrown&#xD;
+Expected: typeof(System.InvalidOperationException)</Message>
+          <StackTrace>   at Gaode.Contracts.Tests.Workflow.WholeTrayWorkflowOrchestratorTests.UnknownProducerCannotBeFilledFromPurposeOrHistoricalResultCategory(Boolean missingCamera, Boolean missingAlgorithm, String component) in E:\dzk\gaode-1\backend\tests\Gaode.Contracts.Tests\Workflow\WholeTrayWorkflowOrchestratorTests.cs:line 47&#xD;
+--- End of stack trace from previous location ---</StackTrace>
+        </ErrorInfo>
+      </Output>
+    </UnitTestResult>
+    <UnitTestResult executionId="7494af1a-581b-4540-9545-bba0c02e76d1" testId="5f41148b-511d-228f-9671-2491bfe9931b" testName="Gaode.Contracts.Tests.Recipes.CommittedRecipePlanReaderTests.ChangedIntentWithoutItsActualDigestIsRejected" computerName="10_3_0_13" duration="00:00:00.0073797" startTime="2026-10-08T23:55:17.2790051+08:00" endTime="2026-10-08T23:55:17.2861846+08:00" testType="13cdc9d9-ddb5-4fa4-a97d-d965ccfc6d4b" outcome="Passed" testListId="8c84fa94-04c1-424b-9868-57a2d4851a1d" relativeResultsDirectory="7494af1a-581b-4540-9545-bba0c02e76d1" />
+    <UnitTestResult executionId="b36c53c0-4258-4321-8a61-dd61817c18b3" testId="31c07594-7dbd-e894-9caf-fbaed36e92cf" testName="Gaode.Contracts.Tests.Recipes.PublicPreparationTargetResolutionTests.FutureTargetRejectsWrongIdentity(field: &quot;physical-slot&quot;)" computerName="10_3_0_13" duration="00:00:00.0031863" startTime="2026-10-08T23:55:17.3727195+08:00" endTime="2026-10-08T23:55:17.3763861+08:00" testType="13cdc9d9-ddb5-4fa4-a97d-d965ccfc6d4b" outcome="Passed" testListId="8c84fa94-04c1-424b-9868-57a2d4851a1d" relativeResultsDirectory="b36c53c0-4258-4321-8a61-dd61817c18b3" />
+    <UnitTestResult executionId="80b84aeb-8fc7-433d-a244-6f5f3cf3ae17" testId="fb44ff8d-793c-5fdc-d609-3c4faddf6503" testName="Gaode.Contracts.Tests.Recipes.PublicPreparationTargetResolutionTests.MissingFrozenPointIsRejectedWithoutZeroOrHeightFallback" computerName="10_3_0_13" duration="00:00:00.0214086" startTime="2026-10-08T23:55:17.4948227+08:00" endTime="2026-10-08T23:55:17.5157672+08:00" testType="13cdc9d9-ddb5-4fa4-a97d-d965ccfc6d4b" outcome="Passed" testListId="8c84fa94-04c1-424b-9868-57a2d4851a1d" relativeResultsDirectory="80b84aeb-8fc7-433d-a244-6f5f3cf3ae17" />
+    <UnitTestResult executionId="ccdecf18-9c87-4b00-a711-85e16d084023" testId="bda8f0b1-b178-8ec4-9b0d-69ac94d401bb" testName="Gaode.Contracts.Tests.Recipes.CommittedRecipePlanReaderTests.CancelledRunCannotAcquireAnotherBinding" computerName="10_3_0_13" duration="00:00:00.0083247" startTime="2026-10-08T23:55:17.1682826+08:00" endTime="2026-10-08T23:55:17.1761563+08:00" testType="13cdc9d9-ddb5-4fa4-a97d-d965ccfc6d4b" outcome="Passed" testListId="8c84fa94-04c1-424b-9868-57a2d4851a1d" relativeResultsDirectory="ccdecf18-9c87-4b00-a711-85e16d084023" />
+    <UnitTestResult executionId="636bbecb-bb1a-441d-bb02-7ef9ce381a15" testId="0dee5bd0-bb24-4123-7354-3f51f1a07031" testName="Gaode.Contracts.Tests.Recipes.RecipeBindingSaveProtectionTests.OnlyCurrentActualRequiredSavesAuthorizeBinding(condition: &quot;BoundRollback&quot;)" computerName="10_3_0_13" duration="00:00:04.0078979" startTime="2026-10-08T23:55:38.9498870+08:00" endTime="2026-10-08T23:55:44.1614324+08:00" testType="13cdc9d9-ddb5-4fa4-a97d-d965ccfc6d4b" outcome="Passed" testListId="8c84fa94-04c1-424b-9868-57a2d4851a1d" relativeResultsDirectory="636bbecb-bb1a-441d-bb02-7ef9ce381a15" />
+    <UnitTestResult executionId="563fafa0-534a-45b4-9369-cbe5a2d02fe4" testId="a25de36b-1486-c662-5e1c-c0c66daf5c41" testName="Gaode.Contracts.Tests.Workflow.WholeTrayWorkflowOrchestratorTests.UnconfirmedAllowanceCommitDoesNotCreateRemovalPermission" computerName="10_3_0_13" duration="00:00:00.0052452" startTime="2026-10-08T23:54:56.5634016+08:00" endTime="2026-10-08T23:54:56.5698806+08:00" testType="13cdc9d9-ddb5-4fa4-a97d-d965ccfc6d4b" outcome="Failed" testListId="8c84fa94-04c1-424b-9868-57a2d4851a1d" relativeResultsDirectory="563fafa0-534a-45b4-9369-cbe5a2d02fe4">
+      <Output>
+        <ErrorInfo>
+          <Message>Assert.Throws() Failure: Exception type was not an exact match&#xD;
+Expected: typeof(System.IO.IOException)&#xD;
+Actual:   typeof(System.NullReferenceException)&#xD;
+---- System.NullReferenceException : Object reference not set to an instance of an object.</Message>
+          <StackTrace>   at Gaode.Contracts.Tests.Workflow.WholeTrayWorkflowOrchestratorTests.UnconfirmedAllowanceCommitDoesNotCreateRemovalPermission() in E:\dzk\gaode-1\backend\tests\Gaode.Contracts.Tests\Workflow\WholeTrayWorkflowOrchestratorTests.cs:line 99&#xD;
+--- End of stack trace from previous location ---&#xD;
+----- Inner Stack Trace -----&#xD;
+   at Gaode.Contracts.Tests.Workflow.WholeTrayWorkflowOrchestratorTests.&lt;&gt;c__DisplayClass5_0.&lt;UnconfirmedAllowanceCommitDoesNotCreateRemovalPermission&gt;b__0() in E:\dzk\gaode-1\backend\tests\Gaode.Contracts.Tests\Workflow\WholeTrayWorkflowOrchestratorTests.cs:line 99</StackTrace>
+        </ErrorInfo>
+      </Output>
+    </UnitTestResult>
+    <UnitTestResult executionId="a785fcbf-2549-4ff8-9d11-49481872d549" testId="dabc2c4d-2c7b-760a-314c-be1717f5aeb4" testName="Gaode.Contracts.Tests.Workflow.WholeTrayWorkflowOrchestratorTests.ProductionSourceCannotUseSimulatedStageEvidence" computerName="10_3_0_13" duration="00:00:00.0060663" startTime="2026-10-08T23:54:56.5115854+08:00" endTime="2026-10-08T23:54:56.5172977+08:00" testType="13cdc9d9-ddb5-4fa4-a97d-d965ccfc6d4b" outcome="Failed" testListId="8c84fa94-04c1-424b-9868-57a2d4851a1d" relativeResultsDirectory="a785fcbf-2549-4ff8-9d11-49481872d549">
+      <Output>
+        <ErrorInfo>
+          <Message>Assert.Throws() Failure: No exception was thrown&#xD;
+Expected: typeof(System.InvalidOperationException)</Message>
+          <StackTrace>   at Gaode.Contracts.Tests.Workflow.WholeTrayWorkflowOrchestratorTests.ProductionSourceCannotUseSimulatedStageEvidence() in E:\dzk\gaode-1\backend\tests\Gaode.Contracts.Tests\Workflow\WholeTrayWorkflowOrchestratorTests.cs:line 131&#xD;
+--- End of stack trace from previous location ---</StackTrace>
+        </ErrorInfo>
+      </Output>
+    </UnitTestResult>
+    <UnitTestResult executionId="72d0f88f-1ca1-45d1-87b8-7f892952a877" testId="34ca0979-11ed-614a-b60f-5f87ace4fd28" testName="Gaode.Contracts.Tests.Recipes.RecipeBindingSaveProtectionTests.OnlyCurrentActualRequiredSavesAuthorizeBinding(condition: &quot;Timely&quot;)" computerName="10_3_0_13" duration="00:00:05.6223241" startTime="2026-10-08T23:55:27.6048885+08:00" endTime="2026-10-08T23:55:34.6230491+08:00" testType="13cdc9d9-ddb5-4fa4-a97d-d965ccfc6d4b" outcome="Passed" testListId="8c84fa94-04c1-424b-9868-57a2d4851a1d" relativeResultsDirectory="72d0f88f-1ca1-45d1-87b8-7f892952a877" />
+    <UnitTestResult executionId="4ecdef92-ada3-433a-81c8-0000f1545fc5" testId="025ca3a3-042b-d2d5-282e-bfc83e96d0c6" testName="Gaode.Contracts.Tests.Acquisition.CaptureCoordinationTests.CaptureFactMustMatchCurrentRequestAndFirstOwnedBuffer(mismatch: &quot;capture&quot;)" computerName="10_3_0_13" duration="00:00:00.0003711" startTime="2026-10-08T23:54:56.9278370+08:00" endTime="2026-10-08T23:54:56.9280166+08:00" testType="13cdc9d9-ddb5-4fa4-a97d-d965ccfc6d4b" outcome="Passed" testListId="8c84fa94-04c1-424b-9868-57a2d4851a1d" relativeResultsDirectory="4ecdef92-ada3-433a-81c8-0000f1545fc5" />
+    <UnitTestResult executionId="8465fbfa-e2b0-484d-944b-e8568a39c975" testId="f9f3384a-b8ee-7896-3421-e03dcf47e1c6" testName="Gaode.Contracts.Tests.Acquisition.CaptureCoordinationTests.CaptureFactMustMatchCurrentRequestAndFirstOwnedBuffer(mismatch: &quot;settings&quot;)" computerName="10_3_0_13" duration="00:00:00.0004469" startTime="2026-10-08T23:54:56.9284794+08:00" endTime="2026-10-08T23:54:56.9288176+08:00" testType="13cdc9d9-ddb5-4fa4-a97d-d965ccfc6d4b" outcome="Passed" testListId="8c84fa94-04c1-424b-9868-57a2d4851a1d" relativeResultsDirectory="8465fbfa-e2b0-484d-944b-e8568a39c975" />
+    <UnitTestResult executionId="5bc3a805-57eb-46fe-a094-eea2ff2fbcf7" testId="1b08acce-3eeb-29d1-e696-4f9a6941f588" testName="Gaode.Contracts.Tests.Recipes.PublicPreparationTargetResolutionTests.FutureTargetRejectsWrongIdentity(field: &quot;stage&quot;)" computerName="10_3_0_13" duration="00:00:00.0851737" startTime="2026-10-08T23:55:17.2868724+08:00" endTime="2026-10-08T23:55:17.3720612+08:00" testType="13cdc9d9-ddb5-4fa4-a97d-d965ccfc6d4b" outcome="Passed" testListId="8c84fa94-04c1-424b-9868-57a2d4851a1d" relativeResultsDirectory="5bc3a805-57eb-46fe-a094-eea2ff2fbcf7" />
+    <UnitTestResult executionId="d939a514-5c13-4737-8b62-ec65e91488e1" testId="7cebbffa-cc78-16a5-6b55-5246c695f005" testName="Gaode.Contracts.Tests.Recipes.RecipeBindingSaveProtectionTests.OnlyCurrentActualRequiredSavesAuthorizeBinding(condition: &quot;BoundLate&quot;)" computerName="10_3_0_13" duration="00:00:16.7216849" startTime="2026-10-08T23:55:00.8175977+08:00" endTime="2026-10-08T23:55:19.1154024+08:00" testType="13cdc9d9-ddb5-4fa4-a97d-d965ccfc6d4b" outcome="Passed" testListId="8c84fa94-04c1-424b-9868-57a2d4851a1d" relativeResultsDirectory="d939a514-5c13-4737-8b62-ec65e91488e1" />
+    <UnitTestResult executionId="07addc92-5bd2-4ede-9912-5f4bd1024f6b" testId="56350302-38bc-01a4-0d6f-d0343825fc29" testName="Gaode.Contracts.Tests.Recipes.CommittedRecipePlanReaderTests.OldHandoffCannotProvideCurrentExecutionInputs" computerName="10_3_0_13" duration="00:00:00.0687758" startTime="2026-10-08T23:55:17.0988906+08:00" endTime="2026-10-08T23:55:17.1676736+08:00" testType="13cdc9d9-ddb5-4fa4-a97d-d965ccfc6d4b" outcome="Passed" testListId="8c84fa94-04c1-424b-9868-57a2d4851a1d" relativeResultsDirectory="07addc92-5bd2-4ede-9912-5f4bd1024f6b" />
+    <UnitTestResult executionId="0a80b670-8f2f-4486-8a3a-2050eec28783" testId="5c8727ce-1d88-f61a-58ac-f7ec902ba3af" testName="Gaode.Contracts.Tests.Acquisition.CaptureCoordinationTests.CaptureFactMustMatchCurrentRequestAndFirstOwnedBuffer(mismatch: &quot;epoch&quot;)" computerName="10_3_0_13" duration="00:00:00.0004177" startTime="2026-10-08T23:54:56.9271062+08:00" endTime="2026-10-08T23:54:56.9274027+08:00" testType="13cdc9d9-ddb5-4fa4-a97d-d965ccfc6d4b" outcome="Passed" testListId="8c84fa94-04c1-424b-9868-57a2d4851a1d" relativeResultsDirectory="0a80b670-8f2f-4486-8a3a-2050eec28783" />
+    <UnitTestResult executionId="6d7b7102-10d3-4fe2-b23d-9c924bc0788b" testId="35e8b6ee-2c57-b477-1791-bc0a9d905d22" testName="Gaode.Contracts.Tests.Recipes.CommittedRecipePlanReaderTests.ReadsOnlyCommittedFrozenPlanWithoutCatalogOrV1Fallback" computerName="10_3_0_13" duration="00:00:00.0119741" startTime="2026-10-08T23:55:17.2670894+08:00" endTime="2026-10-08T23:55:17.2784210+08:00" testType="13cdc9d9-ddb5-4fa4-a97d-d965ccfc6d4b" outcome="Passed" testListId="8c84fa94-04c1-424b-9868-57a2d4851a1d" relativeResultsDirectory="6d7b7102-10d3-4fe2-b23d-9c924bc0788b" />
+    <UnitTestResult executionId="f0ac6da5-e0cf-4bb7-a864-21095ca241b0" testId="d6bd1181-db36-113b-2bb8-565bd4e1c7ce" testName="Gaode.Contracts.Tests.Workflow.WholeTrayWorkflowOrchestratorTests.MainFlowPersistsWholeTrayAllowanceAndManualCompletionInOrder" computerName="10_3_0_13" duration="00:00:00.0127680" startTime="2026-10-08T23:54:56.5186595+08:00" endTime="2026-10-08T23:54:56.5309268+08:00" testType="13cdc9d9-ddb5-4fa4-a97d-d965ccfc6d4b" outcome="Failed" testListId="8c84fa94-04c1-424b-9868-57a2d4851a1d" relativeResultsDirectory="f0ac6da5-e0cf-4bb7-a864-21095ca241b0">
+      <Output>
+        <ErrorInfo>
+          <Message>Assert.Equal() Failure: Values differ&#xD;
+Expected: ReadyForRemoval&#xD;
+Actual:   ThreeStagesIncomplete</Message>
+          <StackTrace>   at Gaode.Contracts.Tests.Workflow.WholeTrayWorkflowOrchestratorTests.MainFlowPersistsWholeTrayAllowanceAndManualCompletionInOrder() in E:\dzk\gaode-1\backend\tests\Gaode.Contracts.Tests\Workflow\WholeTrayWorkflowOrchestratorTests.cs:line 59&#xD;
+--- End of stack trace from previous location ---</StackTrace>
+        </ErrorInfo>
+      </Output>
+    </UnitTestResult>
+    <UnitTestResult executionId="2eaef90d-af97-46fa-829e-b529fde050aa" testId="5e56e045-0332-4b4f-a1b0-bfddb387bfd3" testName="Gaode.Contracts.Tests.Workflow.WholeTrayWorkflowOrchestratorTests.DeviceVersionComesFromActualSemanticProducerNotCurrentProtocolDefinition" computerName="10_3_0_13" duration="00:00:00.2002034" startTime="2026-10-08T23:54:56.3426816+08:00" endTime="2026-10-08T23:54:56.5097627+08:00" testType="13cdc9d9-ddb5-4fa4-a97d-d965ccfc6d4b" outcome="Failed" testListId="8c84fa94-04c1-424b-9868-57a2d4851a1d" relativeResultsDirectory="2eaef90d-af97-46fa-829e-b529fde050aa">
+      <Output>
+        <ErrorInfo>
+          <Message>System.NullReferenceException : Object reference not set to an instance of an object.</Message>
+          <StackTrace>   at Gaode.Contracts.Tests.Workflow.WholeTrayWorkflowOrchestratorTests.DeviceVersionComesFromActualSemanticProducerNotCurrentProtocolDefinition() in E:\dzk\gaode-1\backend\tests\Gaode.Contracts.Tests\Workflow\WholeTrayWorkflowOrchestratorTests.cs:line 22&#xD;
+--- End of stack trace from previous location ---</StackTrace>
+        </ErrorInfo>
+      </Output>
+    </UnitTestResult>
+    <UnitTestResult executionId="b53d0bee-8da8-4220-9ecb-f7dfc4a1f735" testId="92a52e8c-c271-568b-0339-701261acd78e" testName="Gaode.Contracts.Tests.Acquisition.CaptureCoordinationTests.CaptureFactMustMatchCurrentRequestAndFirstOwnedBuffer(mismatch: &quot;operation&quot;)" computerName="10_3_0_13" duration="00:00:00.0285411" startTime="2026-10-08T23:54:56.5903126+08:00" endTime="2026-10-08T23:54:56.6148001+08:00" testType="13cdc9d9-ddb5-4fa4-a97d-d965ccfc6d4b" outcome="Passed" testListId="8c84fa94-04c1-424b-9868-57a2d4851a1d" relativeResultsDirectory="b53d0bee-8da8-4220-9ecb-f7dfc4a1f735" />
+    <UnitTestResult executionId="6df88902-c448-49fa-ae97-b4bb86ec3371" testId="e78d9d67-ffe7-c908-0577-88eabf2b0093" testName="Gaode.Contracts.Tests.Recipes.PublicPreparationTargetResolutionTests.FutureTargetRejectsWrongIdentity(field: &quot;face&quot;)" computerName="10_3_0_13" duration="00:00:00.0025575" startTime="2026-10-08T23:55:17.3805891+08:00" endTime="2026-10-08T23:55:17.3834503+08:00" testType="13cdc9d9-ddb5-4fa4-a97d-d965ccfc6d4b" outcome="Passed" testListId="8c84fa94-04c1-424b-9868-57a2d4851a1d" relativeResultsDirectory="6df88902-c448-49fa-ae97-b4bb86ec3371" />
+    <UnitTestResult executionId="5784a972-c999-459a-a6c7-343095669961" testId="d86f92f7-012b-bf2f-cf34-64ae858e2e21" testName="Gaode.Contracts.Tests.Recipes.PublicPreparationTargetResolutionTests.MissingObservationCannotBecomeHeightDerivedPermission" computerName="10_3_0_13" duration="00:00:00.0214307" startTime="2026-10-08T23:55:17.5163879+08:00" endTime="2026-10-08T23:55:17.5373968+08:00" testType="13cdc9d9-ddb5-4fa4-a97d-d965ccfc6d4b" outcome="Passed" testListId="8c84fa94-04c1-424b-9868-57a2d4851a1d" relativeResultsDirectory="5784a972-c999-459a-a6c7-343095669961" />
+    <UnitTestResult executionId="74328eea-ef7c-4c3d-8f26-e569db684764" testId="ffed34cf-2c5d-f568-01e2-0decc13841dc" testName="Gaode.Contracts.Tests.Acquisition.CaptureCoordinationTests.FrameWithoutEndedAndEndedWithoutContentCannotCrossCompletionGate" computerName="10_3_0_13" duration="00:00:00.0014510" startTime="2026-10-08T23:55:17.0703826+08:00" endTime="2026-10-08T23:55:17.0709937+08:00" testType="13cdc9d9-ddb5-4fa4-a97d-d965ccfc6d4b" outcome="Passed" testListId="8c84fa94-04c1-424b-9868-57a2d4851a1d" relativeResultsDirectory="74328eea-ef7c-4c3d-8f26-e569db684764" />
+  </Results>
+  <TestDefinitions>
+    <UnitTest name="Gaode.Contracts.Tests.Acquisition.CaptureCoordinationTests.CaptureFactMustMatchCurrentRequestAndFirstOwnedBuffer(mismatch: &quot;run&quot;)" storage="e:\dzk\gaode-1\backend\tests\gaode.contracts.tests\bin\debug\net10.0\gaode.contracts.tests.dll" id="aadb95a6-8937-02b8-56f8-ba931bd771b4">
+      <Execution id="ac5dd66e-76bb-4926-822b-cdf0534728d4" />
+      <TestMethod codeBase="E:\dzk\gaode-1\backend\tests\Gaode.Contracts.Tests\bin\Debug\net10.0\Gaode.Contracts.Tests.dll" adapterTypeName="executor://xunit/VsTestRunner3/netcore/" className="Gaode.Contracts.Tests.Acquisition.CaptureCoordinationTests" name="CaptureFactMustMatchCurrentRequestAndFirstOwnedBuffer" />
+    </UnitTest>
+    <UnitTest name="Gaode.Contracts.Tests.Recipes.RecipeBindingSaveProtectionTests.OnlyCurrentActualRequiredSavesAuthorizeBinding(condition: &quot;Timely&quot;)" storage="e:\dzk\gaode-1\backend\tests\gaode.contracts.tests\bin\debug\net10.0\gaode.contracts.tests.dll" id="34ca0979-11ed-614a-b60f-5f87ace4fd28">
+      <Execution id="72d0f88f-1ca1-45d1-87b8-7f892952a877" />
+      <TestMethod codeBase="E:\dzk\gaode-1\backend\tests\Gaode.Contracts.Tests\bin\Debug\net10.0\Gaode.Contracts.Tests.dll" adapterTypeName="executor://xunit/VsTestRunner3/netcore/" className="Gaode.Contracts.Tests.Recipes.RecipeBindingSaveProtectionTests" name="OnlyCurrentActualRequiredSavesAuthorizeBinding" />
+    </UnitTest>
+    <UnitTest name="Gaode.Contracts.Tests.Acquisition.CaptureCoordinationTests.CaptureFactMustMatchCurrentRequestAndFirstOwnedBuffer(mismatch: &quot;operation&quot;)" storage="e:\dzk\gaode-1\backend\tests\gaode.contracts.tests\bin\debug\net10.0\gaode.contracts.tests.dll" id="92a52e8c-c271-568b-0339-701261acd78e">
+      <Execution id="b53d0bee-8da8-4220-9ecb-f7dfc4a1f735" />
+      <TestMethod codeBase="E:\dzk\gaode-1\backend\tests\Gaode.Contracts.Tests\bin\Debug\net10.0\Gaode.Contracts.Tests.dll" adapterTypeName="executor://xunit/VsTestRunner3/netcore/" className="Gaode.Contracts.Tests.Acquisition.CaptureCoordinationTests" name="CaptureFactMustMatchCurrentRequestAndFirstOwnedBuffer" />
+    </UnitTest>
+    <UnitTest name="Gaode.Contracts.Tests.Acquisition.CaptureCoordinationTests.CaptureFactMustMatchCurrentRequestAndFirstOwnedBuffer(mismatch: &quot;settings&quot;)" storage="e:\dzk\gaode-1\backend\tests\gaode.contracts.tests\bin\debug\net10.0\gaode.contracts.tests.dll" id="f9f3384a-b8ee-7896-3421-e03dcf47e1c6">
+      <Execution id="8465fbfa-e2b0-484d-944b-e8568a39c975" />
+      <TestMethod codeBase="E:\dzk\gaode-1\backend\tests\Gaode.Contracts.Tests\bin\Debug\net10.0\Gaode.Contracts.Tests.dll" adapterTypeName="executor://xunit/VsTestRunner3/netcore/" className="Gaode.Contracts.Tests.Acquisition.CaptureCoordinationTests" name="CaptureFactMustMatchCurrentRequestAndFirstOwnedBuffer" />
+    </UnitTest>
+    <UnitTest name="Gaode.Contracts.Tests.Recipes.RecipeBindingSaveProtectionTests.OnlyCurrentActualRequiredSavesAuthorizeBinding(condition: &quot;BoundLate&quot;)" storage="e:\dzk\gaode-1\backend\tests\gaode.contracts.tests\bin\debug\net10.0\gaode.contracts.tests.dll" id="7cebbffa-cc78-16a5-6b55-5246c695f005">
+      <Execution id="d939a514-5c13-4737-8b62-ec65e91488e1" />
+      <TestMethod codeBase="E:\dzk\gaode-1\backend\tests\Gaode.Contracts.Tests\bin\Debug\net10.0\Gaode.Contracts.Tests.dll" adapterTypeName="executor://xunit/VsTestRunner3/netcore/" className="Gaode.Contracts.Tests.Recipes.RecipeBindingSaveProtectionTests" name="OnlyCurrentActualRequiredSavesAuthorizeBinding" />
+    </UnitTest>
+    <UnitTest name="Gaode.Contracts.Tests.Workflow.WholeTrayWorkflowOrchestratorTests.DeviceVersionComesFromActualSemanticProducerNotCurrentProtocolDefinition" storage="e:\dzk\gaode-1\backend\tests\gaode.contracts.tests\bin\debug\net10.0\gaode.contracts.tests.dll" id="5e56e045-0332-4b4f-a1b0-bfddb387bfd3">
+      <Execution id="2eaef90d-af97-46fa-829e-b529fde050aa" />
+      <TestMethod codeBase="E:\dzk\gaode-1\backend\tests\Gaode.Contracts.Tests\bin\Debug\net10.0\Gaode.Contracts.Tests.dll" adapterTypeName="executor://xunit/VsTestRunner3/netcore/" className="Gaode.Contracts.Tests.Workflow.WholeTrayWorkflowOrchestratorTests" name="DeviceVersionComesFromActualSemanticProducerNotCurrentProtocolDefinition" />
+    </UnitTest>
+    <UnitTest name="Gaode.Contracts.Tests.Workflow.WholeTrayWorkflowOrchestratorTests.TestPurposeDoesNotReplaceEachActualProducerWithSimulatedSource" storage="e:\dzk\gaode-1\backend\tests\gaode.contracts.tests\bin\debug\net10.0\gaode.contracts.tests.dll" id="73891675-af82-f5eb-9bb1-c3f6888bc945">
+      <Execution id="4c7d74df-26ba-471a-a86c-a3841df08fc5" />
+      <TestMethod codeBase="E:\dzk\gaode-1\backend\tests\Gaode.Contracts.Tests\bin\Debug\net10.0\Gaode.Contracts.Tests.dll" adapterTypeName="executor://xunit/VsTestRunner3/netcore/" className="Gaode.Contracts.Tests.Workflow.WholeTrayWorkflowOrchestratorTests" name="TestPurposeDoesNotReplaceEachActualProducerWithSimulatedSource" />
+    </UnitTest>
+    <UnitTest name="Gaode.Contracts.Tests.Recipes.RecipeBindingSaveProtectionTests.OnlyCurrentActualRequiredSavesAuthorizeBinding(condition: &quot;CancelAtBound&quot;)" storage="e:\dzk\gaode-1\backend\tests\gaode.contracts.tests\bin\debug\net10.0\gaode.contracts.tests.dll" id="a98e8fd5-e1d4-7eae-3eea-69bccd60ca10">
+      <Execution id="5eab6e9c-e53a-4126-bfd8-c1d5af4d1fdf" />
+      <TestMethod codeBase="E:\dzk\gaode-1\backend\tests\Gaode.Contracts.Tests\bin\Debug\net10.0\Gaode.Contracts.Tests.dll" adapterTypeName="executor://xunit/VsTestRunner3/netcore/" className="Gaode.Contracts.Tests.Recipes.RecipeBindingSaveProtectionTests" name="OnlyCurrentActualRequiredSavesAuthorizeBinding" />
+    </UnitTest>
+    <UnitTest name="Gaode.Contracts.Tests.Recipes.PublicPreparationTargetResolutionTests.MissingFrozenPointIsRejectedWithoutZeroOrHeightFallback" storage="e:\dzk\gaode-1\backend\tests\gaode.contracts.tests\bin\debug\net10.0\gaode.contracts.tests.dll" id="fb44ff8d-793c-5fdc-d609-3c4faddf6503">
+      <Execution id="80b84aeb-8fc7-433d-a244-6f5f3cf3ae17" />
+      <TestMethod codeBase="E:\dzk\gaode-1\backend\tests\Gaode.Contracts.Tests\bin\Debug\net10.0\Gaode.Contracts.Tests.dll" adapterTypeName="executor://xunit/VsTestRunner3/netcore/" className="Gaode.Contracts.Tests.Recipes.PublicPreparationTargetResolutionTests" name="MissingFrozenPointIsRejectedWithoutZeroOrHeightFallback" />
+    </UnitTest>
+    <UnitTest name="Gaode.Contracts.Tests.Acquisition.CaptureCoordinationTests.MissingAdapterFactCannotBeFilledFromRequestedSettings" storage="e:\dzk\gaode-1\backend\tests\gaode.contracts.tests\bin\debug\net10.0\gaode.contracts.tests.dll" id="77aa1454-57aa-ff8f-cf32-34a5de60b87b">
+      <Execution id="b6253a03-6d31-4620-98be-6d17f58cbd2b" />
+      <TestMethod codeBase="E:\dzk\gaode-1\backend\tests\Gaode.Contracts.Tests\bin\Debug\net10.0\Gaode.Contracts.Tests.dll" adapterTypeName="executor://xunit/VsTestRunner3/netcore/" className="Gaode.Contracts.Tests.Acquisition.CaptureCoordinationTests" name="MissingAdapterFactCannotBeFilledFromRequestedSettings" />
+    </UnitTest>
+    <UnitTest name="Gaode.Contracts.Tests.Workflow.WholeTrayWorkflowOrchestratorTests.UnknownProducerCannotBeFilledFromPurposeOrHistoricalResultCategory(missingCamera: False, missingAlgorithm: True, component: &quot;Algorithm&quot;)" storage="e:\dzk\gaode-1\backend\tests\gaode.contracts.tests\bin\debug\net10.0\gaode.contracts.tests.dll" id="1959b5b3-1155-50f0-5452-de5acf18d46d">
+      <Execution id="79547fa4-50f2-4b39-9ca9-807304fe2e6a" />
+      <TestMethod codeBase="E:\dzk\gaode-1\backend\tests\Gaode.Contracts.Tests\bin\Debug\net10.0\Gaode.Contracts.Tests.dll" adapterTypeName="executor://xunit/VsTestRunner3/netcore/" className="Gaode.Contracts.Tests.Workflow.WholeTrayWorkflowOrchestratorTests" name="UnknownProducerCannotBeFilledFromPurposeOrHistoricalResultCategory" />
+    </UnitTest>
+    <UnitTest name="Gaode.Contracts.Tests.Recipes.RecipeBindingSaveProtectionTests.OnlyCurrentActualRequiredSavesAuthorizeBinding(condition: &quot;HandoffLate&quot;)" storage="e:\dzk\gaode-1\backend\tests\gaode.contracts.tests\bin\debug\net10.0\gaode.contracts.tests.dll" id="ba579dfd-bd12-0a8c-b802-a06f054af8dc">
+      <Execution id="3048cad1-e26b-4b67-ad63-3f76997525ad" />
+      <TestMethod codeBase="E:\dzk\gaode-1\backend\tests\Gaode.Contracts.Tests\bin\Debug\net10.0\Gaode.Contracts.Tests.dll" adapterTypeName="executor://xunit/VsTestRunner3/netcore/" className="Gaode.Contracts.Tests.Recipes.RecipeBindingSaveProtectionTests" name="OnlyCurrentActualRequiredSavesAuthorizeBinding" />
+    </UnitTest>
+    <UnitTest name="Gaode.Contracts.Tests.Recipes.CommittedRecipePlanReaderTests.ReadsOnlyCommittedFrozenPlanWithoutCatalogOrV1Fallback" storage="e:\dzk\gaode-1\backend\tests\gaode.contracts.tests\bin\debug\net10.0\gaode.contracts.tests.dll" id="35e8b6ee-2c57-b477-1791-bc0a9d905d22">
+      <Execution id="6d7b7102-10d3-4fe2-b23d-9c924bc0788b" />
+      <TestMethod codeBase="E:\dzk\gaode-1\backend\tests\Gaode.Contracts.Tests\bin\Debug\net10.0\Gaode.Contracts.Tests.dll" adapterTypeName="executor://xunit/VsTestRunner3/netcore/" className="Gaode.Contracts.Tests.Recipes.CommittedRecipePlanReaderTests" name="ReadsOnlyCommittedFrozenPlanWithoutCatalogOrV1Fallback" />
+    </UnitTest>
+    <UnitTest name="Gaode.Contracts.Tests.Recipes.PublicPreparationTargetResolutionTests.FutureTargetRejectsWrongIdentity(field: &quot;stage&quot;)" storage="e:\dzk\gaode-1\backend\tests\gaode.contracts.tests\bin\debug\net10.0\gaode.contracts.tests.dll" id="1b08acce-3eeb-29d1-e696-4f9a6941f588">
+      <Execution id="5bc3a805-57eb-46fe-a094-eea2ff2fbcf7" />
+      <TestMethod codeBase="E:\dzk\gaode-1\backend\tests\Gaode.Contracts.Tests\bin\Debug\net10.0\Gaode.Contracts.Tests.dll" adapterTypeName="executor://xunit/VsTestRunner3/netcore/" className="Gaode.Contracts.Tests.Recipes.PublicPreparationTargetResolutionTests" name="FutureTargetRejectsWrongIdentity" />
+    </UnitTest>
+    <UnitTest name="Gaode.Contracts.Tests.Recipes.CommittedRecipePlanReaderTests.ChangedIntentWithoutItsActualDigestIsRejected" storage="e:\dzk\gaode-1\backend\tests\gaode.contracts.tests\bin\debug\net10.0\gaode.contracts.tests.dll" id="5f41148b-511d-228f-9671-2491bfe9931b">
+      <Execution id="7494af1a-581b-4540-9545-bba0c02e76d1" />
+      <TestMethod codeBase="E:\dzk\gaode-1\backend\tests\Gaode.Contracts.Tests\bin\Debug\net10.0\Gaode.Contracts.Tests.dll" adapterTypeName="executor://xunit/VsTestRunner3/netcore/" className="Gaode.Contracts.Tests.Recipes.CommittedRecipePlanReaderTests" name="ChangedIntentWithoutItsActualDigestIsRejected" />
+    </UnitTest>
+    <UnitTest name="Gaode.Contracts.Tests.Acquisition.CaptureCoordinationTests.EndedAndMediaTakenAreIndependentAndFirstOwnedBufferWins" storage="e:\dzk\gaode-1\backend\tests\gaode.contracts.tests\bin\debug\net10.0\gaode.contracts.tests.dll" id="a076747b-1794-89fd-e42a-410fa3d93672">
+      <Execution id="d040402b-bafe-42aa-8e9d-1912417b220a" />
+      <TestMethod codeBase="E:\dzk\gaode-1\backend\tests\Gaode.Contracts.Tests\bin\Debug\net10.0\Gaode.Contracts.Tests.dll" adapterTypeName="executor://xunit/VsTestRunner3/netcore/" className="Gaode.Contracts.Tests.Acquisition.CaptureCoordinationTests" name="EndedAndMediaTakenAreIndependentAndFirstOwnedBufferWins" />
+    </UnitTest>
+    <UnitTest name="Gaode.Contracts.Tests.Recipes.PublicPreparationTargetResolutionTests.CommittedHandoffResolvesBothFacesFromFrozenConfiguration" storage="e:\dzk\gaode-1\backend\tests\gaode.contracts.tests\bin\debug\net10.0\gaode.contracts.tests.dll" id="c3b8e4d7-1229-7734-3e0e-1212afbae3ac">
+      <Execution id="72acbec2-4e76-4905-b4dc-45ce8003b526" />
+      <TestMethod codeBase="E:\dzk\gaode-1\backend\tests\Gaode.Contracts.Tests\bin\Debug\net10.0\Gaode.Contracts.Tests.dll" adapterTypeName="executor://xunit/VsTestRunner3/netcore/" className="Gaode.Contracts.Tests.Recipes.PublicPreparationTargetResolutionTests" name="CommittedHandoffResolvesBothFacesFromFrozenConfiguration" />
+    </UnitTest>
+    <UnitTest name="Gaode.Contracts.Tests.Recipes.CommittedRecipePlanReaderTests.CancelledRunCannotAcquireAnotherBinding" storage="e:\dzk\gaode-1\backend\tests\gaode.contracts.tests\bin\debug\net10.0\gaode.contracts.tests.dll" id="bda8f0b1-b178-8ec4-9b0d-69ac94d401bb">
+      <Execution id="ccdecf18-9c87-4b00-a711-85e16d084023" />
+      <TestMethod codeBase="E:\dzk\gaode-1\backend\tests\Gaode.Contracts.Tests\bin\Debug\net10.0\Gaode.Contracts.Tests.dll" adapterTypeName="executor://xunit/VsTestRunner3/netcore/" className="Gaode.Contracts.Tests.Recipes.CommittedRecipePlanReaderTests" name="CancelledRunCannotAcquireAnotherBinding" />
+    </UnitTest>
+    <UnitTest name="Gaode.Contracts.Tests.Recipes.PublicPreparationTargetResolutionTests.FutureTargetRejectsWrongIdentity(field: &quot;physical-slot&quot;)" storage="e:\dzk\gaode-1\backend\tests\gaode.contracts.tests\bin\debug\net10.0\gaode.contracts.tests.dll" id="31c07594-7dbd-e894-9caf-fbaed36e92cf">
+      <Execution id="b36c53c0-4258-4321-8a61-dd61817c18b3" />
+      <TestMethod codeBase="E:\dzk\gaode-1\backend\tests\Gaode.Contracts.Tests\bin\Debug\net10.0\Gaode.Contracts.Tests.dll" adapterTypeName="executor://xunit/VsTestRunner3/netcore/" className="Gaode.Contracts.Tests.Recipes.PublicPreparationTargetResolutionTests" name="FutureTargetRejectsWrongIdentity" />
+    </UnitTest>
+    <UnitTest name="Gaode.Contracts.Tests.Recipes.RecipeBindingSaveProtectionTests.OnlyCurrentActualRequiredSavesAuthorizeBinding(condition: &quot;BoundRollback&quot;)" storage="e:\dzk\gaode-1\backend\tests\gaode.contracts.tests\bin\debug\net10.0\gaode.contracts.tests.dll" id="0dee5bd0-bb24-4123-7354-3f51f1a07031">
+      <Execution id="636bbecb-bb1a-441d-bb02-7ef9ce381a15" />
+      <TestMethod codeBase="E:\dzk\gaode-1\backend\tests\Gaode.Contracts.Tests\bin\Debug\net10.0\Gaode.Contracts.Tests.dll" adapterTypeName="executor://xunit/VsTestRunner3/netcore/" className="Gaode.Contracts.Tests.Recipes.RecipeBindingSaveProtectionTests" name="OnlyCurrentActualRequiredSavesAuthorizeBinding" />
+    </UnitTest>
+    <UnitTest name="Gaode.Contracts.Tests.Recipes.PublicPreparationTargetResolutionTests.FutureTargetRejectsWrongIdentity(field: &quot;face&quot;)" storage="e:\dzk\gaode-1\backend\tests\gaode.contracts.tests\bin\debug\net10.0\gaode.contracts.tests.dll" id="e78d9d67-ffe7-c908-0577-88eabf2b0093">
+      <Execution id="6df88902-c448-49fa-ae97-b4bb86ec3371" />
+      <TestMethod codeBase="E:\dzk\gaode-1\backend\tests\Gaode.Contracts.Tests\bin\Debug\net10.0\Gaode.Contracts.Tests.dll" adapterTypeName="executor://xunit/VsTestRunner3/netcore/" className="Gaode.Contracts.Tests.Recipes.PublicPreparationTargetResolutionTests" name="FutureTargetRejectsWrongIdentity" />
+    </UnitTest>
+    <UnitTest name="Gaode.Contracts.Tests.Workflow.WholeTrayWorkflowOrchestratorTests.MainFlowPersistsWholeTrayAllowanceAndManualCompletionInOrder" storage="e:\dzk\gaode-1\backend\tests\gaode.contracts.tests\bin\debug\net10.0\gaode.contracts.tests.dll" id="d6bd1181-db36-113b-2bb8-565bd4e1c7ce">
+      <Execution id="f0ac6da5-e0cf-4bb7-a864-21095ca241b0" />
+      <TestMethod codeBase="E:\dzk\gaode-1\backend\tests\Gaode.Contracts.Tests\bin\Debug\net10.0\Gaode.Contracts.Tests.dll" adapterTypeName="executor://xunit/VsTestRunner3/netcore/" className="Gaode.Contracts.Tests.Workflow.WholeTrayWorkflowOrchestratorTests" name="MainFlowPersistsWholeTrayAllowanceAndManualCompletionInOrder" />
+    </UnitTest>
+    <UnitTest name="Gaode.Contracts.Tests.Acquisition.CaptureCoordinationTests.CaptureFactMustMatchCurrentRequestAndFirstOwnedBuffer(mismatch: &quot;capture&quot;)" storage="e:\dzk\gaode-1\backend\tests\gaode.contracts.tests\bin\debug\net10.0\gaode.contracts.tests.dll" id="025ca3a3-042b-d2d5-282e-bfc83e96d0c6">
+      <Execution id="4ecdef92-ada3-433a-81c8-0000f1545fc5" />
+      <TestMethod codeBase="E:\dzk\gaode-1\backend\tests\Gaode.Contracts.Tests\bin\Debug\net10.0\Gaode.Contracts.Tests.dll" adapterTypeName="executor://xunit/VsTestRunner3/netcore/" className="Gaode.Contracts.Tests.Acquisition.CaptureCoordinationTests" name="CaptureFactMustMatchCurrentRequestAndFirstOwnedBuffer" />
+    </UnitTest>
+    <UnitTest name="Gaode.Contracts.Tests.Workflow.WholeTrayWorkflowOrchestratorTests.AllowanceCannotBypassPersistedWholeTrayEvidence" storage="e:\dzk\gaode-1\backend\tests\gaode.contracts.tests\bin\debug\net10.0\gaode.contracts.tests.dll" id="48be0944-469e-4b38-4c07-a190077c4e52">
+      <Execution id="3f8ab360-bdb7-4a0f-b792-da880b2c0381" />
+      <TestMethod codeBase="E:\dzk\gaode-1\backend\tests\Gaode.Contracts.Tests\bin\Debug\net10.0\Gaode.Contracts.Tests.dll" adapterTypeName="executor://xunit/VsTestRunner3/netcore/" className="Gaode.Contracts.Tests.Workflow.WholeTrayWorkflowOrchestratorTests" name="AllowanceCannotBypassPersistedWholeTrayEvidence" />
+    </UnitTest>
+    <UnitTest name="Gaode.Contracts.Tests.Recipes.PublicPreparationTargetResolutionTests.MissingObservationCannotBecomeHeightDerivedPermission" storage="e:\dzk\gaode-1\backend\tests\gaode.contracts.tests\bin\debug\net10.0\gaode.contracts.tests.dll" id="d86f92f7-012b-bf2f-cf34-64ae858e2e21">
+      <Execution id="5784a972-c999-459a-a6c7-343095669961" />
+      <TestMethod codeBase="E:\dzk\gaode-1\backend\tests\Gaode.Contracts.Tests\bin\Debug\net10.0\Gaode.Contracts.Tests.dll" adapterTypeName="executor://xunit/VsTestRunner3/netcore/" className="Gaode.Contracts.Tests.Recipes.PublicPreparationTargetResolutionTests" name="MissingObservationCannotBecomeHeightDerivedPermission" />
+    </UnitTest>
+    <UnitTest name="Gaode.Contracts.Tests.Workflow.WholeTrayWorkflowOrchestratorTests.ProductionSourceCannotUseSimulatedStageEvidence" storage="e:\dzk\gaode-1\backend\tests\gaode.contracts.tests\bin\debug\net10.0\gaode.contracts.tests.dll" id="dabc2c4d-2c7b-760a-314c-be1717f5aeb4">
+      <Execution id="a785fcbf-2549-4ff8-9d11-49481872d549" />
+      <TestMethod codeBase="E:\dzk\gaode-1\backend\tests\Gaode.Contracts.Tests\bin\Debug\net10.0\Gaode.Contracts.Tests.dll" adapterTypeName="executor://xunit/VsTestRunner3/netcore/" className="Gaode.Contracts.Tests.Workflow.WholeTrayWorkflowOrchestratorTests" name="ProductionSourceCannotUseSimulatedStageEvidence" />
+    </UnitTest>
+    <UnitTest name="Gaode.Contracts.Tests.Recipes.CommittedRecipePlanReaderTests.MissingFrozenPayloadCannotBeRebuiltFromRecipeHead" storage="e:\dzk\gaode-1\backend\tests\gaode.contracts.tests\bin\debug\net10.0\gaode.contracts.tests.dll" id="d97b0edf-6bda-5260-ed4b-fd58aff2eed6">
+      <Execution id="7e81bb0d-cdb6-4292-8d9d-e75f86c8d3b3" />
+      <TestMethod codeBase="E:\dzk\gaode-1\backend\tests\Gaode.Contracts.Tests\bin\Debug\net10.0\Gaode.Contracts.Tests.dll" adapterTypeName="executor://xunit/VsTestRunner3/netcore/" className="Gaode.Contracts.Tests.Recipes.CommittedRecipePlanReaderTests" name="MissingFrozenPayloadCannotBeRebuiltFromRecipeHead" />
+    </UnitTest>
+    <UnitTest name="Gaode.Contracts.Tests.Acquisition.CaptureCoordinationTests.ActualUnknownMediaSourceIsNotFilledFromSimulationFixture" storage="e:\dzk\gaode-1\backend\tests\gaode.contracts.tests\bin\debug\net10.0\gaode.contracts.tests.dll" id="0b521b11-4a6a-5b56-e513-18b916a0385f">
+      <Execution id="4b78b8cf-a815-4bf9-b2d4-fb12b51a08f4" />
+      <TestMethod codeBase="E:\dzk\gaode-1\backend\tests\Gaode.Contracts.Tests\bin\Debug\net10.0\Gaode.Contracts.Tests.dll" adapterTypeName="executor://xunit/VsTestRunner3/netcore/" className="Gaode.Contracts.Tests.Acquisition.CaptureCoordinationTests" name="ActualUnknownMediaSourceIsNotFilledFromSimulationFixture" />
+    </UnitTest>
+    <UnitTest name="Gaode.Contracts.Tests.Acquisition.CaptureCoordinationTests.FrameWithoutEndedAndEndedWithoutContentCannotCrossCompletionGate" storage="e:\dzk\gaode-1\backend\tests\gaode.contracts.tests\bin\debug\net10.0\gaode.contracts.tests.dll" id="ffed34cf-2c5d-f568-01e2-0decc13841dc">
+      <Execution id="74328eea-ef7c-4c3d-8f26-e569db684764" />
+      <TestMethod codeBase="E:\dzk\gaode-1\backend\tests\Gaode.Contracts.Tests\bin\Debug\net10.0\Gaode.Contracts.Tests.dll" adapterTypeName="executor://xunit/VsTestRunner3/netcore/" className="Gaode.Contracts.Tests.Acquisition.CaptureCoordinationTests" name="FrameWithoutEndedAndEndedWithoutContentCannotCrossCompletionGate" />
+    </UnitTest>
+    <UnitTest name="Gaode.Contracts.Tests.Workflow.WholeTrayWorkflowOrchestratorTests.UnknownProducerCannotBeFilledFromPurposeOrHistoricalResultCategory(missingCamera: True, missingAlgorithm: False, component: &quot;Camera&quot;)" storage="e:\dzk\gaode-1\backend\tests\gaode.contracts.tests\bin\debug\net10.0\gaode.contracts.tests.dll" id="15b1f25f-838f-dc66-c540-0613f97072e0">
+      <Execution id="01bdde26-d05a-4345-a31b-c3197fbe6c29" />
+      <TestMethod codeBase="E:\dzk\gaode-1\backend\tests\Gaode.Contracts.Tests\bin\Debug\net10.0\Gaode.Contracts.Tests.dll" adapterTypeName="executor://xunit/VsTestRunner3/netcore/" className="Gaode.Contracts.Tests.Workflow.WholeTrayWorkflowOrchestratorTests" name="UnknownProducerCannotBeFilledFromPurposeOrHistoricalResultCategory" />
+    </UnitTest>
+    <UnitTest name="Gaode.Contracts.Tests.Recipes.CommittedRecipePlanReaderTests.DifferentScenarioOrPhysicalScopeCannotUseTheFrozenPlan" storage="e:\dzk\gaode-1\backend\tests\gaode.contracts.tests\bin\debug\net10.0\gaode.contracts.tests.dll" id="46888867-9979-2e63-92ce-af363e827ce9">
+      <Execution id="acf67dd2-8f91-4c1a-84ce-edf294f7847e" />
+      <TestMethod codeBase="E:\dzk\gaode-1\backend\tests\Gaode.Contracts.Tests\bin\Debug\net10.0\Gaode.Contracts.Tests.dll" adapterTypeName="executor://xunit/VsTestRunner3/netcore/" className="Gaode.Contracts.Tests.Recipes.CommittedRecipePlanReaderTests" name="DifferentScenarioOrPhysicalScopeCannotUseTheFrozenPlan" />
+    </UnitTest>
+    <UnitTest name="Gaode.Contracts.Tests.Recipes.CommittedRecipePlanReaderTests.OldHandoffCannotProvideCurrentExecutionInputs" storage="e:\dzk\gaode-1\backend\tests\gaode.contracts.tests\bin\debug\net10.0\gaode.contracts.tests.dll" id="56350302-38bc-01a4-0d6f-d0343825fc29">
+      <Execution id="07addc92-5bd2-4ede-9912-5f4bd1024f6b" />
+      <TestMethod codeBase="E:\dzk\gaode-1\backend\tests\Gaode.Contracts.Tests\bin\Debug\net10.0\Gaode.Contracts.Tests.dll" adapterTypeName="executor://xunit/VsTestRunner3/netcore/" className="Gaode.Contracts.Tests.Recipes.CommittedRecipePlanReaderTests" name="OldHandoffCannotProvideCurrentExecutionInputs" />
+    </UnitTest>
+    <UnitTest name="Gaode.Contracts.Tests.Workflow.WholeTrayWorkflowOrchestratorTests.UnconfirmedAllowanceCommitDoesNotCreateRemovalPermission" storage="e:\dzk\gaode-1\backend\tests\gaode.contracts.tests\bin\debug\net10.0\gaode.contracts.tests.dll" id="a25de36b-1486-c662-5e1c-c0c66daf5c41">
+      <Execution id="563fafa0-534a-45b4-9369-cbe5a2d02fe4" />
+      <TestMethod codeBase="E:\dzk\gaode-1\backend\tests\Gaode.Contracts.Tests\bin\Debug\net10.0\Gaode.Contracts.Tests.dll" adapterTypeName="executor://xunit/VsTestRunner3/netcore/" className="Gaode.Contracts.Tests.Workflow.WholeTrayWorkflowOrchestratorTests" name="UnconfirmedAllowanceCommitDoesNotCreateRemovalPermission" />
+    </UnitTest>
+    <UnitTest name="Gaode.Contracts.Tests.Acquisition.CaptureCoordinationTests.CaptureFactMustMatchCurrentRequestAndFirstOwnedBuffer(mismatch: &quot;epoch&quot;)" storage="e:\dzk\gaode-1\backend\tests\gaode.contracts.tests\bin\debug\net10.0\gaode.contracts.tests.dll" id="5c8727ce-1d88-f61a-58ac-f7ec902ba3af">
+      <Execution id="0a80b670-8f2f-4486-8a3a-2050eec28783" />
+      <TestMethod codeBase="E:\dzk\gaode-1\backend\tests\Gaode.Contracts.Tests\bin\Debug\net10.0\Gaode.Contracts.Tests.dll" adapterTypeName="executor://xunit/VsTestRunner3/netcore/" className="Gaode.Contracts.Tests.Acquisition.CaptureCoordinationTests" name="CaptureFactMustMatchCurrentRequestAndFirstOwnedBuffer" />
+    </UnitTest>
+    <UnitTest name="Gaode.Contracts.Tests.Workflow.WholeTrayWorkflowOrchestratorTests.CancelledExpiredOrWrongUnloadEpochCannotGrantRemoval" storage="e:\dzk\gaode-1\backend\tests\gaode.contracts.tests\bin\debug\net10.0\gaode.contracts.tests.dll" id="b1e125f4-ce52-4dbe-bbee-0832755be92f">
+      <Execution id="19545951-84e6-4e99-a49d-482966216953" />
+      <TestMethod codeBase="E:\dzk\gaode-1\backend\tests\Gaode.Contracts.Tests\bin\Debug\net10.0\Gaode.Contracts.Tests.dll" adapterTypeName="executor://xunit/VsTestRunner3/netcore/" className="Gaode.Contracts.Tests.Workflow.WholeTrayWorkflowOrchestratorTests" name="CancelledExpiredOrWrongUnloadEpochCannotGrantRemoval" />
+    </UnitTest>
+  </TestDefinitions>
+  <TestEntries>
+    <TestEntry testId="d97b0edf-6bda-5260-ed4b-fd58aff2eed6" executionId="7e81bb0d-cdb6-4292-8d9d-e75f86c8d3b3" testListId="8c84fa94-04c1-424b-9868-57a2d4851a1d" />
+    <TestEntry testId="15b1f25f-838f-dc66-c540-0613f97072e0" executionId="01bdde26-d05a-4345-a31b-c3197fbe6c29" testListId="8c84fa94-04c1-424b-9868-57a2d4851a1d" />
+    <TestEntry testId="48be0944-469e-4b38-4c07-a190077c4e52" executionId="3f8ab360-bdb7-4a0f-b792-da880b2c0381" testListId="8c84fa94-04c1-424b-9868-57a2d4851a1d" />
+    <TestEntry testId="c3b8e4d7-1229-7734-3e0e-1212afbae3ac" executionId="72acbec2-4e76-4905-b4dc-45ce8003b526" testListId="8c84fa94-04c1-424b-9868-57a2d4851a1d" />
+    <TestEntry testId="a98e8fd5-e1d4-7eae-3eea-69bccd60ca10" executionId="5eab6e9c-e53a-4126-bfd8-c1d5af4d1fdf" testListId="8c84fa94-04c1-424b-9868-57a2d4851a1d" />
+    <TestEntry testId="73891675-af82-f5eb-9bb1-c3f6888bc945" executionId="4c7d74df-26ba-471a-a86c-a3841df08fc5" testListId="8c84fa94-04c1-424b-9868-57a2d4851a1d" />
+    <TestEntry testId="ba579dfd-bd12-0a8c-b802-a06f054af8dc" executionId="3048cad1-e26b-4b67-ad63-3f76997525ad" testListId="8c84fa94-04c1-424b-9868-57a2d4851a1d" />
+    <TestEntry testId="a076747b-1794-89fd-e42a-410fa3d93672" executionId="d040402b-bafe-42aa-8e9d-1912417b220a" testListId="8c84fa94-04c1-424b-9868-57a2d4851a1d" />
+    <TestEntry testId="b1e125f4-ce52-4dbe-bbee-0832755be92f" executionId="19545951-84e6-4e99-a49d-482966216953" testListId="8c84fa94-04c1-424b-9868-57a2d4851a1d" />
+    <TestEntry testId="aadb95a6-8937-02b8-56f8-ba931bd771b4" executionId="ac5dd66e-76bb-4926-822b-cdf0534728d4" testListId="8c84fa94-04c1-424b-9868-57a2d4851a1d" />
+    <TestEntry testId="77aa1454-57aa-ff8f-cf32-34a5de60b87b" executionId="b6253a03-6d31-4620-98be-6d17f58cbd2b" testListId="8c84fa94-04c1-424b-9868-57a2d4851a1d" />
+    <TestEntry testId="0b521b11-4a6a-5b56-e513-18b916a0385f" executionId="4b78b8cf-a815-4bf9-b2d4-fb12b51a08f4" testListId="8c84fa94-04c1-424b-9868-57a2d4851a1d" />
+    <TestEntry testId="46888867-9979-2e63-92ce-af363e827ce9" executionId="acf67dd2-8f91-4c1a-84ce-edf294f7847e" testListId="8c84fa94-04c1-424b-9868-57a2d4851a1d" />
+    <TestEntry testId="1959b5b3-1155-50f0-5452-de5acf18d46d" executionId="79547fa4-50f2-4b39-9ca9-807304fe2e6a" testListId="8c84fa94-04c1-424b-9868-57a2d4851a1d" />
+    <TestEntry testId="5f41148b-511d-228f-9671-2491bfe9931b" executionId="7494af1a-581b-4540-9545-bba0c02e76d1" testListId="8c84fa94-04c1-424b-9868-57a2d4851a1d" />
+    <TestEntry testId="31c07594-7dbd-e894-9caf-fbaed36e92cf" executionId="b36c53c0-4258-4321-8a61-dd61817c18b3" testListId="8c84fa94-04c1-424b-9868-57a2d4851a1d" />
+    <TestEntry testId="fb44ff8d-793c-5fdc-d609-3c4faddf6503" executionId="80b84aeb-8fc7-433d-a244-6f5f3cf3ae17" testListId="8c84fa94-04c1-424b-9868-57a2d4851a1d" />
+    <TestEntry testId="bda8f0b1-b178-8ec4-9b0d-69ac94d401bb" executionId="ccdecf18-9c87-4b00-a711-85e16d084023" testListId="8c84fa94-04c1-424b-9868-57a2d4851a1d" />
+    <TestEntry testId="0dee5bd0-bb24-4123-7354-3f51f1a07031" executionId="636bbecb-bb1a-441d-bb02-7ef9ce381a15" testListId="8c84fa94-04c1-424b-9868-57a2d4851a1d" />
+    <TestEntry testId="a25de36b-1486-c662-5e1c-c0c66daf5c41" executionId="563fafa0-534a-45b4-9369-cbe5a2d02fe4" testListId="8c84fa94-04c1-424b-9868-57a2d4851a1d" />
+    <TestEntry testId="dabc2c4d-2c7b-760a-314c-be1717f5aeb4" executionId="a785fcbf-2549-4ff8-9d11-49481872d549" testListId="8c84fa94-04c1-424b-9868-57a2d4851a1d" />
+    <TestEntry testId="34ca0979-11ed-614a-b60f-5f87ace4fd28" executionId="72d0f88f-1ca1-45d1-87b8-7f892952a877" testListId="8c84fa94-04c1-424b-9868-57a2d4851a1d" />
+    <TestEntry testId="025ca3a3-042b-d2d5-282e-bfc83e96d0c6" executionId="4ecdef92-ada3-433a-81c8-0000f1545fc5" testListId="8c84fa94-04c1-424b-9868-57a2d4851a1d" />
+    <TestEntry testId="f9f3384a-b8ee-7896-3421-e03dcf47e1c6" executionId="8465fbfa-e2b0-484d-944b-e8568a39c975" testListId="8c84fa94-04c1-424b-9868-57a2d4851a1d" />
+    <TestEntry testId="1b08acce-3eeb-29d1-e696-4f9a6941f588" executionId="5bc3a805-57eb-46fe-a094-eea2ff2fbcf7" testListId="8c84fa94-04c1-424b-9868-57a2d4851a1d" />
+    <TestEntry testId="7cebbffa-cc78-16a5-6b55-5246c695f005" executionId="d939a514-5c13-4737-8b62-ec65e91488e1" testListId="8c84fa94-04c1-424b-9868-57a2d4851a1d" />
+    <TestEntry testId="56350302-38bc-01a4-0d6f-d0343825fc29" executionId="07addc92-5bd2-4ede-9912-5f4bd1024f6b" testListId="8c84fa94-04c1-424b-9868-57a2d4851a1d" />
+    <TestEntry testId="5c8727ce-1d88-f61a-58ac-f7ec902ba3af" executionId="0a80b670-8f2f-4486-8a3a-2050eec28783" testListId="8c84fa94-04c1-424b-9868-57a2d4851a1d" />
+    <TestEntry testId="35e8b6ee-2c57-b477-1791-bc0a9d905d22" executionId="6d7b7102-10d3-4fe2-b23d-9c924bc0788b" testListId="8c84fa94-04c1-424b-9868-57a2d4851a1d" />
+    <TestEntry testId="d6bd1181-db36-113b-2bb8-565bd4e1c7ce" executionId="f0ac6da5-e0cf-4bb7-a864-21095ca241b0" testListId="8c84fa94-04c1-424b-9868-57a2d4851a1d" />
+    <TestEntry testId="5e56e045-0332-4b4f-a1b0-bfddb387bfd3" executionId="2eaef90d-af97-46fa-829e-b529fde050aa" testListId="8c84fa94-04c1-424b-9868-57a2d4851a1d" />
+    <TestEntry testId="92a52e8c-c271-568b-0339-701261acd78e" executionId="b53d0bee-8da8-4220-9ecb-f7dfc4a1f735" testListId="8c84fa94-04c1-424b-9868-57a2d4851a1d" />
+    <TestEntry testId="e78d9d67-ffe7-c908-0577-88eabf2b0093" executionId="6df88902-c448-49fa-ae97-b4bb86ec3371" testListId="8c84fa94-04c1-424b-9868-57a2d4851a1d" />
+    <TestEntry testId="d86f92f7-012b-bf2f-cf34-64ae858e2e21" executionId="5784a972-c999-459a-a6c7-343095669961" testListId="8c84fa94-04c1-424b-9868-57a2d4851a1d" />
+    <TestEntry testId="ffed34cf-2c5d-f568-01e2-0decc13841dc" executionId="74328eea-ef7c-4c3d-8f26-e569db684764" testListId="8c84fa94-04c1-424b-9868-57a2d4851a1d" />
+  </TestEntries>
+  <TestLists>
+    <TestList name="列表中未列出的结果" id="8c84fa94-04c1-424b-9868-57a2d4851a1d" />
+    <TestList name="所有已加载的结果" id="19431567-8539-422a-85d7-44ee4e166bda" />
+  </TestLists>
+  <ResultSummary outcome="Failed">
+    <Counters total="35" executed="35" passed="26" failed="9" error="0" timeout="0" aborted="0" inconclusive="0" passedButRunAborted="0" notRunnable="0" notExecuted="0" disconnected="0" warning="0" completed="0" inProgress="0" pending="0" />
+    <Output>
+      <StdOut>[xUnit.net 00:00:00.00] xUnit.net VSTest Adapter v3.1.5+1b188a7b0a (64-bit .NET 10.0.12)&#xD;
+[xUnit.net 00:00:01.77]   Discovering: Gaode.Contracts.Tests&#xD;
+[xUnit.net 00:00:05.36]   Discovered:  Gaode.Contracts.Tests&#xD;
+[xUnit.net 00:00:06.23]   Starting:    Gaode.Contracts.Tests&#xD;
+[xUnit.net 00:00:08.37]       Assert.Throws() Failure: No exception was thrown&#xD;
+[xUnit.net 00:00:08.37]       Expected: typeof(System.InvalidOperationException)&#xD;
+[xUnit.net 00:00:08.37]       Stack Trace:&#xD;
+[xUnit.net 00:00:08.37]         E:\dzk\gaode-1\backend\tests\Gaode.Contracts.Tests\Workflow\WholeTrayWorkflowOrchestratorTests.cs(47,0): at Gaode.Contracts.Tests.Workflow.WholeTrayWorkflowOrchestratorTests.UnknownProducerCannotBeFilledFromPurposeOrHistoricalResultCategory(Boolean missingCamera, Boolean missingAlgorithm, String component)&#xD;
+[xUnit.net 00:00:08.37]         --- End of stack trace from previous location ---&#xD;
+[xUnit.net 00:00:08.40]       Assert.Throws() Failure: No exception was thrown&#xD;
+[xUnit.net 00:00:08.40]       Expected: typeof(System.InvalidOperationException)&#xD;
+[xUnit.net 00:00:08.40]       Stack Trace:&#xD;
+[xUnit.net 00:00:08.40]         E:\dzk\gaode-1\backend\tests\Gaode.Contracts.Tests\Workflow\WholeTrayWorkflowOrchestratorTests.cs(47,0): at Gaode.Contracts.Tests.Workflow.WholeTrayWorkflowOrchestratorTests.UnknownProducerCannotBeFilledFromPurposeOrHistoricalResultCategory(Boolean missingCamera, Boolean missingAlgorithm, String component)&#xD;
+[xUnit.net 00:00:08.40]         --- End of stack trace from previous location ---&#xD;
+[xUnit.net 00:00:08.58]       System.NullReferenceException : Object reference not set to an instance of an object.&#xD;
+[xUnit.net 00:00:08.58]       Stack Trace:&#xD;
+[xUnit.net 00:00:08.58]         E:\dzk\gaode-1\backend\tests\Gaode.Contracts.Tests\Workflow\WholeTrayWorkflowOrchestratorTests.cs(22,0): at Gaode.Contracts.Tests.Workflow.WholeTrayWorkflowOrchestratorTests.DeviceVersionComesFromActualSemanticProducerNotCurrentProtocolDefinition()&#xD;
+[xUnit.net 00:00:08.58]         --- End of stack trace from previous location ---&#xD;
+[xUnit.net 00:00:08.58]       Assert.Throws() Failure: No exception was thrown&#xD;
+[xUnit.net 00:00:08.58]       Expected: typeof(System.InvalidOperationException)&#xD;
+[xUnit.net 00:00:08.58]       Stack Trace:&#xD;
+[xUnit.net 00:00:08.58]         E:\dzk\gaode-1\backend\tests\Gaode.Contracts.Tests\Workflow\WholeTrayWorkflowOrchestratorTests.cs(131,0): at Gaode.Contracts.Tests.Workflow.WholeTrayWorkflowOrchestratorTests.ProductionSourceCannotUseSimulatedStageEvidence()&#xD;
+[xUnit.net 00:00:08.58]         --- End of stack trace from previous location ---&#xD;
+[xUnit.net 00:00:08.60]       Assert.Equal() Failure: Values differ&#xD;
+[xUnit.net 00:00:08.60]       Expected: ReadyForRemoval&#xD;
+[xUnit.net 00:00:08.60]       Actual:   ThreeStagesIncomplete&#xD;
+[xUnit.net 00:00:08.60]       Stack Trace:&#xD;
+[xUnit.net 00:00:08.60]         E:\dzk\gaode-1\backend\tests\Gaode.Contracts.Tests\Workflow\WholeTrayWorkflowOrchestratorTests.cs(59,0): at Gaode.Contracts.Tests.Workflow.WholeTrayWorkflowOrchestratorTests.MainFlowPersistsWholeTrayAllowanceAndManualCompletionInOrder()&#xD;
+[xUnit.net 00:00:08.60]         --- End of stack trace from previous location ---&#xD;
+[xUnit.net 00:00:08.62]       System.NullReferenceException : Object reference not set to an instance of an object.&#xD;
+[xUnit.net 00:00:08.62]       Stack Trace:&#xD;
+[xUnit.net 00:00:08.62]         E:\dzk\gaode-1\backend\tests\Gaode.Contracts.Tests\Workflow\WholeTrayWorkflowOrchestratorTests.cs(31,0): at Gaode.Contracts.Tests.Workflow.WholeTrayWorkflowOrchestratorTests.TestPurposeDoesNotReplaceEachActualProducerWithSimulatedSource()&#xD;
+[xUnit.net 00:00:08.62]         --- End of stack trace from previous location ---&#xD;
+[xUnit.net 00:00:08.63]       System.NullReferenceException : Object reference not set to an instance of an object.&#xD;
+[xUnit.net 00:00:08.63]       Stack Trace:&#xD;
+[xUnit.net 00:00:08.63]         E:\dzk\gaode-1\backend\tests\Gaode.Contracts.Tests\Workflow\WholeTrayWorkflowOrchestratorTests.cs(110,0): at Gaode.Contracts.Tests.Workflow.WholeTrayWorkflowOrchestratorTests.CancelledExpiredOrWrongUnloadEpochCannotGrantRemoval()&#xD;
+[xUnit.net 00:00:08.63]         --- End of stack trace from previous location ---&#xD;
+[xUnit.net 00:00:08.64]       Assert.Throws() Failure: Exception type was not an exact match&#xD;
+[xUnit.net 00:00:08.64]       Expected: typeof(System.IO.IOException)&#xD;
+[xUnit.net 00:00:08.64]       Actual:   typeof(System.NullReferenceException)&#xD;
+[xUnit.net 00:00:08.64]       ---- System.NullReferenceException : Object reference not set to an instance of an object.&#xD;
+[xUnit.net 00:00:08.64]       Stack Trace:&#xD;
+[xUnit.net 00:00:08.64]         E:\dzk\gaode-1\backend\tests\Gaode.Contracts.Tests\Workflow\WholeTrayWorkflowOrchestratorTests.cs(99,0): at Gaode.Contracts.Tests.Workflow.WholeTrayWorkflowOrchestratorTests.UnconfirmedAllowanceCommitDoesNotCreateRemovalPermission()&#xD;
+[xUnit.net 00:00:08.64]         --- End of stack trace from previous location ---&#xD;
+[xUnit.net 00:00:08.64]         ----- Inner Stack Trace -----&#xD;
+[xUnit.net 00:00:08.64]         E:\dzk\gaode-1\backend\tests\Gaode.Contracts.Tests\Workflow\WholeTrayWorkflowOrchestratorTests.cs(99,0): at Gaode.Contracts.Tests.Workflow.WholeTrayWorkflowOrchestratorTests.&lt;&gt;c__DisplayClass5_0.&lt;UnconfirmedAllowanceCommitDoesNotCreateRemovalPermission&gt;b__0()&#xD;
+[xUnit.net 00:00:29.13]       System.InvalidOperationException : InitialTrayObservationUnavailable:InvalidResult&#xD;
+[xUnit.net 00:00:29.13]       Stack Trace:&#xD;
+[xUnit.net 00:00:29.13]         E:\dzk\gaode-1\backend\src\Gaode.Application\Station01\Steps\ThreeDStep.cs(53,0): at Gaode.Application.Station01.Steps.ThreeDStep.ExecuteAsync(RunExecution run, ControlLatch control, CancellationToken cancellationToken)&#xD;
+[xUnit.net 00:00:29.13]         E:\dzk\gaode-1\backend\src\Gaode.Application\Station01\Steps\ThreeDStep.cs(87,0): at Gaode.Application.Station01.Steps.ThreeDStep.ExecuteAsync(RunExecution run, ControlLatch control, CancellationToken cancellationToken)&#xD;
+[xUnit.net 00:00:29.13]         E:\dzk\gaode-1\backend\tests\Gaode.Contracts.Tests\Support\Station01StepHarness.cs(82,0): at Gaode.Contracts.Tests.Support.Station01StepHarness.DriveAsync[T](Task`1 operation)&#xD;
+[xUnit.net 00:00:29.13]         E:\dzk\gaode-1\backend\tests\Gaode.Contracts.Tests\Acquisition\CaptureCoordinationTests.cs(78,0): at Gaode.Contracts.Tests.Acquisition.CaptureCoordinationTests.ActualUnknownMediaSourceIsNotFilledFromSimulationFixture()&#xD;
+[xUnit.net 00:00:29.13]         E:\dzk\gaode-1\backend\tests\Gaode.Contracts.Tests\Acquisition\CaptureCoordinationTests.cs(85,0): at Gaode.Contracts.Tests.Acquisition.CaptureCoordinationTests.ActualUnknownMediaSourceIsNotFilledFromSimulationFixture()&#xD;
+[xUnit.net 00:00:29.13]         --- End of stack trace from previous location ---&#xD;
+[xUnit.net 00:00:56.24]   Finished:    Gaode.Contracts.Tests&#xD;
+</StdOut>
+    </Output>
+    <RunInfos>
+      <RunInfo computerName="10_3_0_13" outcome="Error" timestamp="2026-10-08T23:54:56.3017331+08:00">
+        <Text>[xUnit.net 00:00:08.36]     Gaode.Contracts.Tests.Workflow.WholeTrayWorkflowOrchestratorTests.UnknownProducerCannotBeFilledFromPurposeOrHistoricalResultCategory(missingCamera: True, missingAlgorithm: False, component: "Camera") [FAIL]</Text>
+      </RunInfo>
+      <RunInfo computerName="10_3_0_13" outcome="Error" timestamp="2026-10-08T23:54:56.5561764+08:00">
+        <Text>[xUnit.net 00:00:08.40]     Gaode.Contracts.Tests.Workflow.WholeTrayWorkflowOrchestratorTests.UnknownProducerCannotBeFilledFromPurposeOrHistoricalResultCategory(missingCamera: False, missingAlgorithm: True, component: "Algorithm") [FAIL]</Text>
+      </RunInfo>
+      <RunInfo computerName="10_3_0_13" outcome="Error" timestamp="2026-10-08T23:54:56.5563567+08:00">
+        <Text>[xUnit.net 00:00:08.57]     Gaode.Contracts.Tests.Workflow.WholeTrayWorkflowOrchestratorTests.DeviceVersionComesFromActualSemanticProducerNotCurrentProtocolDefinition [FAIL]</Text>
+      </RunInfo>
+      <RunInfo computerName="10_3_0_13" outcome="Error" timestamp="2026-10-08T23:54:56.5564430+08:00">
+        <Text>[xUnit.net 00:00:08.58]     Gaode.Contracts.Tests.Workflow.WholeTrayWorkflowOrchestratorTests.ProductionSourceCannotUseSimulatedStageEvidence [FAIL]</Text>
+      </RunInfo>
+      <RunInfo computerName="10_3_0_13" outcome="Error" timestamp="2026-10-08T23:54:56.5581319+08:00">
+        <Text>[xUnit.net 00:00:08.60]     Gaode.Contracts.Tests.Workflow.WholeTrayWorkflowOrchestratorTests.MainFlowPersistsWholeTrayAllowanceAndManualCompletionInOrder [FAIL]</Text>
+      </RunInfo>
+      <RunInfo computerName="10_3_0_13" outcome="Error" timestamp="2026-10-08T23:54:56.5582697+08:00">
+        <Text>[xUnit.net 00:00:08.62]     Gaode.Contracts.Tests.Workflow.WholeTrayWorkflowOrchestratorTests.TestPurposeDoesNotReplaceEachActualProducerWithSimulatedSource [FAIL]</Text>
+      </RunInfo>
+      <RunInfo computerName="10_3_0_13" outcome="Error" timestamp="2026-10-08T23:54:56.5636258+08:00">
+        <Text>[xUnit.net 00:00:08.63]     Gaode.Contracts.Tests.Workflow.WholeTrayWorkflowOrchestratorTests.CancelledExpiredOrWrongUnloadEpochCannotGrantRemoval [FAIL]</Text>
+      </RunInfo>
+      <RunInfo computerName="10_3_0_13" outcome="Error" timestamp="2026-10-08T23:54:56.5715780+08:00">
+        <Text>[xUnit.net 00:00:08.64]     Gaode.Contracts.Tests.Workflow.WholeTrayWorkflowOrchestratorTests.UnconfirmedAllowanceCommitDoesNotCreateRemovalPermission [FAIL]</Text>
+      </RunInfo>
+      <RunInfo computerName="10_3_0_13" outcome="Error" timestamp="2026-10-08T23:55:17.0642567+08:00">
+        <Text>[xUnit.net 00:00:29.13]     Gaode.Contracts.Tests.Acquisition.CaptureCoordinationTests.ActualUnknownMediaSourceIsNotFilledFromSimulationFixture [FAIL]</Text>
+      </RunInfo>
+    </RunInfos>
+  </ResultSummary>
+</TestRun>

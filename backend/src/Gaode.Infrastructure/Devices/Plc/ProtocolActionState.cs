@@ -15,6 +15,9 @@ internal sealed record ProtocolSample(bool Connected, bool Automatic, bool Safet
     public double? ScanZ { get; init; }
     public double? GrabZ { get; init; }
     public Gaode.Domain.Station01.ObservationIdentity? PositionIdentity { get; init; }
+    public bool SafetyUnconfirmed { get; init; }
+    public bool ManualAreaUnconfirmed { get; init; }
+    public IReadOnlyList<string> IndependentSafetyFaults { get; init; } = [];
 }
 internal sealed record CommunicationCaptureContext(Guid RunId, Guid OperationId,
     long ConnectionEpoch, FixedPoint Target)

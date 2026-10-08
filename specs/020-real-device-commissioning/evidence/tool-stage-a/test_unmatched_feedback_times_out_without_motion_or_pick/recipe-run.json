@@ -1,0 +1,184 @@
+{
+  "id": "f1b89c7fea81",
+  "name": "模拟翻面件-001",
+  "state": "failed",
+  "step": 13,
+  "started": 1791392208.0966702,
+  "steps": [
+    {
+      "id": 1,
+      "name": "人工上料",
+      "state": "queued"
+    },
+    {
+      "id": 2,
+      "name": "3D 初次观察",
+      "state": "queued"
+    },
+    {
+      "id": 3,
+      "name": "F 相机扫码",
+      "state": "queued"
+    },
+    {
+      "id": 4,
+      "name": "第一面 A 拍照",
+      "state": "queued"
+    },
+    {
+      "id": 5,
+      "name": "第一面 B 拍照",
+      "state": "queued"
+    },
+    {
+      "id": 6,
+      "name": "翻面取料定位",
+      "state": "queued"
+    },
+    {
+      "id": 7,
+      "name": "翻到第二面",
+      "state": "queued"
+    },
+    {
+      "id": 8,
+      "name": "放回原槽定位",
+      "state": "queued"
+    },
+    {
+      "id": 9,
+      "name": "放回原槽",
+      "state": "queued"
+    },
+    {
+      "id": 10,
+      "name": "3D 姿态复查",
+      "state": "queued"
+    },
+    {
+      "id": 11,
+      "name": "第二面 C 拍照",
+      "state": "queued"
+    },
+    {
+      "id": 12,
+      "name": "第二面 D 拍照",
+      "state": "queued"
+    },
+    {
+      "id": 13,
+      "name": "汇总并保存结果",
+      "state": "queued"
+    },
+    {
+      "id": 14,
+      "name": "返回下料位",
+      "state": "queued"
+    }
+  ],
+  "barcode": null,
+  "inspections": [],
+  "signals": [
+    {
+      "id": "cbd88d1409",
+      "at": "2026-10-08T00:56:48+0800",
+      "epoch": 1791392208.1177633,
+      "kind": "SIGNAL",
+      "title": "信号变化：Send_Data_PC_System_Ready",
+      "idSignal": "pc.PC_System_Ready",
+      "mb": 2006,
+      "before": 0,
+      "value": 1,
+      "rawRegisters": [
+        1
+      ],
+      "connectionGeneration": 1,
+      "recipeRunId": "f1b89c7fea81",
+      "recipeStep": 13
+    },
+    {
+      "id": "2f2fe4c6d1",
+      "at": "2026-10-08T00:56:48+0800",
+      "epoch": 1791392208.1287696,
+      "kind": "SIGNAL",
+      "title": "信号变化：Send_Data_Grab_ID",
+      "idSignal": "pc.Grab_ID",
+      "mb": 2018,
+      "before": 0,
+      "value": 1,
+      "rawRegisters": [
+        1
+      ],
+      "connectionGeneration": 1,
+      "recipeRunId": "f1b89c7fea81",
+      "recipeStep": 13
+    }
+  ],
+  "milestones": [
+    {
+      "id": "d60ca4f0ee",
+      "at": "2026-10-08T00:56:48+0800",
+      "epoch": 1791392208.0966702,
+      "kind": "GRIPPER_CHECK_START",
+      "title": "仅验证成组夹爪选择，不执行轴运动、取放料或检测",
+      "members": [
+        {
+          "memberId": "A1",
+          "material": "A",
+          "grabId": 1
+        }
+      ],
+      "recipeRunId": "f1b89c7fea81",
+      "recipeStep": 13,
+      "connectionGeneration": 1
+    },
+    {
+      "id": "7c2230f6c3",
+      "at": "2026-10-08T00:56:48+0800",
+      "epoch": 1791392208.1122565,
+      "kind": "RECIPE_START",
+      "title": "用户开始本盘；真实PLC反馈推进，相机模式=simulated",
+      "recipeRunId": "f1b89c7fea81",
+      "recipeStep": 13,
+      "connectionGeneration": 1
+    },
+    {
+      "id": "9df0cf1678",
+      "at": "2026-10-08T00:56:48+0800",
+      "epoch": 1791392208.1177633,
+      "kind": "RECIPE_GRAB_SELECT",
+      "title": "按本件要求选择夹爪",
+      "memberId": "A1",
+      "material": "A",
+      "grabId": 1,
+      "actual": 0,
+      "recipeRunId": "f1b89c7fea81",
+      "recipeStep": 13,
+      "connectionGeneration": 1
+    },
+    {
+      "id": "9ef60a3c3c",
+      "at": "2026-10-08T00:56:48+0800",
+      "epoch": 1791392208.1287696,
+      "kind": "RECIPE_FAILED",
+      "title": "配方停在本步：抓手有效选择反馈超时",
+      "recipeRunId": "f1b89c7fea81",
+      "recipeStep": 13,
+      "connectionGeneration": 1
+    }
+  ],
+  "trail": [],
+  "result": null,
+  "simulated": true,
+  "recordPurpose": "流程测试",
+  "realInspectionResult": false,
+  "reason": "抓手有效选择反馈超时",
+  "gripperCheck": true,
+  "selectionMembers": [
+    {
+      "memberId": "A1",
+      "material": "A",
+      "grabId": 1
+    }
+  ]
+}

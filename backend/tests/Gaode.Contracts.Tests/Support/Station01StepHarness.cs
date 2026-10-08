@@ -127,9 +127,10 @@ public sealed class Station01StepHarness : IAsyncDisposable
         }
         var evidenceWriter = new TraceWriter(options, clock, 32);
         var plc = StepSimulationFactory.Create(config, scheduler, evidenceWriter, storeId, clock);
-        var capture = new SimulatedCapture(config.Simulation, scheduler);
-        IAlgorithmPort algorithm = new DeclaredObservationAlgorithm(new SimulatedAlgorithm(config.Simulation, scheduler),
-            scheduler, config.Simulation.Stages.HeightAlgorithm, clock);
+        var frozenSimulation = config.Simulation ?? throw new InvalidOperationException("TestSimulationRequired");
+        var capture = new SimulatedCapture(frozenSimulation, scheduler);
+        IAlgorithmPort algorithm = new DeclaredObservationAlgorithm(new SimulatedAlgorithm(frozenSimulation, scheduler),
+            scheduler, frozenSimulation.Stages.HeightAlgorithm, clock);
         var ingress = new OperationIngress(new DeadlineScheduler(clock, "step-contract"),
             config.Budget.Limits.LateEvidencePerOperation,
             config.Budget.Limits.DuplicateSummariesPerOperation);

@@ -74,4 +74,12 @@ public sealed class ResourceLease
             else throw new InvalidOperationException("占用状态未核清，不能释放");
         }
     }
+    public void ReleaseAfterVerifiedSystemReset(Guid runId)
+    {
+        lock (_gate)
+        {
+            if (_owner is not null && _owner != runId) throw new InvalidOperationException("RecoveryMotionOwnerChanged");
+            _owner = null; _currentAction = null; _unknown = false;
+        }
+    }
 }

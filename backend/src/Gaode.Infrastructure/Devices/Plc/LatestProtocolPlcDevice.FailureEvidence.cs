@@ -35,6 +35,8 @@ public sealed partial class LatestProtocolPlcDevice
     // subsequent repeated polls cannot fill the queue with the same failure.
     private void CaptureFailureEvidence(ActionCorrelation? correlation, ProtocolSample prior, string reason)
     {
+        RuntimeDiagnostics.Record("PlcHandshake", "FailureBoundary", correlation?.RunId,
+            new { correlation, reason, handshakeDiagnostic, authorizesAction=false });
         var recorder = evidenceRecorder;
         if (recorder is null)
         {

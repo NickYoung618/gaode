@@ -1,0 +1,14 @@
+2026-10-07T16:58:13.9602306+00:00 Information PLC threadpool provider: windowsNative=False; minimum API supported=True 
+2026-10-07T16:58:13.9602417+00:00 Information PLC heartbeat worker minimum: previous=28, effective=28 
+2026-10-07T16:58:13.9602443+00:00 Information PLC starting: 127.0.0.1:49401, acquisition=plc-acquisition/013-1, ioTimeoutMs=1000, heartbeatTimeoutMs=3000 
+2026-10-07T16:58:13.9604191+00:00 Information PLC channel heartbeat connected [::ffff:127.0.0.1]:49405 -> 127.0.0.1:49401; I/O deadline 1000 ms 
+2026-10-07T16:58:13.9605545+00:00 Information PLC channel business connected [::ffff:127.0.0.1]:49406 -> 127.0.0.1:49401; I/O deadline 1000 ms 
+2026-10-07T16:58:13.9610954+00:00 Information PLC channel business connected [::ffff:127.0.0.1]:49407 -> 127.0.0.1:49401; I/O deadline 1000 ms 
+2026-10-07T16:58:13.9657156+00:00 Information PLC startup readiness observed: runId=a5d9c9de-20c5-468c-9316-bbbcd33c7f47, operationId=d056fbee-1d7f-41ac-8653-2b6dece70a16, actionId=25608d4a-0672-4aef-a72b-6560e4548829, epoch=2; no clamp or physical button fact inferred 
+2026-10-07T16:58:14.2179850+00:00 Information PlcClearWaiting resource=XPosConfirmed cycle=71f86549-3bc5-466b-be75-4abcc851516b epoch=2 action=93e2836a-4b94-4ac6-997d-1ec3811c9177 writeEnded=429480205034 due=429577684944 
+2026-10-07T16:58:14.2235224+00:00 Information PlcClearConfirmed resource=XPosConfirmed cycle=71f86549-3bc5-466b-be75-4abcc851516b epoch=2 action=93e2836a-4b94-4ac6-997d-1ec3811c9177 writeEnded=429480205034 readStarted=429480259598 readEnded=429480260208 fields=XMoveStart,XPosConfirmed 
+2026-10-07T16:58:14.2235791+00:00 Information PlcClearWaiting resource=YPosConfirmed cycle=46ccb04b-07d4-4817-a0a2-b766c9611754 epoch=2 action=93e2836a-4b94-4ac6-997d-1ec3811c9177 writeEnded=429480261007 due=429577684944 
+2026-10-07T16:58:14.2281109+00:00 Information PlcClearConfirmed resource=YPosConfirmed cycle=46ccb04b-07d4-4817-a0a2-b766c9611754 epoch=2 action=93e2836a-4b94-4ac6-997d-1ec3811c9177 writeEnded=429480261007 readStarted=429480305299 readEnded=429480305889 fields=YMoveStart,YPosConfirmed 
+2026-10-07T16:58:14.2592681+00:00 Information PLC channel heartbeat connected [::ffff:127.0.0.1]:49410 -> 127.0.0.1:49401; I/O deadline 1000 ms 
+2026-10-07T16:58:14.4292465+00:00 Information PlcClearWaiting resource=ZCameraPosConfirmed cycle=f5fc49c8-e3bc-4e0c-8711-95100631c6a1 epoch=2 action=93e2836a-4b94-4ac6-997d-1ec3811c9177 writeEnded=429482317599 due=429577684944 
+2026-10-07T16:58:14.4343200+00:00 Information PlcClearConfirmed resource=ZCameraPosConfirmed cycle=f5fc49c8-e3bc-4e0c-8711-95100631c6a1 epoch=2 action=93e2836a-4b94-4ac6-997d-1ec3811c9177 writeEnded=429482317599 readStarted=429482367510 readEnded=429482368162 fields=ZCameraMoveStart,ZCameraPosConfirmed 

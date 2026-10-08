@@ -60,6 +60,8 @@ internal sealed class SemanticHandoffInputs : ITraceQuery
             Writes.Add(new(id, run, revision, kind, json, Convert.ToHexString(SHA256.HashData(Encoding.UTF8.GetBytes(json))), CommitState.Committed));
         }
     }
+    public Task<StartReceipt?> GetStartReceiptAsync(string subject, string requestId, CancellationToken token) =>
+        throw new NotSupportedException("This handoff fixture does not contain persisted start requests.");
     public Task<PersistedRun?> GetRunAsync(Guid runId, CancellationToken token) => Task.FromResult<PersistedRun?>(null);
     public Task<IReadOnlyList<PersistedWrite>> GetWritesAsync(Guid runId, CancellationToken token) =>
         Task.FromResult<IReadOnlyList<PersistedWrite>>(Writes.Where(w => w.RunId == runId).ToArray());

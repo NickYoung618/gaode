@@ -17,7 +17,9 @@ namespace Gaode.Application.Station01;
 
 public sealed record StartPublicRequest(string RequestId, string ContextJson,
     ConfigReference PublicConfigRef, ConfigReference BudgetRef,
-    ConfigReference SimulationRef, FaultRestartFrom? RestartFrom = null);
+    ConfigReference SimulationRef, FaultRestartFrom? RestartFrom = null,
+    [property: System.Text.Json.Serialization.JsonIgnore(Condition = System.Text.Json.Serialization.JsonIgnoreCondition.WhenWritingNull)]
+    CommissioningRestartFrom? CommissioningRestartFrom = null);
 
 public sealed record ThreeDAndFRecipeGateDecision(
     bool CanLoadAndBind,
@@ -59,10 +61,13 @@ public sealed class StartPublicPreparation(IPublicConfiguration configurations,
     NormalPauseBoundary? pause = null,
     Func<Guid, RecipeExecutionDeadlines?, int, CancellationToken, Task>? beforeRecipeBindingForTest = null,
     Func<Guid, RecipeExecutionDeadlines?, CancellationToken, Task>? beforeRecipeContinuationForTest = null,
-    TrayAnomalyDecisionService? anomalyDecisions = null)
+    TrayAnomalyDecisionService? anomalyDecisions = null,
+    LoadedConfiguration<CommissioningConfiguration>? commissioningConfiguration = null,
+    ICommissioningRunInputs? commissioningInputs = null)
 {
     private readonly ConcurrentDictionary<Guid, ActiveRun> _active = new();
     private int _admissionClosed;
+    public bool IsExecuting(Guid runId) => _active.ContainsKey(runId);
 
     public StartReceipt Start(string subject, StartPublicRequest request)
     {
@@ -137,11 +142,15 @@ public sealed class StartPublicPreparation(IPublicConfiguration configurations,
             commands.UpdateDurability(receipt.CommandId, "Committed");
             var publicConfig = configurations.LoadPublic(request.PublicConfigRef);
             var budget = configurations.LoadBudget(request.BudgetRef);
-            var simulation = configurations.LoadSimulation(request.SimulationRef);
-            var validation = validator.Validate(publicConfig.Value, budget.Value, simulation.Value,
-                fullSimulation: !externalVirtualPlc, externalVirtualPlc: externalVirtualPlc,
-                externalPlcProvider: externalPlcProvider);
-            var frozen = ConfigurationFreezer.Freeze(publicConfig, budget, simulation, capabilities.Versions);
+            var commissioning = publicConfig.Value.Purpose == RuntimePurposes.RealDeviceCommissioning;
+            if (commissioning && startContext.Purpose != RunPurpose.Commissioning)
+                throw new InvalidOperationException("CommissioningRunPurposeMismatch");
+            var simulation = commissioning ? null : configurations.LoadSimulation(request.SimulationRef);
+            var validation = validator.Validate(publicConfig.Value, budget.Value, simulation?.Value,
+                fullSimulation: !externalVirtualPlc && !commissioning, externalVirtualPlc: externalVirtualPlc,
+                externalPlcProvider: externalPlcProvider, realDeviceCommissioning: commissioning,
+                commissioning: commissioningConfiguration?.Value);
+            var frozen = ConfigurationFreezer.Freeze(publicConfig, budget, simulation, capabilities.Versions, commissioningConfiguration);
             RuntimeDiagnostics.Record("Configuration", validation.CanStart ? "Frozen" : "Blocked", receipt.RunId,
                 new { frozen.SnapshotId, frozen.PublicDigest, frozen.BudgetDigest, frozen.SimulationDigest,
                     validation.BlockingControlErrors, validation.AlgorithmIssues,
@@ -164,13 +173,14 @@ public sealed class StartPublicPreparation(IPublicConfiguration configurations,
             {
                 kind = "FrozenPublicConfiguration", frozen.SnapshotId,
                 frozen.PublicJson, frozen.BudgetJson, frozen.SimulationJson,
-                frozen.PublicDigest, frozen.BudgetDigest, frozen.SimulationDigest,
+                frozen.PublicDigest, frozen.BudgetDigest, frozen.SimulationDigest, frozen.CommissioningJson,
+                frozen.CommissioningDigest, frozen.CommissioningSourceFile,
                 frozen.CapabilityVersions
             });
             await coordinator.SetAsync(receipt.RunId, s => s with
             {
                 PublicVersion = frozen.Public.Version, BudgetVersion = frozen.Budget.Version,
-                SimulationVersion = frozen.Simulation.Version,
+                SimulationVersion = frozen.Simulation?.Version,
                 PersistedRevision = run.PersistedRevision, Save = SaveState.Committed,
                 ObservedRevision = s.ObservedRevision + 1
             });
@@ -187,6 +197,24 @@ public sealed class StartPublicPreparation(IPublicConfiguration configurations,
             if (request.RestartFrom is { } restart)
             {
                 await recovery!.LinkNewRunAsync(restart, receipt.RunId, receipt.CommandId, request.RequestId, run, cancellationToken);
+            }
+            if (commissioning)
+            {
+                FLocation? selectedFLocation = null;
+                if (startContext.ExpectedRecipeRef is { } selected)
+                {
+                    var catalog = recipeCatalog.GetSnapshot();
+                    var saved = catalog.Definitions.SingleOrDefault(d => d.RecipeId == selected.RecipeId && d.Version == selected.Version);
+                    if (saved is null || catalog.CatalogDigest != selected.CatalogDigest)
+                        throw new InvalidOperationException("CommissioningSelectedRecipeVersionChanged");
+                    if (saved.CommissioningFPosition is { SchemaVersion: "commissioning-f-position/1", X: { } x, Y: { } y })
+                        selectedFLocation = new(x, y, frozen.Public.Motion.Unit, frozen.Public.Motion.Frame,
+                            $"recipe:{saved.RecipeId}/{saved.Version}:{saved.DefinitionDigest}:commissioningFPosition");
+                    else if (saved.LightExecution is not null)
+                        throw new InvalidOperationException("CommissioningRecipeFPositionMissing");
+                }
+                (commissioningInputs ?? throw new InvalidOperationException("CommissioningAlgorithmInputsNotIntegrated"))
+                    .FreezeRun(run.RunId, startContext.TrayId, startContext.ScenarioId, frozen.Public, startContext.ExpectedRecipeRef, selectedFLocation);
             }
             var control = coordinator.Control(receipt.RunId)!;
             var publicEpoch = readiness.Observe().ConnectionEpoch;
@@ -287,9 +315,10 @@ public sealed class StartPublicPreparation(IPublicConfiguration configurations,
                 new { startContext.ScenarioId, occupiedCount = occupiedSlots.Length, admission,
                     initial3d.Observation.ObservationId, run.InitialObservationWriteId });
             var plan = ThreeDAndFRecipeGate.ExecuteAfterGate(gate, () =>
-                RecipeRunPlanner.BuildExecutable(selectedForF, startContext.TrayId.ToString("D"), occupiedSlots));
+                RecipeRunPlanner.BuildExecutable(selectedForF, startContext.TrayId.ToString("D"), occupiedSlots, run.Config.Public.Purpose));
             run.ExecutionInputs = RecipeAdmission.Freeze(run.RunId, startContext.TrayId, plan,
                 capabilities, executionCosts.Resolve(frozen), run.Config.Public.Purpose, run.Config.Public.Algorithms.TrayPose);
+            if (commissioning) commissioningInputs!.BindRecipe(run.RunId, run.ExecutionInputs);
             var planRevision = RecipePlanRevision.Compute(plan);
             var routeDeadlines = startContext.ExpectedRecipeRef is null ? null :
                 RecipeExecutionBudget.Freeze(plan, budget.Value, clock.GetUtcNow(), run.ExecutionInputs.CostProfile);
@@ -517,6 +546,7 @@ public sealed class StartPublicPreparation(IPublicConfiguration configurations,
         }
         finally
         {
+            commissioningInputs?.ReleaseRun(receipt.RunId);
             recovery?.ExecutionExited(receipt.RunId);
             var snapshot = coordinator.Query(receipt.RunId);
             RuntimeDiagnostics.Record("RunExecution", "Exited", receipt.RunId,

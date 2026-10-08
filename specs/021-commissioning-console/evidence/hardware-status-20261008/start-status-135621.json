@@ -1,0 +1,313 @@
+{
+  "schemaVersion": "s01-status/2.0",
+  "revision": 6665817190067716402,
+  "eTag": "\"status-5C81BD6AD7ADC13264732352\"",
+  "host": "Ready",
+  "plc": {
+    "schemaVersion": "device-semantics/1.2",
+    "reliability": "Unavailable",
+    "connection": "Disconnected",
+    "connectionEpoch": 2,
+    "operatingMode": "Unconfirmed",
+    "readiness": "Unconfirmed",
+    "safetyAssessment": "Unconfirmed",
+    "clamp": "Unconfirmed",
+    "motionAvailability": "HeldUnknown",
+    "acquisitionReadiness": "Unconfirmed",
+    "manualArea": "Unconfirmed",
+    "manualHandling": "Unconfirmed",
+    "position": {
+      "actualX": 0.008091926574707031,
+      "actualY": 6.198883056640625E-05,
+      "actualZ": 0.06711184978485107,
+      "axisPurpose": "MachineAxes",
+      "coordinateFrame": "COMMISSIONING_MACHINE",
+      "unitBasis": "User-confirmed 2026-10-08 mm/XY0..100/Z0..10/startupXYZ0; existing successful local recipe sha256:a898bc7001febf8e0d626f0542bacdac7ae7a8c493c80b3dd4d7202c81ff9a75:mm",
+      "observationId": "439711aa-b41e-4c9e-9b07-0fc5ea45b9e5",
+      "sampleStartedUtc": "2026-10-08T13:55:03.0918688+08:00",
+      "sampleEndedUtc": "2026-10-08T13:55:03.094106+08:00",
+      "connectionEpoch": 1,
+      "reliability": "Unavailable"
+    },
+    "alarms": null,
+    "reasonCodes": [
+      "PlcCommunicationUnknown"
+    ],
+    "executionOrigin": {
+      "provider": "Real",
+      "componentVersion": "Real:confirmed-20261006-v2;sources/PC.xls:37095748a61574d9a1c9bf17ad0ac9118d554fa73ac8f5e10003718b6627511d;sources/PLC(2).xls:8e846d0f71351f87b42db1bf40790f40766a392fd0a9e0968201f8c2056eb476;field:D:\\Gaode-PlcCommissioning-20261006\\release\\Gaode-PlcCommissioning-1.1.6-win-x64\\config\\local.json; effective read/write Cdab; PC.xls/PLC(2).xls confirmed memory layout",
+      "quality": "Measured"
+    },
+    "observationId": "093c5bb8-fd18-4e99-b6ac-9588f25526f0",
+    "sampleStartedUtc": "2026-10-08T13:55:03.6895133+08:00",
+    "sampleEndedUtc": "2026-10-08T13:55:03.6940967+08:00",
+    "diagnosticEvidenceReference": null,
+    "axisObservations": [
+      {
+        "axis": "X",
+        "position": 0.008091926574707031,
+        "unit": null,
+        "reliability": "Unavailable",
+        "observedAt": "2026-10-08T13:55:03.094106+08:00",
+        "connectionEpoch": 1,
+        "evidenceRef": null
+      },
+      {
+        "axis": "Y",
+        "position": 6.198883056640625E-05,
+        "unit": null,
+        "reliability": "Unavailable",
+        "observedAt": "2026-10-08T13:55:03.094106+08:00",
+        "connectionEpoch": 1,
+        "evidenceRef": null
+      },
+      {
+        "axis": "CameraZ",
+        "position": 0.06711184978485107,
+        "unit": null,
+        "reliability": "Unavailable",
+        "observedAt": "2026-10-08T13:55:03.094106+08:00",
+        "connectionEpoch": 1,
+        "evidenceRef": null
+      },
+      {
+        "axis": "ScanZ",
+        "position": 0.008227109909057617,
+        "unit": null,
+        "reliability": "Unavailable",
+        "observedAt": "2026-10-08T13:55:03.094106+08:00",
+        "connectionEpoch": 1,
+        "evidenceRef": null
+      },
+      {
+        "axis": "GrabZ",
+        "position": -0.06763935089111328,
+        "unit": null,
+        "reliability": "Unavailable",
+        "observedAt": "2026-10-08T13:55:03.094106+08:00",
+        "connectionEpoch": 1,
+        "evidenceRef": null
+      }
+    ]
+  },
+  "camera": {
+    "state": "Ready",
+    "source": "Real"
+  },
+  "storage": {
+    "state": "Ready",
+    "maintenance": "Idle"
+  },
+  "maintenance": {
+    "state": "Unknown",
+    "maintenance": "NotObserved"
+  },
+  "algorithm": {
+    "state": "Configured",
+    "source": "Simulated",
+    "reason": "station01-virtual-algorithm/1:260EDF1FFFCF969EA3D1271495B77A57B373345DFFA667F965F1D9297520D9FB"
+  },
+  "currentRun": {
+    "runId": "3d55a6d8-37b6-4988-8c6f-085b327ad61d",
+    "requestId": "eccffbc6-af94-428f-a7d5-9a977c56561c",
+    "subjectId": "commissioning:station01:operator",
+    "state": 20,
+    "observedRevision": 18,
+    "persistedRevision": 4,
+    "finalOutcome": 0,
+    "cancelRequested": false,
+    "action": 8,
+    "capture": 0,
+    "algorithm": 0,
+    "save": 3,
+    "handoff": 0,
+    "publicVersion": "1",
+    "budgetVersion": "1",
+    "simulationVersion": null,
+    "events": [
+      "Preparing",
+      "WaitingStartAcceptance",
+      "Blocked"
+    ],
+    "errorCode": "InvalidOperationException",
+    "identity": {
+      "runId": "3d55a6d8-37b6-4988-8c6f-085b327ad61d",
+      "trayId": "0c9bbe02-e96f-4ab2-9df9-091e1c8d3569",
+      "stationId": "station01",
+      "lineId": "line01",
+      "requestId": "eccffbc6-af94-428f-a7d5-9a977c56561c",
+      "scenarioId": "commissioning-single-flip",
+      "occupiedSlots": [
+        "s1"
+      ],
+      "startedAt": "2026-10-08T13:55:03.4288697+08:00",
+      "actorId": "commissioning:station01:operator",
+      "purpose": 2,
+      "publicConfigRevision": "1",
+      "budgetRevision": "1",
+      "simulationConfigRevision": "1"
+    },
+    "physicalAlarmRaised": false,
+    "automaticContinuationAllowed": false,
+    "physicalRestrictionCode": null,
+    "recipeState": "Unmatched",
+    "qualityState": "NotEvaluated",
+    "sortingState": "NotStarted",
+    "wholeTaskState": "NotCompleted",
+    "planRevision": null,
+    "recipeBindingReference": null,
+    "handoffId": null,
+    "wholeTrayCompletionId": null,
+    "readyForUnlockSourceMatrixId": null,
+    "unlockObservedEventId": null,
+    "startupDiagnostic": {
+      "schemaVersion": "device-semantics/1",
+      "recordNature": "Derived",
+      "rawAvailability": "RawUnavailable",
+      "reasonCodes": [
+        "PlcCommunicationUnknown"
+      ],
+      "safetyAssessment": "Unconfirmed",
+      "stopStage": "WaitingStartAcceptance",
+      "disposition": "UnknownHeldNoAutomaticRetry",
+      "connectionEpoch": 2,
+      "observedAtUtc": "2026-10-08T13:55:03.6940967+08:00",
+      "executionOrigin": {
+        "provider": "Real",
+        "componentVersion": "Real:confirmed-20261006-v2;sources/PC.xls:37095748a61574d9a1c9bf17ad0ac9118d554fa73ac8f5e10003718b6627511d;sources/PLC(2).xls:8e846d0f71351f87b42db1bf40790f40766a392fd0a9e0968201f8c2056eb476;field:D:\\Gaode-PlcCommissioning-20261006\\release\\Gaode-PlcCommissioning-1.1.6-win-x64\\config\\local.json; effective read/write Cdab; PC.xls/PLC(2).xls confirmed memory layout",
+        "quality": "Measured"
+      },
+      "semanticObservation": {
+        "schemaVersion": "device-semantics/1.2",
+        "reliability": "Unavailable",
+        "connection": "Disconnected",
+        "connectionEpoch": 2,
+        "operatingMode": "Unconfirmed",
+        "readiness": "Unconfirmed",
+        "safetyAssessment": "Unconfirmed",
+        "clamp": "Unconfirmed",
+        "motionAvailability": "HeldUnknown",
+        "acquisitionReadiness": "Unconfirmed",
+        "manualArea": "Unconfirmed",
+        "manualHandling": "Unconfirmed",
+        "position": {
+          "actualX": 0.008091926574707031,
+          "actualY": 6.198883056640625E-05,
+          "actualZ": 0.06711184978485107,
+          "axisPurpose": "MachineAxes",
+          "coordinateFrame": "COMMISSIONING_MACHINE",
+          "unitBasis": "User-confirmed 2026-10-08 mm/XY0..100/Z0..10/startupXYZ0; existing successful local recipe sha256:a898bc7001febf8e0d626f0542bacdac7ae7a8c493c80b3dd4d7202c81ff9a75:mm",
+          "observationId": "439711aa-b41e-4c9e-9b07-0fc5ea45b9e5",
+          "sampleStartedUtc": "2026-10-08T13:55:03.0918688+08:00",
+          "sampleEndedUtc": "2026-10-08T13:55:03.094106+08:00",
+          "connectionEpoch": 1,
+          "reliability": "Unavailable"
+        },
+        "alarms": null,
+        "reasonCodes": [
+          "PlcCommunicationUnknown"
+        ],
+        "executionOrigin": {
+          "provider": "Real",
+          "componentVersion": "Real:confirmed-20261006-v2;sources/PC.xls:37095748a61574d9a1c9bf17ad0ac9118d554fa73ac8f5e10003718b6627511d;sources/PLC(2).xls:8e846d0f71351f87b42db1bf40790f40766a392fd0a9e0968201f8c2056eb476;field:D:\\Gaode-PlcCommissioning-20261006\\release\\Gaode-PlcCommissioning-1.1.6-win-x64\\config\\local.json; effective read/write Cdab; PC.xls/PLC(2).xls confirmed memory layout",
+          "quality": "Measured"
+        },
+        "observationId": "093c5bb8-fd18-4e99-b6ac-9588f25526f0",
+        "sampleStartedUtc": "2026-10-08T13:55:03.6895133+08:00",
+        "sampleEndedUtc": "2026-10-08T13:55:03.6940967+08:00",
+        "diagnosticEvidenceReference": null,
+        "axisObservations": [
+          {
+            "axis": "X",
+            "position": 0.008091926574707031,
+            "unit": null,
+            "reliability": "Unavailable",
+            "observedAt": "2026-10-08T13:55:03.094106+08:00",
+            "connectionEpoch": 1,
+            "evidenceRef": null
+          },
+          {
+            "axis": "Y",
+            "position": 6.198883056640625E-05,
+            "unit": null,
+            "reliability": "Unavailable",
+            "observedAt": "2026-10-08T13:55:03.094106+08:00",
+            "connectionEpoch": 1,
+            "evidenceRef": null
+          },
+          {
+            "axis": "CameraZ",
+            "position": 0.06711184978485107,
+            "unit": null,
+            "reliability": "Unavailable",
+            "observedAt": "2026-10-08T13:55:03.094106+08:00",
+            "connectionEpoch": 1,
+            "evidenceRef": null
+          },
+          {
+            "axis": "ScanZ",
+            "position": 0.008227109909057617,
+            "unit": null,
+            "reliability": "Unavailable",
+            "observedAt": "2026-10-08T13:55:03.094106+08:00",
+            "connectionEpoch": 1,
+            "evidenceRef": null
+          },
+          {
+            "axis": "GrabZ",
+            "position": -0.06763935089111328,
+            "unit": null,
+            "reliability": "Unavailable",
+            "observedAt": "2026-10-08T13:55:03.094106+08:00",
+            "connectionEpoch": 1,
+            "evidenceRef": null
+          }
+        ]
+      },
+      "diagnosticEvidenceReference": null
+    },
+    "readyForRemovalSourceMatrixId": null,
+    "manualRemovalAllowedEventId": null,
+    "recipeSelection": {
+      "recipeId": "1eb168da6ae44f1f983c17c48d21a59f",
+      "version": "3e477719e9454072a999a8b7acdde9d9",
+      "catalogDigest": "C84639E9E88601F9590A95936FB3498CB11ECC100071CF92ADF6F705AAF3CFCF",
+      "scenarioId": "commissioning-single-flip",
+      "purpose": "Commissioning"
+    },
+    "recipeExecution": null,
+    "executionPhase": null,
+    "axisObservations": [],
+    "slotStates": [],
+    "abnormalPhysicalSlotIndices": null,
+    "observationCoverage": {
+      "state": "NotObserved",
+      "lastObservationRef": null
+    },
+    "allowedActions": [],
+    "waitingManualFlip": null,
+    "failedCommandRecovery": null,
+    "results": [],
+    "executionState": "Blocked",
+    "deviceSchemaVersion": "device-semantics/1.2",
+    "resultSchemaVersion": "station01-result-display/1.1",
+    "resultRevision": null,
+    "resultContext": null,
+    "faultRestart": null,
+    "movements": [],
+    "trayAnomalyDecision": null,
+    "trayEndReason": null,
+    "inspectionCompleted": null
+  },
+  "capabilities": [
+    "Station01PublicPreparation",
+    "FixedXY",
+    "FSingleCapture"
+  ],
+  "observedAt": "2026-10-08T13:56:11.9753967+08:00",
+  "mode": "RealDeviceCommissioning",
+  "stage": "Blocked",
+  "recipe": "Unmatched",
+  "quality": "NotEvaluated",
+  "activeRuns": 1
+}

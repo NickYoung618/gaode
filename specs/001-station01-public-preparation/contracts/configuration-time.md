@@ -2,6 +2,8 @@
 
 # 公共配置、模拟延迟与期限合同
 
+020阶段B当前增量：RealDeviceCommissioning公共/预算schema、六项RecipeExecution额度和StoreManifest.Profile已接入，同一正式协调器使用真实PLC/七机及显式模拟算法/灯。联调快照另存CommissioningJson/Digest，不加载Test SimulationProfile；RunPurpose.Commissioning对应新用途。旧Test/Production行为和下文历史设计保留，精确引用/来源/机械坐标依据见[MC-020](../../020-real-device-commissioning/contracts/mixed-runtime.md)，实际边界见[验证](../../020-real-device-commissioning/validation-stage-b.md)。
+
 **版本**：s01-config-time/1.1　**状态**：设计资产，未执行。  
 依据：FR-003至FR-006、FR-014/019/027/028/029、FR-033至FR-040，CL-01至CL-06，P03–P11。
 
@@ -120,3 +122,5 @@ Respond按延迟输出；Fail按延迟输出明确失败；NoResponse不向调�
 完整字段和判据见[IB](../../010-recipe-execution-isolation/contracts/input-boundaries.md)、[CE](../../010-recipe-execution-isolation/contracts/common-execution.md)、[VG](../../010-recipe-execution-isolation/contracts/verification.md)。原反馈、真实保存、取消、期限、未知占用、来源真实性及生产局部限制保持。不新增页面/真实SDK/工艺/历史数据库升级。
 
 013首次改后构建的实际消费者核对：007 examples及010当前content-config中的s01-budget-virtual-loop活动实例同样迁至schema 2.0/实例3.0.0；s01-sim-virtual-loop保持schema 1.0并迁实例3.0.0、budgetRef 3.0.0。仅删除plcPoll和更新绑定/摘要，业务预算与模拟时序不变。007/010历史证据、原任务勾选及013冻结B0/B保持旧版本；这项必要加载迁移不增加007或010完整动态链验证。
+
+020增量：BusinessBudget可选RecipeExecution（仅RealDeviceCommissioning必需），含CaptureMs、AlgorithmMs、AcquisitionReleaseMs、CaptureWaitMs、AlgorithmWaitMs、InputReleaseWaitMs；全部正整数，分别对应既有ExecutionCostProfile的执行额度与等待期限，来源采用预算Source/版本/digest。动作预算继续沿既有字段，不新增PickWaitMs/PlaceWaitMs/SafeWaitMs。旧Test成本不变。新联调配置身份、模拟输入与Parser来源见MC-020；缺现场依据不得准入。

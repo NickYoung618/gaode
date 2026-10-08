@@ -1,0 +1,148 @@
+{
+  "id": "e580ad497450",
+  "name": "模拟翻面件-001",
+  "state": "failed",
+  "step": 1,
+  "started": 1791392187.3453531,
+  "steps": [
+    {
+      "id": 1,
+      "name": "人工上料",
+      "state": "running"
+    },
+    {
+      "id": 2,
+      "name": "3D 初次观察",
+      "state": "queued"
+    },
+    {
+      "id": 3,
+      "name": "F 相机扫码",
+      "state": "queued"
+    },
+    {
+      "id": 4,
+      "name": "第一面 A 拍照",
+      "state": "queued"
+    },
+    {
+      "id": 5,
+      "name": "第一面 B 拍照",
+      "state": "queued"
+    },
+    {
+      "id": 6,
+      "name": "翻面取料定位",
+      "state": "queued"
+    },
+    {
+      "id": 7,
+      "name": "翻到第二面",
+      "state": "queued"
+    },
+    {
+      "id": 8,
+      "name": "放回原槽定位",
+      "state": "queued"
+    },
+    {
+      "id": 9,
+      "name": "放回原槽",
+      "state": "queued"
+    },
+    {
+      "id": 10,
+      "name": "3D 姿态复查",
+      "state": "queued"
+    },
+    {
+      "id": 11,
+      "name": "第二面 C 拍照",
+      "state": "queued"
+    },
+    {
+      "id": 12,
+      "name": "第二面 D 拍照",
+      "state": "queued"
+    },
+    {
+      "id": 13,
+      "name": "汇总并保存结果",
+      "state": "queued"
+    },
+    {
+      "id": 14,
+      "name": "返回下料位",
+      "state": "queued"
+    }
+  ],
+  "barcode": null,
+  "inspections": [],
+  "signals": [
+    {
+      "id": "e17ff88e11",
+      "at": "2026-10-08T00:56:27+0800",
+      "epoch": 1791392187.366393,
+      "kind": "SIGNAL",
+      "title": "信号变化：Send_Data_PC_System_Ready",
+      "idSignal": "pc.PC_System_Ready",
+      "mb": 2006,
+      "before": 0,
+      "value": 1,
+      "rawRegisters": [
+        1
+      ],
+      "connectionGeneration": 1,
+      "recipeRunId": "e580ad497450",
+      "recipeStep": 1
+    }
+  ],
+  "milestones": [
+    {
+      "id": "44db903138",
+      "at": "2026-10-08T00:56:27+0800",
+      "epoch": 1791392187.3453531,
+      "kind": "RECIPE_STEP",
+      "title": "开始步骤：人工上料",
+      "recipeRunId": "e580ad497450",
+      "recipeStep": 1,
+      "connectionGeneration": 1
+    },
+    {
+      "id": "e409ab2bac",
+      "at": "2026-10-08T00:56:27+0800",
+      "epoch": 1791392187.3603532,
+      "kind": "RECIPE_START",
+      "title": "用户开始本盘；真实PLC反馈推进，相机模式=simulated",
+      "recipeRunId": "e580ad497450",
+      "recipeStep": 1,
+      "connectionGeneration": 1
+    },
+    {
+      "id": "6f7f51dbce",
+      "at": "2026-10-08T00:56:27+0800",
+      "epoch": 1791392187.3613536,
+      "kind": "RECIPE_PAUSE",
+      "title": "暂停推进；在途动作不会被此按钮停止",
+      "recipeRunId": "e580ad497450",
+      "recipeStep": 1,
+      "connectionGeneration": 1
+    },
+    {
+      "id": "7696906f56",
+      "at": "2026-10-08T00:56:27+0800",
+      "epoch": 1791392187.3739858,
+      "kind": "RECIPE_FAILED",
+      "title": "通信断开；本盘不自动恢复、重试或清零",
+      "recipeRunId": "e580ad497450",
+      "recipeStep": 1,
+      "connectionGeneration": 2
+    }
+  ],
+  "trail": [],
+  "result": null,
+  "simulated": true,
+  "recordPurpose": "流程测试",
+  "realInspectionResult": false,
+  "reason": "通信断开；本盘不自动恢复、重试或清零"
+}

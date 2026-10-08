@@ -1,0 +1,965 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<TestRun id="d1586419-b15e-4d83-9d6c-44c59b41e0e4" name="codexsandboxonline@10_3_0_13 2026-10-08 23:55:07" runUser="10_3_0_13\CodexSandboxOnline" xmlns="http://microsoft.com/schemas/VisualStudio/TeamTest/2010">
+  <Times creation="2026-10-08T23:55:07.3787010+08:00" queuing="2026-10-08T23:55:07.3787014+08:00" start="2026-10-08T23:54:42.5163340+08:00" finish="2026-10-08T23:56:08.7374693+08:00" />
+  <TestSettings name="default" id="147005bb-961b-4aed-accb-74efab08070e">
+    <Deployment runDeploymentRoot="codexsandboxonline_10_3_0_13_2026-10-08_23_55_07" />
+  </TestSettings>
+  <Results>
+    <UnitTestResult executionId="a1111c1d-d191-45e8-b128-ea6868dd16b7" testId="db5413d9-8b39-85cc-3099-392d4f0ed6ad" testName="Gaode.Rules.Tests.Architecture.RecipeExecutionBoundaryTests.LegitimateOriginDecodingAndAdmissionRemainAllowed(sample: &quot;P03&quot;)" computerName="10_3_0_13" duration="00:00:00.3441533" startTime="2026-10-08T23:56:07.1300721+08:00" endTime="2026-10-08T23:56:07.4746795+08:00" testType="13cdc9d9-ddb5-4fa4-a97d-d965ccfc6d4b" outcome="Passed" testListId="8c84fa94-04c1-424b-9868-57a2d4851a1d" relativeResultsDirectory="a1111c1d-d191-45e8-b128-ea6868dd16b7" />
+    <UnitTestResult executionId="ef630ad1-d8cc-4a79-b403-3b72cc068ac8" testId="58b04c5a-8733-3ac0-f7d1-296d2fb84ce6" testName="Gaode.Rules.Tests.Architecture.ProtocolBoundaryTests.PositiveCaseIsActuallyParsedAndChecked(caseId: &quot;P05-opaque-reference&quot;, role: &quot;business&quot;, source: &quot;class Flow { string Preserve(string evidenceRefere&quot;···)" computerName="10_3_0_13" duration="00:00:01.4048657" startTime="2026-10-08T23:55:05.0687867+08:00" endTime="2026-10-08T23:55:06.4731547+08:00" testType="13cdc9d9-ddb5-4fa4-a97d-d965ccfc6d4b" outcome="Passed" testListId="8c84fa94-04c1-424b-9868-57a2d4851a1d" relativeResultsDirectory="ef630ad1-d8cc-4a79-b403-3b72cc068ac8" />
+    <UnitTestResult executionId="3eb81759-9ed0-4577-b9d6-1c62b4593ce8" testId="496cbc4a-b10d-5592-f4e3-c1dbe5be7765" testName="Gaode.Rules.Tests.Architecture.ProtocolRepositoryBoundaryTests.PublicPortShapesAreReviewed" computerName="10_3_0_13" duration="00:00:00.0003182" startTime="2026-10-08T23:56:05.5666698+08:00" endTime="2026-10-08T23:56:05.5668305+08:00" testType="13cdc9d9-ddb5-4fa4-a97d-d965ccfc6d4b" outcome="Failed" testListId="8c84fa94-04c1-424b-9868-57a2d4851a1d" relativeResultsDirectory="3eb81759-9ed0-4577-b9d6-1c62b4593ce8">
+      <Output>
+        <ErrorInfo>
+          <Message>System.IO.DirectoryNotFoundException : Could not find a part of the path 'E:\dzk\gaode-1\backend\src\Gaode.CameraWorker\$(CameraProIncludeRoot)\*.cs'.</Message>
+          <StackTrace>   at Microsoft.Win32.SafeHandles.SafeFileHandle.CreateFile(String fullPath, FileMode mode, FileAccess access, FileShare share, FileOptions options)&#xD;
+   at System.IO.Strategies.OSFileStreamStrategy..ctor(String path, FileMode mode, FileAccess access, FileShare share, FileOptions options, Int64 preallocationSize, Nullable`1 unixCreateMode)&#xD;
+   at System.IO.Strategies.FileStreamHelpers.ChooseStrategyCore(String path, FileMode mode, FileAccess access, FileShare share, FileOptions options, Int64 preallocationSize, Nullable`1 unixCreateMode)&#xD;
+   at System.IO.StreamReader.ValidateArgsAndOpenPath(String path, Int32 bufferSize)&#xD;
+   at System.IO.File.ReadAllText(String path, Encoding encoding)&#xD;
+   at Gaode.Rules.Tests.Architecture.ProtocolRepositoryBoundaryTests.&lt;&gt;c.&lt;Scan&gt;b__11_9(String path) in E:\dzk\gaode-1\backend\tests\Gaode.Rules.Tests\Architecture\ProtocolRepositoryBoundaryTests.cs:line 80&#xD;
+   at System.Linq.Enumerable.IEnumerableSelectIterator`2.ToList()&#xD;
+   at Gaode.Rules.Tests.Architecture.ProtocolRepositoryBoundaryTests.&lt;&gt;c__DisplayClass11_0.&lt;Scan&gt;g__Compile|5(String project) in E:\dzk\gaode-1\backend\tests\Gaode.Rules.Tests\Architecture\ProtocolRepositoryBoundaryTests.cs:line 80&#xD;
+   at Gaode.Rules.Tests.Architecture.ProtocolRepositoryBoundaryTests.Scan() in E:\dzk\gaode-1\backend\tests\Gaode.Rules.Tests\Architecture\ProtocolRepositoryBoundaryTests.cs:line 115&#xD;
+   at System.Lazy`1.ViaFactory(LazyThreadSafetyMode mode)&#xD;
+--- End of stack trace from previous location ---&#xD;
+   at System.Lazy`1.CreateValue()&#xD;
+   at Gaode.Rules.Tests.Architecture.ProtocolRepositoryBoundaryTests.AssertClean(String[] rules) in E:\dzk\gaode-1\backend\tests\Gaode.Rules.Tests\Architecture\ProtocolRepositoryBoundaryTests.cs:line 27&#xD;
+   at Gaode.Rules.Tests.Architecture.ProtocolRepositoryBoundaryTests.PublicPortShapesAreReviewed() in E:\dzk\gaode-1\backend\tests\Gaode.Rules.Tests\Architecture\ProtocolRepositoryBoundaryTests.cs:line 19&#xD;
+   at System.Reflection.MethodBaseInvoker.InterpretedInvoke_Method(Object obj, IntPtr* args)&#xD;
+   at System.Reflection.RuntimeMethodInfo.Invoke(Object obj, BindingFlags invokeAttr, Binder binder, Object[] parameters, CultureInfo culture)</StackTrace>
+        </ErrorInfo>
+      </Output>
+    </UnitTestResult>
+    <UnitTestResult executionId="a9c0c0dd-6c9b-4459-9e19-0fedb48fc48f" testId="6c076bbe-ea90-bacf-f73a-ac4a47d49016" testName="Gaode.Rules.Tests.Architecture.ProtocolBoundaryTests.NegativeCaseUsesProductionChecker(caseId: &quot;N06-handshake/manual-fact&quot;, expectedRule: &quot;A04&quot;, role: &quot;business&quot;, source: &quot;class Flow { object Fact() =&gt; new { kind=\&quot;ManualF&quot;···)" computerName="10_3_0_13" duration="00:00:00.5184846" startTime="2026-10-08T23:55:20.8603502+08:00" endTime="2026-10-08T23:55:21.3794678+08:00" testType="13cdc9d9-ddb5-4fa4-a97d-d965ccfc6d4b" outcome="Passed" testListId="8c84fa94-04c1-424b-9868-57a2d4851a1d" relativeResultsDirectory="a9c0c0dd-6c9b-4459-9e19-0fedb48fc48f" />
+    <UnitTestResult executionId="2ca31ae2-eb24-4ed0-8f19-fd78afbf08a2" testId="cefd940b-8c1a-525d-6289-04f97b04aba2" testName="Gaode.Rules.Tests.Architecture.ProtocolBoundaryTests.PositiveCaseIsActuallyParsedAndChecked(caseId: &quot;P04-business-payload&quot;, role: &quot;business&quot;, source: &quot;class Image { double[] Read(JsonElement data)=&gt;[da&quot;···)" computerName="10_3_0_13" duration="00:00:00.7927322" startTime="2026-10-08T23:55:11.4500707+08:00" endTime="2026-10-08T23:55:12.2406160+08:00" testType="13cdc9d9-ddb5-4fa4-a97d-d965ccfc6d4b" outcome="Passed" testListId="8c84fa94-04c1-424b-9868-57a2d4851a1d" relativeResultsDirectory="2ca31ae2-eb24-4ed0-8f19-fd78afbf08a2" />
+    <UnitTestResult executionId="d8b7dabf-85c1-46d8-9904-72b0914ead8e" testId="42bf4c37-82e2-5822-53f4-7cb9fe732cb9" testName="Gaode.Rules.Tests.Architecture.ProtocolBoundaryTests.ProtectedClassificationCannotHideWireKnowledge(caseId: &quot;N18-protected-path/state&quot;, path: &quot;backend/src/Gaode.Infrastructure/Simulation/Simula&quot;···)" computerName="10_3_0_13" duration="00:00:00.4466630" startTime="2026-10-08T23:55:29.3224336+08:00" endTime="2026-10-08T23:55:29.7686401+08:00" testType="13cdc9d9-ddb5-4fa4-a97d-d965ccfc6d4b" outcome="Passed" testListId="8c84fa94-04c1-424b-9868-57a2d4851a1d" relativeResultsDirectory="d8b7dabf-85c1-46d8-9904-72b0914ead8e" />
+    <UnitTestResult executionId="4597eb8a-e044-4daa-a6da-328459b78a47" testId="a40af4cf-659c-c48c-85c8-caa9547c13da" testName="Gaode.Rules.Tests.Architecture.RecipeExecutionBoundaryTests.CurrentBusinessClosureSatisfiesRule(rule: &quot;B01&quot;)" computerName="10_3_0_13" duration="00:00:00.0006317" startTime="2026-10-08T23:56:05.5737330+08:00" endTime="2026-10-08T23:56:05.5738914+08:00" testType="13cdc9d9-ddb5-4fa4-a97d-d965ccfc6d4b" outcome="Failed" testListId="8c84fa94-04c1-424b-9868-57a2d4851a1d" relativeResultsDirectory="4597eb8a-e044-4daa-a6da-328459b78a47">
+      <Output>
+        <ErrorInfo>
+          <Message>System.IO.DirectoryNotFoundException : Could not find a part of the path 'E:\dzk\gaode-1\backend\src\Gaode.CameraWorker\$(CameraProIncludeRoot)\*.cs'.</Message>
+          <StackTrace>   at Microsoft.Win32.SafeHandles.SafeFileHandle.CreateFile(String fullPath, FileMode mode, FileAccess access, FileShare share, FileOptions options)&#xD;
+   at System.IO.Strategies.OSFileStreamStrategy..ctor(String path, FileMode mode, FileAccess access, FileShare share, FileOptions options, Int64 preallocationSize, Nullable`1 unixCreateMode)&#xD;
+   at System.IO.Strategies.FileStreamHelpers.ChooseStrategyCore(String path, FileMode mode, FileAccess access, FileShare share, FileOptions options, Int64 preallocationSize, Nullable`1 unixCreateMode)&#xD;
+   at System.IO.StreamReader.ValidateArgsAndOpenPath(String path, Int32 bufferSize)&#xD;
+   at System.IO.File.ReadAllText(String path, Encoding encoding)&#xD;
+   at Gaode.Rules.Tests.Architecture.ProtocolRepositoryBoundaryTests.&lt;&gt;c.&lt;Scan&gt;b__11_9(String path) in E:\dzk\gaode-1\backend\tests\Gaode.Rules.Tests\Architecture\ProtocolRepositoryBoundaryTests.cs:line 80&#xD;
+   at System.Linq.Enumerable.IEnumerableSelectIterator`2.ToList()&#xD;
+   at Gaode.Rules.Tests.Architecture.ProtocolRepositoryBoundaryTests.&lt;&gt;c__DisplayClass11_0.&lt;Scan&gt;g__Compile|5(String project) in E:\dzk\gaode-1\backend\tests\Gaode.Rules.Tests\Architecture\ProtocolRepositoryBoundaryTests.cs:line 80&#xD;
+   at Gaode.Rules.Tests.Architecture.ProtocolRepositoryBoundaryTests.Scan() in E:\dzk\gaode-1\backend\tests\Gaode.Rules.Tests\Architecture\ProtocolRepositoryBoundaryTests.cs:line 115&#xD;
+   at System.Lazy`1.ViaFactory(LazyThreadSafetyMode mode)&#xD;
+   at System.Lazy`1.ExecutionAndPublication(LazyHelper executionAndPublication, Boolean useDefaultConstructor)&#xD;
+   at System.Lazy`1.CreateValue()&#xD;
+   at Gaode.Rules.Tests.Architecture.ProtocolRepositoryBoundaryTests.get_SourceModels() in E:\dzk\gaode-1\backend\tests\Gaode.Rules.Tests\Architecture\ProtocolRepositoryBoundaryTests.cs:line 13&#xD;
+   at Gaode.Rules.Tests.Architecture.RecipeExecutionBoundaryTests.&lt;&gt;c.&lt;.cctor&gt;b__13_0() in E:\dzk\gaode-1\backend\tests\Gaode.Rules.Tests\Architecture\RecipeExecutionBoundaryTests.cs:line 96&#xD;
+   at System.Lazy`1.ViaFactory(LazyThreadSafetyMode mode)&#xD;
+--- End of stack trace from previous location ---&#xD;
+   at System.LazyHelper.ThrowException()&#xD;
+   at System.Lazy`1.CreateValue()&#xD;
+   at System.Lazy`1.get_Value()&#xD;
+   at Gaode.Rules.Tests.Architecture.RecipeExecutionBoundaryTests.CurrentBusinessClosureSatisfiesRule(String rule) in E:\dzk\gaode-1\backend\tests\Gaode.Rules.Tests\Architecture\RecipeExecutionBoundaryTests.cs:line 129&#xD;
+   at InvokeStub_RecipeExecutionBoundaryTests.CurrentBusinessClosureSatisfiesRule(Object, Span`1)&#xD;
+   at System.Reflection.MethodBaseInvoker.InvokeWithOneArg(Object obj, BindingFlags invokeAttr, Binder binder, Object[] parameters, CultureInfo culture)</StackTrace>
+        </ErrorInfo>
+      </Output>
+    </UnitTestResult>
+    <UnitTestResult executionId="4ebadabe-532e-4aed-b01f-35f3be927dce" testId="4408a701-9454-da98-16af-983bca49d5f9" testName="Gaode.Rules.Tests.Architecture.DependencyRulesTests.ProjectReferencesFollowTheFourLayerBoundary" computerName="10_3_0_13" duration="00:00:00.0363088" startTime="2026-10-08T23:55:37.5089271+08:00" endTime="2026-10-08T23:55:37.5457664+08:00" testType="13cdc9d9-ddb5-4fa4-a97d-d965ccfc6d4b" outcome="Passed" testListId="8c84fa94-04c1-424b-9868-57a2d4851a1d" relativeResultsDirectory="4ebadabe-532e-4aed-b01f-35f3be927dce" />
+    <UnitTestResult executionId="3898cdb4-dda4-4ef7-800e-059d20e5f855" testId="f54baa8a-adf9-3951-5906-284c3953cf11" testName="Gaode.Rules.Tests.Architecture.ProtocolBoundaryTests.NegativeCaseUsesProductionChecker(caseId: &quot;N02-renamed-state/json&quot;, expectedRule: &quot;A02&quot;, role: &quot;business&quot;, source: &quot;namespace Gaode.Application.Ports { public record &quot;···)" computerName="10_3_0_13" duration="00:00:00.5348678" startTime="2026-10-08T23:55:23.5739362+08:00" endTime="2026-10-08T23:55:24.1083866+08:00" testType="13cdc9d9-ddb5-4fa4-a97d-d965ccfc6d4b" outcome="Passed" testListId="8c84fa94-04c1-424b-9868-57a2d4851a1d" relativeResultsDirectory="3898cdb4-dda4-4ef7-800e-059d20e5f855" />
+    <UnitTestResult executionId="7542e670-45e8-405d-b897-bd0fabcb67b1" testId="9450e4c9-bcd6-93bf-3604-0ecb70659791" testName="Gaode.Rules.Tests.Architecture.RecipeExecutionBoundaryTests.CurrentSaveAndSerializationPathsCannotCreateAnotherExecutor(sample: &quot;recipe-unbounded-input&quot;, rule: &quot;B03&quot;)" computerName="10_3_0_13" duration="00:00:00.4465912" startTime="2026-10-08T23:55:14.5383291+08:00" endTime="2026-10-08T23:55:14.9855303+08:00" testType="13cdc9d9-ddb5-4fa4-a97d-d965ccfc6d4b" outcome="Passed" testListId="8c84fa94-04c1-424b-9868-57a2d4851a1d" relativeResultsDirectory="7542e670-45e8-405d-b897-bd0fabcb67b1" />
+    <UnitTestResult executionId="0f7799f5-84c7-4ab1-9cf9-468634b081b8" testId="43560dc9-c16e-26a1-c6af-12f3c6e1648b" testName="Gaode.Rules.Tests.Architecture.ProtocolBoundaryTests.NegativeCaseUsesProductionChecker(caseId: &quot;N06-handshake/acquisition-fact&quot;, expectedRule: &quot;A04&quot;, role: &quot;business-orchestration&quot;, source: &quot;class Flow { object Fact() =&gt; new { kind=\&quot;Detecti&quot;···)" computerName="10_3_0_13" duration="00:00:00.3844416" startTime="2026-10-08T23:55:25.0800851+08:00" endTime="2026-10-08T23:55:25.4695792+08:00" testType="13cdc9d9-ddb5-4fa4-a97d-d965ccfc6d4b" outcome="Passed" testListId="8c84fa94-04c1-424b-9868-57a2d4851a1d" relativeResultsDirectory="0f7799f5-84c7-4ab1-9cf9-468634b081b8" />
+    <UnitTestResult executionId="fdc4b9e6-bbce-479f-b76a-c748cfa39346" testId="62682928-cb07-87a8-66f8-2a456cf4a4aa" testName="Gaode.Rules.Tests.Architecture.RecipeExecutionBoundaryTests.IllegalArchitectureIsRejectedByTheRepositoryChecker(sample: &quot;N01c&quot;, requiredRule: &quot;B01&quot;)" computerName="10_3_0_13" duration="00:00:05.0792554" startTime="2026-10-08T23:55:00.1379487+08:00" endTime="2026-10-08T23:55:05.2538607+08:00" testType="13cdc9d9-ddb5-4fa4-a97d-d965ccfc6d4b" outcome="Passed" testListId="8c84fa94-04c1-424b-9868-57a2d4851a1d" relativeResultsDirectory="fdc4b9e6-bbce-479f-b76a-c748cfa39346" />
+    <UnitTestResult executionId="59b9d5f9-0d4c-4154-9a07-4fc237b6f51a" testId="17f0dfbe-761d-2ac2-bf6d-36459c6b0032" testName="Gaode.Rules.Tests.Architecture.ProtocolBoundaryTests.CurrentCompositionOptionsRemainAcceptedWithoutRetiredPollingKnob" computerName="10_3_0_13" duration="00:00:00.7332067" startTime="2026-10-08T23:55:28.1628810+08:00" endTime="2026-10-08T23:55:28.8965649+08:00" testType="13cdc9d9-ddb5-4fa4-a97d-d965ccfc6d4b" outcome="Passed" testListId="8c84fa94-04c1-424b-9868-57a2d4851a1d" relativeResultsDirectory="59b9d5f9-0d4c-4154-9a07-4fc237b6f51a" />
+    <UnitTestResult executionId="0df43323-8730-40dc-b5de-d842d86a9980" testId="2b9fedcc-67f4-0c8a-1024-70763963a291" testName="Gaode.Rules.Tests.Architecture.RecipeExecutionBoundaryTests.IllegalArchitectureIsRejectedByTheRepositoryChecker(sample: &quot;N01a&quot;, requiredRule: &quot;B01&quot;)" computerName="10_3_0_13" duration="00:00:00.3738197" startTime="2026-10-08T23:55:10.8085101+08:00" endTime="2026-10-08T23:55:11.1820860+08:00" testType="13cdc9d9-ddb5-4fa4-a97d-d965ccfc6d4b" outcome="Passed" testListId="8c84fa94-04c1-424b-9868-57a2d4851a1d" relativeResultsDirectory="0df43323-8730-40dc-b5de-d842d86a9980" />
+    <UnitTestResult executionId="7b7fbd58-2a56-4352-ba3c-8d6dd1dc4aeb" testId="226d66f5-023d-e3b4-d974-0da3be3fc71d" testName="Gaode.Rules.Tests.Architecture.ProtocolBoundaryTests.ProtectedClassificationCannotHideWireKnowledge(caseId: &quot;N18-protected-path/host&quot;, path: &quot;backend/src/Gaode.Host/Api/NewEndpoint.cs&quot;)" computerName="10_3_0_13" duration="00:00:00.4251528" startTime="2026-10-08T23:55:28.8972105+08:00" endTime="2026-10-08T23:55:29.3219325+08:00" testType="13cdc9d9-ddb5-4fa4-a97d-d965ccfc6d4b" outcome="Passed" testListId="8c84fa94-04c1-424b-9868-57a2d4851a1d" relativeResultsDirectory="7b7fbd58-2a56-4352-ba3c-8d6dd1dc4aeb" />
+    <UnitTestResult executionId="c9ab649a-829b-478b-a02a-36dba9c2a399" testId="1c1aca54-bf11-e411-04f3-f99f5d06c9cb" testName="Gaode.Rules.Tests.Architecture.RecipeExecutionBoundaryTests.TypedStageRefusalRemainsDistinctFromSuccessfulEarlyExit(status: &quot;PausedForManualReview&quot;, rejected: False)" computerName="10_3_0_13" duration="00:00:00.3371783" startTime="2026-10-08T23:56:06.4855759+08:00" endTime="2026-10-08T23:56:06.8234053+08:00" testType="13cdc9d9-ddb5-4fa4-a97d-d965ccfc6d4b" outcome="Passed" testListId="8c84fa94-04c1-424b-9868-57a2d4851a1d" relativeResultsDirectory="c9ab649a-829b-478b-a02a-36dba9c2a399" />
+    <UnitTestResult executionId="62a2bb70-e608-47b4-94a3-629009a03803" testId="dfa35b9e-7f5a-63de-07bb-f4aeaa0d9681" testName="Gaode.Rules.Tests.Architecture.ProtocolBoundaryTests.NegativeCaseUsesProductionChecker(caseId: &quot;N02-renamed-state/nested&quot;, expectedRule: &quot;A02&quot;, role: &quot;business&quot;, source: &quot;namespace Gaode.Application.Ports { public record &quot;···)" computerName="10_3_0_13" duration="00:00:00.9540704" startTime="2026-10-08T23:55:26.9291733+08:00" endTime="2026-10-08T23:55:27.8838321+08:00" testType="13cdc9d9-ddb5-4fa4-a97d-d965ccfc6d4b" outcome="Passed" testListId="8c84fa94-04c1-424b-9868-57a2d4851a1d" relativeResultsDirectory="62a2bb70-e608-47b4-94a3-629009a03803" />
+    <UnitTestResult executionId="2e5d364a-8970-4e5c-9ec5-d4e811dadba8" testId="e1450ba6-d466-7d7e-ce12-8720657ba27b" testName="Gaode.Rules.Tests.Architecture.ProtocolBoundaryTests.ProtectedClassificationCannotHideWireKnowledge(caseId: &quot;N18-protected-path/domain&quot;, path: &quot;backend/src/Gaode.Domain/NewPolicy.cs&quot;)" computerName="10_3_0_13" duration="00:00:00.3024156" startTime="2026-10-08T23:55:29.7706198+08:00" endTime="2026-10-08T23:55:30.0712538+08:00" testType="13cdc9d9-ddb5-4fa4-a97d-d965ccfc6d4b" outcome="Passed" testListId="8c84fa94-04c1-424b-9868-57a2d4851a1d" relativeResultsDirectory="2e5d364a-8970-4e5c-9ec5-d4e811dadba8" />
+    <UnitTestResult executionId="ea062fe1-0f28-4d45-b402-5cfbee17796b" testId="bdcdf9f7-ea81-eb91-872c-001cb875d9e2" testName="Gaode.Rules.Tests.Architecture.RecipeExecutionBoundaryTests.CurrentBusinessClosureSatisfiesRule(rule: &quot;B03&quot;)" computerName="10_3_0_13" duration="00:00:00.0000886" startTime="2026-10-08T23:56:05.5823335+08:00" endTime="2026-10-08T23:56:05.5824783+08:00" testType="13cdc9d9-ddb5-4fa4-a97d-d965ccfc6d4b" outcome="Failed" testListId="8c84fa94-04c1-424b-9868-57a2d4851a1d" relativeResultsDirectory="ea062fe1-0f28-4d45-b402-5cfbee17796b">
+      <Output>
+        <ErrorInfo>
+          <Message>System.IO.DirectoryNotFoundException : Could not find a part of the path 'E:\dzk\gaode-1\backend\src\Gaode.CameraWorker\$(CameraProIncludeRoot)\*.cs'.</Message>
+          <StackTrace>   at Microsoft.Win32.SafeHandles.SafeFileHandle.CreateFile(String fullPath, FileMode mode, FileAccess access, FileShare share, FileOptions options)&#xD;
+   at System.IO.Strategies.OSFileStreamStrategy..ctor(String path, FileMode mode, FileAccess access, FileShare share, FileOptions options, Int64 preallocationSize, Nullable`1 unixCreateMode)&#xD;
+   at System.IO.Strategies.FileStreamHelpers.ChooseStrategyCore(String path, FileMode mode, FileAccess access, FileShare share, FileOptions options, Int64 preallocationSize, Nullable`1 unixCreateMode)&#xD;
+   at System.IO.StreamReader.ValidateArgsAndOpenPath(String path, Int32 bufferSize)&#xD;
+   at System.IO.File.ReadAllText(String path, Encoding encoding)&#xD;
+   at Gaode.Rules.Tests.Architecture.ProtocolRepositoryBoundaryTests.&lt;&gt;c.&lt;Scan&gt;b__11_9(String path) in E:\dzk\gaode-1\backend\tests\Gaode.Rules.Tests\Architecture\ProtocolRepositoryBoundaryTests.cs:line 80&#xD;
+   at System.Linq.Enumerable.IEnumerableSelectIterator`2.ToList()&#xD;
+   at Gaode.Rules.Tests.Architecture.ProtocolRepositoryBoundaryTests.&lt;&gt;c__DisplayClass11_0.&lt;Scan&gt;g__Compile|5(String project) in E:\dzk\gaode-1\backend\tests\Gaode.Rules.Tests\Architecture\ProtocolRepositoryBoundaryTests.cs:line 80&#xD;
+   at Gaode.Rules.Tests.Architecture.ProtocolRepositoryBoundaryTests.Scan() in E:\dzk\gaode-1\backend\tests\Gaode.Rules.Tests\Architecture\ProtocolRepositoryBoundaryTests.cs:line 115&#xD;
+   at System.Lazy`1.ViaFactory(LazyThreadSafetyMode mode)&#xD;
+   at System.Lazy`1.ExecutionAndPublication(LazyHelper executionAndPublication, Boolean useDefaultConstructor)&#xD;
+   at System.Lazy`1.CreateValue()&#xD;
+   at Gaode.Rules.Tests.Architecture.ProtocolRepositoryBoundaryTests.get_SourceModels() in E:\dzk\gaode-1\backend\tests\Gaode.Rules.Tests\Architecture\ProtocolRepositoryBoundaryTests.cs:line 13&#xD;
+   at Gaode.Rules.Tests.Architecture.RecipeExecutionBoundaryTests.&lt;&gt;c.&lt;.cctor&gt;b__13_0() in E:\dzk\gaode-1\backend\tests\Gaode.Rules.Tests\Architecture\RecipeExecutionBoundaryTests.cs:line 96&#xD;
+   at System.Lazy`1.ViaFactory(LazyThreadSafetyMode mode)&#xD;
+--- End of stack trace from previous location ---&#xD;
+   at System.LazyHelper.ThrowException()&#xD;
+   at System.Lazy`1.CreateValue()&#xD;
+   at System.Lazy`1.get_Value()&#xD;
+   at Gaode.Rules.Tests.Architecture.RecipeExecutionBoundaryTests.CurrentBusinessClosureSatisfiesRule(String rule) in E:\dzk\gaode-1\backend\tests\Gaode.Rules.Tests\Architecture\RecipeExecutionBoundaryTests.cs:line 129&#xD;
+   at InvokeStub_RecipeExecutionBoundaryTests.CurrentBusinessClosureSatisfiesRule(Object, Span`1)&#xD;
+   at System.Reflection.MethodBaseInvoker.InvokeWithOneArg(Object obj, BindingFlags invokeAttr, Binder binder, Object[] parameters, CultureInfo culture)</StackTrace>
+        </ErrorInfo>
+      </Output>
+    </UnitTestResult>
+    <UnitTestResult executionId="24a1adbd-da1c-4a19-912e-5204e0baa373" testId="a2eb4142-c476-3af7-aa53-6f46834f5272" testName="Gaode.Rules.Tests.Architecture.ProtocolBoundaryTests.NegativeCaseUsesProductionChecker(caseId: &quot;N11-composition-raw&quot;, expectedRule: &quot;A04&quot;, role: &quot;composition-api&quot;, source: &quot;namespace Gaode.Infrastructure.Devices.Plc { publi&quot;···)" computerName="10_3_0_13" duration="00:00:00.3564405" startTime="2026-10-08T23:55:16.8630035+08:00" endTime="2026-10-08T23:55:17.2191440+08:00" testType="13cdc9d9-ddb5-4fa4-a97d-d965ccfc6d4b" outcome="Passed" testListId="8c84fa94-04c1-424b-9868-57a2d4851a1d" relativeResultsDirectory="24a1adbd-da1c-4a19-912e-5204e0baa373" />
+    <UnitTestResult executionId="5f59e94e-0327-4b04-a7c1-aaa088a67e4b" testId="e548f706-e0ca-7b28-5fb3-4ce324237449" testName="Gaode.Rules.Tests.Architecture.ProtocolBoundaryTests.NegativeCaseUsesProductionChecker(caseId: &quot;N06-handshake&quot;, expectedRule: &quot;A04&quot;, role: &quot;business&quot;, source: &quot;class Observation { public bool SortingAckCleared &quot;···)" computerName="10_3_0_13" duration="00:00:00.5413313" startTime="2026-10-08T23:55:21.3806733+08:00" endTime="2026-10-08T23:55:21.9225193+08:00" testType="13cdc9d9-ddb5-4fa4-a97d-d965ccfc6d4b" outcome="Passed" testListId="8c84fa94-04c1-424b-9868-57a2d4851a1d" relativeResultsDirectory="5f59e94e-0327-4b04-a7c1-aaa088a67e4b" />
+    <UnitTestResult executionId="2fac6863-f851-4501-b51c-d522e0b963da" testId="3904b9e5-adf5-9d4c-6432-e37c5205d1ad" testName="Gaode.Rules.Tests.Architecture.ProtocolBoundaryTests.ProtectedClassificationCannotHideWireKnowledge(caseId: &quot;N18-protected-path/unavailable&quot;, path: &quot;backend/src/Gaode.Infrastructure/Integrations/NotI&quot;···)" computerName="10_3_0_13" duration="00:00:00.7400886" startTime="2026-10-08T23:55:31.0418238+08:00" endTime="2026-10-08T23:55:31.7816207+08:00" testType="13cdc9d9-ddb5-4fa4-a97d-d965ccfc6d4b" outcome="Passed" testListId="8c84fa94-04c1-424b-9868-57a2d4851a1d" relativeResultsDirectory="2fac6863-f851-4501-b51c-d522e0b963da" />
+    <UnitTestResult executionId="cdf65750-4bde-4380-8933-855f8102c9b5" testId="a1ea0a2a-294e-542b-6ef7-a6fefc177da5" testName="Gaode.Rules.Tests.Architecture.ProtocolBoundaryTests.NegativeCaseUsesProductionChecker(caseId: &quot;N10-bypass&quot;, expectedRule: &quot;A06&quot;, role: &quot;communication-implementation&quot;, source: &quot;class Transport { public int[] ReadRegisters(int o&quot;···)" computerName="10_3_0_13" duration="00:00:00.6585015" startTime="2026-10-08T23:55:26.2698085+08:00" endTime="2026-10-08T23:55:26.9284846+08:00" testType="13cdc9d9-ddb5-4fa4-a97d-d965ccfc6d4b" outcome="Passed" testListId="8c84fa94-04c1-424b-9868-57a2d4851a1d" relativeResultsDirectory="cdf65750-4bde-4380-8933-855f8102c9b5" />
+    <UnitTestResult executionId="51bcb552-6179-4491-907a-9ee628ee7dbb" testId="0d274b5c-7a22-33c1-c8d7-8229d579c4cb" testName="Gaode.Rules.Tests.Architecture.ProtocolBoundaryTests.PositiveCaseIsActuallyParsedAndChecked(caseId: &quot;P02-coordinate-time&quot;, role: &quot;business&quot;, source: &quot;class Motion { bool Ready(double actual,double tar&quot;···)" computerName="10_3_0_13" duration="00:00:01.9730270" startTime="2026-10-08T23:55:08.7215539+08:00" endTime="2026-10-08T23:55:10.4091499+08:00" testType="13cdc9d9-ddb5-4fa4-a97d-d965ccfc6d4b" outcome="Passed" testListId="8c84fa94-04c1-424b-9868-57a2d4851a1d" relativeResultsDirectory="51bcb552-6179-4491-907a-9ee628ee7dbb" />
+    <UnitTestResult executionId="63516a1d-960e-46ec-9d2d-0f3fc952e45a" testId="d59be601-0c41-b8b8-6a7a-5da7e2e19b69" testName="Gaode.Rules.Tests.Architecture.ProtocolBoundaryTests.NegativeCaseUsesProductionChecker(caseId: &quot;N04-bit&quot;, expectedRule: &quot;A03&quot;, role: &quot;business&quot;, source: &quot;class Observation { public int AlarmBits {get;set;&quot;···)" computerName="10_3_0_13" duration="00:00:00.8711058" startTime="2026-10-08T23:55:18.6279004+08:00" endTime="2026-10-08T23:55:19.4971850+08:00" testType="13cdc9d9-ddb5-4fa4-a97d-d965ccfc6d4b" outcome="Passed" testListId="8c84fa94-04c1-424b-9868-57a2d4851a1d" relativeResultsDirectory="63516a1d-960e-46ec-9d2d-0f3fc952e45a" />
+    <UnitTestResult executionId="a8d6ac5c-7cb3-4c6b-b33a-2d2cecca97fb" testId="5cb177b5-ccaf-bbc8-3849-e3f763be9be7" testName="Gaode.Rules.Tests.Architecture.ProtocolBoundaryTests.PositiveCaseIsActuallyParsedAndChecked(caseId: &quot;P01-business-numbers&quot;, role: &quot;business&quot;, source: &quot;class Plan { bool Valid(int face,int slot)=&gt;face i&quot;···)" computerName="10_3_0_13" duration="00:00:00.7257909" startTime="2026-10-08T23:55:14.4791373+08:00" endTime="2026-10-08T23:55:15.2053985+08:00" testType="13cdc9d9-ddb5-4fa4-a97d-d965ccfc6d4b" outcome="Passed" testListId="8c84fa94-04c1-424b-9868-57a2d4851a1d" relativeResultsDirectory="a8d6ac5c-7cb3-4c6b-b33a-2d2cecca97fb" />
+    <UnitTestResult executionId="dd4449bd-3a58-47af-844e-a93f875c6a6a" testId="bf68ef45-8831-1a92-a4df-1588e7ed58db" testName="Gaode.Rules.Tests.Architecture.ProtocolBoundaryTests.NegativeCaseUsesProductionChecker(caseId: &quot;N08-business-wire-helper&quot;, expectedRule: &quot;A04&quot;, role: &quot;business-test&quot;, source: &quot;class Fixture { public int AcceptedWriteCount(int &quot;···)" computerName="10_3_0_13" duration="00:00:00.3710216" startTime="2026-10-08T23:55:16.4974469+08:00" endTime="2026-10-08T23:55:16.8625932+08:00" testType="13cdc9d9-ddb5-4fa4-a97d-d965ccfc6d4b" outcome="Passed" testListId="8c84fa94-04c1-424b-9868-57a2d4851a1d" relativeResultsDirectory="dd4449bd-3a58-47af-844e-a93f875c6a6a" />
+    <UnitTestResult executionId="9cd03cb8-1e35-47b0-9d8e-92690a40e86a" testId="b34444c3-b223-50fb-c4b0-af9bf03b1a02" testName="Gaode.Rules.Tests.Architecture.ProtocolRepositoryBoundaryTests.ProductionBusinessSourceBoundary" computerName="10_3_0_13" duration="00:00:27.9774351" startTime="2026-10-08T23:55:37.5561537+08:00" endTime="2026-10-08T23:56:05.5498470+08:00" testType="13cdc9d9-ddb5-4fa4-a97d-d965ccfc6d4b" outcome="Failed" testListId="8c84fa94-04c1-424b-9868-57a2d4851a1d" relativeResultsDirectory="9cd03cb8-1e35-47b0-9d8e-92690a40e86a">
+      <Output>
+        <ErrorInfo>
+          <Message>System.IO.DirectoryNotFoundException : Could not find a part of the path 'E:\dzk\gaode-1\backend\src\Gaode.CameraWorker\$(CameraProIncludeRoot)\*.cs'.</Message>
+          <StackTrace>   at Microsoft.Win32.SafeHandles.SafeFileHandle.CreateFile(String fullPath, FileMode mode, FileAccess access, FileShare share, FileOptions options)&#xD;
+   at System.IO.Strategies.OSFileStreamStrategy..ctor(String path, FileMode mode, FileAccess access, FileShare share, FileOptions options, Int64 preallocationSize, Nullable`1 unixCreateMode)&#xD;
+   at System.IO.Strategies.FileStreamHelpers.ChooseStrategyCore(String path, FileMode mode, FileAccess access, FileShare share, FileOptions options, Int64 preallocationSize, Nullable`1 unixCreateMode)&#xD;
+   at System.IO.StreamReader.ValidateArgsAndOpenPath(String path, Int32 bufferSize)&#xD;
+   at System.IO.File.ReadAllText(String path, Encoding encoding)&#xD;
+   at Gaode.Rules.Tests.Architecture.ProtocolRepositoryBoundaryTests.&lt;&gt;c.&lt;Scan&gt;b__11_9(String path) in E:\dzk\gaode-1\backend\tests\Gaode.Rules.Tests\Architecture\ProtocolRepositoryBoundaryTests.cs:line 80&#xD;
+   at System.Linq.Enumerable.IEnumerableSelectIterator`2.ToList()&#xD;
+   at Gaode.Rules.Tests.Architecture.ProtocolRepositoryBoundaryTests.&lt;&gt;c__DisplayClass11_0.&lt;Scan&gt;g__Compile|5(String project) in E:\dzk\gaode-1\backend\tests\Gaode.Rules.Tests\Architecture\ProtocolRepositoryBoundaryTests.cs:line 80&#xD;
+   at Gaode.Rules.Tests.Architecture.ProtocolRepositoryBoundaryTests.Scan() in E:\dzk\gaode-1\backend\tests\Gaode.Rules.Tests\Architecture\ProtocolRepositoryBoundaryTests.cs:line 115&#xD;
+   at System.Lazy`1.ViaFactory(LazyThreadSafetyMode mode)&#xD;
+--- End of stack trace from previous location ---&#xD;
+   at System.Lazy`1.CreateValue()&#xD;
+   at Gaode.Rules.Tests.Architecture.ProtocolRepositoryBoundaryTests.AssertClean(String[] rules) in E:\dzk\gaode-1\backend\tests\Gaode.Rules.Tests\Architecture\ProtocolRepositoryBoundaryTests.cs:line 27&#xD;
+   at Gaode.Rules.Tests.Architecture.ProtocolRepositoryBoundaryTests.ProductionBusinessSourceBoundary() in E:\dzk\gaode-1\backend\tests\Gaode.Rules.Tests\Architecture\ProtocolRepositoryBoundaryTests.cs:line 17&#xD;
+   at System.Reflection.MethodBaseInvoker.InterpretedInvoke_Method(Object obj, IntPtr* args)&#xD;
+   at System.Reflection.RuntimeMethodInfo.Invoke(Object obj, BindingFlags invokeAttr, Binder binder, Object[] parameters, CultureInfo culture)</StackTrace>
+        </ErrorInfo>
+      </Output>
+    </UnitTestResult>
+    <UnitTestResult executionId="ece96b1d-c421-4a76-b40f-d3e29f8dd317" testId="c1ec9266-6598-ff2b-18a1-1e79c6de8951" testName="Gaode.Rules.Tests.Architecture.ProtocolBoundaryTests.PositiveCaseIsActuallyParsedAndChecked(caseId: &quot;P04-storage-helper-name&quot;, role: &quot;business-test&quot;, source: &quot;class CommunicationEvidenceStoreTests { public sta&quot;···)" computerName="10_3_0_13" duration="00:00:00.8517231" startTime="2026-10-08T23:55:13.6261945+08:00" endTime="2026-10-08T23:55:14.4784131+08:00" testType="13cdc9d9-ddb5-4fa4-a97d-d965ccfc6d4b" outcome="Passed" testListId="8c84fa94-04c1-424b-9868-57a2d4851a1d" relativeResultsDirectory="ece96b1d-c421-4a76-b40f-d3e29f8dd317" />
+    <UnitTestResult executionId="c34348e2-8c11-4fd4-be4d-89702598ff39" testId="8ab0b0e1-72a4-99b6-22a8-a919fdcd1958" testName="Gaode.Rules.Tests.Architecture.ProtocolBoundaryTests.ProtectedClassificationCannotHideWireKnowledge(caseId: &quot;N18-protected-path/recipe&quot;, path: &quot;backend/src/Gaode.Infrastructure/Recipes/JsonRecip&quot;···)" computerName="10_3_0_13" duration="00:00:00.6601546" startTime="2026-10-08T23:55:30.3808504+08:00" endTime="2026-10-08T23:55:31.0413872+08:00" testType="13cdc9d9-ddb5-4fa4-a97d-d965ccfc6d4b" outcome="Passed" testListId="8c84fa94-04c1-424b-9868-57a2d4851a1d" relativeResultsDirectory="c34348e2-8c11-4fd4-be4d-89702598ff39" />
+    <UnitTestResult executionId="98c1dbfa-adaf-4bc9-ad96-755d4da244b3" testId="d9d21418-f42a-d751-76a2-a3e168445335" testName="Gaode.Rules.Tests.Architecture.ProtocolRepositoryBoundaryTests.FormalAdaptersUseNamedSignalAccess" computerName="10_3_0_13" duration="00:00:00.0003477" startTime="2026-10-08T23:56:05.5633998+08:00" endTime="2026-10-08T23:56:05.5637137+08:00" testType="13cdc9d9-ddb5-4fa4-a97d-d965ccfc6d4b" outcome="Failed" testListId="8c84fa94-04c1-424b-9868-57a2d4851a1d" relativeResultsDirectory="98c1dbfa-adaf-4bc9-ad96-755d4da244b3">
+      <Output>
+        <ErrorInfo>
+          <Message>System.IO.DirectoryNotFoundException : Could not find a part of the path 'E:\dzk\gaode-1\backend\src\Gaode.CameraWorker\$(CameraProIncludeRoot)\*.cs'.</Message>
+          <StackTrace>   at Microsoft.Win32.SafeHandles.SafeFileHandle.CreateFile(String fullPath, FileMode mode, FileAccess access, FileShare share, FileOptions options)&#xD;
+   at System.IO.Strategies.OSFileStreamStrategy..ctor(String path, FileMode mode, FileAccess access, FileShare share, FileOptions options, Int64 preallocationSize, Nullable`1 unixCreateMode)&#xD;
+   at System.IO.Strategies.FileStreamHelpers.ChooseStrategyCore(String path, FileMode mode, FileAccess access, FileShare share, FileOptions options, Int64 preallocationSize, Nullable`1 unixCreateMode)&#xD;
+   at System.IO.StreamReader.ValidateArgsAndOpenPath(String path, Int32 bufferSize)&#xD;
+   at System.IO.File.ReadAllText(String path, Encoding encoding)&#xD;
+   at Gaode.Rules.Tests.Architecture.ProtocolRepositoryBoundaryTests.&lt;&gt;c.&lt;Scan&gt;b__11_9(String path) in E:\dzk\gaode-1\backend\tests\Gaode.Rules.Tests\Architecture\ProtocolRepositoryBoundaryTests.cs:line 80&#xD;
+   at System.Linq.Enumerable.IEnumerableSelectIterator`2.ToList()&#xD;
+   at Gaode.Rules.Tests.Architecture.ProtocolRepositoryBoundaryTests.&lt;&gt;c__DisplayClass11_0.&lt;Scan&gt;g__Compile|5(String project) in E:\dzk\gaode-1\backend\tests\Gaode.Rules.Tests\Architecture\ProtocolRepositoryBoundaryTests.cs:line 80&#xD;
+   at Gaode.Rules.Tests.Architecture.ProtocolRepositoryBoundaryTests.Scan() in E:\dzk\gaode-1\backend\tests\Gaode.Rules.Tests\Architecture\ProtocolRepositoryBoundaryTests.cs:line 115&#xD;
+   at System.Lazy`1.ViaFactory(LazyThreadSafetyMode mode)&#xD;
+--- End of stack trace from previous location ---&#xD;
+   at System.Lazy`1.CreateValue()&#xD;
+   at Gaode.Rules.Tests.Architecture.ProtocolRepositoryBoundaryTests.AssertClean(String[] rules) in E:\dzk\gaode-1\backend\tests\Gaode.Rules.Tests\Architecture\ProtocolRepositoryBoundaryTests.cs:line 27&#xD;
+   at Gaode.Rules.Tests.Architecture.ProtocolRepositoryBoundaryTests.FormalAdaptersUseNamedSignalAccess() in E:\dzk\gaode-1\backend\tests\Gaode.Rules.Tests\Architecture\ProtocolRepositoryBoundaryTests.cs:line 23&#xD;
+   at System.Reflection.MethodBaseInvoker.InterpretedInvoke_Method(Object obj, IntPtr* args)&#xD;
+   at System.Reflection.RuntimeMethodInfo.Invoke(Object obj, BindingFlags invokeAttr, Binder binder, Object[] parameters, CultureInfo culture)</StackTrace>
+        </ErrorInfo>
+      </Output>
+    </UnitTestResult>
+    <UnitTestResult executionId="f1c10a19-530a-4f58-a388-8138a8d6eafc" testId="9f72cda7-6824-9cf3-66f4-47267b9d32bb" testName="Gaode.Rules.Tests.Architecture.ProtocolBoundaryTests.N09BusinessContractIsRejectedByTheSameDocumentRule" computerName="10_3_0_13" duration="00:00:00.0057680" startTime="2026-10-08T23:55:28.1559336+08:00" endTime="2026-10-08T23:55:28.1621513+08:00" testType="13cdc9d9-ddb5-4fa4-a97d-d965ccfc6d4b" outcome="Passed" testListId="8c84fa94-04c1-424b-9868-57a2d4851a1d" relativeResultsDirectory="f1c10a19-530a-4f58-a388-8138a8d6eafc" />
+    <UnitTestResult executionId="7709afe1-0700-4e99-b775-8b9dc045ab80" testId="4dd015ed-855d-798c-352c-09b72ad61e0f" testName="Gaode.Rules.Tests.Architecture.ProtocolBoundaryTests.NegativeCaseUsesProductionChecker(caseId: &quot;N02-renamed-state&quot;, expectedRule: &quot;A02&quot;, role: &quot;business&quot;, source: &quot;namespace Gaode.Application.Ports { public record &quot;···)" computerName="10_3_0_13" duration="00:00:00.4281393" startTime="2026-10-08T23:55:25.7779921+08:00" endTime="2026-10-08T23:55:26.2046019+08:00" testType="13cdc9d9-ddb5-4fa4-a97d-d965ccfc6d4b" outcome="Passed" testListId="8c84fa94-04c1-424b-9868-57a2d4851a1d" relativeResultsDirectory="7709afe1-0700-4e99-b775-8b9dc045ab80" />
+    <UnitTestResult executionId="89874817-2163-43de-842c-c4684762a770" testId="e900d00c-caaf-ca0c-c2d5-414dd0b972f0" testName="Gaode.Rules.Tests.Architecture.ProtocolBoundaryTests.NegativeCaseUsesProductionChecker(caseId: &quot;N07-qualified-exchange&quot;, expectedRule: &quot;A03&quot;, role: &quot;business&quot;, source: &quot;namespace Gaode.Infrastructure.Persistence { publi&quot;···)" computerName="10_3_0_13" duration="00:00:00.5148209" startTime="2026-10-08T23:55:23.0575227+08:00" endTime="2026-10-08T23:55:23.5734419+08:00" testType="13cdc9d9-ddb5-4fa4-a97d-d965ccfc6d4b" outcome="Passed" testListId="8c84fa94-04c1-424b-9868-57a2d4851a1d" relativeResultsDirectory="89874817-2163-43de-842c-c4684762a770" />
+    <UnitTestResult executionId="7b9906cc-7e6c-4783-9b2b-6583b5f6e17d" testId="9f41d4b4-abfa-aeab-3c40-e87f46652918" testName="Gaode.Rules.Tests.Architecture.RecipeExecutionBoundaryTests.LegitimateOriginDecodingAndAdmissionRemainAllowed(sample: &quot;P01&quot;)" computerName="10_3_0_13" duration="00:00:00.2946662" startTime="2026-10-08T23:56:07.4781127+08:00" endTime="2026-10-08T23:56:07.7728707+08:00" testType="13cdc9d9-ddb5-4fa4-a97d-d965ccfc6d4b" outcome="Passed" testListId="8c84fa94-04c1-424b-9868-57a2d4851a1d" relativeResultsDirectory="7b9906cc-7e6c-4783-9b2b-6583b5f6e17d" />
+    <UnitTestResult executionId="cb6017d5-435a-4ed4-9f45-973333376b1c" testId="6c4cc098-f74a-1129-0df9-e5864a58bbaf" testName="Gaode.Rules.Tests.Architecture.RecipeExecutionBoundaryTests.LegitimateOriginDecodingAndAdmissionRemainAllowed(sample: &quot;P02&quot;)" computerName="10_3_0_13" duration="00:00:00.3772747" startTime="2026-10-08T23:56:07.7735538+08:00" endTime="2026-10-08T23:56:08.1512634+08:00" testType="13cdc9d9-ddb5-4fa4-a97d-d965ccfc6d4b" outcome="Passed" testListId="8c84fa94-04c1-424b-9868-57a2d4851a1d" relativeResultsDirectory="cb6017d5-435a-4ed4-9f45-973333376b1c" />
+    <UnitTestResult executionId="47df5dee-d96d-4d18-bb79-d9cacd6b86cc" testId="79fd5cd3-e208-13e5-d50c-c08da8bc2eb0" testName="Gaode.Rules.Tests.Architecture.ProtocolBoundaryTests.NegativeCaseUsesProductionChecker(caseId: &quot;N11-composition-helper&quot;, expectedRule: &quot;A03&quot;, role: &quot;composition-api&quot;, source: &quot;namespace Gaode.Infrastructure.Devices.Plc { publi&quot;···)" computerName="10_3_0_13" duration="00:00:00.3193636" startTime="2026-10-08T23:55:24.7604795+08:00" endTime="2026-10-08T23:55:25.0793606+08:00" testType="13cdc9d9-ddb5-4fa4-a97d-d965ccfc6d4b" outcome="Passed" testListId="8c84fa94-04c1-424b-9868-57a2d4851a1d" relativeResultsDirectory="47df5dee-d96d-4d18-bb79-d9cacd6b86cc" />
+    <UnitTestResult executionId="381b1c7f-c714-4bdb-af76-3afa1a4023c0" testId="ad656698-df19-6b8b-6414-783a4e68db3b" testName="Gaode.Rules.Tests.Architecture.RecipeExecutionBoundaryTests.CurrentBusinessClosureSatisfiesRule(rule: &quot;B04&quot;)" computerName="10_3_0_13" duration="00:00:49.0482863" startTime="2026-10-08T23:55:16.4862113+08:00" endTime="2026-10-08T23:56:05.5715174+08:00" testType="13cdc9d9-ddb5-4fa4-a97d-d965ccfc6d4b" outcome="Failed" testListId="8c84fa94-04c1-424b-9868-57a2d4851a1d" relativeResultsDirectory="381b1c7f-c714-4bdb-af76-3afa1a4023c0">
+      <Output>
+        <ErrorInfo>
+          <Message>System.IO.DirectoryNotFoundException : Could not find a part of the path 'E:\dzk\gaode-1\backend\src\Gaode.CameraWorker\$(CameraProIncludeRoot)\*.cs'.</Message>
+          <StackTrace>   at Microsoft.Win32.SafeHandles.SafeFileHandle.CreateFile(String fullPath, FileMode mode, FileAccess access, FileShare share, FileOptions options)&#xD;
+   at System.IO.Strategies.OSFileStreamStrategy..ctor(String path, FileMode mode, FileAccess access, FileShare share, FileOptions options, Int64 preallocationSize, Nullable`1 unixCreateMode)&#xD;
+   at System.IO.Strategies.FileStreamHelpers.ChooseStrategyCore(String path, FileMode mode, FileAccess access, FileShare share, FileOptions options, Int64 preallocationSize, Nullable`1 unixCreateMode)&#xD;
+   at System.IO.StreamReader.ValidateArgsAndOpenPath(String path, Int32 bufferSize)&#xD;
+   at System.IO.File.ReadAllText(String path, Encoding encoding)&#xD;
+   at Gaode.Rules.Tests.Architecture.ProtocolRepositoryBoundaryTests.&lt;&gt;c.&lt;Scan&gt;b__11_9(String path) in E:\dzk\gaode-1\backend\tests\Gaode.Rules.Tests\Architecture\ProtocolRepositoryBoundaryTests.cs:line 80&#xD;
+   at System.Linq.Enumerable.IEnumerableSelectIterator`2.ToList()&#xD;
+   at Gaode.Rules.Tests.Architecture.ProtocolRepositoryBoundaryTests.&lt;&gt;c__DisplayClass11_0.&lt;Scan&gt;g__Compile|5(String project) in E:\dzk\gaode-1\backend\tests\Gaode.Rules.Tests\Architecture\ProtocolRepositoryBoundaryTests.cs:line 80&#xD;
+   at Gaode.Rules.Tests.Architecture.ProtocolRepositoryBoundaryTests.Scan() in E:\dzk\gaode-1\backend\tests\Gaode.Rules.Tests\Architecture\ProtocolRepositoryBoundaryTests.cs:line 115&#xD;
+   at System.Lazy`1.ViaFactory(LazyThreadSafetyMode mode)&#xD;
+--- End of stack trace from previous location ---&#xD;
+   at System.Lazy`1.CreateValue()&#xD;
+   at Gaode.Rules.Tests.Architecture.ProtocolRepositoryBoundaryTests.AssertClean(String[] rules) in E:\dzk\gaode-1\backend\tests\Gaode.Rules.Tests\Architecture\ProtocolRepositoryBoundaryTests.cs:line 27&#xD;
+   at Gaode.Rules.Tests.Architecture.ProtocolRepositoryBoundaryTests.ProductionBusinessSourceBoundary() in E:\dzk\gaode-1\backend\tests\Gaode.Rules.Tests\Architecture\ProtocolRepositoryBoundaryTests.cs:line 17&#xD;
+   at System.Reflection.MethodBaseInvoker.InterpretedInvoke_Method(Object obj, IntPtr* args)&#xD;
+   at System.Reflection.RuntimeMethodInfo.Invoke(Object obj, BindingFlags invokeAttr, Binder binder, Object[] parameters, CultureInfo culture)</StackTrace>
+        </ErrorInfo>
+      </Output>
+    </UnitTestResult>
+    <UnitTestResult executionId="fbb31d5f-881f-421c-98b4-5c3ca4fec517" testId="babcf324-f09f-487f-9515-1c69ba52fbc5" testName="Gaode.Rules.Tests.Architecture.ProtocolBoundaryTests.NegativeCaseUsesProductionChecker(caseId: &quot;N05-offset&quot;, expectedRule: &quot;A03&quot;, role: &quot;business&quot;, source: &quot;class Observation { public byte[] RawBytes {get;se&quot;···)" computerName="10_3_0_13" duration="00:00:00.6476632" startTime="2026-10-08T23:55:24.1120861+08:00" endTime="2026-10-08T23:55:24.7599417+08:00" testType="13cdc9d9-ddb5-4fa4-a97d-d965ccfc6d4b" outcome="Passed" testListId="8c84fa94-04c1-424b-9868-57a2d4851a1d" relativeResultsDirectory="fbb31d5f-881f-421c-98b4-5c3ca4fec517" />
+    <UnitTestResult executionId="7bf2c57e-8cbe-4ab2-94eb-3acf330a2f09" testId="d7f2eb4f-456a-57dd-8cea-220fd33cfb49" testName="Gaode.Rules.Tests.Architecture.RecipeExecutionBoundaryTests.CurrentSaveAndSerializationPathsCannotCreateAnotherExecutor(sample: &quot;store-stage&quot;, rule: &quot;B01&quot;)" computerName="10_3_0_13" duration="00:00:00.5502437" startTime="2026-10-08T23:55:15.4754067+08:00" endTime="2026-10-08T23:55:16.0342774+08:00" testType="13cdc9d9-ddb5-4fa4-a97d-d965ccfc6d4b" outcome="Passed" testListId="8c84fa94-04c1-424b-9868-57a2d4851a1d" relativeResultsDirectory="7bf2c57e-8cbe-4ab2-94eb-3acf330a2f09" />
+    <UnitTestResult executionId="9167b55d-5e39-47ef-b145-0b011365bf26" testId="f7798f4c-a6d8-1f57-9070-071b3228e602" testName="Gaode.Rules.Tests.Architecture.ProtocolBoundaryTests.NegativeCaseUsesProductionChecker(caseId: &quot;N06-handshake/automatic-fact&quot;, expectedRule: &quot;A04&quot;, role: &quot;business&quot;, source: &quot;class Flow { object Fact() =&gt; new { kind=\&quot;FlipAck&quot;···)" computerName="10_3_0_13" duration="00:00:00.5360941" startTime="2026-10-08T23:55:22.5215540+08:00" endTime="2026-10-08T23:55:23.0563282+08:00" testType="13cdc9d9-ddb5-4fa4-a97d-d965ccfc6d4b" outcome="Passed" testListId="8c84fa94-04c1-424b-9868-57a2d4851a1d" relativeResultsDirectory="9167b55d-5e39-47ef-b145-0b011365bf26" />
+    <UnitTestResult executionId="c9bf52cb-c077-4e1e-89aa-e4503c0b0f22" testId="6b72b8eb-c9ef-cd6e-5325-5a2a6f2f2ad7" testName="Gaode.Rules.Tests.Architecture.ParserAvailabilityTests.PinnedRoslynParsesAndBindsRealSymbols" computerName="10_3_0_13" duration="00:00:00.0434525" startTime="2026-10-08T23:55:37.4633800+08:00" endTime="2026-10-08T23:55:37.5066429+08:00" testType="13cdc9d9-ddb5-4fa4-a97d-d965ccfc6d4b" outcome="Passed" testListId="8c84fa94-04c1-424b-9868-57a2d4851a1d" relativeResultsDirectory="c9bf52cb-c077-4e1e-89aa-e4503c0b0f22" />
+    <UnitTestResult executionId="d91d083c-8e23-44cd-b265-741d555d8abd" testId="f5aa73fc-8d63-d469-2c9c-1bc6adf34731" testName="Gaode.Rules.Tests.Architecture.ProtocolBoundaryTests.PositiveCaseIsActuallyParsedAndChecked(caseId: &quot;P03-semantic-face-fact&quot;, role: &quot;business&quot;, source: &quot;class Flow { object Fact(bool manual) =&gt; new { kin&quot;···)" computerName="10_3_0_13" duration="00:00:01.0920436" startTime="2026-10-08T23:55:06.4750662+08:00" endTime="2026-10-08T23:55:07.5654350+08:00" testType="13cdc9d9-ddb5-4fa4-a97d-d965ccfc6d4b" outcome="Passed" testListId="8c84fa94-04c1-424b-9868-57a2d4851a1d" relativeResultsDirectory="d91d083c-8e23-44cd-b265-741d555d8abd" />
+    <UnitTestResult executionId="9ccd184d-6f1a-490d-98cd-2d4f59a500a8" testId="31a4fd6d-41d1-b5a7-8f0f-e2a9deeaa97c" testName="Gaode.Rules.Tests.Architecture.ProtocolBoundaryTests.NegativeCaseUsesProductionChecker(caseId: &quot;N03-protocol-version-literal&quot;, expectedRule: &quot;A04&quot;, role: &quot;business&quot;, source: &quot;class Flow { string Version()=&gt;\&quot;plc-upper-2026092&quot;···)" computerName="10_3_0_13" duration="00:00:00.5968124" startTime="2026-10-08T23:55:21.9231113+08:00" endTime="2026-10-08T23:55:22.5197413+08:00" testType="13cdc9d9-ddb5-4fa4-a97d-d965ccfc6d4b" outcome="Passed" testListId="8c84fa94-04c1-424b-9868-57a2d4851a1d" relativeResultsDirectory="9ccd184d-6f1a-490d-98cd-2d4f59a500a8" />
+    <UnitTestResult executionId="cfebe532-9174-4c63-810e-5af80275e252" testId="42d164c7-3457-b5ca-d7fb-6106fb338604" testName="Gaode.Rules.Tests.Architecture.RecipeExecutionBoundaryTests.IllegalArchitectureIsRejectedByTheRepositoryChecker(sample: &quot;N04&quot;, requiredRule: &quot;B04&quot;)" computerName="10_3_0_13" duration="00:00:00.7912508" startTime="2026-10-08T23:55:06.5375163+08:00" endTime="2026-10-08T23:55:07.3294466+08:00" testType="13cdc9d9-ddb5-4fa4-a97d-d965ccfc6d4b" outcome="Passed" testListId="8c84fa94-04c1-424b-9868-57a2d4851a1d" relativeResultsDirectory="cfebe532-9174-4c63-810e-5af80275e252" />
+    <UnitTestResult executionId="32242586-d3c3-4ac7-bb40-a82336b8da90" testId="fe26aa03-f370-5c18-3dcc-35c6a3c5127b" testName="Gaode.Rules.Tests.Architecture.ProtocolBoundaryTests.PositiveCaseIsActuallyParsedAndChecked(caseId: &quot;P05-producer-version&quot;, role: &quot;business&quot;, source: &quot;record Origin(string ComponentVersion); class Flow&quot;···)" computerName="10_3_0_13" duration="00:00:00.4193579" startTime="2026-10-08T23:55:15.6129775+08:00" endTime="2026-10-08T23:55:16.0349060+08:00" testType="13cdc9d9-ddb5-4fa4-a97d-d965ccfc6d4b" outcome="Passed" testListId="8c84fa94-04c1-424b-9868-57a2d4851a1d" relativeResultsDirectory="32242586-d3c3-4ac7-bb40-a82336b8da90" />
+    <UnitTestResult executionId="fa298952-1d2b-4a51-8bc4-ddb961348782" testId="698b19d9-b83c-0c95-2afd-cf67d7a12473" testName="Gaode.Rules.Tests.Architecture.ProtocolBoundaryTests.PositiveCaseIsActuallyParsedAndChecked(caseId: &quot;P03-semantics&quot;, role: &quot;business&quot;, source: &quot;namespace Gaode.Application.Ports { public enum Cl&quot;···)" computerName="10_3_0_13" duration="00:00:00.8488621" startTime="2026-10-08T23:55:12.2411369+08:00" endTime="2026-10-08T23:55:13.0896840+08:00" testType="13cdc9d9-ddb5-4fa4-a97d-d965ccfc6d4b" outcome="Passed" testListId="8c84fa94-04c1-424b-9868-57a2d4851a1d" relativeResultsDirectory="fa298952-1d2b-4a51-8bc4-ddb961348782" />
+    <UnitTestResult executionId="d54947b5-d58c-4273-9c73-e932f6ffb781" testId="eb905272-85c0-c7d3-763e-85b1f995810e" testName="Gaode.Rules.Tests.Architecture.DependencyRulesTests.DomainDoesNotReferenceTransportPersistenceOrDeviceFrameworks" computerName="10_3_0_13" duration="00:00:00.0080968" startTime="2026-10-08T23:55:37.5467923+08:00" endTime="2026-10-08T23:55:37.5553813+08:00" testType="13cdc9d9-ddb5-4fa4-a97d-d965ccfc6d4b" outcome="Passed" testListId="8c84fa94-04c1-424b-9868-57a2d4851a1d" relativeResultsDirectory="d54947b5-d58c-4273-9c73-e932f6ffb781" />
+    <UnitTestResult executionId="9188e8e0-b478-4471-8348-3ba2664c7a5f" testId="43abb393-f075-26b5-5ef7-d501470e24fa" testName="Gaode.Rules.Tests.Architecture.ProtocolBoundaryTests.CommunicationCollectionPolicyCannotEnterTheCommonBusinessLayer" computerName="10_3_0_13" duration="00:00:00.3803941" startTime="2026-10-08T23:55:32.5823934+08:00" endTime="2026-10-08T23:55:32.9623897+08:00" testType="13cdc9d9-ddb5-4fa4-a97d-d965ccfc6d4b" outcome="Passed" testListId="8c84fa94-04c1-424b-9868-57a2d4851a1d" relativeResultsDirectory="9188e8e0-b478-4471-8348-3ba2664c7a5f" />
+    <UnitTestResult executionId="21d74e8b-d4b8-4f8d-8af6-bf93aca45315" testId="465806b7-07a8-35fc-dcfd-8896935229a0" testName="Gaode.Rules.Tests.Architecture.RecipeExecutionBoundaryTests.LegitimateEarlyReturnAndOriginUseRemainAllowed(sample: &quot;P-return-throw&quot;)" computerName="10_3_0_13" duration="00:00:00.4787394" startTime="2026-10-08T23:55:13.3695864+08:00" endTime="2026-10-08T23:55:13.8479903+08:00" testType="13cdc9d9-ddb5-4fa4-a97d-d965ccfc6d4b" outcome="Passed" testListId="8c84fa94-04c1-424b-9868-57a2d4851a1d" relativeResultsDirectory="21d74e8b-d4b8-4f8d-8af6-bf93aca45315" />
+    <UnitTestResult executionId="decc9130-4890-4961-92eb-ee65ded0ee60" testId="f609c96b-988f-6c12-faf5-b0f44e4ca5fb" testName="Gaode.Rules.Tests.Architecture.ProtocolBoundaryTests.PositiveCaseIsActuallyParsedAndChecked(caseId: &quot;P04-semantic-historical-name&quot;, role: &quot;business-test&quot;, source: &quot;class InspectionHandshakeSequenceTests { bool Reli&quot;···)" computerName="10_3_0_13" duration="00:00:00.5310258" startTime="2026-10-08T23:55:13.0939934+08:00" endTime="2026-10-08T23:55:13.6255817+08:00" testType="13cdc9d9-ddb5-4fa4-a97d-d965ccfc6d4b" outcome="Passed" testListId="8c84fa94-04c1-424b-9868-57a2d4851a1d" relativeResultsDirectory="decc9130-4890-4961-92eb-ee65ded0ee60" />
+    <UnitTestResult executionId="4496796f-b1b4-4419-9e5d-2bfea1340650" testId="9257258e-8ca8-7ded-b43e-4b842653d16d" testName="Gaode.Rules.Tests.Architecture.ProtocolBoundaryTests.ProtectedClassificationCannotHideWireKnowledge(caseId: &quot;N18-protected-path/integrated&quot;, path: &quot;backend/src/Gaode.Infrastructure/Simulation/Integr&quot;···)" computerName="10_3_0_13" duration="00:00:00.3089768" startTime="2026-10-08T23:55:30.0715803+08:00" endTime="2026-10-08T23:55:30.3803186+08:00" testType="13cdc9d9-ddb5-4fa4-a97d-d965ccfc6d4b" outcome="Passed" testListId="8c84fa94-04c1-424b-9868-57a2d4851a1d" relativeResultsDirectory="4496796f-b1b4-4419-9e5d-2bfea1340650" />
+    <UnitTestResult executionId="4d29af67-41f9-4f5b-9d9a-3d45b51a0b61" testId="a327d694-f045-1283-4ab8-c7e770899ce3" testName="Gaode.Rules.Tests.Architecture.RecipeExecutionBoundaryTests.IllegalArchitectureIsRejectedByTheRepositoryChecker(sample: &quot;N05a&quot;, requiredRule: &quot;B01&quot;)" computerName="10_3_0_13" duration="00:00:00.9894417" startTime="2026-10-08T23:55:05.2793237+08:00" endTime="2026-10-08T23:55:06.2458890+08:00" testType="13cdc9d9-ddb5-4fa4-a97d-d965ccfc6d4b" outcome="Passed" testListId="8c84fa94-04c1-424b-9868-57a2d4851a1d" relativeResultsDirectory="4d29af67-41f9-4f5b-9d9a-3d45b51a0b61" />
+    <UnitTestResult executionId="e7a87ce9-3197-41df-ac06-65e1a3d75cfd" testId="cebeb1c0-43c3-cb84-bd43-19104fb95a2b" testName="Gaode.Rules.Tests.Architecture.RecipeExecutionBoundaryTests.EnvironmentalEarlyReturnIsRejected(sample: &quot;N02-return-helper-alias&quot;)" computerName="10_3_0_13" duration="00:00:00.2779532" startTime="2026-10-08T23:56:05.5852985+08:00" endTime="2026-10-08T23:56:05.8343766+08:00" testType="13cdc9d9-ddb5-4fa4-a97d-d965ccfc6d4b" outcome="Passed" testListId="8c84fa94-04c1-424b-9868-57a2d4851a1d" relativeResultsDirectory="e7a87ce9-3197-41df-ac06-65e1a3d75cfd">
+      <Output>
+        <StdOut>sample=N02-return-helper-alias; compilationErrors=0; boundCalls=RecipeDetectionExecutor.RequiresApproval(string),IDetectionPort.ExecuteAsync(); rules=B02; locations=backend/src/execution.cs:8:13</StdOut>
+      </Output>
+    </UnitTestResult>
+    <UnitTestResult executionId="c2e4fb20-c7a5-431c-a037-a6f668ee8677" testId="1f692cf5-09bc-56b6-9dea-caa681ec813c" testName="Gaode.Rules.Tests.Architecture.ProtocolBoundaryTests.PositiveCaseIsActuallyParsedAndChecked(caseId: &quot;P06-transport-layout&quot;, role: &quot;communication-transport&quot;, source: &quot;class Codec { int Read(byte[] packet)=&gt;(packet[0]&lt;&quot;···)" computerName="10_3_0_13" duration="00:00:00.4583273" startTime="2026-10-08T23:55:16.0352278+08:00" endTime="2026-10-08T23:55:16.4922467+08:00" testType="13cdc9d9-ddb5-4fa4-a97d-d965ccfc6d4b" outcome="Passed" testListId="8c84fa94-04c1-424b-9868-57a2d4851a1d" relativeResultsDirectory="c2e4fb20-c7a5-431c-a037-a6f668ee8677" />
+    <UnitTestResult executionId="e83a5bd8-c3da-48e0-a64b-6c3db883428e" testId="89cc9298-36c1-8fbd-d987-8741fe1d9c00" testName="Gaode.Rules.Tests.Architecture.RecipeExecutionBoundaryTests.IllegalArchitectureIsRejectedByTheRepositoryChecker(sample: &quot;N02&quot;, requiredRule: &quot;B02&quot;)" computerName="10_3_0_13" duration="00:00:01.3473271" startTime="2026-10-08T23:55:08.7225813+08:00" endTime="2026-10-08T23:55:09.8680545+08:00" testType="13cdc9d9-ddb5-4fa4-a97d-d965ccfc6d4b" outcome="Passed" testListId="8c84fa94-04c1-424b-9868-57a2d4851a1d" relativeResultsDirectory="e83a5bd8-c3da-48e0-a64b-6c3db883428e" />
+    <UnitTestResult executionId="2d2165e2-0be8-400d-8619-109decba6647" testId="09343014-141d-b307-a694-fc2186820555" testName="Gaode.Rules.Tests.Architecture.ProtocolBoundaryTests.NegativeCaseUsesProductionChecker(caseId: &quot;N08-business-test&quot;, expectedRule: &quot;A07&quot;, role: &quot;business-test&quot;, source: &quot;using Gaode.Plc.Protocol; namespace Gaode.Plc.Prot&quot;···)" computerName="10_3_0_13" duration="00:00:00.6697991" startTime="2026-10-08T23:55:17.2199514+08:00" endTime="2026-10-08T23:55:17.8902995+08:00" testType="13cdc9d9-ddb5-4fa4-a97d-d965ccfc6d4b" outcome="Passed" testListId="8c84fa94-04c1-424b-9868-57a2d4851a1d" relativeResultsDirectory="2d2165e2-0be8-400d-8619-109decba6647" />
+    <UnitTestResult executionId="ab7e2112-adc9-4dd0-aeae-b4b38781ecbb" testId="84925476-f1ad-0658-ff72-b856aa77dc8e" testName="Gaode.Rules.Tests.Architecture.RecipeExecutionBoundaryTests.CurrentBusinessClosureSatisfiesRule(rule: &quot;B02&quot;)" computerName="10_3_0_13" duration="00:00:00.0000921" startTime="2026-10-08T23:56:05.5794713+08:00" endTime="2026-10-08T23:56:05.5796287+08:00" testType="13cdc9d9-ddb5-4fa4-a97d-d965ccfc6d4b" outcome="Failed" testListId="8c84fa94-04c1-424b-9868-57a2d4851a1d" relativeResultsDirectory="ab7e2112-adc9-4dd0-aeae-b4b38781ecbb">
+      <Output>
+        <ErrorInfo>
+          <Message>System.IO.DirectoryNotFoundException : Could not find a part of the path 'E:\dzk\gaode-1\backend\src\Gaode.CameraWorker\$(CameraProIncludeRoot)\*.cs'.</Message>
+          <StackTrace>   at Microsoft.Win32.SafeHandles.SafeFileHandle.CreateFile(String fullPath, FileMode mode, FileAccess access, FileShare share, FileOptions options)&#xD;
+   at System.IO.Strategies.OSFileStreamStrategy..ctor(String path, FileMode mode, FileAccess access, FileShare share, FileOptions options, Int64 preallocationSize, Nullable`1 unixCreateMode)&#xD;
+   at System.IO.Strategies.FileStreamHelpers.ChooseStrategyCore(String path, FileMode mode, FileAccess access, FileShare share, FileOptions options, Int64 preallocationSize, Nullable`1 unixCreateMode)&#xD;
+   at System.IO.StreamReader.ValidateArgsAndOpenPath(String path, Int32 bufferSize)&#xD;
+   at System.IO.File.ReadAllText(String path, Encoding encoding)&#xD;
+   at Gaode.Rules.Tests.Architecture.ProtocolRepositoryBoundaryTests.&lt;&gt;c.&lt;Scan&gt;b__11_9(String path) in E:\dzk\gaode-1\backend\tests\Gaode.Rules.Tests\Architecture\ProtocolRepositoryBoundaryTests.cs:line 80&#xD;
+   at System.Linq.Enumerable.IEnumerableSelectIterator`2.ToList()&#xD;
+   at Gaode.Rules.Tests.Architecture.ProtocolRepositoryBoundaryTests.&lt;&gt;c__DisplayClass11_0.&lt;Scan&gt;g__Compile|5(String project) in E:\dzk\gaode-1\backend\tests\Gaode.Rules.Tests\Architecture\ProtocolRepositoryBoundaryTests.cs:line 80&#xD;
+   at Gaode.Rules.Tests.Architecture.ProtocolRepositoryBoundaryTests.Scan() in E:\dzk\gaode-1\backend\tests\Gaode.Rules.Tests\Architecture\ProtocolRepositoryBoundaryTests.cs:line 115&#xD;
+   at System.Lazy`1.ViaFactory(LazyThreadSafetyMode mode)&#xD;
+   at System.Lazy`1.ExecutionAndPublication(LazyHelper executionAndPublication, Boolean useDefaultConstructor)&#xD;
+   at System.Lazy`1.CreateValue()&#xD;
+   at Gaode.Rules.Tests.Architecture.ProtocolRepositoryBoundaryTests.get_SourceModels() in E:\dzk\gaode-1\backend\tests\Gaode.Rules.Tests\Architecture\ProtocolRepositoryBoundaryTests.cs:line 13&#xD;
+   at Gaode.Rules.Tests.Architecture.RecipeExecutionBoundaryTests.&lt;&gt;c.&lt;.cctor&gt;b__13_0() in E:\dzk\gaode-1\backend\tests\Gaode.Rules.Tests\Architecture\RecipeExecutionBoundaryTests.cs:line 96&#xD;
+   at System.Lazy`1.ViaFactory(LazyThreadSafetyMode mode)&#xD;
+--- End of stack trace from previous location ---&#xD;
+   at System.LazyHelper.ThrowException()&#xD;
+   at System.Lazy`1.CreateValue()&#xD;
+   at System.Lazy`1.get_Value()&#xD;
+   at Gaode.Rules.Tests.Architecture.RecipeExecutionBoundaryTests.CurrentBusinessClosureSatisfiesRule(String rule) in E:\dzk\gaode-1\backend\tests\Gaode.Rules.Tests\Architecture\RecipeExecutionBoundaryTests.cs:line 129&#xD;
+   at InvokeStub_RecipeExecutionBoundaryTests.CurrentBusinessClosureSatisfiesRule(Object, Span`1)&#xD;
+   at System.Reflection.MethodBaseInvoker.InvokeWithOneArg(Object obj, BindingFlags invokeAttr, Binder binder, Object[] parameters, CultureInfo culture)</StackTrace>
+        </ErrorInfo>
+      </Output>
+    </UnitTestResult>
+    <UnitTestResult executionId="d0d22eea-b045-488a-a648-cebdbba0380e" testId="d84b6d13-3cc8-ee52-1f20-88adacc8a7a5" testName="Gaode.Rules.Tests.Architecture.RecipeExecutionBoundaryTests.CurrentSaveAndSerializationPathsCannotCreateAnotherExecutor(sample: &quot;authoring-unregistered-field&quot;, rule: &quot;B01&quot;)" computerName="10_3_0_13" duration="00:00:00.4891163" startTime="2026-10-08T23:55:14.9875425+08:00" endTime="2026-10-08T23:55:15.4749479+08:00" testType="13cdc9d9-ddb5-4fa4-a97d-d965ccfc6d4b" outcome="Passed" testListId="8c84fa94-04c1-424b-9868-57a2d4851a1d" relativeResultsDirectory="d0d22eea-b045-488a-a648-cebdbba0380e" />
+    <UnitTestResult executionId="c228913d-c345-40e2-a653-8fab68b39096" testId="2f5e5b96-0eda-d2a4-14db-d6799f646c3b" testName="Gaode.Rules.Tests.Architecture.ProtocolBoundaryTests.ProtectedClassificationCannotHideWireKnowledge(caseId: &quot;N18-protected-path/application&quot;, path: &quot;backend/src/Gaode.Application/NewFlow.cs&quot;)" computerName="10_3_0_13" duration="00:00:00.4816661" startTime="2026-10-08T23:55:31.7834572+08:00" endTime="2026-10-08T23:55:32.2635708+08:00" testType="13cdc9d9-ddb5-4fa4-a97d-d965ccfc6d4b" outcome="Passed" testListId="8c84fa94-04c1-424b-9868-57a2d4851a1d" relativeResultsDirectory="c228913d-c345-40e2-a653-8fab68b39096" />
+    <UnitTestResult executionId="ffad93bd-b262-47a0-bfb0-ad244c4ad816" testId="af6be09a-05a5-a39c-7f8c-9527104f1c2d" testName="Gaode.Rules.Tests.Architecture.RecipeExecutionBoundaryTests.LegitimateEarlyReturnAndOriginUseRemainAllowed(sample: &quot;P-return-origin-log&quot;)" computerName="10_3_0_13" duration="00:00:01.6037281" startTime="2026-10-08T23:55:11.1868558+08:00" endTime="2026-10-08T23:55:12.7911842+08:00" testType="13cdc9d9-ddb5-4fa4-a97d-d965ccfc6d4b" outcome="Passed" testListId="8c84fa94-04c1-424b-9868-57a2d4851a1d" relativeResultsDirectory="ffad93bd-b262-47a0-bfb0-ad244c4ad816" />
+    <UnitTestResult executionId="3d96ac13-e7d6-4e88-91a6-817c55969dd8" testId="0dd683b8-a9c3-5d71-831a-06b51acaeeb5" testName="Gaode.Rules.Tests.Architecture.ProtocolBoundaryTests.NegativeCaseUsesProductionChecker(caseId: &quot;N07-qualified-reader&quot;, expectedRule: &quot;A05&quot;, role: &quot;business&quot;, source: &quot;namespace Gaode.Infrastructure.Persistence { publi&quot;···)" computerName="10_3_0_13" duration="00:00:00.3112394" startTime="2026-10-08T23:55:25.4700594+08:00" endTime="2026-10-08T23:55:25.7760582+08:00" testType="13cdc9d9-ddb5-4fa4-a97d-d965ccfc6d4b" outcome="Passed" testListId="8c84fa94-04c1-424b-9868-57a2d4851a1d" relativeResultsDirectory="3d96ac13-e7d6-4e88-91a6-817c55969dd8" />
+    <UnitTestResult executionId="421742e3-3810-4456-bef0-cb8b5026af42" testId="19d15afd-30f9-7cec-e554-6882ae608345" testName="Gaode.Rules.Tests.Architecture.RecipeExecutionBoundaryTests.TypedStageRefusalRemainsDistinctFromSuccessfulEarlyExit(status: &quot;UnitCompleted&quot;, rejected: True)" computerName="10_3_0_13" duration="00:00:00.3464670" startTime="2026-10-08T23:56:06.1390766+08:00" endTime="2026-10-08T23:56:06.4848707+08:00" testType="13cdc9d9-ddb5-4fa4-a97d-d965ccfc6d4b" outcome="Passed" testListId="8c84fa94-04c1-424b-9868-57a2d4851a1d" relativeResultsDirectory="421742e3-3810-4456-bef0-cb8b5026af42" />
+    <UnitTestResult executionId="ac20f9a8-7296-43cf-91d6-8052928bef26" testId="57258436-efd9-6501-1ec6-cb74d63e7fe4" testName="Gaode.Rules.Tests.Architecture.RecipeExecutionBoundaryTests.IllegalArchitectureIsRejectedByTheRepositoryChecker(sample: &quot;N05b&quot;, requiredRule: &quot;B02&quot;)" computerName="10_3_0_13" duration="00:00:00.6404518" startTime="2026-10-08T23:55:07.3603151+08:00" endTime="2026-10-08T23:55:07.9702452+08:00" testType="13cdc9d9-ddb5-4fa4-a97d-d965ccfc6d4b" outcome="Passed" testListId="8c84fa94-04c1-424b-9868-57a2d4851a1d" relativeResultsDirectory="ac20f9a8-7296-43cf-91d6-8052928bef26" />
+    <UnitTestResult executionId="fc074a29-96b1-49c7-8b1a-513096d0d82f" testId="59b40678-d99b-725e-135f-7feb9454b060" testName="Gaode.Rules.Tests.Architecture.RecipeExecutionBoundaryTests.TypedStageRefusalRemainsDistinctFromSuccessfulEarlyExit(status: &quot;StagesCompleted&quot;, rejected: True)" computerName="10_3_0_13" duration="00:00:00.3044375" startTime="2026-10-08T23:56:06.8240992+08:00" endTime="2026-10-08T23:56:07.1290741+08:00" testType="13cdc9d9-ddb5-4fa4-a97d-d965ccfc6d4b" outcome="Passed" testListId="8c84fa94-04c1-424b-9868-57a2d4851a1d" relativeResultsDirectory="fc074a29-96b1-49c7-8b1a-513096d0d82f" />
+    <UnitTestResult executionId="27910764-c46d-4111-a37e-5da33e4db0d6" testId="9c9bed58-9455-5a72-d6a2-82abc508eb24" testName="Gaode.Rules.Tests.Architecture.RecipeExecutionBoundaryTests.LegitimateEarlyReturnAndOriginUseRemainAllowed(sample: &quot;P-return-rejected-result&quot;)" computerName="10_3_0_13" duration="00:00:00.6887996" startTime="2026-10-08T23:55:13.8486849+08:00" endTime="2026-10-08T23:55:14.5369696+08:00" testType="13cdc9d9-ddb5-4fa4-a97d-d965ccfc6d4b" outcome="Passed" testListId="8c84fa94-04c1-424b-9868-57a2d4851a1d" relativeResultsDirectory="27910764-c46d-4111-a37e-5da33e4db0d6" />
+    <UnitTestResult executionId="5b1dc936-dcbe-4d29-a7c0-dd6353a4c2c2" testId="74c7c13b-8de8-4476-cdb1-f0c26231dbf6" testName="Gaode.Rules.Tests.Architecture.ProtocolBoundaryTests.P09LegitimateCommunicationDiagnosticRetainsItsResponsibility" computerName="10_3_0_13" duration="00:00:00.3181316" startTime="2026-10-08T23:55:32.2641302+08:00" endTime="2026-10-08T23:55:32.5818244+08:00" testType="13cdc9d9-ddb5-4fa4-a97d-d965ccfc6d4b" outcome="Passed" testListId="8c84fa94-04c1-424b-9868-57a2d4851a1d" relativeResultsDirectory="5b1dc936-dcbe-4d29-a7c0-dd6353a4c2c2" />
+    <UnitTestResult executionId="5a0f4b38-2663-437f-b809-3c7174a62c5a" testId="0dea939f-7ba2-783c-aff5-f11c303c85e0" testName="Gaode.Rules.Tests.Architecture.RecipeExecutionBoundaryTests.LegitimateEarlyReturnAndOriginUseRemainAllowed(sample: &quot;P-return-business&quot;)" computerName="10_3_0_13" duration="00:00:00.5777032" startTime="2026-10-08T23:55:12.7917187+08:00" endTime="2026-10-08T23:55:13.3691085+08:00" testType="13cdc9d9-ddb5-4fa4-a97d-d965ccfc6d4b" outcome="Passed" testListId="8c84fa94-04c1-424b-9868-57a2d4851a1d" relativeResultsDirectory="5a0f4b38-2663-437f-b809-3c7174a62c5a" />
+    <UnitTestResult executionId="4d075eeb-2436-469e-a427-4a8d56dce2e6" testId="01322bbf-7369-4d5e-5e5c-fd9f234b8f15" testName="Gaode.Rules.Tests.Architecture.ProtocolRepositoryBoundaryTests.BusinessContractsAndTestsDoNotRequireWireDetails" computerName="10_3_0_13" duration="00:00:00.0004733" startTime="2026-10-08T23:56:05.5691220+08:00" endTime="2026-10-08T23:56:05.5692794+08:00" testType="13cdc9d9-ddb5-4fa4-a97d-d965ccfc6d4b" outcome="Failed" testListId="8c84fa94-04c1-424b-9868-57a2d4851a1d" relativeResultsDirectory="4d075eeb-2436-469e-a427-4a8d56dce2e6">
+      <Output>
+        <ErrorInfo>
+          <Message>System.IO.DirectoryNotFoundException : Could not find a part of the path 'E:\dzk\gaode-1\backend\src\Gaode.CameraWorker\$(CameraProIncludeRoot)\*.cs'.</Message>
+          <StackTrace>   at Microsoft.Win32.SafeHandles.SafeFileHandle.CreateFile(String fullPath, FileMode mode, FileAccess access, FileShare share, FileOptions options)&#xD;
+   at System.IO.Strategies.OSFileStreamStrategy..ctor(String path, FileMode mode, FileAccess access, FileShare share, FileOptions options, Int64 preallocationSize, Nullable`1 unixCreateMode)&#xD;
+   at System.IO.Strategies.FileStreamHelpers.ChooseStrategyCore(String path, FileMode mode, FileAccess access, FileShare share, FileOptions options, Int64 preallocationSize, Nullable`1 unixCreateMode)&#xD;
+   at System.IO.StreamReader.ValidateArgsAndOpenPath(String path, Int32 bufferSize)&#xD;
+   at System.IO.File.ReadAllText(String path, Encoding encoding)&#xD;
+   at Gaode.Rules.Tests.Architecture.ProtocolRepositoryBoundaryTests.&lt;&gt;c.&lt;Scan&gt;b__11_9(String path) in E:\dzk\gaode-1\backend\tests\Gaode.Rules.Tests\Architecture\ProtocolRepositoryBoundaryTests.cs:line 80&#xD;
+   at System.Linq.Enumerable.IEnumerableSelectIterator`2.ToList()&#xD;
+   at Gaode.Rules.Tests.Architecture.ProtocolRepositoryBoundaryTests.&lt;&gt;c__DisplayClass11_0.&lt;Scan&gt;g__Compile|5(String project) in E:\dzk\gaode-1\backend\tests\Gaode.Rules.Tests\Architecture\ProtocolRepositoryBoundaryTests.cs:line 80&#xD;
+   at Gaode.Rules.Tests.Architecture.ProtocolRepositoryBoundaryTests.Scan() in E:\dzk\gaode-1\backend\tests\Gaode.Rules.Tests\Architecture\ProtocolRepositoryBoundaryTests.cs:line 115&#xD;
+   at System.Lazy`1.ViaFactory(LazyThreadSafetyMode mode)&#xD;
+--- End of stack trace from previous location ---&#xD;
+   at System.Lazy`1.CreateValue()&#xD;
+   at Gaode.Rules.Tests.Architecture.ProtocolRepositoryBoundaryTests.AssertClean(String[] rules) in E:\dzk\gaode-1\backend\tests\Gaode.Rules.Tests\Architecture\ProtocolRepositoryBoundaryTests.cs:line 27&#xD;
+   at Gaode.Rules.Tests.Architecture.ProtocolRepositoryBoundaryTests.BusinessContractsAndTestsDoNotRequireWireDetails() in E:\dzk\gaode-1\backend\tests\Gaode.Rules.Tests\Architecture\ProtocolRepositoryBoundaryTests.cs:line 21&#xD;
+   at System.Reflection.MethodBaseInvoker.InterpretedInvoke_Method(Object obj, IntPtr* args)&#xD;
+   at System.Reflection.RuntimeMethodInfo.Invoke(Object obj, BindingFlags invokeAttr, Binder binder, Object[] parameters, CultureInfo culture)</StackTrace>
+        </ErrorInfo>
+      </Output>
+    </UnitTestResult>
+    <UnitTestResult executionId="12458b28-c2d1-4adc-a158-eaa0745beab3" testId="ca6987e9-d775-13f2-7d24-b5e8c27a7479" testName="Gaode.Rules.Tests.Architecture.RecipeExecutionBoundaryTests.CurrentBusinessClosureSatisfiesRule(rule: &quot;B05&quot;)" computerName="10_3_0_13" duration="00:00:00.0000925" startTime="2026-10-08T23:56:05.5766118+08:00" endTime="2026-10-08T23:56:05.5767734+08:00" testType="13cdc9d9-ddb5-4fa4-a97d-d965ccfc6d4b" outcome="Failed" testListId="8c84fa94-04c1-424b-9868-57a2d4851a1d" relativeResultsDirectory="12458b28-c2d1-4adc-a158-eaa0745beab3">
+      <Output>
+        <ErrorInfo>
+          <Message>System.IO.DirectoryNotFoundException : Could not find a part of the path 'E:\dzk\gaode-1\backend\src\Gaode.CameraWorker\$(CameraProIncludeRoot)\*.cs'.</Message>
+          <StackTrace>   at Microsoft.Win32.SafeHandles.SafeFileHandle.CreateFile(String fullPath, FileMode mode, FileAccess access, FileShare share, FileOptions options)&#xD;
+   at System.IO.Strategies.OSFileStreamStrategy..ctor(String path, FileMode mode, FileAccess access, FileShare share, FileOptions options, Int64 preallocationSize, Nullable`1 unixCreateMode)&#xD;
+   at System.IO.Strategies.FileStreamHelpers.ChooseStrategyCore(String path, FileMode mode, FileAccess access, FileShare share, FileOptions options, Int64 preallocationSize, Nullable`1 unixCreateMode)&#xD;
+   at System.IO.StreamReader.ValidateArgsAndOpenPath(String path, Int32 bufferSize)&#xD;
+   at System.IO.File.ReadAllText(String path, Encoding encoding)&#xD;
+   at Gaode.Rules.Tests.Architecture.ProtocolRepositoryBoundaryTests.&lt;&gt;c.&lt;Scan&gt;b__11_9(String path) in E:\dzk\gaode-1\backend\tests\Gaode.Rules.Tests\Architecture\ProtocolRepositoryBoundaryTests.cs:line 80&#xD;
+   at System.Linq.Enumerable.IEnumerableSelectIterator`2.ToList()&#xD;
+   at Gaode.Rules.Tests.Architecture.ProtocolRepositoryBoundaryTests.&lt;&gt;c__DisplayClass11_0.&lt;Scan&gt;g__Compile|5(String project) in E:\dzk\gaode-1\backend\tests\Gaode.Rules.Tests\Architecture\ProtocolRepositoryBoundaryTests.cs:line 80&#xD;
+   at Gaode.Rules.Tests.Architecture.ProtocolRepositoryBoundaryTests.Scan() in E:\dzk\gaode-1\backend\tests\Gaode.Rules.Tests\Architecture\ProtocolRepositoryBoundaryTests.cs:line 115&#xD;
+   at System.Lazy`1.ViaFactory(LazyThreadSafetyMode mode)&#xD;
+   at System.Lazy`1.ExecutionAndPublication(LazyHelper executionAndPublication, Boolean useDefaultConstructor)&#xD;
+   at System.Lazy`1.CreateValue()&#xD;
+   at Gaode.Rules.Tests.Architecture.ProtocolRepositoryBoundaryTests.get_SourceModels() in E:\dzk\gaode-1\backend\tests\Gaode.Rules.Tests\Architecture\ProtocolRepositoryBoundaryTests.cs:line 13&#xD;
+   at Gaode.Rules.Tests.Architecture.RecipeExecutionBoundaryTests.&lt;&gt;c.&lt;.cctor&gt;b__13_0() in E:\dzk\gaode-1\backend\tests\Gaode.Rules.Tests\Architecture\RecipeExecutionBoundaryTests.cs:line 96&#xD;
+   at System.Lazy`1.ViaFactory(LazyThreadSafetyMode mode)&#xD;
+--- End of stack trace from previous location ---&#xD;
+   at System.LazyHelper.ThrowException()&#xD;
+   at System.Lazy`1.CreateValue()&#xD;
+   at System.Lazy`1.get_Value()&#xD;
+   at Gaode.Rules.Tests.Architecture.RecipeExecutionBoundaryTests.CurrentBusinessClosureSatisfiesRule(String rule) in E:\dzk\gaode-1\backend\tests\Gaode.Rules.Tests\Architecture\RecipeExecutionBoundaryTests.cs:line 129&#xD;
+   at InvokeStub_RecipeExecutionBoundaryTests.CurrentBusinessClosureSatisfiesRule(Object, Span`1)&#xD;
+   at System.Reflection.MethodBaseInvoker.InvokeWithOneArg(Object obj, BindingFlags invokeAttr, Binder binder, Object[] parameters, CultureInfo culture)</StackTrace>
+        </ErrorInfo>
+      </Output>
+    </UnitTestResult>
+    <UnitTestResult executionId="d5a534a3-412b-4f67-b9a4-d7152362e951" testId="50c0a60d-2972-9f5f-7dd7-f7b81cc1c849" testName="Gaode.Rules.Tests.Architecture.ProtocolBoundaryTests.NegativeCaseUsesProductionChecker(caseId: &quot;N01-address&quot;, expectedRule: &quot;A04&quot;, role: &quot;business&quot;, source: &quot;class Transport { public void WriteRegisterAsync(i&quot;···)" computerName="10_3_0_13" duration="00:00:00.7339700" startTime="2026-10-08T23:55:17.8909128+08:00" endTime="2026-10-08T23:55:18.6257213+08:00" testType="13cdc9d9-ddb5-4fa4-a97d-d965ccfc6d4b" outcome="Passed" testListId="8c84fa94-04c1-424b-9868-57a2d4851a1d" relativeResultsDirectory="d5a534a3-412b-4f67-b9a4-d7152362e951" />
+    <UnitTestResult executionId="d4b0f98c-43d3-4f44-a1da-06795109b1f6" testId="88c0aeb3-dba9-66f5-0aeb-0d094f0bfa4a" testName="Gaode.Rules.Tests.Architecture.RecipeExecutionBoundaryTests.IllegalArchitectureIsRejectedByTheRepositoryChecker(sample: &quot;N01b&quot;, requiredRule: &quot;B01&quot;)" computerName="10_3_0_13" duration="00:00:00.4192981" startTime="2026-10-08T23:55:09.8758483+08:00" endTime="2026-10-08T23:55:10.2876507+08:00" testType="13cdc9d9-ddb5-4fa4-a97d-d965ccfc6d4b" outcome="Passed" testListId="8c84fa94-04c1-424b-9868-57a2d4851a1d" relativeResultsDirectory="d4b0f98c-43d3-4f44-a1da-06795109b1f6" />
+    <UnitTestResult executionId="d7d104f2-c4e3-4063-8c23-79ec66f86e30" testId="17719973-bbe3-1c90-8c95-7e88a059c812" testName="Gaode.Rules.Tests.Architecture.ProtocolBoundaryTests.NegativeCaseUsesProductionChecker(caseId: &quot;N07-diagnostics&quot;, expectedRule: &quot;A05&quot;, role: &quot;business&quot;, source: &quot;class Flow { bool Done(JsonElement json) =&gt; json.G&quot;···)" computerName="10_3_0_13" duration="00:00:00.2676303" startTime="2026-10-08T23:55:27.8869839+08:00" endTime="2026-10-08T23:55:28.1549601+08:00" testType="13cdc9d9-ddb5-4fa4-a97d-d965ccfc6d4b" outcome="Passed" testListId="8c84fa94-04c1-424b-9868-57a2d4851a1d" relativeResultsDirectory="d7d104f2-c4e3-4063-8c23-79ec66f86e30" />
+    <UnitTestResult executionId="4325321b-e29b-4784-902c-5a9224a250ce" testId="827c4c2d-13f7-e5ce-09ba-899e58a2ee76" testName="Gaode.Rules.Tests.Architecture.RecipeExecutionBoundaryTests.EnvironmentalEarlyReturnIsRejected(sample: &quot;N02-return-direct&quot;)" computerName="10_3_0_13" duration="00:00:00.3051594" startTime="2026-10-08T23:56:05.8462483+08:00" endTime="2026-10-08T23:56:06.1383566+08:00" testType="13cdc9d9-ddb5-4fa4-a97d-d965ccfc6d4b" outcome="Passed" testListId="8c84fa94-04c1-424b-9868-57a2d4851a1d" relativeResultsDirectory="4325321b-e29b-4784-902c-5a9224a250ce">
+      <Output>
+        <StdOut>sample=N02-return-direct; compilationErrors=0; boundCalls=RecipeDetectionExecutor.RequiresApproval(string),IDetectionPort.ExecuteAsync(); rules=B02; locations=backend/src/execution.cs:8:13</StdOut>
+      </Output>
+    </UnitTestResult>
+    <UnitTestResult executionId="34682be3-48ab-4d45-b92f-f11c7e8dca0b" testId="8ef8e5a5-8e9f-daf8-82a3-69ea9cbb0c31" testName="Gaode.Rules.Tests.Architecture.ProtocolBoundaryTests.PositiveCaseIsActuallyParsedAndChecked(caseId: &quot;P07-composition-lifecycle&quot;, role: &quot;composition-api&quot;, source: &quot;namespace Gaode.Infrastructure.Devices.Plc { publi&quot;···)" computerName="10_3_0_13" duration="00:00:01.0369972" startTime="2026-10-08T23:55:10.4101193+08:00" endTime="2026-10-08T23:55:11.4476677+08:00" testType="13cdc9d9-ddb5-4fa4-a97d-d965ccfc6d4b" outcome="Passed" testListId="8c84fa94-04c1-424b-9868-57a2d4851a1d" relativeResultsDirectory="34682be3-48ab-4d45-b92f-f11c7e8dca0b" />
+    <UnitTestResult executionId="c21e0198-7d84-4e38-9ed9-3710fe0a7f75" testId="cb6d8f4f-405a-fcad-3d4b-731cec3bfe5d" testName="Gaode.Rules.Tests.Architecture.ProtocolBoundaryTests.PositiveCaseIsActuallyParsedAndChecked(caseId: &quot;P04-actual-storage-fixture&quot;, role: &quot;business-orchestration&quot;, source: &quot;namespace Gaode.Infrastructure.Persistence { publi&quot;···)" computerName="10_3_0_13" duration="00:00:00.8692047" startTime="2026-10-08T23:55:07.5662607+08:00" endTime="2026-10-08T23:55:08.7147397+08:00" testType="13cdc9d9-ddb5-4fa4-a97d-d965ccfc6d4b" outcome="Passed" testListId="8c84fa94-04c1-424b-9868-57a2d4851a1d" relativeResultsDirectory="c21e0198-7d84-4e38-9ed9-3710fe0a7f75" />
+    <UnitTestResult executionId="4aca801b-d1ba-4da0-ad58-b51951c28364" testId="86f2c958-f9f2-df16-918d-56d1c2f0ce53" testName="Gaode.Rules.Tests.Architecture.ProtocolBoundaryTests.NegativeCaseUsesProductionChecker(caseId: &quot;N03-cast&quot;, expectedRule: &quot;A03&quot;, role: &quot;business&quot;, source: &quot;namespace Gaode.Plc.Protocol { public enum Wire { &quot;···)" computerName="10_3_0_13" duration="00:00:00.9003948" startTime="2026-10-08T23:55:19.9564771+08:00" endTime="2026-10-08T23:55:20.8565143+08:00" testType="13cdc9d9-ddb5-4fa4-a97d-d965ccfc6d4b" outcome="Passed" testListId="8c84fa94-04c1-424b-9868-57a2d4851a1d" relativeResultsDirectory="4aca801b-d1ba-4da0-ad58-b51951c28364" />
+    <UnitTestResult executionId="c94bd74e-7e3a-42c6-b324-dc5c8e3bd2b3" testId="e63d100d-b021-c536-434a-05402cf45add" testName="Gaode.Rules.Tests.Architecture.RecipeExecutionBoundaryTests.CurrentSaveAndSerializationPathsCannotCreateAnotherExecutor(sample: &quot;serializer-test-identity&quot;, rule: &quot;B01&quot;)" computerName="10_3_0_13" duration="00:00:00.4589872" startTime="2026-10-08T23:55:16.0347216+08:00" endTime="2026-10-08T23:55:16.4854922+08:00" testType="13cdc9d9-ddb5-4fa4-a97d-d965ccfc6d4b" outcome="Passed" testListId="8c84fa94-04c1-424b-9868-57a2d4851a1d" relativeResultsDirectory="c94bd74e-7e3a-42c6-b324-dc5c8e3bd2b3" />
+    <UnitTestResult executionId="7c4da8b2-31da-4dcd-bf4e-5652bea5905a" testId="a6b3ba52-703e-9799-0479-191cb3a9edb7" testName="Gaode.Rules.Tests.Architecture.ProtocolBoundaryTests.NegativeCaseUsesProductionChecker(caseId: &quot;N08-orchestration-protected&quot;, expectedRule: &quot;A04&quot;, role: &quot;business-orchestration&quot;, source: &quot;namespace Gaode.Infrastructure.Devices.Plc { publi&quot;···)" computerName="10_3_0_13" duration="00:00:00.4584028" startTime="2026-10-08T23:55:19.4977768+08:00" endTime="2026-10-08T23:55:19.9558882+08:00" testType="13cdc9d9-ddb5-4fa4-a97d-d965ccfc6d4b" outcome="Passed" testListId="8c84fa94-04c1-424b-9868-57a2d4851a1d" relativeResultsDirectory="7c4da8b2-31da-4dcd-bf4e-5652bea5905a" />
+    <UnitTestResult executionId="a8f9e3f6-87ed-44f6-9eb4-11f8d9ca0a52" testId="55ee2b7e-1d67-d01a-d6e2-d303d68d8a2d" testName="Gaode.Rules.Tests.Architecture.ProtocolBoundaryTests.PositiveCaseIsActuallyParsedAndChecked(caseId: &quot;P08-composition-options&quot;, role: &quot;composition-api&quot;, source: &quot;namespace Gaode.Infrastructure.Devices.Plc { publi&quot;···)" computerName="10_3_0_13" duration="00:00:00.4065813" startTime="2026-10-08T23:55:15.2059171+08:00" endTime="2026-10-08T23:55:15.6122131+08:00" testType="13cdc9d9-ddb5-4fa4-a97d-d965ccfc6d4b" outcome="Passed" testListId="8c84fa94-04c1-424b-9868-57a2d4851a1d" relativeResultsDirectory="a8f9e3f6-87ed-44f6-9eb4-11f8d9ca0a52" />
+    <UnitTestResult executionId="949c7ce0-a1d8-40d6-be21-2bbfd1c4a51c" testId="63a63073-d498-1f0e-97a0-c45f6dd05b99" testName="Gaode.Rules.Tests.Architecture.RecipeExecutionBoundaryTests.IllegalArchitectureIsRejectedByTheRepositoryChecker(sample: &quot;N03b&quot;, requiredRule: &quot;B03&quot;)" computerName="10_3_0_13" duration="00:00:00.5491028" startTime="2026-10-08T23:55:07.9709168+08:00" endTime="2026-10-08T23:55:08.7217982+08:00" testType="13cdc9d9-ddb5-4fa4-a97d-d965ccfc6d4b" outcome="Passed" testListId="8c84fa94-04c1-424b-9868-57a2d4851a1d" relativeResultsDirectory="949c7ce0-a1d8-40d6-be21-2bbfd1c4a51c" />
+    <UnitTestResult executionId="2ea527ae-cc6e-48d9-9402-fcba3700dd0d" testId="00b8751f-9b6a-3bfa-db97-64e973b8a36f" testName="Gaode.Rules.Tests.Architecture.RecipeExecutionBoundaryTests.IllegalArchitectureIsRejectedByTheRepositoryChecker(sample: &quot;N03a&quot;, requiredRule: &quot;B03&quot;)" computerName="10_3_0_13" duration="00:00:00.5202764" startTime="2026-10-08T23:55:10.2881754+08:00" endTime="2026-10-08T23:55:10.8079867+08:00" testType="13cdc9d9-ddb5-4fa4-a97d-d965ccfc6d4b" outcome="Passed" testListId="8c84fa94-04c1-424b-9868-57a2d4851a1d" relativeResultsDirectory="2ea527ae-cc6e-48d9-9402-fcba3700dd0d" />
+  </Results>
+  <TestDefinitions>
+    <UnitTest name="Gaode.Rules.Tests.Architecture.RecipeExecutionBoundaryTests.LegitimateEarlyReturnAndOriginUseRemainAllowed(sample: &quot;P-return-rejected-result&quot;)" storage="e:\dzk\gaode-1\backend\tests\gaode.rules.tests\bin\debug\net10.0\gaode.rules.tests.dll" id="9c9bed58-9455-5a72-d6a2-82abc508eb24">
+      <Execution id="27910764-c46d-4111-a37e-5da33e4db0d6" />
+      <TestMethod codeBase="E:\dzk\gaode-1\backend\tests\Gaode.Rules.Tests\bin\Debug\net10.0\Gaode.Rules.Tests.dll" adapterTypeName="executor://xunit/VsTestRunner3/netcore/" className="Gaode.Rules.Tests.Architecture.RecipeExecutionBoundaryTests" name="LegitimateEarlyReturnAndOriginUseRemainAllowed" />
+    </UnitTest>
+    <UnitTest name="Gaode.Rules.Tests.Architecture.ProtocolBoundaryTests.NegativeCaseUsesProductionChecker(caseId: &quot;N06-handshake&quot;, expectedRule: &quot;A04&quot;, role: &quot;business&quot;, source: &quot;class Observation { public bool SortingAckCleared &quot;···)" storage="e:\dzk\gaode-1\backend\tests\gaode.rules.tests\bin\debug\net10.0\gaode.rules.tests.dll" id="e548f706-e0ca-7b28-5fb3-4ce324237449">
+      <Execution id="5f59e94e-0327-4b04-a7c1-aaa088a67e4b" />
+      <TestMethod codeBase="E:\dzk\gaode-1\backend\tests\Gaode.Rules.Tests\bin\Debug\net10.0\Gaode.Rules.Tests.dll" adapterTypeName="executor://xunit/VsTestRunner3/netcore/" className="Gaode.Rules.Tests.Architecture.ProtocolBoundaryTests" name="NegativeCaseUsesProductionChecker" />
+    </UnitTest>
+    <UnitTest name="Gaode.Rules.Tests.Architecture.ProtocolBoundaryTests.P09LegitimateCommunicationDiagnosticRetainsItsResponsibility" storage="e:\dzk\gaode-1\backend\tests\gaode.rules.tests\bin\debug\net10.0\gaode.rules.tests.dll" id="74c7c13b-8de8-4476-cdb1-f0c26231dbf6">
+      <Execution id="5b1dc936-dcbe-4d29-a7c0-dd6353a4c2c2" />
+      <TestMethod codeBase="E:\dzk\gaode-1\backend\tests\Gaode.Rules.Tests\bin\Debug\net10.0\Gaode.Rules.Tests.dll" adapterTypeName="executor://xunit/VsTestRunner3/netcore/" className="Gaode.Rules.Tests.Architecture.ProtocolBoundaryTests" name="P09LegitimateCommunicationDiagnosticRetainsItsResponsibility" />
+    </UnitTest>
+    <UnitTest name="Gaode.Rules.Tests.Architecture.RecipeExecutionBoundaryTests.CurrentBusinessClosureSatisfiesRule(rule: &quot;B05&quot;)" storage="e:\dzk\gaode-1\backend\tests\gaode.rules.tests\bin\debug\net10.0\gaode.rules.tests.dll" id="ca6987e9-d775-13f2-7d24-b5e8c27a7479">
+      <Execution id="12458b28-c2d1-4adc-a158-eaa0745beab3" />
+      <TestMethod codeBase="E:\dzk\gaode-1\backend\tests\Gaode.Rules.Tests\bin\Debug\net10.0\Gaode.Rules.Tests.dll" adapterTypeName="executor://xunit/VsTestRunner3/netcore/" className="Gaode.Rules.Tests.Architecture.RecipeExecutionBoundaryTests" name="CurrentBusinessClosureSatisfiesRule" />
+    </UnitTest>
+    <UnitTest name="Gaode.Rules.Tests.Architecture.RecipeExecutionBoundaryTests.IllegalArchitectureIsRejectedByTheRepositoryChecker(sample: &quot;N05b&quot;, requiredRule: &quot;B02&quot;)" storage="e:\dzk\gaode-1\backend\tests\gaode.rules.tests\bin\debug\net10.0\gaode.rules.tests.dll" id="57258436-efd9-6501-1ec6-cb74d63e7fe4">
+      <Execution id="ac20f9a8-7296-43cf-91d6-8052928bef26" />
+      <TestMethod codeBase="E:\dzk\gaode-1\backend\tests\Gaode.Rules.Tests\bin\Debug\net10.0\Gaode.Rules.Tests.dll" adapterTypeName="executor://xunit/VsTestRunner3/netcore/" className="Gaode.Rules.Tests.Architecture.RecipeExecutionBoundaryTests" name="IllegalArchitectureIsRejectedByTheRepositoryChecker" />
+    </UnitTest>
+    <UnitTest name="Gaode.Rules.Tests.Architecture.RecipeExecutionBoundaryTests.IllegalArchitectureIsRejectedByTheRepositoryChecker(sample: &quot;N01c&quot;, requiredRule: &quot;B01&quot;)" storage="e:\dzk\gaode-1\backend\tests\gaode.rules.tests\bin\debug\net10.0\gaode.rules.tests.dll" id="62682928-cb07-87a8-66f8-2a456cf4a4aa">
+      <Execution id="fdc4b9e6-bbce-479f-b76a-c748cfa39346" />
+      <TestMethod codeBase="E:\dzk\gaode-1\backend\tests\Gaode.Rules.Tests\bin\Debug\net10.0\Gaode.Rules.Tests.dll" adapterTypeName="executor://xunit/VsTestRunner3/netcore/" className="Gaode.Rules.Tests.Architecture.RecipeExecutionBoundaryTests" name="IllegalArchitectureIsRejectedByTheRepositoryChecker" />
+    </UnitTest>
+    <UnitTest name="Gaode.Rules.Tests.Architecture.RecipeExecutionBoundaryTests.TypedStageRefusalRemainsDistinctFromSuccessfulEarlyExit(status: &quot;StagesCompleted&quot;, rejected: True)" storage="e:\dzk\gaode-1\backend\tests\gaode.rules.tests\bin\debug\net10.0\gaode.rules.tests.dll" id="59b40678-d99b-725e-135f-7feb9454b060">
+      <Execution id="fc074a29-96b1-49c7-8b1a-513096d0d82f" />
+      <TestMethod codeBase="E:\dzk\gaode-1\backend\tests\Gaode.Rules.Tests\bin\Debug\net10.0\Gaode.Rules.Tests.dll" adapterTypeName="executor://xunit/VsTestRunner3/netcore/" className="Gaode.Rules.Tests.Architecture.RecipeExecutionBoundaryTests" name="TypedStageRefusalRemainsDistinctFromSuccessfulEarlyExit" />
+    </UnitTest>
+    <UnitTest name="Gaode.Rules.Tests.Architecture.RecipeExecutionBoundaryTests.IllegalArchitectureIsRejectedByTheRepositoryChecker(sample: &quot;N02&quot;, requiredRule: &quot;B02&quot;)" storage="e:\dzk\gaode-1\backend\tests\gaode.rules.tests\bin\debug\net10.0\gaode.rules.tests.dll" id="89cc9298-36c1-8fbd-d987-8741fe1d9c00">
+      <Execution id="e83a5bd8-c3da-48e0-a64b-6c3db883428e" />
+      <TestMethod codeBase="E:\dzk\gaode-1\backend\tests\Gaode.Rules.Tests\bin\Debug\net10.0\Gaode.Rules.Tests.dll" adapterTypeName="executor://xunit/VsTestRunner3/netcore/" className="Gaode.Rules.Tests.Architecture.RecipeExecutionBoundaryTests" name="IllegalArchitectureIsRejectedByTheRepositoryChecker" />
+    </UnitTest>
+    <UnitTest name="Gaode.Rules.Tests.Architecture.ProtocolBoundaryTests.NegativeCaseUsesProductionChecker(caseId: &quot;N06-handshake/manual-fact&quot;, expectedRule: &quot;A04&quot;, role: &quot;business&quot;, source: &quot;class Flow { object Fact() =&gt; new { kind=\&quot;ManualF&quot;···)" storage="e:\dzk\gaode-1\backend\tests\gaode.rules.tests\bin\debug\net10.0\gaode.rules.tests.dll" id="6c076bbe-ea90-bacf-f73a-ac4a47d49016">
+      <Execution id="a9c0c0dd-6c9b-4459-9e19-0fedb48fc48f" />
+      <TestMethod codeBase="E:\dzk\gaode-1\backend\tests\Gaode.Rules.Tests\bin\Debug\net10.0\Gaode.Rules.Tests.dll" adapterTypeName="executor://xunit/VsTestRunner3/netcore/" className="Gaode.Rules.Tests.Architecture.ProtocolBoundaryTests" name="NegativeCaseUsesProductionChecker" />
+    </UnitTest>
+    <UnitTest name="Gaode.Rules.Tests.Architecture.ProtocolBoundaryTests.NegativeCaseUsesProductionChecker(caseId: &quot;N03-cast&quot;, expectedRule: &quot;A03&quot;, role: &quot;business&quot;, source: &quot;namespace Gaode.Plc.Protocol { public enum Wire { &quot;···)" storage="e:\dzk\gaode-1\backend\tests\gaode.rules.tests\bin\debug\net10.0\gaode.rules.tests.dll" id="86f2c958-f9f2-df16-918d-56d1c2f0ce53">
+      <Execution id="4aca801b-d1ba-4da0-ad58-b51951c28364" />
+      <TestMethod codeBase="E:\dzk\gaode-1\backend\tests\Gaode.Rules.Tests\bin\Debug\net10.0\Gaode.Rules.Tests.dll" adapterTypeName="executor://xunit/VsTestRunner3/netcore/" className="Gaode.Rules.Tests.Architecture.ProtocolBoundaryTests" name="NegativeCaseUsesProductionChecker" />
+    </UnitTest>
+    <UnitTest name="Gaode.Rules.Tests.Architecture.RecipeExecutionBoundaryTests.CurrentSaveAndSerializationPathsCannotCreateAnotherExecutor(sample: &quot;recipe-unbounded-input&quot;, rule: &quot;B03&quot;)" storage="e:\dzk\gaode-1\backend\tests\gaode.rules.tests\bin\debug\net10.0\gaode.rules.tests.dll" id="9450e4c9-bcd6-93bf-3604-0ecb70659791">
+      <Execution id="7542e670-45e8-405d-b897-bd0fabcb67b1" />
+      <TestMethod codeBase="E:\dzk\gaode-1\backend\tests\Gaode.Rules.Tests\bin\Debug\net10.0\Gaode.Rules.Tests.dll" adapterTypeName="executor://xunit/VsTestRunner3/netcore/" className="Gaode.Rules.Tests.Architecture.RecipeExecutionBoundaryTests" name="CurrentSaveAndSerializationPathsCannotCreateAnotherExecutor" />
+    </UnitTest>
+    <UnitTest name="Gaode.Rules.Tests.Architecture.RecipeExecutionBoundaryTests.IllegalArchitectureIsRejectedByTheRepositoryChecker(sample: &quot;N01a&quot;, requiredRule: &quot;B01&quot;)" storage="e:\dzk\gaode-1\backend\tests\gaode.rules.tests\bin\debug\net10.0\gaode.rules.tests.dll" id="2b9fedcc-67f4-0c8a-1024-70763963a291">
+      <Execution id="0df43323-8730-40dc-b5de-d842d86a9980" />
+      <TestMethod codeBase="E:\dzk\gaode-1\backend\tests\Gaode.Rules.Tests\bin\Debug\net10.0\Gaode.Rules.Tests.dll" adapterTypeName="executor://xunit/VsTestRunner3/netcore/" className="Gaode.Rules.Tests.Architecture.RecipeExecutionBoundaryTests" name="IllegalArchitectureIsRejectedByTheRepositoryChecker" />
+    </UnitTest>
+    <UnitTest name="Gaode.Rules.Tests.Architecture.ProtocolRepositoryBoundaryTests.BusinessContractsAndTestsDoNotRequireWireDetails" storage="e:\dzk\gaode-1\backend\tests\gaode.rules.tests\bin\debug\net10.0\gaode.rules.tests.dll" id="01322bbf-7369-4d5e-5e5c-fd9f234b8f15">
+      <Execution id="4d075eeb-2436-469e-a427-4a8d56dce2e6" />
+      <TestMethod codeBase="E:\dzk\gaode-1\backend\tests\Gaode.Rules.Tests\bin\Debug\net10.0\Gaode.Rules.Tests.dll" adapterTypeName="executor://xunit/VsTestRunner3/netcore/" className="Gaode.Rules.Tests.Architecture.ProtocolRepositoryBoundaryTests" name="BusinessContractsAndTestsDoNotRequireWireDetails" />
+    </UnitTest>
+    <UnitTest name="Gaode.Rules.Tests.Architecture.RecipeExecutionBoundaryTests.CurrentSaveAndSerializationPathsCannotCreateAnotherExecutor(sample: &quot;authoring-unregistered-field&quot;, rule: &quot;B01&quot;)" storage="e:\dzk\gaode-1\backend\tests\gaode.rules.tests\bin\debug\net10.0\gaode.rules.tests.dll" id="d84b6d13-3cc8-ee52-1f20-88adacc8a7a5">
+      <Execution id="d0d22eea-b045-488a-a648-cebdbba0380e" />
+      <TestMethod codeBase="E:\dzk\gaode-1\backend\tests\Gaode.Rules.Tests\bin\Debug\net10.0\Gaode.Rules.Tests.dll" adapterTypeName="executor://xunit/VsTestRunner3/netcore/" className="Gaode.Rules.Tests.Architecture.RecipeExecutionBoundaryTests" name="CurrentSaveAndSerializationPathsCannotCreateAnotherExecutor" />
+    </UnitTest>
+    <UnitTest name="Gaode.Rules.Tests.Architecture.ProtocolBoundaryTests.NegativeCaseUsesProductionChecker(caseId: &quot;N04-bit&quot;, expectedRule: &quot;A03&quot;, role: &quot;business&quot;, source: &quot;class Observation { public int AlarmBits {get;set;&quot;···)" storage="e:\dzk\gaode-1\backend\tests\gaode.rules.tests\bin\debug\net10.0\gaode.rules.tests.dll" id="d59be601-0c41-b8b8-6a7a-5da7e2e19b69">
+      <Execution id="63516a1d-960e-46ec-9d2d-0f3fc952e45a" />
+      <TestMethod codeBase="E:\dzk\gaode-1\backend\tests\Gaode.Rules.Tests\bin\Debug\net10.0\Gaode.Rules.Tests.dll" adapterTypeName="executor://xunit/VsTestRunner3/netcore/" className="Gaode.Rules.Tests.Architecture.ProtocolBoundaryTests" name="NegativeCaseUsesProductionChecker" />
+    </UnitTest>
+    <UnitTest name="Gaode.Rules.Tests.Architecture.ProtocolBoundaryTests.PositiveCaseIsActuallyParsedAndChecked(caseId: &quot;P03-semantic-face-fact&quot;, role: &quot;business&quot;, source: &quot;class Flow { object Fact(bool manual) =&gt; new { kin&quot;···)" storage="e:\dzk\gaode-1\backend\tests\gaode.rules.tests\bin\debug\net10.0\gaode.rules.tests.dll" id="f5aa73fc-8d63-d469-2c9c-1bc6adf34731">
+      <Execution id="d91d083c-8e23-44cd-b265-741d555d8abd" />
+      <TestMethod codeBase="E:\dzk\gaode-1\backend\tests\Gaode.Rules.Tests\bin\Debug\net10.0\Gaode.Rules.Tests.dll" adapterTypeName="executor://xunit/VsTestRunner3/netcore/" className="Gaode.Rules.Tests.Architecture.ProtocolBoundaryTests" name="PositiveCaseIsActuallyParsedAndChecked" />
+    </UnitTest>
+    <UnitTest name="Gaode.Rules.Tests.Architecture.ProtocolBoundaryTests.CurrentCompositionOptionsRemainAcceptedWithoutRetiredPollingKnob" storage="e:\dzk\gaode-1\backend\tests\gaode.rules.tests\bin\debug\net10.0\gaode.rules.tests.dll" id="17f0dfbe-761d-2ac2-bf6d-36459c6b0032">
+      <Execution id="59b9d5f9-0d4c-4154-9a07-4fc237b6f51a" />
+      <TestMethod codeBase="E:\dzk\gaode-1\backend\tests\Gaode.Rules.Tests\bin\Debug\net10.0\Gaode.Rules.Tests.dll" adapterTypeName="executor://xunit/VsTestRunner3/netcore/" className="Gaode.Rules.Tests.Architecture.ProtocolBoundaryTests" name="CurrentCompositionOptionsRemainAcceptedWithoutRetiredPollingKnob" />
+    </UnitTest>
+    <UnitTest name="Gaode.Rules.Tests.Architecture.RecipeExecutionBoundaryTests.CurrentBusinessClosureSatisfiesRule(rule: &quot;B03&quot;)" storage="e:\dzk\gaode-1\backend\tests\gaode.rules.tests\bin\debug\net10.0\gaode.rules.tests.dll" id="bdcdf9f7-ea81-eb91-872c-001cb875d9e2">
+      <Execution id="ea062fe1-0f28-4d45-b402-5cfbee17796b" />
+      <TestMethod codeBase="E:\dzk\gaode-1\backend\tests\Gaode.Rules.Tests\bin\Debug\net10.0\Gaode.Rules.Tests.dll" adapterTypeName="executor://xunit/VsTestRunner3/netcore/" className="Gaode.Rules.Tests.Architecture.RecipeExecutionBoundaryTests" name="CurrentBusinessClosureSatisfiesRule" />
+    </UnitTest>
+    <UnitTest name="Gaode.Rules.Tests.Architecture.RecipeExecutionBoundaryTests.CurrentBusinessClosureSatisfiesRule(rule: &quot;B02&quot;)" storage="e:\dzk\gaode-1\backend\tests\gaode.rules.tests\bin\debug\net10.0\gaode.rules.tests.dll" id="84925476-f1ad-0658-ff72-b856aa77dc8e">
+      <Execution id="ab7e2112-adc9-4dd0-aeae-b4b38781ecbb" />
+      <TestMethod codeBase="E:\dzk\gaode-1\backend\tests\Gaode.Rules.Tests\bin\Debug\net10.0\Gaode.Rules.Tests.dll" adapterTypeName="executor://xunit/VsTestRunner3/netcore/" className="Gaode.Rules.Tests.Architecture.RecipeExecutionBoundaryTests" name="CurrentBusinessClosureSatisfiesRule" />
+    </UnitTest>
+    <UnitTest name="Gaode.Rules.Tests.Architecture.ProtocolBoundaryTests.ProtectedClassificationCannotHideWireKnowledge(caseId: &quot;N18-protected-path/domain&quot;, path: &quot;backend/src/Gaode.Domain/NewPolicy.cs&quot;)" storage="e:\dzk\gaode-1\backend\tests\gaode.rules.tests\bin\debug\net10.0\gaode.rules.tests.dll" id="e1450ba6-d466-7d7e-ce12-8720657ba27b">
+      <Execution id="2e5d364a-8970-4e5c-9ec5-d4e811dadba8" />
+      <TestMethod codeBase="E:\dzk\gaode-1\backend\tests\Gaode.Rules.Tests\bin\Debug\net10.0\Gaode.Rules.Tests.dll" adapterTypeName="executor://xunit/VsTestRunner3/netcore/" className="Gaode.Rules.Tests.Architecture.ProtocolBoundaryTests" name="ProtectedClassificationCannotHideWireKnowledge" />
+    </UnitTest>
+    <UnitTest name="Gaode.Rules.Tests.Architecture.ProtocolBoundaryTests.PositiveCaseIsActuallyParsedAndChecked(caseId: &quot;P04-storage-helper-name&quot;, role: &quot;business-test&quot;, source: &quot;class CommunicationEvidenceStoreTests { public sta&quot;···)" storage="e:\dzk\gaode-1\backend\tests\gaode.rules.tests\bin\debug\net10.0\gaode.rules.tests.dll" id="c1ec9266-6598-ff2b-18a1-1e79c6de8951">
+      <Execution id="ece96b1d-c421-4a76-b40f-d3e29f8dd317" />
+      <TestMethod codeBase="E:\dzk\gaode-1\backend\tests\Gaode.Rules.Tests\bin\Debug\net10.0\Gaode.Rules.Tests.dll" adapterTypeName="executor://xunit/VsTestRunner3/netcore/" className="Gaode.Rules.Tests.Architecture.ProtocolBoundaryTests" name="PositiveCaseIsActuallyParsedAndChecked" />
+    </UnitTest>
+    <UnitTest name="Gaode.Rules.Tests.Architecture.ProtocolBoundaryTests.NegativeCaseUsesProductionChecker(caseId: &quot;N01-address&quot;, expectedRule: &quot;A04&quot;, role: &quot;business&quot;, source: &quot;class Transport { public void WriteRegisterAsync(i&quot;···)" storage="e:\dzk\gaode-1\backend\tests\gaode.rules.tests\bin\debug\net10.0\gaode.rules.tests.dll" id="50c0a60d-2972-9f5f-7dd7-f7b81cc1c849">
+      <Execution id="d5a534a3-412b-4f67-b9a4-d7152362e951" />
+      <TestMethod codeBase="E:\dzk\gaode-1\backend\tests\Gaode.Rules.Tests\bin\Debug\net10.0\Gaode.Rules.Tests.dll" adapterTypeName="executor://xunit/VsTestRunner3/netcore/" className="Gaode.Rules.Tests.Architecture.ProtocolBoundaryTests" name="NegativeCaseUsesProductionChecker" />
+    </UnitTest>
+    <UnitTest name="Gaode.Rules.Tests.Architecture.ProtocolBoundaryTests.NegativeCaseUsesProductionChecker(caseId: &quot;N11-composition-helper&quot;, expectedRule: &quot;A03&quot;, role: &quot;composition-api&quot;, source: &quot;namespace Gaode.Infrastructure.Devices.Plc { publi&quot;···)" storage="e:\dzk\gaode-1\backend\tests\gaode.rules.tests\bin\debug\net10.0\gaode.rules.tests.dll" id="79fd5cd3-e208-13e5-d50c-c08da8bc2eb0">
+      <Execution id="47df5dee-d96d-4d18-bb79-d9cacd6b86cc" />
+      <TestMethod codeBase="E:\dzk\gaode-1\backend\tests\Gaode.Rules.Tests\bin\Debug\net10.0\Gaode.Rules.Tests.dll" adapterTypeName="executor://xunit/VsTestRunner3/netcore/" className="Gaode.Rules.Tests.Architecture.ProtocolBoundaryTests" name="NegativeCaseUsesProductionChecker" />
+    </UnitTest>
+    <UnitTest name="Gaode.Rules.Tests.Architecture.ProtocolRepositoryBoundaryTests.ProductionBusinessSourceBoundary" storage="e:\dzk\gaode-1\backend\tests\gaode.rules.tests\bin\debug\net10.0\gaode.rules.tests.dll" id="b34444c3-b223-50fb-c4b0-af9bf03b1a02">
+      <Execution id="9cd03cb8-1e35-47b0-9d8e-92690a40e86a" />
+      <TestMethod codeBase="E:\dzk\gaode-1\backend\tests\Gaode.Rules.Tests\bin\Debug\net10.0\Gaode.Rules.Tests.dll" adapterTypeName="executor://xunit/VsTestRunner3/netcore/" className="Gaode.Rules.Tests.Architecture.ProtocolRepositoryBoundaryTests" name="ProductionBusinessSourceBoundary" />
+    </UnitTest>
+    <UnitTest name="Gaode.Rules.Tests.Architecture.ProtocolBoundaryTests.ProtectedClassificationCannotHideWireKnowledge(caseId: &quot;N18-protected-path/integrated&quot;, path: &quot;backend/src/Gaode.Infrastructure/Simulation/Integr&quot;···)" storage="e:\dzk\gaode-1\backend\tests\gaode.rules.tests\bin\debug\net10.0\gaode.rules.tests.dll" id="9257258e-8ca8-7ded-b43e-4b842653d16d">
+      <Execution id="4496796f-b1b4-4419-9e5d-2bfea1340650" />
+      <TestMethod codeBase="E:\dzk\gaode-1\backend\tests\Gaode.Rules.Tests\bin\Debug\net10.0\Gaode.Rules.Tests.dll" adapterTypeName="executor://xunit/VsTestRunner3/netcore/" className="Gaode.Rules.Tests.Architecture.ProtocolBoundaryTests" name="ProtectedClassificationCannotHideWireKnowledge" />
+    </UnitTest>
+    <UnitTest name="Gaode.Rules.Tests.Architecture.ProtocolBoundaryTests.NegativeCaseUsesProductionChecker(caseId: &quot;N06-handshake/automatic-fact&quot;, expectedRule: &quot;A04&quot;, role: &quot;business&quot;, source: &quot;class Flow { object Fact() =&gt; new { kind=\&quot;FlipAck&quot;···)" storage="e:\dzk\gaode-1\backend\tests\gaode.rules.tests\bin\debug\net10.0\gaode.rules.tests.dll" id="f7798f4c-a6d8-1f57-9070-071b3228e602">
+      <Execution id="9167b55d-5e39-47ef-b145-0b011365bf26" />
+      <TestMethod codeBase="E:\dzk\gaode-1\backend\tests\Gaode.Rules.Tests\bin\Debug\net10.0\Gaode.Rules.Tests.dll" adapterTypeName="executor://xunit/VsTestRunner3/netcore/" className="Gaode.Rules.Tests.Architecture.ProtocolBoundaryTests" name="NegativeCaseUsesProductionChecker" />
+    </UnitTest>
+    <UnitTest name="Gaode.Rules.Tests.Architecture.ProtocolRepositoryBoundaryTests.FormalAdaptersUseNamedSignalAccess" storage="e:\dzk\gaode-1\backend\tests\gaode.rules.tests\bin\debug\net10.0\gaode.rules.tests.dll" id="d9d21418-f42a-d751-76a2-a3e168445335">
+      <Execution id="98c1dbfa-adaf-4bc9-ad96-755d4da244b3" />
+      <TestMethod codeBase="E:\dzk\gaode-1\backend\tests\Gaode.Rules.Tests\bin\Debug\net10.0\Gaode.Rules.Tests.dll" adapterTypeName="executor://xunit/VsTestRunner3/netcore/" className="Gaode.Rules.Tests.Architecture.ProtocolRepositoryBoundaryTests" name="FormalAdaptersUseNamedSignalAccess" />
+    </UnitTest>
+    <UnitTest name="Gaode.Rules.Tests.Architecture.ProtocolBoundaryTests.NegativeCaseUsesProductionChecker(caseId: &quot;N03-protocol-version-literal&quot;, expectedRule: &quot;A04&quot;, role: &quot;business&quot;, source: &quot;class Flow { string Version()=&gt;\&quot;plc-upper-2026092&quot;···)" storage="e:\dzk\gaode-1\backend\tests\gaode.rules.tests\bin\debug\net10.0\gaode.rules.tests.dll" id="31a4fd6d-41d1-b5a7-8f0f-e2a9deeaa97c">
+      <Execution id="9ccd184d-6f1a-490d-98cd-2d4f59a500a8" />
+      <TestMethod codeBase="E:\dzk\gaode-1\backend\tests\Gaode.Rules.Tests\bin\Debug\net10.0\Gaode.Rules.Tests.dll" adapterTypeName="executor://xunit/VsTestRunner3/netcore/" className="Gaode.Rules.Tests.Architecture.ProtocolBoundaryTests" name="NegativeCaseUsesProductionChecker" />
+    </UnitTest>
+    <UnitTest name="Gaode.Rules.Tests.Architecture.RecipeExecutionBoundaryTests.LegitimateEarlyReturnAndOriginUseRemainAllowed(sample: &quot;P-return-business&quot;)" storage="e:\dzk\gaode-1\backend\tests\gaode.rules.tests\bin\debug\net10.0\gaode.rules.tests.dll" id="0dea939f-7ba2-783c-aff5-f11c303c85e0">
+      <Execution id="5a0f4b38-2663-437f-b809-3c7174a62c5a" />
+      <TestMethod codeBase="E:\dzk\gaode-1\backend\tests\Gaode.Rules.Tests\bin\Debug\net10.0\Gaode.Rules.Tests.dll" adapterTypeName="executor://xunit/VsTestRunner3/netcore/" className="Gaode.Rules.Tests.Architecture.RecipeExecutionBoundaryTests" name="LegitimateEarlyReturnAndOriginUseRemainAllowed" />
+    </UnitTest>
+    <UnitTest name="Gaode.Rules.Tests.Architecture.ProtocolBoundaryTests.PositiveCaseIsActuallyParsedAndChecked(caseId: &quot;P03-semantics&quot;, role: &quot;business&quot;, source: &quot;namespace Gaode.Application.Ports { public enum Cl&quot;···)" storage="e:\dzk\gaode-1\backend\tests\gaode.rules.tests\bin\debug\net10.0\gaode.rules.tests.dll" id="698b19d9-b83c-0c95-2afd-cf67d7a12473">
+      <Execution id="fa298952-1d2b-4a51-8bc4-ddb961348782" />
+      <TestMethod codeBase="E:\dzk\gaode-1\backend\tests\Gaode.Rules.Tests\bin\Debug\net10.0\Gaode.Rules.Tests.dll" adapterTypeName="executor://xunit/VsTestRunner3/netcore/" className="Gaode.Rules.Tests.Architecture.ProtocolBoundaryTests" name="PositiveCaseIsActuallyParsedAndChecked" />
+    </UnitTest>
+    <UnitTest name="Gaode.Rules.Tests.Architecture.RecipeExecutionBoundaryTests.TypedStageRefusalRemainsDistinctFromSuccessfulEarlyExit(status: &quot;UnitCompleted&quot;, rejected: True)" storage="e:\dzk\gaode-1\backend\tests\gaode.rules.tests\bin\debug\net10.0\gaode.rules.tests.dll" id="19d15afd-30f9-7cec-e554-6882ae608345">
+      <Execution id="421742e3-3810-4456-bef0-cb8b5026af42" />
+      <TestMethod codeBase="E:\dzk\gaode-1\backend\tests\Gaode.Rules.Tests\bin\Debug\net10.0\Gaode.Rules.Tests.dll" adapterTypeName="executor://xunit/VsTestRunner3/netcore/" className="Gaode.Rules.Tests.Architecture.RecipeExecutionBoundaryTests" name="TypedStageRefusalRemainsDistinctFromSuccessfulEarlyExit" />
+    </UnitTest>
+    <UnitTest name="Gaode.Rules.Tests.Architecture.RecipeExecutionBoundaryTests.IllegalArchitectureIsRejectedByTheRepositoryChecker(sample: &quot;N01b&quot;, requiredRule: &quot;B01&quot;)" storage="e:\dzk\gaode-1\backend\tests\gaode.rules.tests\bin\debug\net10.0\gaode.rules.tests.dll" id="88c0aeb3-dba9-66f5-0aeb-0d094f0bfa4a">
+      <Execution id="d4b0f98c-43d3-4f44-a1da-06795109b1f6" />
+      <TestMethod codeBase="E:\dzk\gaode-1\backend\tests\Gaode.Rules.Tests\bin\Debug\net10.0\Gaode.Rules.Tests.dll" adapterTypeName="executor://xunit/VsTestRunner3/netcore/" className="Gaode.Rules.Tests.Architecture.RecipeExecutionBoundaryTests" name="IllegalArchitectureIsRejectedByTheRepositoryChecker" />
+    </UnitTest>
+    <UnitTest name="Gaode.Rules.Tests.Architecture.ProtocolBoundaryTests.NegativeCaseUsesProductionChecker(caseId: &quot;N08-business-test&quot;, expectedRule: &quot;A07&quot;, role: &quot;business-test&quot;, source: &quot;using Gaode.Plc.Protocol; namespace Gaode.Plc.Prot&quot;···)" storage="e:\dzk\gaode-1\backend\tests\gaode.rules.tests\bin\debug\net10.0\gaode.rules.tests.dll" id="09343014-141d-b307-a694-fc2186820555">
+      <Execution id="2d2165e2-0be8-400d-8619-109decba6647" />
+      <TestMethod codeBase="E:\dzk\gaode-1\backend\tests\Gaode.Rules.Tests\bin\Debug\net10.0\Gaode.Rules.Tests.dll" adapterTypeName="executor://xunit/VsTestRunner3/netcore/" className="Gaode.Rules.Tests.Architecture.ProtocolBoundaryTests" name="NegativeCaseUsesProductionChecker" />
+    </UnitTest>
+    <UnitTest name="Gaode.Rules.Tests.Architecture.ProtocolBoundaryTests.NegativeCaseUsesProductionChecker(caseId: &quot;N05-offset&quot;, expectedRule: &quot;A03&quot;, role: &quot;business&quot;, source: &quot;class Observation { public byte[] RawBytes {get;se&quot;···)" storage="e:\dzk\gaode-1\backend\tests\gaode.rules.tests\bin\debug\net10.0\gaode.rules.tests.dll" id="babcf324-f09f-487f-9515-1c69ba52fbc5">
+      <Execution id="fbb31d5f-881f-421c-98b4-5c3ca4fec517" />
+      <TestMethod codeBase="E:\dzk\gaode-1\backend\tests\Gaode.Rules.Tests\bin\Debug\net10.0\Gaode.Rules.Tests.dll" adapterTypeName="executor://xunit/VsTestRunner3/netcore/" className="Gaode.Rules.Tests.Architecture.ProtocolBoundaryTests" name="NegativeCaseUsesProductionChecker" />
+    </UnitTest>
+    <UnitTest name="Gaode.Rules.Tests.Architecture.ProtocolBoundaryTests.CommunicationCollectionPolicyCannotEnterTheCommonBusinessLayer" storage="e:\dzk\gaode-1\backend\tests\gaode.rules.tests\bin\debug\net10.0\gaode.rules.tests.dll" id="43abb393-f075-26b5-5ef7-d501470e24fa">
+      <Execution id="9188e8e0-b478-4471-8348-3ba2664c7a5f" />
+      <TestMethod codeBase="E:\dzk\gaode-1\backend\tests\Gaode.Rules.Tests\bin\Debug\net10.0\Gaode.Rules.Tests.dll" adapterTypeName="executor://xunit/VsTestRunner3/netcore/" className="Gaode.Rules.Tests.Architecture.ProtocolBoundaryTests" name="CommunicationCollectionPolicyCannotEnterTheCommonBusinessLayer" />
+    </UnitTest>
+    <UnitTest name="Gaode.Rules.Tests.Architecture.RecipeExecutionBoundaryTests.LegitimateOriginDecodingAndAdmissionRemainAllowed(sample: &quot;P03&quot;)" storage="e:\dzk\gaode-1\backend\tests\gaode.rules.tests\bin\debug\net10.0\gaode.rules.tests.dll" id="db5413d9-8b39-85cc-3099-392d4f0ed6ad">
+      <Execution id="a1111c1d-d191-45e8-b128-ea6868dd16b7" />
+      <TestMethod codeBase="E:\dzk\gaode-1\backend\tests\Gaode.Rules.Tests\bin\Debug\net10.0\Gaode.Rules.Tests.dll" adapterTypeName="executor://xunit/VsTestRunner3/netcore/" className="Gaode.Rules.Tests.Architecture.RecipeExecutionBoundaryTests" name="LegitimateOriginDecodingAndAdmissionRemainAllowed" />
+    </UnitTest>
+    <UnitTest name="Gaode.Rules.Tests.Architecture.DependencyRulesTests.DomainDoesNotReferenceTransportPersistenceOrDeviceFrameworks" storage="e:\dzk\gaode-1\backend\tests\gaode.rules.tests\bin\debug\net10.0\gaode.rules.tests.dll" id="eb905272-85c0-c7d3-763e-85b1f995810e">
+      <Execution id="d54947b5-d58c-4273-9c73-e932f6ffb781" />
+      <TestMethod codeBase="E:\dzk\gaode-1\backend\tests\Gaode.Rules.Tests\bin\Debug\net10.0\Gaode.Rules.Tests.dll" adapterTypeName="executor://xunit/VsTestRunner3/netcore/" className="Gaode.Rules.Tests.Architecture.DependencyRulesTests" name="DomainDoesNotReferenceTransportPersistenceOrDeviceFrameworks" />
+    </UnitTest>
+    <UnitTest name="Gaode.Rules.Tests.Architecture.ProtocolBoundaryTests.NegativeCaseUsesProductionChecker(caseId: &quot;N02-renamed-state/nested&quot;, expectedRule: &quot;A02&quot;, role: &quot;business&quot;, source: &quot;namespace Gaode.Application.Ports { public record &quot;···)" storage="e:\dzk\gaode-1\backend\tests\gaode.rules.tests\bin\debug\net10.0\gaode.rules.tests.dll" id="dfa35b9e-7f5a-63de-07bb-f4aeaa0d9681">
+      <Execution id="62a2bb70-e608-47b4-94a3-629009a03803" />
+      <TestMethod codeBase="E:\dzk\gaode-1\backend\tests\Gaode.Rules.Tests\bin\Debug\net10.0\Gaode.Rules.Tests.dll" adapterTypeName="executor://xunit/VsTestRunner3/netcore/" className="Gaode.Rules.Tests.Architecture.ProtocolBoundaryTests" name="NegativeCaseUsesProductionChecker" />
+    </UnitTest>
+    <UnitTest name="Gaode.Rules.Tests.Architecture.ProtocolBoundaryTests.ProtectedClassificationCannotHideWireKnowledge(caseId: &quot;N18-protected-path/host&quot;, path: &quot;backend/src/Gaode.Host/Api/NewEndpoint.cs&quot;)" storage="e:\dzk\gaode-1\backend\tests\gaode.rules.tests\bin\debug\net10.0\gaode.rules.tests.dll" id="226d66f5-023d-e3b4-d974-0da3be3fc71d">
+      <Execution id="7b7fbd58-2a56-4352-ba3c-8d6dd1dc4aeb" />
+      <TestMethod codeBase="E:\dzk\gaode-1\backend\tests\Gaode.Rules.Tests\bin\Debug\net10.0\Gaode.Rules.Tests.dll" adapterTypeName="executor://xunit/VsTestRunner3/netcore/" className="Gaode.Rules.Tests.Architecture.ProtocolBoundaryTests" name="ProtectedClassificationCannotHideWireKnowledge" />
+    </UnitTest>
+    <UnitTest name="Gaode.Rules.Tests.Architecture.RecipeExecutionBoundaryTests.IllegalArchitectureIsRejectedByTheRepositoryChecker(sample: &quot;N03b&quot;, requiredRule: &quot;B03&quot;)" storage="e:\dzk\gaode-1\backend\tests\gaode.rules.tests\bin\debug\net10.0\gaode.rules.tests.dll" id="63a63073-d498-1f0e-97a0-c45f6dd05b99">
+      <Execution id="949c7ce0-a1d8-40d6-be21-2bbfd1c4a51c" />
+      <TestMethod codeBase="E:\dzk\gaode-1\backend\tests\Gaode.Rules.Tests\bin\Debug\net10.0\Gaode.Rules.Tests.dll" adapterTypeName="executor://xunit/VsTestRunner3/netcore/" className="Gaode.Rules.Tests.Architecture.RecipeExecutionBoundaryTests" name="IllegalArchitectureIsRejectedByTheRepositoryChecker" />
+    </UnitTest>
+    <UnitTest name="Gaode.Rules.Tests.Architecture.ProtocolBoundaryTests.PositiveCaseIsActuallyParsedAndChecked(caseId: &quot;P01-business-numbers&quot;, role: &quot;business&quot;, source: &quot;class Plan { bool Valid(int face,int slot)=&gt;face i&quot;···)" storage="e:\dzk\gaode-1\backend\tests\gaode.rules.tests\bin\debug\net10.0\gaode.rules.tests.dll" id="5cb177b5-ccaf-bbc8-3849-e3f763be9be7">
+      <Execution id="a8d6ac5c-7cb3-4c6b-b33a-2d2cecca97fb" />
+      <TestMethod codeBase="E:\dzk\gaode-1\backend\tests\Gaode.Rules.Tests\bin\Debug\net10.0\Gaode.Rules.Tests.dll" adapterTypeName="executor://xunit/VsTestRunner3/netcore/" className="Gaode.Rules.Tests.Architecture.ProtocolBoundaryTests" name="PositiveCaseIsActuallyParsedAndChecked" />
+    </UnitTest>
+    <UnitTest name="Gaode.Rules.Tests.Architecture.RecipeExecutionBoundaryTests.LegitimateEarlyReturnAndOriginUseRemainAllowed(sample: &quot;P-return-origin-log&quot;)" storage="e:\dzk\gaode-1\backend\tests\gaode.rules.tests\bin\debug\net10.0\gaode.rules.tests.dll" id="af6be09a-05a5-a39c-7f8c-9527104f1c2d">
+      <Execution id="ffad93bd-b262-47a0-bfb0-ad244c4ad816" />
+      <TestMethod codeBase="E:\dzk\gaode-1\backend\tests\Gaode.Rules.Tests\bin\Debug\net10.0\Gaode.Rules.Tests.dll" adapterTypeName="executor://xunit/VsTestRunner3/netcore/" className="Gaode.Rules.Tests.Architecture.RecipeExecutionBoundaryTests" name="LegitimateEarlyReturnAndOriginUseRemainAllowed" />
+    </UnitTest>
+    <UnitTest name="Gaode.Rules.Tests.Architecture.RecipeExecutionBoundaryTests.IllegalArchitectureIsRejectedByTheRepositoryChecker(sample: &quot;N05a&quot;, requiredRule: &quot;B01&quot;)" storage="e:\dzk\gaode-1\backend\tests\gaode.rules.tests\bin\debug\net10.0\gaode.rules.tests.dll" id="a327d694-f045-1283-4ab8-c7e770899ce3">
+      <Execution id="4d29af67-41f9-4f5b-9d9a-3d45b51a0b61" />
+      <TestMethod codeBase="E:\dzk\gaode-1\backend\tests\Gaode.Rules.Tests\bin\Debug\net10.0\Gaode.Rules.Tests.dll" adapterTypeName="executor://xunit/VsTestRunner3/netcore/" className="Gaode.Rules.Tests.Architecture.RecipeExecutionBoundaryTests" name="IllegalArchitectureIsRejectedByTheRepositoryChecker" />
+    </UnitTest>
+    <UnitTest name="Gaode.Rules.Tests.Architecture.ProtocolBoundaryTests.PositiveCaseIsActuallyParsedAndChecked(caseId: &quot;P05-producer-version&quot;, role: &quot;business&quot;, source: &quot;record Origin(string ComponentVersion); class Flow&quot;···)" storage="e:\dzk\gaode-1\backend\tests\gaode.rules.tests\bin\debug\net10.0\gaode.rules.tests.dll" id="fe26aa03-f370-5c18-3dcc-35c6a3c5127b">
+      <Execution id="32242586-d3c3-4ac7-bb40-a82336b8da90" />
+      <TestMethod codeBase="E:\dzk\gaode-1\backend\tests\Gaode.Rules.Tests\bin\Debug\net10.0\Gaode.Rules.Tests.dll" adapterTypeName="executor://xunit/VsTestRunner3/netcore/" className="Gaode.Rules.Tests.Architecture.ProtocolBoundaryTests" name="PositiveCaseIsActuallyParsedAndChecked" />
+    </UnitTest>
+    <UnitTest name="Gaode.Rules.Tests.Architecture.ProtocolBoundaryTests.ProtectedClassificationCannotHideWireKnowledge(caseId: &quot;N18-protected-path/recipe&quot;, path: &quot;backend/src/Gaode.Infrastructure/Recipes/JsonRecip&quot;···)" storage="e:\dzk\gaode-1\backend\tests\gaode.rules.tests\bin\debug\net10.0\gaode.rules.tests.dll" id="8ab0b0e1-72a4-99b6-22a8-a919fdcd1958">
+      <Execution id="c34348e2-8c11-4fd4-be4d-89702598ff39" />
+      <TestMethod codeBase="E:\dzk\gaode-1\backend\tests\Gaode.Rules.Tests\bin\Debug\net10.0\Gaode.Rules.Tests.dll" adapterTypeName="executor://xunit/VsTestRunner3/netcore/" className="Gaode.Rules.Tests.Architecture.ProtocolBoundaryTests" name="ProtectedClassificationCannotHideWireKnowledge" />
+    </UnitTest>
+    <UnitTest name="Gaode.Rules.Tests.Architecture.ProtocolBoundaryTests.NegativeCaseUsesProductionChecker(caseId: &quot;N02-renamed-state/json&quot;, expectedRule: &quot;A02&quot;, role: &quot;business&quot;, source: &quot;namespace Gaode.Application.Ports { public record &quot;···)" storage="e:\dzk\gaode-1\backend\tests\gaode.rules.tests\bin\debug\net10.0\gaode.rules.tests.dll" id="f54baa8a-adf9-3951-5906-284c3953cf11">
+      <Execution id="3898cdb4-dda4-4ef7-800e-059d20e5f855" />
+      <TestMethod codeBase="E:\dzk\gaode-1\backend\tests\Gaode.Rules.Tests\bin\Debug\net10.0\Gaode.Rules.Tests.dll" adapterTypeName="executor://xunit/VsTestRunner3/netcore/" className="Gaode.Rules.Tests.Architecture.ProtocolBoundaryTests" name="NegativeCaseUsesProductionChecker" />
+    </UnitTest>
+    <UnitTest name="Gaode.Rules.Tests.Architecture.ProtocolBoundaryTests.NegativeCaseUsesProductionChecker(caseId: &quot;N08-business-wire-helper&quot;, expectedRule: &quot;A04&quot;, role: &quot;business-test&quot;, source: &quot;class Fixture { public int AcceptedWriteCount(int &quot;···)" storage="e:\dzk\gaode-1\backend\tests\gaode.rules.tests\bin\debug\net10.0\gaode.rules.tests.dll" id="bf68ef45-8831-1a92-a4df-1588e7ed58db">
+      <Execution id="dd4449bd-3a58-47af-844e-a93f875c6a6a" />
+      <TestMethod codeBase="E:\dzk\gaode-1\backend\tests\Gaode.Rules.Tests\bin\Debug\net10.0\Gaode.Rules.Tests.dll" adapterTypeName="executor://xunit/VsTestRunner3/netcore/" className="Gaode.Rules.Tests.Architecture.ProtocolBoundaryTests" name="NegativeCaseUsesProductionChecker" />
+    </UnitTest>
+    <UnitTest name="Gaode.Rules.Tests.Architecture.ProtocolBoundaryTests.NegativeCaseUsesProductionChecker(caseId: &quot;N02-renamed-state&quot;, expectedRule: &quot;A02&quot;, role: &quot;business&quot;, source: &quot;namespace Gaode.Application.Ports { public record &quot;···)" storage="e:\dzk\gaode-1\backend\tests\gaode.rules.tests\bin\debug\net10.0\gaode.rules.tests.dll" id="4dd015ed-855d-798c-352c-09b72ad61e0f">
+      <Execution id="7709afe1-0700-4e99-b775-8b9dc045ab80" />
+      <TestMethod codeBase="E:\dzk\gaode-1\backend\tests\Gaode.Rules.Tests\bin\Debug\net10.0\Gaode.Rules.Tests.dll" adapterTypeName="executor://xunit/VsTestRunner3/netcore/" className="Gaode.Rules.Tests.Architecture.ProtocolBoundaryTests" name="NegativeCaseUsesProductionChecker" />
+    </UnitTest>
+    <UnitTest name="Gaode.Rules.Tests.Architecture.ProtocolBoundaryTests.PositiveCaseIsActuallyParsedAndChecked(caseId: &quot;P07-composition-lifecycle&quot;, role: &quot;composition-api&quot;, source: &quot;namespace Gaode.Infrastructure.Devices.Plc { publi&quot;···)" storage="e:\dzk\gaode-1\backend\tests\gaode.rules.tests\bin\debug\net10.0\gaode.rules.tests.dll" id="8ef8e5a5-8e9f-daf8-82a3-69ea9cbb0c31">
+      <Execution id="34682be3-48ab-4d45-b92f-f11c7e8dca0b" />
+      <TestMethod codeBase="E:\dzk\gaode-1\backend\tests\Gaode.Rules.Tests\bin\Debug\net10.0\Gaode.Rules.Tests.dll" adapterTypeName="executor://xunit/VsTestRunner3/netcore/" className="Gaode.Rules.Tests.Architecture.ProtocolBoundaryTests" name="PositiveCaseIsActuallyParsedAndChecked" />
+    </UnitTest>
+    <UnitTest name="Gaode.Rules.Tests.Architecture.RecipeExecutionBoundaryTests.CurrentBusinessClosureSatisfiesRule(rule: &quot;B01&quot;)" storage="e:\dzk\gaode-1\backend\tests\gaode.rules.tests\bin\debug\net10.0\gaode.rules.tests.dll" id="a40af4cf-659c-c48c-85c8-caa9547c13da">
+      <Execution id="4597eb8a-e044-4daa-a6da-328459b78a47" />
+      <TestMethod codeBase="E:\dzk\gaode-1\backend\tests\Gaode.Rules.Tests\bin\Debug\net10.0\Gaode.Rules.Tests.dll" adapterTypeName="executor://xunit/VsTestRunner3/netcore/" className="Gaode.Rules.Tests.Architecture.RecipeExecutionBoundaryTests" name="CurrentBusinessClosureSatisfiesRule" />
+    </UnitTest>
+    <UnitTest name="Gaode.Rules.Tests.Architecture.RecipeExecutionBoundaryTests.CurrentBusinessClosureSatisfiesRule(rule: &quot;B04&quot;)" storage="e:\dzk\gaode-1\backend\tests\gaode.rules.tests\bin\debug\net10.0\gaode.rules.tests.dll" id="ad656698-df19-6b8b-6414-783a4e68db3b">
+      <Execution id="381b1c7f-c714-4bdb-af76-3afa1a4023c0" />
+      <TestMethod codeBase="E:\dzk\gaode-1\backend\tests\Gaode.Rules.Tests\bin\Debug\net10.0\Gaode.Rules.Tests.dll" adapterTypeName="executor://xunit/VsTestRunner3/netcore/" className="Gaode.Rules.Tests.Architecture.RecipeExecutionBoundaryTests" name="CurrentBusinessClosureSatisfiesRule" />
+    </UnitTest>
+    <UnitTest name="Gaode.Rules.Tests.Architecture.ProtocolBoundaryTests.PositiveCaseIsActuallyParsedAndChecked(caseId: &quot;P06-transport-layout&quot;, role: &quot;communication-transport&quot;, source: &quot;class Codec { int Read(byte[] packet)=&gt;(packet[0]&lt;&quot;···)" storage="e:\dzk\gaode-1\backend\tests\gaode.rules.tests\bin\debug\net10.0\gaode.rules.tests.dll" id="1f692cf5-09bc-56b6-9dea-caa681ec813c">
+      <Execution id="c2e4fb20-c7a5-431c-a037-a6f668ee8677" />
+      <TestMethod codeBase="E:\dzk\gaode-1\backend\tests\Gaode.Rules.Tests\bin\Debug\net10.0\Gaode.Rules.Tests.dll" adapterTypeName="executor://xunit/VsTestRunner3/netcore/" className="Gaode.Rules.Tests.Architecture.ProtocolBoundaryTests" name="PositiveCaseIsActuallyParsedAndChecked" />
+    </UnitTest>
+    <UnitTest name="Gaode.Rules.Tests.Architecture.ProtocolBoundaryTests.PositiveCaseIsActuallyParsedAndChecked(caseId: &quot;P02-coordinate-time&quot;, role: &quot;business&quot;, source: &quot;class Motion { bool Ready(double actual,double tar&quot;···)" storage="e:\dzk\gaode-1\backend\tests\gaode.rules.tests\bin\debug\net10.0\gaode.rules.tests.dll" id="0d274b5c-7a22-33c1-c8d7-8229d579c4cb">
+      <Execution id="51bcb552-6179-4491-907a-9ee628ee7dbb" />
+      <TestMethod codeBase="E:\dzk\gaode-1\backend\tests\Gaode.Rules.Tests\bin\Debug\net10.0\Gaode.Rules.Tests.dll" adapterTypeName="executor://xunit/VsTestRunner3/netcore/" className="Gaode.Rules.Tests.Architecture.ProtocolBoundaryTests" name="PositiveCaseIsActuallyParsedAndChecked" />
+    </UnitTest>
+    <UnitTest name="Gaode.Rules.Tests.Architecture.ProtocolBoundaryTests.NegativeCaseUsesProductionChecker(caseId: &quot;N07-qualified-reader&quot;, expectedRule: &quot;A05&quot;, role: &quot;business&quot;, source: &quot;namespace Gaode.Infrastructure.Persistence { publi&quot;···)" storage="e:\dzk\gaode-1\backend\tests\gaode.rules.tests\bin\debug\net10.0\gaode.rules.tests.dll" id="0dd683b8-a9c3-5d71-831a-06b51acaeeb5">
+      <Execution id="3d96ac13-e7d6-4e88-91a6-817c55969dd8" />
+      <TestMethod codeBase="E:\dzk\gaode-1\backend\tests\Gaode.Rules.Tests\bin\Debug\net10.0\Gaode.Rules.Tests.dll" adapterTypeName="executor://xunit/VsTestRunner3/netcore/" className="Gaode.Rules.Tests.Architecture.ProtocolBoundaryTests" name="NegativeCaseUsesProductionChecker" />
+    </UnitTest>
+    <UnitTest name="Gaode.Rules.Tests.Architecture.DependencyRulesTests.ProjectReferencesFollowTheFourLayerBoundary" storage="e:\dzk\gaode-1\backend\tests\gaode.rules.tests\bin\debug\net10.0\gaode.rules.tests.dll" id="4408a701-9454-da98-16af-983bca49d5f9">
+      <Execution id="4ebadabe-532e-4aed-b01f-35f3be927dce" />
+      <TestMethod codeBase="E:\dzk\gaode-1\backend\tests\Gaode.Rules.Tests\bin\Debug\net10.0\Gaode.Rules.Tests.dll" adapterTypeName="executor://xunit/VsTestRunner3/netcore/" className="Gaode.Rules.Tests.Architecture.DependencyRulesTests" name="ProjectReferencesFollowTheFourLayerBoundary" />
+    </UnitTest>
+    <UnitTest name="Gaode.Rules.Tests.Architecture.ProtocolBoundaryTests.N09BusinessContractIsRejectedByTheSameDocumentRule" storage="e:\dzk\gaode-1\backend\tests\gaode.rules.tests\bin\debug\net10.0\gaode.rules.tests.dll" id="9f72cda7-6824-9cf3-66f4-47267b9d32bb">
+      <Execution id="f1c10a19-530a-4f58-a388-8138a8d6eafc" />
+      <TestMethod codeBase="E:\dzk\gaode-1\backend\tests\Gaode.Rules.Tests\bin\Debug\net10.0\Gaode.Rules.Tests.dll" adapterTypeName="executor://xunit/VsTestRunner3/netcore/" className="Gaode.Rules.Tests.Architecture.ProtocolBoundaryTests" name="N09BusinessContractIsRejectedByTheSameDocumentRule" />
+    </UnitTest>
+    <UnitTest name="Gaode.Rules.Tests.Architecture.RecipeExecutionBoundaryTests.LegitimateEarlyReturnAndOriginUseRemainAllowed(sample: &quot;P-return-throw&quot;)" storage="e:\dzk\gaode-1\backend\tests\gaode.rules.tests\bin\debug\net10.0\gaode.rules.tests.dll" id="465806b7-07a8-35fc-dcfd-8896935229a0">
+      <Execution id="21d74e8b-d4b8-4f8d-8af6-bf93aca45315" />
+      <TestMethod codeBase="E:\dzk\gaode-1\backend\tests\Gaode.Rules.Tests\bin\Debug\net10.0\Gaode.Rules.Tests.dll" adapterTypeName="executor://xunit/VsTestRunner3/netcore/" className="Gaode.Rules.Tests.Architecture.RecipeExecutionBoundaryTests" name="LegitimateEarlyReturnAndOriginUseRemainAllowed" />
+    </UnitTest>
+    <UnitTest name="Gaode.Rules.Tests.Architecture.ProtocolBoundaryTests.NegativeCaseUsesProductionChecker(caseId: &quot;N07-qualified-exchange&quot;, expectedRule: &quot;A03&quot;, role: &quot;business&quot;, source: &quot;namespace Gaode.Infrastructure.Persistence { publi&quot;···)" storage="e:\dzk\gaode-1\backend\tests\gaode.rules.tests\bin\debug\net10.0\gaode.rules.tests.dll" id="e900d00c-caaf-ca0c-c2d5-414dd0b972f0">
+      <Execution id="89874817-2163-43de-842c-c4684762a770" />
+      <TestMethod codeBase="E:\dzk\gaode-1\backend\tests\Gaode.Rules.Tests\bin\Debug\net10.0\Gaode.Rules.Tests.dll" adapterTypeName="executor://xunit/VsTestRunner3/netcore/" className="Gaode.Rules.Tests.Architecture.ProtocolBoundaryTests" name="NegativeCaseUsesProductionChecker" />
+    </UnitTest>
+    <UnitTest name="Gaode.Rules.Tests.Architecture.ProtocolBoundaryTests.PositiveCaseIsActuallyParsedAndChecked(caseId: &quot;P05-opaque-reference&quot;, role: &quot;business&quot;, source: &quot;class Flow { string Preserve(string evidenceRefere&quot;···)" storage="e:\dzk\gaode-1\backend\tests\gaode.rules.tests\bin\debug\net10.0\gaode.rules.tests.dll" id="58b04c5a-8733-3ac0-f7d1-296d2fb84ce6">
+      <Execution id="ef630ad1-d8cc-4a79-b403-3b72cc068ac8" />
+      <TestMethod codeBase="E:\dzk\gaode-1\backend\tests\Gaode.Rules.Tests\bin\Debug\net10.0\Gaode.Rules.Tests.dll" adapterTypeName="executor://xunit/VsTestRunner3/netcore/" className="Gaode.Rules.Tests.Architecture.ProtocolBoundaryTests" name="PositiveCaseIsActuallyParsedAndChecked" />
+    </UnitTest>
+    <UnitTest name="Gaode.Rules.Tests.Architecture.ProtocolBoundaryTests.NegativeCaseUsesProductionChecker(caseId: &quot;N06-handshake/acquisition-fact&quot;, expectedRule: &quot;A04&quot;, role: &quot;business-orchestration&quot;, source: &quot;class Flow { object Fact() =&gt; new { kind=\&quot;Detecti&quot;···)" storage="e:\dzk\gaode-1\backend\tests\gaode.rules.tests\bin\debug\net10.0\gaode.rules.tests.dll" id="43560dc9-c16e-26a1-c6af-12f3c6e1648b">
+      <Execution id="0f7799f5-84c7-4ab1-9cf9-468634b081b8" />
+      <TestMethod codeBase="E:\dzk\gaode-1\backend\tests\Gaode.Rules.Tests\bin\Debug\net10.0\Gaode.Rules.Tests.dll" adapterTypeName="executor://xunit/VsTestRunner3/netcore/" className="Gaode.Rules.Tests.Architecture.ProtocolBoundaryTests" name="NegativeCaseUsesProductionChecker" />
+    </UnitTest>
+    <UnitTest name="Gaode.Rules.Tests.Architecture.RecipeExecutionBoundaryTests.TypedStageRefusalRemainsDistinctFromSuccessfulEarlyExit(status: &quot;PausedForManualReview&quot;, rejected: False)" storage="e:\dzk\gaode-1\backend\tests\gaode.rules.tests\bin\debug\net10.0\gaode.rules.tests.dll" id="1c1aca54-bf11-e411-04f3-f99f5d06c9cb">
+      <Execution id="c9ab649a-829b-478b-a02a-36dba9c2a399" />
+      <TestMethod codeBase="E:\dzk\gaode-1\backend\tests\Gaode.Rules.Tests\bin\Debug\net10.0\Gaode.Rules.Tests.dll" adapterTypeName="executor://xunit/VsTestRunner3/netcore/" className="Gaode.Rules.Tests.Architecture.RecipeExecutionBoundaryTests" name="TypedStageRefusalRemainsDistinctFromSuccessfulEarlyExit" />
+    </UnitTest>
+    <UnitTest name="Gaode.Rules.Tests.Architecture.ProtocolBoundaryTests.PositiveCaseIsActuallyParsedAndChecked(caseId: &quot;P04-semantic-historical-name&quot;, role: &quot;business-test&quot;, source: &quot;class InspectionHandshakeSequenceTests { bool Reli&quot;···)" storage="e:\dzk\gaode-1\backend\tests\gaode.rules.tests\bin\debug\net10.0\gaode.rules.tests.dll" id="f609c96b-988f-6c12-faf5-b0f44e4ca5fb">
+      <Execution id="decc9130-4890-4961-92eb-ee65ded0ee60" />
+      <TestMethod codeBase="E:\dzk\gaode-1\backend\tests\Gaode.Rules.Tests\bin\Debug\net10.0\Gaode.Rules.Tests.dll" adapterTypeName="executor://xunit/VsTestRunner3/netcore/" className="Gaode.Rules.Tests.Architecture.ProtocolBoundaryTests" name="PositiveCaseIsActuallyParsedAndChecked" />
+    </UnitTest>
+    <UnitTest name="Gaode.Rules.Tests.Architecture.ProtocolBoundaryTests.PositiveCaseIsActuallyParsedAndChecked(caseId: &quot;P04-actual-storage-fixture&quot;, role: &quot;business-orchestration&quot;, source: &quot;namespace Gaode.Infrastructure.Persistence { publi&quot;···)" storage="e:\dzk\gaode-1\backend\tests\gaode.rules.tests\bin\debug\net10.0\gaode.rules.tests.dll" id="cb6d8f4f-405a-fcad-3d4b-731cec3bfe5d">
+      <Execution id="c21e0198-7d84-4e38-9ed9-3710fe0a7f75" />
+      <TestMethod codeBase="E:\dzk\gaode-1\backend\tests\Gaode.Rules.Tests\bin\Debug\net10.0\Gaode.Rules.Tests.dll" adapterTypeName="executor://xunit/VsTestRunner3/netcore/" className="Gaode.Rules.Tests.Architecture.ProtocolBoundaryTests" name="PositiveCaseIsActuallyParsedAndChecked" />
+    </UnitTest>
+    <UnitTest name="Gaode.Rules.Tests.Architecture.ProtocolBoundaryTests.ProtectedClassificationCannotHideWireKnowledge(caseId: &quot;N18-protected-path/state&quot;, path: &quot;backend/src/Gaode.Infrastructure/Simulation/Simula&quot;···)" storage="e:\dzk\gaode-1\backend\tests\gaode.rules.tests\bin\debug\net10.0\gaode.rules.tests.dll" id="42bf4c37-82e2-5822-53f4-7cb9fe732cb9">
+      <Execution id="d8b7dabf-85c1-46d8-9904-72b0914ead8e" />
+      <TestMethod codeBase="E:\dzk\gaode-1\backend\tests\Gaode.Rules.Tests\bin\Debug\net10.0\Gaode.Rules.Tests.dll" adapterTypeName="executor://xunit/VsTestRunner3/netcore/" className="Gaode.Rules.Tests.Architecture.ProtocolBoundaryTests" name="ProtectedClassificationCannotHideWireKnowledge" />
+    </UnitTest>
+    <UnitTest name="Gaode.Rules.Tests.Architecture.ProtocolBoundaryTests.NegativeCaseUsesProductionChecker(caseId: &quot;N08-orchestration-protected&quot;, expectedRule: &quot;A04&quot;, role: &quot;business-orchestration&quot;, source: &quot;namespace Gaode.Infrastructure.Devices.Plc { publi&quot;···)" storage="e:\dzk\gaode-1\backend\tests\gaode.rules.tests\bin\debug\net10.0\gaode.rules.tests.dll" id="a6b3ba52-703e-9799-0479-191cb3a9edb7">
+      <Execution id="7c4da8b2-31da-4dcd-bf4e-5652bea5905a" />
+      <TestMethod codeBase="E:\dzk\gaode-1\backend\tests\Gaode.Rules.Tests\bin\Debug\net10.0\Gaode.Rules.Tests.dll" adapterTypeName="executor://xunit/VsTestRunner3/netcore/" className="Gaode.Rules.Tests.Architecture.ProtocolBoundaryTests" name="NegativeCaseUsesProductionChecker" />
+    </UnitTest>
+    <UnitTest name="Gaode.Rules.Tests.Architecture.RecipeExecutionBoundaryTests.EnvironmentalEarlyReturnIsRejected(sample: &quot;N02-return-helper-alias&quot;)" storage="e:\dzk\gaode-1\backend\tests\gaode.rules.tests\bin\debug\net10.0\gaode.rules.tests.dll" id="cebeb1c0-43c3-cb84-bd43-19104fb95a2b">
+      <Execution id="e7a87ce9-3197-41df-ac06-65e1a3d75cfd" />
+      <TestMethod codeBase="E:\dzk\gaode-1\backend\tests\Gaode.Rules.Tests\bin\Debug\net10.0\Gaode.Rules.Tests.dll" adapterTypeName="executor://xunit/VsTestRunner3/netcore/" className="Gaode.Rules.Tests.Architecture.RecipeExecutionBoundaryTests" name="EnvironmentalEarlyReturnIsRejected" />
+    </UnitTest>
+    <UnitTest name="Gaode.Rules.Tests.Architecture.ProtocolBoundaryTests.NegativeCaseUsesProductionChecker(caseId: &quot;N11-composition-raw&quot;, expectedRule: &quot;A04&quot;, role: &quot;composition-api&quot;, source: &quot;namespace Gaode.Infrastructure.Devices.Plc { publi&quot;···)" storage="e:\dzk\gaode-1\backend\tests\gaode.rules.tests\bin\debug\net10.0\gaode.rules.tests.dll" id="a2eb4142-c476-3af7-aa53-6f46834f5272">
+      <Execution id="24a1adbd-da1c-4a19-912e-5204e0baa373" />
+      <TestMethod codeBase="E:\dzk\gaode-1\backend\tests\Gaode.Rules.Tests\bin\Debug\net10.0\Gaode.Rules.Tests.dll" adapterTypeName="executor://xunit/VsTestRunner3/netcore/" className="Gaode.Rules.Tests.Architecture.ProtocolBoundaryTests" name="NegativeCaseUsesProductionChecker" />
+    </UnitTest>
+    <UnitTest name="Gaode.Rules.Tests.Architecture.RecipeExecutionBoundaryTests.IllegalArchitectureIsRejectedByTheRepositoryChecker(sample: &quot;N03a&quot;, requiredRule: &quot;B03&quot;)" storage="e:\dzk\gaode-1\backend\tests\gaode.rules.tests\bin\debug\net10.0\gaode.rules.tests.dll" id="00b8751f-9b6a-3bfa-db97-64e973b8a36f">
+      <Execution id="2ea527ae-cc6e-48d9-9402-fcba3700dd0d" />
+      <TestMethod codeBase="E:\dzk\gaode-1\backend\tests\Gaode.Rules.Tests\bin\Debug\net10.0\Gaode.Rules.Tests.dll" adapterTypeName="executor://xunit/VsTestRunner3/netcore/" className="Gaode.Rules.Tests.Architecture.RecipeExecutionBoundaryTests" name="IllegalArchitectureIsRejectedByTheRepositoryChecker" />
+    </UnitTest>
+    <UnitTest name="Gaode.Rules.Tests.Architecture.ProtocolBoundaryTests.ProtectedClassificationCannotHideWireKnowledge(caseId: &quot;N18-protected-path/application&quot;, path: &quot;backend/src/Gaode.Application/NewFlow.cs&quot;)" storage="e:\dzk\gaode-1\backend\tests\gaode.rules.tests\bin\debug\net10.0\gaode.rules.tests.dll" id="2f5e5b96-0eda-d2a4-14db-d6799f646c3b">
+      <Execution id="c228913d-c345-40e2-a653-8fab68b39096" />
+      <TestMethod codeBase="E:\dzk\gaode-1\backend\tests\Gaode.Rules.Tests\bin\Debug\net10.0\Gaode.Rules.Tests.dll" adapterTypeName="executor://xunit/VsTestRunner3/netcore/" className="Gaode.Rules.Tests.Architecture.ProtocolBoundaryTests" name="ProtectedClassificationCannotHideWireKnowledge" />
+    </UnitTest>
+    <UnitTest name="Gaode.Rules.Tests.Architecture.ProtocolBoundaryTests.ProtectedClassificationCannotHideWireKnowledge(caseId: &quot;N18-protected-path/unavailable&quot;, path: &quot;backend/src/Gaode.Infrastructure/Integrations/NotI&quot;···)" storage="e:\dzk\gaode-1\backend\tests\gaode.rules.tests\bin\debug\net10.0\gaode.rules.tests.dll" id="3904b9e5-adf5-9d4c-6432-e37c5205d1ad">
+      <Execution id="2fac6863-f851-4501-b51c-d522e0b963da" />
+      <TestMethod codeBase="E:\dzk\gaode-1\backend\tests\Gaode.Rules.Tests\bin\Debug\net10.0\Gaode.Rules.Tests.dll" adapterTypeName="executor://xunit/VsTestRunner3/netcore/" className="Gaode.Rules.Tests.Architecture.ProtocolBoundaryTests" name="ProtectedClassificationCannotHideWireKnowledge" />
+    </UnitTest>
+    <UnitTest name="Gaode.Rules.Tests.Architecture.ProtocolBoundaryTests.PositiveCaseIsActuallyParsedAndChecked(caseId: &quot;P04-business-payload&quot;, role: &quot;business&quot;, source: &quot;class Image { double[] Read(JsonElement data)=&gt;[da&quot;···)" storage="e:\dzk\gaode-1\backend\tests\gaode.rules.tests\bin\debug\net10.0\gaode.rules.tests.dll" id="cefd940b-8c1a-525d-6289-04f97b04aba2">
+      <Execution id="2ca31ae2-eb24-4ed0-8f19-fd78afbf08a2" />
+      <TestMethod codeBase="E:\dzk\gaode-1\backend\tests\Gaode.Rules.Tests\bin\Debug\net10.0\Gaode.Rules.Tests.dll" adapterTypeName="executor://xunit/VsTestRunner3/netcore/" className="Gaode.Rules.Tests.Architecture.ProtocolBoundaryTests" name="PositiveCaseIsActuallyParsedAndChecked" />
+    </UnitTest>
+    <UnitTest name="Gaode.Rules.Tests.Architecture.ProtocolBoundaryTests.NegativeCaseUsesProductionChecker(caseId: &quot;N10-bypass&quot;, expectedRule: &quot;A06&quot;, role: &quot;communication-implementation&quot;, source: &quot;class Transport { public int[] ReadRegisters(int o&quot;···)" storage="e:\dzk\gaode-1\backend\tests\gaode.rules.tests\bin\debug\net10.0\gaode.rules.tests.dll" id="a1ea0a2a-294e-542b-6ef7-a6fefc177da5">
+      <Execution id="cdf65750-4bde-4380-8933-855f8102c9b5" />
+      <TestMethod codeBase="E:\dzk\gaode-1\backend\tests\Gaode.Rules.Tests\bin\Debug\net10.0\Gaode.Rules.Tests.dll" adapterTypeName="executor://xunit/VsTestRunner3/netcore/" className="Gaode.Rules.Tests.Architecture.ProtocolBoundaryTests" name="NegativeCaseUsesProductionChecker" />
+    </UnitTest>
+    <UnitTest name="Gaode.Rules.Tests.Architecture.ProtocolBoundaryTests.NegativeCaseUsesProductionChecker(caseId: &quot;N07-diagnostics&quot;, expectedRule: &quot;A05&quot;, role: &quot;business&quot;, source: &quot;class Flow { bool Done(JsonElement json) =&gt; json.G&quot;···)" storage="e:\dzk\gaode-1\backend\tests\gaode.rules.tests\bin\debug\net10.0\gaode.rules.tests.dll" id="17719973-bbe3-1c90-8c95-7e88a059c812">
+      <Execution id="d7d104f2-c4e3-4063-8c23-79ec66f86e30" />
+      <TestMethod codeBase="E:\dzk\gaode-1\backend\tests\Gaode.Rules.Tests\bin\Debug\net10.0\Gaode.Rules.Tests.dll" adapterTypeName="executor://xunit/VsTestRunner3/netcore/" className="Gaode.Rules.Tests.Architecture.ProtocolBoundaryTests" name="NegativeCaseUsesProductionChecker" />
+    </UnitTest>
+    <UnitTest name="Gaode.Rules.Tests.Architecture.ProtocolBoundaryTests.PositiveCaseIsActuallyParsedAndChecked(caseId: &quot;P08-composition-options&quot;, role: &quot;composition-api&quot;, source: &quot;namespace Gaode.Infrastructure.Devices.Plc { publi&quot;···)" storage="e:\dzk\gaode-1\backend\tests\gaode.rules.tests\bin\debug\net10.0\gaode.rules.tests.dll" id="55ee2b7e-1d67-d01a-d6e2-d303d68d8a2d">
+      <Execution id="a8f9e3f6-87ed-44f6-9eb4-11f8d9ca0a52" />
+      <TestMethod codeBase="E:\dzk\gaode-1\backend\tests\Gaode.Rules.Tests\bin\Debug\net10.0\Gaode.Rules.Tests.dll" adapterTypeName="executor://xunit/VsTestRunner3/netcore/" className="Gaode.Rules.Tests.Architecture.ProtocolBoundaryTests" name="PositiveCaseIsActuallyParsedAndChecked" />
+    </UnitTest>
+    <UnitTest name="Gaode.Rules.Tests.Architecture.RecipeExecutionBoundaryTests.LegitimateOriginDecodingAndAdmissionRemainAllowed(sample: &quot;P01&quot;)" storage="e:\dzk\gaode-1\backend\tests\gaode.rules.tests\bin\debug\net10.0\gaode.rules.tests.dll" id="9f41d4b4-abfa-aeab-3c40-e87f46652918">
+      <Execution id="7b9906cc-7e6c-4783-9b2b-6583b5f6e17d" />
+      <TestMethod codeBase="E:\dzk\gaode-1\backend\tests\Gaode.Rules.Tests\bin\Debug\net10.0\Gaode.Rules.Tests.dll" adapterTypeName="executor://xunit/VsTestRunner3/netcore/" className="Gaode.Rules.Tests.Architecture.RecipeExecutionBoundaryTests" name="LegitimateOriginDecodingAndAdmissionRemainAllowed" />
+    </UnitTest>
+    <UnitTest name="Gaode.Rules.Tests.Architecture.RecipeExecutionBoundaryTests.CurrentSaveAndSerializationPathsCannotCreateAnotherExecutor(sample: &quot;serializer-test-identity&quot;, rule: &quot;B01&quot;)" storage="e:\dzk\gaode-1\backend\tests\gaode.rules.tests\bin\debug\net10.0\gaode.rules.tests.dll" id="e63d100d-b021-c536-434a-05402cf45add">
+      <Execution id="c94bd74e-7e3a-42c6-b324-dc5c8e3bd2b3" />
+      <TestMethod codeBase="E:\dzk\gaode-1\backend\tests\Gaode.Rules.Tests\bin\Debug\net10.0\Gaode.Rules.Tests.dll" adapterTypeName="executor://xunit/VsTestRunner3/netcore/" className="Gaode.Rules.Tests.Architecture.RecipeExecutionBoundaryTests" name="CurrentSaveAndSerializationPathsCannotCreateAnotherExecutor" />
+    </UnitTest>
+    <UnitTest name="Gaode.Rules.Tests.Architecture.RecipeExecutionBoundaryTests.EnvironmentalEarlyReturnIsRejected(sample: &quot;N02-return-direct&quot;)" storage="e:\dzk\gaode-1\backend\tests\gaode.rules.tests\bin\debug\net10.0\gaode.rules.tests.dll" id="827c4c2d-13f7-e5ce-09ba-899e58a2ee76">
+      <Execution id="4325321b-e29b-4784-902c-5a9224a250ce" />
+      <TestMethod codeBase="E:\dzk\gaode-1\backend\tests\Gaode.Rules.Tests\bin\Debug\net10.0\Gaode.Rules.Tests.dll" adapterTypeName="executor://xunit/VsTestRunner3/netcore/" className="Gaode.Rules.Tests.Architecture.RecipeExecutionBoundaryTests" name="EnvironmentalEarlyReturnIsRejected" />
+    </UnitTest>
+    <UnitTest name="Gaode.Rules.Tests.Architecture.RecipeExecutionBoundaryTests.IllegalArchitectureIsRejectedByTheRepositoryChecker(sample: &quot;N04&quot;, requiredRule: &quot;B04&quot;)" storage="e:\dzk\gaode-1\backend\tests\gaode.rules.tests\bin\debug\net10.0\gaode.rules.tests.dll" id="42d164c7-3457-b5ca-d7fb-6106fb338604">
+      <Execution id="cfebe532-9174-4c63-810e-5af80275e252" />
+      <TestMethod codeBase="E:\dzk\gaode-1\backend\tests\Gaode.Rules.Tests\bin\Debug\net10.0\Gaode.Rules.Tests.dll" adapterTypeName="executor://xunit/VsTestRunner3/netcore/" className="Gaode.Rules.Tests.Architecture.RecipeExecutionBoundaryTests" name="IllegalArchitectureIsRejectedByTheRepositoryChecker" />
+    </UnitTest>
+    <UnitTest name="Gaode.Rules.Tests.Architecture.RecipeExecutionBoundaryTests.CurrentSaveAndSerializationPathsCannotCreateAnotherExecutor(sample: &quot;store-stage&quot;, rule: &quot;B01&quot;)" storage="e:\dzk\gaode-1\backend\tests\gaode.rules.tests\bin\debug\net10.0\gaode.rules.tests.dll" id="d7f2eb4f-456a-57dd-8cea-220fd33cfb49">
+      <Execution id="7bf2c57e-8cbe-4ab2-94eb-3acf330a2f09" />
+      <TestMethod codeBase="E:\dzk\gaode-1\backend\tests\Gaode.Rules.Tests\bin\Debug\net10.0\Gaode.Rules.Tests.dll" adapterTypeName="executor://xunit/VsTestRunner3/netcore/" className="Gaode.Rules.Tests.Architecture.RecipeExecutionBoundaryTests" name="CurrentSaveAndSerializationPathsCannotCreateAnotherExecutor" />
+    </UnitTest>
+    <UnitTest name="Gaode.Rules.Tests.Architecture.RecipeExecutionBoundaryTests.LegitimateOriginDecodingAndAdmissionRemainAllowed(sample: &quot;P02&quot;)" storage="e:\dzk\gaode-1\backend\tests\gaode.rules.tests\bin\debug\net10.0\gaode.rules.tests.dll" id="6c4cc098-f74a-1129-0df9-e5864a58bbaf">
+      <Execution id="cb6017d5-435a-4ed4-9f45-973333376b1c" />
+      <TestMethod codeBase="E:\dzk\gaode-1\backend\tests\Gaode.Rules.Tests\bin\Debug\net10.0\Gaode.Rules.Tests.dll" adapterTypeName="executor://xunit/VsTestRunner3/netcore/" className="Gaode.Rules.Tests.Architecture.RecipeExecutionBoundaryTests" name="LegitimateOriginDecodingAndAdmissionRemainAllowed" />
+    </UnitTest>
+    <UnitTest name="Gaode.Rules.Tests.Architecture.ProtocolRepositoryBoundaryTests.PublicPortShapesAreReviewed" storage="e:\dzk\gaode-1\backend\tests\gaode.rules.tests\bin\debug\net10.0\gaode.rules.tests.dll" id="496cbc4a-b10d-5592-f4e3-c1dbe5be7765">
+      <Execution id="3eb81759-9ed0-4577-b9d6-1c62b4593ce8" />
+      <TestMethod codeBase="E:\dzk\gaode-1\backend\tests\Gaode.Rules.Tests\bin\Debug\net10.0\Gaode.Rules.Tests.dll" adapterTypeName="executor://xunit/VsTestRunner3/netcore/" className="Gaode.Rules.Tests.Architecture.ProtocolRepositoryBoundaryTests" name="PublicPortShapesAreReviewed" />
+    </UnitTest>
+    <UnitTest name="Gaode.Rules.Tests.Architecture.ParserAvailabilityTests.PinnedRoslynParsesAndBindsRealSymbols" storage="e:\dzk\gaode-1\backend\tests\gaode.rules.tests\bin\debug\net10.0\gaode.rules.tests.dll" id="6b72b8eb-c9ef-cd6e-5325-5a2a6f2f2ad7">
+      <Execution id="c9bf52cb-c077-4e1e-89aa-e4503c0b0f22" />
+      <TestMethod codeBase="E:\dzk\gaode-1\backend\tests\Gaode.Rules.Tests\bin\Debug\net10.0\Gaode.Rules.Tests.dll" adapterTypeName="executor://xunit/VsTestRunner3/netcore/" className="Gaode.Rules.Tests.Architecture.ParserAvailabilityTests" name="PinnedRoslynParsesAndBindsRealSymbols" />
+    </UnitTest>
+  </TestDefinitions>
+  <TestEntries>
+    <TestEntry testId="db5413d9-8b39-85cc-3099-392d4f0ed6ad" executionId="a1111c1d-d191-45e8-b128-ea6868dd16b7" testListId="8c84fa94-04c1-424b-9868-57a2d4851a1d" />
+    <TestEntry testId="58b04c5a-8733-3ac0-f7d1-296d2fb84ce6" executionId="ef630ad1-d8cc-4a79-b403-3b72cc068ac8" testListId="8c84fa94-04c1-424b-9868-57a2d4851a1d" />
+    <TestEntry testId="496cbc4a-b10d-5592-f4e3-c1dbe5be7765" executionId="3eb81759-9ed0-4577-b9d6-1c62b4593ce8" testListId="8c84fa94-04c1-424b-9868-57a2d4851a1d" />
+    <TestEntry testId="6c076bbe-ea90-bacf-f73a-ac4a47d49016" executionId="a9c0c0dd-6c9b-4459-9e19-0fedb48fc48f" testListId="8c84fa94-04c1-424b-9868-57a2d4851a1d" />
+    <TestEntry testId="cefd940b-8c1a-525d-6289-04f97b04aba2" executionId="2ca31ae2-eb24-4ed0-8f19-fd78afbf08a2" testListId="8c84fa94-04c1-424b-9868-57a2d4851a1d" />
+    <TestEntry testId="42bf4c37-82e2-5822-53f4-7cb9fe732cb9" executionId="d8b7dabf-85c1-46d8-9904-72b0914ead8e" testListId="8c84fa94-04c1-424b-9868-57a2d4851a1d" />
+    <TestEntry testId="a40af4cf-659c-c48c-85c8-caa9547c13da" executionId="4597eb8a-e044-4daa-a6da-328459b78a47" testListId="8c84fa94-04c1-424b-9868-57a2d4851a1d" />
+    <TestEntry testId="4408a701-9454-da98-16af-983bca49d5f9" executionId="4ebadabe-532e-4aed-b01f-35f3be927dce" testListId="8c84fa94-04c1-424b-9868-57a2d4851a1d" />
+    <TestEntry testId="f54baa8a-adf9-3951-5906-284c3953cf11" executionId="3898cdb4-dda4-4ef7-800e-059d20e5f855" testListId="8c84fa94-04c1-424b-9868-57a2d4851a1d" />
+    <TestEntry testId="9450e4c9-bcd6-93bf-3604-0ecb70659791" executionId="7542e670-45e8-405d-b897-bd0fabcb67b1" testListId="8c84fa94-04c1-424b-9868-57a2d4851a1d" />
+    <TestEntry testId="43560dc9-c16e-26a1-c6af-12f3c6e1648b" executionId="0f7799f5-84c7-4ab1-9cf9-468634b081b8" testListId="8c84fa94-04c1-424b-9868-57a2d4851a1d" />
+    <TestEntry testId="62682928-cb07-87a8-66f8-2a456cf4a4aa" executionId="fdc4b9e6-bbce-479f-b76a-c748cfa39346" testListId="8c84fa94-04c1-424b-9868-57a2d4851a1d" />
+    <TestEntry testId="17f0dfbe-761d-2ac2-bf6d-36459c6b0032" executionId="59b9d5f9-0d4c-4154-9a07-4fc237b6f51a" testListId="8c84fa94-04c1-424b-9868-57a2d4851a1d" />
+    <TestEntry testId="2b9fedcc-67f4-0c8a-1024-70763963a291" executionId="0df43323-8730-40dc-b5de-d842d86a9980" testListId="8c84fa94-04c1-424b-9868-57a2d4851a1d" />
+    <TestEntry testId="226d66f5-023d-e3b4-d974-0da3be3fc71d" executionId="7b7fbd58-2a56-4352-ba3c-8d6dd1dc4aeb" testListId="8c84fa94-04c1-424b-9868-57a2d4851a1d" />
+    <TestEntry testId="1c1aca54-bf11-e411-04f3-f99f5d06c9cb" executionId="c9ab649a-829b-478b-a02a-36dba9c2a399" testListId="8c84fa94-04c1-424b-9868-57a2d4851a1d" />
+    <TestEntry testId="dfa35b9e-7f5a-63de-07bb-f4aeaa0d9681" executionId="62a2bb70-e608-47b4-94a3-629009a03803" testListId="8c84fa94-04c1-424b-9868-57a2d4851a1d" />
+    <TestEntry testId="e1450ba6-d466-7d7e-ce12-8720657ba27b" executionId="2e5d364a-8970-4e5c-9ec5-d4e811dadba8" testListId="8c84fa94-04c1-424b-9868-57a2d4851a1d" />
+    <TestEntry testId="bdcdf9f7-ea81-eb91-872c-001cb875d9e2" executionId="ea062fe1-0f28-4d45-b402-5cfbee17796b" testListId="8c84fa94-04c1-424b-9868-57a2d4851a1d" />
+    <TestEntry testId="a2eb4142-c476-3af7-aa53-6f46834f5272" executionId="24a1adbd-da1c-4a19-912e-5204e0baa373" testListId="8c84fa94-04c1-424b-9868-57a2d4851a1d" />
+    <TestEntry testId="e548f706-e0ca-7b28-5fb3-4ce324237449" executionId="5f59e94e-0327-4b04-a7c1-aaa088a67e4b" testListId="8c84fa94-04c1-424b-9868-57a2d4851a1d" />
+    <TestEntry testId="3904b9e5-adf5-9d4c-6432-e37c5205d1ad" executionId="2fac6863-f851-4501-b51c-d522e0b963da" testListId="8c84fa94-04c1-424b-9868-57a2d4851a1d" />
+    <TestEntry testId="a1ea0a2a-294e-542b-6ef7-a6fefc177da5" executionId="cdf65750-4bde-4380-8933-855f8102c9b5" testListId="8c84fa94-04c1-424b-9868-57a2d4851a1d" />
+    <TestEntry testId="0d274b5c-7a22-33c1-c8d7-8229d579c4cb" executionId="51bcb552-6179-4491-907a-9ee628ee7dbb" testListId="8c84fa94-04c1-424b-9868-57a2d4851a1d" />
+    <TestEntry testId="d59be601-0c41-b8b8-6a7a-5da7e2e19b69" executionId="63516a1d-960e-46ec-9d2d-0f3fc952e45a" testListId="8c84fa94-04c1-424b-9868-57a2d4851a1d" />
+    <TestEntry testId="5cb177b5-ccaf-bbc8-3849-e3f763be9be7" executionId="a8d6ac5c-7cb3-4c6b-b33a-2d2cecca97fb" testListId="8c84fa94-04c1-424b-9868-57a2d4851a1d" />
+    <TestEntry testId="bf68ef45-8831-1a92-a4df-1588e7ed58db" executionId="dd4449bd-3a58-47af-844e-a93f875c6a6a" testListId="8c84fa94-04c1-424b-9868-57a2d4851a1d" />
+    <TestEntry testId="b34444c3-b223-50fb-c4b0-af9bf03b1a02" executionId="9cd03cb8-1e35-47b0-9d8e-92690a40e86a" testListId="8c84fa94-04c1-424b-9868-57a2d4851a1d" />
+    <TestEntry testId="c1ec9266-6598-ff2b-18a1-1e79c6de8951" executionId="ece96b1d-c421-4a76-b40f-d3e29f8dd317" testListId="8c84fa94-04c1-424b-9868-57a2d4851a1d" />
+    <TestEntry testId="8ab0b0e1-72a4-99b6-22a8-a919fdcd1958" executionId="c34348e2-8c11-4fd4-be4d-89702598ff39" testListId="8c84fa94-04c1-424b-9868-57a2d4851a1d" />
+    <TestEntry testId="d9d21418-f42a-d751-76a2-a3e168445335" executionId="98c1dbfa-adaf-4bc9-ad96-755d4da244b3" testListId="8c84fa94-04c1-424b-9868-57a2d4851a1d" />
+    <TestEntry testId="9f72cda7-6824-9cf3-66f4-47267b9d32bb" executionId="f1c10a19-530a-4f58-a388-8138a8d6eafc" testListId="8c84fa94-04c1-424b-9868-57a2d4851a1d" />
+    <TestEntry testId="4dd015ed-855d-798c-352c-09b72ad61e0f" executionId="7709afe1-0700-4e99-b775-8b9dc045ab80" testListId="8c84fa94-04c1-424b-9868-57a2d4851a1d" />
+    <TestEntry testId="e900d00c-caaf-ca0c-c2d5-414dd0b972f0" executionId="89874817-2163-43de-842c-c4684762a770" testListId="8c84fa94-04c1-424b-9868-57a2d4851a1d" />
+    <TestEntry testId="9f41d4b4-abfa-aeab-3c40-e87f46652918" executionId="7b9906cc-7e6c-4783-9b2b-6583b5f6e17d" testListId="8c84fa94-04c1-424b-9868-57a2d4851a1d" />
+    <TestEntry testId="6c4cc098-f74a-1129-0df9-e5864a58bbaf" executionId="cb6017d5-435a-4ed4-9f45-973333376b1c" testListId="8c84fa94-04c1-424b-9868-57a2d4851a1d" />
+    <TestEntry testId="79fd5cd3-e208-13e5-d50c-c08da8bc2eb0" executionId="47df5dee-d96d-4d18-bb79-d9cacd6b86cc" testListId="8c84fa94-04c1-424b-9868-57a2d4851a1d" />
+    <TestEntry testId="ad656698-df19-6b8b-6414-783a4e68db3b" executionId="381b1c7f-c714-4bdb-af76-3afa1a4023c0" testListId="8c84fa94-04c1-424b-9868-57a2d4851a1d" />
+    <TestEntry testId="babcf324-f09f-487f-9515-1c69ba52fbc5" executionId="fbb31d5f-881f-421c-98b4-5c3ca4fec517" testListId="8c84fa94-04c1-424b-9868-57a2d4851a1d" />
+    <TestEntry testId="d7f2eb4f-456a-57dd-8cea-220fd33cfb49" executionId="7bf2c57e-8cbe-4ab2-94eb-3acf330a2f09" testListId="8c84fa94-04c1-424b-9868-57a2d4851a1d" />
+    <TestEntry testId="f7798f4c-a6d8-1f57-9070-071b3228e602" executionId="9167b55d-5e39-47ef-b145-0b011365bf26" testListId="8c84fa94-04c1-424b-9868-57a2d4851a1d" />
+    <TestEntry testId="6b72b8eb-c9ef-cd6e-5325-5a2a6f2f2ad7" executionId="c9bf52cb-c077-4e1e-89aa-e4503c0b0f22" testListId="8c84fa94-04c1-424b-9868-57a2d4851a1d" />
+    <TestEntry testId="f5aa73fc-8d63-d469-2c9c-1bc6adf34731" executionId="d91d083c-8e23-44cd-b265-741d555d8abd" testListId="8c84fa94-04c1-424b-9868-57a2d4851a1d" />
+    <TestEntry testId="31a4fd6d-41d1-b5a7-8f0f-e2a9deeaa97c" executionId="9ccd184d-6f1a-490d-98cd-2d4f59a500a8" testListId="8c84fa94-04c1-424b-9868-57a2d4851a1d" />
+    <TestEntry testId="42d164c7-3457-b5ca-d7fb-6106fb338604" executionId="cfebe532-9174-4c63-810e-5af80275e252" testListId="8c84fa94-04c1-424b-9868-57a2d4851a1d" />
+    <TestEntry testId="fe26aa03-f370-5c18-3dcc-35c6a3c5127b" executionId="32242586-d3c3-4ac7-bb40-a82336b8da90" testListId="8c84fa94-04c1-424b-9868-57a2d4851a1d" />
+    <TestEntry testId="698b19d9-b83c-0c95-2afd-cf67d7a12473" executionId="fa298952-1d2b-4a51-8bc4-ddb961348782" testListId="8c84fa94-04c1-424b-9868-57a2d4851a1d" />
+    <TestEntry testId="eb905272-85c0-c7d3-763e-85b1f995810e" executionId="d54947b5-d58c-4273-9c73-e932f6ffb781" testListId="8c84fa94-04c1-424b-9868-57a2d4851a1d" />
+    <TestEntry testId="43abb393-f075-26b5-5ef7-d501470e24fa" executionId="9188e8e0-b478-4471-8348-3ba2664c7a5f" testListId="8c84fa94-04c1-424b-9868-57a2d4851a1d" />
+    <TestEntry testId="465806b7-07a8-35fc-dcfd-8896935229a0" executionId="21d74e8b-d4b8-4f8d-8af6-bf93aca45315" testListId="8c84fa94-04c1-424b-9868-57a2d4851a1d" />
+    <TestEntry testId="f609c96b-988f-6c12-faf5-b0f44e4ca5fb" executionId="decc9130-4890-4961-92eb-ee65ded0ee60" testListId="8c84fa94-04c1-424b-9868-57a2d4851a1d" />
+    <TestEntry testId="9257258e-8ca8-7ded-b43e-4b842653d16d" executionId="4496796f-b1b4-4419-9e5d-2bfea1340650" testListId="8c84fa94-04c1-424b-9868-57a2d4851a1d" />
+    <TestEntry testId="a327d694-f045-1283-4ab8-c7e770899ce3" executionId="4d29af67-41f9-4f5b-9d9a-3d45b51a0b61" testListId="8c84fa94-04c1-424b-9868-57a2d4851a1d" />
+    <TestEntry testId="cebeb1c0-43c3-cb84-bd43-19104fb95a2b" executionId="e7a87ce9-3197-41df-ac06-65e1a3d75cfd" testListId="8c84fa94-04c1-424b-9868-57a2d4851a1d" />
+    <TestEntry testId="1f692cf5-09bc-56b6-9dea-caa681ec813c" executionId="c2e4fb20-c7a5-431c-a037-a6f668ee8677" testListId="8c84fa94-04c1-424b-9868-57a2d4851a1d" />
+    <TestEntry testId="89cc9298-36c1-8fbd-d987-8741fe1d9c00" executionId="e83a5bd8-c3da-48e0-a64b-6c3db883428e" testListId="8c84fa94-04c1-424b-9868-57a2d4851a1d" />
+    <TestEntry testId="09343014-141d-b307-a694-fc2186820555" executionId="2d2165e2-0be8-400d-8619-109decba6647" testListId="8c84fa94-04c1-424b-9868-57a2d4851a1d" />
+    <TestEntry testId="84925476-f1ad-0658-ff72-b856aa77dc8e" executionId="ab7e2112-adc9-4dd0-aeae-b4b38781ecbb" testListId="8c84fa94-04c1-424b-9868-57a2d4851a1d" />
+    <TestEntry testId="d84b6d13-3cc8-ee52-1f20-88adacc8a7a5" executionId="d0d22eea-b045-488a-a648-cebdbba0380e" testListId="8c84fa94-04c1-424b-9868-57a2d4851a1d" />
+    <TestEntry testId="2f5e5b96-0eda-d2a4-14db-d6799f646c3b" executionId="c228913d-c345-40e2-a653-8fab68b39096" testListId="8c84fa94-04c1-424b-9868-57a2d4851a1d" />
+    <TestEntry testId="af6be09a-05a5-a39c-7f8c-9527104f1c2d" executionId="ffad93bd-b262-47a0-bfb0-ad244c4ad816" testListId="8c84fa94-04c1-424b-9868-57a2d4851a1d" />
+    <TestEntry testId="0dd683b8-a9c3-5d71-831a-06b51acaeeb5" executionId="3d96ac13-e7d6-4e88-91a6-817c55969dd8" testListId="8c84fa94-04c1-424b-9868-57a2d4851a1d" />
+    <TestEntry testId="19d15afd-30f9-7cec-e554-6882ae608345" executionId="421742e3-3810-4456-bef0-cb8b5026af42" testListId="8c84fa94-04c1-424b-9868-57a2d4851a1d" />
+    <TestEntry testId="57258436-efd9-6501-1ec6-cb74d63e7fe4" executionId="ac20f9a8-7296-43cf-91d6-8052928bef26" testListId="8c84fa94-04c1-424b-9868-57a2d4851a1d" />
+    <TestEntry testId="59b40678-d99b-725e-135f-7feb9454b060" executionId="fc074a29-96b1-49c7-8b1a-513096d0d82f" testListId="8c84fa94-04c1-424b-9868-57a2d4851a1d" />
+    <TestEntry testId="9c9bed58-9455-5a72-d6a2-82abc508eb24" executionId="27910764-c46d-4111-a37e-5da33e4db0d6" testListId="8c84fa94-04c1-424b-9868-57a2d4851a1d" />
+    <TestEntry testId="74c7c13b-8de8-4476-cdb1-f0c26231dbf6" executionId="5b1dc936-dcbe-4d29-a7c0-dd6353a4c2c2" testListId="8c84fa94-04c1-424b-9868-57a2d4851a1d" />
+    <TestEntry testId="0dea939f-7ba2-783c-aff5-f11c303c85e0" executionId="5a0f4b38-2663-437f-b809-3c7174a62c5a" testListId="8c84fa94-04c1-424b-9868-57a2d4851a1d" />
+    <TestEntry testId="01322bbf-7369-4d5e-5e5c-fd9f234b8f15" executionId="4d075eeb-2436-469e-a427-4a8d56dce2e6" testListId="8c84fa94-04c1-424b-9868-57a2d4851a1d" />
+    <TestEntry testId="ca6987e9-d775-13f2-7d24-b5e8c27a7479" executionId="12458b28-c2d1-4adc-a158-eaa0745beab3" testListId="8c84fa94-04c1-424b-9868-57a2d4851a1d" />
+    <TestEntry testId="50c0a60d-2972-9f5f-7dd7-f7b81cc1c849" executionId="d5a534a3-412b-4f67-b9a4-d7152362e951" testListId="8c84fa94-04c1-424b-9868-57a2d4851a1d" />
+    <TestEntry testId="88c0aeb3-dba9-66f5-0aeb-0d094f0bfa4a" executionId="d4b0f98c-43d3-4f44-a1da-06795109b1f6" testListId="8c84fa94-04c1-424b-9868-57a2d4851a1d" />
+    <TestEntry testId="17719973-bbe3-1c90-8c95-7e88a059c812" executionId="d7d104f2-c4e3-4063-8c23-79ec66f86e30" testListId="8c84fa94-04c1-424b-9868-57a2d4851a1d" />
+    <TestEntry testId="827c4c2d-13f7-e5ce-09ba-899e58a2ee76" executionId="4325321b-e29b-4784-902c-5a9224a250ce" testListId="8c84fa94-04c1-424b-9868-57a2d4851a1d" />
+    <TestEntry testId="8ef8e5a5-8e9f-daf8-82a3-69ea9cbb0c31" executionId="34682be3-48ab-4d45-b92f-f11c7e8dca0b" testListId="8c84fa94-04c1-424b-9868-57a2d4851a1d" />
+    <TestEntry testId="cb6d8f4f-405a-fcad-3d4b-731cec3bfe5d" executionId="c21e0198-7d84-4e38-9ed9-3710fe0a7f75" testListId="8c84fa94-04c1-424b-9868-57a2d4851a1d" />
+    <TestEntry testId="86f2c958-f9f2-df16-918d-56d1c2f0ce53" executionId="4aca801b-d1ba-4da0-ad58-b51951c28364" testListId="8c84fa94-04c1-424b-9868-57a2d4851a1d" />
+    <TestEntry testId="e63d100d-b021-c536-434a-05402cf45add" executionId="c94bd74e-7e3a-42c6-b324-dc5c8e3bd2b3" testListId="8c84fa94-04c1-424b-9868-57a2d4851a1d" />
+    <TestEntry testId="a6b3ba52-703e-9799-0479-191cb3a9edb7" executionId="7c4da8b2-31da-4dcd-bf4e-5652bea5905a" testListId="8c84fa94-04c1-424b-9868-57a2d4851a1d" />
+    <TestEntry testId="55ee2b7e-1d67-d01a-d6e2-d303d68d8a2d" executionId="a8f9e3f6-87ed-44f6-9eb4-11f8d9ca0a52" testListId="8c84fa94-04c1-424b-9868-57a2d4851a1d" />
+    <TestEntry testId="63a63073-d498-1f0e-97a0-c45f6dd05b99" executionId="949c7ce0-a1d8-40d6-be21-2bbfd1c4a51c" testListId="8c84fa94-04c1-424b-9868-57a2d4851a1d" />
+    <TestEntry testId="00b8751f-9b6a-3bfa-db97-64e973b8a36f" executionId="2ea527ae-cc6e-48d9-9402-fcba3700dd0d" testListId="8c84fa94-04c1-424b-9868-57a2d4851a1d" />
+  </TestEntries>
+  <TestLists>
+    <TestList name="列表中未列出的结果" id="8c84fa94-04c1-424b-9868-57a2d4851a1d" />
+    <TestList name="所有已加载的结果" id="19431567-8539-422a-85d7-44ee4e166bda" />
+  </TestLists>
+  <ResultSummary outcome="Failed">
+    <Counters total="82" executed="82" passed="73" failed="9" error="0" timeout="0" aborted="0" inconclusive="0" passedButRunAborted="0" notRunnable="0" notExecuted="0" disconnected="0" warning="0" completed="0" inProgress="0" pending="0" />
+    <Output>
+      <StdOut>[xUnit.net 00:00:00.00] xUnit.net VSTest Adapter v3.1.5+1b188a7b0a (64-bit .NET 10.0.12)&#xD;
+[xUnit.net 00:00:02.48]   Discovering: Gaode.Rules.Tests&#xD;
+[xUnit.net 00:00:06.20]   Discovered:  Gaode.Rules.Tests&#xD;
+[xUnit.net 00:00:07.02]   Starting:    Gaode.Rules.Tests&#xD;
+[xUnit.net 00:01:12.72]       System.IO.DirectoryNotFoundException : Could not find a part of the path 'E:\dzk\gaode-1\backend\src\Gaode.CameraWorker\$(CameraProIncludeRoot)\*.cs'.&#xD;
+[xUnit.net 00:01:12.73]       Stack Trace:&#xD;
+[xUnit.net 00:01:12.73]            at Microsoft.Win32.SafeHandles.SafeFileHandle.CreateFile(String fullPath, FileMode mode, FileAccess access, FileShare share, FileOptions options)&#xD;
+[xUnit.net 00:01:12.73]            at System.IO.Strategies.OSFileStreamStrategy..ctor(String path, FileMode mode, FileAccess access, FileShare share, FileOptions options, Int64 preallocationSize, Nullable`1 unixCreateMode)&#xD;
+[xUnit.net 00:01:12.73]            at System.IO.Strategies.FileStreamHelpers.ChooseStrategyCore(String path, FileMode mode, FileAccess access, FileShare share, FileOptions options, Int64 preallocationSize, Nullable`1 unixCreateMode)&#xD;
+[xUnit.net 00:01:12.73]            at System.IO.StreamReader.ValidateArgsAndOpenPath(String path, Int32 bufferSize)&#xD;
+[xUnit.net 00:01:12.73]            at System.IO.File.ReadAllText(String path, Encoding encoding)&#xD;
+[xUnit.net 00:01:12.73]         E:\dzk\gaode-1\backend\tests\Gaode.Rules.Tests\Architecture\ProtocolRepositoryBoundaryTests.cs(80,0): at Gaode.Rules.Tests.Architecture.ProtocolRepositoryBoundaryTests.&lt;&gt;c.&lt;Scan&gt;b__11_9(String path)&#xD;
+[xUnit.net 00:01:12.73]            at System.Linq.Enumerable.IEnumerableSelectIterator`2.ToList()&#xD;
+[xUnit.net 00:01:12.73]         E:\dzk\gaode-1\backend\tests\Gaode.Rules.Tests\Architecture\ProtocolRepositoryBoundaryTests.cs(80,0): at Gaode.Rules.Tests.Architecture.ProtocolRepositoryBoundaryTests.&lt;&gt;c__DisplayClass11_0.&lt;Scan&gt;g__Compile|5(String project)&#xD;
+[xUnit.net 00:01:12.73]         E:\dzk\gaode-1\backend\tests\Gaode.Rules.Tests\Architecture\ProtocolRepositoryBoundaryTests.cs(115,0): at Gaode.Rules.Tests.Architecture.ProtocolRepositoryBoundaryTests.Scan()&#xD;
+[xUnit.net 00:01:12.73]            at System.Lazy`1.ViaFactory(LazyThreadSafetyMode mode)&#xD;
+[xUnit.net 00:01:12.73]         --- End of stack trace from previous location ---&#xD;
+[xUnit.net 00:01:12.73]            at System.Lazy`1.CreateValue()&#xD;
+[xUnit.net 00:01:12.73]         E:\dzk\gaode-1\backend\tests\Gaode.Rules.Tests\Architecture\ProtocolRepositoryBoundaryTests.cs(27,0): at Gaode.Rules.Tests.Architecture.ProtocolRepositoryBoundaryTests.AssertClean(String[] rules)&#xD;
+[xUnit.net 00:01:12.73]         E:\dzk\gaode-1\backend\tests\Gaode.Rules.Tests\Architecture\ProtocolRepositoryBoundaryTests.cs(17,0): at Gaode.Rules.Tests.Architecture.ProtocolRepositoryBoundaryTests.ProductionBusinessSourceBoundary()&#xD;
+[xUnit.net 00:01:12.73]            at System.Reflection.MethodBaseInvoker.InterpretedInvoke_Method(Object obj, IntPtr* args)&#xD;
+[xUnit.net 00:01:12.73]            at System.Reflection.RuntimeMethodInfo.Invoke(Object obj, BindingFlags invokeAttr, Binder binder, Object[] parameters, CultureInfo culture)&#xD;
+[xUnit.net 00:01:12.73]       System.IO.DirectoryNotFoundException : Could not find a part of the path 'E:\dzk\gaode-1\backend\src\Gaode.CameraWorker\$(CameraProIncludeRoot)\*.cs'.&#xD;
+[xUnit.net 00:01:12.73]       Stack Trace:&#xD;
+[xUnit.net 00:01:12.73]            at Microsoft.Win32.SafeHandles.SafeFileHandle.CreateFile(String fullPath, FileMode mode, FileAccess access, FileShare share, FileOptions options)&#xD;
+[xUnit.net 00:01:12.73]            at System.IO.Strategies.OSFileStreamStrategy..ctor(String path, FileMode mode, FileAccess access, FileShare share, FileOptions options, Int64 preallocationSize, Nullable`1 unixCreateMode)&#xD;
+[xUnit.net 00:01:12.73]            at System.IO.Strategies.FileStreamHelpers.ChooseStrategyCore(String path, FileMode mode, FileAccess access, FileShare share, FileOptions options, Int64 preallocationSize, Nullable`1 unixCreateMode)&#xD;
+[xUnit.net 00:01:12.73]            at System.IO.StreamReader.ValidateArgsAndOpenPath(String path, Int32 bufferSize)&#xD;
+[xUnit.net 00:01:12.73]            at System.IO.File.ReadAllText(String path, Encoding encoding)&#xD;
+[xUnit.net 00:01:12.73]         E:\dzk\gaode-1\backend\tests\Gaode.Rules.Tests\Architecture\ProtocolRepositoryBoundaryTests.cs(80,0): at Gaode.Rules.Tests.Architecture.ProtocolRepositoryBoundaryTests.&lt;&gt;c.&lt;Scan&gt;b__11_9(String path)&#xD;
+[xUnit.net 00:01:12.73]            at System.Linq.Enumerable.IEnumerableSelectIterator`2.ToList()&#xD;
+[xUnit.net 00:01:12.73]         E:\dzk\gaode-1\backend\tests\Gaode.Rules.Tests\Architecture\ProtocolRepositoryBoundaryTests.cs(80,0): at Gaode.Rules.Tests.Architecture.ProtocolRepositoryBoundaryTests.&lt;&gt;c__DisplayClass11_0.&lt;Scan&gt;g__Compile|5(String project)&#xD;
+[xUnit.net 00:01:12.73]         E:\dzk\gaode-1\backend\tests\Gaode.Rules.Tests\Architecture\ProtocolRepositoryBoundaryTests.cs(115,0): at Gaode.Rules.Tests.Architecture.ProtocolRepositoryBoundaryTests.Scan()&#xD;
+[xUnit.net 00:01:12.73]            at System.Lazy`1.ViaFactory(LazyThreadSafetyMode mode)&#xD;
+[xUnit.net 00:01:12.73]         --- End of stack trace from previous location ---&#xD;
+[xUnit.net 00:01:12.73]            at System.Lazy`1.CreateValue()&#xD;
+[xUnit.net 00:01:12.73]         E:\dzk\gaode-1\backend\tests\Gaode.Rules.Tests\Architecture\ProtocolRepositoryBoundaryTests.cs(27,0): at Gaode.Rules.Tests.Architecture.ProtocolRepositoryBoundaryTests.AssertClean(String[] rules)&#xD;
+[xUnit.net 00:01:12.73]         E:\dzk\gaode-1\backend\tests\Gaode.Rules.Tests\Architecture\ProtocolRepositoryBoundaryTests.cs(23,0): at Gaode.Rules.Tests.Architecture.ProtocolRepositoryBoundaryTests.FormalAdaptersUseNamedSignalAccess()&#xD;
+[xUnit.net 00:01:12.73]            at System.Reflection.MethodBaseInvoker.InterpretedInvoke_Method(Object obj, IntPtr* args)&#xD;
+[xUnit.net 00:01:12.73]            at System.Reflection.RuntimeMethodInfo.Invoke(Object obj, BindingFlags invokeAttr, Binder binder, Object[] parameters, CultureInfo culture)&#xD;
+[xUnit.net 00:01:12.74]       System.IO.DirectoryNotFoundException : Could not find a part of the path 'E:\dzk\gaode-1\backend\src\Gaode.CameraWorker\$(CameraProIncludeRoot)\*.cs'.&#xD;
+[xUnit.net 00:01:12.74]       Stack Trace:&#xD;
+[xUnit.net 00:01:12.74]            at Microsoft.Win32.SafeHandles.SafeFileHandle.CreateFile(String fullPath, FileMode mode, FileAccess access, FileShare share, FileOptions options)&#xD;
+[xUnit.net 00:01:12.74]            at System.IO.Strategies.OSFileStreamStrategy..ctor(String path, FileMode mode, FileAccess access, FileShare share, FileOptions options, Int64 preallocationSize, Nullable`1 unixCreateMode)&#xD;
+[xUnit.net 00:01:12.74]            at System.IO.Strategies.FileStreamHelpers.ChooseStrategyCore(String path, FileMode mode, FileAccess access, FileShare share, FileOptions options, Int64 preallocationSize, Nullable`1 unixCreateMode)&#xD;
+[xUnit.net 00:01:12.74]            at System.IO.StreamReader.ValidateArgsAndOpenPath(String path, Int32 bufferSize)&#xD;
+[xUnit.net 00:01:12.74]            at System.IO.File.ReadAllText(String path, Encoding encoding)&#xD;
+[xUnit.net 00:01:12.74]         E:\dzk\gaode-1\backend\tests\Gaode.Rules.Tests\Architecture\ProtocolRepositoryBoundaryTests.cs(80,0): at Gaode.Rules.Tests.Architecture.ProtocolRepositoryBoundaryTests.&lt;&gt;c.&lt;Scan&gt;b__11_9(String path)&#xD;
+[xUnit.net 00:01:12.74]            at System.Linq.Enumerable.IEnumerableSelectIterator`2.ToList()&#xD;
+[xUnit.net 00:01:12.74]         E:\dzk\gaode-1\backend\tests\Gaode.Rules.Tests\Architecture\ProtocolRepositoryBoundaryTests.cs(80,0): at Gaode.Rules.Tests.Architecture.ProtocolRepositoryBoundaryTests.&lt;&gt;c__DisplayClass11_0.&lt;Scan&gt;g__Compile|5(String project)&#xD;
+[xUnit.net 00:01:12.74]         E:\dzk\gaode-1\backend\tests\Gaode.Rules.Tests\Architecture\ProtocolRepositoryBoundaryTests.cs(115,0): at Gaode.Rules.Tests.Architecture.ProtocolRepositoryBoundaryTests.Scan()&#xD;
+[xUnit.net 00:01:12.74]            at System.Lazy`1.ViaFactory(LazyThreadSafetyMode mode)&#xD;
+[xUnit.net 00:01:12.74]         --- End of stack trace from previous location ---&#xD;
+[xUnit.net 00:01:12.74]            at System.Lazy`1.CreateValue()&#xD;
+[xUnit.net 00:01:12.74]         E:\dzk\gaode-1\backend\tests\Gaode.Rules.Tests\Architecture\ProtocolRepositoryBoundaryTests.cs(27,0): at Gaode.Rules.Tests.Architecture.ProtocolRepositoryBoundaryTests.AssertClean(String[] rules)&#xD;
+[xUnit.net 00:01:12.74]         E:\dzk\gaode-1\backend\tests\Gaode.Rules.Tests\Architecture\ProtocolRepositoryBoundaryTests.cs(19,0): at Gaode.Rules.Tests.Architecture.ProtocolRepositoryBoundaryTests.PublicPortShapesAreReviewed()&#xD;
+[xUnit.net 00:01:12.74]            at System.Reflection.MethodBaseInvoker.InterpretedInvoke_Method(Object obj, IntPtr* args)&#xD;
+[xUnit.net 00:01:12.74]            at System.Reflection.RuntimeMethodInfo.Invoke(Object obj, BindingFlags invokeAttr, Binder binder, Object[] parameters, CultureInfo culture)&#xD;
+[xUnit.net 00:01:12.74]       System.IO.DirectoryNotFoundException : Could not find a part of the path 'E:\dzk\gaode-1\backend\src\Gaode.CameraWorker\$(CameraProIncludeRoot)\*.cs'.&#xD;
+[xUnit.net 00:01:12.74]       Stack Trace:&#xD;
+[xUnit.net 00:01:12.74]            at Microsoft.Win32.SafeHandles.SafeFileHandle.CreateFile(String fullPath, FileMode mode, FileAccess access, FileShare share, FileOptions options)&#xD;
+[xUnit.net 00:01:12.74]            at System.IO.Strategies.OSFileStreamStrategy..ctor(String path, FileMode mode, FileAccess access, FileShare share, FileOptions options, Int64 preallocationSize, Nullable`1 unixCreateMode)&#xD;
+[xUnit.net 00:01:12.74]            at System.IO.Strategies.FileStreamHelpers.ChooseStrategyCore(String path, FileMode mode, FileAccess access, FileShare share, FileOptions options, Int64 preallocationSize, Nullable`1 unixCreateMode)&#xD;
+[xUnit.net 00:01:12.74]            at System.IO.StreamReader.ValidateArgsAndOpenPath(String path, Int32 bufferSize)&#xD;
+[xUnit.net 00:01:12.74]            at System.IO.File.ReadAllText(String path, Encoding encoding)&#xD;
+[xUnit.net 00:01:12.74]         E:\dzk\gaode-1\backend\tests\Gaode.Rules.Tests\Architecture\ProtocolRepositoryBoundaryTests.cs(80,0): at Gaode.Rules.Tests.Architecture.ProtocolRepositoryBoundaryTests.&lt;&gt;c.&lt;Scan&gt;b__11_9(String path)&#xD;
+[xUnit.net 00:01:12.74]            at System.Linq.Enumerable.IEnumerableSelectIterator`2.ToList()&#xD;
+[xUnit.net 00:01:12.74]         E:\dzk\gaode-1\backend\tests\Gaode.Rules.Tests\Architecture\ProtocolRepositoryBoundaryTests.cs(80,0): at Gaode.Rules.Tests.Architecture.ProtocolRepositoryBoundaryTests.&lt;&gt;c__DisplayClass11_0.&lt;Scan&gt;g__Compile|5(String project)&#xD;
+[xUnit.net 00:01:12.74]         E:\dzk\gaode-1\backend\tests\Gaode.Rules.Tests\Architecture\ProtocolRepositoryBoundaryTests.cs(115,0): at Gaode.Rules.Tests.Architecture.ProtocolRepositoryBoundaryTests.Scan()&#xD;
+[xUnit.net 00:01:12.74]            at System.Lazy`1.ViaFactory(LazyThreadSafetyMode mode)&#xD;
+[xUnit.net 00:01:12.74]         --- End of stack trace from previous location ---&#xD;
+[xUnit.net 00:01:12.74]            at System.Lazy`1.CreateValue()&#xD;
+[xUnit.net 00:01:12.74]         E:\dzk\gaode-1\backend\tests\Gaode.Rules.Tests\Architecture\ProtocolRepositoryBoundaryTests.cs(27,0): at Gaode.Rules.Tests.Architecture.ProtocolRepositoryBoundaryTests.AssertClean(String[] rules)&#xD;
+[xUnit.net 00:01:12.74]         E:\dzk\gaode-1\backend\tests\Gaode.Rules.Tests\Architecture\ProtocolRepositoryBoundaryTests.cs(21,0): at Gaode.Rules.Tests.Architecture.ProtocolRepositoryBoundaryTests.BusinessContractsAndTestsDoNotRequireWireDetails()&#xD;
+[xUnit.net 00:01:12.74]            at System.Reflection.MethodBaseInvoker.InterpretedInvoke_Method(Object obj, IntPtr* args)&#xD;
+[xUnit.net 00:01:12.74]            at System.Reflection.RuntimeMethodInfo.Invoke(Object obj, BindingFlags invokeAttr, Binder binder, Object[] parameters, CultureInfo culture)&#xD;
+[xUnit.net 00:01:12.74]       System.IO.DirectoryNotFoundException : Could not find a part of the path 'E:\dzk\gaode-1\backend\src\Gaode.CameraWorker\$(CameraProIncludeRoot)\*.cs'.&#xD;
+[xUnit.net 00:01:12.74]       Stack Trace:&#xD;
+[xUnit.net 00:01:12.74]            at Microsoft.Win32.SafeHandles.SafeFileHandle.CreateFile(String fullPath, FileMode mode, FileAccess access, FileShare share, FileOptions options)&#xD;
+[xUnit.net 00:01:12.74]            at System.IO.Strategies.OSFileStreamStrategy..ctor(String path, FileMode mode, FileAccess access, FileShare share, FileOptions options, Int64 preallocationSize, Nullable`1 unixCreateMode)&#xD;
+[xUnit.net 00:01:12.74]            at System.IO.Strategies.FileStreamHelpers.ChooseStrategyCore(String path, FileMode mode, FileAccess access, FileShare share, FileOptions options, Int64 preallocationSize, Nullable`1 unixCreateMode)&#xD;
+[xUnit.net 00:01:12.74]            at System.IO.StreamReader.ValidateArgsAndOpenPath(String path, Int32 bufferSize)&#xD;
+[xUnit.net 00:01:12.74]            at System.IO.File.ReadAllText(String path, Encoding encoding)&#xD;
+[xUnit.net 00:01:12.74]         E:\dzk\gaode-1\backend\tests\Gaode.Rules.Tests\Architecture\ProtocolRepositoryBoundaryTests.cs(80,0): at Gaode.Rules.Tests.Architecture.ProtocolRepositoryBoundaryTests.&lt;&gt;c.&lt;Scan&gt;b__11_9(String path)&#xD;
+[xUnit.net 00:01:12.74]            at System.Linq.Enumerable.IEnumerableSelectIterator`2.ToList()&#xD;
+[xUnit.net 00:01:12.74]         E:\dzk\gaode-1\backend\tests\Gaode.Rules.Tests\Architecture\ProtocolRepositoryBoundaryTests.cs(80,0): at Gaode.Rules.Tests.Architecture.ProtocolRepositoryBoundaryTests.&lt;&gt;c__DisplayClass11_0.&lt;Scan&gt;g__Compile|5(String project)&#xD;
+[xUnit.net 00:01:12.74]         E:\dzk\gaode-1\backend\tests\Gaode.Rules.Tests\Architecture\ProtocolRepositoryBoundaryTests.cs(115,0): at Gaode.Rules.Tests.Architecture.ProtocolRepositoryBoundaryTests.Scan()&#xD;
+[xUnit.net 00:01:12.74]            at System.Lazy`1.ViaFactory(LazyThreadSafetyMode mode)&#xD;
+[xUnit.net 00:01:12.74]         --- End of stack trace from previous location ---&#xD;
+[xUnit.net 00:01:12.74]            at System.Lazy`1.CreateValue()&#xD;
+[xUnit.net 00:01:12.74]         E:\dzk\gaode-1\backend\tests\Gaode.Rules.Tests\Architecture\ProtocolRepositoryBoundaryTests.cs(27,0): at Gaode.Rules.Tests.Architecture.ProtocolRepositoryBoundaryTests.AssertClean(String[] rules)&#xD;
+[xUnit.net 00:01:12.74]         E:\dzk\gaode-1\backend\tests\Gaode.Rules.Tests\Architecture\ProtocolRepositoryBoundaryTests.cs(17,0): at Gaode.Rules.Tests.Architecture.ProtocolRepositoryBoundaryTests.ProductionBusinessSourceBoundary()&#xD;
+[xUnit.net 00:01:12.74]            at System.Reflection.MethodBaseInvoker.InterpretedInvoke_Method(Object obj, IntPtr* args)&#xD;
+[xUnit.net 00:01:12.74]            at System.Reflection.RuntimeMethodInfo.Invoke(Object obj, BindingFlags invokeAttr, Binder binder, Object[] parameters, CultureInfo culture)&#xD;
+[xUnit.net 00:01:12.74]       System.IO.DirectoryNotFoundException : Could not find a part of the path 'E:\dzk\gaode-1\backend\src\Gaode.CameraWorker\$(CameraProIncludeRoot)\*.cs'.&#xD;
+[xUnit.net 00:01:12.74]       Stack Trace:&#xD;
+[xUnit.net 00:01:12.74]            at Microsoft.Win32.SafeHandles.SafeFileHandle.CreateFile(String fullPath, FileMode mode, FileAccess access, FileShare share, FileOptions options)&#xD;
+[xUnit.net 00:01:12.74]            at System.IO.Strategies.OSFileStreamStrategy..ctor(String path, FileMode mode, FileAccess access, FileShare share, FileOptions options, Int64 preallocationSize, Nullable`1 unixCreateMode)&#xD;
+[xUnit.net 00:01:12.74]            at System.IO.Strategies.FileStreamHelpers.ChooseStrategyCore(String path, FileMode mode, FileAccess access, FileShare share, FileOptions options, Int64 preallocationSize, Nullable`1 unixCreateMode)&#xD;
+[xUnit.net 00:01:12.74]            at System.IO.StreamReader.ValidateArgsAndOpenPath(String path, Int32 bufferSize)&#xD;
+[xUnit.net 00:01:12.74]            at System.IO.File.ReadAllText(String path, Encoding encoding)&#xD;
+[xUnit.net 00:01:12.74]         E:\dzk\gaode-1\backend\tests\Gaode.Rules.Tests\Architecture\ProtocolRepositoryBoundaryTests.cs(80,0): at Gaode.Rules.Tests.Architecture.ProtocolRepositoryBoundaryTests.&lt;&gt;c.&lt;Scan&gt;b__11_9(String path)&#xD;
+[xUnit.net 00:01:12.74]            at System.Linq.Enumerable.IEnumerableSelectIterator`2.ToList()&#xD;
+[xUnit.net 00:01:12.74]         E:\dzk\gaode-1\backend\tests\Gaode.Rules.Tests\Architecture\ProtocolRepositoryBoundaryTests.cs(80,0): at Gaode.Rules.Tests.Architecture.ProtocolRepositoryBoundaryTests.&lt;&gt;c__DisplayClass11_0.&lt;Scan&gt;g__Compile|5(String project)&#xD;
+[xUnit.net 00:01:12.74]         E:\dzk\gaode-1\backend\tests\Gaode.Rules.Tests\Architecture\ProtocolRepositoryBoundaryTests.cs(115,0): at Gaode.Rules.Tests.Architecture.ProtocolRepositoryBoundaryTests.Scan()&#xD;
+[xUnit.net 00:01:12.74]            at System.Lazy`1.ViaFactory(LazyThreadSafetyMode mode)&#xD;
+[xUnit.net 00:01:12.74]            at System.Lazy`1.ExecutionAndPublication(LazyHelper executionAndPublication, Boolean useDefaultConstructor)&#xD;
+[xUnit.net 00:01:12.74]            at System.Lazy`1.CreateValue()&#xD;
+[xUnit.net 00:01:12.74]         E:\dzk\gaode-1\backend\tests\Gaode.Rules.Tests\Architecture\ProtocolRepositoryBoundaryTests.cs(13,0): at Gaode.Rules.Tests.Architecture.ProtocolRepositoryBoundaryTests.get_SourceModels()&#xD;
+[xUnit.net 00:01:12.74]         E:\dzk\gaode-1\backend\tests\Gaode.Rules.Tests\Architecture\RecipeExecutionBoundaryTests.cs(96,0): at Gaode.Rules.Tests.Architecture.RecipeExecutionBoundaryTests.&lt;&gt;c.&lt;.cctor&gt;b__13_0()&#xD;
+[xUnit.net 00:01:12.74]            at System.Lazy`1.ViaFactory(LazyThreadSafetyMode mode)&#xD;
+[xUnit.net 00:01:12.74]         --- End of stack trace from previous location ---&#xD;
+[xUnit.net 00:01:12.74]            at System.LazyHelper.ThrowException()&#xD;
+[xUnit.net 00:01:12.74]            at System.Lazy`1.CreateValue()&#xD;
+[xUnit.net 00:01:12.74]            at System.Lazy`1.get_Value()&#xD;
+[xUnit.net 00:01:12.74]         E:\dzk\gaode-1\backend\tests\Gaode.Rules.Tests\Architecture\RecipeExecutionBoundaryTests.cs(129,0): at Gaode.Rules.Tests.Architecture.RecipeExecutionBoundaryTests.CurrentBusinessClosureSatisfiesRule(String rule)&#xD;
+[xUnit.net 00:01:12.74]            at InvokeStub_RecipeExecutionBoundaryTests.CurrentBusinessClosureSatisfiesRule(Object, Span`1)&#xD;
+[xUnit.net 00:01:12.75]            at System.Reflection.MethodBaseInvoker.InvokeWithOneArg(Object obj, BindingFlags invokeAttr, Binder binder, Object[] parameters, CultureInfo culture)&#xD;
+[xUnit.net 00:01:12.75]       System.IO.DirectoryNotFoundException : Could not find a part of the path 'E:\dzk\gaode-1\backend\src\Gaode.CameraWorker\$(CameraProIncludeRoot)\*.cs'.&#xD;
+[xUnit.net 00:01:12.75]       Stack Trace:&#xD;
+[xUnit.net 00:01:12.75]            at Microsoft.Win32.SafeHandles.SafeFileHandle.CreateFile(String fullPath, FileMode mode, FileAccess access, FileShare share, FileOptions options)&#xD;
+[xUnit.net 00:01:12.75]            at System.IO.Strategies.OSFileStreamStrategy..ctor(String path, FileMode mode, FileAccess access, FileShare share, FileOptions options, Int64 preallocationSize, Nullable`1 unixCreateMode)&#xD;
+[xUnit.net 00:01:12.75]            at System.IO.Strategies.FileStreamHelpers.ChooseStrategyCore(String path, FileMode mode, FileAccess access, FileShare share, FileOptions options, Int64 preallocationSize, Nullable`1 unixCreateMode)&#xD;
+[xUnit.net 00:01:12.75]            at System.IO.StreamReader.ValidateArgsAndOpenPath(String path, Int32 bufferSize)&#xD;
+[xUnit.net 00:01:12.75]            at System.IO.File.ReadAllText(String path, Encoding encoding)&#xD;
+[xUnit.net 00:01:12.75]         E:\dzk\gaode-1\backend\tests\Gaode.Rules.Tests\Architecture\ProtocolRepositoryBoundaryTests.cs(80,0): at Gaode.Rules.Tests.Architecture.ProtocolRepositoryBoundaryTests.&lt;&gt;c.&lt;Scan&gt;b__11_9(String path)&#xD;
+[xUnit.net 00:01:12.75]            at System.Linq.Enumerable.IEnumerableSelectIterator`2.ToList()&#xD;
+[xUnit.net 00:01:12.75]         E:\dzk\gaode-1\backend\tests\Gaode.Rules.Tests\Architecture\ProtocolRepositoryBoundaryTests.cs(80,0): at Gaode.Rules.Tests.Architecture.ProtocolRepositoryBoundaryTests.&lt;&gt;c__DisplayClass11_0.&lt;Scan&gt;g__Compile|5(String project)&#xD;
+[xUnit.net 00:01:12.75]         E:\dzk\gaode-1\backend\tests\Gaode.Rules.Tests\Architecture\ProtocolRepositoryBoundaryTests.cs(115,0): at Gaode.Rules.Tests.Architecture.ProtocolRepositoryBoundaryTests.Scan()&#xD;
+[xUnit.net 00:01:12.75]            at System.Lazy`1.ViaFactory(LazyThreadSafetyMode mode)&#xD;
+[xUnit.net 00:01:12.75]            at System.Lazy`1.ExecutionAndPublication(LazyHelper executionAndPublication, Boolean useDefaultConstructor)&#xD;
+[xUnit.net 00:01:12.75]            at System.Lazy`1.CreateValue()&#xD;
+[xUnit.net 00:01:12.75]         E:\dzk\gaode-1\backend\tests\Gaode.Rules.Tests\Architecture\ProtocolRepositoryBoundaryTests.cs(13,0): at Gaode.Rules.Tests.Architecture.ProtocolRepositoryBoundaryTests.get_SourceModels()&#xD;
+[xUnit.net 00:01:12.75]         E:\dzk\gaode-1\backend\tests\Gaode.Rules.Tests\Architecture\RecipeExecutionBoundaryTests.cs(96,0): at Gaode.Rules.Tests.Architecture.RecipeExecutionBoundaryTests.&lt;&gt;c.&lt;.cctor&gt;b__13_0()&#xD;
+[xUnit.net 00:01:12.75]            at System.Lazy`1.ViaFactory(LazyThreadSafetyMode mode)&#xD;
+[xUnit.net 00:01:12.75]         --- End of stack trace from previous location ---&#xD;
+[xUnit.net 00:01:12.75]            at System.LazyHelper.ThrowException()&#xD;
+[xUnit.net 00:01:12.75]            at System.Lazy`1.CreateValue()&#xD;
+[xUnit.net 00:01:12.75]            at System.Lazy`1.get_Value()&#xD;
+[xUnit.net 00:01:12.75]         E:\dzk\gaode-1\backend\tests\Gaode.Rules.Tests\Architecture\RecipeExecutionBoundaryTests.cs(129,0): at Gaode.Rules.Tests.Architecture.RecipeExecutionBoundaryTests.CurrentBusinessClosureSatisfiesRule(String rule)&#xD;
+[xUnit.net 00:01:12.75]            at InvokeStub_RecipeExecutionBoundaryTests.CurrentBusinessClosureSatisfiesRule(Object, Span`1)&#xD;
+[xUnit.net 00:01:12.75]            at System.Reflection.MethodBaseInvoker.InvokeWithOneArg(Object obj, BindingFlags invokeAttr, Binder binder, Object[] parameters, CultureInfo culture)&#xD;
+[xUnit.net 00:01:12.75]       System.IO.DirectoryNotFoundException : Could not find a part of the path 'E:\dzk\gaode-1\backend\src\Gaode.CameraWorker\$(CameraProIncludeRoot)\*.cs'.&#xD;
+[xUnit.net 00:01:12.75]       Stack Trace:&#xD;
+[xUnit.net 00:01:12.75]            at Microsoft.Win32.SafeHandles.SafeFileHandle.CreateFile(String fullPath, FileMode mode, FileAccess access, FileShare share, FileOptions options)&#xD;
+[xUnit.net 00:01:12.75]            at System.IO.Strategies.OSFileStreamStrategy..ctor(String path, FileMode mode, FileAccess access, FileShare share, FileOptions options, Int64 preallocationSize, Nullable`1 unixCreateMode)&#xD;
+[xUnit.net 00:01:12.75]            at System.IO.Strategies.FileStreamHelpers.ChooseStrategyCore(String path, FileMode mode, FileAccess access, FileShare share, FileOptions options, Int64 preallocationSize, Nullable`1 unixCreateMode)&#xD;
+[xUnit.net 00:01:12.75]            at System.IO.StreamReader.ValidateArgsAndOpenPath(String path, Int32 bufferSize)&#xD;
+[xUnit.net 00:01:12.75]            at System.IO.File.ReadAllText(String path, Encoding encoding)&#xD;
+[xUnit.net 00:01:12.75]         E:\dzk\gaode-1\backend\tests\Gaode.Rules.Tests\Architecture\ProtocolRepositoryBoundaryTests.cs(80,0): at Gaode.Rules.Tests.Architecture.ProtocolRepositoryBoundaryTests.&lt;&gt;c.&lt;Scan&gt;b__11_9(String path)&#xD;
+[xUnit.net 00:01:12.75]            at System.Linq.Enumerable.IEnumerableSelectIterator`2.ToList()&#xD;
+[xUnit.net 00:01:12.75]         E:\dzk\gaode-1\backend\tests\Gaode.Rules.Tests\Architecture\ProtocolRepositoryBoundaryTests.cs(80,0): at Gaode.Rules.Tests.Architecture.ProtocolRepositoryBoundaryTests.&lt;&gt;c__DisplayClass11_0.&lt;Scan&gt;g__Compile|5(String project)&#xD;
+[xUnit.net 00:01:12.75]         E:\dzk\gaode-1\backend\tests\Gaode.Rules.Tests\Architecture\ProtocolRepositoryBoundaryTests.cs(115,0): at Gaode.Rules.Tests.Architecture.ProtocolRepositoryBoundaryTests.Scan()&#xD;
+[xUnit.net 00:01:12.75]            at System.Lazy`1.ViaFactory(LazyThreadSafetyMode mode)&#xD;
+[xUnit.net 00:01:12.75]            at System.Lazy`1.ExecutionAndPublication(LazyHelper executionAndPublication, Boolean useDefaultConstructor)&#xD;
+[xUnit.net 00:01:12.75]            at System.Lazy`1.CreateValue()&#xD;
+[xUnit.net 00:01:12.75]         E:\dzk\gaode-1\backend\tests\Gaode.Rules.Tests\Architecture\ProtocolRepositoryBoundaryTests.cs(13,0): at Gaode.Rules.Tests.Architecture.ProtocolRepositoryBoundaryTests.get_SourceModels()&#xD;
+[xUnit.net 00:01:12.75]         E:\dzk\gaode-1\backend\tests\Gaode.Rules.Tests\Architecture\RecipeExecutionBoundaryTests.cs(96,0): at Gaode.Rules.Tests.Architecture.RecipeExecutionBoundaryTests.&lt;&gt;c.&lt;.cctor&gt;b__13_0()&#xD;
+[xUnit.net 00:01:12.75]            at System.Lazy`1.ViaFactory(LazyThreadSafetyMode mode)&#xD;
+[xUnit.net 00:01:12.75]         --- End of stack trace from previous location ---&#xD;
+[xUnit.net 00:01:12.75]            at System.LazyHelper.ThrowException()&#xD;
+[xUnit.net 00:01:12.75]            at System.Lazy`1.CreateValue()&#xD;
+[xUnit.net 00:01:12.75]            at System.Lazy`1.get_Value()&#xD;
+[xUnit.net 00:01:12.75]         E:\dzk\gaode-1\backend\tests\Gaode.Rules.Tests\Architecture\RecipeExecutionBoundaryTests.cs(129,0): at Gaode.Rules.Tests.Architecture.RecipeExecutionBoundaryTests.CurrentBusinessClosureSatisfiesRule(String rule)&#xD;
+[xUnit.net 00:01:12.75]            at InvokeStub_RecipeExecutionBoundaryTests.CurrentBusinessClosureSatisfiesRule(Object, Span`1)&#xD;
+[xUnit.net 00:01:12.75]            at System.Reflection.MethodBaseInvoker.InvokeWithOneArg(Object obj, BindingFlags invokeAttr, Binder binder, Object[] parameters, CultureInfo culture)&#xD;
+[xUnit.net 00:01:12.75]       System.IO.DirectoryNotFoundException : Could not find a part of the path 'E:\dzk\gaode-1\backend\src\Gaode.CameraWorker\$(CameraProIncludeRoot)\*.cs'.&#xD;
+[xUnit.net 00:01:12.75]       Stack Trace:&#xD;
+[xUnit.net 00:01:12.75]            at Microsoft.Win32.SafeHandles.SafeFileHandle.CreateFile(String fullPath, FileMode mode, FileAccess access, FileShare share, FileOptions options)&#xD;
+[xUnit.net 00:01:12.75]            at System.IO.Strategies.OSFileStreamStrategy..ctor(String path, FileMode mode, FileAccess access, FileShare share, FileOptions options, Int64 preallocationSize, Nullable`1 unixCreateMode)&#xD;
+[xUnit.net 00:01:12.75]            at System.IO.Strategies.FileStreamHelpers.ChooseStrategyCore(String path, FileMode mode, FileAccess access, FileShare share, FileOptions options, Int64 preallocationSize, Nullable`1 unixCreateMode)&#xD;
+[xUnit.net 00:01:12.75]            at System.IO.StreamReader.ValidateArgsAndOpenPath(String path, Int32 bufferSize)&#xD;
+[xUnit.net 00:01:12.75]            at System.IO.File.ReadAllText(String path, Encoding encoding)&#xD;
+[xUnit.net 00:01:12.75]         E:\dzk\gaode-1\backend\tests\Gaode.Rules.Tests\Architecture\ProtocolRepositoryBoundaryTests.cs(80,0): at Gaode.Rules.Tests.Architecture.ProtocolRepositoryBoundaryTests.&lt;&gt;c.&lt;Scan&gt;b__11_9(String path)&#xD;
+[xUnit.net 00:01:12.75]            at System.Linq.Enumerable.IEnumerableSelectIterator`2.ToList()&#xD;
+[xUnit.net 00:01:12.75]         E:\dzk\gaode-1\backend\tests\Gaode.Rules.Tests\Architecture\ProtocolRepositoryBoundaryTests.cs(80,0): at Gaode.Rules.Tests.Architecture.ProtocolRepositoryBoundaryTests.&lt;&gt;c__DisplayClass11_0.&lt;Scan&gt;g__Compile|5(String project)&#xD;
+[xUnit.net 00:01:12.75]         E:\dzk\gaode-1\backend\tests\Gaode.Rules.Tests\Architecture\ProtocolRepositoryBoundaryTests.cs(115,0): at Gaode.Rules.Tests.Architecture.ProtocolRepositoryBoundaryTests.Scan()&#xD;
+[xUnit.net 00:01:12.75]            at System.Lazy`1.ViaFactory(LazyThreadSafetyMode mode)&#xD;
+[xUnit.net 00:01:12.75]            at System.Lazy`1.ExecutionAndPublication(LazyHelper executionAndPublication, Boolean useDefaultConstructor)&#xD;
+[xUnit.net 00:01:12.75]            at System.Lazy`1.CreateValue()&#xD;
+[xUnit.net 00:01:12.75]         E:\dzk\gaode-1\backend\tests\Gaode.Rules.Tests\Architecture\ProtocolRepositoryBoundaryTests.cs(13,0): at Gaode.Rules.Tests.Architecture.ProtocolRepositoryBoundaryTests.get_SourceModels()&#xD;
+[xUnit.net 00:01:12.75]         E:\dzk\gaode-1\backend\tests\Gaode.Rules.Tests\Architecture\RecipeExecutionBoundaryTests.cs(96,0): at Gaode.Rules.Tests.Architecture.RecipeExecutionBoundaryTests.&lt;&gt;c.&lt;.cctor&gt;b__13_0()&#xD;
+[xUnit.net 00:01:12.75]            at System.Lazy`1.ViaFactory(LazyThreadSafetyMode mode)&#xD;
+[xUnit.net 00:01:12.75]         --- End of stack trace from previous location ---&#xD;
+[xUnit.net 00:01:12.75]            at System.LazyHelper.ThrowException()&#xD;
+[xUnit.net 00:01:12.75]            at System.Lazy`1.CreateValue()&#xD;
+[xUnit.net 00:01:12.75]            at System.Lazy`1.get_Value()&#xD;
+[xUnit.net 00:01:12.75]         E:\dzk\gaode-1\backend\tests\Gaode.Rules.Tests\Architecture\RecipeExecutionBoundaryTests.cs(129,0): at Gaode.Rules.Tests.Architecture.RecipeExecutionBoundaryTests.CurrentBusinessClosureSatisfiesRule(String rule)&#xD;
+[xUnit.net 00:01:12.75]            at InvokeStub_RecipeExecutionBoundaryTests.CurrentBusinessClosureSatisfiesRule(Object, Span`1)&#xD;
+[xUnit.net 00:01:12.75]            at System.Reflection.MethodBaseInvoker.InvokeWithOneArg(Object obj, BindingFlags invokeAttr, Binder binder, Object[] parameters, CultureInfo culture)&#xD;
+[xUnit.net 00:01:15.33]   Finished:    Gaode.Rules.Tests&#xD;
+</StdOut>
+    </Output>
+    <RunInfos>
+      <RunInfo computerName="10_3_0_13" outcome="Error" timestamp="2026-10-08T23:56:05.5586337+08:00">
+        <Text>[xUnit.net 00:01:12.72]     Gaode.Rules.Tests.Architecture.ProtocolRepositoryBoundaryTests.ProductionBusinessSourceBoundary [FAIL]</Text>
+      </RunInfo>
+      <RunInfo computerName="10_3_0_13" outcome="Error" timestamp="2026-10-08T23:56:05.5868314+08:00">
+        <Text>[xUnit.net 00:01:12.73]     Gaode.Rules.Tests.Architecture.ProtocolRepositoryBoundaryTests.FormalAdaptersUseNamedSignalAccess [FAIL]</Text>
+      </RunInfo>
+      <RunInfo computerName="10_3_0_13" outcome="Error" timestamp="2026-10-08T23:56:05.5870673+08:00">
+        <Text>[xUnit.net 00:01:12.74]     Gaode.Rules.Tests.Architecture.ProtocolRepositoryBoundaryTests.PublicPortShapesAreReviewed [FAIL]</Text>
+      </RunInfo>
+      <RunInfo computerName="10_3_0_13" outcome="Error" timestamp="2026-10-08T23:56:05.5872170+08:00">
+        <Text>[xUnit.net 00:01:12.74]     Gaode.Rules.Tests.Architecture.ProtocolRepositoryBoundaryTests.BusinessContractsAndTestsDoNotRequireWireDetails [FAIL]</Text>
+      </RunInfo>
+      <RunInfo computerName="10_3_0_13" outcome="Error" timestamp="2026-10-08T23:56:05.5873775+08:00">
+        <Text>[xUnit.net 00:01:12.74]     Gaode.Rules.Tests.Architecture.RecipeExecutionBoundaryTests.CurrentBusinessClosureSatisfiesRule(rule: "B04") [FAIL]</Text>
+      </RunInfo>
+      <RunInfo computerName="10_3_0_13" outcome="Error" timestamp="2026-10-08T23:56:05.5875150+08:00">
+        <Text>[xUnit.net 00:01:12.74]     Gaode.Rules.Tests.Architecture.RecipeExecutionBoundaryTests.CurrentBusinessClosureSatisfiesRule(rule: "B01") [FAIL]</Text>
+      </RunInfo>
+      <RunInfo computerName="10_3_0_13" outcome="Error" timestamp="2026-10-08T23:56:05.5877093+08:00">
+        <Text>[xUnit.net 00:01:12.75]     Gaode.Rules.Tests.Architecture.RecipeExecutionBoundaryTests.CurrentBusinessClosureSatisfiesRule(rule: "B05") [FAIL]</Text>
+      </RunInfo>
+      <RunInfo computerName="10_3_0_13" outcome="Error" timestamp="2026-10-08T23:56:05.5878964+08:00">
+        <Text>[xUnit.net 00:01:12.75]     Gaode.Rules.Tests.Architecture.RecipeExecutionBoundaryTests.CurrentBusinessClosureSatisfiesRule(rule: "B02") [FAIL]</Text>
+      </RunInfo>
+      <RunInfo computerName="10_3_0_13" outcome="Error" timestamp="2026-10-08T23:56:05.5881062+08:00">
+        <Text>[xUnit.net 00:01:12.75]     Gaode.Rules.Tests.Architecture.RecipeExecutionBoundaryTests.CurrentBusinessClosureSatisfiesRule(rule: "B03") [FAIL]</Text>
+      </RunInfo>
+    </RunInfos>
+  </ResultSummary>
+</TestRun>

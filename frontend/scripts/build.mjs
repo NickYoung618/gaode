@@ -13,6 +13,7 @@ await cp(join(source, 'pages'), dist, { recursive: true });
 await cp(join(source, 'assets'), join(dist, 'assets'), { recursive: true });
 await cp(join(source, 'vendor'), join(dist, 'vendor'), { recursive: true });
 await cp(join(source, 'runtime.js'), join(dist, 'runtime.js'));
+await cp(join(source, 'commissioning-console.js'), join(dist, 'commissioning-console.js'));
 await cp(join(source, 'recipe-authoring.js'), join(dist, 'recipe-authoring.js'));
 await cp(join(source, 'public-tray-flow.js'), join(dist, 'public-tray-flow.js'));
 await promisify(execFile)(process.execPath, [
@@ -35,7 +36,7 @@ for (const page of ['login.html', 'a.html', 'data-view.html']) {
     .replace(/<link[^>]+href="https:\/\/fonts\.googleapis\.com[^"]*"[^>]*\/>/g,
       '<link rel="stylesheet" href="./vendor/fonts.css" />');
   const authoringScript = page === 'a.html' ? '  <script src="./recipe-authoring.js"></script>\n  <script src="./public-tray-flow.js"></script>\n' : '';
-  html = html.replace('</body>', '  <script src="./vendor/signalr.min.js"></script>\n' + authoringScript + '  <script src="./runtime.js"></script>\n</body>');
+  html = html.replace('</body>', '  <script src="./vendor/signalr.min.js"></script>\n' + authoringScript + '  <script src="./commissioning-console.js"></script>\n  <script src="./runtime.js"></script>\n</body>');
   await writeFile(file, html, 'utf8');
 }
 // The approved pages refer to the historical prototype.html filename. Keep that

@@ -1,0 +1,33 @@
+本机运行配置 runtime-r1，2026-10-08
+
+配置已通过正式加载器及无连接检查；尚未实际启动Host、桌面或设备。
+双击“启动联调.cmd”才会实际启动并连接真实PLC及七台相机。
+Start-Station01.ps1不带-Run仅进行本地文件检查。
+默认为预配置操作员身份，秘密仅从本机受限目录装载，不显示在窗口。
+
+实际配置：data/config/runtime-r1/hostsettings.json
+公共参数：data/config/runtime-r1/public.json
+超时及容量：data/config/runtime-r1/budget.json
+PLC地址编码：data/config/runtime-r1/plc-field.json
+PLC翻面映射及复位语义：data/config/runtime-r1/plc-mechanics.json
+配方：data/recipes/recipes.db（正式SQLite，不改为JSON执行）
+虚拟算法输入：data/config/commissioning.json（绑定当前已保存配方版本）
+七台相机绑定：config/camera.site.json
+配置检查结果：data/config/runtime-r1/preflight-result.json
+
+模式：真实PLC、真实相机、虚拟算法、虚拟外部光源。
+当前来源明确的运行路线：单品AB检测→翻面→放回→3D复查→CD检测→OK原槽。
+编辑配方后须同步该配方版本对应的受控虚拟输入及启动引用，不能把本次固定输入套给任意配方。
+分拣安全配置仍为空，本次不执行NG/Pending路线；E相机连接但本配方不参与。
+公共3D曝光40000us、F曝光40000us来自历史真实采集，光源参数省略，明确跳过外部光源。
+PLC地址192.168.0.10:502；读写Cdab、EvenLow、PC PDU1000、PLC PDU3000。
+XY范围0~100mm、Z范围0~10mm，容差0.1mm沿用成功联调配置。
+I/O超时从旧工具2000ms改为正式程序允许的1000ms；动作超时30秒沿用旧工具。
+其他软件超时和容量是已记录的联调工程配置，不冒充现场性能测量。
+
+实际启动后先检查设备状态及data/host.stdout.log、host.stderr.log，再人工决定运行。
+ConfiguredNotFieldValidated表示配置齐全，不表示真机启动或完整流程已经通过。
+现场验证020 T055/T056及历史未验项仍未完成。
+
+仅本安装目录增加配置和入口；原ZIP、补丁、旧安装和标签不改。
+回退：停止本版本进程、确认设备安全后使用原final-2目录，不复用结果未知的在途动作。

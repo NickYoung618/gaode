@@ -29,7 +29,8 @@
     "purpose": {
       "enum": [
         "Test",
-        "Production"
+        "Production",
+        "RealDeviceCommissioning"
       ]
     },
     "source": {
@@ -292,6 +293,44 @@
     },
     "timeoutBoundary": {
       "const": "ResponseBeforeDeadline"
+    },
+    "recipeExecution": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "captureMs",
+        "algorithmMs",
+        "acquisitionReleaseMs",
+        "captureWaitMs",
+        "algorithmWaitMs",
+        "inputReleaseWaitMs"
+      ],
+      "properties": {
+        "captureMs": {
+          "type": "integer",
+          "minimum": 1
+        },
+        "algorithmMs": {
+          "type": "integer",
+          "minimum": 1
+        },
+        "acquisitionReleaseMs": {
+          "type": "integer",
+          "minimum": 1
+        },
+        "captureWaitMs": {
+          "type": "integer",
+          "minimum": 1
+        },
+        "algorithmWaitMs": {
+          "type": "integer",
+          "minimum": 1
+        },
+        "inputReleaseWaitMs": {
+          "type": "integer",
+          "minimum": 1
+        }
+      }
     }
   }
 }

@@ -6,12 +6,19 @@ namespace Gaode.Application.Ports;
 public enum CaptureRole { ThreeD, F, Detection, E }
 public enum CaptureEventKind { Accepted, Capturing, Ended, MediaTaken, Failed, Unknown }
 public sealed record DetectionCaptureSettings(string ProfileId, int ExposureUs, double Gain,
-    int[] RoiPixels, string LightChannel, int BrightnessPercent, int SettleMs);
+    int[] RoiPixels, string? LightChannel = null, int? BrightnessPercent = null, int? SettleMs = null);
+public sealed record PublicCaptureSettings(string ConfigurationId, string ConfigurationVersion,
+    int ExposureUs, int? LightLevel);
+public sealed record CameraImagingSettings(int ExposureUs, double? Gain = null, int[]? RoiPixels = null);
+public sealed record ActualCameraSettings(int ExposureUs, double Gain, int Width, int Height, int OffsetX, int OffsetY);
 public sealed record CaptureRequest(PortEnvelope Envelope, Guid CaptureId, CaptureRole Role,
     string PointId, string PointVersion, string? ScopeId, string? ScopeVersion,
-    string CameraBindingId, string LightBindingId, Guid IntentWriteId, long MaxBytes)
+    string CameraBindingId, string? LightBindingId, Guid IntentWriteId, long MaxBytes)
 {
+    [System.Text.Json.Serialization.JsonIgnore(Condition = System.Text.Json.Serialization.JsonIgnoreCondition.WhenWritingNull)]
+    public Gaode.Domain.Configuration.LightExecutionConfiguration? LightExecution { get; init; }
     public DetectionCaptureSettings? DetectionSettings { get; init; }
+    public PublicCaptureSettings? PublicSettings { get; init; }
 }
 public sealed record CaptureEvent(CaptureRequest Request, CaptureEventKind Kind,
     long ConnectionEpoch, byte[]? Buffer = null, string? Format = null,
@@ -29,6 +36,8 @@ public sealed record MediaRef(Guid MediaId, Guid RunId, Guid CaptureId, string K
         "img" => "image/jpeg",
         "png" => "image/png",
         "bin" => "application/octet-stream",
+        "CameraProFrameZipV1" => "application/zip",
+        "GalaxyRaw" => "application/octet-stream",
         _ => "application/octet-stream"
     };
     public string? Purpose { get; init; }
@@ -41,7 +50,17 @@ public sealed record CorrelatedCaptureFact(Guid RunId, Guid CaptureId, Guid Oper
     long ConnectionEpoch, string RequestedSettingsDigest, string MediaSource,
     ComponentExecutionOrigin CameraOrigin, ComponentExecutionOrigin LightOrigin,
     CaptureApplicationState ApplicationState, DetectionCaptureSettings? ActualSettings,
-    bool Replayed, IReadOnlyList<string> EvidenceReferences);
+    bool Replayed, IReadOnlyList<string> EvidenceReferences)
+{
+    public CaptureFrameMetadata? FrameMetadata { get; init; }
+    public CaptureApplicationState CameraApplicationState { get; init; } = CaptureApplicationState.Unknown;
+    public CaptureApplicationState LightApplicationState { get; init; } = CaptureApplicationState.Unknown;
+    public ActualCameraSettings? ActualCameraSettings { get; init; }
+    public PublicCaptureSettings? ActualPublicSettings { get; init; }
+    [System.Text.Json.Serialization.JsonIgnore(Condition = System.Text.Json.Serialization.JsonIgnoreCondition.WhenWritingNull)]
+    public Gaode.Domain.Configuration.LightExecutionConfiguration? LightExecution { get; init; }
+    public bool PhysicalLightApplied { get; init; }
+}
 
 public enum AlgorithmRole { Height, FDecode, Detection, EDecode, TrayPose }
 public enum AlgorithmEventKind { Accepted, Running, Result, Failed, InputReleased, WorkerExited }
@@ -70,10 +89,16 @@ public sealed record AlgorithmEvent(AlgorithmRequest Request, AlgorithmEventKind
 
 public static class AcquisitionContract
 {
-    public static string RequestedSettingsDigest(CaptureRequest request) => Convert.ToHexString(
+    public static string RequestedSettingsDigest(CaptureRequest request) => request.LightExecution is not null
+        ? Convert.ToHexString(System.Security.Cryptography.SHA256.HashData(System.Text.Json.JsonSerializer.SerializeToUtf8Bytes(new
+            { request.Role, request.PointId, request.PointVersion, request.CameraBindingId, request.LightBindingId,
+                request.DetectionSettings, request.PublicSettings, request.LightExecution }))) : request.PublicSettings is null ? Convert.ToHexString(
         System.Security.Cryptography.SHA256.HashData(System.Text.Json.JsonSerializer.SerializeToUtf8Bytes(new
         { request.Role, request.PointId, request.PointVersion, request.CameraBindingId,
-            request.LightBindingId, request.DetectionSettings })));
+            request.LightBindingId, request.DetectionSettings }))) : Convert.ToHexString(
+        System.Security.Cryptography.SHA256.HashData(System.Text.Json.JsonSerializer.SerializeToUtf8Bytes(new
+        { request.Role, request.PointId, request.PointVersion, request.CameraBindingId,
+            request.LightBindingId, request.DetectionSettings, request.PublicSettings })));
 
     public static bool MatchesFact(CorrelatedCaptureFact fact, CaptureRequest request, long epoch) =>
         fact.RunId == request.Envelope.RunId && fact.CaptureId == request.CaptureId &&

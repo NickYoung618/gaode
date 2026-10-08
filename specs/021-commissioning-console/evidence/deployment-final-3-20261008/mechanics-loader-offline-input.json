@@ -1,0 +1,17 @@
+{
+  "posePrograms": [],
+  "schemaVersion": "plc-mechanics/1",
+  "sourceReference": "OFFLINE:mechanical-config-loader-verification-only",
+  "sortingSafePosition": null,
+  "siteOperations": {
+    "schemaVersion": "plc-site-operations/1",
+    "sourceReference": "User-confirmed 2026-10-08: MB6015 ready means reset complete/stationary/start allowed; MB2009 rising edge then Ready 1->0->1 then clear; MB2007 rising edge then clear after first actual complete motion and bilateral clearance; MB2008 and heartbeat loss stop in place, no automatic return; startup XYZ=0. See specs/021-commissioning-console/contracts/start-and-completion.md SC-021-PLC-R2."
+  },
+  "purpose": "RealDeviceCommissioning",
+  "positionBasis": {
+    "frame": "OFFLINE_ONLY",
+    "purpose": "RealDeviceCommissioning",
+    "unit": "mm",
+    "sourceReference": "OFFLINE:unit-test"
+  }
+}

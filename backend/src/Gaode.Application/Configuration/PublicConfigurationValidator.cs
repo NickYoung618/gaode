@@ -13,7 +13,8 @@ public sealed class PublicConfigurationValidator(CapabilityRegistry capabilities
 {
     public ConfigurationValidation Validate(PublicConfiguration config, BusinessBudget budget,
         SimulationProfile? simulation, bool fullSimulation, bool externalVirtualPlc = false,
-        string externalPlcProvider = "Virtual")
+        string externalPlcProvider = "Virtual", bool realDeviceCommissioning = false,
+        CommissioningConfiguration? commissioning = null)
     {
         var blocks = new List<string>();
         var algorithms = new List<string>();
@@ -39,9 +40,17 @@ public sealed class PublicConfigurationValidator(CapabilityRegistry capabilities
         var bindings = config.Bindings.GroupBy(b => b.Id, StringComparer.Ordinal).ToDictionary(g => g.Key, g => g.ToArray());
         if (bindings.Any(kv => kv.Value.Length != 1)) blocks.Add("BindingDuplicate");
         Require(config.Capture3d.BindingId, "Camera3D");
-        Require(config.Capture3d.LightBindingId, "Light3D");
+        if (config.LightExecution is not null && !config.LightExecution.IsValid) blocks.Add("PublicLightModeInvalid");
+        if (config.Capture3d.Parameters.ExposureUs <= 0 || config.CaptureF.Parameters.ExposureUs <= 0)
+            blocks.Add("PublicExposureInvalid");
+        if (config.LightExecution?.IsSimulated != true)
+        {
+            Require(config.Capture3d.LightBindingId, "Light3D");
+            if (config.Capture3d.Parameters.LightLevel is null or < 0 or > 100 ||
+                config.CaptureF.Parameters.LightLevel is null or < 0 or > 100) blocks.Add("PublicLightParametersInvalid");
+        }
         Require(config.CaptureF.BindingId, "CameraF");
-        Require(config.CaptureF.LightBindingId, "LightF");
+        if (config.LightExecution?.IsSimulated != true) Require(config.CaptureF.LightBindingId, "LightF");
         if (!config.Bindings.Any(b => b.Role == "PLC")) blocks.Add("PlcBindingMissing");
         if (!capabilities.IsCompatible(config.Algorithms.TrayPose?.Capability, config.Purpose, "TrayPose") ||
             budget.BusinessMs.TrayPoseAlgorithm is null or <= 0) algorithms.Add("TrayPoseNotConfigured");
@@ -60,7 +69,22 @@ public sealed class PublicConfigurationValidator(CapabilityRegistry capabilities
             budget.BusinessMs.CaptureF <= 0 || budget.BusinessMs.CriticalSave <= 0 ||
             budget.Limits.FReservedMemoryBytes < config.CaptureF.MaxCaptureBytes ||
             budget.Limits.MediaMemoryBytes <= config.Capture3d.MaxCaptureBytes) blocks.Add("BudgetCapacityInvalid");
-        if (fullSimulation)
+        if (realDeviceCommissioning)
+        {
+            Require(config.Algorithms.FDecode.BindingId ?? "", "FDecode");
+            Require(config.Algorithms.TrayPose?.BindingId ?? "", "TrayPose");
+            if (fullSimulation || externalVirtualPlc || simulation is not null ||
+                config.Purpose != RuntimePurposes.RealDeviceCommissioning || externalPlcProvider != "Real" ||
+                config.Bindings.Any(b => b.Provider != (b.Role == "PLC" || b.Role.StartsWith("Camera", StringComparison.Ordinal) ? "Real" : "Simulated")))
+                blocks.Add("CommissioningProviderMatrixInvalid");
+            if (commissioning is null || commissioning.Purpose != config.Purpose ||
+                commissioning.PublicConfigRef != new ConfigReference(config.Id, config.Version) ||
+                commissioning.BudgetRef != new ConfigReference(budget.Id, budget.Version))
+                blocks.Add("CommissioningConfigurationReferenceMismatch");
+            if (budget.RecipeExecution is not { IsValid: true }) blocks.Add("CommissioningRecipeExecutionBudgetMissingOrInvalid");
+        }
+        else if (config.Purpose == RuntimePurposes.RealDeviceCommissioning) blocks.Add("CommissioningModeRequired");
+        else if (fullSimulation)
         {
             if (simulation is null || config.Purpose != "Test" || budget.Purpose != "Test" ||
                 simulation.Purpose != "Test" || simulation.PublicConfigRef.Id != config.Id ||

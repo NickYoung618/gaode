@@ -13,6 +13,8 @@ public sealed record PlcMechanicalConfiguration
     public required PlcGrabSafetyPosition? SortingSafePosition { get; init; }
 
     public Gaode.Application.Ports.RotationExecutionBasis? RotationBasis { get; init; }
+    public PlcPositionBasis? PositionBasis { get; init; }
+    public PlcSiteOperations? SiteOperations { get; init; }
 
     public static void Apply(PlcRuntimeOptions options, string path)
     {
@@ -21,7 +23,7 @@ public sealed record PlcMechanicalConfiguration
             {
                 UnmappedMemberHandling = JsonUnmappedMemberHandling.Disallow
             }) ?? throw new InvalidDataException("PlcMechanicsConfigurationEmpty");
-        var purpose = options.Provider == "Real" ? "Production" : "Test";
+        var purpose = options.ConfigurationPurpose;
         if (configuration.SchemaVersion != "plc-mechanics/1" || configuration.Purpose != purpose ||
             string.IsNullOrWhiteSpace(configuration.SourceReference) || configuration.PosePrograms is null ||
             configuration.PosePrograms.Any(p => p.Purpose != purpose || string.IsNullOrWhiteSpace(p.SourceReference)) ||
@@ -35,6 +37,12 @@ public sealed record PlcMechanicalConfiguration
              !double.IsFinite(rotation.AngleToleranceDeg) || rotation.AngleToleranceDeg < 0))
             throw new InvalidDataException("RotationMechanicalBasisInvalid");
         options.RotationBasis = configuration.RotationBasis;
+        if (configuration.PositionBasis is { } basis && (!basis.IsValid || basis.Purpose != purpose))
+            throw new InvalidDataException("PlcPositionBasisSourceMismatch");
+        options.PositionBasis = configuration.PositionBasis;
+        if (configuration.SiteOperations is { IsValid: false })
+            throw new InvalidDataException("SiteOperationsConfirmationInvalid");
+        options.SiteOperations = configuration.SiteOperations;
         options.PosePrograms = configuration.PosePrograms;
         options.SortingSafePosition = configuration.SortingSafePosition;
     }

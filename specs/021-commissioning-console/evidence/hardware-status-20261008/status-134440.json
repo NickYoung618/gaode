@@ -1,0 +1,120 @@
+{
+  "schemaVersion": "s01-status/2.0",
+  "revision": 4517691706532839715,
+  "eTag": "\"status-3EB210ABDC9E412357EB7732\"",
+  "host": "Ready",
+  "plc": {
+    "schemaVersion": "device-semantics/1.2",
+    "reliability": "Reliable",
+    "connection": "Connected",
+    "connectionEpoch": 1,
+    "operatingMode": "Automatic",
+    "readiness": "NotReady",
+    "safetyAssessment": "ExplicitUnsafe",
+    "clamp": "Unconfirmed",
+    "motionAvailability": "Available",
+    "acquisitionReadiness": "Unavailable",
+    "manualArea": "Clear",
+    "manualHandling": "Unconfirmed",
+    "position": {
+      "actualX": 0.008087158203125,
+      "actualY": 5.7220458984375E-05,
+      "actualZ": 0.06710469722747803,
+      "axisPurpose": "MachineAxes",
+      "coordinateFrame": "COMMISSIONING_MACHINE",
+      "unitBasis": "User-confirmed 2026-10-08 mm/XY0..100/Z0..10/startupXYZ0; existing successful local recipe sha256:a898bc7001febf8e0d626f0542bacdac7ae7a8c493c80b3dd4d7202c81ff9a75:mm",
+      "observationId": "37153e83-0d2d-41a5-8589-839d068dd4ac",
+      "sampleStartedUtc": "2026-10-08T13:44:40.3917304+08:00",
+      "sampleEndedUtc": "2026-10-08T13:44:40.3938217+08:00",
+      "connectionEpoch": 1,
+      "reliability": "Reliable"
+    },
+    "alarms": [],
+    "reasonCodes": [],
+    "executionOrigin": {
+      "provider": "Real",
+      "componentVersion": "Real:confirmed-20261006-v2;sources/PC.xls:37095748a61574d9a1c9bf17ad0ac9118d554fa73ac8f5e10003718b6627511d;sources/PLC(2).xls:8e846d0f71351f87b42db1bf40790f40766a392fd0a9e0968201f8c2056eb476;field:D:\\Gaode-PlcCommissioning-20261006\\release\\Gaode-PlcCommissioning-1.1.6-win-x64\\config\\local.json; effective read/write Cdab; PC.xls/PLC(2).xls confirmed memory layout",
+      "quality": "Measured"
+    },
+    "observationId": "48d1e2a2-e46a-41b5-88a7-8e5b32198df8",
+    "sampleStartedUtc": "2026-10-08T13:44:40.4196539+08:00",
+    "sampleEndedUtc": "2026-10-08T13:44:40.4240621+08:00",
+    "diagnosticEvidenceReference": null,
+    "axisObservations": [
+      {
+        "axis": "X",
+        "position": 0.008087158203125,
+        "unit": null,
+        "reliability": "Reliable",
+        "observedAt": "2026-10-08T13:44:40.3938217+08:00",
+        "connectionEpoch": 1,
+        "evidenceRef": null
+      },
+      {
+        "axis": "Y",
+        "position": 5.7220458984375E-05,
+        "unit": null,
+        "reliability": "Reliable",
+        "observedAt": "2026-10-08T13:44:40.3938217+08:00",
+        "connectionEpoch": 1,
+        "evidenceRef": null
+      },
+      {
+        "axis": "CameraZ",
+        "position": 0.06710469722747803,
+        "unit": null,
+        "reliability": "Reliable",
+        "observedAt": "2026-10-08T13:44:40.3938217+08:00",
+        "connectionEpoch": 1,
+        "evidenceRef": null
+      },
+      {
+        "axis": "ScanZ",
+        "position": 0.008225202560424805,
+        "unit": null,
+        "reliability": "Reliable",
+        "observedAt": "2026-10-08T13:44:40.3938217+08:00",
+        "connectionEpoch": 1,
+        "evidenceRef": null
+      },
+      {
+        "axis": "GrabZ",
+        "position": -0.06761789321899414,
+        "unit": null,
+        "reliability": "Reliable",
+        "observedAt": "2026-10-08T13:44:40.3938217+08:00",
+        "connectionEpoch": 1,
+        "evidenceRef": null
+      }
+    ]
+  },
+  "camera": {
+    "state": "Ready",
+    "source": "Real"
+  },
+  "storage": {
+    "state": "Ready",
+    "maintenance": "Idle"
+  },
+  "maintenance": {
+    "state": "Unknown",
+    "maintenance": "NotObserved"
+  },
+  "algorithm": {
+    "state": "Configured",
+    "source": "Simulated",
+    "reason": "station01-virtual-algorithm/1:260EDF1FFFCF969EA3D1271495B77A57B373345DFFA667F965F1D9297520D9FB"
+  },
+  "currentRun": null,
+  "capabilities": [
+    "Station01PublicPreparation",
+    "FixedXY",
+    "FSingleCapture"
+  ],
+  "observedAt": "2026-10-08T13:44:40.812633+08:00",
+  "mode": "RealDeviceCommissioning",
+  "stage": "Idle",
+  "recipe": "Unmatched",
+  "quality": "NotEvaluated",
+  "activeRuns": 0
+}

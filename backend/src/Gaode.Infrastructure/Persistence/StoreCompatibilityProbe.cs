@@ -7,7 +7,7 @@ public sealed record StoreCompatibility(bool Compatible, string Code, Guid? Stor
 
 public static class StoreCompatibilityProbe
 {
-    public static StoreCompatibility Inspect(string root)
+    public static StoreCompatibility Inspect(string root, string expectedProfile = "Test")
     {
         var dbPath = Path.Combine(root, "station01.test.db");
         if (!File.Exists(dbPath)) return new(false, "StoreMissing", null, null);
@@ -19,7 +19,7 @@ public static class StoreCompatibilityProbe
             { DataSource = dbPath, Mode = SqliteOpenMode.ReadOnly, Cache = SqliteCacheMode.Private,
                 Pooling = false, DefaultTimeout = 1 }.ToString());
             connection.Open();
-            var actual = StoreSchemaInspection.Inspect(connection, root, hashes: false);
+            var actual = StoreSchemaInspection.Inspect(connection, root, hashes: false, expectedProfile);
             return new(actual.State == "U3", actual.State == "U3" ? "Compatible" : actual.Code == "Verified" ? "SourceStoreRequiresControlledUpgrade" : actual.Code,
                 actual.StoreId, actual.Version);
         }
@@ -29,9 +29,9 @@ public static class StoreCompatibilityProbe
         }
     }
 
-    public static string ReadWriteConnectionString(string root)
+    public static string ReadWriteConnectionString(string root, string expectedProfile = "Test")
     {
-        var check = Inspect(root);
+        var check = Inspect(root, expectedProfile);
         if (!check.Compatible) throw new InvalidOperationException(check.Code);
         return new SqliteConnectionStringBuilder
         {
@@ -41,9 +41,9 @@ public static class StoreCompatibilityProbe
         }.ToString();
     }
 
-    public static string ReadOnlyConnectionString(string root)
+    public static string ReadOnlyConnectionString(string root, string expectedProfile = "Test")
     {
-        var check = Inspect(root);
+        var check = Inspect(root, expectedProfile);
         if (!check.Compatible) throw new InvalidOperationException(check.Code);
         return new SqliteConnectionStringBuilder
         {

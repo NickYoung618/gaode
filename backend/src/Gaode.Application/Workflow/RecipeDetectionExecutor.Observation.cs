@@ -70,28 +70,35 @@ public sealed partial class RecipeDetectionExecutor
             var intent = await SaveTraceAsync(request, WriteKind.CaptureIntent, new OperationIntentPayload(operation,
                 "PostPlacement3D", request.Attempt, null, captureId, point.Id, request.PlanRevision, Guid.Empty), token);
             var config = configuration.Capture3d;
-            using var reservation = media.ReserveCapture(captureId, "3D", config.MaxCaptureBytes);
+            var maxBytes = camera.GetMaxCaptureBytes(config.BindingId, config.MaxCaptureBytes);
+            using var reservation = media.ReserveCapture(captureId, "3D", maxBytes);
             var capture = new CaptureRequest(Envelope(request, operation), captureId, CaptureRole.ThreeD,
                 point.Id, point.Version, config.Scope.Id, config.Scope.Version, config.BindingId,
-                config.LightBindingId, intent.WriteId, config.MaxCaptureBytes);
+                config.LightBindingId, intent.WriteId, maxBytes)
+            {
+                LightExecution = configuration.LightExecution,
+                PublicSettings = new(configuration.Id, configuration.Version, config.Parameters.ExposureUs, config.Parameters.LightLevel)
+            };
             var gate = new CaptureEvidenceGate();
             var ended = new TaskCompletionSource(TaskCreationOptions.RunContinuationsAsynchronously);
-            var epoch = camera.ConnectionEpoch;
+            var epoch = camera.GetConnectionEpoch(config.BindingId);
             void OnCapture(CaptureEvent value)
             {
                 if (!AcquisitionContract.Matches(value, capture, epoch) || value.Request.Envelope.Attempt != request.Attempt) return;
-                if (value.Kind == CaptureEventKind.Failed) ended.TrySetException(new IOException(value.ErrorCode ?? "ObservationCaptureFailed"));
+                if (value.Kind is CaptureEventKind.Failed or CaptureEventKind.Unknown) ended.TrySetException(new IOException(value.ErrorCode ?? "ObservationCaptureFailed"));
                 if (gate.Observe(value)) ended.TrySetResult();
             }
             RuntimeDiagnostics.Record("TrayObservation", "CaptureRequested", request.RunId,
                 new { transitionId, step.Sequence, captureId, purpose = "PostPlacementCheck", checkRound = step.CoordinateEpoch });
-            await camera.RequestCaptureAsync(capture, OnCapture, token);
+            using var captureDeadline = CancellationTokenSource.CreateLinkedTokenSource(token);
+            captureDeadline.CancelAfter(inputs.CostProfile.CaptureWaitMs);
+            var received = await new CameraAcquisitionService(camera, media).ReceiveAsync(capture, captureDeadline.Token, OnCapture);
             await ended.Task.WaitAsync(Remaining(request.DeadlineUtc - DateTimeOffset.UtcNow,
                 TimeSpan.FromMilliseconds(request.FrozenBusinessDurations!.Capture3d)), token);
-            var (buffer, format) = gate.Take();
-            var captureFact = gate.TakeFact(capture, epoch);
-            var saved = await media.SaveAsync(request.RunId, captureId, "3D", config.Scope.Version, point.Version,
-                buffer, format, captureFact.MediaSource, token);
+            var (buffer, format) = (received.Bytes, received.Format);
+            var captureFact = received.Fact;
+            var saved = await media.SaveCaptureAsync(request.RunId, captureId, "3D", config.Scope.Version, point.Version,
+                buffer, format, captureFact.MediaSource, captureFact, token);
             saved = saved with { Purpose = request.Purpose };
             await SaveTraceAsync(request, WriteKind.Media, saved, token);
             await SaveTraceAsync(request, WriteKind.CaptureFact, new { kind = "PostPlacementCaptureCompleted",
@@ -105,6 +112,7 @@ public sealed partial class RecipeDetectionExecutor
                     configuration.Version, config.Scope.Version, bound.Requirement.ParametersVersion, bound.CapabilityId,
                     bound.CapabilityVersion, bound.ProviderVersion, request.SessionId, request.ClockId, envelope.StartTick,
                     envelope.DueTick, poseBudget.Value, "AllRelatedPutBackCommitted+MediaCommitted"), token);
+            await media.MarkCommittedAsync(saved, token);
             var context = new TrayObservationContext(request.TrayId, TrayObservationPurpose.PostPlacementCheck,
                 step.CoordinateEpoch, transitionId);
             var command = new AlgorithmRequest(envelope, call, captureId, AlgorithmRole.TrayPose, [saved],

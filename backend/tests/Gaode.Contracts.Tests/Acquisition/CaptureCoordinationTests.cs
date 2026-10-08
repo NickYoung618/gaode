@@ -81,6 +81,7 @@ public sealed class CaptureCoordinationTests
         var fact = System.Text.Json.JsonSerializer.Deserialize<System.Text.Json.JsonElement>(saved.PayloadJson).GetProperty("captureFact");
         Assert.Equal("Unknown", fact.GetProperty("mediaSource").GetString());
         Assert.Equal(System.Text.Json.JsonValueKind.Null, fact.GetProperty("actualSettings").ValueKind);
+        Assert.NotNull(harness.Config.Simulation);
         Assert.NotEqual(harness.Config.Simulation.Fixtures.MediaSource, captured.Media.Source);
     }
 

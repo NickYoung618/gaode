@@ -55,6 +55,18 @@ public enum SignalId
     RotateTargetR = 67,
     RPosConfirmed = 68,
     MachineCurrentPosR = 69,
+    ModelNumber = 70,
+    EStopActive = 71,
+    XAxisAlarm = 72,
+    YAxisAlarm = 73,
+    ZCameraAxisAlarm = 74,
+    ZScanAxisAlarm = 75,
+    ZFlipAxisAlarm = 76,
+    RotateAxisAlarm = 77,
+    FlipAxisAlarm = 78,
+    PcCommunicationAlarm = 79,
+    PcAlarm = 80,
+    PcStartCmd = 81,
 }
 
 public enum PlcDirection { PcToPlc, PlcToPc }

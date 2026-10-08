@@ -10,7 +10,8 @@ namespace Gaode.Contracts.Tests.Support;
 internal static class StepSimulationFactory
 {
     internal static SimulatedPlc Create(FrozenConfiguration config, SimulationEventScheduler scheduler,
-        TraceWriter writer, Guid storeId, TimeProvider clock) => new(config.Simulation, scheduler,
+        TraceWriter writer, Guid storeId, TimeProvider clock) => new(
+            config.Simulation ?? throw new InvalidOperationException("TestSimulationRequired"), scheduler,
             evidenceRecorder: new CommunicationEvidenceRecorder(writer, storeId, clock,
                 config.Budget.BusinessMs.CriticalSave));
 }

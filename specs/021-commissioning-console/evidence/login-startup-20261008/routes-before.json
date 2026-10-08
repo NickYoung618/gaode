@@ -1,0 +1,20 @@
+[
+  {
+    "DestinationPrefix": "192.168.0.0/24",
+    "NextHop": "198.18.0.2",
+    "InterfaceAlias": "Meta",
+    "RouteMetric": 0
+  },
+  {
+    "DestinationPrefix": "192.168.0.0/24",
+    "NextHop": "0.0.0.0",
+    "InterfaceAlias": "C",
+    "RouteMetric": 256
+  },
+  {
+    "DestinationPrefix": "192.168.0.0/24",
+    "NextHop": "0.0.0.0",
+    "InterfaceAlias": "PLC",
+    "RouteMetric": 256
+  }
+]

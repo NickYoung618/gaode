@@ -1,0 +1,447 @@
+{
+  "schemaVersion": "recipe-definition/5",
+  "recipeId": "",
+  "version": "",
+  "definitionDigest": "",
+  "catalogDigest": "",
+  "releaseStatus": "draft",
+  "scenarioId": "commissioning-single-flip",
+  "model": "模拟翻面件-001",
+  "fCode": "SIM-翻面件-001",
+  "unitKind": "independentPart",
+  "primaryMaterial": "part",
+  "layoutProfile": "commissioning-single-part",
+  "capacity": 1,
+  "positions": [
+    {
+      "slotId": "s1",
+      "physicalSlotIndex": 1,
+      "unitPattern": "{TrayRunId}/s1",
+      "members": [
+        {
+          "material": "part",
+          "memberPattern": "{UnitId}/part",
+          "handling": "individual"
+        }
+      ],
+      "cellId": "r2:c4"
+    }
+  ],
+  "composition": [
+    {
+      "material": "part",
+      "localFaces": [
+        1,
+        2
+      ]
+    }
+  ],
+  "route": "ordinaryBatch",
+  "stages": [
+    {
+      "number": 1,
+      "action": "none",
+      "angleDeg": null,
+      "targets": [
+        {
+          "material": "part",
+          "localFace": 1,
+          "cameraPair": "AB",
+          "captureProfile": "capture-A",
+          "algorithmProfile": "defect"
+        }
+      ]
+    },
+    {
+      "number": 2,
+      "action": "flipAffectedMembersOneByOne",
+      "angleDeg": null,
+      "targets": [
+        {
+          "material": "part",
+          "localFace": 2,
+          "cameraPair": "CD",
+          "captureProfile": "capture-C",
+          "algorithmProfile": "defect"
+        }
+      ]
+    }
+  ],
+  "eCode": {
+    "enabled": false,
+    "representativeMaterial": null,
+    "bindTo": null,
+    "requiredForOk": false,
+    "readAt": null
+  },
+  "disposition": {
+    "ok": "originalSlot",
+    "ng": "NG",
+    "pending": "Pending",
+    "physicalUnit": "singlePart"
+  },
+  "motionProfile": "commissioning-flip",
+  "qualityProfile": "commissioning-virtual-ok",
+  "captureProfiles": {
+    "capture-A": {
+      "id": "capture-A",
+      "version": "local-1.1.6",
+      "settings": {
+        "profileId": "capture-A",
+        "exposureUs": 60000,
+        "gain": 1,
+        "roiPixels": [
+          0,
+          0,
+          5120,
+          5120
+        ],
+        "lightChannel": null,
+        "brightnessPercent": null,
+        "settleMs": null
+      }
+    },
+    "capture-B": {
+      "id": "capture-B",
+      "version": "local-1.1.6",
+      "settings": {
+        "profileId": "capture-B",
+        "exposureUs": 60000,
+        "gain": 1,
+        "roiPixels": [
+          0,
+          0,
+          5120,
+          5120
+        ],
+        "lightChannel": null,
+        "brightnessPercent": null,
+        "settleMs": null
+      }
+    },
+    "capture-C": {
+      "id": "capture-C",
+      "version": "local-1.1.6",
+      "settings": {
+        "profileId": "capture-C",
+        "exposureUs": 60000,
+        "gain": 1,
+        "roiPixels": [
+          0,
+          0,
+          5120,
+          5120
+        ],
+        "lightChannel": null,
+        "brightnessPercent": null,
+        "settleMs": null
+      }
+    },
+    "capture-D": {
+      "id": "capture-D",
+      "version": "local-1.1.6",
+      "settings": {
+        "profileId": "capture-D",
+        "exposureUs": 60000,
+        "gain": 1,
+        "roiPixels": [
+          0,
+          0,
+          5120,
+          5120
+        ],
+        "lightChannel": null,
+        "brightnessPercent": null,
+        "settleMs": null
+      }
+    }
+  },
+  "algorithmRequirements": {
+    "defect": {
+      "id": "defect",
+      "parametersVersion": "commissioning-virtual/1",
+      "purpose": "SingleDetection",
+      "inputCount": 1,
+      "resultContract": "image-quality/1"
+    },
+    "defect/fusion": {
+      "id": "defect/fusion",
+      "parametersVersion": "commissioning-virtual/1",
+      "purpose": "FaceFusion",
+      "inputCount": 2,
+      "resultContract": "face-quality/1"
+    }
+  },
+  "approval": {
+    "id": "",
+    "version": "",
+    "digest": "",
+    "purpose": "",
+    "allowedSlots": [],
+    "evidenceReference": ""
+  },
+  "executionPositions": {
+    "s1": {
+      "slotId": "s1",
+      "physicalEntity": {
+        "source": {
+          "point": {
+            "id": "source",
+            "version": "local-1.1.6",
+            "x": 10,
+            "y": 10,
+            "z": 6,
+            "unit": "mm",
+            "frame": "COMMISSIONING_MACHINE"
+          },
+          "coordinateEvidenceReference": "D:\\Gaode-PlcCommissioning-20261006\\release\\Gaode-PlcCommissioning-1.1.6-win-x64\\config\\recipe.local.json:sha256:a898bc7001febf8e0d626f0542bacdac7ae7a8c493c80b3dd4d7202c81ff9a75:sorting-source"
+        },
+        "coordinates": [
+          {
+            "pointRef": "face1-A",
+            "point": {
+              "id": "detect-A",
+              "version": "local-1.1.6",
+              "x": 15,
+              "y": 20,
+              "unit": "mm",
+              "frame": "COMMISSIONING_MACHINE"
+            },
+            "objectPattern": "{UnitId}/part",
+            "slotId": "s1",
+            "physicalSlotIndex": 1,
+            "localFace": 1,
+            "camera": "A",
+            "stageId": "stage:1",
+            "configurationVersion": "local-1.1.6",
+            "sourceFactReference": "D:\\Gaode-PlcCommissioning-20261006\\release\\Gaode-PlcCommissioning-1.1.6-win-x64\\config\\recipe.local.json:sha256:a898bc7001febf8e0d626f0542bacdac7ae7a8c493c80b3dd4d7202c81ff9a75:step:4",
+            "fixed": {
+              "z": 5,
+              "unit": "mm",
+              "datum": "COMMISSIONING_MACHINE",
+              "approvalReference": "D:\\Gaode-PlcCommissioning-20261006\\release\\Gaode-PlcCommissioning-1.1.6-win-x64\\config\\recipe.local.json:sha256:a898bc7001febf8e0d626f0542bacdac7ae7a8c493c80b3dd4d7202c81ff9a75",
+              "configurationVersion": "local-1.1.6"
+            },
+            "captureProfile": "capture-A"
+          },
+          {
+            "pointRef": "face1-B",
+            "point": {
+              "id": "detect-B",
+              "version": "local-1.1.6",
+              "x": 35,
+              "y": 20,
+              "unit": "mm",
+              "frame": "COMMISSIONING_MACHINE"
+            },
+            "objectPattern": "{UnitId}/part",
+            "slotId": "s1",
+            "physicalSlotIndex": 1,
+            "localFace": 1,
+            "camera": "B",
+            "stageId": "stage:1",
+            "configurationVersion": "local-1.1.6",
+            "sourceFactReference": "D:\\Gaode-PlcCommissioning-20261006\\release\\Gaode-PlcCommissioning-1.1.6-win-x64\\config\\recipe.local.json:sha256:a898bc7001febf8e0d626f0542bacdac7ae7a8c493c80b3dd4d7202c81ff9a75:step:5",
+            "fixed": {
+              "z": 5,
+              "unit": "mm",
+              "datum": "COMMISSIONING_MACHINE",
+              "approvalReference": "D:\\Gaode-PlcCommissioning-20261006\\release\\Gaode-PlcCommissioning-1.1.6-win-x64\\config\\recipe.local.json:sha256:a898bc7001febf8e0d626f0542bacdac7ae7a8c493c80b3dd4d7202c81ff9a75",
+              "configurationVersion": "local-1.1.6"
+            },
+            "captureProfile": "capture-B"
+          },
+          {
+            "pointRef": "face2-C",
+            "point": {
+              "id": "detect-C",
+              "version": "local-1.1.6",
+              "x": 65,
+              "y": 20,
+              "unit": "mm",
+              "frame": "COMMISSIONING_MACHINE"
+            },
+            "objectPattern": "{UnitId}/part",
+            "slotId": "s1",
+            "physicalSlotIndex": 1,
+            "localFace": 2,
+            "camera": "C",
+            "stageId": "stage:2",
+            "configurationVersion": "local-1.1.6",
+            "sourceFactReference": "D:\\Gaode-PlcCommissioning-20261006\\release\\Gaode-PlcCommissioning-1.1.6-win-x64\\config\\recipe.local.json:sha256:a898bc7001febf8e0d626f0542bacdac7ae7a8c493c80b3dd4d7202c81ff9a75:step:11",
+            "fixed": {
+              "z": 5,
+              "unit": "mm",
+              "datum": "COMMISSIONING_MACHINE",
+              "approvalReference": "D:\\Gaode-PlcCommissioning-20261006\\release\\Gaode-PlcCommissioning-1.1.6-win-x64\\config\\recipe.local.json:sha256:a898bc7001febf8e0d626f0542bacdac7ae7a8c493c80b3dd4d7202c81ff9a75",
+              "configurationVersion": "local-1.1.6"
+            },
+            "captureProfile": "capture-C"
+          },
+          {
+            "pointRef": "face2-D",
+            "point": {
+              "id": "detect-D",
+              "version": "local-1.1.6",
+              "x": 85,
+              "y": 20,
+              "unit": "mm",
+              "frame": "COMMISSIONING_MACHINE"
+            },
+            "objectPattern": "{UnitId}/part",
+            "slotId": "s1",
+            "physicalSlotIndex": 1,
+            "localFace": 2,
+            "camera": "D",
+            "stageId": "stage:2",
+            "configurationVersion": "local-1.1.6",
+            "sourceFactReference": "D:\\Gaode-PlcCommissioning-20261006\\release\\Gaode-PlcCommissioning-1.1.6-win-x64\\config\\recipe.local.json:sha256:a898bc7001febf8e0d626f0542bacdac7ae7a8c493c80b3dd4d7202c81ff9a75:step:12",
+            "fixed": {
+              "z": 5,
+              "unit": "mm",
+              "datum": "COMMISSIONING_MACHINE",
+              "approvalReference": "D:\\Gaode-PlcCommissioning-20261006\\release\\Gaode-PlcCommissioning-1.1.6-win-x64\\config\\recipe.local.json:sha256:a898bc7001febf8e0d626f0542bacdac7ae7a8c493c80b3dd4d7202c81ff9a75",
+              "configurationVersion": "local-1.1.6"
+            },
+            "captureProfile": "capture-D"
+          }
+        ],
+        "flip": {
+          "stages": {
+            "stage:2": {
+              "targetPose": {
+                "profileId": "commissioning-flip",
+                "profileVersion": "local-1.1.6",
+                "poseKey": "face-2"
+              },
+              "pickPointRef": "flip-pick",
+              "putBackPointRef": "flip-put"
+            }
+          }
+        },
+        "rotation": null,
+        "sorting": {},
+        "purposePoints": {
+          "flip-pick": {
+            "purpose": "FlipPick",
+            "point": {
+              "id": "flip-pick",
+              "version": "local-1.1.6",
+              "x": 10,
+              "y": 10,
+              "unit": "mm",
+              "frame": "COMMISSIONING_MACHINE"
+            },
+            "fixed": {
+              "z": 0,
+              "unit": "mm",
+              "datum": "COMMISSIONING_MACHINE",
+              "approvalReference": "D:\\Gaode-PlcCommissioning-20261006\\release\\Gaode-PlcCommissioning-1.1.6-win-x64\\config\\recipe.local.json:sha256:a898bc7001febf8e0d626f0542bacdac7ae7a8c493c80b3dd4d7202c81ff9a75",
+              "configurationVersion": "local-1.1.6"
+            },
+            "coordinateEvidenceReference": "D:\\Gaode-PlcCommissioning-20261006\\release\\Gaode-PlcCommissioning-1.1.6-win-x64\\config\\recipe.local.json:sha256:a898bc7001febf8e0d626f0542bacdac7ae7a8c493c80b3dd4d7202c81ff9a75:step:6; XY-only Z0 unused"
+          },
+          "flip-put": {
+            "purpose": "FlipPutBack",
+            "point": {
+              "id": "flip-put",
+              "version": "local-1.1.6",
+              "x": 10,
+              "y": 10,
+              "unit": "mm",
+              "frame": "COMMISSIONING_MACHINE"
+            },
+            "fixed": {
+              "z": 0,
+              "unit": "mm",
+              "datum": "COMMISSIONING_MACHINE",
+              "approvalReference": "D:\\Gaode-PlcCommissioning-20261006\\release\\Gaode-PlcCommissioning-1.1.6-win-x64\\config\\recipe.local.json:sha256:a898bc7001febf8e0d626f0542bacdac7ae7a8c493c80b3dd4d7202c81ff9a75",
+              "configurationVersion": "local-1.1.6"
+            },
+            "coordinateEvidenceReference": "D:\\Gaode-PlcCommissioning-20261006\\release\\Gaode-PlcCommissioning-1.1.6-win-x64\\config\\recipe.local.json:sha256:a898bc7001febf8e0d626f0542bacdac7ae7a8c493c80b3dd4d7202c81ff9a75:step:8; XY-only Z0 unused"
+          }
+        },
+        "sortingCellIds": {
+          "NG": "r2:c1",
+          "Pending": "r2:c10"
+        }
+      },
+      "members": {}
+    }
+  },
+  "sortingGripperId": 1,
+  "inspectionKind": "ordinary",
+  "ngCapacity": 1,
+  "pendingCapacity": 1,
+  "trayLayout": {
+    "rows": 10,
+    "columns": 10,
+    "cells": [
+      {
+        "cellId": "r2:c1",
+        "row": 2,
+        "column": 1,
+        "region": "NG"
+      },
+      {
+        "cellId": "r2:c4",
+        "row": 2,
+        "column": 4,
+        "region": "OK"
+      },
+      {
+        "cellId": "r2:c10",
+        "row": 2,
+        "column": 10,
+        "region": "Pending"
+      }
+    ]
+  },
+  "traySlotMapping": {
+    "id": "commissioning-single-slot-map",
+    "version": "local-1.1.6",
+    "evidenceReference": "D:\\Gaode-PlcCommissioning-20261006\\release\\Gaode-PlcCommissioning-1.1.6-win-x64\\config\\recipe.local.json:sha256:a898bc7001febf8e0d626f0542bacdac7ae7a8c493c80b3dd4d7202c81ff9a75; one part, software cell r2:c4 maps slot1",
+    "bindings": [
+      {
+        "cellId": "r2:c4",
+        "physicalSlotIndex": 1
+      }
+    ]
+  },
+  "sortingTargets": {
+    "r2:c1": {
+      "point": {
+        "id": "NG-1",
+        "version": "local-1.1.6",
+        "x": 80,
+        "y": 10,
+        "z": 7,
+        "unit": "mm",
+        "frame": "COMMISSIONING_MACHINE"
+      },
+      "coordinateEvidenceReference": "D:\\Gaode-PlcCommissioning-20261006\\release\\Gaode-PlcCommissioning-1.1.6-win-x64\\config\\recipe.local.json:sha256:a898bc7001febf8e0d626f0542bacdac7ae7a8c493c80b3dd4d7202c81ff9a75:sorting-unused-in-OK"
+    },
+    "r2:c10": {
+      "point": {
+        "id": "Pending-1",
+        "version": "local-1.1.6",
+        "x": 95,
+        "y": 10,
+        "z": 7,
+        "unit": "mm",
+        "frame": "COMMISSIONING_MACHINE"
+      },
+      "coordinateEvidenceReference": "D:\\Gaode-PlcCommissioning-20261006\\release\\Gaode-PlcCommissioning-1.1.6-win-x64\\config\\recipe.local.json:sha256:a898bc7001febf8e0d626f0542bacdac7ae7a8c493c80b3dd4d7202c81ff9a75:sorting-unused-in-OK"
+    }
+  },
+  "commissioningFPosition": {
+    "schemaVersion": "commissioning-f-position/1",
+    "x": 65,
+    "y": 50
+  },
+  "lightExecution": {
+    "schemaVersion": "light-execution/1",
+    "mode": "Simulated"
+  },
+  "plcRecipeId": null
+}

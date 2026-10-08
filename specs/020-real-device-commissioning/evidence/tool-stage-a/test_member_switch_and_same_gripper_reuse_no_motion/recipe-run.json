@@ -1,0 +1,314 @@
+{
+  "id": "18dc9393823b",
+  "name": "模拟翻面件-001",
+  "state": "completed",
+  "step": 13,
+  "started": 1791392207.8511562,
+  "steps": [
+    {
+      "id": 1,
+      "name": "人工上料",
+      "state": "queued"
+    },
+    {
+      "id": 2,
+      "name": "3D 初次观察",
+      "state": "queued"
+    },
+    {
+      "id": 3,
+      "name": "F 相机扫码",
+      "state": "queued"
+    },
+    {
+      "id": 4,
+      "name": "第一面 A 拍照",
+      "state": "queued"
+    },
+    {
+      "id": 5,
+      "name": "第一面 B 拍照",
+      "state": "queued"
+    },
+    {
+      "id": 6,
+      "name": "翻面取料定位",
+      "state": "queued"
+    },
+    {
+      "id": 7,
+      "name": "翻到第二面",
+      "state": "queued"
+    },
+    {
+      "id": 8,
+      "name": "放回原槽定位",
+      "state": "queued"
+    },
+    {
+      "id": 9,
+      "name": "放回原槽",
+      "state": "queued"
+    },
+    {
+      "id": 10,
+      "name": "3D 姿态复查",
+      "state": "queued"
+    },
+    {
+      "id": 11,
+      "name": "第二面 C 拍照",
+      "state": "queued"
+    },
+    {
+      "id": 12,
+      "name": "第二面 D 拍照",
+      "state": "queued"
+    },
+    {
+      "id": 13,
+      "name": "汇总并保存结果",
+      "state": "queued"
+    },
+    {
+      "id": 14,
+      "name": "返回下料位",
+      "state": "queued"
+    }
+  ],
+  "barcode": null,
+  "inspections": [],
+  "signals": [
+    {
+      "id": "411422d3f1",
+      "at": "2026-10-08T00:56:47+0800",
+      "epoch": 1791392207.8723667,
+      "kind": "SIGNAL",
+      "title": "信号变化：Send_Data_PC_System_Ready",
+      "idSignal": "pc.PC_System_Ready",
+      "mb": 2006,
+      "before": 0,
+      "value": 1,
+      "rawRegisters": [
+        1
+      ],
+      "connectionGeneration": 1,
+      "recipeRunId": "18dc9393823b",
+      "recipeStep": 13
+    },
+    {
+      "id": "5172a16a59",
+      "at": "2026-10-08T00:56:47+0800",
+      "epoch": 1791392207.8966365,
+      "kind": "SIGNAL",
+      "title": "信号变化：Send_Data_Grab_ID",
+      "idSignal": "pc.Grab_ID",
+      "mb": 2018,
+      "before": 0,
+      "value": 1,
+      "rawRegisters": [
+        1
+      ],
+      "connectionGeneration": 1,
+      "recipeRunId": "18dc9393823b",
+      "recipeStep": 13
+    },
+    {
+      "id": "f357d09488",
+      "at": "2026-10-08T00:56:47+0800",
+      "epoch": 1791392207.8966365,
+      "kind": "SIGNAL",
+      "title": "信号变化：Rece_Data_Grab_Active_ID",
+      "idSignal": "plc.Grab_Active_ID",
+      "mb": 6062,
+      "before": 0,
+      "value": 1,
+      "rawRegisters": [
+        1
+      ],
+      "connectionGeneration": 1,
+      "recipeRunId": "18dc9393823b",
+      "recipeStep": 13
+    },
+    {
+      "id": "e01802596a",
+      "at": "2026-10-08T00:56:47+0800",
+      "epoch": 1791392207.9382496,
+      "kind": "SIGNAL",
+      "title": "信号变化：Send_Data_Grab_ID",
+      "idSignal": "pc.Grab_ID",
+      "mb": 2018,
+      "before": 1,
+      "value": 2,
+      "rawRegisters": [
+        2
+      ],
+      "connectionGeneration": 1,
+      "recipeRunId": "18dc9393823b",
+      "recipeStep": 13
+    },
+    {
+      "id": "d116c7a77b",
+      "at": "2026-10-08T00:56:47+0800",
+      "epoch": 1791392207.9382496,
+      "kind": "SIGNAL",
+      "title": "信号变化：Rece_Data_Grab_Active_ID",
+      "idSignal": "plc.Grab_Active_ID",
+      "mb": 6062,
+      "before": 1,
+      "value": 2,
+      "rawRegisters": [
+        2
+      ],
+      "connectionGeneration": 1,
+      "recipeRunId": "18dc9393823b",
+      "recipeStep": 13
+    }
+  ],
+  "milestones": [
+    {
+      "id": "062af57198",
+      "at": "2026-10-08T00:56:47+0800",
+      "epoch": 1791392207.8511562,
+      "kind": "GRIPPER_CHECK_START",
+      "title": "仅验证成组夹爪选择，不执行轴运动、取放料或检测",
+      "members": [
+        {
+          "memberId": "A1",
+          "material": "A",
+          "grabId": 1
+        },
+        {
+          "memberId": "B1",
+          "material": "B",
+          "grabId": 2
+        },
+        {
+          "memberId": "B2",
+          "material": "B",
+          "grabId": 2
+        }
+      ],
+      "recipeRunId": "18dc9393823b",
+      "recipeStep": 13,
+      "connectionGeneration": 1
+    },
+    {
+      "id": "07d740c80b",
+      "at": "2026-10-08T00:56:47+0800",
+      "epoch": 1791392207.867367,
+      "kind": "RECIPE_START",
+      "title": "用户开始本盘；真实PLC反馈推进，相机模式=simulated",
+      "recipeRunId": "18dc9393823b",
+      "recipeStep": 13,
+      "connectionGeneration": 1
+    },
+    {
+      "id": "c2f5c9acfd",
+      "at": "2026-10-08T00:56:47+0800",
+      "epoch": 1791392207.8723667,
+      "kind": "RECIPE_GRAB_SELECT",
+      "title": "按本件要求选择夹爪",
+      "memberId": "A1",
+      "material": "A",
+      "grabId": 1,
+      "actual": 0,
+      "recipeRunId": "18dc9393823b",
+      "recipeStep": 13,
+      "connectionGeneration": 1
+    },
+    {
+      "id": "dc3ec85187",
+      "at": "2026-10-08T00:56:47+0800",
+      "epoch": 1791392207.8966365,
+      "kind": "RECIPE_GRAB",
+      "title": "PLC有效抓手已确认",
+      "memberId": "A1",
+      "material": "A",
+      "grabId": 1,
+      "actual": 1,
+      "reused": false,
+      "recipeRunId": "18dc9393823b",
+      "recipeStep": 13,
+      "connectionGeneration": 1
+    },
+    {
+      "id": "54d656c3fc",
+      "at": "2026-10-08T00:56:47+0800",
+      "epoch": 1791392207.9147618,
+      "kind": "RECIPE_GRAB_SELECT",
+      "title": "按本件要求选择夹爪",
+      "memberId": "B1",
+      "material": "B",
+      "grabId": 2,
+      "actual": 1,
+      "recipeRunId": "18dc9393823b",
+      "recipeStep": 13,
+      "connectionGeneration": 1
+    },
+    {
+      "id": "a338ab6e2f",
+      "at": "2026-10-08T00:56:47+0800",
+      "epoch": 1791392207.9382496,
+      "kind": "RECIPE_GRAB",
+      "title": "PLC有效抓手已确认",
+      "memberId": "B1",
+      "material": "B",
+      "grabId": 2,
+      "actual": 2,
+      "reused": false,
+      "recipeRunId": "18dc9393823b",
+      "recipeStep": 13,
+      "connectionGeneration": 1
+    },
+    {
+      "id": "913cfccc34",
+      "at": "2026-10-08T00:56:47+0800",
+      "epoch": 1791392207.9555702,
+      "kind": "RECIPE_GRAB",
+      "title": "PLC有效抓手选择已一致，沿用",
+      "memberId": "B2",
+      "material": "B",
+      "grabId": 2,
+      "actual": 2,
+      "reused": true,
+      "recipeRunId": "18dc9393823b",
+      "recipeStep": 13,
+      "connectionGeneration": 1
+    },
+    {
+      "id": "1452aa9e20",
+      "at": "2026-10-08T00:56:47+0800",
+      "epoch": 1791392207.9798923,
+      "kind": "GRIPPER_CHECK_COMPLETE",
+      "title": "成组夹爪选择验证完成；未执行运动或取放料，不代表成组检测验收通过",
+      "recipeRunId": "18dc9393823b",
+      "recipeStep": 13,
+      "connectionGeneration": 1
+    }
+  ],
+  "trail": [],
+  "result": null,
+  "simulated": true,
+  "recordPurpose": "流程测试",
+  "realInspectionResult": false,
+  "reason": "成组夹爪选择验证完成；未执行运动或取放料，不代表成组检测验收通过",
+  "gripperCheck": true,
+  "selectionMembers": [
+    {
+      "memberId": "A1",
+      "material": "A",
+      "grabId": 1
+    },
+    {
+      "memberId": "B1",
+      "material": "B",
+      "grabId": 2
+    },
+    {
+      "memberId": "B2",
+      "material": "B",
+      "grabId": 2
+    }
+  ]
+}

@@ -3,6 +3,7 @@ using Gaode.Application.Ports;
 using Gaode.Domain.Configuration;
 using Gaode.Domain.Station01;
 using Gaode.Plc.Protocol;
+using Microsoft.Extensions.Logging;
 
 namespace Gaode.Infrastructure.Devices.Plc;
 
@@ -12,11 +13,13 @@ public sealed partial class LatestProtocolPlcDevice
     private readonly Dictionary<Guid, FlipMovePreparation> flipPreparations = [];
     private Guid? putBackPositionActionId;
     private AxisMovingWatch? activeAxisMoving;
+    private long completedPhysicalAxisGroups;
 
-    private static string AxisPurpose(string role) => role switch
+    internal string AxisPurpose(string role) => role switch
     {
         "3D" or "FlipPick" or "FlipPutBack" or "Unload" => "XY",
-        "F" or "E" => "ScanZ", "Detection" => "DetectionZ",
+        "F" => definitionAdmission.Definition.IsSiteLayout ? "XY" : "ScanZ",
+        "E" => "ScanZ", "Detection" => "DetectionZ",
         "Grab" => "GrabZ", _ => throw new InvalidOperationException("MoveAxisPurposeUnknown")
     };
 
@@ -28,8 +31,10 @@ public sealed partial class LatestProtocolPlcDevice
             p.ProfileId == preparation.TargetPose.ProfileId && p.ProfileVersion == preparation.TargetPose.ProfileVersion &&
             p.PoseKey == preparation.TargetPose.PoseKey).ToArray();
         if (mappings.Length != 1 || string.IsNullOrWhiteSpace(mappings[0].SourceReference) ||
-            mappings[0].Purpose != (options.Provider == "Real" ? "Production" : "Test") ||
-            mappings[0].ModelWords.Length != definitionAdmission.Definition[SignalId.ModelPayload].RegisterCount)
+            mappings[0].Purpose != options.ConfigurationPurpose ||
+            (definitionAdmission.Definition.IsSiteLayout
+                ? mappings[0].ModelNumber is not { } model || !double.IsFinite(model) || (double)(float)model != model
+                : mappings[0].ModelWords.Length != definitionAdmission.Definition[SignalId.ModelPayload].RegisterCount))
             throw new InvalidOperationException("PlcPoseProgramMappingMissing");
         return mappings[0] with { ModelWords = (ushort[])mappings[0].ModelWords.Clone() };
     }
@@ -37,6 +42,7 @@ public sealed partial class LatestProtocolPlcDevice
     private async Task DriveTargetAsync(FixedPoint target, string role, ActionWindow window, long expectedEpoch,
         Action? accepted, CancellationToken token)
     {
+        var physicalGroupsBefore = completedPhysicalAxisGroups;
         await DriveAxesAsync([
             new(SignalId.CameraTargetX, SignalId.XMoveStart, SignalId.XPosConfirmed, SignalId.MachineCurrentPosX, target.X),
             new(SignalId.CameraTargetY, SignalId.YMoveStart, SignalId.YPosConfirmed, SignalId.MachineCurrentPosY, target.Y)
@@ -51,11 +57,13 @@ public sealed partial class LatestProtocolPlcDevice
         };
         if (z is not null) await DriveAxesAsync([z], window, expectedEpoch, null, token);
         CheckAxisWindow(window, expectedEpoch, token);
-        var position = Observe().PositionForPurpose(AxisPurpose(role));
+        var position = completedMoveObservation?.PositionForPurpose(AxisPurpose(role));
         if (position is null || !position.IsReliable || Math.Abs(position.ActualX!.Value - target.X) > PositionTolerance ||
             Math.Abs(position.ActualY!.Value - target.Y) > PositionTolerance ||
             position.ActualZ is { } actualZ && Math.Abs(actualZ - target.Z) > PositionTolerance)
             throw new IOException("CompletedCoordinatesMismatch");
+        if (completedPhysicalAxisGroups > physicalGroupsBefore)
+            await ClearStartupAfterPhysicalActionAsync(window, expectedEpoch, token);
     }
 
     private void CheckAxisWindow(ActionWindow window, long expectedEpoch, CancellationToken token)
@@ -64,7 +72,7 @@ public sealed partial class LatestProtocolPlcDevice
         if (!window.Contains(Stopwatch.GetTimestamp())) throw new TimeoutException("AxisWindowClosed");
         var sample = ReadProtocolSample();
         if (!sample.Connected || !sample.SafetyClear || sample.ConnectionEpoch != expectedEpoch || unknown)
-            throw new IOException("AxisObservationOrSafetyLost");
+            { lock (sync) axisClosures.Clear(); throw new IOException("AxisObservationOrSafetyLost"); }
     }
 
     private async Task DriveAxesAsync(AxisMove[] axes, ActionWindow window, long expectedEpoch,
@@ -72,12 +80,35 @@ public sealed partial class LatestProtocolPlcDevice
     {
         using var dispatch = ActionDispatchEligibility(window, expectedEpoch, token);
         CheckAxisWindow(window, expectedEpoch, token);
-        var baseline = await signals.ReadAsync(axes.Select(a => a.Start), token);
+        var allAxes = axes;
+        // Read the current wire values, never decide reuse from cached arrival flags.
+        var baseline = await signals.ReadAsync([.. PreparedPlcReadPlans.Base, .. PreparedPlcReadPlans.Position], token);
         CheckAxisWindow(window, expectedEpoch, token);
         if (axes.Any(a => baseline.Bit(a.Start))) throw new IOException("StaleAxisTrigger");
         foreach (var axis in axes)
         {
+            var state = baseline.Word(axis.Confirmed);
+            if (state != SignalCodes.Value(axis.Confirmed, "Moving") && state != SignalCodes.Value(axis.Confirmed, "Arrived"))
+                throw new IOException("AxisFeedbackUnknown:" + axis.Confirmed);
+            if (!float.IsFinite(baseline.Float(axis.Actual)) || !float.IsFinite((float)axis.Value))
+                throw new IOException("AxisPositionInvalid:" + axis.Actual);
+        }
+        var reused = axes.Where(a => CanReuseAxis(a, baseline, expectedEpoch)).ToArray();
+        foreach (var axis in reused)
+            logger.LogInformation("AxisPositionReused: action={ActionId} epoch={Epoch} axis={Axis} target={Target} actual={Actual} tolerance={Tolerance}",
+                pending?.Id, expectedEpoch, axis.Confirmed, axis.Value, baseline.Float(axis.Actual), PositionTolerance);
+        axes = axes.Except(reused).ToArray();
+        if (axes.Length == 0)
+        {
+            await VerifyAxisPositionsAsync(allAxes, reused, window, expectedEpoch, token);
+            accepted?.Invoke(); // Local positioning request satisfied; no PLC motion was dispatched.
+            return;
+        }
+        foreach (var axis in axes)
+        {
             CheckAxisWindow(window, expectedEpoch, token);
+            lock (sync) axisClosures.Remove(axis.Start);
+            if (baseline.Word(axis.Confirmed) != 0) throw new IOException("PreviousAxisNotCleared:" + axis.Confirmed);
             await signals.WriteFloatAsync(axis.Target, (float)axis.Value, token);
         }
         var dispatchClocks = axes.ToDictionary(a => a.Confirmed, _ => new PlcExchangeClock());
@@ -130,12 +161,18 @@ public sealed partial class LatestProtocolPlcDevice
                     if (axes.Any(a => !float.IsFinite(actual.Values.Float(a.Actual)) ||
                         Math.Abs(actual.Values.Float(a.Actual) - (float)a.Value) > PositionTolerance))
                         throw new IOException("AxisActualPositionMismatch");
+                    var completedObservation = Observe(); // Preserve arrival/coordinate identity before feedback reset.
                     foreach (var axis in axes)
                     {
                         CheckAxisWindow(window, expectedEpoch, token);
-                        await signals.WriteBitAsync(axis.Start, false, token);
+                        await ClearAndConfirmAsync(axis.Confirmed.ToString(), "B", axis.Start, true,
+                            [axis.Start, axis.Confirmed], window, expectedEpoch, token);
+                        lock (sync) axisClosures[axis.Start] = new(expectedEpoch, actual.Values.Float(axis.Actual));
                     }
                     CheckAxisWindow(window, expectedEpoch, token);
+                    await VerifyAxisPositionsAsync(allAxes, reused, window, expectedEpoch, token);
+                    completedPhysicalAxisGroups++;
+                    completedMoveObservation = completedObservation;
                     return;
                 }
                 after = sample.Ended + 1;
@@ -147,6 +184,23 @@ public sealed partial class LatestProtocolPlcDevice
             SetFeedback("X", false);
         }
     }
+    private async Task VerifyAxisPositionsAsync(AxisMove[] allAxes, AxisMove[] reused,
+        ActionWindow window, long expectedEpoch, CancellationToken token)
+    {
+        CheckAxisWindow(window, expectedEpoch, token);
+        var current = await signals.ReadAsync([.. PreparedPlcReadPlans.Base, .. PreparedPlcReadPlans.Position], token);
+        CheckAxisWindow(window, expectedEpoch, token);
+        foreach (var axis in allAxes)
+        {
+            if (current.Bit(axis.Start) || !float.IsFinite(current.Float(axis.Actual)) ||
+                Math.Abs(current.Float(axis.Actual) - (float)axis.Value) > PositionTolerance ||
+                current.Word(axis.Confirmed) != 0)
+                { lock (sync) axisClosures.Remove(axis.Start); throw new IOException("AxisFinalPositionUnconfirmed:" + axis.Confirmed); }
+        }
+        var identity = new GroupObservation("P", 0, expectedEpoch, SelectValues(current, PreparedPlcReadPlans.Position), 0, 0, 0).Identity;
+        completedMoveObservation = Interpret(Sample(current, expectedEpoch, identity.SampleStartedUtc) with { PositionIdentity = identity });
+    }
+
     internal IDisposable ActionDispatchEligibility(ActionWindow window, long expectedEpoch, CancellationToken token)
     {
         var previous = PlcScheduledTransport.Eligibility.Value;

@@ -1,0 +1,18 @@
+2026-10-07T16:58:25.7593246+00:00 Information PLC threadpool provider: windowsNative=False; minimum API supported=True 
+2026-10-07T16:58:25.7593339+00:00 Information PLC heartbeat worker minimum: previous=28, effective=28 
+2026-10-07T16:58:25.7593359+00:00 Information PLC starting: 127.0.0.1:49533, acquisition=plc-acquisition/013-1, ioTimeoutMs=1000, heartbeatTimeoutMs=3000 
+2026-10-07T16:58:25.7595758+00:00 Information PLC channel heartbeat connected [::ffff:127.0.0.1]:49535 -> 127.0.0.1:49533; I/O deadline 1000 ms 
+2026-10-07T16:58:25.7596774+00:00 Information PLC channel business connected [::ffff:127.0.0.1]:49536 -> 127.0.0.1:49533; I/O deadline 1000 ms 
+2026-10-07T16:58:25.7603258+00:00 Information PLC channel business connected [::ffff:127.0.0.1]:49537 -> 127.0.0.1:49533; I/O deadline 1000 ms 
+2026-10-07T16:58:25.9651122+00:00 Information PLC startup readiness observed: runId=8e5fd45b-16ec-40dd-af2f-810fd20f79d1, operationId=3cc8b039-207e-473a-8f35-b8634de9423b, actionId=ff8c1e78-ef9c-4756-9407-583681441f9f, epoch=2; no clamp or physical button fact inferred 
+2026-10-07T16:58:26.0576803+00:00 Information PLC channel heartbeat connected [::ffff:127.0.0.1]:49540 -> 127.0.0.1:49533; I/O deadline 1000 ms 
+2026-10-07T16:58:26.1662739+00:00 Information PlcClearWaiting resource=XPosConfirmed cycle=d63287cd-1e37-4cfc-85de-69f17ec7fc87 epoch=2 action=ae7e5267-8c1b-44da-93ee-b3398681b199 writeEnded=429599687914 due=429697676587 
+2026-10-07T16:58:26.1702354+00:00 Information PlcClearConfirmed resource=XPosConfirmed cycle=d63287cd-1e37-4cfc-85de-69f17ec7fc87 epoch=2 action=ae7e5267-8c1b-44da-93ee-b3398681b199 writeEnded=429599687914 readStarted=429599726991 readEnded=429599727488 fields=XMoveStart,XPosConfirmed 
+2026-10-07T16:58:26.1702751+00:00 Information PlcClearWaiting resource=YPosConfirmed cycle=76d8a86b-2815-4e95-ba5f-f788f708a7c4 epoch=2 action=ae7e5267-8c1b-44da-93ee-b3398681b199 writeEnded=429599727985 due=429697676587 
+2026-10-07T16:58:26.3736998+00:00 Information PlcClearConfirmed resource=YPosConfirmed cycle=76d8a86b-2815-4e95-ba5f-f788f708a7c4 epoch=2 action=ae7e5267-8c1b-44da-93ee-b3398681b199 writeEnded=429599727985 readStarted=429601761240 readEnded=429601761833 fields=YMoveStart,YPosConfirmed 
+2026-10-07T16:58:26.6296384+00:00 Information PLC transition completed: runId=c114bef4-c488-420b-986b-cdb4d42ae879, actionId=12ccaf6a-ed19-4614-8c4a-af7b20384546, epoch=2, putBack=False 
+2026-10-07T16:58:26.6340042+00:00 Information AxisPositionReused: action=8b057b7e-c07e-43e3-9150-e172f6d6ba21 epoch=2 axis=XPosConfirmed target=4 actual=4 tolerance=0.01 
+2026-10-07T16:58:26.6340156+00:00 Information AxisPositionReused: action=8b057b7e-c07e-43e3-9150-e172f6d6ba21 epoch=2 axis=YPosConfirmed target=5 actual=5 tolerance=0.01 
+2026-10-07T16:58:26.8891270+00:00 Information PlcClearWaiting resource=FlipPutBack cycle=ede057ca-0888-4d13-b8ff-fb93fbee0170 epoch=2 action=c9c262bf-c6a7-4fc1-8085-8820e6a91176 writeEnded=429606916460 due=429704396556 
+2026-10-07T16:58:26.8937882+00:00 Information PlcClearConfirmed resource=FlipPutBack cycle=ede057ca-0888-4d13-b8ff-fb93fbee0170 epoch=2 action=c9c262bf-c6a7-4fc1-8085-8820e6a91176 writeEnded=429606916460 readStarted=429606962191 readEnded=429606962909 fields=FlipSorting,FlipStatus,FlipUnloadStatus 
+2026-10-07T16:58:26.8937961+00:00 Information PLC transition completed: runId=c114bef4-c488-420b-986b-cdb4d42ae879, actionId=c9c262bf-c6a7-4fc1-8085-8820e6a91176, epoch=2, putBack=True 

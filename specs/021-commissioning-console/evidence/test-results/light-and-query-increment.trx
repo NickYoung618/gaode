@@ -1,0 +1,64 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<TestRun id="0edd09ee-a263-4413-8daf-472b015e2d31" name="Administrator@DEMO 2026-10-08 05:58:16" runUser="demo\Administrator" xmlns="http://microsoft.com/schemas/VisualStudio/TeamTest/2010">
+  <Times creation="2026-10-08T05:58:16.2464672+08:00" queuing="2026-10-08T05:58:16.2464674+08:00" start="2026-10-08T05:58:14.9163982+08:00" finish="2026-10-08T05:58:16.2501714+08:00" />
+  <TestSettings name="default" id="9a2e36c7-4561-4e64-ba09-b3498259dd50">
+    <Deployment runDeploymentRoot="Administrator_DEMO_2026-10-08_05_58_16" />
+  </TestSettings>
+  <Results>
+    <UnitTestResult executionId="4ffbeeaa-3f21-4cb1-a59e-8eed5a2d262e" testId="5d713dea-4c59-3866-9470-d1c8ffdfcc23" testName="Gaode.Communication.Tests.CommissioningStartQueryTests.LookupDoesNotRegisterOrReleaseAndOldCompletionCannotReleaseNewOwner" computerName="DEMO" duration="00:00:00.0061711" startTime="2026-10-08T05:58:15.4163975+08:00" endTime="2026-10-08T05:58:15.4269407+08:00" testType="13cdc9d9-ddb5-4fa4-a97d-d965ccfc6d4b" outcome="Passed" testListId="8c84fa94-04c1-424b-9868-57a2d4851a1d" relativeResultsDirectory="4ffbeeaa-3f21-4cb1-a59e-8eed5a2d262e" />
+    <UnitTestResult executionId="01be639d-c927-49e9-891c-3c496cf44b2c" testId="566177ee-cf2a-6081-26a4-6ba342d32c59" testName="Gaode.Communication.Tests.CommissioningLightModeTests.ExplicitModeControlsLightButNeverSkipsCamera(mode: &quot;Real&quot;, realAdapter: False, expectedCapture: False)" computerName="DEMO" duration="00:00:00.0077242" startTime="2026-10-08T05:58:15.5090899+08:00" endTime="2026-10-08T05:58:15.5164311+08:00" testType="13cdc9d9-ddb5-4fa4-a97d-d965ccfc6d4b" outcome="Passed" testListId="8c84fa94-04c1-424b-9868-57a2d4851a1d" relativeResultsDirectory="01be639d-c927-49e9-891c-3c496cf44b2c" />
+    <UnitTestResult executionId="c76d7c47-0738-4cd1-a3ca-df7c6ec5f020" testId="b6d5c734-cb56-b5f1-0282-92ccd6c8ed5e" testName="Gaode.Communication.Tests.CommissioningStartQueryTests.PersistedLookupIsSubjectScopedAndDatabaseFailureIsNotNotFound" computerName="DEMO" duration="00:00:00.7495792" startTime="2026-10-08T05:58:15.4325626+08:00" endTime="2026-10-08T05:58:16.1767252+08:00" testType="13cdc9d9-ddb5-4fa4-a97d-d965ccfc6d4b" outcome="Passed" testListId="8c84fa94-04c1-424b-9868-57a2d4851a1d" relativeResultsDirectory="c76d7c47-0738-4cd1-a3ca-df7c6ec5f020" />
+    <UnitTestResult executionId="0147c7aa-f02b-47ea-8053-5fa9ab86aff7" testId="fb0b3f64-c84f-0d7e-7acb-456850a4a6d7" testName="Gaode.Communication.Tests.CommissioningLightModeTests.ExplicitModeControlsLightButNeverSkipsCamera(mode: &quot;Real&quot;, realAdapter: True, expectedCapture: True)" computerName="DEMO" duration="00:00:00.0027575" startTime="2026-10-08T05:58:15.5282609+08:00" endTime="2026-10-08T05:58:15.5309555+08:00" testType="13cdc9d9-ddb5-4fa4-a97d-d965ccfc6d4b" outcome="Passed" testListId="8c84fa94-04c1-424b-9868-57a2d4851a1d" relativeResultsDirectory="0147c7aa-f02b-47ea-8053-5fa9ab86aff7" />
+    <UnitTestResult executionId="094d2d36-af42-465c-8a9e-a9933cd3afa9" testId="1cf235fc-6d61-ae37-5556-563edcf2d264" testName="Gaode.Communication.Tests.CommissioningLightModeTests.MissingLightParametersOnlyAllowedInExplicitVirtualModeAndFPositionRoundTrips" computerName="DEMO" duration="00:00:00.0891460" startTime="2026-10-08T05:58:15.4171859+08:00" endTime="2026-10-08T05:58:15.5086187+08:00" testType="13cdc9d9-ddb5-4fa4-a97d-d965ccfc6d4b" outcome="Passed" testListId="8c84fa94-04c1-424b-9868-57a2d4851a1d" relativeResultsDirectory="094d2d36-af42-465c-8a9e-a9933cd3afa9" />
+    <UnitTestResult executionId="259626fd-9f31-4277-8303-b8c18dcf3205" testId="4c698a9b-30df-41f6-c863-afc843941a2f" testName="Gaode.Communication.Tests.CommissioningLightModeTests.ExplicitModeControlsLightButNeverSkipsCamera(mode: &quot;Simulated&quot;, realAdapter: False, expectedCapture: True)" computerName="DEMO" duration="00:00:00.0117909" startTime="2026-10-08T05:58:15.5165050+08:00" endTime="2026-10-08T05:58:15.5281824+08:00" testType="13cdc9d9-ddb5-4fa4-a97d-d965ccfc6d4b" outcome="Passed" testListId="8c84fa94-04c1-424b-9868-57a2d4851a1d" relativeResultsDirectory="259626fd-9f31-4277-8303-b8c18dcf3205" />
+  </Results>
+  <TestDefinitions>
+    <UnitTest name="Gaode.Communication.Tests.CommissioningLightModeTests.ExplicitModeControlsLightButNeverSkipsCamera(mode: &quot;Real&quot;, realAdapter: False, expectedCapture: False)" storage="d:\gaode\backend\tests\gaode.communication.tests\bin\debug\net10.0\gaode.communication.tests.dll" id="566177ee-cf2a-6081-26a4-6ba342d32c59">
+      <Execution id="01be639d-c927-49e9-891c-3c496cf44b2c" />
+      <TestMethod codeBase="D:\gaode\backend\tests\Gaode.Communication.Tests\bin\Debug\net10.0\Gaode.Communication.Tests.dll" adapterTypeName="executor://xunit/VsTestRunner3/netcore/" className="Gaode.Communication.Tests.CommissioningLightModeTests" name="ExplicitModeControlsLightButNeverSkipsCamera" />
+    </UnitTest>
+    <UnitTest name="Gaode.Communication.Tests.CommissioningStartQueryTests.PersistedLookupIsSubjectScopedAndDatabaseFailureIsNotNotFound" storage="d:\gaode\backend\tests\gaode.communication.tests\bin\debug\net10.0\gaode.communication.tests.dll" id="b6d5c734-cb56-b5f1-0282-92ccd6c8ed5e">
+      <Execution id="c76d7c47-0738-4cd1-a3ca-df7c6ec5f020" />
+      <TestMethod codeBase="D:\gaode\backend\tests\Gaode.Communication.Tests\bin\Debug\net10.0\Gaode.Communication.Tests.dll" adapterTypeName="executor://xunit/VsTestRunner3/netcore/" className="Gaode.Communication.Tests.CommissioningStartQueryTests" name="PersistedLookupIsSubjectScopedAndDatabaseFailureIsNotNotFound" />
+    </UnitTest>
+    <UnitTest name="Gaode.Communication.Tests.CommissioningLightModeTests.MissingLightParametersOnlyAllowedInExplicitVirtualModeAndFPositionRoundTrips" storage="d:\gaode\backend\tests\gaode.communication.tests\bin\debug\net10.0\gaode.communication.tests.dll" id="1cf235fc-6d61-ae37-5556-563edcf2d264">
+      <Execution id="094d2d36-af42-465c-8a9e-a9933cd3afa9" />
+      <TestMethod codeBase="D:\gaode\backend\tests\Gaode.Communication.Tests\bin\Debug\net10.0\Gaode.Communication.Tests.dll" adapterTypeName="executor://xunit/VsTestRunner3/netcore/" className="Gaode.Communication.Tests.CommissioningLightModeTests" name="MissingLightParametersOnlyAllowedInExplicitVirtualModeAndFPositionRoundTrips" />
+    </UnitTest>
+    <UnitTest name="Gaode.Communication.Tests.CommissioningStartQueryTests.LookupDoesNotRegisterOrReleaseAndOldCompletionCannotReleaseNewOwner" storage="d:\gaode\backend\tests\gaode.communication.tests\bin\debug\net10.0\gaode.communication.tests.dll" id="5d713dea-4c59-3866-9470-d1c8ffdfcc23">
+      <Execution id="4ffbeeaa-3f21-4cb1-a59e-8eed5a2d262e" />
+      <TestMethod codeBase="D:\gaode\backend\tests\Gaode.Communication.Tests\bin\Debug\net10.0\Gaode.Communication.Tests.dll" adapterTypeName="executor://xunit/VsTestRunner3/netcore/" className="Gaode.Communication.Tests.CommissioningStartQueryTests" name="LookupDoesNotRegisterOrReleaseAndOldCompletionCannotReleaseNewOwner" />
+    </UnitTest>
+    <UnitTest name="Gaode.Communication.Tests.CommissioningLightModeTests.ExplicitModeControlsLightButNeverSkipsCamera(mode: &quot;Simulated&quot;, realAdapter: False, expectedCapture: True)" storage="d:\gaode\backend\tests\gaode.communication.tests\bin\debug\net10.0\gaode.communication.tests.dll" id="4c698a9b-30df-41f6-c863-afc843941a2f">
+      <Execution id="259626fd-9f31-4277-8303-b8c18dcf3205" />
+      <TestMethod codeBase="D:\gaode\backend\tests\Gaode.Communication.Tests\bin\Debug\net10.0\Gaode.Communication.Tests.dll" adapterTypeName="executor://xunit/VsTestRunner3/netcore/" className="Gaode.Communication.Tests.CommissioningLightModeTests" name="ExplicitModeControlsLightButNeverSkipsCamera" />
+    </UnitTest>
+    <UnitTest name="Gaode.Communication.Tests.CommissioningLightModeTests.ExplicitModeControlsLightButNeverSkipsCamera(mode: &quot;Real&quot;, realAdapter: True, expectedCapture: True)" storage="d:\gaode\backend\tests\gaode.communication.tests\bin\debug\net10.0\gaode.communication.tests.dll" id="fb0b3f64-c84f-0d7e-7acb-456850a4a6d7">
+      <Execution id="0147c7aa-f02b-47ea-8053-5fa9ab86aff7" />
+      <TestMethod codeBase="D:\gaode\backend\tests\Gaode.Communication.Tests\bin\Debug\net10.0\Gaode.Communication.Tests.dll" adapterTypeName="executor://xunit/VsTestRunner3/netcore/" className="Gaode.Communication.Tests.CommissioningLightModeTests" name="ExplicitModeControlsLightButNeverSkipsCamera" />
+    </UnitTest>
+  </TestDefinitions>
+  <TestEntries>
+    <TestEntry testId="5d713dea-4c59-3866-9470-d1c8ffdfcc23" executionId="4ffbeeaa-3f21-4cb1-a59e-8eed5a2d262e" testListId="8c84fa94-04c1-424b-9868-57a2d4851a1d" />
+    <TestEntry testId="566177ee-cf2a-6081-26a4-6ba342d32c59" executionId="01be639d-c927-49e9-891c-3c496cf44b2c" testListId="8c84fa94-04c1-424b-9868-57a2d4851a1d" />
+    <TestEntry testId="b6d5c734-cb56-b5f1-0282-92ccd6c8ed5e" executionId="c76d7c47-0738-4cd1-a3ca-df7c6ec5f020" testListId="8c84fa94-04c1-424b-9868-57a2d4851a1d" />
+    <TestEntry testId="fb0b3f64-c84f-0d7e-7acb-456850a4a6d7" executionId="0147c7aa-f02b-47ea-8053-5fa9ab86aff7" testListId="8c84fa94-04c1-424b-9868-57a2d4851a1d" />
+    <TestEntry testId="1cf235fc-6d61-ae37-5556-563edcf2d264" executionId="094d2d36-af42-465c-8a9e-a9933cd3afa9" testListId="8c84fa94-04c1-424b-9868-57a2d4851a1d" />
+    <TestEntry testId="4c698a9b-30df-41f6-c863-afc843941a2f" executionId="259626fd-9f31-4277-8303-b8c18dcf3205" testListId="8c84fa94-04c1-424b-9868-57a2d4851a1d" />
+  </TestEntries>
+  <TestLists>
+    <TestList name="列表中未列出的结果" id="8c84fa94-04c1-424b-9868-57a2d4851a1d" />
+    <TestList name="所有已加载的结果" id="19431567-8539-422a-85d7-44ee4e166bda" />
+  </TestLists>
+  <ResultSummary outcome="Completed">
+    <Counters total="6" executed="6" passed="6" failed="0" error="0" timeout="0" aborted="0" inconclusive="0" passedButRunAborted="0" notRunnable="0" notExecuted="0" disconnected="0" warning="0" completed="0" inProgress="0" pending="0" />
+    <Output>
+      <StdOut>[xUnit.net 00:00:00.00] xUnit.net VSTest Adapter v3.1.5+1b188a7b0a (64-bit .NET 10.0.12)&#xD;
+[xUnit.net 00:00:00.22]   Discovering: Gaode.Communication.Tests&#xD;
+[xUnit.net 00:00:00.25]   Discovered:  Gaode.Communication.Tests&#xD;
+[xUnit.net 00:00:00.26]   Starting:    Gaode.Communication.Tests&#xD;
+[xUnit.net 00:00:01.04]   Finished:    Gaode.Communication.Tests&#xD;
+</StdOut>
+    </Output>
+  </ResultSummary>
+</TestRun>

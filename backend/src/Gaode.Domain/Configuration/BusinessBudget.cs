@@ -17,4 +17,16 @@ public sealed record CapacityLimits(int FlowNormal, int FlowControl, int Termina
 
 public sealed record BusinessBudget(string SchemaVersion, string Id, string Version, string Purpose,
     string Source, BusinessDurations BusinessMs, CapacityLimits Limits,
-    string PhysicalButtonWait, string TimeoutBoundary);
+    string PhysicalButtonWait, string TimeoutBoundary)
+{
+    [System.Text.Json.Serialization.JsonIgnore(Condition = System.Text.Json.Serialization.JsonIgnoreCondition.WhenWritingNull)]
+    public RecipeExecutionAllowances? RecipeExecution { get; init; }
+}
+
+public sealed record RecipeExecutionAllowances(int CaptureMs, int AlgorithmMs, int AcquisitionReleaseMs,
+    int CaptureWaitMs, int AlgorithmWaitMs, int InputReleaseWaitMs)
+{
+    [System.Text.Json.Serialization.JsonIgnore]
+    public bool IsValid => CaptureMs > 0 && AlgorithmMs > 0 && AcquisitionReleaseMs > 0 &&
+        CaptureWaitMs > 0 && AlgorithmWaitMs > 0 && InputReleaseWaitMs > 0;
+}

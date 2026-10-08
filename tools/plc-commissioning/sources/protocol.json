@@ -1,0 +1,5476 @@
+{
+  "points": [
+    {
+      "name": "Send_Data_Rotate_Start",
+      "logicalName": "Rotate_Start",
+      "key": "pc.Rotate_Start",
+      "id": "pc.Rotate_Start",
+      "group": "pc",
+      "direction": "PC->PLC",
+      "dataType": "Boolean",
+      "type": "BOOL",
+      "byteOffset": 2000,
+      "mb": 2000,
+      "byteLength": 1,
+      "size": 1,
+      "address": "%MB2000",
+      "modbusPdu": 1000,
+      "byteIndex": 0,
+      "nodeId": "mbyte:2000:Boolean",
+      "writeEnabled": true,
+      "sourceFile": "PC.xls",
+      "sourceRow": 2,
+      "description": "0=空闲，1=开始运动",
+      "label": "0=空闲",
+      "codes": [
+        {
+          "value": 0,
+          "label": "空闲"
+        },
+        {
+          "value": 1,
+          "label": "开始运动"
+        }
+      ],
+      "sourceSha256": "37095748a61574d9a1c9bf17ad0ac9118d554fa73ac8f5e10003718b6627511d"
+    },
+    {
+      "name": "Send_Data_X_Move_Start",
+      "logicalName": "X_Move_Start",
+      "key": "pc.X_Move_Start",
+      "id": "pc.X_Move_Start",
+      "group": "pc",
+      "direction": "PC->PLC",
+      "dataType": "Boolean",
+      "type": "BOOL",
+      "byteOffset": 2001,
+      "mb": 2001,
+      "byteLength": 1,
+      "size": 1,
+      "address": "%MB2001",
+      "modbusPdu": 1000,
+      "byteIndex": 1,
+      "nodeId": "mbyte:2001:Boolean",
+      "writeEnabled": true,
+      "sourceFile": "PC.xls",
+      "sourceRow": 3,
+      "description": "0=空闲，1=开始运动",
+      "label": "0=空闲",
+      "codes": [
+        {
+          "value": 0,
+          "label": "空闲"
+        },
+        {
+          "value": 1,
+          "label": "开始运动"
+        }
+      ],
+      "sourceSha256": "37095748a61574d9a1c9bf17ad0ac9118d554fa73ac8f5e10003718b6627511d"
+    },
+    {
+      "name": "Send_Data_Y_Move_Start",
+      "logicalName": "Y_Move_Start",
+      "key": "pc.Y_Move_Start",
+      "id": "pc.Y_Move_Start",
+      "group": "pc",
+      "direction": "PC->PLC",
+      "dataType": "Boolean",
+      "type": "BOOL",
+      "byteOffset": 2002,
+      "mb": 2002,
+      "byteLength": 1,
+      "size": 1,
+      "address": "%MB2002",
+      "modbusPdu": 1001,
+      "byteIndex": 0,
+      "nodeId": "mbyte:2002:Boolean",
+      "writeEnabled": true,
+      "sourceFile": "PC.xls",
+      "sourceRow": 4,
+      "description": "0=空闲，1=开始运动",
+      "label": "0=空闲",
+      "codes": [
+        {
+          "value": 0,
+          "label": "空闲"
+        },
+        {
+          "value": 1,
+          "label": "开始运动"
+        }
+      ],
+      "sourceSha256": "37095748a61574d9a1c9bf17ad0ac9118d554fa73ac8f5e10003718b6627511d"
+    },
+    {
+      "name": "Send_Data_Z_Camera_Move_Start",
+      "logicalName": "Z_Camera_Move_Start",
+      "key": "pc.Z_Camera_Move_Start",
+      "id": "pc.Z_Camera_Move_Start",
+      "group": "pc",
+      "direction": "PC->PLC",
+      "dataType": "Boolean",
+      "type": "BOOL",
+      "byteOffset": 2003,
+      "mb": 2003,
+      "byteLength": 1,
+      "size": 1,
+      "address": "%MB2003",
+      "modbusPdu": 1001,
+      "byteIndex": 1,
+      "nodeId": "mbyte:2003:Boolean",
+      "writeEnabled": true,
+      "sourceFile": "PC.xls",
+      "sourceRow": 5,
+      "description": "0=空闲，1=开始运动（检测）",
+      "label": "0=空闲",
+      "codes": [
+        {
+          "value": 0,
+          "label": "空闲"
+        },
+        {
+          "value": 1,
+          "label": "开始运动（检测）"
+        }
+      ],
+      "sourceSha256": "37095748a61574d9a1c9bf17ad0ac9118d554fa73ac8f5e10003718b6627511d"
+    },
+    {
+      "name": "Send_Data_Z_Scan_Move_Start",
+      "logicalName": "Z_Scan_Move_Start",
+      "key": "pc.Z_Scan_Move_Start",
+      "id": "pc.Z_Scan_Move_Start",
+      "group": "pc",
+      "direction": "PC->PLC",
+      "dataType": "Boolean",
+      "type": "BOOL",
+      "byteOffset": 2004,
+      "mb": 2004,
+      "byteLength": 1,
+      "size": 1,
+      "address": "%MB2004",
+      "modbusPdu": 1002,
+      "byteIndex": 0,
+      "nodeId": "mbyte:2004:Boolean",
+      "writeEnabled": true,
+      "sourceFile": "PC.xls",
+      "sourceRow": 6,
+      "description": "0=空闲，1=开始运动（扫码）",
+      "label": "0=空闲",
+      "codes": [
+        {
+          "value": 0,
+          "label": "空闲"
+        },
+        {
+          "value": 1,
+          "label": "开始运动（扫码）"
+        }
+      ],
+      "sourceSha256": "37095748a61574d9a1c9bf17ad0ac9118d554fa73ac8f5e10003718b6627511d"
+    },
+    {
+      "name": "Send_Data_Z_Grab_Move_Start",
+      "logicalName": "Z_Grab_Move_Start",
+      "key": "pc.Z_Grab_Move_Start",
+      "id": "pc.Z_Grab_Move_Start",
+      "group": "pc",
+      "direction": "PC->PLC",
+      "dataType": "Boolean",
+      "type": "BOOL",
+      "byteOffset": 2005,
+      "mb": 2005,
+      "byteLength": 1,
+      "size": 1,
+      "address": "%MB2005",
+      "modbusPdu": 1002,
+      "byteIndex": 1,
+      "nodeId": "mbyte:2005:Boolean",
+      "writeEnabled": true,
+      "sourceFile": "PC.xls",
+      "sourceRow": 7,
+      "description": "0=空闲，1=开始运动（分拣）",
+      "label": "0=空闲",
+      "codes": [
+        {
+          "value": 0,
+          "label": "空闲"
+        },
+        {
+          "value": 1,
+          "label": "开始运动（分拣）"
+        }
+      ],
+      "sourceSha256": "37095748a61574d9a1c9bf17ad0ac9118d554fa73ac8f5e10003718b6627511d"
+    },
+    {
+      "name": "Send_Data_PC_System_Ready",
+      "logicalName": "PC_System_Ready",
+      "key": "pc.PC_System_Ready",
+      "id": "pc.PC_System_Ready",
+      "group": "pc",
+      "direction": "PC->PLC",
+      "dataType": "Boolean",
+      "type": "BOOL",
+      "byteOffset": 2006,
+      "mb": 2006,
+      "byteLength": 1,
+      "size": 1,
+      "address": "%MB2006",
+      "modbusPdu": 1003,
+      "byteIndex": 0,
+      "nodeId": "mbyte:2006:Boolean",
+      "writeEnabled": true,
+      "sourceFile": "PC.xls",
+      "sourceRow": 8,
+      "description": "上位机初始化完成，允许动作",
+      "label": "上位机初始化完成",
+      "codes": [],
+      "sourceSha256": "37095748a61574d9a1c9bf17ad0ac9118d554fa73ac8f5e10003718b6627511d"
+    },
+    {
+      "name": "Send_Data_PC_Start_Cmd",
+      "logicalName": "PC_Start_Cmd",
+      "key": "pc.PC_Start_Cmd",
+      "id": "pc.PC_Start_Cmd",
+      "group": "pc",
+      "direction": "PC->PLC",
+      "dataType": "Boolean",
+      "type": "BOOL",
+      "byteOffset": 2007,
+      "mb": 2007,
+      "byteLength": 1,
+      "size": 1,
+      "address": "%MB2007",
+      "modbusPdu": 1003,
+      "byteIndex": 1,
+      "nodeId": "mbyte:2007:Boolean",
+      "writeEnabled": true,
+      "sourceFile": "PC.xls",
+      "sourceRow": 9,
+      "description": "上位机复位后重新判断任务状态，确认安全后重新下发启动命令",
+      "label": "上位机复位后重新判断任务状态",
+      "codes": [],
+      "sourceSha256": "37095748a61574d9a1c9bf17ad0ac9118d554fa73ac8f5e10003718b6627511d"
+    },
+    {
+      "name": "Send_Data_Soft_Stop_Cmd",
+      "logicalName": "Soft_Stop_Cmd",
+      "key": "pc.Soft_Stop_Cmd",
+      "id": "pc.Soft_Stop_Cmd",
+      "group": "pc",
+      "direction": "PC->PLC",
+      "dataType": "Boolean",
+      "type": "BOOL",
+      "byteOffset": 2008,
+      "mb": 2008,
+      "byteLength": 1,
+      "size": 1,
+      "address": "%MB2008",
+      "modbusPdu": 1004,
+      "byteIndex": 0,
+      "nodeId": "mbyte:2008:Boolean",
+      "writeEnabled": true,
+      "sourceFile": "PC.xls",
+      "sourceRow": 10,
+      "description": "软停机指令（上位机崩溃/失控时下发，PLC自动回位）",
+      "label": "软停机指令（上位机崩溃/失控时下发",
+      "codes": [],
+      "sourceSha256": "37095748a61574d9a1c9bf17ad0ac9118d554fa73ac8f5e10003718b6627511d"
+    },
+    {
+      "name": "Send_Data_System_Reset_Cmd",
+      "logicalName": "System_Reset_Cmd",
+      "key": "pc.System_Reset_Cmd",
+      "id": "pc.System_Reset_Cmd",
+      "group": "pc",
+      "direction": "PC->PLC",
+      "dataType": "Boolean",
+      "type": "BOOL",
+      "byteOffset": 2009,
+      "mb": 2009,
+      "byteLength": 1,
+      "size": 1,
+      "address": "%MB2009",
+      "modbusPdu": 1004,
+      "byteIndex": 1,
+      "nodeId": "mbyte:2009:Boolean",
+      "writeEnabled": true,
+      "sourceFile": "PC.xls",
+      "sourceRow": 11,
+      "description": "上位机触发系统复位（1=触发复位）重新回位开始",
+      "label": "上位机触发系统复位（1=触发复位）重新回位开始",
+      "codes": [
+        {
+          "value": 1,
+          "label": "触发复位）重新回位开始"
+        }
+      ],
+      "sourceSha256": "37095748a61574d9a1c9bf17ad0ac9118d554fa73ac8f5e10003718b6627511d"
+    },
+    {
+      "name": "Send_Data_Buzzer_Mute",
+      "logicalName": "Buzzer_Mute",
+      "key": "pc.Buzzer_Mute",
+      "id": "pc.Buzzer_Mute",
+      "group": "pc",
+      "direction": "PC->PLC",
+      "dataType": "Boolean",
+      "type": "BOOL",
+      "byteOffset": 2010,
+      "mb": 2010,
+      "byteLength": 1,
+      "size": 1,
+      "address": "%MB2010",
+      "modbusPdu": 1005,
+      "byteIndex": 0,
+      "nodeId": "mbyte:2010:Boolean",
+      "writeEnabled": true,
+      "sourceFile": "PC.xls",
+      "sourceRow": 12,
+      "description": "蜂鸣器消音控制。",
+      "label": "蜂鸣器消音控制。",
+      "codes": [],
+      "sourceSha256": "37095748a61574d9a1c9bf17ad0ac9118d554fa73ac8f5e10003718b6627511d"
+    },
+    {
+      "name": "Send_Data_PC_Heartbeat_Resp",
+      "logicalName": "PC_Heartbeat_Resp",
+      "key": "pc.PC_Heartbeat_Resp",
+      "id": "pc.PC_Heartbeat_Resp",
+      "group": "pc",
+      "direction": "PC->PLC",
+      "dataType": "Boolean",
+      "type": "BOOL",
+      "byteOffset": 2011,
+      "mb": 2011,
+      "byteLength": 1,
+      "size": 1,
+      "address": "%MB2011",
+      "modbusPdu": 1005,
+      "byteIndex": 1,
+      "nodeId": "mbyte:2011:Boolean",
+      "writeEnabled": true,
+      "sourceFile": "PC.xls",
+      "sourceRow": 13,
+      "description": "PC响应心跳",
+      "label": "PC响应心跳",
+      "codes": [],
+      "sourceSha256": "37095748a61574d9a1c9bf17ad0ac9118d554fa73ac8f5e10003718b6627511d"
+    },
+    {
+      "name": "Send_Data_Flip_Target_Face",
+      "logicalName": "Flip_Target_Face",
+      "key": "pc.Flip_Target_Face",
+      "id": "pc.Flip_Target_Face",
+      "group": "pc",
+      "direction": "PC->PLC",
+      "dataType": "Int16",
+      "type": "INT",
+      "byteOffset": 2012,
+      "mb": 2012,
+      "byteLength": 2,
+      "size": 2,
+      "address": "%MB2012",
+      "modbusPdu": 1006,
+      "byteIndex": 0,
+      "nodeId": "mbyte:2012:Int16",
+      "writeEnabled": true,
+      "sourceFile": "PC.xls",
+      "sourceRow": 14,
+      "description": "目标面编号（1=第1面, 2=第2面, 3=第3面, 4=第4面等）",
+      "label": "目标面编号（1=第1面, 2=第2面, 3=第3面, 4=第4面等）",
+      "codes": [
+        {
+          "value": 1,
+          "label": "第1面"
+        },
+        {
+          "value": 2,
+          "label": "第2面"
+        },
+        {
+          "value": 3,
+          "label": "第3面"
+        },
+        {
+          "value": 4,
+          "label": "第4面等）"
+        }
+      ],
+      "sourceSha256": "37095748a61574d9a1c9bf17ad0ac9118d554fa73ac8f5e10003718b6627511d"
+    },
+    {
+      "name": "Send_Data_Flip_Sorting",
+      "logicalName": "Flip_Sorting",
+      "key": "pc.Flip_Sorting",
+      "id": "pc.Flip_Sorting",
+      "group": "pc",
+      "direction": "PC->PLC",
+      "dataType": "Int16",
+      "type": "INT",
+      "byteOffset": 2014,
+      "mb": 2014,
+      "byteLength": 2,
+      "size": 2,
+      "address": "%MB2014",
+      "modbusPdu": 1007,
+      "byteIndex": 0,
+      "nodeId": "mbyte:2014:Int16",
+      "writeEnabled": true,
+      "sourceFile": "PC.xls",
+      "sourceRow": 15,
+      "description": "0=空闲，1=执行翻面，2=执行放料",
+      "label": "0=空闲",
+      "codes": [
+        {
+          "value": 0,
+          "label": "空闲"
+        },
+        {
+          "value": 1,
+          "label": "执行翻面"
+        },
+        {
+          "value": 2,
+          "label": "执行放料"
+        }
+      ],
+      "sourceSha256": "37095748a61574d9a1c9bf17ad0ac9118d554fa73ac8f5e10003718b6627511d"
+    },
+    {
+      "name": "Send_Data_Sorting_Cmd",
+      "logicalName": "Sorting_Cmd",
+      "key": "pc.Sorting_Cmd",
+      "id": "pc.Sorting_Cmd",
+      "group": "pc",
+      "direction": "PC->PLC",
+      "dataType": "Int16",
+      "type": "INT",
+      "byteOffset": 2016,
+      "mb": 2016,
+      "byteLength": 2,
+      "size": 2,
+      "address": "%MB2016",
+      "modbusPdu": 1008,
+      "byteIndex": 0,
+      "nodeId": "mbyte:2016:Int16",
+      "writeEnabled": true,
+      "sourceFile": "PC.xls",
+      "sourceRow": 16,
+      "description": "公共取放料指令，普通分拣、旋转工位上料及旋转零件分拣共用。0=空闲；1=执行取料；2=执行放料。",
+      "label": "公共取放料指令",
+      "codes": [
+        {
+          "value": 0,
+          "label": "空闲"
+        },
+        {
+          "value": 1,
+          "label": "执行取料"
+        },
+        {
+          "value": 2,
+          "label": "执行放料。"
+        }
+      ],
+      "sourceSha256": "37095748a61574d9a1c9bf17ad0ac9118d554fa73ac8f5e10003718b6627511d"
+    },
+    {
+      "name": "Send_Data_Grab_ID",
+      "logicalName": "Grab_ID",
+      "key": "pc.Grab_ID",
+      "id": "pc.Grab_ID",
+      "group": "pc",
+      "direction": "PC->PLC",
+      "dataType": "Int16",
+      "type": "INT",
+      "byteOffset": 2018,
+      "mb": 2018,
+      "byteLength": 2,
+      "size": 2,
+      "address": "%MB2018",
+      "modbusPdu": 1009,
+      "byteIndex": 0,
+      "nodeId": "mbyte:2018:Int16",
+      "writeEnabled": true,
+      "sourceFile": "PC.xls",
+      "sourceRow": 17,
+      "description": "0=无有效选择；1=抓手1；2=抓手2，编号不绑定用途。仅用于分拣和旋转零件取放料，所需编号分别读取配方的上料、分拣抓手配置。正常保留旧ID；与当前有效选择相同则沿用，不同才发送新ID，待反馈更新一致后执行。首次选择或失效后重新确认。闭环中不重复发送，翻面不使用。",
+      "label": "0=无有效选择",
+      "codes": [
+        {
+          "value": 0,
+          "label": "无有效选择"
+        },
+        {
+          "value": 1,
+          "label": "抓手1"
+        },
+        {
+          "value": 2,
+          "label": "抓手2"
+        }
+      ],
+      "sourceSha256": "37095748a61574d9a1c9bf17ad0ac9118d554fa73ac8f5e10003718b6627511d"
+    },
+    {
+      "name": "Send_Data_Retry_Cmd",
+      "logicalName": "Retry_Cmd",
+      "key": "pc.Retry_Cmd",
+      "id": "pc.Retry_Cmd",
+      "group": "pc",
+      "direction": "PC->PLC",
+      "dataType": "Int16",
+      "type": "INT",
+      "byteOffset": 2020,
+      "mb": 2020,
+      "byteLength": 2,
+      "size": 2,
+      "address": "%MB2020",
+      "modbusPdu": 1010,
+      "byteIndex": 0,
+      "nodeId": "mbyte:2020:Int16",
+      "writeEnabled": true,
+      "sourceFile": "PC.xls",
+      "sourceRow": 18,
+      "description": "异常处理指令；1=重试当前动作；2=跳过或放弃当前零件；3=复位分拣队列。",
+      "label": "异常处理指令",
+      "codes": [
+        {
+          "value": 1,
+          "label": "重试当前动作"
+        },
+        {
+          "value": 2,
+          "label": "跳过或放弃当前零件"
+        },
+        {
+          "value": 3,
+          "label": "复位分拣队列。"
+        }
+      ],
+      "sourceSha256": "37095748a61574d9a1c9bf17ad0ac9118d554fa73ac8f5e10003718b6627511d"
+    },
+    {
+      "name": "Send_Data_PC_Alarm_Code",
+      "logicalName": "PC_Alarm_Code",
+      "key": "pc.PC_Alarm_Code",
+      "id": "pc.PC_Alarm_Code",
+      "group": "pc",
+      "direction": "PC->PLC",
+      "dataType": "Int16",
+      "type": "INT",
+      "byteOffset": 2022,
+      "mb": 2022,
+      "byteLength": 2,
+      "size": 2,
+      "address": "%MB2022",
+      "modbusPdu": 1011,
+      "byteIndex": 0,
+      "nodeId": "mbyte:2022:Int16",
+      "writeEnabled": true,
+      "sourceFile": "PC.xls",
+      "sourceRow": 19,
+      "description": "上位机报警码；沿用原表16位整数报警接口。",
+      "label": "上位机报警码",
+      "codes": [],
+      "sourceSha256": "37095748a61574d9a1c9bf17ad0ac9118d554fa73ac8f5e10003718b6627511d"
+    },
+    {
+      "name": "Send_Data_Camera_Target_X",
+      "logicalName": "Camera_Target_X",
+      "key": "pc.Camera_Target_X",
+      "id": "pc.Camera_Target_X",
+      "group": "pc",
+      "direction": "PC->PLC",
+      "dataType": "Float",
+      "type": "REAL",
+      "byteOffset": 2024,
+      "mb": 2024,
+      "byteLength": 4,
+      "size": 4,
+      "address": "%MB2024",
+      "modbusPdu": 1012,
+      "byteIndex": 0,
+      "nodeId": "mbyte:2024:Float",
+      "writeEnabled": true,
+      "sourceFile": "PC.xls",
+      "sourceRow": 20,
+      "description": "X轴绝对坐标（由上位机下发）",
+      "label": "X轴绝对坐标（由上位机下发）",
+      "codes": [],
+      "sourceSha256": "37095748a61574d9a1c9bf17ad0ac9118d554fa73ac8f5e10003718b6627511d"
+    },
+    {
+      "name": "Send_Data_Camera_Target_Y",
+      "logicalName": "Camera_Target_Y",
+      "key": "pc.Camera_Target_Y",
+      "id": "pc.Camera_Target_Y",
+      "group": "pc",
+      "direction": "PC->PLC",
+      "dataType": "Float",
+      "type": "REAL",
+      "byteOffset": 2028,
+      "mb": 2028,
+      "byteLength": 4,
+      "size": 4,
+      "address": "%MB2028",
+      "modbusPdu": 1014,
+      "byteIndex": 0,
+      "nodeId": "mbyte:2028:Float",
+      "writeEnabled": true,
+      "sourceFile": "PC.xls",
+      "sourceRow": 21,
+      "description": "Y轴绝对坐标（由上位机下发）",
+      "label": "Y轴绝对坐标（由上位机下发）",
+      "codes": [],
+      "sourceSha256": "37095748a61574d9a1c9bf17ad0ac9118d554fa73ac8f5e10003718b6627511d"
+    },
+    {
+      "name": "Send_Data_Camera_Target_Z",
+      "logicalName": "Camera_Target_Z",
+      "key": "pc.Camera_Target_Z",
+      "id": "pc.Camera_Target_Z",
+      "group": "pc",
+      "direction": "PC->PLC",
+      "dataType": "Float",
+      "type": "REAL",
+      "byteOffset": 2032,
+      "mb": 2032,
+      "byteLength": 4,
+      "size": 4,
+      "address": "%MB2032",
+      "modbusPdu": 1016,
+      "byteIndex": 0,
+      "nodeId": "mbyte:2032:Float",
+      "writeEnabled": true,
+      "sourceFile": "PC.xls",
+      "sourceRow": 22,
+      "description": "检测Z轴绝对坐标（由上位机下发）",
+      "label": "检测Z轴绝对坐标（由上位机下发）",
+      "codes": [],
+      "sourceSha256": "37095748a61574d9a1c9bf17ad0ac9118d554fa73ac8f5e10003718b6627511d"
+    },
+    {
+      "name": "Send_Data_Scan_Target_Z",
+      "logicalName": "Scan_Target_Z",
+      "key": "pc.Scan_Target_Z",
+      "id": "pc.Scan_Target_Z",
+      "group": "pc",
+      "direction": "PC->PLC",
+      "dataType": "Float",
+      "type": "REAL",
+      "byteOffset": 2036,
+      "mb": 2036,
+      "byteLength": 4,
+      "size": 4,
+      "address": "%MB2036",
+      "modbusPdu": 1018,
+      "byteIndex": 0,
+      "nodeId": "mbyte:2036:Float",
+      "writeEnabled": true,
+      "sourceFile": "PC.xls",
+      "sourceRow": 23,
+      "description": "扫码Z轴绝对坐标（由上位机配方下发）",
+      "label": "扫码Z轴绝对坐标（由上位机配方下发）",
+      "codes": [],
+      "sourceSha256": "37095748a61574d9a1c9bf17ad0ac9118d554fa73ac8f5e10003718b6627511d"
+    },
+    {
+      "name": "Send_Data_Grab_Target_Z",
+      "logicalName": "Grab_Target_Z",
+      "key": "pc.Grab_Target_Z",
+      "id": "pc.Grab_Target_Z",
+      "group": "pc",
+      "direction": "PC->PLC",
+      "dataType": "Float",
+      "type": "REAL",
+      "byteOffset": 2040,
+      "mb": 2040,
+      "byteLength": 4,
+      "size": 4,
+      "address": "%MB2040",
+      "modbusPdu": 1020,
+      "byteIndex": 0,
+      "nodeId": "mbyte:2040:Float",
+      "writeEnabled": true,
+      "sourceFile": "PC.xls",
+      "sourceRow": 24,
+      "description": "抓取（分拣）Z轴绝对坐标（由上位机配方下发）",
+      "label": "抓取（分拣）Z轴绝对坐标（由上位机配方下发）",
+      "codes": [],
+      "sourceSha256": "37095748a61574d9a1c9bf17ad0ac9118d554fa73ac8f5e10003718b6627511d"
+    },
+    {
+      "name": "Send_Data_Rotate_Target_R",
+      "logicalName": "Rotate_Target_R",
+      "key": "pc.Rotate_Target_R",
+      "id": "pc.Rotate_Target_R",
+      "group": "pc",
+      "direction": "PC->PLC",
+      "dataType": "Float",
+      "type": "REAL",
+      "byteOffset": 2044,
+      "mb": 2044,
+      "byteLength": 4,
+      "size": 4,
+      "address": "%MB2044",
+      "modbusPdu": 1022,
+      "byteIndex": 0,
+      "nodeId": "mbyte:2044:Float",
+      "writeEnabled": true,
+      "sourceFile": "PC.xls",
+      "sourceRow": 25,
+      "description": "R轴绝对目标角度（由上位机下发）",
+      "label": "R轴绝对目标角度（由上位机下发）",
+      "codes": [],
+      "sourceSha256": "37095748a61574d9a1c9bf17ad0ac9118d554fa73ac8f5e10003718b6627511d"
+    },
+    {
+      "name": "Send_Data_Model_Number",
+      "logicalName": "Model_Number",
+      "key": "pc.Model_Number",
+      "id": "pc.Model_Number",
+      "group": "pc",
+      "direction": "PC->PLC",
+      "dataType": "Float",
+      "type": "REAL",
+      "byteOffset": 2048,
+      "mb": 2048,
+      "byteLength": 4,
+      "size": 4,
+      "address": "%MB2048",
+      "modbusPdu": 1024,
+      "byteIndex": 0,
+      "nodeId": "mbyte:2048:Float",
+      "writeEnabled": true,
+      "sourceFile": "PC.xls",
+      "sourceRow": 26,
+      "description": "单个零件型号（a、b、c、d、e） 组装零件型号（A、B、C、D、E）",
+      "label": "单个零件型号（a、b、c、d、e） 组装零件型号（A、B、C、D、E）",
+      "codes": [],
+      "sourceSha256": "37095748a61574d9a1c9bf17ad0ac9118d554fa73ac8f5e10003718b6627511d"
+    },
+    {
+      "name": "Send_Data_Global_Target_Speed",
+      "logicalName": "Global_Target_Speed",
+      "key": "pc.Global_Target_Speed",
+      "id": "pc.Global_Target_Speed",
+      "group": "pc",
+      "direction": "PC->PLC",
+      "dataType": "Float",
+      "type": "REAL",
+      "byteOffset": 2052,
+      "mb": 2052,
+      "byteLength": 4,
+      "size": 4,
+      "address": "%MB2052",
+      "modbusPdu": 1026,
+      "byteIndex": 0,
+      "nodeId": "mbyte:2052:Float",
+      "writeEnabled": true,
+      "sourceFile": "PC.xls",
+      "sourceRow": 27,
+      "description": "整体目标速度，由上位机下发并赋予各轴。",
+      "label": "整体目标速度",
+      "codes": [],
+      "sourceSha256": "37095748a61574d9a1c9bf17ad0ac9118d554fa73ac8f5e10003718b6627511d"
+    },
+    {
+      "name": "Rece_Data_X_Positive_Limit",
+      "logicalName": "X_Positive_Limit",
+      "key": "plc.X_Positive_Limit",
+      "id": "plc.X_Positive_Limit",
+      "group": "plc",
+      "direction": "PLC->PC",
+      "dataType": "Boolean",
+      "type": "BOOL",
+      "byteOffset": 6000,
+      "mb": 6000,
+      "byteLength": 1,
+      "size": 1,
+      "address": "%MB6000",
+      "modbusPdu": 3000,
+      "byteIndex": 0,
+      "nodeId": "mbyte:6000:Boolean",
+      "writeEnabled": false,
+      "sourceFile": "PLC.xls",
+      "sourceRow": 2,
+      "description": "X轴正限位反馈；0=未触发；1=触发。",
+      "label": "X轴正限位反馈",
+      "codes": [
+        {
+          "value": 0,
+          "label": "未触发"
+        },
+        {
+          "value": 1,
+          "label": "触发。"
+        }
+      ],
+      "sourceSha256": "8e846d0f71351f87b42db1bf40790f40766a392fd0a9e0968201f8c2056eb476"
+    },
+    {
+      "name": "Rece_Data_X_Negative_Limit",
+      "logicalName": "X_Negative_Limit",
+      "key": "plc.X_Negative_Limit",
+      "id": "plc.X_Negative_Limit",
+      "group": "plc",
+      "direction": "PLC->PC",
+      "dataType": "Boolean",
+      "type": "BOOL",
+      "byteOffset": 6001,
+      "mb": 6001,
+      "byteLength": 1,
+      "size": 1,
+      "address": "%MB6001",
+      "modbusPdu": 3000,
+      "byteIndex": 1,
+      "nodeId": "mbyte:6001:Boolean",
+      "writeEnabled": false,
+      "sourceFile": "PLC.xls",
+      "sourceRow": 3,
+      "description": "X轴负限位反馈；0=未触发；1=触发。",
+      "label": "X轴负限位反馈",
+      "codes": [
+        {
+          "value": 0,
+          "label": "未触发"
+        },
+        {
+          "value": 1,
+          "label": "触发。"
+        }
+      ],
+      "sourceSha256": "8e846d0f71351f87b42db1bf40790f40766a392fd0a9e0968201f8c2056eb476"
+    },
+    {
+      "name": "Rece_Data_X_Home",
+      "logicalName": "X_Home",
+      "key": "plc.X_Home",
+      "id": "plc.X_Home",
+      "group": "plc",
+      "direction": "PLC->PC",
+      "dataType": "Boolean",
+      "type": "BOOL",
+      "byteOffset": 6002,
+      "mb": 6002,
+      "byteLength": 1,
+      "size": 1,
+      "address": "%MB6002",
+      "modbusPdu": 3001,
+      "byteIndex": 0,
+      "nodeId": "mbyte:6002:Boolean",
+      "writeEnabled": false,
+      "sourceFile": "PLC.xls",
+      "sourceRow": 4,
+      "description": "X轴原点开关反馈；0=无效；1=有效。",
+      "label": "X轴原点开关反馈",
+      "codes": [
+        {
+          "value": 0,
+          "label": "无效"
+        },
+        {
+          "value": 1,
+          "label": "有效。"
+        }
+      ],
+      "sourceSha256": "8e846d0f71351f87b42db1bf40790f40766a392fd0a9e0968201f8c2056eb476"
+    },
+    {
+      "name": "Rece_Data_Y_Positive_Limit",
+      "logicalName": "Y_Positive_Limit",
+      "key": "plc.Y_Positive_Limit",
+      "id": "plc.Y_Positive_Limit",
+      "group": "plc",
+      "direction": "PLC->PC",
+      "dataType": "Boolean",
+      "type": "BOOL",
+      "byteOffset": 6003,
+      "mb": 6003,
+      "byteLength": 1,
+      "size": 1,
+      "address": "%MB6003",
+      "modbusPdu": 3001,
+      "byteIndex": 1,
+      "nodeId": "mbyte:6003:Boolean",
+      "writeEnabled": false,
+      "sourceFile": "PLC.xls",
+      "sourceRow": 5,
+      "description": "Y轴正限位反馈；0=未触发；1=触发。",
+      "label": "Y轴正限位反馈",
+      "codes": [
+        {
+          "value": 0,
+          "label": "未触发"
+        },
+        {
+          "value": 1,
+          "label": "触发。"
+        }
+      ],
+      "sourceSha256": "8e846d0f71351f87b42db1bf40790f40766a392fd0a9e0968201f8c2056eb476"
+    },
+    {
+      "name": "Rece_Data_Y_Negative_Limit",
+      "logicalName": "Y_Negative_Limit",
+      "key": "plc.Y_Negative_Limit",
+      "id": "plc.Y_Negative_Limit",
+      "group": "plc",
+      "direction": "PLC->PC",
+      "dataType": "Boolean",
+      "type": "BOOL",
+      "byteOffset": 6004,
+      "mb": 6004,
+      "byteLength": 1,
+      "size": 1,
+      "address": "%MB6004",
+      "modbusPdu": 3002,
+      "byteIndex": 0,
+      "nodeId": "mbyte:6004:Boolean",
+      "writeEnabled": false,
+      "sourceFile": "PLC.xls",
+      "sourceRow": 6,
+      "description": "Y轴负限位反馈；0=未触发；1=触发。",
+      "label": "Y轴负限位反馈",
+      "codes": [
+        {
+          "value": 0,
+          "label": "未触发"
+        },
+        {
+          "value": 1,
+          "label": "触发。"
+        }
+      ],
+      "sourceSha256": "8e846d0f71351f87b42db1bf40790f40766a392fd0a9e0968201f8c2056eb476"
+    },
+    {
+      "name": "Rece_Data_Y_Home",
+      "logicalName": "Y_Home",
+      "key": "plc.Y_Home",
+      "id": "plc.Y_Home",
+      "group": "plc",
+      "direction": "PLC->PC",
+      "dataType": "Boolean",
+      "type": "BOOL",
+      "byteOffset": 6005,
+      "mb": 6005,
+      "byteLength": 1,
+      "size": 1,
+      "address": "%MB6005",
+      "modbusPdu": 3002,
+      "byteIndex": 1,
+      "nodeId": "mbyte:6005:Boolean",
+      "writeEnabled": false,
+      "sourceFile": "PLC.xls",
+      "sourceRow": 7,
+      "description": "Y轴原点开关反馈；0=无效；1=有效。",
+      "label": "Y轴原点开关反馈",
+      "codes": [
+        {
+          "value": 0,
+          "label": "无效"
+        },
+        {
+          "value": 1,
+          "label": "有效。"
+        }
+      ],
+      "sourceSha256": "8e846d0f71351f87b42db1bf40790f40766a392fd0a9e0968201f8c2056eb476"
+    },
+    {
+      "name": "Rece_Data_Z_Camera_Positive_Limit",
+      "logicalName": "Z_Camera_Positive_Limit",
+      "key": "plc.Z_Camera_Positive_Limit",
+      "id": "plc.Z_Camera_Positive_Limit",
+      "group": "plc",
+      "direction": "PLC->PC",
+      "dataType": "Boolean",
+      "type": "BOOL",
+      "byteOffset": 6006,
+      "mb": 6006,
+      "byteLength": 1,
+      "size": 1,
+      "address": "%MB6006",
+      "modbusPdu": 3003,
+      "byteIndex": 0,
+      "nodeId": "mbyte:6006:Boolean",
+      "writeEnabled": false,
+      "sourceFile": "PLC.xls",
+      "sourceRow": 8,
+      "description": "检测Z轴正限位反馈；下位机上传；0=无效；1=有效。",
+      "label": "检测Z轴正限位反馈",
+      "codes": [
+        {
+          "value": 0,
+          "label": "无效"
+        },
+        {
+          "value": 1,
+          "label": "有效。"
+        }
+      ],
+      "sourceSha256": "8e846d0f71351f87b42db1bf40790f40766a392fd0a9e0968201f8c2056eb476"
+    },
+    {
+      "name": "Rece_Data_Z_Camera_Negative_Limit",
+      "logicalName": "Z_Camera_Negative_Limit",
+      "key": "plc.Z_Camera_Negative_Limit",
+      "id": "plc.Z_Camera_Negative_Limit",
+      "group": "plc",
+      "direction": "PLC->PC",
+      "dataType": "Boolean",
+      "type": "BOOL",
+      "byteOffset": 6007,
+      "mb": 6007,
+      "byteLength": 1,
+      "size": 1,
+      "address": "%MB6007",
+      "modbusPdu": 3003,
+      "byteIndex": 1,
+      "nodeId": "mbyte:6007:Boolean",
+      "writeEnabled": false,
+      "sourceFile": "PLC.xls",
+      "sourceRow": 9,
+      "description": "检测Z轴负限位反馈；下位机上传；0=无效；1=有效。",
+      "label": "检测Z轴负限位反馈",
+      "codes": [
+        {
+          "value": 0,
+          "label": "无效"
+        },
+        {
+          "value": 1,
+          "label": "有效。"
+        }
+      ],
+      "sourceSha256": "8e846d0f71351f87b42db1bf40790f40766a392fd0a9e0968201f8c2056eb476"
+    },
+    {
+      "name": "Rece_Data_Z_Camera_Home",
+      "logicalName": "Z_Camera_Home",
+      "key": "plc.Z_Camera_Home",
+      "id": "plc.Z_Camera_Home",
+      "group": "plc",
+      "direction": "PLC->PC",
+      "dataType": "Boolean",
+      "type": "BOOL",
+      "byteOffset": 6008,
+      "mb": 6008,
+      "byteLength": 1,
+      "size": 1,
+      "address": "%MB6008",
+      "modbusPdu": 3004,
+      "byteIndex": 0,
+      "nodeId": "mbyte:6008:Boolean",
+      "writeEnabled": false,
+      "sourceFile": "PLC.xls",
+      "sourceRow": 10,
+      "description": "检测Z轴原点反馈；下位机上传；0=无效；1=有效。",
+      "label": "检测Z轴原点反馈",
+      "codes": [
+        {
+          "value": 0,
+          "label": "无效"
+        },
+        {
+          "value": 1,
+          "label": "有效。"
+        }
+      ],
+      "sourceSha256": "8e846d0f71351f87b42db1bf40790f40766a392fd0a9e0968201f8c2056eb476"
+    },
+    {
+      "name": "Rece_Data_Z_Scan_Positive_Limit",
+      "logicalName": "Z_Scan_Positive_Limit",
+      "key": "plc.Z_Scan_Positive_Limit",
+      "id": "plc.Z_Scan_Positive_Limit",
+      "group": "plc",
+      "direction": "PLC->PC",
+      "dataType": "Boolean",
+      "type": "BOOL",
+      "byteOffset": 6009,
+      "mb": 6009,
+      "byteLength": 1,
+      "size": 1,
+      "address": "%MB6009",
+      "modbusPdu": 3004,
+      "byteIndex": 1,
+      "nodeId": "mbyte:6009:Boolean",
+      "writeEnabled": false,
+      "sourceFile": "PLC.xls",
+      "sourceRow": 11,
+      "description": "扫码Z轴正限位反馈；下位机上传；0=无效；1=有效。",
+      "label": "扫码Z轴正限位反馈",
+      "codes": [
+        {
+          "value": 0,
+          "label": "无效"
+        },
+        {
+          "value": 1,
+          "label": "有效。"
+        }
+      ],
+      "sourceSha256": "8e846d0f71351f87b42db1bf40790f40766a392fd0a9e0968201f8c2056eb476"
+    },
+    {
+      "name": "Rece_Data_Z_Scan_Negative_Limit",
+      "logicalName": "Z_Scan_Negative_Limit",
+      "key": "plc.Z_Scan_Negative_Limit",
+      "id": "plc.Z_Scan_Negative_Limit",
+      "group": "plc",
+      "direction": "PLC->PC",
+      "dataType": "Boolean",
+      "type": "BOOL",
+      "byteOffset": 6010,
+      "mb": 6010,
+      "byteLength": 1,
+      "size": 1,
+      "address": "%MB6010",
+      "modbusPdu": 3005,
+      "byteIndex": 0,
+      "nodeId": "mbyte:6010:Boolean",
+      "writeEnabled": false,
+      "sourceFile": "PLC.xls",
+      "sourceRow": 12,
+      "description": "扫码Z轴负限位反馈；下位机上传；0=无效；1=有效。",
+      "label": "扫码Z轴负限位反馈",
+      "codes": [
+        {
+          "value": 0,
+          "label": "无效"
+        },
+        {
+          "value": 1,
+          "label": "有效。"
+        }
+      ],
+      "sourceSha256": "8e846d0f71351f87b42db1bf40790f40766a392fd0a9e0968201f8c2056eb476"
+    },
+    {
+      "name": "Rece_Data_Z_Scan_Home",
+      "logicalName": "Z_Scan_Home",
+      "key": "plc.Z_Scan_Home",
+      "id": "plc.Z_Scan_Home",
+      "group": "plc",
+      "direction": "PLC->PC",
+      "dataType": "Boolean",
+      "type": "BOOL",
+      "byteOffset": 6011,
+      "mb": 6011,
+      "byteLength": 1,
+      "size": 1,
+      "address": "%MB6011",
+      "modbusPdu": 3005,
+      "byteIndex": 1,
+      "nodeId": "mbyte:6011:Boolean",
+      "writeEnabled": false,
+      "sourceFile": "PLC.xls",
+      "sourceRow": 13,
+      "description": "扫码Z轴原点反馈；下位机上传；0=无效；1=有效。",
+      "label": "扫码Z轴原点反馈",
+      "codes": [
+        {
+          "value": 0,
+          "label": "无效"
+        },
+        {
+          "value": 1,
+          "label": "有效。"
+        }
+      ],
+      "sourceSha256": "8e846d0f71351f87b42db1bf40790f40766a392fd0a9e0968201f8c2056eb476"
+    },
+    {
+      "name": "Rece_Data_Z_Grab_Positive_Limit",
+      "logicalName": "Z_Grab_Positive_Limit",
+      "key": "plc.Z_Grab_Positive_Limit",
+      "id": "plc.Z_Grab_Positive_Limit",
+      "group": "plc",
+      "direction": "PLC->PC",
+      "dataType": "Boolean",
+      "type": "BOOL",
+      "byteOffset": 6012,
+      "mb": 6012,
+      "byteLength": 1,
+      "size": 1,
+      "address": "%MB6012",
+      "modbusPdu": 3006,
+      "byteIndex": 0,
+      "nodeId": "mbyte:6012:Boolean",
+      "writeEnabled": false,
+      "sourceFile": "PLC.xls",
+      "sourceRow": 14,
+      "description": "翻转分拣Z轴正限位反馈；下位机上传；0=无效；1=有效。",
+      "label": "翻转分拣Z轴正限位反馈",
+      "codes": [
+        {
+          "value": 0,
+          "label": "无效"
+        },
+        {
+          "value": 1,
+          "label": "有效。"
+        }
+      ],
+      "sourceSha256": "8e846d0f71351f87b42db1bf40790f40766a392fd0a9e0968201f8c2056eb476"
+    },
+    {
+      "name": "Rece_Data_Z_Grab_Negative_Limit",
+      "logicalName": "Z_Grab_Negative_Limit",
+      "key": "plc.Z_Grab_Negative_Limit",
+      "id": "plc.Z_Grab_Negative_Limit",
+      "group": "plc",
+      "direction": "PLC->PC",
+      "dataType": "Boolean",
+      "type": "BOOL",
+      "byteOffset": 6013,
+      "mb": 6013,
+      "byteLength": 1,
+      "size": 1,
+      "address": "%MB6013",
+      "modbusPdu": 3006,
+      "byteIndex": 1,
+      "nodeId": "mbyte:6013:Boolean",
+      "writeEnabled": false,
+      "sourceFile": "PLC.xls",
+      "sourceRow": 15,
+      "description": "翻转分拣Z轴负限位反馈；下位机上传；0=无效；1=有效。",
+      "label": "翻转分拣Z轴负限位反馈",
+      "codes": [
+        {
+          "value": 0,
+          "label": "无效"
+        },
+        {
+          "value": 1,
+          "label": "有效。"
+        }
+      ],
+      "sourceSha256": "8e846d0f71351f87b42db1bf40790f40766a392fd0a9e0968201f8c2056eb476"
+    },
+    {
+      "name": "Rece_Data_Z_Grab_Home",
+      "logicalName": "Z_Grab_Home",
+      "key": "plc.Z_Grab_Home",
+      "id": "plc.Z_Grab_Home",
+      "group": "plc",
+      "direction": "PLC->PC",
+      "dataType": "Boolean",
+      "type": "BOOL",
+      "byteOffset": 6014,
+      "mb": 6014,
+      "byteLength": 1,
+      "size": 1,
+      "address": "%MB6014",
+      "modbusPdu": 3007,
+      "byteIndex": 0,
+      "nodeId": "mbyte:6014:Boolean",
+      "writeEnabled": false,
+      "sourceFile": "PLC.xls",
+      "sourceRow": 16,
+      "description": "翻转分拣Z轴原点反馈；下位机上传；0=无效；1=有效。",
+      "label": "翻转分拣Z轴原点反馈",
+      "codes": [
+        {
+          "value": 0,
+          "label": "无效"
+        },
+        {
+          "value": 1,
+          "label": "有效。"
+        }
+      ],
+      "sourceSha256": "8e846d0f71351f87b42db1bf40790f40766a392fd0a9e0968201f8c2056eb476"
+    },
+    {
+      "name": "Rece_Data_PLC_Ready_State",
+      "logicalName": "PLC_Ready_State",
+      "key": "plc.PLC_Ready_State",
+      "id": "plc.PLC_Ready_State",
+      "group": "plc",
+      "direction": "PLC->PC",
+      "dataType": "Boolean",
+      "type": "BOOL",
+      "byteOffset": 6015,
+      "mb": 6015,
+      "byteLength": 1,
+      "size": 1,
+      "address": "%MB6015",
+      "modbusPdu": 3007,
+      "byteIndex": 1,
+      "nodeId": "mbyte:6015:Boolean",
+      "writeEnabled": false,
+      "sourceFile": "PLC.xls",
+      "sourceRow": 17,
+      "description": "PLC就绪状态：1=已就绪，可接收上位机指令；0=未就绪",
+      "label": "PLC就绪状态：1=已就绪",
+      "codes": [
+        {
+          "value": 1,
+          "label": "已就绪"
+        },
+        {
+          "value": 0,
+          "label": "未就绪"
+        }
+      ],
+      "sourceSha256": "8e846d0f71351f87b42db1bf40790f40766a392fd0a9e0968201f8c2056eb476"
+    },
+    {
+      "name": "Rece_Data_PLC_Mode_Auto",
+      "logicalName": "PLC_Mode_Auto",
+      "key": "plc.PLC_Mode_Auto",
+      "id": "plc.PLC_Mode_Auto",
+      "group": "plc",
+      "direction": "PLC->PC",
+      "dataType": "Boolean",
+      "type": "BOOL",
+      "byteOffset": 6016,
+      "mb": 6016,
+      "byteLength": 1,
+      "size": 1,
+      "address": "%MB6016",
+      "modbusPdu": 3008,
+      "byteIndex": 0,
+      "nodeId": "mbyte:6016:Boolean",
+      "writeEnabled": false,
+      "sourceFile": "PLC.xls",
+      "sourceRow": 18,
+      "description": "PLC处于自动模式（非手动/维护）",
+      "label": "PLC处于自动模式（非手动/维护）",
+      "codes": [],
+      "sourceSha256": "8e846d0f71351f87b42db1bf40790f40766a392fd0a9e0968201f8c2056eb476"
+    },
+    {
+      "name": "Rece_Data_Start_Button",
+      "logicalName": "Start_Button",
+      "key": "plc.Start_Button",
+      "id": "plc.Start_Button",
+      "group": "plc",
+      "direction": "PLC->PC",
+      "dataType": "Boolean",
+      "type": "BOOL",
+      "byteOffset": 6017,
+      "mb": 6017,
+      "byteLength": 1,
+      "size": 1,
+      "address": "%MB6017",
+      "modbusPdu": 3008,
+      "byteIndex": 1,
+      "nodeId": "mbyte:6017:Boolean",
+      "writeEnabled": false,
+      "sourceFile": "PLC.xls",
+      "sourceRow": 19,
+      "description": "启动按钮状态；0=未按下；1=按下。",
+      "label": "启动按钮状态",
+      "codes": [
+        {
+          "value": 0,
+          "label": "未按下"
+        },
+        {
+          "value": 1,
+          "label": "按下。"
+        }
+      ],
+      "sourceSha256": "8e846d0f71351f87b42db1bf40790f40766a392fd0a9e0968201f8c2056eb476"
+    },
+    {
+      "name": "Rece_Data_Stop_Button",
+      "logicalName": "Stop_Button",
+      "key": "plc.Stop_Button",
+      "id": "plc.Stop_Button",
+      "group": "plc",
+      "direction": "PLC->PC",
+      "dataType": "Boolean",
+      "type": "BOOL",
+      "byteOffset": 6018,
+      "mb": 6018,
+      "byteLength": 1,
+      "size": 1,
+      "address": "%MB6018",
+      "modbusPdu": 3009,
+      "byteIndex": 0,
+      "nodeId": "mbyte:6018:Boolean",
+      "writeEnabled": false,
+      "sourceFile": "PLC.xls",
+      "sourceRow": 20,
+      "description": "停止按钮状态；0=未按下；1=按下。",
+      "label": "停止按钮状态",
+      "codes": [
+        {
+          "value": 0,
+          "label": "未按下"
+        },
+        {
+          "value": 1,
+          "label": "按下。"
+        }
+      ],
+      "sourceSha256": "8e846d0f71351f87b42db1bf40790f40766a392fd0a9e0968201f8c2056eb476"
+    },
+    {
+      "name": "Rece_Data_Reset_Button",
+      "logicalName": "Reset_Button",
+      "key": "plc.Reset_Button",
+      "id": "plc.Reset_Button",
+      "group": "plc",
+      "direction": "PLC->PC",
+      "dataType": "Boolean",
+      "type": "BOOL",
+      "byteOffset": 6019,
+      "mb": 6019,
+      "byteLength": 1,
+      "size": 1,
+      "address": "%MB6019",
+      "modbusPdu": 3009,
+      "byteIndex": 1,
+      "nodeId": "mbyte:6019:Boolean",
+      "writeEnabled": false,
+      "sourceFile": "PLC.xls",
+      "sourceRow": 21,
+      "description": "复位按钮状态；0=未按下；1=按下。",
+      "label": "复位按钮状态",
+      "codes": [
+        {
+          "value": 0,
+          "label": "未按下"
+        },
+        {
+          "value": 1,
+          "label": "按下。"
+        }
+      ],
+      "sourceSha256": "8e846d0f71351f87b42db1bf40790f40766a392fd0a9e0968201f8c2056eb476"
+    },
+    {
+      "name": "Rece_Data_EStop_Active",
+      "logicalName": "EStop_Active",
+      "key": "plc.EStop_Active",
+      "id": "plc.EStop_Active",
+      "group": "plc",
+      "direction": "PLC->PC",
+      "dataType": "Boolean",
+      "type": "BOOL",
+      "byteOffset": 6020,
+      "mb": 6020,
+      "byteLength": 1,
+      "size": 1,
+      "address": "%MB6020",
+      "modbusPdu": 3010,
+      "byteIndex": 0,
+      "nodeId": "mbyte:6020:Boolean",
+      "writeEnabled": false,
+      "sourceFile": "PLC.xls",
+      "sourceRow": 22,
+      "description": "物理急停状态；0=未触发；1=急停触发。",
+      "label": "物理急停状态",
+      "codes": [
+        {
+          "value": 0,
+          "label": "未触发"
+        },
+        {
+          "value": 1,
+          "label": "急停触发。"
+        }
+      ],
+      "sourceSha256": "8e846d0f71351f87b42db1bf40790f40766a392fd0a9e0968201f8c2056eb476"
+    },
+    {
+      "name": "Rece_Data_Stack_Light_Red",
+      "logicalName": "Stack_Light_Red",
+      "key": "plc.Stack_Light_Red",
+      "id": "plc.Stack_Light_Red",
+      "group": "plc",
+      "direction": "PLC->PC",
+      "dataType": "Boolean",
+      "type": "BOOL",
+      "byteOffset": 6021,
+      "mb": 6021,
+      "byteLength": 1,
+      "size": 1,
+      "address": "%MB6021",
+      "modbusPdu": 3010,
+      "byteIndex": 1,
+      "nodeId": "mbyte:6021:Boolean",
+      "writeEnabled": false,
+      "sourceFile": "PLC.xls",
+      "sourceRow": 23,
+      "description": "三色灯红灯状态；0=关闭；1=点亮。",
+      "label": "三色灯红灯状态",
+      "codes": [
+        {
+          "value": 0,
+          "label": "关闭"
+        },
+        {
+          "value": 1,
+          "label": "点亮。"
+        }
+      ],
+      "sourceSha256": "8e846d0f71351f87b42db1bf40790f40766a392fd0a9e0968201f8c2056eb476"
+    },
+    {
+      "name": "Rece_Data_Stack_Light_Green",
+      "logicalName": "Stack_Light_Green",
+      "key": "plc.Stack_Light_Green",
+      "id": "plc.Stack_Light_Green",
+      "group": "plc",
+      "direction": "PLC->PC",
+      "dataType": "Boolean",
+      "type": "BOOL",
+      "byteOffset": 6022,
+      "mb": 6022,
+      "byteLength": 1,
+      "size": 1,
+      "address": "%MB6022",
+      "modbusPdu": 3011,
+      "byteIndex": 0,
+      "nodeId": "mbyte:6022:Boolean",
+      "writeEnabled": false,
+      "sourceFile": "PLC.xls",
+      "sourceRow": 24,
+      "description": "三色灯绿灯状态；0=关闭；1=点亮。",
+      "label": "三色灯绿灯状态",
+      "codes": [
+        {
+          "value": 0,
+          "label": "关闭"
+        },
+        {
+          "value": 1,
+          "label": "点亮。"
+        }
+      ],
+      "sourceSha256": "8e846d0f71351f87b42db1bf40790f40766a392fd0a9e0968201f8c2056eb476"
+    },
+    {
+      "name": "Rece_Data_Stack_Light_Yellow",
+      "logicalName": "Stack_Light_Yellow",
+      "key": "plc.Stack_Light_Yellow",
+      "id": "plc.Stack_Light_Yellow",
+      "group": "plc",
+      "direction": "PLC->PC",
+      "dataType": "Boolean",
+      "type": "BOOL",
+      "byteOffset": 6023,
+      "mb": 6023,
+      "byteLength": 1,
+      "size": 1,
+      "address": "%MB6023",
+      "modbusPdu": 3011,
+      "byteIndex": 1,
+      "nodeId": "mbyte:6023:Boolean",
+      "writeEnabled": false,
+      "sourceFile": "PLC.xls",
+      "sourceRow": 25,
+      "description": "三色灯黄灯状态；0=关闭；1=点亮。",
+      "label": "三色灯黄灯状态",
+      "codes": [
+        {
+          "value": 0,
+          "label": "关闭"
+        },
+        {
+          "value": 1,
+          "label": "点亮。"
+        }
+      ],
+      "sourceSha256": "8e846d0f71351f87b42db1bf40790f40766a392fd0a9e0968201f8c2056eb476"
+    },
+    {
+      "name": "Rece_Data_Buzzer_State",
+      "logicalName": "Buzzer_State",
+      "key": "plc.Buzzer_State",
+      "id": "plc.Buzzer_State",
+      "group": "plc",
+      "direction": "PLC->PC",
+      "dataType": "Boolean",
+      "type": "BOOL",
+      "byteOffset": 6024,
+      "mb": 6024,
+      "byteLength": 1,
+      "size": 1,
+      "address": "%MB6024",
+      "modbusPdu": 3012,
+      "byteIndex": 0,
+      "nodeId": "mbyte:6024:Boolean",
+      "writeEnabled": false,
+      "sourceFile": "PLC.xls",
+      "sourceRow": 26,
+      "description": "蜂鸣器状态；0=关闭；1=鸣响。",
+      "label": "蜂鸣器状态",
+      "codes": [
+        {
+          "value": 0,
+          "label": "关闭"
+        },
+        {
+          "value": 1,
+          "label": "鸣响。"
+        }
+      ],
+      "sourceSha256": "8e846d0f71351f87b42db1bf40790f40766a392fd0a9e0968201f8c2056eb476"
+    },
+    {
+      "name": "Rece_Data_Start_Indicator",
+      "logicalName": "Start_Indicator",
+      "key": "plc.Start_Indicator",
+      "id": "plc.Start_Indicator",
+      "group": "plc",
+      "direction": "PLC->PC",
+      "dataType": "Boolean",
+      "type": "BOOL",
+      "byteOffset": 6025,
+      "mb": 6025,
+      "byteLength": 1,
+      "size": 1,
+      "address": "%MB6025",
+      "modbusPdu": 3012,
+      "byteIndex": 1,
+      "nodeId": "mbyte:6025:Boolean",
+      "writeEnabled": false,
+      "sourceFile": "PLC.xls",
+      "sourceRow": 27,
+      "description": "启动指示灯状态；0=关闭；1=点亮。",
+      "label": "启动指示灯状态",
+      "codes": [
+        {
+          "value": 0,
+          "label": "关闭"
+        },
+        {
+          "value": 1,
+          "label": "点亮。"
+        }
+      ],
+      "sourceSha256": "8e846d0f71351f87b42db1bf40790f40766a392fd0a9e0968201f8c2056eb476"
+    },
+    {
+      "name": "Rece_Data_Stop_Indicator",
+      "logicalName": "Stop_Indicator",
+      "key": "plc.Stop_Indicator",
+      "id": "plc.Stop_Indicator",
+      "group": "plc",
+      "direction": "PLC->PC",
+      "dataType": "Boolean",
+      "type": "BOOL",
+      "byteOffset": 6026,
+      "mb": 6026,
+      "byteLength": 1,
+      "size": 1,
+      "address": "%MB6026",
+      "modbusPdu": 3013,
+      "byteIndex": 0,
+      "nodeId": "mbyte:6026:Boolean",
+      "writeEnabled": false,
+      "sourceFile": "PLC.xls",
+      "sourceRow": 28,
+      "description": "停止指示灯状态；0=关闭；1=点亮。",
+      "label": "停止指示灯状态",
+      "codes": [
+        {
+          "value": 0,
+          "label": "关闭"
+        },
+        {
+          "value": 1,
+          "label": "点亮。"
+        }
+      ],
+      "sourceSha256": "8e846d0f71351f87b42db1bf40790f40766a392fd0a9e0968201f8c2056eb476"
+    },
+    {
+      "name": "Rece_Data_Reset_Indicator",
+      "logicalName": "Reset_Indicator",
+      "key": "plc.Reset_Indicator",
+      "id": "plc.Reset_Indicator",
+      "group": "plc",
+      "direction": "PLC->PC",
+      "dataType": "Boolean",
+      "type": "BOOL",
+      "byteOffset": 6027,
+      "mb": 6027,
+      "byteLength": 1,
+      "size": 1,
+      "address": "%MB6027",
+      "modbusPdu": 3013,
+      "byteIndex": 1,
+      "nodeId": "mbyte:6027:Boolean",
+      "writeEnabled": false,
+      "sourceFile": "PLC.xls",
+      "sourceRow": 29,
+      "description": "复位指示灯状态；0=关闭；1=点亮。",
+      "label": "复位指示灯状态",
+      "codes": [
+        {
+          "value": 0,
+          "label": "关闭"
+        },
+        {
+          "value": 1,
+          "label": "点亮。"
+        }
+      ],
+      "sourceSha256": "8e846d0f71351f87b42db1bf40790f40766a392fd0a9e0968201f8c2056eb476"
+    },
+    {
+      "name": "Rece_Data_X_Axis_Alarm",
+      "logicalName": "X_Axis_Alarm",
+      "key": "plc.X_Axis_Alarm",
+      "id": "plc.X_Axis_Alarm",
+      "group": "plc",
+      "direction": "PLC->PC",
+      "dataType": "Boolean",
+      "type": "BOOL",
+      "byteOffset": 6028,
+      "mb": 6028,
+      "byteLength": 1,
+      "size": 1,
+      "address": "%MB6028",
+      "modbusPdu": 3014,
+      "byteIndex": 0,
+      "nodeId": "mbyte:6028:Boolean",
+      "writeEnabled": false,
+      "sourceFile": "PLC.xls",
+      "sourceRow": 30,
+      "description": "X轴报警；0=无报警；1=报警。",
+      "label": "X轴报警",
+      "codes": [
+        {
+          "value": 0,
+          "label": "无报警"
+        },
+        {
+          "value": 1,
+          "label": "报警。"
+        }
+      ],
+      "sourceSha256": "8e846d0f71351f87b42db1bf40790f40766a392fd0a9e0968201f8c2056eb476"
+    },
+    {
+      "name": "Rece_Data_Y_Axis_Alarm",
+      "logicalName": "Y_Axis_Alarm",
+      "key": "plc.Y_Axis_Alarm",
+      "id": "plc.Y_Axis_Alarm",
+      "group": "plc",
+      "direction": "PLC->PC",
+      "dataType": "Boolean",
+      "type": "BOOL",
+      "byteOffset": 6029,
+      "mb": 6029,
+      "byteLength": 1,
+      "size": 1,
+      "address": "%MB6029",
+      "modbusPdu": 3014,
+      "byteIndex": 1,
+      "nodeId": "mbyte:6029:Boolean",
+      "writeEnabled": false,
+      "sourceFile": "PLC.xls",
+      "sourceRow": 31,
+      "description": "Y轴报警；0=无报警；1=报警。",
+      "label": "Y轴报警",
+      "codes": [
+        {
+          "value": 0,
+          "label": "无报警"
+        },
+        {
+          "value": 1,
+          "label": "报警。"
+        }
+      ],
+      "sourceSha256": "8e846d0f71351f87b42db1bf40790f40766a392fd0a9e0968201f8c2056eb476"
+    },
+    {
+      "name": "Rece_Data_Z_Camera_Axis_Alarm",
+      "logicalName": "Z_Camera_Axis_Alarm",
+      "key": "plc.Z_Camera_Axis_Alarm",
+      "id": "plc.Z_Camera_Axis_Alarm",
+      "group": "plc",
+      "direction": "PLC->PC",
+      "dataType": "Boolean",
+      "type": "BOOL",
+      "byteOffset": 6030,
+      "mb": 6030,
+      "byteLength": 1,
+      "size": 1,
+      "address": "%MB6030",
+      "modbusPdu": 3015,
+      "byteIndex": 0,
+      "nodeId": "mbyte:6030:Boolean",
+      "writeEnabled": false,
+      "sourceFile": "PLC.xls",
+      "sourceRow": 32,
+      "description": "检测Z轴报警；0=无报警；1=报警。",
+      "label": "检测Z轴报警",
+      "codes": [
+        {
+          "value": 0,
+          "label": "无报警"
+        },
+        {
+          "value": 1,
+          "label": "报警。"
+        }
+      ],
+      "sourceSha256": "8e846d0f71351f87b42db1bf40790f40766a392fd0a9e0968201f8c2056eb476"
+    },
+    {
+      "name": "Rece_Data_Z_Scan_Axis_Alarm",
+      "logicalName": "Z_Scan_Axis_Alarm",
+      "key": "plc.Z_Scan_Axis_Alarm",
+      "id": "plc.Z_Scan_Axis_Alarm",
+      "group": "plc",
+      "direction": "PLC->PC",
+      "dataType": "Boolean",
+      "type": "BOOL",
+      "byteOffset": 6031,
+      "mb": 6031,
+      "byteLength": 1,
+      "size": 1,
+      "address": "%MB6031",
+      "modbusPdu": 3015,
+      "byteIndex": 1,
+      "nodeId": "mbyte:6031:Boolean",
+      "writeEnabled": false,
+      "sourceFile": "PLC.xls",
+      "sourceRow": 33,
+      "description": "扫码（零件二维码）Z轴报警；0=无报警；1=报警。",
+      "label": "扫码（零件二维码）Z轴报警",
+      "codes": [
+        {
+          "value": 0,
+          "label": "无报警"
+        },
+        {
+          "value": 1,
+          "label": "报警。"
+        }
+      ],
+      "sourceSha256": "8e846d0f71351f87b42db1bf40790f40766a392fd0a9e0968201f8c2056eb476"
+    },
+    {
+      "name": "Rece_Data_Z_Flip_Axis_Alarm",
+      "logicalName": "Z_Flip_Axis_Alarm",
+      "key": "plc.Z_Flip_Axis_Alarm",
+      "id": "plc.Z_Flip_Axis_Alarm",
+      "group": "plc",
+      "direction": "PLC->PC",
+      "dataType": "Boolean",
+      "type": "BOOL",
+      "byteOffset": 6032,
+      "mb": 6032,
+      "byteLength": 1,
+      "size": 1,
+      "address": "%MB6032",
+      "modbusPdu": 3016,
+      "byteIndex": 0,
+      "nodeId": "mbyte:6032:Boolean",
+      "writeEnabled": false,
+      "sourceFile": "PLC.xls",
+      "sourceRow": 34,
+      "description": "翻面Z轴报警；0=无报警；1=报警。",
+      "label": "翻面Z轴报警",
+      "codes": [
+        {
+          "value": 0,
+          "label": "无报警"
+        },
+        {
+          "value": 1,
+          "label": "报警。"
+        }
+      ],
+      "sourceSha256": "8e846d0f71351f87b42db1bf40790f40766a392fd0a9e0968201f8c2056eb476"
+    },
+    {
+      "name": "Rece_Data_Rotate_Axis_Alarm",
+      "logicalName": "Rotate_Axis_Alarm",
+      "key": "plc.Rotate_Axis_Alarm",
+      "id": "plc.Rotate_Axis_Alarm",
+      "group": "plc",
+      "direction": "PLC->PC",
+      "dataType": "Boolean",
+      "type": "BOOL",
+      "byteOffset": 6033,
+      "mb": 6033,
+      "byteLength": 1,
+      "size": 1,
+      "address": "%MB6033",
+      "modbusPdu": 3016,
+      "byteIndex": 1,
+      "nodeId": "mbyte:6033:Boolean",
+      "writeEnabled": false,
+      "sourceFile": "PLC.xls",
+      "sourceRow": 35,
+      "description": "旋转轴报警；0=无报警；1=报警。",
+      "label": "旋转轴报警",
+      "codes": [
+        {
+          "value": 0,
+          "label": "无报警"
+        },
+        {
+          "value": 1,
+          "label": "报警。"
+        }
+      ],
+      "sourceSha256": "8e846d0f71351f87b42db1bf40790f40766a392fd0a9e0968201f8c2056eb476"
+    },
+    {
+      "name": "Rece_Data_Flip_Axis_Alarm",
+      "logicalName": "Flip_Axis_Alarm",
+      "key": "plc.Flip_Axis_Alarm",
+      "id": "plc.Flip_Axis_Alarm",
+      "group": "plc",
+      "direction": "PLC->PC",
+      "dataType": "Boolean",
+      "type": "BOOL",
+      "byteOffset": 6034,
+      "mb": 6034,
+      "byteLength": 1,
+      "size": 1,
+      "address": "%MB6034",
+      "modbusPdu": 3017,
+      "byteIndex": 0,
+      "nodeId": "mbyte:6034:Boolean",
+      "writeEnabled": false,
+      "sourceFile": "PLC.xls",
+      "sourceRow": 36,
+      "description": "翻转轴报警；0=无报警；1=报警。",
+      "label": "翻转轴报警",
+      "codes": [
+        {
+          "value": 0,
+          "label": "无报警"
+        },
+        {
+          "value": 1,
+          "label": "报警。"
+        }
+      ],
+      "sourceSha256": "8e846d0f71351f87b42db1bf40790f40766a392fd0a9e0968201f8c2056eb476"
+    },
+    {
+      "name": "Rece_Data_PLC_System_Fault",
+      "logicalName": "PLC_System_Fault",
+      "key": "plc.PLC_System_Fault",
+      "id": "plc.PLC_System_Fault",
+      "group": "plc",
+      "direction": "PLC->PC",
+      "dataType": "Boolean",
+      "type": "BOOL",
+      "byteOffset": 6035,
+      "mb": 6035,
+      "byteLength": 1,
+      "size": 1,
+      "address": "%MB6035",
+      "modbusPdu": 3017,
+      "byteIndex": 1,
+      "nodeId": "mbyte:6035:Boolean",
+      "writeEnabled": false,
+      "sourceFile": "PLC.xls",
+      "sourceRow": 37,
+      "description": "PLC硬件故障（急停、光栅、过载）",
+      "label": "PLC硬件故障（急停、光栅、过载）",
+      "codes": [],
+      "sourceSha256": "8e846d0f71351f87b42db1bf40790f40766a392fd0a9e0968201f8c2056eb476"
+    },
+    {
+      "name": "Rece_Data_PC_Communication_Alarm",
+      "logicalName": "PC_Communication_Alarm",
+      "key": "plc.PC_Communication_Alarm",
+      "id": "plc.PC_Communication_Alarm",
+      "group": "plc",
+      "direction": "PLC->PC",
+      "dataType": "Boolean",
+      "type": "BOOL",
+      "byteOffset": 6036,
+      "mb": 6036,
+      "byteLength": 1,
+      "size": 1,
+      "address": "%MB6036",
+      "modbusPdu": 3018,
+      "byteIndex": 0,
+      "nodeId": "mbyte:6036:Boolean",
+      "writeEnabled": false,
+      "sourceFile": "PLC.xls",
+      "sourceRow": 38,
+      "description": "上位机与下位机通信报警；0=无报警；1=报警。",
+      "label": "上位机与下位机通信报警",
+      "codes": [
+        {
+          "value": 0,
+          "label": "无报警"
+        },
+        {
+          "value": 1,
+          "label": "报警。"
+        }
+      ],
+      "sourceSha256": "8e846d0f71351f87b42db1bf40790f40766a392fd0a9e0968201f8c2056eb476"
+    },
+    {
+      "name": "Rece_Data_PC_Alarm",
+      "logicalName": "PC_Alarm",
+      "key": "plc.PC_Alarm",
+      "id": "plc.PC_Alarm",
+      "group": "plc",
+      "direction": "PLC->PC",
+      "dataType": "Boolean",
+      "type": "BOOL",
+      "byteOffset": 6037,
+      "mb": 6037,
+      "byteLength": 1,
+      "size": 1,
+      "address": "%MB6037",
+      "modbusPdu": 3018,
+      "byteIndex": 1,
+      "nodeId": "mbyte:6037:Boolean",
+      "writeEnabled": false,
+      "sourceFile": "PLC.xls",
+      "sourceRow": 39,
+      "description": "上位机其他报警",
+      "label": "上位机其他报警",
+      "codes": [],
+      "sourceSha256": "8e846d0f71351f87b42db1bf40790f40766a392fd0a9e0968201f8c2056eb476"
+    },
+    {
+      "name": "Rece_Data_PLC_Heartbeat_Req",
+      "logicalName": "PLC_Heartbeat_Req",
+      "key": "plc.PLC_Heartbeat_Req",
+      "id": "plc.PLC_Heartbeat_Req",
+      "group": "plc",
+      "direction": "PLC->PC",
+      "dataType": "Boolean",
+      "type": "BOOL",
+      "byteOffset": 6038,
+      "mb": 6038,
+      "byteLength": 1,
+      "size": 1,
+      "address": "%MB6038",
+      "modbusPdu": 3019,
+      "byteIndex": 0,
+      "nodeId": "mbyte:6038:Boolean",
+      "writeEnabled": false,
+      "sourceFile": "PLC.xls",
+      "sourceRow": 40,
+      "description": "PLC心跳脉冲（翻转）",
+      "label": "PLC心跳脉冲（翻转）",
+      "codes": [],
+      "sourceSha256": "8e846d0f71351f87b42db1bf40790f40766a392fd0a9e0968201f8c2056eb476"
+    },
+    {
+      "name": "Rece_Data_X_Pos_Confirmed",
+      "logicalName": "X_Pos_Confirmed",
+      "key": "plc.X_Pos_Confirmed",
+      "id": "plc.X_Pos_Confirmed",
+      "group": "plc",
+      "direction": "PLC->PC",
+      "dataType": "Int16",
+      "type": "INT",
+      "byteOffset": 6040,
+      "mb": 6040,
+      "byteLength": 2,
+      "size": 2,
+      "address": "%MB6040",
+      "modbusPdu": 3020,
+      "byteIndex": 0,
+      "nodeId": "mbyte:6040:Int16",
+      "writeEnabled": false,
+      "sourceFile": "PLC.xls",
+      "sourceRow": 41,
+      "description": "0=运动中, 1=到位, 2=超时未到位",
+      "label": "0=运动中, 1=到位, 2=超时未到位",
+      "codes": [
+        {
+          "value": 0,
+          "label": "运动中"
+        },
+        {
+          "value": 1,
+          "label": "到位"
+        },
+        {
+          "value": 2,
+          "label": "超时未到位"
+        }
+      ],
+      "sourceSha256": "8e846d0f71351f87b42db1bf40790f40766a392fd0a9e0968201f8c2056eb476"
+    },
+    {
+      "name": "Rece_Data_Y_Pos_Confirmed",
+      "logicalName": "Y_Pos_Confirmed",
+      "key": "plc.Y_Pos_Confirmed",
+      "id": "plc.Y_Pos_Confirmed",
+      "group": "plc",
+      "direction": "PLC->PC",
+      "dataType": "Int16",
+      "type": "INT",
+      "byteOffset": 6042,
+      "mb": 6042,
+      "byteLength": 2,
+      "size": 2,
+      "address": "%MB6042",
+      "modbusPdu": 3021,
+      "byteIndex": 0,
+      "nodeId": "mbyte:6042:Int16",
+      "writeEnabled": false,
+      "sourceFile": "PLC.xls",
+      "sourceRow": 42,
+      "description": "0=运动中, 1=到位, 2=超时未到位",
+      "label": "0=运动中, 1=到位, 2=超时未到位",
+      "codes": [
+        {
+          "value": 0,
+          "label": "运动中"
+        },
+        {
+          "value": 1,
+          "label": "到位"
+        },
+        {
+          "value": 2,
+          "label": "超时未到位"
+        }
+      ],
+      "sourceSha256": "8e846d0f71351f87b42db1bf40790f40766a392fd0a9e0968201f8c2056eb476"
+    },
+    {
+      "name": "Rece_Data_Z_Camera_Pos_Confirmed",
+      "logicalName": "Z_Camera_Pos_Confirmed",
+      "key": "plc.Z_Camera_Pos_Confirmed",
+      "id": "plc.Z_Camera_Pos_Confirmed",
+      "group": "plc",
+      "direction": "PLC->PC",
+      "dataType": "Int16",
+      "type": "INT",
+      "byteOffset": 6044,
+      "mb": 6044,
+      "byteLength": 2,
+      "size": 2,
+      "address": "%MB6044",
+      "modbusPdu": 3022,
+      "byteIndex": 0,
+      "nodeId": "mbyte:6044:Int16",
+      "writeEnabled": false,
+      "sourceFile": "PLC.xls",
+      "sourceRow": 43,
+      "description": "0=运动中, 1=到位, 2=超时未到位",
+      "label": "0=运动中, 1=到位, 2=超时未到位",
+      "codes": [
+        {
+          "value": 0,
+          "label": "运动中"
+        },
+        {
+          "value": 1,
+          "label": "到位"
+        },
+        {
+          "value": 2,
+          "label": "超时未到位"
+        }
+      ],
+      "sourceSha256": "8e846d0f71351f87b42db1bf40790f40766a392fd0a9e0968201f8c2056eb476"
+    },
+    {
+      "name": "Rece_Data_Z_Scan_Pos_Confirmed",
+      "logicalName": "Z_Scan_Pos_Confirmed",
+      "key": "plc.Z_Scan_Pos_Confirmed",
+      "id": "plc.Z_Scan_Pos_Confirmed",
+      "group": "plc",
+      "direction": "PLC->PC",
+      "dataType": "Int16",
+      "type": "INT",
+      "byteOffset": 6046,
+      "mb": 6046,
+      "byteLength": 2,
+      "size": 2,
+      "address": "%MB6046",
+      "modbusPdu": 3023,
+      "byteIndex": 0,
+      "nodeId": "mbyte:6046:Int16",
+      "writeEnabled": false,
+      "sourceFile": "PLC.xls",
+      "sourceRow": 44,
+      "description": "0=运动中, 1=到位, 2=超时未到位",
+      "label": "0=运动中, 1=到位, 2=超时未到位",
+      "codes": [
+        {
+          "value": 0,
+          "label": "运动中"
+        },
+        {
+          "value": 1,
+          "label": "到位"
+        },
+        {
+          "value": 2,
+          "label": "超时未到位"
+        }
+      ],
+      "sourceSha256": "8e846d0f71351f87b42db1bf40790f40766a392fd0a9e0968201f8c2056eb476"
+    },
+    {
+      "name": "Rece_Data_Z_Grap_Pos_Confirmed",
+      "logicalName": "Z_Grap_Pos_Confirmed",
+      "key": "plc.Z_Grap_Pos_Confirmed",
+      "id": "plc.Z_Grap_Pos_Confirmed",
+      "group": "plc",
+      "direction": "PLC->PC",
+      "dataType": "Int16",
+      "type": "INT",
+      "byteOffset": 6048,
+      "mb": 6048,
+      "byteLength": 2,
+      "size": 2,
+      "address": "%MB6048",
+      "modbusPdu": 3024,
+      "byteIndex": 0,
+      "nodeId": "mbyte:6048:Int16",
+      "writeEnabled": false,
+      "sourceFile": "PLC.xls",
+      "sourceRow": 45,
+      "description": "0=运动中, 1=到位, 2=超时未到位",
+      "label": "0=运动中, 1=到位, 2=超时未到位",
+      "codes": [
+        {
+          "value": 0,
+          "label": "运动中"
+        },
+        {
+          "value": 1,
+          "label": "到位"
+        },
+        {
+          "value": 2,
+          "label": "超时未到位"
+        }
+      ],
+      "sourceSha256": "8e846d0f71351f87b42db1bf40790f40766a392fd0a9e0968201f8c2056eb476"
+    },
+    {
+      "name": "Rece_Data_Flip_Status",
+      "logicalName": "Flip_Status",
+      "key": "plc.Flip_Status",
+      "id": "plc.Flip_Status",
+      "group": "plc",
+      "direction": "PLC->PC",
+      "dataType": "Int16",
+      "type": "INT",
+      "byteOffset": 6050,
+      "mb": 6050,
+      "byteLength": 2,
+      "size": 2,
+      "address": "%MB6050",
+      "modbusPdu": 3025,
+      "byteIndex": 0,
+      "nodeId": "mbyte:6050:Int16",
+      "writeEnabled": false,
+      "sourceFile": "PLC.xls",
+      "sourceRow": 46,
+      "description": "0=空闲, 1=执行中, 2=翻面完成, 3=翻面失败(伺服故障、超时判断=翻面失败）上位机下发翻面坐标，翻完一个发送翻面完成给上位机，等待上位机下发放料坐标",
+      "label": "0=空闲, 1=执行中, 2=翻面完成, 3=翻面失败(伺服故障、超时判断=翻面失败）上位机下发翻面坐标",
+      "codes": [
+        {
+          "value": 0,
+          "label": "空闲"
+        },
+        {
+          "value": 1,
+          "label": "执行中"
+        },
+        {
+          "value": 2,
+          "label": "翻面完成"
+        },
+        {
+          "value": 3,
+          "label": "翻面失败(伺服故障、超时判断=翻面失败）上位机下发翻面坐标"
+        }
+      ],
+      "sourceSha256": "8e846d0f71351f87b42db1bf40790f40766a392fd0a9e0968201f8c2056eb476"
+    },
+    {
+      "name": "Rece_Data_Flip_Unload_Status",
+      "logicalName": "Flip_Unload_Status",
+      "key": "plc.Flip_Unload_Status",
+      "id": "plc.Flip_Unload_Status",
+      "group": "plc",
+      "direction": "PLC->PC",
+      "dataType": "Int16",
+      "type": "INT",
+      "byteOffset": 6052,
+      "mb": 6052,
+      "byteLength": 2,
+      "size": 2,
+      "address": "%MB6052",
+      "modbusPdu": 3026,
+      "byteIndex": 0,
+      "nodeId": "mbyte:6052:Int16",
+      "writeEnabled": false,
+      "sourceFile": "PLC.xls",
+      "sourceRow": 47,
+      "description": "0=空闲, 1=执行中, 2=放料完成, 3=翻面失败",
+      "label": "0=空闲, 1=执行中, 2=放料完成, 3=翻面失败",
+      "codes": [
+        {
+          "value": 0,
+          "label": "空闲"
+        },
+        {
+          "value": 1,
+          "label": "执行中"
+        },
+        {
+          "value": 2,
+          "label": "放料完成"
+        },
+        {
+          "value": 3,
+          "label": "翻面失败"
+        }
+      ],
+      "sourceSha256": "8e846d0f71351f87b42db1bf40790f40766a392fd0a9e0968201f8c2056eb476"
+    },
+    {
+      "name": "Rece_Data_Sorting_Exec_Status",
+      "logicalName": "Sorting_Exec_Status",
+      "key": "plc.Sorting_Exec_Status",
+      "id": "plc.Sorting_Exec_Status",
+      "group": "plc",
+      "direction": "PLC->PC",
+      "dataType": "Int16",
+      "type": "INT",
+      "byteOffset": 6054,
+      "mb": 6054,
+      "byteLength": 2,
+      "size": 2,
+      "address": "%MB6054",
+      "modbusPdu": 3027,
+      "byteIndex": 0,
+      "nodeId": "mbyte:6054:Int16",
+      "writeEnabled": false,
+      "sourceFile": "PLC.xls",
+      "sourceRow": 48,
+      "description": "公共取放料反馈，普通分拣、旋转工位上料及旋转零件分拣共用。0=空闲；1=取料成功；2=分拣成功（放料完成）；3=抓取空/失败（锁停）。",
+      "label": "公共取放料反馈",
+      "codes": [
+        {
+          "value": 0,
+          "label": "空闲"
+        },
+        {
+          "value": 1,
+          "label": "取料成功"
+        },
+        {
+          "value": 2,
+          "label": "分拣成功（放料完成）"
+        },
+        {
+          "value": 3,
+          "label": "抓取空/失败（锁停）。"
+        }
+      ],
+      "sourceSha256": "8e846d0f71351f87b42db1bf40790f40766a392fd0a9e0968201f8c2056eb476"
+    },
+    {
+      "name": "Rece_Data_Alarm_Code",
+      "logicalName": "Alarm_Code",
+      "key": "plc.Alarm_Code",
+      "id": "plc.Alarm_Code",
+      "group": "plc",
+      "direction": "PLC->PC",
+      "dataType": "Int16",
+      "type": "INT",
+      "byteOffset": 6056,
+      "mb": 6056,
+      "byteLength": 2,
+      "size": 2,
+      "address": "%MB6056",
+      "modbusPdu": 3028,
+      "byteIndex": 0,
+      "nodeId": "mbyte:6056:Int16",
+      "writeEnabled": false,
+      "sourceFile": "PLC.xls",
+      "sourceRow": 49,
+      "description": "报警码；按位表示光栅、急停、安全门、伺服过载、通信、下位机内部故障、心跳及上位机报警，位定义见“报警位定义”页。",
+      "label": "报警码",
+      "codes": [],
+      "sourceSha256": "8e846d0f71351f87b42db1bf40790f40766a392fd0a9e0968201f8c2056eb476"
+    },
+    {
+      "name": "Rece_Data_Alarm_Level",
+      "logicalName": "Alarm_Level",
+      "key": "plc.Alarm_Level",
+      "id": "plc.Alarm_Level",
+      "group": "plc",
+      "direction": "PLC->PC",
+      "dataType": "Int16",
+      "type": "INT",
+      "byteOffset": 6058,
+      "mb": 6058,
+      "byteLength": 2,
+      "size": 2,
+      "address": "%MB6058",
+      "modbusPdu": 3029,
+      "byteIndex": 0,
+      "nodeId": "mbyte:6058:Int16",
+      "writeEnabled": false,
+      "sourceFile": "PLC.xls",
+      "sourceRow": 50,
+      "description": "报警等级；1=警告；2=一般故障；3=严重故障。",
+      "label": "报警等级",
+      "codes": [
+        {
+          "value": 1,
+          "label": "警告"
+        },
+        {
+          "value": 2,
+          "label": "一般故障"
+        },
+        {
+          "value": 3,
+          "label": "严重故障。"
+        }
+      ],
+      "sourceSha256": "8e846d0f71351f87b42db1bf40790f40766a392fd0a9e0968201f8c2056eb476"
+    },
+    {
+      "name": "Rece_Data_R_Pos_Confirmed",
+      "logicalName": "R_Pos_Confirmed",
+      "key": "plc.R_Pos_Confirmed",
+      "id": "plc.R_Pos_Confirmed",
+      "group": "plc",
+      "direction": "PLC->PC",
+      "dataType": "Int16",
+      "type": "INT",
+      "byteOffset": 6060,
+      "mb": 6060,
+      "byteLength": 2,
+      "size": 2,
+      "address": "%MB6060",
+      "modbusPdu": 3030,
+      "byteIndex": 0,
+      "nodeId": "mbyte:6060:Int16",
+      "writeEnabled": false,
+      "sourceFile": "PLC.xls",
+      "sourceRow": 51,
+      "description": "0=运动中，1=到位，2=超时未到位",
+      "label": "0=运动中",
+      "codes": [
+        {
+          "value": 0,
+          "label": "运动中"
+        },
+        {
+          "value": 1,
+          "label": "到位"
+        },
+        {
+          "value": 2,
+          "label": "超时未到位"
+        }
+      ],
+      "sourceSha256": "8e846d0f71351f87b42db1bf40790f40766a392fd0a9e0968201f8c2056eb476"
+    },
+    {
+      "name": "Rece_Data_Grab_Active_ID",
+      "logicalName": "Grab_Active_ID",
+      "key": "plc.Grab_Active_ID",
+      "id": "plc.Grab_Active_ID",
+      "group": "plc",
+      "direction": "PLC->PC",
+      "dataType": "Int16",
+      "type": "INT",
+      "byteOffset": 6062,
+      "mb": 6062,
+      "byteLength": 2,
+      "size": 2,
+      "address": "%MB6062",
+      "modbusPdu": 3031,
+      "byteIndex": 0,
+      "nodeId": "mbyte:6062:Int16",
+      "writeEnabled": false,
+      "sourceFile": "PLC.xls",
+      "sourceRow": 52,
+      "description": "0=无有效选择；1=已选定抓手1；2=已选定抓手2，编号不绑定用途。PLC反馈实际选用抓手，正常保持旧值；接收不同 Grab_ID 并完成抓手选择后更新。PC仅在更换或重新建立选择时确认反馈，同编号且当前选择有效时直接沿用，闭环中不校验。翻面不使用。",
+      "label": "0=无有效选择",
+      "codes": [
+        {
+          "value": 0,
+          "label": "无有效选择"
+        },
+        {
+          "value": 1,
+          "label": "已选定抓手1"
+        },
+        {
+          "value": 2,
+          "label": "已选定抓手2"
+        }
+      ],
+      "sourceSha256": "8e846d0f71351f87b42db1bf40790f40766a392fd0a9e0968201f8c2056eb476"
+    },
+    {
+      "name": "Rece_Data_Machine_Current_Pos_X",
+      "logicalName": "Machine_Current_Pos_X",
+      "key": "plc.Machine_Current_Pos_X",
+      "id": "plc.Machine_Current_Pos_X",
+      "group": "plc",
+      "direction": "PLC->PC",
+      "dataType": "Float",
+      "type": "REAL",
+      "byteOffset": 6064,
+      "mb": 6064,
+      "byteLength": 4,
+      "size": 4,
+      "address": "%MB6064",
+      "modbusPdu": 3032,
+      "byteIndex": 0,
+      "nodeId": "mbyte:6064:Float",
+      "writeEnabled": false,
+      "sourceFile": "PLC.xls",
+      "sourceRow": 53,
+      "description": "PLC实时反馈当前X物理坐标，供上位机校验",
+      "label": "PLC实时反馈当前X物理坐标",
+      "codes": [],
+      "sourceSha256": "8e846d0f71351f87b42db1bf40790f40766a392fd0a9e0968201f8c2056eb476"
+    },
+    {
+      "name": "Rece_Data_Machine_Current_Pos_R",
+      "logicalName": "Machine_Current_Pos_R",
+      "key": "plc.Machine_Current_Pos_R",
+      "id": "plc.Machine_Current_Pos_R",
+      "group": "plc",
+      "direction": "PLC->PC",
+      "dataType": "Float",
+      "type": "REAL",
+      "byteOffset": 6068,
+      "mb": 6068,
+      "byteLength": 4,
+      "size": 4,
+      "address": "%MB6068",
+      "modbusPdu": 3034,
+      "byteIndex": 0,
+      "nodeId": "mbyte:6068:Float",
+      "writeEnabled": false,
+      "sourceFile": "PLC.xls",
+      "sourceRow": 54,
+      "description": "R轴实际角度，供上位机核对旋转目标",
+      "label": "R轴实际角度",
+      "codes": [],
+      "sourceSha256": "8e846d0f71351f87b42db1bf40790f40766a392fd0a9e0968201f8c2056eb476"
+    },
+    {
+      "name": "Rece_Data_X_Actual_Speed",
+      "logicalName": "X_Actual_Speed",
+      "key": "plc.X_Actual_Speed",
+      "id": "plc.X_Actual_Speed",
+      "group": "plc",
+      "direction": "PLC->PC",
+      "dataType": "Float",
+      "type": "REAL",
+      "byteOffset": 6072,
+      "mb": 6072,
+      "byteLength": 4,
+      "size": 4,
+      "address": "%MB6072",
+      "modbusPdu": 3036,
+      "byteIndex": 0,
+      "nodeId": "mbyte:6072:Float",
+      "writeEnabled": false,
+      "sourceFile": "PLC.xls",
+      "sourceRow": 55,
+      "description": "X轴实际速度。",
+      "label": "X轴实际速度。",
+      "codes": [],
+      "sourceSha256": "8e846d0f71351f87b42db1bf40790f40766a392fd0a9e0968201f8c2056eb476"
+    },
+    {
+      "name": "Rece_Data_Machine_Current_Pos_Y",
+      "logicalName": "Machine_Current_Pos_Y",
+      "key": "plc.Machine_Current_Pos_Y",
+      "id": "plc.Machine_Current_Pos_Y",
+      "group": "plc",
+      "direction": "PLC->PC",
+      "dataType": "Float",
+      "type": "REAL",
+      "byteOffset": 6076,
+      "mb": 6076,
+      "byteLength": 4,
+      "size": 4,
+      "address": "%MB6076",
+      "modbusPdu": 3038,
+      "byteIndex": 0,
+      "nodeId": "mbyte:6076:Float",
+      "writeEnabled": false,
+      "sourceFile": "PLC.xls",
+      "sourceRow": 56,
+      "description": "PLC实时反馈当前Y物理坐标，供上位机校验",
+      "label": "PLC实时反馈当前Y物理坐标",
+      "codes": [],
+      "sourceSha256": "8e846d0f71351f87b42db1bf40790f40766a392fd0a9e0968201f8c2056eb476"
+    },
+    {
+      "name": "Rece_Data_Y_Actual_Speed",
+      "logicalName": "Y_Actual_Speed",
+      "key": "plc.Y_Actual_Speed",
+      "id": "plc.Y_Actual_Speed",
+      "group": "plc",
+      "direction": "PLC->PC",
+      "dataType": "Float",
+      "type": "REAL",
+      "byteOffset": 6080,
+      "mb": 6080,
+      "byteLength": 4,
+      "size": 4,
+      "address": "%MB6080",
+      "modbusPdu": 3040,
+      "byteIndex": 0,
+      "nodeId": "mbyte:6080:Float",
+      "writeEnabled": false,
+      "sourceFile": "PLC.xls",
+      "sourceRow": 57,
+      "description": "Y轴实际速度。",
+      "label": "Y轴实际速度。",
+      "codes": [],
+      "sourceSha256": "8e846d0f71351f87b42db1bf40790f40766a392fd0a9e0968201f8c2056eb476"
+    },
+    {
+      "name": "Rece_Data_Machine_Current_Pos_Z",
+      "logicalName": "Machine_Current_Pos_Z",
+      "key": "plc.Machine_Current_Pos_Z",
+      "id": "plc.Machine_Current_Pos_Z",
+      "group": "plc",
+      "direction": "PLC->PC",
+      "dataType": "Float",
+      "type": "REAL",
+      "byteOffset": 6084,
+      "mb": 6084,
+      "byteLength": 4,
+      "size": 4,
+      "address": "%MB6084",
+      "modbusPdu": 3042,
+      "byteIndex": 0,
+      "nodeId": "mbyte:6084:Float",
+      "writeEnabled": false,
+      "sourceFile": "PLC.xls",
+      "sourceRow": 58,
+      "description": "PLC实时反馈检测Z物理坐标，供上位机校验",
+      "label": "PLC实时反馈检测Z物理坐标",
+      "codes": [],
+      "sourceSha256": "8e846d0f71351f87b42db1bf40790f40766a392fd0a9e0968201f8c2056eb476"
+    },
+    {
+      "name": "Rece_Data_Scan_Current_Pos_Z",
+      "logicalName": "Scan_Current_Pos_Z",
+      "key": "plc.Scan_Current_Pos_Z",
+      "id": "plc.Scan_Current_Pos_Z",
+      "group": "plc",
+      "direction": "PLC->PC",
+      "dataType": "Float",
+      "type": "REAL",
+      "byteOffset": 6088,
+      "mb": 6088,
+      "byteLength": 4,
+      "size": 4,
+      "address": "%MB6088",
+      "modbusPdu": 3044,
+      "byteIndex": 0,
+      "nodeId": "mbyte:6088:Float",
+      "writeEnabled": false,
+      "sourceFile": "PLC.xls",
+      "sourceRow": 59,
+      "description": "PLC实时反馈扫码Z物理坐标，供上位机校验",
+      "label": "PLC实时反馈扫码Z物理坐标",
+      "codes": [],
+      "sourceSha256": "8e846d0f71351f87b42db1bf40790f40766a392fd0a9e0968201f8c2056eb476"
+    },
+    {
+      "name": "Rece_Data_Flip_Grap_Current_Pos_Z",
+      "logicalName": "Flip_Grap_Current_Pos_Z",
+      "key": "plc.Flip_Grap_Current_Pos_Z",
+      "id": "plc.Flip_Grap_Current_Pos_Z",
+      "group": "plc",
+      "direction": "PLC->PC",
+      "dataType": "Float",
+      "type": "REAL",
+      "byteOffset": 6092,
+      "mb": 6092,
+      "byteLength": 4,
+      "size": 4,
+      "address": "%MB6092",
+      "modbusPdu": 3046,
+      "byteIndex": 0,
+      "nodeId": "mbyte:6092:Float",
+      "writeEnabled": false,
+      "sourceFile": "PLC.xls",
+      "sourceRow": 60,
+      "description": "PLC实时反馈翻面Z物理坐标，供上位机校验",
+      "label": "PLC实时反馈翻面Z物理坐标",
+      "codes": [],
+      "sourceSha256": "8e846d0f71351f87b42db1bf40790f40766a392fd0a9e0968201f8c2056eb476"
+    }
+  ],
+  "profile": {
+    "schema": "FinalByteProtocol/1",
+    "sourceFiles": [
+      {
+        "file": "PC.xls",
+        "sha256": "37095748a61574d9a1c9bf17ad0ac9118d554fa73ac8f5e10003718b6627511d"
+      },
+      {
+        "file": "PLC.xls",
+        "sha256": "8e846d0f71351f87b42db1bf40790f40766a392fd0a9e0968201f8c2056eb476"
+      }
+    ],
+    "sourceFile": "PC.xls + PLC.xls",
+    "sheet": "Sheet1",
+    "sha256": "893254fb22569889878ca81c4a6c47742153381440e962ea3c4f063894a7b16e",
+    "signalCount": 85,
+    "pcCount": 26,
+    "plcCount": 59,
+    "mappingCounts": {
+      "matched": 85,
+      "type-mismatch": 0,
+      "unpublished": 0
+    },
+    "signals": [
+      {
+        "name": "Send_Data_Rotate_Start",
+        "direction": "PC->PLC",
+        "excelType": "Bool",
+        "normalizedType": "Boolean",
+        "address": "%MB2000",
+        "byteLength": 1,
+        "modbusPdu": 1000,
+        "description": "0=空闲，1=开始运动",
+        "initial": "",
+        "row": 2,
+        "sheet": "Sheet1",
+        "sourceFile": "PC.xls",
+        "sourceCells": {
+          "A": "A2",
+          "B": "B2",
+          "C": "C2",
+          "D": "D2",
+          "E": "E2"
+        },
+        "codes": [
+          {
+            "value": 0,
+            "label": "空闲"
+          },
+          {
+            "value": 1,
+            "label": "开始运动"
+          }
+        ],
+        "mappingStatus": "matched",
+        "observedKey": "pc.Rotate_Start",
+        "observedType": "Boolean"
+      },
+      {
+        "name": "Send_Data_X_Move_Start",
+        "direction": "PC->PLC",
+        "excelType": "Bool",
+        "normalizedType": "Boolean",
+        "address": "%MB2001",
+        "byteLength": 1,
+        "modbusPdu": 1000,
+        "description": "0=空闲，1=开始运动",
+        "initial": "",
+        "row": 3,
+        "sheet": "Sheet1",
+        "sourceFile": "PC.xls",
+        "sourceCells": {
+          "A": "A3",
+          "B": "B3",
+          "C": "C3",
+          "D": "D3",
+          "E": "E3"
+        },
+        "codes": [
+          {
+            "value": 0,
+            "label": "空闲"
+          },
+          {
+            "value": 1,
+            "label": "开始运动"
+          }
+        ],
+        "mappingStatus": "matched",
+        "observedKey": "pc.X_Move_Start",
+        "observedType": "Boolean"
+      },
+      {
+        "name": "Send_Data_Y_Move_Start",
+        "direction": "PC->PLC",
+        "excelType": "Bool",
+        "normalizedType": "Boolean",
+        "address": "%MB2002",
+        "byteLength": 1,
+        "modbusPdu": 1001,
+        "description": "0=空闲，1=开始运动",
+        "initial": "",
+        "row": 4,
+        "sheet": "Sheet1",
+        "sourceFile": "PC.xls",
+        "sourceCells": {
+          "A": "A4",
+          "B": "B4",
+          "C": "C4",
+          "D": "D4",
+          "E": "E4"
+        },
+        "codes": [
+          {
+            "value": 0,
+            "label": "空闲"
+          },
+          {
+            "value": 1,
+            "label": "开始运动"
+          }
+        ],
+        "mappingStatus": "matched",
+        "observedKey": "pc.Y_Move_Start",
+        "observedType": "Boolean"
+      },
+      {
+        "name": "Send_Data_Z_Camera_Move_Start",
+        "direction": "PC->PLC",
+        "excelType": "Bool",
+        "normalizedType": "Boolean",
+        "address": "%MB2003",
+        "byteLength": 1,
+        "modbusPdu": 1001,
+        "description": "0=空闲，1=开始运动（检测）",
+        "initial": "",
+        "row": 5,
+        "sheet": "Sheet1",
+        "sourceFile": "PC.xls",
+        "sourceCells": {
+          "A": "A5",
+          "B": "B5",
+          "C": "C5",
+          "D": "D5",
+          "E": "E5"
+        },
+        "codes": [
+          {
+            "value": 0,
+            "label": "空闲"
+          },
+          {
+            "value": 1,
+            "label": "开始运动（检测）"
+          }
+        ],
+        "mappingStatus": "matched",
+        "observedKey": "pc.Z_Camera_Move_Start",
+        "observedType": "Boolean"
+      },
+      {
+        "name": "Send_Data_Z_Scan_Move_Start",
+        "direction": "PC->PLC",
+        "excelType": "Bool",
+        "normalizedType": "Boolean",
+        "address": "%MB2004",
+        "byteLength": 1,
+        "modbusPdu": 1002,
+        "description": "0=空闲，1=开始运动（扫码）",
+        "initial": "",
+        "row": 6,
+        "sheet": "Sheet1",
+        "sourceFile": "PC.xls",
+        "sourceCells": {
+          "A": "A6",
+          "B": "B6",
+          "C": "C6",
+          "D": "D6",
+          "E": "E6"
+        },
+        "codes": [
+          {
+            "value": 0,
+            "label": "空闲"
+          },
+          {
+            "value": 1,
+            "label": "开始运动（扫码）"
+          }
+        ],
+        "mappingStatus": "matched",
+        "observedKey": "pc.Z_Scan_Move_Start",
+        "observedType": "Boolean"
+      },
+      {
+        "name": "Send_Data_Z_Grab_Move_Start",
+        "direction": "PC->PLC",
+        "excelType": "Bool",
+        "normalizedType": "Boolean",
+        "address": "%MB2005",
+        "byteLength": 1,
+        "modbusPdu": 1002,
+        "description": "0=空闲，1=开始运动（分拣）",
+        "initial": "",
+        "row": 7,
+        "sheet": "Sheet1",
+        "sourceFile": "PC.xls",
+        "sourceCells": {
+          "A": "A7",
+          "B": "B7",
+          "C": "C7",
+          "D": "D7",
+          "E": "E7"
+        },
+        "codes": [
+          {
+            "value": 0,
+            "label": "空闲"
+          },
+          {
+            "value": 1,
+            "label": "开始运动（分拣）"
+          }
+        ],
+        "mappingStatus": "matched",
+        "observedKey": "pc.Z_Grab_Move_Start",
+        "observedType": "Boolean"
+      },
+      {
+        "name": "Send_Data_PC_System_Ready",
+        "direction": "PC->PLC",
+        "excelType": "Bool",
+        "normalizedType": "Boolean",
+        "address": "%MB2006",
+        "byteLength": 1,
+        "modbusPdu": 1003,
+        "description": "上位机初始化完成，允许动作",
+        "initial": "",
+        "row": 8,
+        "sheet": "Sheet1",
+        "sourceFile": "PC.xls",
+        "sourceCells": {
+          "A": "A8",
+          "B": "B8",
+          "C": "C8",
+          "D": "D8",
+          "E": "E8"
+        },
+        "codes": [],
+        "mappingStatus": "matched",
+        "observedKey": "pc.PC_System_Ready",
+        "observedType": "Boolean"
+      },
+      {
+        "name": "Send_Data_PC_Start_Cmd",
+        "direction": "PC->PLC",
+        "excelType": "Bool",
+        "normalizedType": "Boolean",
+        "address": "%MB2007",
+        "byteLength": 1,
+        "modbusPdu": 1003,
+        "description": "上位机复位后重新判断任务状态，确认安全后重新下发启动命令",
+        "initial": "",
+        "row": 9,
+        "sheet": "Sheet1",
+        "sourceFile": "PC.xls",
+        "sourceCells": {
+          "A": "A9",
+          "B": "B9",
+          "C": "C9",
+          "D": "D9",
+          "E": "E9"
+        },
+        "codes": [],
+        "mappingStatus": "matched",
+        "observedKey": "pc.PC_Start_Cmd",
+        "observedType": "Boolean"
+      },
+      {
+        "name": "Send_Data_Soft_Stop_Cmd",
+        "direction": "PC->PLC",
+        "excelType": "Bool",
+        "normalizedType": "Boolean",
+        "address": "%MB2008",
+        "byteLength": 1,
+        "modbusPdu": 1004,
+        "description": "软停机指令（上位机崩溃/失控时下发，PLC自动回位）",
+        "initial": "",
+        "row": 10,
+        "sheet": "Sheet1",
+        "sourceFile": "PC.xls",
+        "sourceCells": {
+          "A": "A10",
+          "B": "B10",
+          "C": "C10",
+          "D": "D10",
+          "E": "E10"
+        },
+        "codes": [],
+        "mappingStatus": "matched",
+        "observedKey": "pc.Soft_Stop_Cmd",
+        "observedType": "Boolean"
+      },
+      {
+        "name": "Send_Data_System_Reset_Cmd",
+        "direction": "PC->PLC",
+        "excelType": "Bool",
+        "normalizedType": "Boolean",
+        "address": "%MB2009",
+        "byteLength": 1,
+        "modbusPdu": 1004,
+        "description": "上位机触发系统复位（1=触发复位）重新回位开始",
+        "initial": "",
+        "row": 11,
+        "sheet": "Sheet1",
+        "sourceFile": "PC.xls",
+        "sourceCells": {
+          "A": "A11",
+          "B": "B11",
+          "C": "C11",
+          "D": "D11",
+          "E": "E11"
+        },
+        "codes": [
+          {
+            "value": 1,
+            "label": "触发复位）重新回位开始"
+          }
+        ],
+        "mappingStatus": "matched",
+        "observedKey": "pc.System_Reset_Cmd",
+        "observedType": "Boolean"
+      },
+      {
+        "name": "Send_Data_Buzzer_Mute",
+        "direction": "PC->PLC",
+        "excelType": "Bool",
+        "normalizedType": "Boolean",
+        "address": "%MB2010",
+        "byteLength": 1,
+        "modbusPdu": 1005,
+        "description": "蜂鸣器消音控制。",
+        "initial": "",
+        "row": 12,
+        "sheet": "Sheet1",
+        "sourceFile": "PC.xls",
+        "sourceCells": {
+          "A": "A12",
+          "B": "B12",
+          "C": "C12",
+          "D": "D12",
+          "E": "E12"
+        },
+        "codes": [],
+        "mappingStatus": "matched",
+        "observedKey": "pc.Buzzer_Mute",
+        "observedType": "Boolean"
+      },
+      {
+        "name": "Send_Data_PC_Heartbeat_Resp",
+        "direction": "PC->PLC",
+        "excelType": "Bool",
+        "normalizedType": "Boolean",
+        "address": "%MB2011",
+        "byteLength": 1,
+        "modbusPdu": 1005,
+        "description": "PC响应心跳",
+        "initial": "",
+        "row": 13,
+        "sheet": "Sheet1",
+        "sourceFile": "PC.xls",
+        "sourceCells": {
+          "A": "A13",
+          "B": "B13",
+          "C": "C13",
+          "D": "D13",
+          "E": "E13"
+        },
+        "codes": [],
+        "mappingStatus": "matched",
+        "observedKey": "pc.PC_Heartbeat_Resp",
+        "observedType": "Boolean"
+      },
+      {
+        "name": "Send_Data_Flip_Target_Face",
+        "direction": "PC->PLC",
+        "excelType": "int",
+        "normalizedType": "Int16",
+        "address": "%MB2012",
+        "byteLength": 2,
+        "modbusPdu": 1006,
+        "description": "目标面编号（1=第1面, 2=第2面, 3=第3面, 4=第4面等）",
+        "initial": "",
+        "row": 14,
+        "sheet": "Sheet1",
+        "sourceFile": "PC.xls",
+        "sourceCells": {
+          "A": "A14",
+          "B": "B14",
+          "C": "C14",
+          "D": "D14",
+          "E": "E14"
+        },
+        "codes": [
+          {
+            "value": 1,
+            "label": "第1面"
+          },
+          {
+            "value": 2,
+            "label": "第2面"
+          },
+          {
+            "value": 3,
+            "label": "第3面"
+          },
+          {
+            "value": 4,
+            "label": "第4面等）"
+          }
+        ],
+        "mappingStatus": "matched",
+        "observedKey": "pc.Flip_Target_Face",
+        "observedType": "Int16"
+      },
+      {
+        "name": "Send_Data_Flip_Sorting",
+        "direction": "PC->PLC",
+        "excelType": "int",
+        "normalizedType": "Int16",
+        "address": "%MB2014",
+        "byteLength": 2,
+        "modbusPdu": 1007,
+        "description": "0=空闲，1=执行翻面，2=执行放料",
+        "initial": "",
+        "row": 15,
+        "sheet": "Sheet1",
+        "sourceFile": "PC.xls",
+        "sourceCells": {
+          "A": "A15",
+          "B": "B15",
+          "C": "C15",
+          "D": "D15",
+          "E": "E15"
+        },
+        "codes": [
+          {
+            "value": 0,
+            "label": "空闲"
+          },
+          {
+            "value": 1,
+            "label": "执行翻面"
+          },
+          {
+            "value": 2,
+            "label": "执行放料"
+          }
+        ],
+        "mappingStatus": "matched",
+        "observedKey": "pc.Flip_Sorting",
+        "observedType": "Int16"
+      },
+      {
+        "name": "Send_Data_Sorting_Cmd",
+        "direction": "PC->PLC",
+        "excelType": "int",
+        "normalizedType": "Int16",
+        "address": "%MB2016",
+        "byteLength": 2,
+        "modbusPdu": 1008,
+        "description": "公共取放料指令，普通分拣、旋转工位上料及旋转零件分拣共用。0=空闲；1=执行取料；2=执行放料。",
+        "initial": "",
+        "row": 16,
+        "sheet": "Sheet1",
+        "sourceFile": "PC.xls",
+        "sourceCells": {
+          "A": "A16",
+          "B": "B16",
+          "C": "C16",
+          "D": "D16",
+          "E": "E16"
+        },
+        "codes": [
+          {
+            "value": 0,
+            "label": "空闲"
+          },
+          {
+            "value": 1,
+            "label": "执行取料"
+          },
+          {
+            "value": 2,
+            "label": "执行放料。"
+          }
+        ],
+        "mappingStatus": "matched",
+        "observedKey": "pc.Sorting_Cmd",
+        "observedType": "Int16"
+      },
+      {
+        "name": "Send_Data_Grab_ID",
+        "direction": "PC->PLC",
+        "excelType": "int",
+        "normalizedType": "Int16",
+        "address": "%MB2018",
+        "byteLength": 2,
+        "modbusPdu": 1009,
+        "description": "0=无有效选择；1=抓手1；2=抓手2，编号不绑定用途。仅用于分拣和旋转零件取放料，所需编号分别读取配方的上料、分拣抓手配置。正常保留旧ID；与当前有效选择相同则沿用，不同才发送新ID，待反馈更新一致后执行。首次选择或失效后重新确认。闭环中不重复发送，翻面不使用。",
+        "initial": "",
+        "row": 17,
+        "sheet": "Sheet1",
+        "sourceFile": "PC.xls",
+        "sourceCells": {
+          "A": "A17",
+          "B": "B17",
+          "C": "C17",
+          "D": "D17",
+          "E": "E17"
+        },
+        "codes": [
+          {
+            "value": 0,
+            "label": "无有效选择"
+          },
+          {
+            "value": 1,
+            "label": "抓手1"
+          },
+          {
+            "value": 2,
+            "label": "抓手2"
+          }
+        ],
+        "mappingStatus": "matched",
+        "observedKey": "pc.Grab_ID",
+        "observedType": "Int16"
+      },
+      {
+        "name": "Send_Data_Retry_Cmd",
+        "direction": "PC->PLC",
+        "excelType": "int",
+        "normalizedType": "Int16",
+        "address": "%MB2020",
+        "byteLength": 2,
+        "modbusPdu": 1010,
+        "description": "异常处理指令；1=重试当前动作；2=跳过或放弃当前零件；3=复位分拣队列。",
+        "initial": "",
+        "row": 18,
+        "sheet": "Sheet1",
+        "sourceFile": "PC.xls",
+        "sourceCells": {
+          "A": "A18",
+          "B": "B18",
+          "C": "C18",
+          "D": "D18",
+          "E": "E18"
+        },
+        "codes": [
+          {
+            "value": 1,
+            "label": "重试当前动作"
+          },
+          {
+            "value": 2,
+            "label": "跳过或放弃当前零件"
+          },
+          {
+            "value": 3,
+            "label": "复位分拣队列。"
+          }
+        ],
+        "mappingStatus": "matched",
+        "observedKey": "pc.Retry_Cmd",
+        "observedType": "Int16"
+      },
+      {
+        "name": "Send_Data_PC_Alarm_Code",
+        "direction": "PC->PLC",
+        "excelType": "int",
+        "normalizedType": "Int16",
+        "address": "%MB2022",
+        "byteLength": 2,
+        "modbusPdu": 1011,
+        "description": "上位机报警码；沿用原表16位整数报警接口。",
+        "initial": "",
+        "row": 19,
+        "sheet": "Sheet1",
+        "sourceFile": "PC.xls",
+        "sourceCells": {
+          "A": "A19",
+          "B": "B19",
+          "C": "C19",
+          "D": "D19",
+          "E": "E19"
+        },
+        "codes": [],
+        "mappingStatus": "matched",
+        "observedKey": "pc.PC_Alarm_Code",
+        "observedType": "Int16"
+      },
+      {
+        "name": "Send_Data_Camera_Target_X",
+        "direction": "PC->PLC",
+        "excelType": "real",
+        "normalizedType": "Float",
+        "address": "%MB2024",
+        "byteLength": 4,
+        "modbusPdu": 1012,
+        "description": "X轴绝对坐标（由上位机下发）",
+        "initial": "",
+        "row": 20,
+        "sheet": "Sheet1",
+        "sourceFile": "PC.xls",
+        "sourceCells": {
+          "A": "A20",
+          "B": "B20",
+          "C": "C20",
+          "D": "D20",
+          "E": "E20"
+        },
+        "codes": [],
+        "mappingStatus": "matched",
+        "observedKey": "pc.Camera_Target_X",
+        "observedType": "Float"
+      },
+      {
+        "name": "Send_Data_Camera_Target_Y",
+        "direction": "PC->PLC",
+        "excelType": "real",
+        "normalizedType": "Float",
+        "address": "%MB2028",
+        "byteLength": 4,
+        "modbusPdu": 1014,
+        "description": "Y轴绝对坐标（由上位机下发）",
+        "initial": "",
+        "row": 21,
+        "sheet": "Sheet1",
+        "sourceFile": "PC.xls",
+        "sourceCells": {
+          "A": "A21",
+          "B": "B21",
+          "C": "C21",
+          "D": "D21",
+          "E": "E21"
+        },
+        "codes": [],
+        "mappingStatus": "matched",
+        "observedKey": "pc.Camera_Target_Y",
+        "observedType": "Float"
+      },
+      {
+        "name": "Send_Data_Camera_Target_Z",
+        "direction": "PC->PLC",
+        "excelType": "real",
+        "normalizedType": "Float",
+        "address": "%MB2032",
+        "byteLength": 4,
+        "modbusPdu": 1016,
+        "description": "检测Z轴绝对坐标（由上位机下发）",
+        "initial": "",
+        "row": 22,
+        "sheet": "Sheet1",
+        "sourceFile": "PC.xls",
+        "sourceCells": {
+          "A": "A22",
+          "B": "B22",
+          "C": "C22",
+          "D": "D22",
+          "E": "E22"
+        },
+        "codes": [],
+        "mappingStatus": "matched",
+        "observedKey": "pc.Camera_Target_Z",
+        "observedType": "Float"
+      },
+      {
+        "name": "Send_Data_Scan_Target_Z",
+        "direction": "PC->PLC",
+        "excelType": "real",
+        "normalizedType": "Float",
+        "address": "%MB2036",
+        "byteLength": 4,
+        "modbusPdu": 1018,
+        "description": "扫码Z轴绝对坐标（由上位机配方下发）",
+        "initial": "",
+        "row": 23,
+        "sheet": "Sheet1",
+        "sourceFile": "PC.xls",
+        "sourceCells": {
+          "A": "A23",
+          "B": "B23",
+          "C": "C23",
+          "D": "D23",
+          "E": "E23"
+        },
+        "codes": [],
+        "mappingStatus": "matched",
+        "observedKey": "pc.Scan_Target_Z",
+        "observedType": "Float"
+      },
+      {
+        "name": "Send_Data_Grab_Target_Z",
+        "direction": "PC->PLC",
+        "excelType": "real",
+        "normalizedType": "Float",
+        "address": "%MB2040",
+        "byteLength": 4,
+        "modbusPdu": 1020,
+        "description": "抓取（分拣）Z轴绝对坐标（由上位机配方下发）",
+        "initial": "",
+        "row": 24,
+        "sheet": "Sheet1",
+        "sourceFile": "PC.xls",
+        "sourceCells": {
+          "A": "A24",
+          "B": "B24",
+          "C": "C24",
+          "D": "D24",
+          "E": "E24"
+        },
+        "codes": [],
+        "mappingStatus": "matched",
+        "observedKey": "pc.Grab_Target_Z",
+        "observedType": "Float"
+      },
+      {
+        "name": "Send_Data_Rotate_Target_R",
+        "direction": "PC->PLC",
+        "excelType": "real",
+        "normalizedType": "Float",
+        "address": "%MB2044",
+        "byteLength": 4,
+        "modbusPdu": 1022,
+        "description": "R轴绝对目标角度（由上位机下发）",
+        "initial": "",
+        "row": 25,
+        "sheet": "Sheet1",
+        "sourceFile": "PC.xls",
+        "sourceCells": {
+          "A": "A25",
+          "B": "B25",
+          "C": "C25",
+          "D": "D25",
+          "E": "E25"
+        },
+        "codes": [],
+        "mappingStatus": "matched",
+        "observedKey": "pc.Rotate_Target_R",
+        "observedType": "Float"
+      },
+      {
+        "name": "Send_Data_Model_Number",
+        "direction": "PC->PLC",
+        "excelType": "real",
+        "normalizedType": "Float",
+        "address": "%MB2048",
+        "byteLength": 4,
+        "modbusPdu": 1024,
+        "description": "单个零件型号（a、b、c、d、e） 组装零件型号（A、B、C、D、E）",
+        "initial": "",
+        "row": 26,
+        "sheet": "Sheet1",
+        "sourceFile": "PC.xls",
+        "sourceCells": {
+          "A": "A26",
+          "B": "B26",
+          "C": "C26",
+          "D": "D26",
+          "E": "E26"
+        },
+        "codes": [],
+        "mappingStatus": "matched",
+        "observedKey": "pc.Model_Number",
+        "observedType": "Float"
+      },
+      {
+        "name": "Send_Data_Global_Target_Speed",
+        "direction": "PC->PLC",
+        "excelType": "Real",
+        "normalizedType": "Float",
+        "address": "%MB2052",
+        "byteLength": 4,
+        "modbusPdu": 1026,
+        "description": "整体目标速度，由上位机下发并赋予各轴。",
+        "initial": "",
+        "row": 27,
+        "sheet": "Sheet1",
+        "sourceFile": "PC.xls",
+        "sourceCells": {
+          "A": "A27",
+          "B": "B27",
+          "C": "C27",
+          "D": "D27",
+          "E": "E27"
+        },
+        "codes": [],
+        "mappingStatus": "matched",
+        "observedKey": "pc.Global_Target_Speed",
+        "observedType": "Float"
+      },
+      {
+        "name": "Rece_Data_X_Positive_Limit",
+        "direction": "PLC->PC",
+        "excelType": "Bool",
+        "normalizedType": "Boolean",
+        "address": "%MB6000",
+        "byteLength": 1,
+        "modbusPdu": 3000,
+        "description": "X轴正限位反馈；0=未触发；1=触发。",
+        "initial": "",
+        "row": 2,
+        "sheet": "Sheet1",
+        "sourceFile": "PLC.xls",
+        "sourceCells": {
+          "A": "A2",
+          "B": "B2",
+          "C": "C2",
+          "D": "D2",
+          "E": "E2"
+        },
+        "codes": [
+          {
+            "value": 0,
+            "label": "未触发"
+          },
+          {
+            "value": 1,
+            "label": "触发。"
+          }
+        ],
+        "mappingStatus": "matched",
+        "observedKey": "plc.X_Positive_Limit",
+        "observedType": "Boolean"
+      },
+      {
+        "name": "Rece_Data_X_Negative_Limit",
+        "direction": "PLC->PC",
+        "excelType": "Bool",
+        "normalizedType": "Boolean",
+        "address": "%MB6001",
+        "byteLength": 1,
+        "modbusPdu": 3000,
+        "description": "X轴负限位反馈；0=未触发；1=触发。",
+        "initial": "",
+        "row": 3,
+        "sheet": "Sheet1",
+        "sourceFile": "PLC.xls",
+        "sourceCells": {
+          "A": "A3",
+          "B": "B3",
+          "C": "C3",
+          "D": "D3",
+          "E": "E3"
+        },
+        "codes": [
+          {
+            "value": 0,
+            "label": "未触发"
+          },
+          {
+            "value": 1,
+            "label": "触发。"
+          }
+        ],
+        "mappingStatus": "matched",
+        "observedKey": "plc.X_Negative_Limit",
+        "observedType": "Boolean"
+      },
+      {
+        "name": "Rece_Data_X_Home",
+        "direction": "PLC->PC",
+        "excelType": "Bool",
+        "normalizedType": "Boolean",
+        "address": "%MB6002",
+        "byteLength": 1,
+        "modbusPdu": 3001,
+        "description": "X轴原点开关反馈；0=无效；1=有效。",
+        "initial": "",
+        "row": 4,
+        "sheet": "Sheet1",
+        "sourceFile": "PLC.xls",
+        "sourceCells": {
+          "A": "A4",
+          "B": "B4",
+          "C": "C4",
+          "D": "D4",
+          "E": "E4"
+        },
+        "codes": [
+          {
+            "value": 0,
+            "label": "无效"
+          },
+          {
+            "value": 1,
+            "label": "有效。"
+          }
+        ],
+        "mappingStatus": "matched",
+        "observedKey": "plc.X_Home",
+        "observedType": "Boolean"
+      },
+      {
+        "name": "Rece_Data_Y_Positive_Limit",
+        "direction": "PLC->PC",
+        "excelType": "Bool",
+        "normalizedType": "Boolean",
+        "address": "%MB6003",
+        "byteLength": 1,
+        "modbusPdu": 3001,
+        "description": "Y轴正限位反馈；0=未触发；1=触发。",
+        "initial": "",
+        "row": 5,
+        "sheet": "Sheet1",
+        "sourceFile": "PLC.xls",
+        "sourceCells": {
+          "A": "A5",
+          "B": "B5",
+          "C": "C5",
+          "D": "D5",
+          "E": "E5"
+        },
+        "codes": [
+          {
+            "value": 0,
+            "label": "未触发"
+          },
+          {
+            "value": 1,
+            "label": "触发。"
+          }
+        ],
+        "mappingStatus": "matched",
+        "observedKey": "plc.Y_Positive_Limit",
+        "observedType": "Boolean"
+      },
+      {
+        "name": "Rece_Data_Y_Negative_Limit",
+        "direction": "PLC->PC",
+        "excelType": "Bool",
+        "normalizedType": "Boolean",
+        "address": "%MB6004",
+        "byteLength": 1,
+        "modbusPdu": 3002,
+        "description": "Y轴负限位反馈；0=未触发；1=触发。",
+        "initial": "",
+        "row": 6,
+        "sheet": "Sheet1",
+        "sourceFile": "PLC.xls",
+        "sourceCells": {
+          "A": "A6",
+          "B": "B6",
+          "C": "C6",
+          "D": "D6",
+          "E": "E6"
+        },
+        "codes": [
+          {
+            "value": 0,
+            "label": "未触发"
+          },
+          {
+            "value": 1,
+            "label": "触发。"
+          }
+        ],
+        "mappingStatus": "matched",
+        "observedKey": "plc.Y_Negative_Limit",
+        "observedType": "Boolean"
+      },
+      {
+        "name": "Rece_Data_Y_Home",
+        "direction": "PLC->PC",
+        "excelType": "Bool",
+        "normalizedType": "Boolean",
+        "address": "%MB6005",
+        "byteLength": 1,
+        "modbusPdu": 3002,
+        "description": "Y轴原点开关反馈；0=无效；1=有效。",
+        "initial": "",
+        "row": 7,
+        "sheet": "Sheet1",
+        "sourceFile": "PLC.xls",
+        "sourceCells": {
+          "A": "A7",
+          "B": "B7",
+          "C": "C7",
+          "D": "D7",
+          "E": "E7"
+        },
+        "codes": [
+          {
+            "value": 0,
+            "label": "无效"
+          },
+          {
+            "value": 1,
+            "label": "有效。"
+          }
+        ],
+        "mappingStatus": "matched",
+        "observedKey": "plc.Y_Home",
+        "observedType": "Boolean"
+      },
+      {
+        "name": "Rece_Data_Z_Camera_Positive_Limit",
+        "direction": "PLC->PC",
+        "excelType": "Bool",
+        "normalizedType": "Boolean",
+        "address": "%MB6006",
+        "byteLength": 1,
+        "modbusPdu": 3003,
+        "description": "检测Z轴正限位反馈；下位机上传；0=无效；1=有效。",
+        "initial": "",
+        "row": 8,
+        "sheet": "Sheet1",
+        "sourceFile": "PLC.xls",
+        "sourceCells": {
+          "A": "A8",
+          "B": "B8",
+          "C": "C8",
+          "D": "D8",
+          "E": "E8"
+        },
+        "codes": [
+          {
+            "value": 0,
+            "label": "无效"
+          },
+          {
+            "value": 1,
+            "label": "有效。"
+          }
+        ],
+        "mappingStatus": "matched",
+        "observedKey": "plc.Z_Camera_Positive_Limit",
+        "observedType": "Boolean"
+      },
+      {
+        "name": "Rece_Data_Z_Camera_Negative_Limit",
+        "direction": "PLC->PC",
+        "excelType": "Bool",
+        "normalizedType": "Boolean",
+        "address": "%MB6007",
+        "byteLength": 1,
+        "modbusPdu": 3003,
+        "description": "检测Z轴负限位反馈；下位机上传；0=无效；1=有效。",
+        "initial": "",
+        "row": 9,
+        "sheet": "Sheet1",
+        "sourceFile": "PLC.xls",
+        "sourceCells": {
+          "A": "A9",
+          "B": "B9",
+          "C": "C9",
+          "D": "D9",
+          "E": "E9"
+        },
+        "codes": [
+          {
+            "value": 0,
+            "label": "无效"
+          },
+          {
+            "value": 1,
+            "label": "有效。"
+          }
+        ],
+        "mappingStatus": "matched",
+        "observedKey": "plc.Z_Camera_Negative_Limit",
+        "observedType": "Boolean"
+      },
+      {
+        "name": "Rece_Data_Z_Camera_Home",
+        "direction": "PLC->PC",
+        "excelType": "Bool",
+        "normalizedType": "Boolean",
+        "address": "%MB6008",
+        "byteLength": 1,
+        "modbusPdu": 3004,
+        "description": "检测Z轴原点反馈；下位机上传；0=无效；1=有效。",
+        "initial": "",
+        "row": 10,
+        "sheet": "Sheet1",
+        "sourceFile": "PLC.xls",
+        "sourceCells": {
+          "A": "A10",
+          "B": "B10",
+          "C": "C10",
+          "D": "D10",
+          "E": "E10"
+        },
+        "codes": [
+          {
+            "value": 0,
+            "label": "无效"
+          },
+          {
+            "value": 1,
+            "label": "有效。"
+          }
+        ],
+        "mappingStatus": "matched",
+        "observedKey": "plc.Z_Camera_Home",
+        "observedType": "Boolean"
+      },
+      {
+        "name": "Rece_Data_Z_Scan_Positive_Limit",
+        "direction": "PLC->PC",
+        "excelType": "Bool",
+        "normalizedType": "Boolean",
+        "address": "%MB6009",
+        "byteLength": 1,
+        "modbusPdu": 3004,
+        "description": "扫码Z轴正限位反馈；下位机上传；0=无效；1=有效。",
+        "initial": "",
+        "row": 11,
+        "sheet": "Sheet1",
+        "sourceFile": "PLC.xls",
+        "sourceCells": {
+          "A": "A11",
+          "B": "B11",
+          "C": "C11",
+          "D": "D11",
+          "E": "E11"
+        },
+        "codes": [
+          {
+            "value": 0,
+            "label": "无效"
+          },
+          {
+            "value": 1,
+            "label": "有效。"
+          }
+        ],
+        "mappingStatus": "matched",
+        "observedKey": "plc.Z_Scan_Positive_Limit",
+        "observedType": "Boolean"
+      },
+      {
+        "name": "Rece_Data_Z_Scan_Negative_Limit",
+        "direction": "PLC->PC",
+        "excelType": "Bool",
+        "normalizedType": "Boolean",
+        "address": "%MB6010",
+        "byteLength": 1,
+        "modbusPdu": 3005,
+        "description": "扫码Z轴负限位反馈；下位机上传；0=无效；1=有效。",
+        "initial": "",
+        "row": 12,
+        "sheet": "Sheet1",
+        "sourceFile": "PLC.xls",
+        "sourceCells": {
+          "A": "A12",
+          "B": "B12",
+          "C": "C12",
+          "D": "D12",
+          "E": "E12"
+        },
+        "codes": [
+          {
+            "value": 0,
+            "label": "无效"
+          },
+          {
+            "value": 1,
+            "label": "有效。"
+          }
+        ],
+        "mappingStatus": "matched",
+        "observedKey": "plc.Z_Scan_Negative_Limit",
+        "observedType": "Boolean"
+      },
+      {
+        "name": "Rece_Data_Z_Scan_Home",
+        "direction": "PLC->PC",
+        "excelType": "Bool",
+        "normalizedType": "Boolean",
+        "address": "%MB6011",
+        "byteLength": 1,
+        "modbusPdu": 3005,
+        "description": "扫码Z轴原点反馈；下位机上传；0=无效；1=有效。",
+        "initial": "",
+        "row": 13,
+        "sheet": "Sheet1",
+        "sourceFile": "PLC.xls",
+        "sourceCells": {
+          "A": "A13",
+          "B": "B13",
+          "C": "C13",
+          "D": "D13",
+          "E": "E13"
+        },
+        "codes": [
+          {
+            "value": 0,
+            "label": "无效"
+          },
+          {
+            "value": 1,
+            "label": "有效。"
+          }
+        ],
+        "mappingStatus": "matched",
+        "observedKey": "plc.Z_Scan_Home",
+        "observedType": "Boolean"
+      },
+      {
+        "name": "Rece_Data_Z_Grab_Positive_Limit",
+        "direction": "PLC->PC",
+        "excelType": "Bool",
+        "normalizedType": "Boolean",
+        "address": "%MB6012",
+        "byteLength": 1,
+        "modbusPdu": 3006,
+        "description": "翻转分拣Z轴正限位反馈；下位机上传；0=无效；1=有效。",
+        "initial": "",
+        "row": 14,
+        "sheet": "Sheet1",
+        "sourceFile": "PLC.xls",
+        "sourceCells": {
+          "A": "A14",
+          "B": "B14",
+          "C": "C14",
+          "D": "D14",
+          "E": "E14"
+        },
+        "codes": [
+          {
+            "value": 0,
+            "label": "无效"
+          },
+          {
+            "value": 1,
+            "label": "有效。"
+          }
+        ],
+        "mappingStatus": "matched",
+        "observedKey": "plc.Z_Grab_Positive_Limit",
+        "observedType": "Boolean"
+      },
+      {
+        "name": "Rece_Data_Z_Grab_Negative_Limit",
+        "direction": "PLC->PC",
+        "excelType": "Bool",
+        "normalizedType": "Boolean",
+        "address": "%MB6013",
+        "byteLength": 1,
+        "modbusPdu": 3006,
+        "description": "翻转分拣Z轴负限位反馈；下位机上传；0=无效；1=有效。",
+        "initial": "",
+        "row": 15,
+        "sheet": "Sheet1",
+        "sourceFile": "PLC.xls",
+        "sourceCells": {
+          "A": "A15",
+          "B": "B15",
+          "C": "C15",
+          "D": "D15",
+          "E": "E15"
+        },
+        "codes": [
+          {
+            "value": 0,
+            "label": "无效"
+          },
+          {
+            "value": 1,
+            "label": "有效。"
+          }
+        ],
+        "mappingStatus": "matched",
+        "observedKey": "plc.Z_Grab_Negative_Limit",
+        "observedType": "Boolean"
+      },
+      {
+        "name": "Rece_Data_Z_Grab_Home",
+        "direction": "PLC->PC",
+        "excelType": "Bool",
+        "normalizedType": "Boolean",
+        "address": "%MB6014",
+        "byteLength": 1,
+        "modbusPdu": 3007,
+        "description": "翻转分拣Z轴原点反馈；下位机上传；0=无效；1=有效。",
+        "initial": "",
+        "row": 16,
+        "sheet": "Sheet1",
+        "sourceFile": "PLC.xls",
+        "sourceCells": {
+          "A": "A16",
+          "B": "B16",
+          "C": "C16",
+          "D": "D16",
+          "E": "E16"
+        },
+        "codes": [
+          {
+            "value": 0,
+            "label": "无效"
+          },
+          {
+            "value": 1,
+            "label": "有效。"
+          }
+        ],
+        "mappingStatus": "matched",
+        "observedKey": "plc.Z_Grab_Home",
+        "observedType": "Boolean"
+      },
+      {
+        "name": "Rece_Data_PLC_Ready_State",
+        "direction": "PLC->PC",
+        "excelType": "Bool",
+        "normalizedType": "Boolean",
+        "address": "%MB6015",
+        "byteLength": 1,
+        "modbusPdu": 3007,
+        "description": "PLC就绪状态：1=已就绪，可接收上位机指令；0=未就绪",
+        "initial": "",
+        "row": 17,
+        "sheet": "Sheet1",
+        "sourceFile": "PLC.xls",
+        "sourceCells": {
+          "A": "A17",
+          "B": "B17",
+          "C": "C17",
+          "D": "D17",
+          "E": "E17"
+        },
+        "codes": [
+          {
+            "value": 1,
+            "label": "已就绪"
+          },
+          {
+            "value": 0,
+            "label": "未就绪"
+          }
+        ],
+        "mappingStatus": "matched",
+        "observedKey": "plc.PLC_Ready_State",
+        "observedType": "Boolean"
+      },
+      {
+        "name": "Rece_Data_PLC_Mode_Auto",
+        "direction": "PLC->PC",
+        "excelType": "Bool",
+        "normalizedType": "Boolean",
+        "address": "%MB6016",
+        "byteLength": 1,
+        "modbusPdu": 3008,
+        "description": "PLC处于自动模式（非手动/维护）",
+        "initial": "",
+        "row": 18,
+        "sheet": "Sheet1",
+        "sourceFile": "PLC.xls",
+        "sourceCells": {
+          "A": "A18",
+          "B": "B18",
+          "C": "C18",
+          "D": "D18",
+          "E": "E18"
+        },
+        "codes": [],
+        "mappingStatus": "matched",
+        "observedKey": "plc.PLC_Mode_Auto",
+        "observedType": "Boolean"
+      },
+      {
+        "name": "Rece_Data_Start_Button",
+        "direction": "PLC->PC",
+        "excelType": "Bool",
+        "normalizedType": "Boolean",
+        "address": "%MB6017",
+        "byteLength": 1,
+        "modbusPdu": 3008,
+        "description": "启动按钮状态；0=未按下；1=按下。",
+        "initial": "",
+        "row": 19,
+        "sheet": "Sheet1",
+        "sourceFile": "PLC.xls",
+        "sourceCells": {
+          "A": "A19",
+          "B": "B19",
+          "C": "C19",
+          "D": "D19",
+          "E": "E19"
+        },
+        "codes": [
+          {
+            "value": 0,
+            "label": "未按下"
+          },
+          {
+            "value": 1,
+            "label": "按下。"
+          }
+        ],
+        "mappingStatus": "matched",
+        "observedKey": "plc.Start_Button",
+        "observedType": "Boolean"
+      },
+      {
+        "name": "Rece_Data_Stop_Button",
+        "direction": "PLC->PC",
+        "excelType": "Bool",
+        "normalizedType": "Boolean",
+        "address": "%MB6018",
+        "byteLength": 1,
+        "modbusPdu": 3009,
+        "description": "停止按钮状态；0=未按下；1=按下。",
+        "initial": "",
+        "row": 20,
+        "sheet": "Sheet1",
+        "sourceFile": "PLC.xls",
+        "sourceCells": {
+          "A": "A20",
+          "B": "B20",
+          "C": "C20",
+          "D": "D20",
+          "E": "E20"
+        },
+        "codes": [
+          {
+            "value": 0,
+            "label": "未按下"
+          },
+          {
+            "value": 1,
+            "label": "按下。"
+          }
+        ],
+        "mappingStatus": "matched",
+        "observedKey": "plc.Stop_Button",
+        "observedType": "Boolean"
+      },
+      {
+        "name": "Rece_Data_Reset_Button",
+        "direction": "PLC->PC",
+        "excelType": "Bool",
+        "normalizedType": "Boolean",
+        "address": "%MB6019",
+        "byteLength": 1,
+        "modbusPdu": 3009,
+        "description": "复位按钮状态；0=未按下；1=按下。",
+        "initial": "",
+        "row": 21,
+        "sheet": "Sheet1",
+        "sourceFile": "PLC.xls",
+        "sourceCells": {
+          "A": "A21",
+          "B": "B21",
+          "C": "C21",
+          "D": "D21",
+          "E": "E21"
+        },
+        "codes": [
+          {
+            "value": 0,
+            "label": "未按下"
+          },
+          {
+            "value": 1,
+            "label": "按下。"
+          }
+        ],
+        "mappingStatus": "matched",
+        "observedKey": "plc.Reset_Button",
+        "observedType": "Boolean"
+      },
+      {
+        "name": "Rece_Data_EStop_Active",
+        "direction": "PLC->PC",
+        "excelType": "Bool",
+        "normalizedType": "Boolean",
+        "address": "%MB6020",
+        "byteLength": 1,
+        "modbusPdu": 3010,
+        "description": "物理急停状态；0=未触发；1=急停触发。",
+        "initial": "",
+        "row": 22,
+        "sheet": "Sheet1",
+        "sourceFile": "PLC.xls",
+        "sourceCells": {
+          "A": "A22",
+          "B": "B22",
+          "C": "C22",
+          "D": "D22",
+          "E": "E22"
+        },
+        "codes": [
+          {
+            "value": 0,
+            "label": "未触发"
+          },
+          {
+            "value": 1,
+            "label": "急停触发。"
+          }
+        ],
+        "mappingStatus": "matched",
+        "observedKey": "plc.EStop_Active",
+        "observedType": "Boolean"
+      },
+      {
+        "name": "Rece_Data_Stack_Light_Red",
+        "direction": "PLC->PC",
+        "excelType": "Bool",
+        "normalizedType": "Boolean",
+        "address": "%MB6021",
+        "byteLength": 1,
+        "modbusPdu": 3010,
+        "description": "三色灯红灯状态；0=关闭；1=点亮。",
+        "initial": "",
+        "row": 23,
+        "sheet": "Sheet1",
+        "sourceFile": "PLC.xls",
+        "sourceCells": {
+          "A": "A23",
+          "B": "B23",
+          "C": "C23",
+          "D": "D23",
+          "E": "E23"
+        },
+        "codes": [
+          {
+            "value": 0,
+            "label": "关闭"
+          },
+          {
+            "value": 1,
+            "label": "点亮。"
+          }
+        ],
+        "mappingStatus": "matched",
+        "observedKey": "plc.Stack_Light_Red",
+        "observedType": "Boolean"
+      },
+      {
+        "name": "Rece_Data_Stack_Light_Green",
+        "direction": "PLC->PC",
+        "excelType": "Bool",
+        "normalizedType": "Boolean",
+        "address": "%MB6022",
+        "byteLength": 1,
+        "modbusPdu": 3011,
+        "description": "三色灯绿灯状态；0=关闭；1=点亮。",
+        "initial": "",
+        "row": 24,
+        "sheet": "Sheet1",
+        "sourceFile": "PLC.xls",
+        "sourceCells": {
+          "A": "A24",
+          "B": "B24",
+          "C": "C24",
+          "D": "D24",
+          "E": "E24"
+        },
+        "codes": [
+          {
+            "value": 0,
+            "label": "关闭"
+          },
+          {
+            "value": 1,
+            "label": "点亮。"
+          }
+        ],
+        "mappingStatus": "matched",
+        "observedKey": "plc.Stack_Light_Green",
+        "observedType": "Boolean"
+      },
+      {
+        "name": "Rece_Data_Stack_Light_Yellow",
+        "direction": "PLC->PC",
+        "excelType": "Bool",
+        "normalizedType": "Boolean",
+        "address": "%MB6023",
+        "byteLength": 1,
+        "modbusPdu": 3011,
+        "description": "三色灯黄灯状态；0=关闭；1=点亮。",
+        "initial": "",
+        "row": 25,
+        "sheet": "Sheet1",
+        "sourceFile": "PLC.xls",
+        "sourceCells": {
+          "A": "A25",
+          "B": "B25",
+          "C": "C25",
+          "D": "D25",
+          "E": "E25"
+        },
+        "codes": [
+          {
+            "value": 0,
+            "label": "关闭"
+          },
+          {
+            "value": 1,
+            "label": "点亮。"
+          }
+        ],
+        "mappingStatus": "matched",
+        "observedKey": "plc.Stack_Light_Yellow",
+        "observedType": "Boolean"
+      },
+      {
+        "name": "Rece_Data_Buzzer_State",
+        "direction": "PLC->PC",
+        "excelType": "Bool",
+        "normalizedType": "Boolean",
+        "address": "%MB6024",
+        "byteLength": 1,
+        "modbusPdu": 3012,
+        "description": "蜂鸣器状态；0=关闭；1=鸣响。",
+        "initial": "",
+        "row": 26,
+        "sheet": "Sheet1",
+        "sourceFile": "PLC.xls",
+        "sourceCells": {
+          "A": "A26",
+          "B": "B26",
+          "C": "C26",
+          "D": "D26",
+          "E": "E26"
+        },
+        "codes": [
+          {
+            "value": 0,
+            "label": "关闭"
+          },
+          {
+            "value": 1,
+            "label": "鸣响。"
+          }
+        ],
+        "mappingStatus": "matched",
+        "observedKey": "plc.Buzzer_State",
+        "observedType": "Boolean"
+      },
+      {
+        "name": "Rece_Data_Start_Indicator",
+        "direction": "PLC->PC",
+        "excelType": "Bool",
+        "normalizedType": "Boolean",
+        "address": "%MB6025",
+        "byteLength": 1,
+        "modbusPdu": 3012,
+        "description": "启动指示灯状态；0=关闭；1=点亮。",
+        "initial": "",
+        "row": 27,
+        "sheet": "Sheet1",
+        "sourceFile": "PLC.xls",
+        "sourceCells": {
+          "A": "A27",
+          "B": "B27",
+          "C": "C27",
+          "D": "D27",
+          "E": "E27"
+        },
+        "codes": [
+          {
+            "value": 0,
+            "label": "关闭"
+          },
+          {
+            "value": 1,
+            "label": "点亮。"
+          }
+        ],
+        "mappingStatus": "matched",
+        "observedKey": "plc.Start_Indicator",
+        "observedType": "Boolean"
+      },
+      {
+        "name": "Rece_Data_Stop_Indicator",
+        "direction": "PLC->PC",
+        "excelType": "Bool",
+        "normalizedType": "Boolean",
+        "address": "%MB6026",
+        "byteLength": 1,
+        "modbusPdu": 3013,
+        "description": "停止指示灯状态；0=关闭；1=点亮。",
+        "initial": "",
+        "row": 28,
+        "sheet": "Sheet1",
+        "sourceFile": "PLC.xls",
+        "sourceCells": {
+          "A": "A28",
+          "B": "B28",
+          "C": "C28",
+          "D": "D28",
+          "E": "E28"
+        },
+        "codes": [
+          {
+            "value": 0,
+            "label": "关闭"
+          },
+          {
+            "value": 1,
+            "label": "点亮。"
+          }
+        ],
+        "mappingStatus": "matched",
+        "observedKey": "plc.Stop_Indicator",
+        "observedType": "Boolean"
+      },
+      {
+        "name": "Rece_Data_Reset_Indicator",
+        "direction": "PLC->PC",
+        "excelType": "Bool",
+        "normalizedType": "Boolean",
+        "address": "%MB6027",
+        "byteLength": 1,
+        "modbusPdu": 3013,
+        "description": "复位指示灯状态；0=关闭；1=点亮。",
+        "initial": "",
+        "row": 29,
+        "sheet": "Sheet1",
+        "sourceFile": "PLC.xls",
+        "sourceCells": {
+          "A": "A29",
+          "B": "B29",
+          "C": "C29",
+          "D": "D29",
+          "E": "E29"
+        },
+        "codes": [
+          {
+            "value": 0,
+            "label": "关闭"
+          },
+          {
+            "value": 1,
+            "label": "点亮。"
+          }
+        ],
+        "mappingStatus": "matched",
+        "observedKey": "plc.Reset_Indicator",
+        "observedType": "Boolean"
+      },
+      {
+        "name": "Rece_Data_X_Axis_Alarm",
+        "direction": "PLC->PC",
+        "excelType": "Bool",
+        "normalizedType": "Boolean",
+        "address": "%MB6028",
+        "byteLength": 1,
+        "modbusPdu": 3014,
+        "description": "X轴报警；0=无报警；1=报警。",
+        "initial": "",
+        "row": 30,
+        "sheet": "Sheet1",
+        "sourceFile": "PLC.xls",
+        "sourceCells": {
+          "A": "A30",
+          "B": "B30",
+          "C": "C30",
+          "D": "D30",
+          "E": "E30"
+        },
+        "codes": [
+          {
+            "value": 0,
+            "label": "无报警"
+          },
+          {
+            "value": 1,
+            "label": "报警。"
+          }
+        ],
+        "mappingStatus": "matched",
+        "observedKey": "plc.X_Axis_Alarm",
+        "observedType": "Boolean"
+      },
+      {
+        "name": "Rece_Data_Y_Axis_Alarm",
+        "direction": "PLC->PC",
+        "excelType": "Bool",
+        "normalizedType": "Boolean",
+        "address": "%MB6029",
+        "byteLength": 1,
+        "modbusPdu": 3014,
+        "description": "Y轴报警；0=无报警；1=报警。",
+        "initial": "",
+        "row": 31,
+        "sheet": "Sheet1",
+        "sourceFile": "PLC.xls",
+        "sourceCells": {
+          "A": "A31",
+          "B": "B31",
+          "C": "C31",
+          "D": "D31",
+          "E": "E31"
+        },
+        "codes": [
+          {
+            "value": 0,
+            "label": "无报警"
+          },
+          {
+            "value": 1,
+            "label": "报警。"
+          }
+        ],
+        "mappingStatus": "matched",
+        "observedKey": "plc.Y_Axis_Alarm",
+        "observedType": "Boolean"
+      },
+      {
+        "name": "Rece_Data_Z_Camera_Axis_Alarm",
+        "direction": "PLC->PC",
+        "excelType": "Bool",
+        "normalizedType": "Boolean",
+        "address": "%MB6030",
+        "byteLength": 1,
+        "modbusPdu": 3015,
+        "description": "检测Z轴报警；0=无报警；1=报警。",
+        "initial": "",
+        "row": 32,
+        "sheet": "Sheet1",
+        "sourceFile": "PLC.xls",
+        "sourceCells": {
+          "A": "A32",
+          "B": "B32",
+          "C": "C32",
+          "D": "D32",
+          "E": "E32"
+        },
+        "codes": [
+          {
+            "value": 0,
+            "label": "无报警"
+          },
+          {
+            "value": 1,
+            "label": "报警。"
+          }
+        ],
+        "mappingStatus": "matched",
+        "observedKey": "plc.Z_Camera_Axis_Alarm",
+        "observedType": "Boolean"
+      },
+      {
+        "name": "Rece_Data_Z_Scan_Axis_Alarm",
+        "direction": "PLC->PC",
+        "excelType": "Bool",
+        "normalizedType": "Boolean",
+        "address": "%MB6031",
+        "byteLength": 1,
+        "modbusPdu": 3015,
+        "description": "扫码（零件二维码）Z轴报警；0=无报警；1=报警。",
+        "initial": "",
+        "row": 33,
+        "sheet": "Sheet1",
+        "sourceFile": "PLC.xls",
+        "sourceCells": {
+          "A": "A33",
+          "B": "B33",
+          "C": "C33",
+          "D": "D33",
+          "E": "E33"
+        },
+        "codes": [
+          {
+            "value": 0,
+            "label": "无报警"
+          },
+          {
+            "value": 1,
+            "label": "报警。"
+          }
+        ],
+        "mappingStatus": "matched",
+        "observedKey": "plc.Z_Scan_Axis_Alarm",
+        "observedType": "Boolean"
+      },
+      {
+        "name": "Rece_Data_Z_Flip_Axis_Alarm",
+        "direction": "PLC->PC",
+        "excelType": "Bool",
+        "normalizedType": "Boolean",
+        "address": "%MB6032",
+        "byteLength": 1,
+        "modbusPdu": 3016,
+        "description": "翻面Z轴报警；0=无报警；1=报警。",
+        "initial": "",
+        "row": 34,
+        "sheet": "Sheet1",
+        "sourceFile": "PLC.xls",
+        "sourceCells": {
+          "A": "A34",
+          "B": "B34",
+          "C": "C34",
+          "D": "D34",
+          "E": "E34"
+        },
+        "codes": [
+          {
+            "value": 0,
+            "label": "无报警"
+          },
+          {
+            "value": 1,
+            "label": "报警。"
+          }
+        ],
+        "mappingStatus": "matched",
+        "observedKey": "plc.Z_Flip_Axis_Alarm",
+        "observedType": "Boolean"
+      },
+      {
+        "name": "Rece_Data_Rotate_Axis_Alarm",
+        "direction": "PLC->PC",
+        "excelType": "Bool",
+        "normalizedType": "Boolean",
+        "address": "%MB6033",
+        "byteLength": 1,
+        "modbusPdu": 3016,
+        "description": "旋转轴报警；0=无报警；1=报警。",
+        "initial": "",
+        "row": 35,
+        "sheet": "Sheet1",
+        "sourceFile": "PLC.xls",
+        "sourceCells": {
+          "A": "A35",
+          "B": "B35",
+          "C": "C35",
+          "D": "D35",
+          "E": "E35"
+        },
+        "codes": [
+          {
+            "value": 0,
+            "label": "无报警"
+          },
+          {
+            "value": 1,
+            "label": "报警。"
+          }
+        ],
+        "mappingStatus": "matched",
+        "observedKey": "plc.Rotate_Axis_Alarm",
+        "observedType": "Boolean"
+      },
+      {
+        "name": "Rece_Data_Flip_Axis_Alarm",
+        "direction": "PLC->PC",
+        "excelType": "Bool",
+        "normalizedType": "Boolean",
+        "address": "%MB6034",
+        "byteLength": 1,
+        "modbusPdu": 3017,
+        "description": "翻转轴报警；0=无报警；1=报警。",
+        "initial": "",
+        "row": 36,
+        "sheet": "Sheet1",
+        "sourceFile": "PLC.xls",
+        "sourceCells": {
+          "A": "A36",
+          "B": "B36",
+          "C": "C36",
+          "D": "D36",
+          "E": "E36"
+        },
+        "codes": [
+          {
+            "value": 0,
+            "label": "无报警"
+          },
+          {
+            "value": 1,
+            "label": "报警。"
+          }
+        ],
+        "mappingStatus": "matched",
+        "observedKey": "plc.Flip_Axis_Alarm",
+        "observedType": "Boolean"
+      },
+      {
+        "name": "Rece_Data_PLC_System_Fault",
+        "direction": "PLC->PC",
+        "excelType": "Bool",
+        "normalizedType": "Boolean",
+        "address": "%MB6035",
+        "byteLength": 1,
+        "modbusPdu": 3017,
+        "description": "PLC硬件故障（急停、光栅、过载）",
+        "initial": "",
+        "row": 37,
+        "sheet": "Sheet1",
+        "sourceFile": "PLC.xls",
+        "sourceCells": {
+          "A": "A37",
+          "B": "B37",
+          "C": "C37",
+          "D": "D37",
+          "E": "E37"
+        },
+        "codes": [],
+        "mappingStatus": "matched",
+        "observedKey": "plc.PLC_System_Fault",
+        "observedType": "Boolean"
+      },
+      {
+        "name": "Rece_Data_PC_Communication_Alarm",
+        "direction": "PLC->PC",
+        "excelType": "Bool",
+        "normalizedType": "Boolean",
+        "address": "%MB6036",
+        "byteLength": 1,
+        "modbusPdu": 3018,
+        "description": "上位机与下位机通信报警；0=无报警；1=报警。",
+        "initial": "",
+        "row": 38,
+        "sheet": "Sheet1",
+        "sourceFile": "PLC.xls",
+        "sourceCells": {
+          "A": "A38",
+          "B": "B38",
+          "C": "C38",
+          "D": "D38",
+          "E": "E38"
+        },
+        "codes": [
+          {
+            "value": 0,
+            "label": "无报警"
+          },
+          {
+            "value": 1,
+            "label": "报警。"
+          }
+        ],
+        "mappingStatus": "matched",
+        "observedKey": "plc.PC_Communication_Alarm",
+        "observedType": "Boolean"
+      },
+      {
+        "name": "Rece_Data_PC_Alarm",
+        "direction": "PLC->PC",
+        "excelType": "bool",
+        "normalizedType": "Boolean",
+        "address": "%MB6037",
+        "byteLength": 1,
+        "modbusPdu": 3018,
+        "description": "上位机其他报警",
+        "initial": "新增",
+        "row": 39,
+        "sheet": "Sheet1",
+        "sourceFile": "PLC.xls",
+        "sourceCells": {
+          "A": "A39",
+          "B": "B39",
+          "C": "C39",
+          "D": "D39",
+          "E": "E39"
+        },
+        "codes": [],
+        "mappingStatus": "matched",
+        "observedKey": "plc.PC_Alarm",
+        "observedType": "Boolean"
+      },
+      {
+        "name": "Rece_Data_PLC_Heartbeat_Req",
+        "direction": "PLC->PC",
+        "excelType": "Bool",
+        "normalizedType": "Boolean",
+        "address": "%MB6038",
+        "byteLength": 1,
+        "modbusPdu": 3019,
+        "description": "PLC心跳脉冲（翻转）",
+        "initial": "",
+        "row": 40,
+        "sheet": "Sheet1",
+        "sourceFile": "PLC.xls",
+        "sourceCells": {
+          "A": "A40",
+          "B": "B40",
+          "C": "C40",
+          "D": "D40",
+          "E": "E40"
+        },
+        "codes": [],
+        "mappingStatus": "matched",
+        "observedKey": "plc.PLC_Heartbeat_Req",
+        "observedType": "Boolean"
+      },
+      {
+        "name": "Rece_Data_X_Pos_Confirmed",
+        "direction": "PLC->PC",
+        "excelType": "Int",
+        "normalizedType": "Int16",
+        "address": "%MB6040",
+        "byteLength": 2,
+        "modbusPdu": 3020,
+        "description": "0=运动中, 1=到位, 2=超时未到位",
+        "initial": "",
+        "row": 41,
+        "sheet": "Sheet1",
+        "sourceFile": "PLC.xls",
+        "sourceCells": {
+          "A": "A41",
+          "B": "B41",
+          "C": "C41",
+          "D": "D41",
+          "E": "E41"
+        },
+        "codes": [
+          {
+            "value": 0,
+            "label": "运动中"
+          },
+          {
+            "value": 1,
+            "label": "到位"
+          },
+          {
+            "value": 2,
+            "label": "超时未到位"
+          }
+        ],
+        "mappingStatus": "matched",
+        "observedKey": "plc.X_Pos_Confirmed",
+        "observedType": "Int16"
+      },
+      {
+        "name": "Rece_Data_Y_Pos_Confirmed",
+        "direction": "PLC->PC",
+        "excelType": "int",
+        "normalizedType": "Int16",
+        "address": "%MB6042",
+        "byteLength": 2,
+        "modbusPdu": 3021,
+        "description": "0=运动中, 1=到位, 2=超时未到位",
+        "initial": "",
+        "row": 42,
+        "sheet": "Sheet1",
+        "sourceFile": "PLC.xls",
+        "sourceCells": {
+          "A": "A42",
+          "B": "B42",
+          "C": "C42",
+          "D": "D42",
+          "E": "E42"
+        },
+        "codes": [
+          {
+            "value": 0,
+            "label": "运动中"
+          },
+          {
+            "value": 1,
+            "label": "到位"
+          },
+          {
+            "value": 2,
+            "label": "超时未到位"
+          }
+        ],
+        "mappingStatus": "matched",
+        "observedKey": "plc.Y_Pos_Confirmed",
+        "observedType": "Int16"
+      },
+      {
+        "name": "Rece_Data_Z_Camera_Pos_Confirmed",
+        "direction": "PLC->PC",
+        "excelType": "int",
+        "normalizedType": "Int16",
+        "address": "%MB6044",
+        "byteLength": 2,
+        "modbusPdu": 3022,
+        "description": "0=运动中, 1=到位, 2=超时未到位",
+        "initial": "",
+        "row": 43,
+        "sheet": "Sheet1",
+        "sourceFile": "PLC.xls",
+        "sourceCells": {
+          "A": "A43",
+          "B": "B43",
+          "C": "C43",
+          "D": "D43",
+          "E": "E43"
+        },
+        "codes": [
+          {
+            "value": 0,
+            "label": "运动中"
+          },
+          {
+            "value": 1,
+            "label": "到位"
+          },
+          {
+            "value": 2,
+            "label": "超时未到位"
+          }
+        ],
+        "mappingStatus": "matched",
+        "observedKey": "plc.Z_Camera_Pos_Confirmed",
+        "observedType": "Int16"
+      },
+      {
+        "name": "Rece_Data_Z_Scan_Pos_Confirmed",
+        "direction": "PLC->PC",
+        "excelType": "int",
+        "normalizedType": "Int16",
+        "address": "%MB6046",
+        "byteLength": 2,
+        "modbusPdu": 3023,
+        "description": "0=运动中, 1=到位, 2=超时未到位",
+        "initial": "",
+        "row": 44,
+        "sheet": "Sheet1",
+        "sourceFile": "PLC.xls",
+        "sourceCells": {
+          "A": "A44",
+          "B": "B44",
+          "C": "C44",
+          "D": "D44",
+          "E": "E44"
+        },
+        "codes": [
+          {
+            "value": 0,
+            "label": "运动中"
+          },
+          {
+            "value": 1,
+            "label": "到位"
+          },
+          {
+            "value": 2,
+            "label": "超时未到位"
+          }
+        ],
+        "mappingStatus": "matched",
+        "observedKey": "plc.Z_Scan_Pos_Confirmed",
+        "observedType": "Int16"
+      },
+      {
+        "name": "Rece_Data_Z_Grap_Pos_Confirmed",
+        "direction": "PLC->PC",
+        "excelType": "int",
+        "normalizedType": "Int16",
+        "address": "%MB6048",
+        "byteLength": 2,
+        "modbusPdu": 3024,
+        "description": "0=运动中, 1=到位, 2=超时未到位",
+        "initial": "",
+        "row": 45,
+        "sheet": "Sheet1",
+        "sourceFile": "PLC.xls",
+        "sourceCells": {
+          "A": "A45",
+          "B": "B45",
+          "C": "C45",
+          "D": "D45",
+          "E": "E45"
+        },
+        "codes": [
+          {
+            "value": 0,
+            "label": "运动中"
+          },
+          {
+            "value": 1,
+            "label": "到位"
+          },
+          {
+            "value": 2,
+            "label": "超时未到位"
+          }
+        ],
+        "mappingStatus": "matched",
+        "observedKey": "plc.Z_Grap_Pos_Confirmed",
+        "observedType": "Int16"
+      },
+      {
+        "name": "Rece_Data_Flip_Status",
+        "direction": "PLC->PC",
+        "excelType": "int",
+        "normalizedType": "Int16",
+        "address": "%MB6050",
+        "byteLength": 2,
+        "modbusPdu": 3025,
+        "description": "0=空闲, 1=执行中, 2=翻面完成, 3=翻面失败(伺服故障、超时判断=翻面失败）上位机下发翻面坐标，翻完一个发送翻面完成给上位机，等待上位机下发放料坐标",
+        "initial": "",
+        "row": 46,
+        "sheet": "Sheet1",
+        "sourceFile": "PLC.xls",
+        "sourceCells": {
+          "A": "A46",
+          "B": "B46",
+          "C": "C46",
+          "D": "D46",
+          "E": "E46"
+        },
+        "codes": [
+          {
+            "value": 0,
+            "label": "空闲"
+          },
+          {
+            "value": 1,
+            "label": "执行中"
+          },
+          {
+            "value": 2,
+            "label": "翻面完成"
+          },
+          {
+            "value": 3,
+            "label": "翻面失败(伺服故障、超时判断=翻面失败）上位机下发翻面坐标"
+          }
+        ],
+        "mappingStatus": "matched",
+        "observedKey": "plc.Flip_Status",
+        "observedType": "Int16"
+      },
+      {
+        "name": "Rece_Data_Flip_Unload_Status",
+        "direction": "PLC->PC",
+        "excelType": "int",
+        "normalizedType": "Int16",
+        "address": "%MB6052",
+        "byteLength": 2,
+        "modbusPdu": 3026,
+        "description": "0=空闲, 1=执行中, 2=放料完成, 3=翻面失败",
+        "initial": "",
+        "row": 47,
+        "sheet": "Sheet1",
+        "sourceFile": "PLC.xls",
+        "sourceCells": {
+          "A": "A47",
+          "B": "B47",
+          "C": "C47",
+          "D": "D47",
+          "E": "E47"
+        },
+        "codes": [
+          {
+            "value": 0,
+            "label": "空闲"
+          },
+          {
+            "value": 1,
+            "label": "执行中"
+          },
+          {
+            "value": 2,
+            "label": "放料完成"
+          },
+          {
+            "value": 3,
+            "label": "翻面失败"
+          }
+        ],
+        "mappingStatus": "matched",
+        "observedKey": "plc.Flip_Unload_Status",
+        "observedType": "Int16"
+      },
+      {
+        "name": "Rece_Data_Sorting_Exec_Status",
+        "direction": "PLC->PC",
+        "excelType": "int",
+        "normalizedType": "Int16",
+        "address": "%MB6054",
+        "byteLength": 2,
+        "modbusPdu": 3027,
+        "description": "公共取放料反馈，普通分拣、旋转工位上料及旋转零件分拣共用。0=空闲；1=取料成功；2=分拣成功（放料完成）；3=抓取空/失败（锁停）。",
+        "initial": "",
+        "row": 48,
+        "sheet": "Sheet1",
+        "sourceFile": "PLC.xls",
+        "sourceCells": {
+          "A": "A48",
+          "B": "B48",
+          "C": "C48",
+          "D": "D48",
+          "E": "E48"
+        },
+        "codes": [
+          {
+            "value": 0,
+            "label": "空闲"
+          },
+          {
+            "value": 1,
+            "label": "取料成功"
+          },
+          {
+            "value": 2,
+            "label": "分拣成功（放料完成）"
+          },
+          {
+            "value": 3,
+            "label": "抓取空/失败（锁停）。"
+          }
+        ],
+        "mappingStatus": "matched",
+        "observedKey": "plc.Sorting_Exec_Status",
+        "observedType": "Int16"
+      },
+      {
+        "name": "Rece_Data_Alarm_Code",
+        "direction": "PLC->PC",
+        "excelType": "int",
+        "normalizedType": "Int16",
+        "address": "%MB6056",
+        "byteLength": 2,
+        "modbusPdu": 3028,
+        "description": "报警码；按位表示光栅、急停、安全门、伺服过载、通信、下位机内部故障、心跳及上位机报警，位定义见“报警位定义”页。",
+        "initial": "",
+        "row": 49,
+        "sheet": "Sheet1",
+        "sourceFile": "PLC.xls",
+        "sourceCells": {
+          "A": "A49",
+          "B": "B49",
+          "C": "C49",
+          "D": "D49",
+          "E": "E49"
+        },
+        "codes": [],
+        "mappingStatus": "matched",
+        "observedKey": "plc.Alarm_Code",
+        "observedType": "Int16"
+      },
+      {
+        "name": "Rece_Data_Alarm_Level",
+        "direction": "PLC->PC",
+        "excelType": "int",
+        "normalizedType": "Int16",
+        "address": "%MB6058",
+        "byteLength": 2,
+        "modbusPdu": 3029,
+        "description": "报警等级；1=警告；2=一般故障；3=严重故障。",
+        "initial": "",
+        "row": 50,
+        "sheet": "Sheet1",
+        "sourceFile": "PLC.xls",
+        "sourceCells": {
+          "A": "A50",
+          "B": "B50",
+          "C": "C50",
+          "D": "D50",
+          "E": "E50"
+        },
+        "codes": [
+          {
+            "value": 1,
+            "label": "警告"
+          },
+          {
+            "value": 2,
+            "label": "一般故障"
+          },
+          {
+            "value": 3,
+            "label": "严重故障。"
+          }
+        ],
+        "mappingStatus": "matched",
+        "observedKey": "plc.Alarm_Level",
+        "observedType": "Int16"
+      },
+      {
+        "name": "Rece_Data_R_Pos_Confirmed",
+        "direction": "PLC->PC",
+        "excelType": "int",
+        "normalizedType": "Int16",
+        "address": "%MB6060",
+        "byteLength": 2,
+        "modbusPdu": 3030,
+        "description": "0=运动中，1=到位，2=超时未到位",
+        "initial": "",
+        "row": 51,
+        "sheet": "Sheet1",
+        "sourceFile": "PLC.xls",
+        "sourceCells": {
+          "A": "A51",
+          "B": "B51",
+          "C": "C51",
+          "D": "D51",
+          "E": "E51"
+        },
+        "codes": [
+          {
+            "value": 0,
+            "label": "运动中"
+          },
+          {
+            "value": 1,
+            "label": "到位"
+          },
+          {
+            "value": 2,
+            "label": "超时未到位"
+          }
+        ],
+        "mappingStatus": "matched",
+        "observedKey": "plc.R_Pos_Confirmed",
+        "observedType": "Int16"
+      },
+      {
+        "name": "Rece_Data_Grab_Active_ID",
+        "direction": "PLC->PC",
+        "excelType": "Int",
+        "normalizedType": "Int16",
+        "address": "%MB6062",
+        "byteLength": 2,
+        "modbusPdu": 3031,
+        "description": "0=无有效选择；1=已选定抓手1；2=已选定抓手2，编号不绑定用途。PLC反馈实际选用抓手，正常保持旧值；接收不同 Grab_ID 并完成抓手选择后更新。PC仅在更换或重新建立选择时确认反馈，同编号且当前选择有效时直接沿用，闭环中不校验。翻面不使用。",
+        "initial": "",
+        "row": 52,
+        "sheet": "Sheet1",
+        "sourceFile": "PLC.xls",
+        "sourceCells": {
+          "A": "A52",
+          "B": "B52",
+          "C": "C52",
+          "D": "D52",
+          "E": "E52"
+        },
+        "codes": [
+          {
+            "value": 0,
+            "label": "无有效选择"
+          },
+          {
+            "value": 1,
+            "label": "已选定抓手1"
+          },
+          {
+            "value": 2,
+            "label": "已选定抓手2"
+          }
+        ],
+        "mappingStatus": "matched",
+        "observedKey": "plc.Grab_Active_ID",
+        "observedType": "Int16"
+      },
+      {
+        "name": "Rece_Data_Machine_Current_Pos_X",
+        "direction": "PLC->PC",
+        "excelType": "REAL",
+        "normalizedType": "Float",
+        "address": "%MB6064",
+        "byteLength": 4,
+        "modbusPdu": 3032,
+        "description": "PLC实时反馈当前X物理坐标，供上位机校验",
+        "initial": "",
+        "row": 53,
+        "sheet": "Sheet1",
+        "sourceFile": "PLC.xls",
+        "sourceCells": {
+          "A": "A53",
+          "B": "B53",
+          "C": "C53",
+          "D": "D53",
+          "E": "E53"
+        },
+        "codes": [],
+        "mappingStatus": "matched",
+        "observedKey": "plc.Machine_Current_Pos_X",
+        "observedType": "Float"
+      },
+      {
+        "name": "Rece_Data_Machine_Current_Pos_R",
+        "direction": "PLC->PC",
+        "excelType": "REAL",
+        "normalizedType": "Float",
+        "address": "%MB6068",
+        "byteLength": 4,
+        "modbusPdu": 3034,
+        "description": "R轴实际角度，供上位机核对旋转目标",
+        "initial": "",
+        "row": 54,
+        "sheet": "Sheet1",
+        "sourceFile": "PLC.xls",
+        "sourceCells": {
+          "A": "A54",
+          "B": "B54",
+          "C": "C54",
+          "D": "D54",
+          "E": "E54"
+        },
+        "codes": [],
+        "mappingStatus": "matched",
+        "observedKey": "plc.Machine_Current_Pos_R",
+        "observedType": "Float"
+      },
+      {
+        "name": "Rece_Data_X_Actual_Speed",
+        "direction": "PLC->PC",
+        "excelType": "Real",
+        "normalizedType": "Float",
+        "address": "%MB6072",
+        "byteLength": 4,
+        "modbusPdu": 3036,
+        "description": "X轴实际速度。",
+        "initial": "",
+        "row": 55,
+        "sheet": "Sheet1",
+        "sourceFile": "PLC.xls",
+        "sourceCells": {
+          "A": "A55",
+          "B": "B55",
+          "C": "C55",
+          "D": "D55",
+          "E": "E55"
+        },
+        "codes": [],
+        "mappingStatus": "matched",
+        "observedKey": "plc.X_Actual_Speed",
+        "observedType": "Float"
+      },
+      {
+        "name": "Rece_Data_Machine_Current_Pos_Y",
+        "direction": "PLC->PC",
+        "excelType": "Real",
+        "normalizedType": "Float",
+        "address": "%MB6076",
+        "byteLength": 4,
+        "modbusPdu": 3038,
+        "description": "PLC实时反馈当前Y物理坐标，供上位机校验",
+        "initial": "",
+        "row": 56,
+        "sheet": "Sheet1",
+        "sourceFile": "PLC.xls",
+        "sourceCells": {
+          "A": "A56",
+          "B": "B56",
+          "C": "C56",
+          "D": "D56",
+          "E": "E56"
+        },
+        "codes": [],
+        "mappingStatus": "matched",
+        "observedKey": "plc.Machine_Current_Pos_Y",
+        "observedType": "Float"
+      },
+      {
+        "name": "Rece_Data_Y_Actual_Speed",
+        "direction": "PLC->PC",
+        "excelType": "Real",
+        "normalizedType": "Float",
+        "address": "%MB6080",
+        "byteLength": 4,
+        "modbusPdu": 3040,
+        "description": "Y轴实际速度。",
+        "initial": "",
+        "row": 57,
+        "sheet": "Sheet1",
+        "sourceFile": "PLC.xls",
+        "sourceCells": {
+          "A": "A57",
+          "B": "B57",
+          "C": "C57",
+          "D": "D57",
+          "E": "E57"
+        },
+        "codes": [],
+        "mappingStatus": "matched",
+        "observedKey": "plc.Y_Actual_Speed",
+        "observedType": "Float"
+      },
+      {
+        "name": "Rece_Data_Machine_Current_Pos_Z",
+        "direction": "PLC->PC",
+        "excelType": "Real",
+        "normalizedType": "Float",
+        "address": "%MB6084",
+        "byteLength": 4,
+        "modbusPdu": 3042,
+        "description": "PLC实时反馈检测Z物理坐标，供上位机校验",
+        "initial": "",
+        "row": 58,
+        "sheet": "Sheet1",
+        "sourceFile": "PLC.xls",
+        "sourceCells": {
+          "A": "A58",
+          "B": "B58",
+          "C": "C58",
+          "D": "D58",
+          "E": "E58"
+        },
+        "codes": [],
+        "mappingStatus": "matched",
+        "observedKey": "plc.Machine_Current_Pos_Z",
+        "observedType": "Float"
+      },
+      {
+        "name": "Rece_Data_Scan_Current_Pos_Z",
+        "direction": "PLC->PC",
+        "excelType": "Real",
+        "normalizedType": "Float",
+        "address": "%MB6088",
+        "byteLength": 4,
+        "modbusPdu": 3044,
+        "description": "PLC实时反馈扫码Z物理坐标，供上位机校验",
+        "initial": "",
+        "row": 59,
+        "sheet": "Sheet1",
+        "sourceFile": "PLC.xls",
+        "sourceCells": {
+          "A": "A59",
+          "B": "B59",
+          "C": "C59",
+          "D": "D59",
+          "E": "E59"
+        },
+        "codes": [],
+        "mappingStatus": "matched",
+        "observedKey": "plc.Scan_Current_Pos_Z",
+        "observedType": "Float"
+      },
+      {
+        "name": "Rece_Data_Flip_Grap_Current_Pos_Z",
+        "direction": "PLC->PC",
+        "excelType": "Real",
+        "normalizedType": "Float",
+        "address": "%MB6092",
+        "byteLength": 4,
+        "modbusPdu": 3046,
+        "description": "PLC实时反馈翻面Z物理坐标，供上位机校验",
+        "initial": "",
+        "row": 60,
+        "sheet": "Sheet1",
+        "sourceFile": "PLC.xls",
+        "sourceCells": {
+          "A": "A60",
+          "B": "B60",
+          "C": "C60",
+          "D": "D60",
+          "E": "E60"
+        },
+        "codes": [],
+        "mappingStatus": "matched",
+        "observedKey": "plc.Flip_Grap_Current_Pos_Z",
+        "observedType": "Float"
+      }
+    ]
+  }
+}

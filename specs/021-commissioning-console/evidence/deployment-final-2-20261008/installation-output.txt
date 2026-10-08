@@ -1,0 +1,24 @@
+{
+  "passed": true,
+  "verifiedFiles": 796,
+  "packageId": "gaode-commissioning-console-021-final-2",
+  "hardwareConnected": false,
+  "schemaVersion": "commissioning-package-check/1"
+}
+{"Compatible":true,"Code":"Compatible","StoreId":"f417a07f-e4cd-41c3-ab12-cfccab5505c1","SchemaVersion":"s01-store/3"}
+Recipe store prepared; no hardware accessed.
+{"Status":0,"RecipeId":"e40ca547e7e34242a69cfa08554c218c","Version":"08193b7a4c874157992bee90897f3c49","productionApproved":false}
+{"verified":1,"networkAccess":false,"output":"D:\\Gaode-Station01\\commissioning-021-final-2\\data\\recipe-readback.json"}
+{"valid":true,"networkAccess":false,"Id":"station01-virtual-algorithm","Version":"1","ExpectedRecipe":{"RecipeId":"e40ca547e7e34242a69cfa08554c218c","Version":"08193b7a4c874157992bee90897f3c49","DefinitionDigest":"47752073097CACC33484AA32A0C30B2B87B532B9FD797ED34BA975AA27816CF9","ScenarioId":"commissioning-single-flip","Model":"\u6A21\u62DF\u7FFB\u9762\u4EF6-001","FCode":"SIM-\u7FFB\u9762\u4EF6-001"},"resultScopes":6,"Digest":"D86BBD8EE7F7A27AA0C5C34A82BFB0BB29EC577B7C398E119CB7674529BB8F59"}
+{
+  "state": "ConfigurationRequired",
+  "recipeReadbackPresent": true,
+  "deviceDispatches": 0,
+  "reasons": [
+    "FieldRuntimeProfileMissing"
+  ],
+  "schemaVersion": "commissioning-launch-check/1",
+  "packageRoot": "D:\\Gaode-Station01\\commissioning-021-final-2",
+  "networkAccess": false
+}
+安装完成；配方已保存并重读。现场配置未核定，不启动设备：D:\Gaode-Station01\commissioning-021-final-2

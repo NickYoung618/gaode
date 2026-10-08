@@ -1,0 +1,54 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<TestRun id="36a7797c-7d80-40d4-bf43-390944c10d86" name="Administrator@DEMO 2026-10-08 06:57:43" runUser="demo\Administrator" xmlns="http://microsoft.com/schemas/VisualStudio/TeamTest/2010">
+  <Times creation="2026-10-08T06:57:43.7579469+08:00" queuing="2026-10-08T06:57:43.7579470+08:00" start="2026-10-08T06:57:27.9891698+08:00" finish="2026-10-08T06:57:43.7609946+08:00" />
+  <TestSettings name="default" id="fb67abaa-2c04-4afb-91bc-aa736518a5ef">
+    <Deployment runDeploymentRoot="Administrator_DEMO_2026-10-08_06_57_43" />
+  </TestSettings>
+  <Results>
+    <UnitTestResult executionId="3a39e8ff-0efd-4441-9759-3133d22c55a2" testId="b572591f-b4af-586f-0997-828280395be5" testName="Gaode.Communication.Tests.CommissioningWorkflowTests.LegacyTestHostRunsPublicPreparationBindingFlipAndDurableWholeTrayWorkflow" computerName="DEMO" duration="00:00:15.3225485" startTime="2026-10-08T06:57:28.3587766+08:00" endTime="2026-10-08T06:57:43.6870275+08:00" testType="13cdc9d9-ddb5-4fa4-a97d-d965ccfc6d4b" outcome="Passed" testListId="8c84fa94-04c1-424b-9868-57a2d4851a1d" relativeResultsDirectory="3a39e8ff-0efd-4441-9759-3133d22c55a2" />
+  </Results>
+  <TestDefinitions>
+    <UnitTest name="Gaode.Communication.Tests.CommissioningWorkflowTests.LegacyTestHostRunsPublicPreparationBindingFlipAndDurableWholeTrayWorkflow" storage="d:\gaode\backend\tests\gaode.communication.tests\bin\debug\net10.0\gaode.communication.tests.dll" id="b572591f-b4af-586f-0997-828280395be5">
+      <Execution id="3a39e8ff-0efd-4441-9759-3133d22c55a2" />
+      <TestMethod codeBase="D:\gaode\backend\tests\Gaode.Communication.Tests\bin\Debug\net10.0\Gaode.Communication.Tests.dll" adapterTypeName="executor://xunit/VsTestRunner3/netcore/" className="Gaode.Communication.Tests.CommissioningWorkflowTests" name="LegacyTestHostRunsPublicPreparationBindingFlipAndDurableWholeTrayWorkflow" />
+    </UnitTest>
+  </TestDefinitions>
+  <TestEntries>
+    <TestEntry testId="b572591f-b4af-586f-0997-828280395be5" executionId="3a39e8ff-0efd-4441-9759-3133d22c55a2" testListId="8c84fa94-04c1-424b-9868-57a2d4851a1d" />
+  </TestEntries>
+  <TestLists>
+    <TestList name="列表中未列出的结果" id="8c84fa94-04c1-424b-9868-57a2d4851a1d" />
+    <TestList name="所有已加载的结果" id="19431567-8539-422a-85d7-44ee4e166bda" />
+  </TestLists>
+  <ResultSummary outcome="Completed">
+    <Counters total="1" executed="1" passed="1" failed="0" error="0" timeout="0" aborted="0" inconclusive="0" passedButRunAborted="0" notRunnable="0" notExecuted="0" disconnected="0" warning="0" completed="0" inProgress="0" pending="0" />
+    <Output>
+      <StdOut>[xUnit.net 00:00:00.00] xUnit.net VSTest Adapter v3.1.5+1b188a7b0a (64-bit .NET 10.0.12)&#xD;
+[xUnit.net 00:00:00.09]   Discovering: Gaode.Communication.Tests&#xD;
+[xUnit.net 00:00:00.12]   Discovered:  Gaode.Communication.Tests&#xD;
+[xUnit.net 00:00:00.13]   Starting:    Gaode.Communication.Tests&#xD;
+info: Microsoft.Hosting.Lifetime[14]&#xD;
+      Now listening on: http://127.0.0.1:60382&#xD;
+info: Microsoft.Hosting.Lifetime[0]&#xD;
+      Application started. Press Ctrl+C to shut down.&#xD;
+info: Microsoft.Hosting.Lifetime[0]&#xD;
+      Hosting environment: Production&#xD;
+info: Microsoft.Hosting.Lifetime[0]&#xD;
+      Content root path: D:\gaode\backend\tests\Gaode.Communication.Tests\bin\Debug\net10.0&#xD;
+info: Gaode.Host.Lifecycle.Station01HostedService[0]&#xD;
+      StartupPersistence category=Lifecycle phase=Started deviceServicesStarted=false&#xD;
+info: Gaode.Host.Lifecycle.Station01HostedService[0]&#xD;
+      Station01 Host������δ���������=0���ָ�״̬���Զ�����&#xD;
+info: Gaode.Host.Lifecycle.Station01HostedService[0]&#xD;
+      StartupPersistence category=Lifecycle phase=Completed unfinishedRuns=0; device startup may now proceed&#xD;
+info: Gaode.Infrastructure.Diagnostics.StructuredStageDiagnostics[0]&#xD;
+      StartupDiagnostic category=CommandFlow requestId=OFFLINE-normal-chain commandId=b03cc98b-1189-4c8e-8833-b85f1e4b892c runId=4656f13e-4520-49b5-b4a8-765997e4f7a2 stage=Admission classification=Accepted disposition=RunCreated connectionEpoch=(null) observedAtUtc=(null) source=(null)&#xD;
+info: Gaode.Infrastructure.Diagnostics.StructuredStageDiagnostics[0]&#xD;
+      StartupDiagnostic category=CommandFlow requestId=OFFLINE-normal-chain-second commandId=bf282630-67e7-4c7c-83da-7f2a5eed7512 runId=aa5ea987-e1c5-44f6-bc6f-355ea6bdd738 stage=Admission classification=Accepted disposition=RunCreated connectionEpoch=(null) observedAtUtc=(null) source=(null)&#xD;
+info: Microsoft.Hosting.Lifetime[0]&#xD;
+      Application is shutting down...&#xD;
+[xUnit.net 00:00:15.48]   Finished:    Gaode.Communication.Tests&#xD;
+</StdOut>
+    </Output>
+  </ResultSummary>
+</TestRun>

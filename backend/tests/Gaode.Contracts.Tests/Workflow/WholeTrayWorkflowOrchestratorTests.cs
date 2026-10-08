@@ -218,6 +218,9 @@ public sealed class WholeTrayWorkflowOrchestratorTests
     {
         private readonly Dictionary<Guid, WholeTrayCompletionRecord> records = [];
 
+        public Task<bool> ReconcileFinalAsync(Guid runId, Guid trayId, CancellationToken cancellationToken) =>
+            throw new NotSupportedException("This workflow fixture does not model durable final reconciliation.");
+
         public async Task<WholeTrayCompletionRecord> CreateAsync(WholeTrayCompletionCreateRequest request,
             CancellationToken cancellationToken = default)
         {

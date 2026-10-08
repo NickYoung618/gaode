@@ -50,9 +50,14 @@ public sealed class IndependentRecipeApplication(ITraceQuery traces, IStageHando
             return new(JsonSerializer.Deserialize<T>(json, Json) ?? throw new InvalidDataException("FrozenConfigurationMissing"),
                 json, digest, $"audit://{frozenFact.WriteId:D}");
         }
-        var config = ConfigurationFreezer.Freeze(Read<PublicConfiguration>("public"), Read<BusinessBudget>("budget"),
-            Read<SimulationProfile>("simulation"), f.GetProperty("capabilityVersions").Deserialize<Dictionary<string,string>>(Json)!);
-        if (config.SnapshotId != snapshot.GetString() || config.Public.Purpose != plan.Approval.Purpose)
+        var publicConfig = Read<PublicConfiguration>("public");
+        var commissioning = publicConfig.Value.Purpose == RuntimePurposes.RealDeviceCommissioning;
+        var config = ConfigurationFreezer.Freeze(publicConfig, Read<BusinessBudget>("budget"),
+            commissioning ? null : Read<SimulationProfile>("simulation"),
+            f.GetProperty("capabilityVersions").Deserialize<Dictionary<string,string>>(Json)!,
+            commissioning ? Read<CommissioningConfiguration>("commissioning") : null);
+        if (config.SnapshotId != snapshot.GetString() || config.Public.Purpose != frozenInputs.CostProfile.Purpose ||
+            !RecipeAdmission.MatchesRunPurpose(frozenInputs, v2.Handoff.Identity.Purpose))
             throw new InvalidOperationException("FrozenBindingSnapshotMismatch");
         var deadlines = new List<DateTimeOffset>();
         var deadlineReferences = new List<RecipeDeadlineReference>();

@@ -5,7 +5,7 @@ public static class Station01Policies
     public static CapabilityRegistry Create()
     {
         var registry = new CapabilityRegistry();
-        var purposes = new HashSet<string>(StringComparer.Ordinal) { "Test", "Production" };
+        var purposes = new HashSet<string>(StringComparer.Ordinal) { "Test", "Production", Gaode.Domain.Configuration.RuntimePurposes.RealDeviceCommissioning };
         registry.Register(new FixedCapabilityPolicy("xyz.fixed", "1.0", "Motion", purposes));
         registry.Register(new FixedCapabilityPolicy("xy.fixed", "1.0", "Motion", purposes));
         registry.Register(new FixedCapabilityPolicy("capture.whole-tray", "1.0", "Capture3D", purposes));

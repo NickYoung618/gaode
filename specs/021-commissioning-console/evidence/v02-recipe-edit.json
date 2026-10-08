@@ -1,0 +1,852 @@
+{
+  "scope": "OFFLINE:page-saved-version-after-A-freeze;formal-executor-declared-ports;not-full-machine",
+  "state": "Passed",
+  "before": {
+    "recipeId": "97ea13d723854d91ab69a783fc12cda4",
+    "version": "30bab158d6bb42a283618e122c1d0d45",
+    "releaseStatus": "draft",
+    "scenarioId": "component-scenario",
+    "model": "CaseSensitiveModel",
+    "fCode": "tray-raw",
+    "unitKind": "independentPart",
+    "primaryMaterial": "part",
+    "layoutProfile": "layout",
+    "capacity": 1,
+    "positions": [
+      {
+        "slotId": "s1",
+        "unitPattern": "{TrayRunId}/s1",
+        "members": [
+          {
+            "material": "part",
+            "memberPattern": "{UnitId}/part",
+            "handling": "individual"
+          }
+        ],
+        "physicalSlotIndex": 1,
+        "cellId": "r1:c4"
+      }
+    ],
+    "composition": [
+      {
+        "material": "part",
+        "localFaces": [
+          1,
+          2
+        ]
+      }
+    ],
+    "route": "ordinaryBatch",
+    "stages": [
+      {
+        "number": 1,
+        "action": "none",
+        "angleDeg": null,
+        "targets": [
+          {
+            "material": "part",
+            "localFace": 1,
+            "cameraPair": "CD",
+            "captureProfile": "detect",
+            "algorithmProfile": "defect"
+          }
+        ]
+      },
+      {
+        "number": 2,
+        "action": "flipAffectedMembersOneByOne",
+        "angleDeg": null,
+        "targets": [
+          {
+            "material": "part",
+            "localFace": 2,
+            "cameraPair": "AB",
+            "captureProfile": "detect",
+            "algorithmProfile": "defect"
+          }
+        ]
+      }
+    ],
+    "eCode": {
+      "enabled": false,
+      "representativeMaterial": null,
+      "bindTo": null,
+      "requiredForOk": false,
+      "readAt": null,
+      "captureProfile": null,
+      "algorithmProfile": null,
+      "scanPointRef": null,
+      "extraPose": null
+    },
+    "disposition": {
+      "ok": "originalSlot",
+      "ng": "NG",
+      "pending": "Pending",
+      "physicalUnit": "singlePart"
+    },
+    "motionProfile": "motion",
+    "qualityProfile": "quality",
+    "captureProfiles": {
+      "detect": {
+        "id": "detect",
+        "version": "test-1",
+        "settings": {
+          "profileId": "detect",
+          "exposureUs": 10,
+          "gain": 1,
+          "roiPixels": [
+            0,
+            0,
+            2,
+            2
+          ],
+          "lightChannel": "light",
+          "brightnessPercent": 1,
+          "settleMs": 0
+        }
+      }
+    },
+    "executionPositions": {
+      "s1": {
+        "slotId": "s1",
+        "physicalEntity": {
+          "source": {
+            "point": {
+              "id": "s1",
+              "version": "test-1",
+              "x": 1,
+              "y": 2,
+              "unit": "mm",
+              "frame": "test-frame",
+              "z": 3
+            },
+            "coordinateEvidenceReference": "Test:source"
+          },
+          "coordinates": [
+            {
+              "pointRef": "f1-C",
+              "point": {
+                "id": "detect-C",
+                "version": "test-1",
+                "x": 10,
+                "y": 20,
+                "unit": "mm",
+                "frame": "test-frame"
+              },
+              "objectPattern": "{UnitId}/part",
+              "slotId": "s1",
+              "physicalSlotIndex": 1,
+              "localFace": 1,
+              "camera": "C",
+              "stageId": "stage:1",
+              "configurationVersion": "test-1",
+              "sourceFactReference": "Test:explicit-config",
+              "fixed": {
+                "z": 3,
+                "unit": "mm",
+                "datum": "test-frame",
+                "approvalReference": "Test-only",
+                "configurationVersion": "test-1"
+              },
+              "captureProfile": "detect"
+            },
+            {
+              "pointRef": "f1-D",
+              "point": {
+                "id": "detect-D",
+                "version": "test-1",
+                "x": 10,
+                "y": 20,
+                "unit": "mm",
+                "frame": "test-frame"
+              },
+              "objectPattern": "{UnitId}/part",
+              "slotId": "s1",
+              "physicalSlotIndex": 1,
+              "localFace": 1,
+              "camera": "D",
+              "stageId": "stage:1",
+              "configurationVersion": "test-1",
+              "sourceFactReference": "Test:explicit-config",
+              "fixed": {
+                "z": 3,
+                "unit": "mm",
+                "datum": "test-frame",
+                "approvalReference": "Test-only",
+                "configurationVersion": "test-1"
+              },
+              "captureProfile": "detect"
+            },
+            {
+              "pointRef": "f2-A",
+              "point": {
+                "id": "detect-A",
+                "version": "test-1",
+                "x": 10,
+                "y": 20,
+                "unit": "mm",
+                "frame": "test-frame"
+              },
+              "objectPattern": "{UnitId}/part",
+              "slotId": "s1",
+              "physicalSlotIndex": 1,
+              "localFace": 2,
+              "camera": "A",
+              "stageId": "stage:2",
+              "configurationVersion": "test-1",
+              "sourceFactReference": "Test:explicit-config",
+              "fixed": {
+                "z": 3,
+                "unit": "mm",
+                "datum": "test-frame",
+                "approvalReference": "Test-only",
+                "configurationVersion": "test-1"
+              },
+              "captureProfile": "detect"
+            },
+            {
+              "pointRef": "f2-B",
+              "point": {
+                "id": "detect-B",
+                "version": "test-1",
+                "x": 10,
+                "y": 20,
+                "unit": "mm",
+                "frame": "test-frame"
+              },
+              "objectPattern": "{UnitId}/part",
+              "slotId": "s1",
+              "physicalSlotIndex": 1,
+              "localFace": 2,
+              "camera": "B",
+              "stageId": "stage:2",
+              "configurationVersion": "test-1",
+              "sourceFactReference": "Test:explicit-config",
+              "fixed": {
+                "z": 3,
+                "unit": "mm",
+                "datum": "test-frame",
+                "approvalReference": "Test-only",
+                "configurationVersion": "test-1"
+              },
+              "captureProfile": "detect"
+            }
+          ],
+          "flip": {
+            "stages": {
+              "stage:2": {
+                "targetPose": {
+                  "profileId": "motion",
+                  "profileVersion": "test-1",
+                  "poseKey": "face-2"
+                },
+                "pickPointRef": "pick",
+                "putBackPointRef": "put"
+              }
+            }
+          },
+          "rotation": null,
+          "sorting": {},
+          "purposePoints": {
+            "pick": {
+              "purpose": "FlipPick",
+              "point": {
+                "id": "FlipPick",
+                "version": "test-1",
+                "x": 10,
+                "y": 20,
+                "unit": "mm",
+                "frame": "test-frame"
+              },
+              "fixed": {
+                "z": 3,
+                "unit": "mm",
+                "datum": "test-frame",
+                "approvalReference": "Test-only",
+                "configurationVersion": "test-1"
+              },
+              "coordinateEvidenceReference": "Test:explicit-purpose"
+            },
+            "put": {
+              "purpose": "FlipPutBack",
+              "point": {
+                "id": "FlipPutBack",
+                "version": "test-1",
+                "x": 10,
+                "y": 20,
+                "unit": "mm",
+                "frame": "test-frame"
+              },
+              "fixed": {
+                "z": 3,
+                "unit": "mm",
+                "datum": "test-frame",
+                "approvalReference": "Test-only",
+                "configurationVersion": "test-1"
+              },
+              "coordinateEvidenceReference": "Test:explicit-purpose"
+            },
+            "scan": {
+              "purpose": "EScan",
+              "point": {
+                "id": "EScan",
+                "version": "test-1",
+                "x": 10,
+                "y": 20,
+                "unit": "mm",
+                "frame": "test-frame"
+              },
+              "fixed": {
+                "z": 3,
+                "unit": "mm",
+                "datum": "test-frame",
+                "approvalReference": "Test-only",
+                "configurationVersion": "test-1"
+              },
+              "coordinateEvidenceReference": "Test:explicit-purpose",
+              "captureProfile": "detect"
+            }
+          },
+          "sortingCellIds": {
+            "NG": "r1:c1",
+            "Pending": "r1:c10"
+          }
+        },
+        "members": {}
+      }
+    },
+    "catalogDigest": "0C39FD5B0936110CC3A8BBDC29C569A6386584DA8596C9032F43DF04A47297EB",
+    "plcRecipeId": null,
+    "ngCapacity": 1,
+    "pendingCapacity": 1,
+    "schemaVersion": "recipe-definition/5",
+    "sortingGripperId": 1,
+    "trayLayout": {
+      "rows": 10,
+      "columns": 10,
+      "cells": [
+        {
+          "cellId": "r1:c1",
+          "row": 1,
+          "column": 1,
+          "region": "NG"
+        },
+        {
+          "cellId": "r1:c4",
+          "row": 1,
+          "column": 4,
+          "region": "OK"
+        },
+        {
+          "cellId": "r1:c10",
+          "row": 1,
+          "column": 10,
+          "region": "Pending"
+        }
+      ]
+    },
+    "traySlotMapping": {
+      "id": "component-map",
+      "version": "test-1",
+      "evidenceReference": "Test:explicit Recipe011Data physical mapping",
+      "bindings": [
+        {
+          "cellId": "r1:c4",
+          "physicalSlotIndex": 1
+        }
+      ]
+    },
+    "inspectionKind": "ordinary",
+    "sortingTargets": {
+      "r1:c1": {
+        "point": {
+          "id": "ng",
+          "version": "test-1",
+          "x": 30,
+          "y": 40,
+          "unit": "mm",
+          "frame": "test-frame",
+          "z": 3
+        },
+        "coordinateEvidenceReference": "Test:ng"
+      },
+      "r1:c10": {
+        "point": {
+          "id": "pending",
+          "version": "test-1",
+          "x": 50,
+          "y": 60,
+          "unit": "mm",
+          "frame": "test-frame",
+          "z": 3
+        },
+        "coordinateEvidenceReference": "Test:pending"
+      }
+    },
+    "definitionDigest": "7146C53F4A8768F103DC41D2761CACD0B42A9E0CD43CA0F76542D44FF38815C8",
+    "approval": {
+      "id": "",
+      "version": "",
+      "digest": "",
+      "purpose": "",
+      "allowedSlots": [],
+      "evidenceReference": ""
+    },
+    "algorithmRequirements": {
+      "defect": {
+        "id": "defect",
+        "parametersVersion": "test-1",
+        "purpose": "SingleDetection",
+        "inputCount": 1,
+        "resultContract": "test-defect/1"
+      },
+      "defect/fusion": {
+        "id": "defect/fusion",
+        "parametersVersion": "test-1",
+        "purpose": "FaceFusion",
+        "inputCount": 2,
+        "resultContract": "test-fusion/1"
+      },
+      "ecode": {
+        "id": "ecode",
+        "parametersVersion": "test-1",
+        "purpose": "EntityCode",
+        "inputCount": 1,
+        "resultContract": "test-code/1"
+      }
+    }
+  },
+  "after": {
+    "recipeId": "97ea13d723854d91ab69a783fc12cda4",
+    "version": "7831dc0dec3949129a62a167a458a592",
+    "releaseStatus": "draft",
+    "scenarioId": "component-scenario",
+    "model": "CaseSensitiveModel",
+    "fCode": "tray-raw",
+    "unitKind": "independentPart",
+    "primaryMaterial": "part",
+    "layoutProfile": "layout",
+    "capacity": 1,
+    "positions": [
+      {
+        "slotId": "s1",
+        "unitPattern": "{TrayRunId}/s1",
+        "members": [
+          {
+            "material": "part",
+            "memberPattern": "{UnitId}/part",
+            "handling": "individual"
+          }
+        ],
+        "physicalSlotIndex": 1,
+        "cellId": "r1:c4"
+      }
+    ],
+    "composition": [
+      {
+        "material": "part",
+        "localFaces": [
+          1,
+          2
+        ]
+      }
+    ],
+    "route": "ordinaryBatch",
+    "stages": [
+      {
+        "number": 1,
+        "action": "none",
+        "angleDeg": null,
+        "targets": [
+          {
+            "material": "part",
+            "localFace": 1,
+            "cameraPair": "CD",
+            "captureProfile": "detect",
+            "algorithmProfile": "defect"
+          }
+        ]
+      },
+      {
+        "number": 2,
+        "action": "flipAffectedMembersOneByOne",
+        "angleDeg": null,
+        "targets": [
+          {
+            "material": "part",
+            "localFace": 2,
+            "cameraPair": "AB",
+            "captureProfile": "detect",
+            "algorithmProfile": "defect"
+          }
+        ]
+      }
+    ],
+    "eCode": {
+      "enabled": false,
+      "representativeMaterial": null,
+      "bindTo": null,
+      "requiredForOk": false,
+      "readAt": null,
+      "captureProfile": null,
+      "algorithmProfile": null,
+      "scanPointRef": null,
+      "extraPose": null
+    },
+    "disposition": {
+      "ok": "originalSlot",
+      "ng": "NG",
+      "pending": "Pending",
+      "physicalUnit": "singlePart"
+    },
+    "motionProfile": "motion",
+    "qualityProfile": "quality",
+    "captureProfiles": {
+      "detect": {
+        "id": "detect",
+        "version": "test-1",
+        "settings": {
+          "profileId": "detect",
+          "exposureUs": 10,
+          "gain": 1,
+          "roiPixels": [
+            0,
+            0,
+            2,
+            2
+          ],
+          "lightChannel": "light",
+          "brightnessPercent": 1,
+          "settleMs": 0
+        }
+      },
+      "capture/s1/part/stage%3A1/f1-C/C": {
+        "id": "capture/s1/part/stage%3A1/f1-C/C",
+        "version": "test-1",
+        "settings": {
+          "profileId": "capture/s1/part/stage%3A1/f1-C/C",
+          "exposureUs": 110,
+          "gain": 1,
+          "roiPixels": [
+            0,
+            0,
+            2,
+            2
+          ],
+          "lightChannel": "light",
+          "brightnessPercent": 1,
+          "settleMs": 0
+        }
+      }
+    },
+    "executionPositions": {
+      "s1": {
+        "slotId": "s1",
+        "physicalEntity": {
+          "source": {
+            "point": {
+              "id": "s1",
+              "version": "test-1",
+              "x": 1,
+              "y": 2,
+              "unit": "mm",
+              "frame": "test-frame",
+              "z": 3
+            },
+            "coordinateEvidenceReference": "Test:source"
+          },
+          "coordinates": [
+            {
+              "pointRef": "f1-C",
+              "point": {
+                "id": "detect-C",
+                "version": "test-1",
+                "x": 11,
+                "y": 20,
+                "unit": "mm",
+                "frame": "test-frame"
+              },
+              "objectPattern": "{UnitId}/part",
+              "slotId": "s1",
+              "physicalSlotIndex": 1,
+              "localFace": 1,
+              "camera": "C",
+              "stageId": "stage:1",
+              "configurationVersion": "test-1",
+              "sourceFactReference": "Test:explicit-config",
+              "fixed": {
+                "z": 3,
+                "unit": "mm",
+                "datum": "test-frame",
+                "approvalReference": "Test-only",
+                "configurationVersion": "test-1"
+              },
+              "captureProfile": "capture/s1/part/stage%3A1/f1-C/C"
+            },
+            {
+              "pointRef": "f1-D",
+              "point": {
+                "id": "detect-D",
+                "version": "test-1",
+                "x": 10,
+                "y": 20,
+                "unit": "mm",
+                "frame": "test-frame"
+              },
+              "objectPattern": "{UnitId}/part",
+              "slotId": "s1",
+              "physicalSlotIndex": 1,
+              "localFace": 1,
+              "camera": "D",
+              "stageId": "stage:1",
+              "configurationVersion": "test-1",
+              "sourceFactReference": "Test:explicit-config",
+              "fixed": {
+                "z": 3,
+                "unit": "mm",
+                "datum": "test-frame",
+                "approvalReference": "Test-only",
+                "configurationVersion": "test-1"
+              },
+              "captureProfile": "detect"
+            },
+            {
+              "pointRef": "f2-A",
+              "point": {
+                "id": "detect-A",
+                "version": "test-1",
+                "x": 10,
+                "y": 20,
+                "unit": "mm",
+                "frame": "test-frame"
+              },
+              "objectPattern": "{UnitId}/part",
+              "slotId": "s1",
+              "physicalSlotIndex": 1,
+              "localFace": 2,
+              "camera": "A",
+              "stageId": "stage:2",
+              "configurationVersion": "test-1",
+              "sourceFactReference": "Test:explicit-config",
+              "fixed": {
+                "z": 3,
+                "unit": "mm",
+                "datum": "test-frame",
+                "approvalReference": "Test-only",
+                "configurationVersion": "test-1"
+              },
+              "captureProfile": "detect"
+            },
+            {
+              "pointRef": "f2-B",
+              "point": {
+                "id": "detect-B",
+                "version": "test-1",
+                "x": 10,
+                "y": 20,
+                "unit": "mm",
+                "frame": "test-frame"
+              },
+              "objectPattern": "{UnitId}/part",
+              "slotId": "s1",
+              "physicalSlotIndex": 1,
+              "localFace": 2,
+              "camera": "B",
+              "stageId": "stage:2",
+              "configurationVersion": "test-1",
+              "sourceFactReference": "Test:explicit-config",
+              "fixed": {
+                "z": 3,
+                "unit": "mm",
+                "datum": "test-frame",
+                "approvalReference": "Test-only",
+                "configurationVersion": "test-1"
+              },
+              "captureProfile": "detect"
+            }
+          ],
+          "flip": {
+            "stages": {
+              "stage:2": {
+                "targetPose": {
+                  "profileId": "motion",
+                  "profileVersion": "test-1",
+                  "poseKey": "face-2"
+                },
+                "pickPointRef": "pick",
+                "putBackPointRef": "put"
+              }
+            }
+          },
+          "rotation": null,
+          "sorting": {},
+          "purposePoints": {
+            "pick": {
+              "purpose": "FlipPick",
+              "point": {
+                "id": "FlipPick",
+                "version": "test-1",
+                "x": 10,
+                "y": 20,
+                "unit": "mm",
+                "frame": "test-frame"
+              },
+              "fixed": {
+                "z": 3,
+                "unit": "mm",
+                "datum": "test-frame",
+                "approvalReference": "Test-only",
+                "configurationVersion": "test-1"
+              },
+              "coordinateEvidenceReference": "Test:explicit-purpose"
+            },
+            "put": {
+              "purpose": "FlipPutBack",
+              "point": {
+                "id": "FlipPutBack",
+                "version": "test-1",
+                "x": 10,
+                "y": 20,
+                "unit": "mm",
+                "frame": "test-frame"
+              },
+              "fixed": {
+                "z": 3,
+                "unit": "mm",
+                "datum": "test-frame",
+                "approvalReference": "Test-only",
+                "configurationVersion": "test-1"
+              },
+              "coordinateEvidenceReference": "Test:explicit-purpose"
+            },
+            "scan": {
+              "purpose": "EScan",
+              "point": {
+                "id": "EScan",
+                "version": "test-1",
+                "x": 10,
+                "y": 20,
+                "unit": "mm",
+                "frame": "test-frame"
+              },
+              "fixed": {
+                "z": 3,
+                "unit": "mm",
+                "datum": "test-frame",
+                "approvalReference": "Test-only",
+                "configurationVersion": "test-1"
+              },
+              "coordinateEvidenceReference": "Test:explicit-purpose",
+              "captureProfile": "detect"
+            }
+          },
+          "sortingCellIds": {
+            "NG": "r1:c1",
+            "Pending": "r1:c10"
+          }
+        },
+        "members": {}
+      }
+    },
+    "catalogDigest": "2A06D5D83DDBFE9CC82423223535FD585FFA5E166A750D6C698A12775B2FB29C",
+    "plcRecipeId": null,
+    "ngCapacity": 1,
+    "pendingCapacity": 1,
+    "schemaVersion": "recipe-definition/5",
+    "sortingGripperId": 1,
+    "trayLayout": {
+      "rows": 10,
+      "columns": 10,
+      "cells": [
+        {
+          "cellId": "r1:c1",
+          "row": 1,
+          "column": 1,
+          "region": "NG"
+        },
+        {
+          "cellId": "r1:c4",
+          "row": 1,
+          "column": 4,
+          "region": "OK"
+        },
+        {
+          "cellId": "r1:c10",
+          "row": 1,
+          "column": 10,
+          "region": "Pending"
+        }
+      ]
+    },
+    "traySlotMapping": {
+      "id": "component-map",
+      "version": "test-1",
+      "evidenceReference": "Test:explicit Recipe011Data physical mapping",
+      "bindings": [
+        {
+          "cellId": "r1:c4",
+          "physicalSlotIndex": 1
+        }
+      ]
+    },
+    "inspectionKind": "ordinary",
+    "sortingTargets": {
+      "r1:c1": {
+        "point": {
+          "id": "ng",
+          "version": "test-1",
+          "x": 30,
+          "y": 40,
+          "unit": "mm",
+          "frame": "test-frame",
+          "z": 3
+        },
+        "coordinateEvidenceReference": "Test:ng"
+      },
+      "r1:c10": {
+        "point": {
+          "id": "pending",
+          "version": "test-1",
+          "x": 50,
+          "y": 60,
+          "unit": "mm",
+          "frame": "test-frame",
+          "z": 3
+        },
+        "coordinateEvidenceReference": "Test:pending"
+      }
+    },
+    "definitionDigest": "702D316C5C20FD2D8289977A033353079A6907679C5482AA3ABD77CE9C227139",
+    "approval": {
+      "id": "",
+      "version": "",
+      "digest": "",
+      "purpose": "",
+      "allowedSlots": [],
+      "evidenceReference": ""
+    },
+    "algorithmRequirements": {
+      "defect": {
+        "id": "defect",
+        "parametersVersion": "test-1",
+        "purpose": "SingleDetection",
+        "inputCount": 1,
+        "resultContract": "test-defect/1"
+      },
+      "defect/fusion": {
+        "id": "defect/fusion",
+        "parametersVersion": "test-1",
+        "purpose": "FaceFusion",
+        "inputCount": 2,
+        "resultContract": "test-fusion/1"
+      },
+      "ecode": {
+        "id": "ecode",
+        "parametersVersion": "test-1",
+        "purpose": "EntityCode",
+        "inputCount": 1,
+        "resultContract": "test-code/1"
+      }
+    }
+  }
+}

@@ -1,0 +1,58 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<TestRun id="2e7ce57e-3927-461d-b465-578202657c37" name="Administrator@DEMO 2026-10-08 10:38:04" runUser="demo\Administrator" xmlns="http://microsoft.com/schemas/VisualStudio/TeamTest/2010">
+  <Times creation="2026-10-08T10:38:04.7624994+08:00" queuing="2026-10-08T10:38:04.7624995+08:00" start="2026-10-08T10:38:01.5603365+08:00" finish="2026-10-08T10:38:05.7884063+08:00" />
+  <TestSettings name="default" id="c96788bd-0c64-449e-bed6-7223583c38c0">
+    <Deployment runDeploymentRoot="Administrator_DEMO_2026-10-08_10_38_04" />
+  </TestSettings>
+  <Results>
+    <UnitTestResult executionId="b74d8c93-efcb-4b44-b313-fa2a367001c2" testId="a5ace3c4-9a69-d270-377a-91a5c934e8eb" testName="Gaode.Communication.Tests.SiteOperationHandshakeTests.StartClearsAfterFullActualXYAndZClosureAndSameCoordinateReuseStillWorks" computerName="DEMO" duration="00:00:01.0434676" startTime="2026-10-08T10:38:04.6090270+08:00" endTime="2026-10-08T10:38:05.6525340+08:00" testType="13cdc9d9-ddb5-4fa4-a97d-d965ccfc6d4b" outcome="Passed" testListId="8c84fa94-04c1-424b-9868-57a2d4851a1d" relativeResultsDirectory="b74d8c93-efcb-4b44-b313-fa2a367001c2" />
+    <UnitTestResult executionId="59b99f41-bebc-4550-bc00-7f06dccccb4e" testId="44233950-ca35-cc53-970b-991a3f8842f2" testName="Gaode.Communication.Tests.SiteOperationHandshakeTests.ResetWaitsForThisReadyFallingAndRisingEdgeBeforeClearingRequest" computerName="DEMO" duration="00:00:01.3210795" startTime="2026-10-08T10:38:01.9303282+08:00" endTime="2026-10-08T10:38:03.2570302+08:00" testType="13cdc9d9-ddb5-4fa4-a97d-d965ccfc6d4b" outcome="Passed" testListId="8c84fa94-04c1-424b-9868-57a2d4851a1d" relativeResultsDirectory="59b99f41-bebc-4550-bc00-7f06dccccb4e" />
+    <UnitTestResult executionId="5b34b0ad-5131-4582-af6e-d4f2a4a20a3a" testId="6fd6dff2-3cef-3a00-e37d-2993c16ff439" testName="Gaode.Communication.Tests.SiteOperationHandshakeTests.ResetOldReadyOneTimesOutWithoutClearingOrReplaying" computerName="DEMO" duration="00:00:00.7664453" startTime="2026-10-08T10:38:03.8427478+08:00" endTime="2026-10-08T10:38:04.6088572+08:00" testType="13cdc9d9-ddb5-4fa4-a97d-d965ccfc6d4b" outcome="Passed" testListId="8c84fa94-04c1-424b-9868-57a2d4851a1d" relativeResultsDirectory="5b34b0ad-5131-4582-af6e-d4f2a4a20a3a" />
+    <UnitTestResult executionId="c393a008-c907-4418-88b4-813c586958ac" testId="f8539f2b-aa75-b463-1039-7e501d211002" testName="Gaode.Communication.Tests.SiteOperationHandshakeTests.SoftStopRequestsStopWithoutResetOrHomingAndHoldsUnknown" computerName="DEMO" duration="00:00:00.0811028" startTime="2026-10-08T10:38:05.6530841+08:00" endTime="2026-10-08T10:38:05.7338392+08:00" testType="13cdc9d9-ddb5-4fa4-a97d-d965ccfc6d4b" outcome="Passed" testListId="8c84fa94-04c1-424b-9868-57a2d4851a1d" relativeResultsDirectory="c393a008-c907-4418-88b4-813c586958ac" />
+    <UnitTestResult executionId="125d9f5f-68f0-4b51-9ea6-9973c5207260" testId="e4f4f7b4-68aa-c002-c837-3c41c4632dda" testName="Gaode.Communication.Tests.SiteOperationHandshakeTests.StartupAwayFromSafeZeroDoesNotSendStartOrMotion" computerName="DEMO" duration="00:00:00.5841318" startTime="2026-10-08T10:38:03.2629707+08:00" endTime="2026-10-08T10:38:03.8422214+08:00" testType="13cdc9d9-ddb5-4fa4-a97d-d965ccfc6d4b" outcome="Passed" testListId="8c84fa94-04c1-424b-9868-57a2d4851a1d" relativeResultsDirectory="125d9f5f-68f0-4b51-9ea6-9973c5207260" />
+  </Results>
+  <TestDefinitions>
+    <UnitTest name="Gaode.Communication.Tests.SiteOperationHandshakeTests.ResetWaitsForThisReadyFallingAndRisingEdgeBeforeClearingRequest" storage="d:\gaode\backend\tests\gaode.communication.tests\bin\debug\net10.0\gaode.communication.tests.dll" id="44233950-ca35-cc53-970b-991a3f8842f2">
+      <Execution id="59b99f41-bebc-4550-bc00-7f06dccccb4e" />
+      <TestMethod codeBase="D:\gaode\backend\tests\Gaode.Communication.Tests\bin\Debug\net10.0\Gaode.Communication.Tests.dll" adapterTypeName="executor://xunit/VsTestRunner3/netcore/" className="Gaode.Communication.Tests.SiteOperationHandshakeTests" name="ResetWaitsForThisReadyFallingAndRisingEdgeBeforeClearingRequest" />
+    </UnitTest>
+    <UnitTest name="Gaode.Communication.Tests.SiteOperationHandshakeTests.StartClearsAfterFullActualXYAndZClosureAndSameCoordinateReuseStillWorks" storage="d:\gaode\backend\tests\gaode.communication.tests\bin\debug\net10.0\gaode.communication.tests.dll" id="a5ace3c4-9a69-d270-377a-91a5c934e8eb">
+      <Execution id="b74d8c93-efcb-4b44-b313-fa2a367001c2" />
+      <TestMethod codeBase="D:\gaode\backend\tests\Gaode.Communication.Tests\bin\Debug\net10.0\Gaode.Communication.Tests.dll" adapterTypeName="executor://xunit/VsTestRunner3/netcore/" className="Gaode.Communication.Tests.SiteOperationHandshakeTests" name="StartClearsAfterFullActualXYAndZClosureAndSameCoordinateReuseStillWorks" />
+    </UnitTest>
+    <UnitTest name="Gaode.Communication.Tests.SiteOperationHandshakeTests.SoftStopRequestsStopWithoutResetOrHomingAndHoldsUnknown" storage="d:\gaode\backend\tests\gaode.communication.tests\bin\debug\net10.0\gaode.communication.tests.dll" id="f8539f2b-aa75-b463-1039-7e501d211002">
+      <Execution id="c393a008-c907-4418-88b4-813c586958ac" />
+      <TestMethod codeBase="D:\gaode\backend\tests\Gaode.Communication.Tests\bin\Debug\net10.0\Gaode.Communication.Tests.dll" adapterTypeName="executor://xunit/VsTestRunner3/netcore/" className="Gaode.Communication.Tests.SiteOperationHandshakeTests" name="SoftStopRequestsStopWithoutResetOrHomingAndHoldsUnknown" />
+    </UnitTest>
+    <UnitTest name="Gaode.Communication.Tests.SiteOperationHandshakeTests.ResetOldReadyOneTimesOutWithoutClearingOrReplaying" storage="d:\gaode\backend\tests\gaode.communication.tests\bin\debug\net10.0\gaode.communication.tests.dll" id="6fd6dff2-3cef-3a00-e37d-2993c16ff439">
+      <Execution id="5b34b0ad-5131-4582-af6e-d4f2a4a20a3a" />
+      <TestMethod codeBase="D:\gaode\backend\tests\Gaode.Communication.Tests\bin\Debug\net10.0\Gaode.Communication.Tests.dll" adapterTypeName="executor://xunit/VsTestRunner3/netcore/" className="Gaode.Communication.Tests.SiteOperationHandshakeTests" name="ResetOldReadyOneTimesOutWithoutClearingOrReplaying" />
+    </UnitTest>
+    <UnitTest name="Gaode.Communication.Tests.SiteOperationHandshakeTests.StartupAwayFromSafeZeroDoesNotSendStartOrMotion" storage="d:\gaode\backend\tests\gaode.communication.tests\bin\debug\net10.0\gaode.communication.tests.dll" id="e4f4f7b4-68aa-c002-c837-3c41c4632dda">
+      <Execution id="125d9f5f-68f0-4b51-9ea6-9973c5207260" />
+      <TestMethod codeBase="D:\gaode\backend\tests\Gaode.Communication.Tests\bin\Debug\net10.0\Gaode.Communication.Tests.dll" adapterTypeName="executor://xunit/VsTestRunner3/netcore/" className="Gaode.Communication.Tests.SiteOperationHandshakeTests" name="StartupAwayFromSafeZeroDoesNotSendStartOrMotion" />
+    </UnitTest>
+  </TestDefinitions>
+  <TestEntries>
+    <TestEntry testId="a5ace3c4-9a69-d270-377a-91a5c934e8eb" executionId="b74d8c93-efcb-4b44-b313-fa2a367001c2" testListId="8c84fa94-04c1-424b-9868-57a2d4851a1d" />
+    <TestEntry testId="44233950-ca35-cc53-970b-991a3f8842f2" executionId="59b99f41-bebc-4550-bc00-7f06dccccb4e" testListId="8c84fa94-04c1-424b-9868-57a2d4851a1d" />
+    <TestEntry testId="6fd6dff2-3cef-3a00-e37d-2993c16ff439" executionId="5b34b0ad-5131-4582-af6e-d4f2a4a20a3a" testListId="8c84fa94-04c1-424b-9868-57a2d4851a1d" />
+    <TestEntry testId="f8539f2b-aa75-b463-1039-7e501d211002" executionId="c393a008-c907-4418-88b4-813c586958ac" testListId="8c84fa94-04c1-424b-9868-57a2d4851a1d" />
+    <TestEntry testId="e4f4f7b4-68aa-c002-c837-3c41c4632dda" executionId="125d9f5f-68f0-4b51-9ea6-9973c5207260" testListId="8c84fa94-04c1-424b-9868-57a2d4851a1d" />
+  </TestEntries>
+  <TestLists>
+    <TestList name="列表中未列出的结果" id="8c84fa94-04c1-424b-9868-57a2d4851a1d" />
+    <TestList name="所有已加载的结果" id="19431567-8539-422a-85d7-44ee4e166bda" />
+  </TestLists>
+  <ResultSummary outcome="Completed">
+    <Counters total="5" executed="5" passed="5" failed="0" error="0" timeout="0" aborted="0" inconclusive="0" passedButRunAborted="0" notRunnable="0" notExecuted="0" disconnected="0" warning="0" completed="0" inProgress="0" pending="0" />
+    <Output>
+      <StdOut>[xUnit.net 00:00:00.00] xUnit.net VSTest Adapter v3.1.5+1b188a7b0a (64-bit .NET 10.0.12)&#xD;
+[xUnit.net 00:00:00.09]   Discovering: Gaode.Communication.Tests&#xD;
+[xUnit.net 00:00:00.12]   Discovered:  Gaode.Communication.Tests&#xD;
+[xUnit.net 00:00:00.14]   Starting:    Gaode.Communication.Tests&#xD;
+[xUnit.net 00:00:03.96]   Finished:    Gaode.Communication.Tests&#xD;
+</StdOut>
+    </Output>
+  </ResultSummary>
+</TestRun>

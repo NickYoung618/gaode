@@ -9,7 +9,7 @@ public sealed record MotionConfiguration(CapabilityRef Capability, string[] Axes
     string Unit, AxisLimits Limits, FixedPoints Points, double PositionTolerance = 0,
     string CoordinateDigest = "", string CoordinateSource = "");
 public sealed record TrayScope(string Id, string Version, string Kind, string Unit, string Frame, AxisLimits Bounds);
-public sealed record CaptureParameters(int ExposureUs, int LightLevel);
+public sealed record CaptureParameters(int ExposureUs, int? LightLevel);
 public sealed record Capture3DConfiguration(CapabilityRef Capability, string BindingId, string LightBindingId,
     TrayScope Scope, CaptureParameters Parameters, long MaxCaptureBytes);
 public sealed record CaptureFConfiguration(CapabilityRef Capability, string BindingId, string LightBindingId,
@@ -23,4 +23,9 @@ public sealed record PublicConfiguration(string SchemaVersion, string Id, string
     string Source, DeviceBinding[] Bindings, MotionConfiguration Motion,
     Capture3DConfiguration Capture3d, CaptureFConfiguration CaptureF,
     AlgorithmConfigurations Algorithms, ParserConfiguration Parser,
-    string StopAfter, string QualityState);
+    string StopAfter, string QualityState)
+{
+    [System.Text.Json.Serialization.JsonIgnore(Condition = System.Text.Json.Serialization.JsonIgnoreCondition.WhenWritingNull)]
+    public Gaode.Domain.Configuration.LightExecutionConfiguration? LightExecution { get; init; }
+}
+

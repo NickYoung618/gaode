@@ -50,6 +50,9 @@ public sealed partial class LatestProtocolPlcDevice
             throw new InvalidOperationException("RotationMechanicalBasisMissingOrMismatched");
         using (var eligibility = ActionDispatchEligibility(request.Window, request.ConnectionEpoch, token))
         {
+            var baseline = await signals.ReadAsync(PreparedPlcReadPlans.Rotation, token);
+            if (baseline.Bit(SignalId.RotateStart) || baseline.Word(SignalId.RPosConfirmed) != 0)
+                throw new IOException("PreviousRotationNotCleared");
             await signals.WriteFloatAsync(SignalId.RotateTargetR, checked((float)target.AngleDeg), token);
             await signals.WriteBitAsync(SignalId.RotateStart, true, token);
         }
@@ -70,7 +73,8 @@ public sealed partial class LatestProtocolPlcDevice
                         sample.Values.Float(SignalId.MachineCurrentPosR), target.AngleToleranceDeg, sample.Identity.SampleEndedUtc);
                     if (!angle.Matched) throw new IOException("RotationActualAngleMismatch");
                     using var eligibility = ActionDispatchEligibility(request.Window, request.ConnectionEpoch, token);
-                    await signals.WriteBitAsync(SignalId.RotateStart, false, token);
+                    await ClearAndConfirmAsync("R", "R", SignalId.RotateStart, true,
+                        [SignalId.RotateStart, SignalId.RPosConfirmed], request.Window, request.ConnectionEpoch, token);
                     return (angle, sample.Identity);
                 }
                 else if (status != SignalCodes.Value(SignalId.RPosConfirmed, "Arrived")) throw new IOException("RotationFeedbackFailure");
@@ -81,11 +85,12 @@ public sealed partial class LatestProtocolPlcDevice
     }
     internal PlcSignalAccessor StageSignals => signals;
     internal ExecutionOrigin StageOrigin => Origin;
+    internal string StageConfigurationPurpose => options.ConfigurationPurpose;
     internal FixedPoint SortingSafetyTarget(FixedPoint at, string purpose)
     {
         var position = options.SortingSafePosition;
         if (position is null || !double.IsFinite(position.GrabZ) || string.IsNullOrWhiteSpace(position.SourceReference) ||
-            position.Purpose != purpose || purpose != (options.Provider == "Real" ? "Production" : "Test") ||
+            position.Purpose != purpose || purpose != options.ConfigurationPurpose ||
             position.Unit != at.Unit || position.Frame != at.Frame)
             throw new InvalidOperationException("SortingSafetyPositionNotConfigured");
         return at with { Id = at.Id + "/safe", Z = position.GrabZ };
@@ -100,7 +105,7 @@ public sealed partial class LatestProtocolPlcDevice
             CheckAxisWindow(request.Window, request.ConnectionEpoch, token);
         }
         else await DriveTargetAsync(target, "Unload", request.Window, request.ConnectionEpoch, null, token);
-        var actual = Observe().PositionForPurpose(grabOnly ? "GrabZ" : "XY")
+        var actual = completedMoveObservation?.PositionForPurpose(grabOnly ? "GrabZ" : "XY")
             ?? throw new IOException("StagePositionUnavailable");
         var evidence = new PositionReachedEvidence(request.Correlation, target, actual, request.PositionTolerance);
         if (!evidence.Matched) throw new IOException("StageTargetNotReached");

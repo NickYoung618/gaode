@@ -1,0 +1,5377 @@
+{
+  "id": "248e147bd833",
+  "name": "模拟翻面件-001",
+  "state": "completed",
+  "step": 14,
+  "started": 1791393192.6622643,
+  "steps": [
+    {
+      "id": 1,
+      "name": "人工上料",
+      "state": "completed"
+    },
+    {
+      "id": 2,
+      "name": "3D 初次观察",
+      "state": "completed"
+    },
+    {
+      "id": 3,
+      "name": "F 相机扫码",
+      "state": "completed"
+    },
+    {
+      "id": 4,
+      "name": "第一面 A 拍照",
+      "state": "completed"
+    },
+    {
+      "id": 5,
+      "name": "第一面 B 拍照",
+      "state": "completed"
+    },
+    {
+      "id": 6,
+      "name": "翻面取料定位",
+      "state": "completed"
+    },
+    {
+      "id": 7,
+      "name": "翻到第二面",
+      "state": "completed"
+    },
+    {
+      "id": 8,
+      "name": "放回原槽定位",
+      "state": "completed"
+    },
+    {
+      "id": 9,
+      "name": "放回原槽",
+      "state": "completed"
+    },
+    {
+      "id": 10,
+      "name": "3D 姿态复查",
+      "state": "completed"
+    },
+    {
+      "id": 11,
+      "name": "第二面 C 拍照",
+      "state": "completed"
+    },
+    {
+      "id": 12,
+      "name": "第二面 D 拍照",
+      "state": "completed"
+    },
+    {
+      "id": 13,
+      "name": "汇总并保存结果",
+      "state": "completed"
+    },
+    {
+      "id": 14,
+      "name": "返回下料位",
+      "state": "completed"
+    }
+  ],
+  "barcode": "SIM-翻面件-001",
+  "inspections": [
+    {
+      "step": 2,
+      "outcome": "OK",
+      "simulated": true,
+      "recordPurpose": "流程测试",
+      "realInspectionResult": false,
+      "material": "P1有料",
+      "pose": "正常",
+      "fBarcodePosition": {
+        "x": 65,
+        "y": 50
+      }
+    },
+    {
+      "step": 4,
+      "outcome": "OK",
+      "simulated": true,
+      "recordPurpose": "流程测试",
+      "realInspectionResult": false
+    },
+    {
+      "step": 5,
+      "outcome": "NG",
+      "simulated": true,
+      "recordPurpose": "流程测试",
+      "realInspectionResult": false
+    },
+    {
+      "step": 10,
+      "outcome": "OK",
+      "simulated": true,
+      "recordPurpose": "流程测试",
+      "realInspectionResult": false,
+      "pose": "第二面姿态正常"
+    },
+    {
+      "step": 11,
+      "outcome": "OK",
+      "simulated": true,
+      "recordPurpose": "流程测试",
+      "realInspectionResult": false
+    },
+    {
+      "step": 12,
+      "outcome": "OK",
+      "simulated": true,
+      "recordPurpose": "流程测试",
+      "realInspectionResult": false
+    }
+  ],
+  "signals": [
+    {
+      "id": "482f1b25fd",
+      "at": "2026-10-08T01:13:12+0800",
+      "epoch": 1791393192.6822667,
+      "kind": "SIGNAL",
+      "title": "信号变化：Send_Data_PC_System_Ready",
+      "idSignal": "pc.PC_System_Ready",
+      "mb": 2006,
+      "before": 0,
+      "value": 1,
+      "rawRegisters": [
+        1
+      ],
+      "connectionGeneration": 1,
+      "recipeRunId": "248e147bd833",
+      "recipeStep": 1
+    },
+    {
+      "id": "3cd29711ac",
+      "at": "2026-10-08T01:13:12+0800",
+      "epoch": 1791393192.697796,
+      "kind": "SIGNAL",
+      "title": "信号变化：Send_Data_Camera_Target_Z",
+      "idSignal": "pc.Camera_Target_Z",
+      "mb": 2032,
+      "before": 0.0,
+      "value": 2.0,
+      "rawRegisters": [
+        0,
+        16384
+      ],
+      "connectionGeneration": 1,
+      "recipeRunId": "248e147bd833",
+      "recipeStep": 1
+    },
+    {
+      "id": "7f4df49abb",
+      "at": "2026-10-08T01:13:12+0800",
+      "epoch": 1791393192.7117522,
+      "kind": "SIGNAL",
+      "title": "信号变化：Send_Data_Z_Camera_Move_Start",
+      "operationId": "recipe-248e147bd833-1",
+      "actionId": "24dd22e40b",
+      "idSignal": "pc.Z_Camera_Move_Start",
+      "mb": 2003,
+      "before": 0,
+      "value": 1,
+      "rawRegisters": [
+        256
+      ],
+      "connectionGeneration": 1,
+      "resource": "ZCamera",
+      "cycle": "24dd22e40b",
+      "deadline": 43876.343,
+      "recipeRunId": "248e147bd833",
+      "recipeStep": 1
+    },
+    {
+      "id": "2de6a16307",
+      "at": "2026-10-08T01:13:12+0800",
+      "epoch": 1791393192.7732182,
+      "kind": "SIGNAL",
+      "title": "信号变化：Rece_Data_Z_Camera_Pos_Confirmed",
+      "operationId": "recipe-248e147bd833-1",
+      "actionId": "24dd22e40b",
+      "idSignal": "plc.Z_Camera_Pos_Confirmed",
+      "mb": 6044,
+      "before": 0,
+      "value": 1,
+      "rawRegisters": [
+        1
+      ],
+      "connectionGeneration": 1,
+      "resource": "ZCamera",
+      "cycle": "24dd22e40b",
+      "deadline": 43876.343,
+      "recipeRunId": "248e147bd833",
+      "recipeStep": 1
+    },
+    {
+      "id": "768779c39a",
+      "at": "2026-10-08T01:13:12+0800",
+      "epoch": 1791393192.8043766,
+      "kind": "SIGNAL",
+      "title": "信号变化：Send_Data_Z_Camera_Move_Start",
+      "operationId": "recipe-248e147bd833-1",
+      "actionId": "24dd22e40b",
+      "idSignal": "pc.Z_Camera_Move_Start",
+      "mb": 2003,
+      "before": 1,
+      "value": 0,
+      "rawRegisters": [
+        0
+      ],
+      "connectionGeneration": 1,
+      "resource": "ZCamera",
+      "cycle": "24dd22e40b",
+      "deadline": 43876.343,
+      "recipeRunId": "248e147bd833",
+      "recipeStep": 1
+    },
+    {
+      "id": "bfbc86fa8b",
+      "at": "2026-10-08T01:13:12+0800",
+      "epoch": 1791393192.8043766,
+      "kind": "SIGNAL",
+      "title": "信号变化：Rece_Data_Z_Camera_Pos_Confirmed",
+      "operationId": "recipe-248e147bd833-1",
+      "actionId": "24dd22e40b",
+      "idSignal": "plc.Z_Camera_Pos_Confirmed",
+      "mb": 6044,
+      "before": 1,
+      "value": 0,
+      "rawRegisters": [
+        0
+      ],
+      "connectionGeneration": 1,
+      "resource": "ZCamera",
+      "cycle": "24dd22e40b",
+      "deadline": 43876.343,
+      "recipeRunId": "248e147bd833",
+      "recipeStep": 1
+    },
+    {
+      "id": "befbb8bcca",
+      "at": "2026-10-08T01:13:12+0800",
+      "epoch": 1791393192.8415806,
+      "kind": "SIGNAL",
+      "title": "信号变化：Send_Data_Scan_Target_Z",
+      "idSignal": "pc.Scan_Target_Z",
+      "mb": 2036,
+      "before": 0.0,
+      "value": 2.0,
+      "rawRegisters": [
+        0,
+        16384
+      ],
+      "connectionGeneration": 1,
+      "recipeRunId": "248e147bd833",
+      "recipeStep": 1
+    },
+    {
+      "id": "682bcdefb0",
+      "at": "2026-10-08T01:13:12+0800",
+      "epoch": 1791393192.857065,
+      "kind": "SIGNAL",
+      "title": "信号变化：Send_Data_Z_Scan_Move_Start",
+      "operationId": "recipe-248e147bd833-1",
+      "actionId": "2dcae11609",
+      "idSignal": "pc.Z_Scan_Move_Start",
+      "mb": 2004,
+      "before": 0,
+      "value": 1,
+      "rawRegisters": [
+        1
+      ],
+      "connectionGeneration": 1,
+      "resource": "ZScan",
+      "cycle": "2dcae11609",
+      "deadline": 43876.484,
+      "recipeRunId": "248e147bd833",
+      "recipeStep": 1
+    },
+    {
+      "id": "0c278afde7",
+      "at": "2026-10-08T01:13:12+0800",
+      "epoch": 1791393192.9029696,
+      "kind": "SIGNAL",
+      "title": "信号变化：Rece_Data_Z_Scan_Pos_Confirmed",
+      "operationId": "recipe-248e147bd833-1",
+      "actionId": "2dcae11609",
+      "idSignal": "plc.Z_Scan_Pos_Confirmed",
+      "mb": 6046,
+      "before": 0,
+      "value": 1,
+      "rawRegisters": [
+        1
+      ],
+      "connectionGeneration": 1,
+      "resource": "ZScan",
+      "cycle": "2dcae11609",
+      "deadline": 43876.484,
+      "recipeRunId": "248e147bd833",
+      "recipeStep": 1
+    },
+    {
+      "id": "30ae66ea1c",
+      "at": "2026-10-08T01:13:12+0800",
+      "epoch": 1791393192.9257429,
+      "kind": "SIGNAL",
+      "title": "信号变化：Send_Data_Z_Scan_Move_Start",
+      "operationId": "recipe-248e147bd833-1",
+      "actionId": "2dcae11609",
+      "idSignal": "pc.Z_Scan_Move_Start",
+      "mb": 2004,
+      "before": 1,
+      "value": 0,
+      "rawRegisters": [
+        0
+      ],
+      "connectionGeneration": 1,
+      "resource": "ZScan",
+      "cycle": "2dcae11609",
+      "deadline": 43876.484,
+      "recipeRunId": "248e147bd833",
+      "recipeStep": 1
+    },
+    {
+      "id": "74a6ed6276",
+      "at": "2026-10-08T01:13:12+0800",
+      "epoch": 1791393192.9257429,
+      "kind": "SIGNAL",
+      "title": "信号变化：Rece_Data_Z_Scan_Pos_Confirmed",
+      "operationId": "recipe-248e147bd833-1",
+      "actionId": "2dcae11609",
+      "idSignal": "plc.Z_Scan_Pos_Confirmed",
+      "mb": 6046,
+      "before": 1,
+      "value": 0,
+      "rawRegisters": [
+        0
+      ],
+      "connectionGeneration": 1,
+      "resource": "ZScan",
+      "cycle": "2dcae11609",
+      "deadline": 43876.484,
+      "recipeRunId": "248e147bd833",
+      "recipeStep": 1
+    },
+    {
+      "id": "a8ee7dff50",
+      "at": "2026-10-08T01:13:12+0800",
+      "epoch": 1791393192.9619467,
+      "kind": "SIGNAL",
+      "title": "信号变化：Send_Data_Grab_Target_Z",
+      "idSignal": "pc.Grab_Target_Z",
+      "mb": 2040,
+      "before": 0.0,
+      "value": 2.0,
+      "rawRegisters": [
+        0,
+        16384
+      ],
+      "connectionGeneration": 1,
+      "recipeRunId": "248e147bd833",
+      "recipeStep": 1
+    },
+    {
+      "id": "5b9ba331bd",
+      "at": "2026-10-08T01:13:12+0800",
+      "epoch": 1791393192.974803,
+      "kind": "SIGNAL",
+      "title": "信号变化：Send_Data_Z_Grab_Move_Start",
+      "operationId": "recipe-248e147bd833-1",
+      "actionId": "06e6f776cc",
+      "idSignal": "pc.Z_Grab_Move_Start",
+      "mb": 2005,
+      "before": 0,
+      "value": 1,
+      "rawRegisters": [
+        256
+      ],
+      "connectionGeneration": 1,
+      "resource": "ZGrab",
+      "cycle": "06e6f776cc",
+      "deadline": 43876.609,
+      "recipeRunId": "248e147bd833",
+      "recipeStep": 1
+    },
+    {
+      "id": "7590d808c4",
+      "at": "2026-10-08T01:13:13+0800",
+      "epoch": 1791393193.0300264,
+      "kind": "SIGNAL",
+      "title": "信号变化：Rece_Data_Z_Grap_Pos_Confirmed",
+      "operationId": "recipe-248e147bd833-1",
+      "actionId": "06e6f776cc",
+      "idSignal": "plc.Z_Grap_Pos_Confirmed",
+      "mb": 6048,
+      "before": 0,
+      "value": 1,
+      "rawRegisters": [
+        1
+      ],
+      "connectionGeneration": 1,
+      "resource": "ZGrab",
+      "cycle": "06e6f776cc",
+      "deadline": 43876.609,
+      "recipeRunId": "248e147bd833",
+      "recipeStep": 1
+    },
+    {
+      "id": "c83107fd50",
+      "at": "2026-10-08T01:13:13+0800",
+      "epoch": 1791393193.052955,
+      "kind": "SIGNAL",
+      "title": "信号变化：Send_Data_Z_Grab_Move_Start",
+      "operationId": "recipe-248e147bd833-1",
+      "actionId": "06e6f776cc",
+      "idSignal": "pc.Z_Grab_Move_Start",
+      "mb": 2005,
+      "before": 1,
+      "value": 0,
+      "rawRegisters": [
+        0
+      ],
+      "connectionGeneration": 1,
+      "resource": "ZGrab",
+      "cycle": "06e6f776cc",
+      "deadline": 43876.609,
+      "recipeRunId": "248e147bd833",
+      "recipeStep": 1
+    },
+    {
+      "id": "a59c839603",
+      "at": "2026-10-08T01:13:13+0800",
+      "epoch": 1791393193.0539553,
+      "kind": "SIGNAL",
+      "title": "信号变化：Rece_Data_Z_Grap_Pos_Confirmed",
+      "operationId": "recipe-248e147bd833-1",
+      "actionId": "06e6f776cc",
+      "idSignal": "plc.Z_Grap_Pos_Confirmed",
+      "mb": 6048,
+      "before": 1,
+      "value": 0,
+      "rawRegisters": [
+        0
+      ],
+      "connectionGeneration": 1,
+      "resource": "ZGrab",
+      "cycle": "06e6f776cc",
+      "deadline": 43876.609,
+      "recipeRunId": "248e147bd833",
+      "recipeStep": 1
+    },
+    {
+      "id": "205723b556",
+      "at": "2026-10-08T01:13:13+0800",
+      "epoch": 1791393193.1037507,
+      "kind": "SIGNAL",
+      "title": "信号变化：Send_Data_X_Move_Start",
+      "operationId": "recipe-248e147bd833-1",
+      "actionId": "2de6620705",
+      "idSignal": "pc.X_Move_Start",
+      "mb": 2001,
+      "before": 0,
+      "value": 1,
+      "rawRegisters": [
+        256
+      ],
+      "connectionGeneration": 1,
+      "resource": "X",
+      "cycle": "2de6620705",
+      "deadline": 43876.734,
+      "recipeRunId": "248e147bd833",
+      "recipeStep": 1
+    },
+    {
+      "id": "d631ac60db",
+      "at": "2026-10-08T01:13:13+0800",
+      "epoch": 1791393193.1646419,
+      "kind": "SIGNAL",
+      "title": "信号变化：Rece_Data_X_Pos_Confirmed",
+      "operationId": "recipe-248e147bd833-1",
+      "actionId": "2de6620705",
+      "idSignal": "plc.X_Pos_Confirmed",
+      "mb": 6040,
+      "before": 0,
+      "value": 1,
+      "rawRegisters": [
+        1
+      ],
+      "connectionGeneration": 1,
+      "resource": "X",
+      "cycle": "2de6620705",
+      "deadline": 43876.734,
+      "recipeRunId": "248e147bd833",
+      "recipeStep": 1
+    },
+    {
+      "id": "3244c7eb43",
+      "at": "2026-10-08T01:13:13+0800",
+      "epoch": 1791393193.1881258,
+      "kind": "SIGNAL",
+      "title": "信号变化：Send_Data_X_Move_Start",
+      "operationId": "recipe-248e147bd833-1",
+      "actionId": "2de6620705",
+      "idSignal": "pc.X_Move_Start",
+      "mb": 2001,
+      "before": 1,
+      "value": 0,
+      "rawRegisters": [
+        0
+      ],
+      "connectionGeneration": 1,
+      "resource": "X",
+      "cycle": "2de6620705",
+      "deadline": 43876.734,
+      "recipeRunId": "248e147bd833",
+      "recipeStep": 1
+    },
+    {
+      "id": "2a5ed71a19",
+      "at": "2026-10-08T01:13:13+0800",
+      "epoch": 1791393193.1881258,
+      "kind": "SIGNAL",
+      "title": "信号变化：Rece_Data_X_Pos_Confirmed",
+      "operationId": "recipe-248e147bd833-1",
+      "actionId": "2de6620705",
+      "idSignal": "plc.X_Pos_Confirmed",
+      "mb": 6040,
+      "before": 1,
+      "value": 0,
+      "rawRegisters": [
+        0
+      ],
+      "connectionGeneration": 1,
+      "resource": "X",
+      "cycle": "2de6620705",
+      "deadline": 43876.734,
+      "recipeRunId": "248e147bd833",
+      "recipeStep": 1
+    },
+    {
+      "id": "ab63207f99",
+      "at": "2026-10-08T01:13:13+0800",
+      "epoch": 1791393193.2463093,
+      "kind": "SIGNAL",
+      "title": "信号变化：Send_Data_Y_Move_Start",
+      "operationId": "recipe-248e147bd833-1",
+      "actionId": "158b9d7b93",
+      "idSignal": "pc.Y_Move_Start",
+      "mb": 2002,
+      "before": 0,
+      "value": 1,
+      "rawRegisters": [
+        1
+      ],
+      "connectionGeneration": 1,
+      "resource": "Y",
+      "cycle": "158b9d7b93",
+      "deadline": 43876.875,
+      "recipeRunId": "248e147bd833",
+      "recipeStep": 1
+    },
+    {
+      "id": "37ac5f13a3",
+      "at": "2026-10-08T01:13:13+0800",
+      "epoch": 1791393193.2934842,
+      "kind": "SIGNAL",
+      "title": "信号变化：Rece_Data_Y_Pos_Confirmed",
+      "operationId": "recipe-248e147bd833-1",
+      "actionId": "158b9d7b93",
+      "idSignal": "plc.Y_Pos_Confirmed",
+      "mb": 6042,
+      "before": 0,
+      "value": 1,
+      "rawRegisters": [
+        1
+      ],
+      "connectionGeneration": 1,
+      "resource": "Y",
+      "cycle": "158b9d7b93",
+      "deadline": 43876.875,
+      "recipeRunId": "248e147bd833",
+      "recipeStep": 1
+    },
+    {
+      "id": "bb06ee27b2",
+      "at": "2026-10-08T01:13:13+0800",
+      "epoch": 1791393193.316272,
+      "kind": "SIGNAL",
+      "title": "信号变化：Send_Data_Y_Move_Start",
+      "operationId": "recipe-248e147bd833-1",
+      "actionId": "158b9d7b93",
+      "idSignal": "pc.Y_Move_Start",
+      "mb": 2002,
+      "before": 1,
+      "value": 0,
+      "rawRegisters": [
+        0
+      ],
+      "connectionGeneration": 1,
+      "resource": "Y",
+      "cycle": "158b9d7b93",
+      "deadline": 43876.875,
+      "recipeRunId": "248e147bd833",
+      "recipeStep": 1
+    },
+    {
+      "id": "5bad8c2408",
+      "at": "2026-10-08T01:13:13+0800",
+      "epoch": 1791393193.316777,
+      "kind": "SIGNAL",
+      "title": "信号变化：Rece_Data_Y_Pos_Confirmed",
+      "operationId": "recipe-248e147bd833-1",
+      "actionId": "158b9d7b93",
+      "idSignal": "plc.Y_Pos_Confirmed",
+      "mb": 6042,
+      "before": 1,
+      "value": 0,
+      "rawRegisters": [
+        0
+      ],
+      "connectionGeneration": 1,
+      "resource": "Y",
+      "cycle": "158b9d7b93",
+      "deadline": 43876.875,
+      "recipeRunId": "248e147bd833",
+      "recipeStep": 1
+    },
+    {
+      "id": "19a09123f6",
+      "at": "2026-10-08T01:13:13+0800",
+      "epoch": 1791393193.5144725,
+      "kind": "SIGNAL",
+      "title": "信号变化：Send_Data_Camera_Target_X",
+      "idSignal": "pc.Camera_Target_X",
+      "mb": 2024,
+      "before": 0.0,
+      "value": 25.0,
+      "rawRegisters": [
+        0,
+        16840
+      ],
+      "connectionGeneration": 1,
+      "recipeRunId": "248e147bd833",
+      "recipeStep": 2
+    },
+    {
+      "id": "792518df3f",
+      "at": "2026-10-08T01:13:13+0800",
+      "epoch": 1791393193.5280168,
+      "kind": "SIGNAL",
+      "title": "信号变化：Send_Data_X_Move_Start",
+      "operationId": "recipe-248e147bd833-2",
+      "actionId": "c119c6e775",
+      "idSignal": "pc.X_Move_Start",
+      "mb": 2001,
+      "before": 0,
+      "value": 1,
+      "rawRegisters": [
+        256
+      ],
+      "connectionGeneration": 1,
+      "resource": "X",
+      "cycle": "c119c6e775",
+      "deadline": 43877.156,
+      "recipeRunId": "248e147bd833",
+      "recipeStep": 2
+    },
+    {
+      "id": "e693ffc55d",
+      "at": "2026-10-08T01:13:13+0800",
+      "epoch": 1791393193.5828192,
+      "kind": "SIGNAL",
+      "title": "信号变化：Rece_Data_X_Pos_Confirmed",
+      "operationId": "recipe-248e147bd833-2",
+      "actionId": "c119c6e775",
+      "idSignal": "plc.X_Pos_Confirmed",
+      "mb": 6040,
+      "before": 0,
+      "value": 1,
+      "rawRegisters": [
+        1
+      ],
+      "connectionGeneration": 1,
+      "resource": "X",
+      "cycle": "c119c6e775",
+      "deadline": 43877.156,
+      "recipeRunId": "248e147bd833",
+      "recipeStep": 2
+    },
+    {
+      "id": "8a69d1208c",
+      "at": "2026-10-08T01:13:13+0800",
+      "epoch": 1791393193.6068206,
+      "kind": "SIGNAL",
+      "title": "信号变化：Send_Data_X_Move_Start",
+      "operationId": "recipe-248e147bd833-2",
+      "actionId": "c119c6e775",
+      "idSignal": "pc.X_Move_Start",
+      "mb": 2001,
+      "before": 1,
+      "value": 0,
+      "rawRegisters": [
+        0
+      ],
+      "connectionGeneration": 1,
+      "resource": "X",
+      "cycle": "c119c6e775",
+      "deadline": 43877.156,
+      "recipeRunId": "248e147bd833",
+      "recipeStep": 2
+    },
+    {
+      "id": "5dab40cc6b",
+      "at": "2026-10-08T01:13:13+0800",
+      "epoch": 1791393193.6068206,
+      "kind": "SIGNAL",
+      "title": "信号变化：Rece_Data_X_Pos_Confirmed",
+      "operationId": "recipe-248e147bd833-2",
+      "actionId": "c119c6e775",
+      "idSignal": "plc.X_Pos_Confirmed",
+      "mb": 6040,
+      "before": 1,
+      "value": 0,
+      "rawRegisters": [
+        0
+      ],
+      "connectionGeneration": 1,
+      "resource": "X",
+      "cycle": "c119c6e775",
+      "deadline": 43877.156,
+      "recipeRunId": "248e147bd833",
+      "recipeStep": 2
+    },
+    {
+      "id": "6a70672eaa",
+      "at": "2026-10-08T01:13:13+0800",
+      "epoch": 1791393193.643434,
+      "kind": "SIGNAL",
+      "title": "信号变化：Send_Data_Camera_Target_Y",
+      "idSignal": "pc.Camera_Target_Y",
+      "mb": 2028,
+      "before": 0.0,
+      "value": 80.0,
+      "rawRegisters": [
+        0,
+        17056
+      ],
+      "connectionGeneration": 1,
+      "recipeRunId": "248e147bd833",
+      "recipeStep": 2
+    },
+    {
+      "id": "2a80602d17",
+      "at": "2026-10-08T01:13:13+0800",
+      "epoch": 1791393193.65672,
+      "kind": "SIGNAL",
+      "title": "信号变化：Send_Data_Y_Move_Start",
+      "operationId": "recipe-248e147bd833-2",
+      "actionId": "a3c4a9f2ec",
+      "idSignal": "pc.Y_Move_Start",
+      "mb": 2002,
+      "before": 0,
+      "value": 1,
+      "rawRegisters": [
+        1
+      ],
+      "connectionGeneration": 1,
+      "resource": "Y",
+      "cycle": "a3c4a9f2ec",
+      "deadline": 43877.281,
+      "recipeRunId": "248e147bd833",
+      "recipeStep": 2
+    },
+    {
+      "id": "034eb3939f",
+      "at": "2026-10-08T01:13:13+0800",
+      "epoch": 1791393193.70233,
+      "kind": "SIGNAL",
+      "title": "信号变化：Rece_Data_Y_Pos_Confirmed",
+      "operationId": "recipe-248e147bd833-2",
+      "actionId": "a3c4a9f2ec",
+      "idSignal": "plc.Y_Pos_Confirmed",
+      "mb": 6042,
+      "before": 0,
+      "value": 1,
+      "rawRegisters": [
+        1
+      ],
+      "connectionGeneration": 1,
+      "resource": "Y",
+      "cycle": "a3c4a9f2ec",
+      "deadline": 43877.281,
+      "recipeRunId": "248e147bd833",
+      "recipeStep": 2
+    },
+    {
+      "id": "eec6131f7b",
+      "at": "2026-10-08T01:13:13+0800",
+      "epoch": 1791393193.7277386,
+      "kind": "SIGNAL",
+      "title": "信号变化：Send_Data_Y_Move_Start",
+      "operationId": "recipe-248e147bd833-2",
+      "actionId": "a3c4a9f2ec",
+      "idSignal": "pc.Y_Move_Start",
+      "mb": 2002,
+      "before": 1,
+      "value": 0,
+      "rawRegisters": [
+        0
+      ],
+      "connectionGeneration": 1,
+      "resource": "Y",
+      "cycle": "a3c4a9f2ec",
+      "deadline": 43877.281,
+      "recipeRunId": "248e147bd833",
+      "recipeStep": 2
+    },
+    {
+      "id": "db6a502f2f",
+      "at": "2026-10-08T01:13:13+0800",
+      "epoch": 1791393193.7277386,
+      "kind": "SIGNAL",
+      "title": "信号变化：Rece_Data_Y_Pos_Confirmed",
+      "operationId": "recipe-248e147bd833-2",
+      "actionId": "a3c4a9f2ec",
+      "idSignal": "plc.Y_Pos_Confirmed",
+      "mb": 6042,
+      "before": 1,
+      "value": 0,
+      "rawRegisters": [
+        0
+      ],
+      "connectionGeneration": 1,
+      "resource": "Y",
+      "cycle": "a3c4a9f2ec",
+      "deadline": 43877.281,
+      "recipeRunId": "248e147bd833",
+      "recipeStep": 2
+    },
+    {
+      "id": "c71b4e2c06",
+      "at": "2026-10-08T01:13:13+0800",
+      "epoch": 1791393193.8228126,
+      "kind": "SIGNAL",
+      "title": "信号变化：Send_Data_Camera_Target_X",
+      "idSignal": "pc.Camera_Target_X",
+      "mb": 2024,
+      "before": 25.0,
+      "value": 65.0,
+      "rawRegisters": [
+        0,
+        17026
+      ],
+      "connectionGeneration": 1,
+      "recipeRunId": "248e147bd833",
+      "recipeStep": 3
+    },
+    {
+      "id": "9d126988f4",
+      "at": "2026-10-08T01:13:13+0800",
+      "epoch": 1791393193.8368018,
+      "kind": "SIGNAL",
+      "title": "信号变化：Send_Data_X_Move_Start",
+      "operationId": "recipe-248e147bd833-3",
+      "actionId": "1ff566edfd",
+      "idSignal": "pc.X_Move_Start",
+      "mb": 2001,
+      "before": 0,
+      "value": 1,
+      "rawRegisters": [
+        256
+      ],
+      "connectionGeneration": 1,
+      "resource": "X",
+      "cycle": "1ff566edfd",
+      "deadline": 43877.468,
+      "recipeRunId": "248e147bd833",
+      "recipeStep": 3
+    },
+    {
+      "id": "488eafb31a",
+      "at": "2026-10-08T01:13:13+0800",
+      "epoch": 1791393193.8981202,
+      "kind": "SIGNAL",
+      "title": "信号变化：Rece_Data_X_Pos_Confirmed",
+      "operationId": "recipe-248e147bd833-3",
+      "actionId": "1ff566edfd",
+      "idSignal": "plc.X_Pos_Confirmed",
+      "mb": 6040,
+      "before": 0,
+      "value": 1,
+      "rawRegisters": [
+        1
+      ],
+      "connectionGeneration": 1,
+      "resource": "X",
+      "cycle": "1ff566edfd",
+      "deadline": 43877.468,
+      "recipeRunId": "248e147bd833",
+      "recipeStep": 3
+    },
+    {
+      "id": "760b021586",
+      "at": "2026-10-08T01:13:13+0800",
+      "epoch": 1791393193.9214096,
+      "kind": "SIGNAL",
+      "title": "信号变化：Send_Data_X_Move_Start",
+      "operationId": "recipe-248e147bd833-3",
+      "actionId": "1ff566edfd",
+      "idSignal": "pc.X_Move_Start",
+      "mb": 2001,
+      "before": 1,
+      "value": 0,
+      "rawRegisters": [
+        0
+      ],
+      "connectionGeneration": 1,
+      "resource": "X",
+      "cycle": "1ff566edfd",
+      "deadline": 43877.468,
+      "recipeRunId": "248e147bd833",
+      "recipeStep": 3
+    },
+    {
+      "id": "bfed6a5d1e",
+      "at": "2026-10-08T01:13:13+0800",
+      "epoch": 1791393193.9214096,
+      "kind": "SIGNAL",
+      "title": "信号变化：Rece_Data_X_Pos_Confirmed",
+      "operationId": "recipe-248e147bd833-3",
+      "actionId": "1ff566edfd",
+      "idSignal": "plc.X_Pos_Confirmed",
+      "mb": 6040,
+      "before": 1,
+      "value": 0,
+      "rawRegisters": [
+        0
+      ],
+      "connectionGeneration": 1,
+      "resource": "X",
+      "cycle": "1ff566edfd",
+      "deadline": 43877.468,
+      "recipeRunId": "248e147bd833",
+      "recipeStep": 3
+    },
+    {
+      "id": "3d8fef09d4",
+      "at": "2026-10-08T01:13:13+0800",
+      "epoch": 1791393193.9602609,
+      "kind": "SIGNAL",
+      "title": "信号变化：Send_Data_Camera_Target_Y",
+      "idSignal": "pc.Camera_Target_Y",
+      "mb": 2028,
+      "before": 80.0,
+      "value": 50.0,
+      "rawRegisters": [
+        0,
+        16968
+      ],
+      "connectionGeneration": 1,
+      "recipeRunId": "248e147bd833",
+      "recipeStep": 3
+    },
+    {
+      "id": "f3859d391d",
+      "at": "2026-10-08T01:13:13+0800",
+      "epoch": 1791393193.9734614,
+      "kind": "SIGNAL",
+      "title": "信号变化：Send_Data_Y_Move_Start",
+      "operationId": "recipe-248e147bd833-3",
+      "actionId": "682d07b457",
+      "idSignal": "pc.Y_Move_Start",
+      "mb": 2002,
+      "before": 0,
+      "value": 1,
+      "rawRegisters": [
+        1
+      ],
+      "connectionGeneration": 1,
+      "resource": "Y",
+      "cycle": "682d07b457",
+      "deadline": 43877.593,
+      "recipeRunId": "248e147bd833",
+      "recipeStep": 3
+    },
+    {
+      "id": "8b456e5b1d",
+      "at": "2026-10-08T01:13:14+0800",
+      "epoch": 1791393194.0271401,
+      "kind": "SIGNAL",
+      "title": "信号变化：Rece_Data_Y_Pos_Confirmed",
+      "operationId": "recipe-248e147bd833-3",
+      "actionId": "682d07b457",
+      "idSignal": "plc.Y_Pos_Confirmed",
+      "mb": 6042,
+      "before": 0,
+      "value": 1,
+      "rawRegisters": [
+        1
+      ],
+      "connectionGeneration": 1,
+      "resource": "Y",
+      "cycle": "682d07b457",
+      "deadline": 43877.593,
+      "recipeRunId": "248e147bd833",
+      "recipeStep": 3
+    },
+    {
+      "id": "891629abad",
+      "at": "2026-10-08T01:13:14+0800",
+      "epoch": 1791393194.0504658,
+      "kind": "SIGNAL",
+      "title": "信号变化：Send_Data_Y_Move_Start",
+      "operationId": "recipe-248e147bd833-3",
+      "actionId": "682d07b457",
+      "idSignal": "pc.Y_Move_Start",
+      "mb": 2002,
+      "before": 1,
+      "value": 0,
+      "rawRegisters": [
+        0
+      ],
+      "connectionGeneration": 1,
+      "resource": "Y",
+      "cycle": "682d07b457",
+      "deadline": 43877.593,
+      "recipeRunId": "248e147bd833",
+      "recipeStep": 3
+    },
+    {
+      "id": "4ee4a71bc1",
+      "at": "2026-10-08T01:13:14+0800",
+      "epoch": 1791393194.0504658,
+      "kind": "SIGNAL",
+      "title": "信号变化：Rece_Data_Y_Pos_Confirmed",
+      "operationId": "recipe-248e147bd833-3",
+      "actionId": "682d07b457",
+      "idSignal": "plc.Y_Pos_Confirmed",
+      "mb": 6042,
+      "before": 1,
+      "value": 0,
+      "rawRegisters": [
+        0
+      ],
+      "connectionGeneration": 1,
+      "resource": "Y",
+      "cycle": "682d07b457",
+      "deadline": 43877.593,
+      "recipeRunId": "248e147bd833",
+      "recipeStep": 3
+    },
+    {
+      "id": "ef4bf6c5b9",
+      "at": "2026-10-08T01:13:14+0800",
+      "epoch": 1791393194.2650135,
+      "kind": "SIGNAL",
+      "title": "信号变化：Send_Data_Camera_Target_X",
+      "idSignal": "pc.Camera_Target_X",
+      "mb": 2024,
+      "before": 65.0,
+      "value": 15.0,
+      "rawRegisters": [
+        0,
+        16752
+      ],
+      "connectionGeneration": 1,
+      "recipeRunId": "248e147bd833",
+      "recipeStep": 4
+    },
+    {
+      "id": "8a39976a39",
+      "at": "2026-10-08T01:13:14+0800",
+      "epoch": 1791393194.2780132,
+      "kind": "SIGNAL",
+      "title": "信号变化：Send_Data_X_Move_Start",
+      "operationId": "recipe-248e147bd833-4",
+      "actionId": "13e97d981f",
+      "idSignal": "pc.X_Move_Start",
+      "mb": 2001,
+      "before": 0,
+      "value": 1,
+      "rawRegisters": [
+        256
+      ],
+      "connectionGeneration": 1,
+      "resource": "X",
+      "cycle": "13e97d981f",
+      "deadline": 43877.906,
+      "recipeRunId": "248e147bd833",
+      "recipeStep": 4
+    },
+    {
+      "id": "a3dd45275e",
+      "at": "2026-10-08T01:13:14+0800",
+      "epoch": 1791393194.3249297,
+      "kind": "SIGNAL",
+      "title": "信号变化：Rece_Data_X_Pos_Confirmed",
+      "operationId": "recipe-248e147bd833-4",
+      "actionId": "13e97d981f",
+      "idSignal": "plc.X_Pos_Confirmed",
+      "mb": 6040,
+      "before": 0,
+      "value": 1,
+      "rawRegisters": [
+        1
+      ],
+      "connectionGeneration": 1,
+      "resource": "X",
+      "cycle": "13e97d981f",
+      "deadline": 43877.906,
+      "recipeRunId": "248e147bd833",
+      "recipeStep": 4
+    },
+    {
+      "id": "a077a64e47",
+      "at": "2026-10-08T01:13:14+0800",
+      "epoch": 1791393194.3472242,
+      "kind": "SIGNAL",
+      "title": "信号变化：Send_Data_X_Move_Start",
+      "operationId": "recipe-248e147bd833-4",
+      "actionId": "13e97d981f",
+      "idSignal": "pc.X_Move_Start",
+      "mb": 2001,
+      "before": 1,
+      "value": 0,
+      "rawRegisters": [
+        0
+      ],
+      "connectionGeneration": 1,
+      "resource": "X",
+      "cycle": "13e97d981f",
+      "deadline": 43877.906,
+      "recipeRunId": "248e147bd833",
+      "recipeStep": 4
+    },
+    {
+      "id": "3a3a0db3e2",
+      "at": "2026-10-08T01:13:14+0800",
+      "epoch": 1791393194.3472242,
+      "kind": "SIGNAL",
+      "title": "信号变化：Rece_Data_X_Pos_Confirmed",
+      "operationId": "recipe-248e147bd833-4",
+      "actionId": "13e97d981f",
+      "idSignal": "plc.X_Pos_Confirmed",
+      "mb": 6040,
+      "before": 1,
+      "value": 0,
+      "rawRegisters": [
+        0
+      ],
+      "connectionGeneration": 1,
+      "resource": "X",
+      "cycle": "13e97d981f",
+      "deadline": 43877.906,
+      "recipeRunId": "248e147bd833",
+      "recipeStep": 4
+    },
+    {
+      "id": "7bafac3754",
+      "at": "2026-10-08T01:13:14+0800",
+      "epoch": 1791393194.3914442,
+      "kind": "SIGNAL",
+      "title": "信号变化：Send_Data_Camera_Target_Y",
+      "idSignal": "pc.Camera_Target_Y",
+      "mb": 2028,
+      "before": 50.0,
+      "value": 20.0,
+      "rawRegisters": [
+        0,
+        16800
+      ],
+      "connectionGeneration": 1,
+      "recipeRunId": "248e147bd833",
+      "recipeStep": 4
+    },
+    {
+      "id": "a0c238b3fe",
+      "at": "2026-10-08T01:13:14+0800",
+      "epoch": 1791393194.4054484,
+      "kind": "SIGNAL",
+      "title": "信号变化：Send_Data_Y_Move_Start",
+      "operationId": "recipe-248e147bd833-4",
+      "actionId": "9648850da1",
+      "idSignal": "pc.Y_Move_Start",
+      "mb": 2002,
+      "before": 0,
+      "value": 1,
+      "rawRegisters": [
+        1
+      ],
+      "connectionGeneration": 1,
+      "resource": "Y",
+      "cycle": "9648850da1",
+      "deadline": 43878.031,
+      "recipeRunId": "248e147bd833",
+      "recipeStep": 4
+    },
+    {
+      "id": "c579e6611e",
+      "at": "2026-10-08T01:13:14+0800",
+      "epoch": 1791393194.4502265,
+      "kind": "SIGNAL",
+      "title": "信号变化：Rece_Data_Y_Pos_Confirmed",
+      "operationId": "recipe-248e147bd833-4",
+      "actionId": "9648850da1",
+      "idSignal": "plc.Y_Pos_Confirmed",
+      "mb": 6042,
+      "before": 0,
+      "value": 1,
+      "rawRegisters": [
+        1
+      ],
+      "connectionGeneration": 1,
+      "resource": "Y",
+      "cycle": "9648850da1",
+      "deadline": 43878.031,
+      "recipeRunId": "248e147bd833",
+      "recipeStep": 4
+    },
+    {
+      "id": "33bdf09561",
+      "at": "2026-10-08T01:13:14+0800",
+      "epoch": 1791393194.4732234,
+      "kind": "SIGNAL",
+      "title": "信号变化：Send_Data_Y_Move_Start",
+      "operationId": "recipe-248e147bd833-4",
+      "actionId": "9648850da1",
+      "idSignal": "pc.Y_Move_Start",
+      "mb": 2002,
+      "before": 1,
+      "value": 0,
+      "rawRegisters": [
+        0
+      ],
+      "connectionGeneration": 1,
+      "resource": "Y",
+      "cycle": "9648850da1",
+      "deadline": 43878.031,
+      "recipeRunId": "248e147bd833",
+      "recipeStep": 4
+    },
+    {
+      "id": "d02dd3f784",
+      "at": "2026-10-08T01:13:14+0800",
+      "epoch": 1791393194.4732234,
+      "kind": "SIGNAL",
+      "title": "信号变化：Rece_Data_Y_Pos_Confirmed",
+      "operationId": "recipe-248e147bd833-4",
+      "actionId": "9648850da1",
+      "idSignal": "plc.Y_Pos_Confirmed",
+      "mb": 6042,
+      "before": 1,
+      "value": 0,
+      "rawRegisters": [
+        0
+      ],
+      "connectionGeneration": 1,
+      "resource": "Y",
+      "cycle": "9648850da1",
+      "deadline": 43878.031,
+      "recipeRunId": "248e147bd833",
+      "recipeStep": 4
+    },
+    {
+      "id": "fa7922a7c3",
+      "at": "2026-10-08T01:13:14+0800",
+      "epoch": 1791393194.5096023,
+      "kind": "SIGNAL",
+      "title": "信号变化：Send_Data_Camera_Target_Z",
+      "idSignal": "pc.Camera_Target_Z",
+      "mb": 2032,
+      "before": 2.0,
+      "value": 5.0,
+      "rawRegisters": [
+        0,
+        16544
+      ],
+      "connectionGeneration": 1,
+      "recipeRunId": "248e147bd833",
+      "recipeStep": 4
+    },
+    {
+      "id": "d06c7971ca",
+      "at": "2026-10-08T01:13:14+0800",
+      "epoch": 1791393194.5227559,
+      "kind": "SIGNAL",
+      "title": "信号变化：Send_Data_Z_Camera_Move_Start",
+      "operationId": "recipe-248e147bd833-4",
+      "actionId": "12eae4d4f5",
+      "idSignal": "pc.Z_Camera_Move_Start",
+      "mb": 2003,
+      "before": 0,
+      "value": 1,
+      "rawRegisters": [
+        256
+      ],
+      "connectionGeneration": 1,
+      "resource": "ZCamera",
+      "cycle": "12eae4d4f5",
+      "deadline": 43878.156,
+      "recipeRunId": "248e147bd833",
+      "recipeStep": 4
+    },
+    {
+      "id": "969d461166",
+      "at": "2026-10-08T01:13:14+0800",
+      "epoch": 1791393194.5932512,
+      "kind": "SIGNAL",
+      "title": "信号变化：Rece_Data_Z_Camera_Pos_Confirmed",
+      "operationId": "recipe-248e147bd833-4",
+      "actionId": "12eae4d4f5",
+      "idSignal": "plc.Z_Camera_Pos_Confirmed",
+      "mb": 6044,
+      "before": 0,
+      "value": 1,
+      "rawRegisters": [
+        1
+      ],
+      "connectionGeneration": 1,
+      "resource": "ZCamera",
+      "cycle": "12eae4d4f5",
+      "deadline": 43878.156,
+      "recipeRunId": "248e147bd833",
+      "recipeStep": 4
+    },
+    {
+      "id": "f248fbe806",
+      "at": "2026-10-08T01:13:14+0800",
+      "epoch": 1791393194.6172516,
+      "kind": "SIGNAL",
+      "title": "信号变化：Send_Data_Z_Camera_Move_Start",
+      "operationId": "recipe-248e147bd833-4",
+      "actionId": "12eae4d4f5",
+      "idSignal": "pc.Z_Camera_Move_Start",
+      "mb": 2003,
+      "before": 1,
+      "value": 0,
+      "rawRegisters": [
+        0
+      ],
+      "connectionGeneration": 1,
+      "resource": "ZCamera",
+      "cycle": "12eae4d4f5",
+      "deadline": 43878.156,
+      "recipeRunId": "248e147bd833",
+      "recipeStep": 4
+    },
+    {
+      "id": "4cad8af5ad",
+      "at": "2026-10-08T01:13:14+0800",
+      "epoch": 1791393194.6172516,
+      "kind": "SIGNAL",
+      "title": "信号变化：Rece_Data_Z_Camera_Pos_Confirmed",
+      "operationId": "recipe-248e147bd833-4",
+      "actionId": "12eae4d4f5",
+      "idSignal": "plc.Z_Camera_Pos_Confirmed",
+      "mb": 6044,
+      "before": 1,
+      "value": 0,
+      "rawRegisters": [
+        0
+      ],
+      "connectionGeneration": 1,
+      "resource": "ZCamera",
+      "cycle": "12eae4d4f5",
+      "deadline": 43878.156,
+      "recipeRunId": "248e147bd833",
+      "recipeStep": 4
+    },
+    {
+      "id": "b83c96cb76",
+      "at": "2026-10-08T01:13:14+0800",
+      "epoch": 1791393194.7043595,
+      "kind": "SIGNAL",
+      "title": "信号变化：Send_Data_Camera_Target_Z",
+      "idSignal": "pc.Camera_Target_Z",
+      "mb": 2032,
+      "before": 5.0,
+      "value": 2.0,
+      "rawRegisters": [
+        0,
+        16384
+      ],
+      "connectionGeneration": 1,
+      "recipeRunId": "248e147bd833",
+      "recipeStep": 5
+    },
+    {
+      "id": "ab4da75859",
+      "at": "2026-10-08T01:13:14+0800",
+      "epoch": 1791393194.7182841,
+      "kind": "SIGNAL",
+      "title": "信号变化：Send_Data_Z_Camera_Move_Start",
+      "operationId": "recipe-248e147bd833-5",
+      "actionId": "e830f92048",
+      "idSignal": "pc.Z_Camera_Move_Start",
+      "mb": 2003,
+      "before": 0,
+      "value": 1,
+      "rawRegisters": [
+        256
+      ],
+      "connectionGeneration": 1,
+      "resource": "ZCamera",
+      "cycle": "e830f92048",
+      "deadline": 43878.343,
+      "recipeRunId": "248e147bd833",
+      "recipeStep": 5
+    },
+    {
+      "id": "9be7fa5d0f",
+      "at": "2026-10-08T01:13:14+0800",
+      "epoch": 1791393194.7638047,
+      "kind": "SIGNAL",
+      "title": "信号变化：Rece_Data_Z_Camera_Pos_Confirmed",
+      "operationId": "recipe-248e147bd833-5",
+      "actionId": "e830f92048",
+      "idSignal": "plc.Z_Camera_Pos_Confirmed",
+      "mb": 6044,
+      "before": 0,
+      "value": 1,
+      "rawRegisters": [
+        1
+      ],
+      "connectionGeneration": 1,
+      "resource": "ZCamera",
+      "cycle": "e830f92048",
+      "deadline": 43878.343,
+      "recipeRunId": "248e147bd833",
+      "recipeStep": 5
+    },
+    {
+      "id": "974d1d3890",
+      "at": "2026-10-08T01:13:14+0800",
+      "epoch": 1791393194.7953827,
+      "kind": "SIGNAL",
+      "title": "信号变化：Send_Data_Z_Camera_Move_Start",
+      "operationId": "recipe-248e147bd833-5",
+      "actionId": "e830f92048",
+      "idSignal": "pc.Z_Camera_Move_Start",
+      "mb": 2003,
+      "before": 1,
+      "value": 0,
+      "rawRegisters": [
+        0
+      ],
+      "connectionGeneration": 1,
+      "resource": "ZCamera",
+      "cycle": "e830f92048",
+      "deadline": 43878.343,
+      "recipeRunId": "248e147bd833",
+      "recipeStep": 5
+    },
+    {
+      "id": "462aa3874f",
+      "at": "2026-10-08T01:13:14+0800",
+      "epoch": 1791393194.7953827,
+      "kind": "SIGNAL",
+      "title": "信号变化：Rece_Data_Z_Camera_Pos_Confirmed",
+      "operationId": "recipe-248e147bd833-5",
+      "actionId": "e830f92048",
+      "idSignal": "plc.Z_Camera_Pos_Confirmed",
+      "mb": 6044,
+      "before": 1,
+      "value": 0,
+      "rawRegisters": [
+        0
+      ],
+      "connectionGeneration": 1,
+      "resource": "ZCamera",
+      "cycle": "e830f92048",
+      "deadline": 43878.343,
+      "recipeRunId": "248e147bd833",
+      "recipeStep": 5
+    },
+    {
+      "id": "13f6cf8110",
+      "at": "2026-10-08T01:13:14+0800",
+      "epoch": 1791393194.91466,
+      "kind": "SIGNAL",
+      "title": "信号变化：Send_Data_Camera_Target_X",
+      "idSignal": "pc.Camera_Target_X",
+      "mb": 2024,
+      "before": 15.0,
+      "value": 35.0,
+      "rawRegisters": [
+        0,
+        16908
+      ],
+      "connectionGeneration": 1,
+      "recipeRunId": "248e147bd833",
+      "recipeStep": 5
+    },
+    {
+      "id": "bd4fc02cb8",
+      "at": "2026-10-08T01:13:14+0800",
+      "epoch": 1791393194.9282362,
+      "kind": "SIGNAL",
+      "title": "信号变化：Send_Data_X_Move_Start",
+      "operationId": "recipe-248e147bd833-5",
+      "actionId": "2f2cb927ce",
+      "idSignal": "pc.X_Move_Start",
+      "mb": 2001,
+      "before": 0,
+      "value": 1,
+      "rawRegisters": [
+        256
+      ],
+      "connectionGeneration": 1,
+      "resource": "X",
+      "cycle": "2f2cb927ce",
+      "deadline": 43878.546,
+      "recipeRunId": "248e147bd833",
+      "recipeStep": 5
+    },
+    {
+      "id": "3e50883372",
+      "at": "2026-10-08T01:13:14+0800",
+      "epoch": 1791393194.9987335,
+      "kind": "SIGNAL",
+      "title": "信号变化：Rece_Data_X_Pos_Confirmed",
+      "operationId": "recipe-248e147bd833-5",
+      "actionId": "2f2cb927ce",
+      "idSignal": "plc.X_Pos_Confirmed",
+      "mb": 6040,
+      "before": 0,
+      "value": 1,
+      "rawRegisters": [
+        1
+      ],
+      "connectionGeneration": 1,
+      "resource": "X",
+      "cycle": "2f2cb927ce",
+      "deadline": 43878.546,
+      "recipeRunId": "248e147bd833",
+      "recipeStep": 5
+    },
+    {
+      "id": "29397539f2",
+      "at": "2026-10-08T01:13:15+0800",
+      "epoch": 1791393195.0220096,
+      "kind": "SIGNAL",
+      "title": "信号变化：Send_Data_X_Move_Start",
+      "operationId": "recipe-248e147bd833-5",
+      "actionId": "2f2cb927ce",
+      "idSignal": "pc.X_Move_Start",
+      "mb": 2001,
+      "before": 1,
+      "value": 0,
+      "rawRegisters": [
+        0
+      ],
+      "connectionGeneration": 1,
+      "resource": "X",
+      "cycle": "2f2cb927ce",
+      "deadline": 43878.546,
+      "recipeRunId": "248e147bd833",
+      "recipeStep": 5
+    },
+    {
+      "id": "315dad004a",
+      "at": "2026-10-08T01:13:15+0800",
+      "epoch": 1791393195.0220096,
+      "kind": "SIGNAL",
+      "title": "信号变化：Rece_Data_X_Pos_Confirmed",
+      "operationId": "recipe-248e147bd833-5",
+      "actionId": "2f2cb927ce",
+      "idSignal": "plc.X_Pos_Confirmed",
+      "mb": 6040,
+      "before": 1,
+      "value": 0,
+      "rawRegisters": [
+        0
+      ],
+      "connectionGeneration": 1,
+      "resource": "X",
+      "cycle": "2f2cb927ce",
+      "deadline": 43878.546,
+      "recipeRunId": "248e147bd833",
+      "recipeStep": 5
+    },
+    {
+      "id": "321ff072ae",
+      "at": "2026-10-08T01:13:15+0800",
+      "epoch": 1791393195.0997224,
+      "kind": "SIGNAL",
+      "title": "信号变化：Send_Data_Camera_Target_Z",
+      "idSignal": "pc.Camera_Target_Z",
+      "mb": 2032,
+      "before": 2.0,
+      "value": 5.0,
+      "rawRegisters": [
+        0,
+        16544
+      ],
+      "connectionGeneration": 1,
+      "recipeRunId": "248e147bd833",
+      "recipeStep": 5
+    },
+    {
+      "id": "288c2f6f0c",
+      "at": "2026-10-08T01:13:15+0800",
+      "epoch": 1791393195.1127949,
+      "kind": "SIGNAL",
+      "title": "信号变化：Send_Data_Z_Camera_Move_Start",
+      "operationId": "recipe-248e147bd833-5",
+      "actionId": "cd5db0cd04",
+      "idSignal": "pc.Z_Camera_Move_Start",
+      "mb": 2003,
+      "before": 0,
+      "value": 1,
+      "rawRegisters": [
+        256
+      ],
+      "connectionGeneration": 1,
+      "resource": "ZCamera",
+      "cycle": "cd5db0cd04",
+      "deadline": 43878.734,
+      "recipeRunId": "248e147bd833",
+      "recipeStep": 5
+    },
+    {
+      "id": "9adf7bcc69",
+      "at": "2026-10-08T01:13:15+0800",
+      "epoch": 1791393195.1734915,
+      "kind": "SIGNAL",
+      "title": "信号变化：Rece_Data_Z_Camera_Pos_Confirmed",
+      "operationId": "recipe-248e147bd833-5",
+      "actionId": "cd5db0cd04",
+      "idSignal": "plc.Z_Camera_Pos_Confirmed",
+      "mb": 6044,
+      "before": 0,
+      "value": 1,
+      "rawRegisters": [
+        1
+      ],
+      "connectionGeneration": 1,
+      "resource": "ZCamera",
+      "cycle": "cd5db0cd04",
+      "deadline": 43878.734,
+      "recipeRunId": "248e147bd833",
+      "recipeStep": 5
+    },
+    {
+      "id": "0a4c744d52",
+      "at": "2026-10-08T01:13:15+0800",
+      "epoch": 1791393195.2043188,
+      "kind": "SIGNAL",
+      "title": "信号变化：Send_Data_Z_Camera_Move_Start",
+      "operationId": "recipe-248e147bd833-5",
+      "actionId": "cd5db0cd04",
+      "idSignal": "pc.Z_Camera_Move_Start",
+      "mb": 2003,
+      "before": 1,
+      "value": 0,
+      "rawRegisters": [
+        0
+      ],
+      "connectionGeneration": 1,
+      "resource": "ZCamera",
+      "cycle": "cd5db0cd04",
+      "deadline": 43878.734,
+      "recipeRunId": "248e147bd833",
+      "recipeStep": 5
+    },
+    {
+      "id": "77aa031bba",
+      "at": "2026-10-08T01:13:15+0800",
+      "epoch": 1791393195.2043188,
+      "kind": "SIGNAL",
+      "title": "信号变化：Rece_Data_Z_Camera_Pos_Confirmed",
+      "operationId": "recipe-248e147bd833-5",
+      "actionId": "cd5db0cd04",
+      "idSignal": "plc.Z_Camera_Pos_Confirmed",
+      "mb": 6044,
+      "before": 1,
+      "value": 0,
+      "rawRegisters": [
+        0
+      ],
+      "connectionGeneration": 1,
+      "resource": "ZCamera",
+      "cycle": "cd5db0cd04",
+      "deadline": 43878.734,
+      "recipeRunId": "248e147bd833",
+      "recipeStep": 5
+    },
+    {
+      "id": "3b8d538715",
+      "at": "2026-10-08T01:13:15+0800",
+      "epoch": 1791393195.297638,
+      "kind": "SIGNAL",
+      "title": "信号变化：Send_Data_Flip_Target_Face",
+      "idSignal": "pc.Flip_Target_Face",
+      "mb": 2012,
+      "before": 0,
+      "value": 2,
+      "rawRegisters": [
+        2
+      ],
+      "connectionGeneration": 1,
+      "recipeRunId": "248e147bd833",
+      "recipeStep": 6
+    },
+    {
+      "id": "2e557f28d6",
+      "at": "2026-10-08T01:13:15+0800",
+      "epoch": 1791393195.3175685,
+      "kind": "SIGNAL",
+      "title": "信号变化：Send_Data_Model_Number",
+      "idSignal": "pc.Model_Number",
+      "mb": 2048,
+      "before": 0.0,
+      "value": 1.25,
+      "rawRegisters": [
+        0,
+        16288
+      ],
+      "connectionGeneration": 1,
+      "recipeRunId": "248e147bd833",
+      "recipeStep": 6
+    },
+    {
+      "id": "b120630fdf",
+      "at": "2026-10-08T01:13:15+0800",
+      "epoch": 1791393195.3342721,
+      "kind": "SIGNAL",
+      "title": "信号变化：Send_Data_Camera_Target_Z",
+      "idSignal": "pc.Camera_Target_Z",
+      "mb": 2032,
+      "before": 5.0,
+      "value": 2.0,
+      "rawRegisters": [
+        0,
+        16384
+      ],
+      "connectionGeneration": 1,
+      "recipeRunId": "248e147bd833",
+      "recipeStep": 6
+    },
+    {
+      "id": "1795950a7c",
+      "at": "2026-10-08T01:13:15+0800",
+      "epoch": 1791393195.3482723,
+      "kind": "SIGNAL",
+      "title": "信号变化：Send_Data_Z_Camera_Move_Start",
+      "operationId": "recipe-248e147bd833-6",
+      "actionId": "f54af91232",
+      "idSignal": "pc.Z_Camera_Move_Start",
+      "mb": 2003,
+      "before": 0,
+      "value": 1,
+      "rawRegisters": [
+        256
+      ],
+      "connectionGeneration": 1,
+      "resource": "ZCamera",
+      "cycle": "f54af91232",
+      "deadline": 43878.968,
+      "recipeRunId": "248e147bd833",
+      "recipeStep": 6
+    },
+    {
+      "id": "2fe654471f",
+      "at": "2026-10-08T01:13:15+0800",
+      "epoch": 1791393195.4045744,
+      "kind": "SIGNAL",
+      "title": "信号变化：Rece_Data_Z_Camera_Pos_Confirmed",
+      "operationId": "recipe-248e147bd833-6",
+      "actionId": "f54af91232",
+      "idSignal": "plc.Z_Camera_Pos_Confirmed",
+      "mb": 6044,
+      "before": 0,
+      "value": 1,
+      "rawRegisters": [
+        1
+      ],
+      "connectionGeneration": 1,
+      "resource": "ZCamera",
+      "cycle": "f54af91232",
+      "deadline": 43878.968,
+      "recipeRunId": "248e147bd833",
+      "recipeStep": 6
+    },
+    {
+      "id": "1c37fcbea5",
+      "at": "2026-10-08T01:13:15+0800",
+      "epoch": 1791393195.4280028,
+      "kind": "SIGNAL",
+      "title": "信号变化：Send_Data_Z_Camera_Move_Start",
+      "operationId": "recipe-248e147bd833-6",
+      "actionId": "f54af91232",
+      "idSignal": "pc.Z_Camera_Move_Start",
+      "mb": 2003,
+      "before": 1,
+      "value": 0,
+      "rawRegisters": [
+        0
+      ],
+      "connectionGeneration": 1,
+      "resource": "ZCamera",
+      "cycle": "f54af91232",
+      "deadline": 43878.968,
+      "recipeRunId": "248e147bd833",
+      "recipeStep": 6
+    },
+    {
+      "id": "eb82c9fc4a",
+      "at": "2026-10-08T01:13:15+0800",
+      "epoch": 1791393195.4280028,
+      "kind": "SIGNAL",
+      "title": "信号变化：Rece_Data_Z_Camera_Pos_Confirmed",
+      "operationId": "recipe-248e147bd833-6",
+      "actionId": "f54af91232",
+      "idSignal": "plc.Z_Camera_Pos_Confirmed",
+      "mb": 6044,
+      "before": 1,
+      "value": 0,
+      "rawRegisters": [
+        0
+      ],
+      "connectionGeneration": 1,
+      "resource": "ZCamera",
+      "cycle": "f54af91232",
+      "deadline": 43878.968,
+      "recipeRunId": "248e147bd833",
+      "recipeStep": 6
+    },
+    {
+      "id": "e87328597b",
+      "at": "2026-10-08T01:13:15+0800",
+      "epoch": 1791393195.545847,
+      "kind": "SIGNAL",
+      "title": "信号变化：Send_Data_Camera_Target_X",
+      "idSignal": "pc.Camera_Target_X",
+      "mb": 2024,
+      "before": 35.0,
+      "value": 10.0,
+      "rawRegisters": [
+        0,
+        16672
+      ],
+      "connectionGeneration": 1,
+      "recipeRunId": "248e147bd833",
+      "recipeStep": 6
+    },
+    {
+      "id": "2e5f330c6e",
+      "at": "2026-10-08T01:13:15+0800",
+      "epoch": 1791393195.559844,
+      "kind": "SIGNAL",
+      "title": "信号变化：Send_Data_X_Move_Start",
+      "operationId": "recipe-248e147bd833-6",
+      "actionId": "6a56ae0b34",
+      "idSignal": "pc.X_Move_Start",
+      "mb": 2001,
+      "before": 0,
+      "value": 1,
+      "rawRegisters": [
+        256
+      ],
+      "connectionGeneration": 1,
+      "resource": "X",
+      "cycle": "6a56ae0b34",
+      "deadline": 43879.187,
+      "recipeRunId": "248e147bd833",
+      "recipeStep": 6
+    },
+    {
+      "id": "68a8c2afe8",
+      "at": "2026-10-08T01:13:15+0800",
+      "epoch": 1791393195.61484,
+      "kind": "SIGNAL",
+      "title": "信号变化：Rece_Data_X_Pos_Confirmed",
+      "operationId": "recipe-248e147bd833-6",
+      "actionId": "6a56ae0b34",
+      "idSignal": "plc.X_Pos_Confirmed",
+      "mb": 6040,
+      "before": 0,
+      "value": 1,
+      "rawRegisters": [
+        1
+      ],
+      "connectionGeneration": 1,
+      "resource": "X",
+      "cycle": "6a56ae0b34",
+      "deadline": 43879.187,
+      "recipeRunId": "248e147bd833",
+      "recipeStep": 6
+    },
+    {
+      "id": "aeb269c4a3",
+      "at": "2026-10-08T01:13:15+0800",
+      "epoch": 1791393195.637861,
+      "kind": "SIGNAL",
+      "title": "信号变化：Send_Data_X_Move_Start",
+      "operationId": "recipe-248e147bd833-6",
+      "actionId": "6a56ae0b34",
+      "idSignal": "pc.X_Move_Start",
+      "mb": 2001,
+      "before": 1,
+      "value": 0,
+      "rawRegisters": [
+        0
+      ],
+      "connectionGeneration": 1,
+      "resource": "X",
+      "cycle": "6a56ae0b34",
+      "deadline": 43879.187,
+      "recipeRunId": "248e147bd833",
+      "recipeStep": 6
+    },
+    {
+      "id": "f90cc2da73",
+      "at": "2026-10-08T01:13:15+0800",
+      "epoch": 1791393195.637861,
+      "kind": "SIGNAL",
+      "title": "信号变化：Rece_Data_X_Pos_Confirmed",
+      "operationId": "recipe-248e147bd833-6",
+      "actionId": "6a56ae0b34",
+      "idSignal": "plc.X_Pos_Confirmed",
+      "mb": 6040,
+      "before": 1,
+      "value": 0,
+      "rawRegisters": [
+        0
+      ],
+      "connectionGeneration": 1,
+      "resource": "X",
+      "cycle": "6a56ae0b34",
+      "deadline": 43879.187,
+      "recipeRunId": "248e147bd833",
+      "recipeStep": 6
+    },
+    {
+      "id": "3396d1e992",
+      "at": "2026-10-08T01:13:15+0800",
+      "epoch": 1791393195.6744814,
+      "kind": "SIGNAL",
+      "title": "信号变化：Send_Data_Camera_Target_Y",
+      "idSignal": "pc.Camera_Target_Y",
+      "mb": 2028,
+      "before": 20.0,
+      "value": 10.0,
+      "rawRegisters": [
+        0,
+        16672
+      ],
+      "connectionGeneration": 1,
+      "recipeRunId": "248e147bd833",
+      "recipeStep": 6
+    },
+    {
+      "id": "56217f6b9e",
+      "at": "2026-10-08T01:13:15+0800",
+      "epoch": 1791393195.6888337,
+      "kind": "SIGNAL",
+      "title": "信号变化：Send_Data_Y_Move_Start",
+      "operationId": "recipe-248e147bd833-6",
+      "actionId": "fba2e577af",
+      "idSignal": "pc.Y_Move_Start",
+      "mb": 2002,
+      "before": 0,
+      "value": 1,
+      "rawRegisters": [
+        1
+      ],
+      "connectionGeneration": 1,
+      "resource": "Y",
+      "cycle": "fba2e577af",
+      "deadline": 43879.312,
+      "recipeRunId": "248e147bd833",
+      "recipeStep": 6
+    },
+    {
+      "id": "26da213651",
+      "at": "2026-10-08T01:13:15+0800",
+      "epoch": 1791393195.7371044,
+      "kind": "SIGNAL",
+      "title": "信号变化：Rece_Data_Y_Pos_Confirmed",
+      "operationId": "recipe-248e147bd833-6",
+      "actionId": "fba2e577af",
+      "idSignal": "plc.Y_Pos_Confirmed",
+      "mb": 6042,
+      "before": 0,
+      "value": 1,
+      "rawRegisters": [
+        1
+      ],
+      "connectionGeneration": 1,
+      "resource": "Y",
+      "cycle": "fba2e577af",
+      "deadline": 43879.312,
+      "recipeRunId": "248e147bd833",
+      "recipeStep": 6
+    },
+    {
+      "id": "2d0996983e",
+      "at": "2026-10-08T01:13:15+0800",
+      "epoch": 1791393195.7624106,
+      "kind": "SIGNAL",
+      "title": "信号变化：Send_Data_Y_Move_Start",
+      "operationId": "recipe-248e147bd833-6",
+      "actionId": "fba2e577af",
+      "idSignal": "pc.Y_Move_Start",
+      "mb": 2002,
+      "before": 1,
+      "value": 0,
+      "rawRegisters": [
+        0
+      ],
+      "connectionGeneration": 1,
+      "resource": "Y",
+      "cycle": "fba2e577af",
+      "deadline": 43879.312,
+      "recipeRunId": "248e147bd833",
+      "recipeStep": 6
+    },
+    {
+      "id": "696ba87eca",
+      "at": "2026-10-08T01:13:15+0800",
+      "epoch": 1791393195.7629626,
+      "kind": "SIGNAL",
+      "title": "信号变化：Rece_Data_Y_Pos_Confirmed",
+      "operationId": "recipe-248e147bd833-6",
+      "actionId": "fba2e577af",
+      "idSignal": "plc.Y_Pos_Confirmed",
+      "mb": 6042,
+      "before": 1,
+      "value": 0,
+      "rawRegisters": [
+        0
+      ],
+      "connectionGeneration": 1,
+      "resource": "Y",
+      "cycle": "fba2e577af",
+      "deadline": 43879.312,
+      "recipeRunId": "248e147bd833",
+      "recipeStep": 6
+    },
+    {
+      "id": "16d8adef96",
+      "at": "2026-10-08T01:13:15+0800",
+      "epoch": 1791393195.8347037,
+      "kind": "SIGNAL",
+      "title": "信号变化：Send_Data_Flip_Sorting",
+      "idSignal": "pc.Flip_Sorting",
+      "mb": 2014,
+      "before": 0,
+      "value": 1,
+      "rawRegisters": [
+        1
+      ],
+      "connectionGeneration": 1,
+      "recipeRunId": "248e147bd833",
+      "recipeStep": 7
+    },
+    {
+      "id": "57353e3c93",
+      "at": "2026-10-08T01:13:15+0800",
+      "epoch": 1791393195.8352146,
+      "kind": "SIGNAL",
+      "title": "信号变化：Rece_Data_Flip_Status",
+      "idSignal": "plc.Flip_Status",
+      "mb": 6050,
+      "before": 0,
+      "value": 1,
+      "rawRegisters": [
+        1
+      ],
+      "connectionGeneration": 1,
+      "recipeRunId": "248e147bd833",
+      "recipeStep": 7
+    },
+    {
+      "id": "16a02cbd71",
+      "at": "2026-10-08T01:13:15+0800",
+      "epoch": 1791393195.881364,
+      "kind": "SIGNAL",
+      "title": "信号变化：Rece_Data_Flip_Status",
+      "idSignal": "plc.Flip_Status",
+      "mb": 6050,
+      "before": 1,
+      "value": 2,
+      "rawRegisters": [
+        2
+      ],
+      "connectionGeneration": 1,
+      "recipeRunId": "248e147bd833",
+      "recipeStep": 7
+    },
+    {
+      "id": "98a1961fe0",
+      "at": "2026-10-08T01:13:16+0800",
+      "epoch": 1791393196.0489807,
+      "kind": "SIGNAL",
+      "title": "信号变化：Send_Data_Flip_Sorting",
+      "idSignal": "pc.Flip_Sorting",
+      "mb": 2014,
+      "before": 1,
+      "value": 2,
+      "rawRegisters": [
+        2
+      ],
+      "connectionGeneration": 1,
+      "recipeRunId": "248e147bd833",
+      "recipeStep": 9
+    },
+    {
+      "id": "79e9ac66e9",
+      "at": "2026-10-08T01:13:16+0800",
+      "epoch": 1791393196.0489807,
+      "kind": "SIGNAL",
+      "title": "信号变化：Rece_Data_Flip_Unload_Status",
+      "idSignal": "plc.Flip_Unload_Status",
+      "mb": 6052,
+      "before": 0,
+      "value": 1,
+      "rawRegisters": [
+        1
+      ],
+      "connectionGeneration": 1,
+      "recipeRunId": "248e147bd833",
+      "recipeStep": 9
+    },
+    {
+      "id": "4c0d191f64",
+      "at": "2026-10-08T01:13:16+0800",
+      "epoch": 1791393196.0942602,
+      "kind": "SIGNAL",
+      "title": "信号变化：Rece_Data_Flip_Unload_Status",
+      "idSignal": "plc.Flip_Unload_Status",
+      "mb": 6052,
+      "before": 1,
+      "value": 2,
+      "rawRegisters": [
+        2
+      ],
+      "connectionGeneration": 1,
+      "recipeRunId": "248e147bd833",
+      "recipeStep": 9
+    },
+    {
+      "id": "6a448b11d4",
+      "at": "2026-10-08T01:13:16+0800",
+      "epoch": 1791393196.135507,
+      "kind": "SIGNAL",
+      "title": "信号变化：Send_Data_Flip_Sorting",
+      "idSignal": "pc.Flip_Sorting",
+      "mb": 2014,
+      "before": 2,
+      "value": 0,
+      "rawRegisters": [
+        0
+      ],
+      "connectionGeneration": 1,
+      "recipeRunId": "248e147bd833",
+      "recipeStep": 9
+    },
+    {
+      "id": "1b58b56d35",
+      "at": "2026-10-08T01:13:16+0800",
+      "epoch": 1791393196.135507,
+      "kind": "SIGNAL",
+      "title": "信号变化：Rece_Data_Flip_Status",
+      "idSignal": "plc.Flip_Status",
+      "mb": 6050,
+      "before": 2,
+      "value": 0,
+      "rawRegisters": [
+        0
+      ],
+      "connectionGeneration": 1,
+      "recipeRunId": "248e147bd833",
+      "recipeStep": 9
+    },
+    {
+      "id": "5ae6dbab48",
+      "at": "2026-10-08T01:13:16+0800",
+      "epoch": 1791393196.135507,
+      "kind": "SIGNAL",
+      "title": "信号变化：Rece_Data_Flip_Unload_Status",
+      "idSignal": "plc.Flip_Unload_Status",
+      "mb": 6052,
+      "before": 2,
+      "value": 0,
+      "rawRegisters": [
+        0
+      ],
+      "connectionGeneration": 1,
+      "recipeRunId": "248e147bd833",
+      "recipeStep": 9
+    },
+    {
+      "id": "3706378449",
+      "at": "2026-10-08T01:13:16+0800",
+      "epoch": 1791393196.2874908,
+      "kind": "SIGNAL",
+      "title": "信号变化：Send_Data_Z_Grab_Move_Start",
+      "operationId": "recipe-248e147bd833-10",
+      "actionId": "a672d8cf08",
+      "idSignal": "pc.Z_Grab_Move_Start",
+      "mb": 2005,
+      "before": 0,
+      "value": 1,
+      "rawRegisters": [
+        256
+      ],
+      "connectionGeneration": 1,
+      "resource": "ZGrab",
+      "cycle": "a672d8cf08",
+      "deadline": 43879.906,
+      "recipeRunId": "248e147bd833",
+      "recipeStep": 10
+    },
+    {
+      "id": "0ea3a0fd08",
+      "at": "2026-10-08T01:13:16+0800",
+      "epoch": 1791393196.347135,
+      "kind": "SIGNAL",
+      "title": "信号变化：Rece_Data_Z_Grap_Pos_Confirmed",
+      "operationId": "recipe-248e147bd833-10",
+      "actionId": "a672d8cf08",
+      "idSignal": "plc.Z_Grap_Pos_Confirmed",
+      "mb": 6048,
+      "before": 0,
+      "value": 1,
+      "rawRegisters": [
+        1
+      ],
+      "connectionGeneration": 1,
+      "resource": "ZGrab",
+      "cycle": "a672d8cf08",
+      "deadline": 43879.906,
+      "recipeRunId": "248e147bd833",
+      "recipeStep": 10
+    },
+    {
+      "id": "46fa4c828a",
+      "at": "2026-10-08T01:13:16+0800",
+      "epoch": 1791393196.3705986,
+      "kind": "SIGNAL",
+      "title": "信号变化：Send_Data_Z_Grab_Move_Start",
+      "operationId": "recipe-248e147bd833-10",
+      "actionId": "a672d8cf08",
+      "idSignal": "pc.Z_Grab_Move_Start",
+      "mb": 2005,
+      "before": 1,
+      "value": 0,
+      "rawRegisters": [
+        0
+      ],
+      "connectionGeneration": 1,
+      "resource": "ZGrab",
+      "cycle": "a672d8cf08",
+      "deadline": 43879.906,
+      "recipeRunId": "248e147bd833",
+      "recipeStep": 10
+    },
+    {
+      "id": "45f67606ad",
+      "at": "2026-10-08T01:13:16+0800",
+      "epoch": 1791393196.3705986,
+      "kind": "SIGNAL",
+      "title": "信号变化：Rece_Data_Z_Grap_Pos_Confirmed",
+      "operationId": "recipe-248e147bd833-10",
+      "actionId": "a672d8cf08",
+      "idSignal": "plc.Z_Grap_Pos_Confirmed",
+      "mb": 6048,
+      "before": 1,
+      "value": 0,
+      "rawRegisters": [
+        0
+      ],
+      "connectionGeneration": 1,
+      "resource": "ZGrab",
+      "cycle": "a672d8cf08",
+      "deadline": 43879.906,
+      "recipeRunId": "248e147bd833",
+      "recipeStep": 10
+    },
+    {
+      "id": "0f038c5227",
+      "at": "2026-10-08T01:13:16+0800",
+      "epoch": 1791393196.4141364,
+      "kind": "SIGNAL",
+      "title": "信号变化：Send_Data_Camera_Target_X",
+      "idSignal": "pc.Camera_Target_X",
+      "mb": 2024,
+      "before": 10.0,
+      "value": 25.0,
+      "rawRegisters": [
+        0,
+        16840
+      ],
+      "connectionGeneration": 1,
+      "recipeRunId": "248e147bd833",
+      "recipeStep": 10
+    },
+    {
+      "id": "b6efb3d2d8",
+      "at": "2026-10-08T01:13:16+0800",
+      "epoch": 1791393196.4279983,
+      "kind": "SIGNAL",
+      "title": "信号变化：Send_Data_X_Move_Start",
+      "operationId": "recipe-248e147bd833-10",
+      "actionId": "08620a3543",
+      "idSignal": "pc.X_Move_Start",
+      "mb": 2001,
+      "before": 0,
+      "value": 1,
+      "rawRegisters": [
+        256
+      ],
+      "connectionGeneration": 1,
+      "resource": "X",
+      "cycle": "08620a3543",
+      "deadline": 43880.062,
+      "recipeRunId": "248e147bd833",
+      "recipeStep": 10
+    },
+    {
+      "id": "595f81cb8d",
+      "at": "2026-10-08T01:13:16+0800",
+      "epoch": 1791393196.4929209,
+      "kind": "SIGNAL",
+      "title": "信号变化：Rece_Data_X_Pos_Confirmed",
+      "operationId": "recipe-248e147bd833-10",
+      "actionId": "08620a3543",
+      "idSignal": "plc.X_Pos_Confirmed",
+      "mb": 6040,
+      "before": 0,
+      "value": 1,
+      "rawRegisters": [
+        1
+      ],
+      "connectionGeneration": 1,
+      "resource": "X",
+      "cycle": "08620a3543",
+      "deadline": 43880.062,
+      "recipeRunId": "248e147bd833",
+      "recipeStep": 10
+    },
+    {
+      "id": "be36fb237a",
+      "at": "2026-10-08T01:13:16+0800",
+      "epoch": 1791393196.5164666,
+      "kind": "SIGNAL",
+      "title": "信号变化：Send_Data_X_Move_Start",
+      "operationId": "recipe-248e147bd833-10",
+      "actionId": "08620a3543",
+      "idSignal": "pc.X_Move_Start",
+      "mb": 2001,
+      "before": 1,
+      "value": 0,
+      "rawRegisters": [
+        0
+      ],
+      "connectionGeneration": 1,
+      "resource": "X",
+      "cycle": "08620a3543",
+      "deadline": 43880.062,
+      "recipeRunId": "248e147bd833",
+      "recipeStep": 10
+    },
+    {
+      "id": "63e87e8256",
+      "at": "2026-10-08T01:13:16+0800",
+      "epoch": 1791393196.5164666,
+      "kind": "SIGNAL",
+      "title": "信号变化：Rece_Data_X_Pos_Confirmed",
+      "operationId": "recipe-248e147bd833-10",
+      "actionId": "08620a3543",
+      "idSignal": "plc.X_Pos_Confirmed",
+      "mb": 6040,
+      "before": 1,
+      "value": 0,
+      "rawRegisters": [
+        0
+      ],
+      "connectionGeneration": 1,
+      "resource": "X",
+      "cycle": "08620a3543",
+      "deadline": 43880.062,
+      "recipeRunId": "248e147bd833",
+      "recipeStep": 10
+    },
+    {
+      "id": "ca7ee7718c",
+      "at": "2026-10-08T01:13:16+0800",
+      "epoch": 1791393196.5538769,
+      "kind": "SIGNAL",
+      "title": "信号变化：Send_Data_Camera_Target_Y",
+      "idSignal": "pc.Camera_Target_Y",
+      "mb": 2028,
+      "before": 10.0,
+      "value": 80.0,
+      "rawRegisters": [
+        0,
+        17056
+      ],
+      "connectionGeneration": 1,
+      "recipeRunId": "248e147bd833",
+      "recipeStep": 10
+    },
+    {
+      "id": "6621ea276c",
+      "at": "2026-10-08T01:13:16+0800",
+      "epoch": 1791393196.5676258,
+      "kind": "SIGNAL",
+      "title": "信号变化：Send_Data_Y_Move_Start",
+      "operationId": "recipe-248e147bd833-10",
+      "actionId": "bc73d55121",
+      "idSignal": "pc.Y_Move_Start",
+      "mb": 2002,
+      "before": 0,
+      "value": 1,
+      "rawRegisters": [
+        1
+      ],
+      "connectionGeneration": 1,
+      "resource": "Y",
+      "cycle": "bc73d55121",
+      "deadline": 43880.187,
+      "recipeRunId": "248e147bd833",
+      "recipeStep": 10
+    },
+    {
+      "id": "cc077aadc0",
+      "at": "2026-10-08T01:13:16+0800",
+      "epoch": 1791393196.6222034,
+      "kind": "SIGNAL",
+      "title": "信号变化：Rece_Data_Y_Pos_Confirmed",
+      "operationId": "recipe-248e147bd833-10",
+      "actionId": "bc73d55121",
+      "idSignal": "plc.Y_Pos_Confirmed",
+      "mb": 6042,
+      "before": 0,
+      "value": 1,
+      "rawRegisters": [
+        1
+      ],
+      "connectionGeneration": 1,
+      "resource": "Y",
+      "cycle": "bc73d55121",
+      "deadline": 43880.187,
+      "recipeRunId": "248e147bd833",
+      "recipeStep": 10
+    },
+    {
+      "id": "f339ed8c24",
+      "at": "2026-10-08T01:13:16+0800",
+      "epoch": 1791393196.6464171,
+      "kind": "SIGNAL",
+      "title": "信号变化：Send_Data_Y_Move_Start",
+      "operationId": "recipe-248e147bd833-10",
+      "actionId": "bc73d55121",
+      "idSignal": "pc.Y_Move_Start",
+      "mb": 2002,
+      "before": 1,
+      "value": 0,
+      "rawRegisters": [
+        0
+      ],
+      "connectionGeneration": 1,
+      "resource": "Y",
+      "cycle": "bc73d55121",
+      "deadline": 43880.187,
+      "recipeRunId": "248e147bd833",
+      "recipeStep": 10
+    },
+    {
+      "id": "d5b5b4c80e",
+      "at": "2026-10-08T01:13:16+0800",
+      "epoch": 1791393196.6464171,
+      "kind": "SIGNAL",
+      "title": "信号变化：Rece_Data_Y_Pos_Confirmed",
+      "operationId": "recipe-248e147bd833-10",
+      "actionId": "bc73d55121",
+      "idSignal": "plc.Y_Pos_Confirmed",
+      "mb": 6042,
+      "before": 1,
+      "value": 0,
+      "rawRegisters": [
+        0
+      ],
+      "connectionGeneration": 1,
+      "resource": "Y",
+      "cycle": "bc73d55121",
+      "deadline": 43880.187,
+      "recipeRunId": "248e147bd833",
+      "recipeStep": 10
+    },
+    {
+      "id": "53ae293c4e",
+      "at": "2026-10-08T01:13:16+0800",
+      "epoch": 1791393196.869454,
+      "kind": "SIGNAL",
+      "title": "信号变化：Send_Data_Camera_Target_X",
+      "idSignal": "pc.Camera_Target_X",
+      "mb": 2024,
+      "before": 25.0,
+      "value": 65.0,
+      "rawRegisters": [
+        0,
+        17026
+      ],
+      "connectionGeneration": 1,
+      "recipeRunId": "248e147bd833",
+      "recipeStep": 11
+    },
+    {
+      "id": "475e8fce4d",
+      "at": "2026-10-08T01:13:16+0800",
+      "epoch": 1791393196.8824537,
+      "kind": "SIGNAL",
+      "title": "信号变化：Send_Data_X_Move_Start",
+      "operationId": "recipe-248e147bd833-11",
+      "actionId": "f6b5826ab8",
+      "idSignal": "pc.X_Move_Start",
+      "mb": 2001,
+      "before": 0,
+      "value": 1,
+      "rawRegisters": [
+        256
+      ],
+      "connectionGeneration": 1,
+      "resource": "X",
+      "cycle": "f6b5826ab8",
+      "deadline": 43880.515,
+      "recipeRunId": "248e147bd833",
+      "recipeStep": 11
+    },
+    {
+      "id": "8105f3b783",
+      "at": "2026-10-08T01:13:16+0800",
+      "epoch": 1791393196.9428782,
+      "kind": "SIGNAL",
+      "title": "信号变化：Rece_Data_X_Pos_Confirmed",
+      "operationId": "recipe-248e147bd833-11",
+      "actionId": "f6b5826ab8",
+      "idSignal": "plc.X_Pos_Confirmed",
+      "mb": 6040,
+      "before": 0,
+      "value": 1,
+      "rawRegisters": [
+        1
+      ],
+      "connectionGeneration": 1,
+      "resource": "X",
+      "cycle": "f6b5826ab8",
+      "deadline": 43880.515,
+      "recipeRunId": "248e147bd833",
+      "recipeStep": 11
+    },
+    {
+      "id": "b013322ed9",
+      "at": "2026-10-08T01:13:16+0800",
+      "epoch": 1791393196.9660196,
+      "kind": "SIGNAL",
+      "title": "信号变化：Send_Data_X_Move_Start",
+      "operationId": "recipe-248e147bd833-11",
+      "actionId": "f6b5826ab8",
+      "idSignal": "pc.X_Move_Start",
+      "mb": 2001,
+      "before": 1,
+      "value": 0,
+      "rawRegisters": [
+        0
+      ],
+      "connectionGeneration": 1,
+      "resource": "X",
+      "cycle": "f6b5826ab8",
+      "deadline": 43880.515,
+      "recipeRunId": "248e147bd833",
+      "recipeStep": 11
+    },
+    {
+      "id": "5a65df0ba9",
+      "at": "2026-10-08T01:13:16+0800",
+      "epoch": 1791393196.9660196,
+      "kind": "SIGNAL",
+      "title": "信号变化：Rece_Data_X_Pos_Confirmed",
+      "operationId": "recipe-248e147bd833-11",
+      "actionId": "f6b5826ab8",
+      "idSignal": "plc.X_Pos_Confirmed",
+      "mb": 6040,
+      "before": 1,
+      "value": 0,
+      "rawRegisters": [
+        0
+      ],
+      "connectionGeneration": 1,
+      "resource": "X",
+      "cycle": "f6b5826ab8",
+      "deadline": 43880.515,
+      "recipeRunId": "248e147bd833",
+      "recipeStep": 11
+    },
+    {
+      "id": "947eb2d191",
+      "at": "2026-10-08T01:13:17+0800",
+      "epoch": 1791393197.012028,
+      "kind": "SIGNAL",
+      "title": "信号变化：Send_Data_Camera_Target_Y",
+      "idSignal": "pc.Camera_Target_Y",
+      "mb": 2028,
+      "before": 80.0,
+      "value": 20.0,
+      "rawRegisters": [
+        0,
+        16800
+      ],
+      "connectionGeneration": 1,
+      "recipeRunId": "248e147bd833",
+      "recipeStep": 11
+    },
+    {
+      "id": "4732b84bf3",
+      "at": "2026-10-08T01:13:17+0800",
+      "epoch": 1791393197.025279,
+      "kind": "SIGNAL",
+      "title": "信号变化：Send_Data_Y_Move_Start",
+      "operationId": "recipe-248e147bd833-11",
+      "actionId": "49ac001d92",
+      "idSignal": "pc.Y_Move_Start",
+      "mb": 2002,
+      "before": 0,
+      "value": 1,
+      "rawRegisters": [
+        1
+      ],
+      "connectionGeneration": 1,
+      "resource": "Y",
+      "cycle": "49ac001d92",
+      "deadline": 43880.656,
+      "recipeRunId": "248e147bd833",
+      "recipeStep": 11
+    },
+    {
+      "id": "f78a63faba",
+      "at": "2026-10-08T01:13:17+0800",
+      "epoch": 1791393197.073538,
+      "kind": "SIGNAL",
+      "title": "信号变化：Rece_Data_Y_Pos_Confirmed",
+      "operationId": "recipe-248e147bd833-11",
+      "actionId": "49ac001d92",
+      "idSignal": "plc.Y_Pos_Confirmed",
+      "mb": 6042,
+      "before": 0,
+      "value": 1,
+      "rawRegisters": [
+        1
+      ],
+      "connectionGeneration": 1,
+      "resource": "Y",
+      "cycle": "49ac001d92",
+      "deadline": 43880.656,
+      "recipeRunId": "248e147bd833",
+      "recipeStep": 11
+    },
+    {
+      "id": "fe59e7a6d4",
+      "at": "2026-10-08T01:13:17+0800",
+      "epoch": 1791393197.0980744,
+      "kind": "SIGNAL",
+      "title": "信号变化：Send_Data_Y_Move_Start",
+      "operationId": "recipe-248e147bd833-11",
+      "actionId": "49ac001d92",
+      "idSignal": "pc.Y_Move_Start",
+      "mb": 2002,
+      "before": 1,
+      "value": 0,
+      "rawRegisters": [
+        0
+      ],
+      "connectionGeneration": 1,
+      "resource": "Y",
+      "cycle": "49ac001d92",
+      "deadline": 43880.656,
+      "recipeRunId": "248e147bd833",
+      "recipeStep": 11
+    },
+    {
+      "id": "aa629a49d5",
+      "at": "2026-10-08T01:13:17+0800",
+      "epoch": 1791393197.098581,
+      "kind": "SIGNAL",
+      "title": "信号变化：Rece_Data_Y_Pos_Confirmed",
+      "operationId": "recipe-248e147bd833-11",
+      "actionId": "49ac001d92",
+      "idSignal": "plc.Y_Pos_Confirmed",
+      "mb": 6042,
+      "before": 1,
+      "value": 0,
+      "rawRegisters": [
+        0
+      ],
+      "connectionGeneration": 1,
+      "resource": "Y",
+      "cycle": "49ac001d92",
+      "deadline": 43880.656,
+      "recipeRunId": "248e147bd833",
+      "recipeStep": 11
+    },
+    {
+      "id": "b858b2d516",
+      "at": "2026-10-08T01:13:17+0800",
+      "epoch": 1791393197.1355746,
+      "kind": "SIGNAL",
+      "title": "信号变化：Send_Data_Camera_Target_Z",
+      "idSignal": "pc.Camera_Target_Z",
+      "mb": 2032,
+      "before": 2.0,
+      "value": 5.0,
+      "rawRegisters": [
+        0,
+        16544
+      ],
+      "connectionGeneration": 1,
+      "recipeRunId": "248e147bd833",
+      "recipeStep": 11
+    },
+    {
+      "id": "4b2933e7f2",
+      "at": "2026-10-08T01:13:17+0800",
+      "epoch": 1791393197.1490874,
+      "kind": "SIGNAL",
+      "title": "信号变化：Send_Data_Z_Camera_Move_Start",
+      "operationId": "recipe-248e147bd833-11",
+      "actionId": "0f943b14b3",
+      "idSignal": "pc.Z_Camera_Move_Start",
+      "mb": 2003,
+      "before": 0,
+      "value": 1,
+      "rawRegisters": [
+        256
+      ],
+      "connectionGeneration": 1,
+      "resource": "ZCamera",
+      "cycle": "0f943b14b3",
+      "deadline": 43880.781,
+      "recipeRunId": "248e147bd833",
+      "recipeStep": 11
+    },
+    {
+      "id": "7c9ec65990",
+      "at": "2026-10-08T01:13:17+0800",
+      "epoch": 1791393197.210578,
+      "kind": "SIGNAL",
+      "title": "信号变化：Rece_Data_Z_Camera_Pos_Confirmed",
+      "operationId": "recipe-248e147bd833-11",
+      "actionId": "0f943b14b3",
+      "idSignal": "plc.Z_Camera_Pos_Confirmed",
+      "mb": 6044,
+      "before": 0,
+      "value": 1,
+      "rawRegisters": [
+        1
+      ],
+      "connectionGeneration": 1,
+      "resource": "ZCamera",
+      "cycle": "0f943b14b3",
+      "deadline": 43880.781,
+      "recipeRunId": "248e147bd833",
+      "recipeStep": 11
+    },
+    {
+      "id": "ad545d465c",
+      "at": "2026-10-08T01:13:17+0800",
+      "epoch": 1791393197.2343488,
+      "kind": "SIGNAL",
+      "title": "信号变化：Send_Data_Z_Camera_Move_Start",
+      "operationId": "recipe-248e147bd833-11",
+      "actionId": "0f943b14b3",
+      "idSignal": "pc.Z_Camera_Move_Start",
+      "mb": 2003,
+      "before": 1,
+      "value": 0,
+      "rawRegisters": [
+        0
+      ],
+      "connectionGeneration": 1,
+      "resource": "ZCamera",
+      "cycle": "0f943b14b3",
+      "deadline": 43880.781,
+      "recipeRunId": "248e147bd833",
+      "recipeStep": 11
+    },
+    {
+      "id": "6f9ab5df88",
+      "at": "2026-10-08T01:13:17+0800",
+      "epoch": 1791393197.2348616,
+      "kind": "SIGNAL",
+      "title": "信号变化：Rece_Data_Z_Camera_Pos_Confirmed",
+      "operationId": "recipe-248e147bd833-11",
+      "actionId": "0f943b14b3",
+      "idSignal": "plc.Z_Camera_Pos_Confirmed",
+      "mb": 6044,
+      "before": 1,
+      "value": 0,
+      "rawRegisters": [
+        0
+      ],
+      "connectionGeneration": 1,
+      "resource": "ZCamera",
+      "cycle": "0f943b14b3",
+      "deadline": 43880.781,
+      "recipeRunId": "248e147bd833",
+      "recipeStep": 11
+    },
+    {
+      "id": "c1e59053b6",
+      "at": "2026-10-08T01:13:17+0800",
+      "epoch": 1791393197.3227212,
+      "kind": "SIGNAL",
+      "title": "信号变化：Send_Data_Camera_Target_Z",
+      "idSignal": "pc.Camera_Target_Z",
+      "mb": 2032,
+      "before": 5.0,
+      "value": 2.0,
+      "rawRegisters": [
+        0,
+        16384
+      ],
+      "connectionGeneration": 1,
+      "recipeRunId": "248e147bd833",
+      "recipeStep": 12
+    },
+    {
+      "id": "202d903b84",
+      "at": "2026-10-08T01:13:17+0800",
+      "epoch": 1791393197.3367214,
+      "kind": "SIGNAL",
+      "title": "信号变化：Send_Data_Z_Camera_Move_Start",
+      "operationId": "recipe-248e147bd833-12",
+      "actionId": "757a3a5975",
+      "idSignal": "pc.Z_Camera_Move_Start",
+      "mb": 2003,
+      "before": 0,
+      "value": 1,
+      "rawRegisters": [
+        256
+      ],
+      "connectionGeneration": 1,
+      "resource": "ZCamera",
+      "cycle": "757a3a5975",
+      "deadline": 43880.968,
+      "recipeRunId": "248e147bd833",
+      "recipeStep": 12
+    },
+    {
+      "id": "294718bdb4",
+      "at": "2026-10-08T01:13:17+0800",
+      "epoch": 1791393197.3951614,
+      "kind": "SIGNAL",
+      "title": "信号变化：Rece_Data_Z_Camera_Pos_Confirmed",
+      "operationId": "recipe-248e147bd833-12",
+      "actionId": "757a3a5975",
+      "idSignal": "plc.Z_Camera_Pos_Confirmed",
+      "mb": 6044,
+      "before": 0,
+      "value": 1,
+      "rawRegisters": [
+        1
+      ],
+      "connectionGeneration": 1,
+      "resource": "ZCamera",
+      "cycle": "757a3a5975",
+      "deadline": 43880.968,
+      "recipeRunId": "248e147bd833",
+      "recipeStep": 12
+    },
+    {
+      "id": "80f9154f79",
+      "at": "2026-10-08T01:13:17+0800",
+      "epoch": 1791393197.41957,
+      "kind": "SIGNAL",
+      "title": "信号变化：Send_Data_Z_Camera_Move_Start",
+      "operationId": "recipe-248e147bd833-12",
+      "actionId": "757a3a5975",
+      "idSignal": "pc.Z_Camera_Move_Start",
+      "mb": 2003,
+      "before": 1,
+      "value": 0,
+      "rawRegisters": [
+        0
+      ],
+      "connectionGeneration": 1,
+      "resource": "ZCamera",
+      "cycle": "757a3a5975",
+      "deadline": 43880.968,
+      "recipeRunId": "248e147bd833",
+      "recipeStep": 12
+    },
+    {
+      "id": "1eec5e6f2d",
+      "at": "2026-10-08T01:13:17+0800",
+      "epoch": 1791393197.41957,
+      "kind": "SIGNAL",
+      "title": "信号变化：Rece_Data_Z_Camera_Pos_Confirmed",
+      "operationId": "recipe-248e147bd833-12",
+      "actionId": "757a3a5975",
+      "idSignal": "plc.Z_Camera_Pos_Confirmed",
+      "mb": 6044,
+      "before": 1,
+      "value": 0,
+      "rawRegisters": [
+        0
+      ],
+      "connectionGeneration": 1,
+      "resource": "ZCamera",
+      "cycle": "757a3a5975",
+      "deadline": 43880.968,
+      "recipeRunId": "248e147bd833",
+      "recipeStep": 12
+    },
+    {
+      "id": "927393890c",
+      "at": "2026-10-08T01:13:17+0800",
+      "epoch": 1791393197.5369473,
+      "kind": "SIGNAL",
+      "title": "信号变化：Send_Data_Camera_Target_X",
+      "idSignal": "pc.Camera_Target_X",
+      "mb": 2024,
+      "before": 65.0,
+      "value": 85.0,
+      "rawRegisters": [
+        0,
+        17066
+      ],
+      "connectionGeneration": 1,
+      "recipeRunId": "248e147bd833",
+      "recipeStep": 12
+    },
+    {
+      "id": "b285c179ef",
+      "at": "2026-10-08T01:13:17+0800",
+      "epoch": 1791393197.55095,
+      "kind": "SIGNAL",
+      "title": "信号变化：Send_Data_X_Move_Start",
+      "operationId": "recipe-248e147bd833-12",
+      "actionId": "68c5376d40",
+      "idSignal": "pc.X_Move_Start",
+      "mb": 2001,
+      "before": 0,
+      "value": 1,
+      "rawRegisters": [
+        256
+      ],
+      "connectionGeneration": 1,
+      "resource": "X",
+      "cycle": "68c5376d40",
+      "deadline": 43881.171,
+      "recipeRunId": "248e147bd833",
+      "recipeStep": 12
+    },
+    {
+      "id": "c8a59d1e2f",
+      "at": "2026-10-08T01:13:17+0800",
+      "epoch": 1791393197.6048148,
+      "kind": "SIGNAL",
+      "title": "信号变化：Rece_Data_X_Pos_Confirmed",
+      "operationId": "recipe-248e147bd833-12",
+      "actionId": "68c5376d40",
+      "idSignal": "plc.X_Pos_Confirmed",
+      "mb": 6040,
+      "before": 0,
+      "value": 1,
+      "rawRegisters": [
+        1
+      ],
+      "connectionGeneration": 1,
+      "resource": "X",
+      "cycle": "68c5376d40",
+      "deadline": 43881.171,
+      "recipeRunId": "248e147bd833",
+      "recipeStep": 12
+    },
+    {
+      "id": "44f636d0b0",
+      "at": "2026-10-08T01:13:17+0800",
+      "epoch": 1791393197.629045,
+      "kind": "SIGNAL",
+      "title": "信号变化：Send_Data_X_Move_Start",
+      "operationId": "recipe-248e147bd833-12",
+      "actionId": "68c5376d40",
+      "idSignal": "pc.X_Move_Start",
+      "mb": 2001,
+      "before": 1,
+      "value": 0,
+      "rawRegisters": [
+        0
+      ],
+      "connectionGeneration": 1,
+      "resource": "X",
+      "cycle": "68c5376d40",
+      "deadline": 43881.171,
+      "recipeRunId": "248e147bd833",
+      "recipeStep": 12
+    },
+    {
+      "id": "ebcc233a85",
+      "at": "2026-10-08T01:13:17+0800",
+      "epoch": 1791393197.629045,
+      "kind": "SIGNAL",
+      "title": "信号变化：Rece_Data_X_Pos_Confirmed",
+      "operationId": "recipe-248e147bd833-12",
+      "actionId": "68c5376d40",
+      "idSignal": "plc.X_Pos_Confirmed",
+      "mb": 6040,
+      "before": 1,
+      "value": 0,
+      "rawRegisters": [
+        0
+      ],
+      "connectionGeneration": 1,
+      "resource": "X",
+      "cycle": "68c5376d40",
+      "deadline": 43881.171,
+      "recipeRunId": "248e147bd833",
+      "recipeStep": 12
+    },
+    {
+      "id": "178309dd9b",
+      "at": "2026-10-08T01:13:17+0800",
+      "epoch": 1791393197.7084565,
+      "kind": "SIGNAL",
+      "title": "信号变化：Send_Data_Camera_Target_Z",
+      "idSignal": "pc.Camera_Target_Z",
+      "mb": 2032,
+      "before": 2.0,
+      "value": 5.0,
+      "rawRegisters": [
+        0,
+        16544
+      ],
+      "connectionGeneration": 1,
+      "recipeRunId": "248e147bd833",
+      "recipeStep": 12
+    },
+    {
+      "id": "7eab88ee7b",
+      "at": "2026-10-08T01:13:17+0800",
+      "epoch": 1791393197.7211876,
+      "kind": "SIGNAL",
+      "title": "信号变化：Send_Data_Z_Camera_Move_Start",
+      "operationId": "recipe-248e147bd833-12",
+      "actionId": "58c407c738",
+      "idSignal": "pc.Z_Camera_Move_Start",
+      "mb": 2003,
+      "before": 0,
+      "value": 1,
+      "rawRegisters": [
+        256
+      ],
+      "connectionGeneration": 1,
+      "resource": "ZCamera",
+      "cycle": "58c407c738",
+      "deadline": 43881.343,
+      "recipeRunId": "248e147bd833",
+      "recipeStep": 12
+    },
+    {
+      "id": "2fa317eaaa",
+      "at": "2026-10-08T01:13:17+0800",
+      "epoch": 1791393197.7874086,
+      "kind": "SIGNAL",
+      "title": "信号变化：Rece_Data_Z_Camera_Pos_Confirmed",
+      "operationId": "recipe-248e147bd833-12",
+      "actionId": "58c407c738",
+      "idSignal": "plc.Z_Camera_Pos_Confirmed",
+      "mb": 6044,
+      "before": 0,
+      "value": 1,
+      "rawRegisters": [
+        1
+      ],
+      "connectionGeneration": 1,
+      "resource": "ZCamera",
+      "cycle": "58c407c738",
+      "deadline": 43881.343,
+      "recipeRunId": "248e147bd833",
+      "recipeStep": 12
+    },
+    {
+      "id": "9e04750949",
+      "at": "2026-10-08T01:13:17+0800",
+      "epoch": 1791393197.8107326,
+      "kind": "SIGNAL",
+      "title": "信号变化：Send_Data_Z_Camera_Move_Start",
+      "operationId": "recipe-248e147bd833-12",
+      "actionId": "58c407c738",
+      "idSignal": "pc.Z_Camera_Move_Start",
+      "mb": 2003,
+      "before": 1,
+      "value": 0,
+      "rawRegisters": [
+        0
+      ],
+      "connectionGeneration": 1,
+      "resource": "ZCamera",
+      "cycle": "58c407c738",
+      "deadline": 43881.343,
+      "recipeRunId": "248e147bd833",
+      "recipeStep": 12
+    },
+    {
+      "id": "b64670b9f9",
+      "at": "2026-10-08T01:13:17+0800",
+      "epoch": 1791393197.8112416,
+      "kind": "SIGNAL",
+      "title": "信号变化：Rece_Data_Z_Camera_Pos_Confirmed",
+      "operationId": "recipe-248e147bd833-12",
+      "actionId": "58c407c738",
+      "idSignal": "plc.Z_Camera_Pos_Confirmed",
+      "mb": 6044,
+      "before": 1,
+      "value": 0,
+      "rawRegisters": [
+        0
+      ],
+      "connectionGeneration": 1,
+      "resource": "ZCamera",
+      "cycle": "58c407c738",
+      "deadline": 43881.343,
+      "recipeRunId": "248e147bd833",
+      "recipeStep": 12
+    },
+    {
+      "id": "91ebe761c3",
+      "at": "2026-10-08T01:13:17+0800",
+      "epoch": 1791393197.942608,
+      "kind": "SIGNAL",
+      "title": "信号变化：Send_Data_Grab_ID",
+      "idSignal": "pc.Grab_ID",
+      "mb": 2018,
+      "before": 0,
+      "value": 2,
+      "rawRegisters": [
+        2
+      ],
+      "connectionGeneration": 1,
+      "recipeRunId": "248e147bd833",
+      "recipeStep": 13
+    },
+    {
+      "id": "09a2703c11",
+      "at": "2026-10-08T01:13:17+0800",
+      "epoch": 1791393197.942608,
+      "kind": "SIGNAL",
+      "title": "信号变化：Rece_Data_Grab_Active_ID",
+      "idSignal": "plc.Grab_Active_ID",
+      "mb": 6062,
+      "before": 0,
+      "value": 2,
+      "rawRegisters": [
+        2
+      ],
+      "connectionGeneration": 1,
+      "recipeRunId": "248e147bd833",
+      "recipeStep": 13
+    },
+    {
+      "id": "f6bd319f24",
+      "at": "2026-10-08T01:13:17+0800",
+      "epoch": 1791393197.9779112,
+      "kind": "SIGNAL",
+      "title": "信号变化：Send_Data_Camera_Target_Z",
+      "idSignal": "pc.Camera_Target_Z",
+      "mb": 2032,
+      "before": 5.0,
+      "value": 2.0,
+      "rawRegisters": [
+        0,
+        16384
+      ],
+      "connectionGeneration": 1,
+      "recipeRunId": "248e147bd833",
+      "recipeStep": 13
+    },
+    {
+      "id": "577af499fd",
+      "at": "2026-10-08T01:13:17+0800",
+      "epoch": 1791393197.9907742,
+      "kind": "SIGNAL",
+      "title": "信号变化：Send_Data_Z_Camera_Move_Start",
+      "operationId": "recipe-248e147bd833-13",
+      "actionId": "0bc00385ba",
+      "idSignal": "pc.Z_Camera_Move_Start",
+      "mb": 2003,
+      "before": 0,
+      "value": 1,
+      "rawRegisters": [
+        256
+      ],
+      "connectionGeneration": 1,
+      "resource": "ZCamera",
+      "cycle": "0bc00385ba",
+      "deadline": 43881.625,
+      "recipeRunId": "248e147bd833",
+      "recipeStep": 13
+    },
+    {
+      "id": "bd1f163b26",
+      "at": "2026-10-08T01:13:18+0800",
+      "epoch": 1791393198.0455062,
+      "kind": "SIGNAL",
+      "title": "信号变化：Rece_Data_Z_Camera_Pos_Confirmed",
+      "operationId": "recipe-248e147bd833-13",
+      "actionId": "0bc00385ba",
+      "idSignal": "plc.Z_Camera_Pos_Confirmed",
+      "mb": 6044,
+      "before": 0,
+      "value": 1,
+      "rawRegisters": [
+        1
+      ],
+      "connectionGeneration": 1,
+      "resource": "ZCamera",
+      "cycle": "0bc00385ba",
+      "deadline": 43881.625,
+      "recipeRunId": "248e147bd833",
+      "recipeStep": 13
+    },
+    {
+      "id": "de9a179245",
+      "at": "2026-10-08T01:13:18+0800",
+      "epoch": 1791393198.0689642,
+      "kind": "SIGNAL",
+      "title": "信号变化：Send_Data_Z_Camera_Move_Start",
+      "operationId": "recipe-248e147bd833-13",
+      "actionId": "0bc00385ba",
+      "idSignal": "pc.Z_Camera_Move_Start",
+      "mb": 2003,
+      "before": 1,
+      "value": 0,
+      "rawRegisters": [
+        0
+      ],
+      "connectionGeneration": 1,
+      "resource": "ZCamera",
+      "cycle": "0bc00385ba",
+      "deadline": 43881.625,
+      "recipeRunId": "248e147bd833",
+      "recipeStep": 13
+    },
+    {
+      "id": "4f438b007e",
+      "at": "2026-10-08T01:13:18+0800",
+      "epoch": 1791393198.0689642,
+      "kind": "SIGNAL",
+      "title": "信号变化：Rece_Data_Z_Camera_Pos_Confirmed",
+      "operationId": "recipe-248e147bd833-13",
+      "actionId": "0bc00385ba",
+      "idSignal": "plc.Z_Camera_Pos_Confirmed",
+      "mb": 6044,
+      "before": 1,
+      "value": 0,
+      "rawRegisters": [
+        0
+      ],
+      "connectionGeneration": 1,
+      "resource": "ZCamera",
+      "cycle": "0bc00385ba",
+      "deadline": 43881.625,
+      "recipeRunId": "248e147bd833",
+      "recipeStep": 13
+    },
+    {
+      "id": "f8ce637909",
+      "at": "2026-10-08T01:13:18+0800",
+      "epoch": 1791393198.1946692,
+      "kind": "SIGNAL",
+      "title": "信号变化：Send_Data_Camera_Target_X",
+      "idSignal": "pc.Camera_Target_X",
+      "mb": 2024,
+      "before": 85.0,
+      "value": 10.0,
+      "rawRegisters": [
+        0,
+        16672
+      ],
+      "connectionGeneration": 1,
+      "recipeRunId": "248e147bd833",
+      "recipeStep": 13
+    },
+    {
+      "id": "fcbf41dc38",
+      "at": "2026-10-08T01:13:18+0800",
+      "epoch": 1791393198.2074358,
+      "kind": "SIGNAL",
+      "title": "信号变化：Send_Data_X_Move_Start",
+      "operationId": "recipe-248e147bd833-13",
+      "actionId": "43b8a6c397",
+      "idSignal": "pc.X_Move_Start",
+      "mb": 2001,
+      "before": 0,
+      "value": 1,
+      "rawRegisters": [
+        256
+      ],
+      "connectionGeneration": 1,
+      "resource": "X",
+      "cycle": "43b8a6c397",
+      "deadline": 43881.828,
+      "recipeRunId": "248e147bd833",
+      "recipeStep": 13
+    },
+    {
+      "id": "2e9b0f361d",
+      "at": "2026-10-08T01:13:18+0800",
+      "epoch": 1791393198.2681503,
+      "kind": "SIGNAL",
+      "title": "信号变化：Rece_Data_X_Pos_Confirmed",
+      "operationId": "recipe-248e147bd833-13",
+      "actionId": "43b8a6c397",
+      "idSignal": "plc.X_Pos_Confirmed",
+      "mb": 6040,
+      "before": 0,
+      "value": 1,
+      "rawRegisters": [
+        1
+      ],
+      "connectionGeneration": 1,
+      "resource": "X",
+      "cycle": "43b8a6c397",
+      "deadline": 43881.828,
+      "recipeRunId": "248e147bd833",
+      "recipeStep": 13
+    },
+    {
+      "id": "1df96e9f3d",
+      "at": "2026-10-08T01:13:18+0800",
+      "epoch": 1791393198.2924418,
+      "kind": "SIGNAL",
+      "title": "信号变化：Send_Data_X_Move_Start",
+      "operationId": "recipe-248e147bd833-13",
+      "actionId": "43b8a6c397",
+      "idSignal": "pc.X_Move_Start",
+      "mb": 2001,
+      "before": 1,
+      "value": 0,
+      "rawRegisters": [
+        0
+      ],
+      "connectionGeneration": 1,
+      "resource": "X",
+      "cycle": "43b8a6c397",
+      "deadline": 43881.828,
+      "recipeRunId": "248e147bd833",
+      "recipeStep": 13
+    },
+    {
+      "id": "392a28abbe",
+      "at": "2026-10-08T01:13:18+0800",
+      "epoch": 1791393198.2924418,
+      "kind": "SIGNAL",
+      "title": "信号变化：Rece_Data_X_Pos_Confirmed",
+      "operationId": "recipe-248e147bd833-13",
+      "actionId": "43b8a6c397",
+      "idSignal": "plc.X_Pos_Confirmed",
+      "mb": 6040,
+      "before": 1,
+      "value": 0,
+      "rawRegisters": [
+        0
+      ],
+      "connectionGeneration": 1,
+      "resource": "X",
+      "cycle": "43b8a6c397",
+      "deadline": 43881.828,
+      "recipeRunId": "248e147bd833",
+      "recipeStep": 13
+    },
+    {
+      "id": "a696f28275",
+      "at": "2026-10-08T01:13:18+0800",
+      "epoch": 1791393198.3304477,
+      "kind": "SIGNAL",
+      "title": "信号变化：Send_Data_Camera_Target_Y",
+      "idSignal": "pc.Camera_Target_Y",
+      "mb": 2028,
+      "before": 20.0,
+      "value": 10.0,
+      "rawRegisters": [
+        0,
+        16672
+      ],
+      "connectionGeneration": 1,
+      "recipeRunId": "248e147bd833",
+      "recipeStep": 13
+    },
+    {
+      "id": "dc0fca632f",
+      "at": "2026-10-08T01:13:18+0800",
+      "epoch": 1791393198.3444479,
+      "kind": "SIGNAL",
+      "title": "信号变化：Send_Data_Y_Move_Start",
+      "operationId": "recipe-248e147bd833-13",
+      "actionId": "6717d1e057",
+      "idSignal": "pc.Y_Move_Start",
+      "mb": 2002,
+      "before": 0,
+      "value": 1,
+      "rawRegisters": [
+        1
+      ],
+      "connectionGeneration": 1,
+      "resource": "Y",
+      "cycle": "6717d1e057",
+      "deadline": 43881.968,
+      "recipeRunId": "248e147bd833",
+      "recipeStep": 13
+    },
+    {
+      "id": "978f03b62c",
+      "at": "2026-10-08T01:13:18+0800",
+      "epoch": 1791393198.3987145,
+      "kind": "SIGNAL",
+      "title": "信号变化：Rece_Data_Y_Pos_Confirmed",
+      "operationId": "recipe-248e147bd833-13",
+      "actionId": "6717d1e057",
+      "idSignal": "plc.Y_Pos_Confirmed",
+      "mb": 6042,
+      "before": 0,
+      "value": 1,
+      "rawRegisters": [
+        1
+      ],
+      "connectionGeneration": 1,
+      "resource": "Y",
+      "cycle": "6717d1e057",
+      "deadline": 43881.968,
+      "recipeRunId": "248e147bd833",
+      "recipeStep": 13
+    },
+    {
+      "id": "ea8b32b5fc",
+      "at": "2026-10-08T01:13:18+0800",
+      "epoch": 1791393198.4207432,
+      "kind": "SIGNAL",
+      "title": "信号变化：Send_Data_Y_Move_Start",
+      "operationId": "recipe-248e147bd833-13",
+      "actionId": "6717d1e057",
+      "idSignal": "pc.Y_Move_Start",
+      "mb": 2002,
+      "before": 1,
+      "value": 0,
+      "rawRegisters": [
+        0
+      ],
+      "connectionGeneration": 1,
+      "resource": "Y",
+      "cycle": "6717d1e057",
+      "deadline": 43881.968,
+      "recipeRunId": "248e147bd833",
+      "recipeStep": 13
+    },
+    {
+      "id": "4d48bf1413",
+      "at": "2026-10-08T01:13:18+0800",
+      "epoch": 1791393198.4207432,
+      "kind": "SIGNAL",
+      "title": "信号变化：Rece_Data_Y_Pos_Confirmed",
+      "operationId": "recipe-248e147bd833-13",
+      "actionId": "6717d1e057",
+      "idSignal": "plc.Y_Pos_Confirmed",
+      "mb": 6042,
+      "before": 1,
+      "value": 0,
+      "rawRegisters": [
+        0
+      ],
+      "connectionGeneration": 1,
+      "resource": "Y",
+      "cycle": "6717d1e057",
+      "deadline": 43881.968,
+      "recipeRunId": "248e147bd833",
+      "recipeStep": 13
+    },
+    {
+      "id": "82b34e207d",
+      "at": "2026-10-08T01:13:18+0800",
+      "epoch": 1791393198.4576235,
+      "kind": "SIGNAL",
+      "title": "信号变化：Send_Data_Grab_Target_Z",
+      "idSignal": "pc.Grab_Target_Z",
+      "mb": 2040,
+      "before": 2.0,
+      "value": 6.0,
+      "rawRegisters": [
+        0,
+        16576
+      ],
+      "connectionGeneration": 1,
+      "recipeRunId": "248e147bd833",
+      "recipeStep": 13
+    },
+    {
+      "id": "882491fc16",
+      "at": "2026-10-08T01:13:18+0800",
+      "epoch": 1791393198.4716237,
+      "kind": "SIGNAL",
+      "title": "信号变化：Send_Data_Z_Grab_Move_Start",
+      "operationId": "recipe-248e147bd833-13",
+      "actionId": "6762acd9dd",
+      "idSignal": "pc.Z_Grab_Move_Start",
+      "mb": 2005,
+      "before": 0,
+      "value": 1,
+      "rawRegisters": [
+        256
+      ],
+      "connectionGeneration": 1,
+      "resource": "ZGrab",
+      "cycle": "6762acd9dd",
+      "deadline": 43882.093,
+      "recipeRunId": "248e147bd833",
+      "recipeStep": 13
+    },
+    {
+      "id": "a26f3c54b9",
+      "at": "2026-10-08T01:13:18+0800",
+      "epoch": 1791393198.530692,
+      "kind": "SIGNAL",
+      "title": "信号变化：Rece_Data_Z_Grap_Pos_Confirmed",
+      "operationId": "recipe-248e147bd833-13",
+      "actionId": "6762acd9dd",
+      "idSignal": "plc.Z_Grap_Pos_Confirmed",
+      "mb": 6048,
+      "before": 0,
+      "value": 1,
+      "rawRegisters": [
+        1
+      ],
+      "connectionGeneration": 1,
+      "resource": "ZGrab",
+      "cycle": "6762acd9dd",
+      "deadline": 43882.093,
+      "recipeRunId": "248e147bd833",
+      "recipeStep": 13
+    },
+    {
+      "id": "3247c93413",
+      "at": "2026-10-08T01:13:18+0800",
+      "epoch": 1791393198.5522187,
+      "kind": "SIGNAL",
+      "title": "信号变化：Send_Data_Z_Grab_Move_Start",
+      "operationId": "recipe-248e147bd833-13",
+      "actionId": "6762acd9dd",
+      "idSignal": "pc.Z_Grab_Move_Start",
+      "mb": 2005,
+      "before": 1,
+      "value": 0,
+      "rawRegisters": [
+        0
+      ],
+      "connectionGeneration": 1,
+      "resource": "ZGrab",
+      "cycle": "6762acd9dd",
+      "deadline": 43882.093,
+      "recipeRunId": "248e147bd833",
+      "recipeStep": 13
+    },
+    {
+      "id": "c9ea7be574",
+      "at": "2026-10-08T01:13:18+0800",
+      "epoch": 1791393198.5522187,
+      "kind": "SIGNAL",
+      "title": "信号变化：Rece_Data_Z_Grap_Pos_Confirmed",
+      "operationId": "recipe-248e147bd833-13",
+      "actionId": "6762acd9dd",
+      "idSignal": "plc.Z_Grap_Pos_Confirmed",
+      "mb": 6048,
+      "before": 1,
+      "value": 0,
+      "rawRegisters": [
+        0
+      ],
+      "connectionGeneration": 1,
+      "resource": "ZGrab",
+      "cycle": "6762acd9dd",
+      "deadline": 43882.093,
+      "recipeRunId": "248e147bd833",
+      "recipeStep": 13
+    },
+    {
+      "id": "aed34b5b27",
+      "at": "2026-10-08T01:13:18+0800",
+      "epoch": 1791393198.6074798,
+      "kind": "SIGNAL",
+      "title": "信号变化：Send_Data_Sorting_Cmd",
+      "idSignal": "pc.Sorting_Cmd",
+      "mb": 2016,
+      "before": 0,
+      "value": 1,
+      "rawRegisters": [
+        1
+      ],
+      "connectionGeneration": 1,
+      "recipeRunId": "248e147bd833",
+      "recipeStep": 13
+    },
+    {
+      "id": "644bab0314",
+      "at": "2026-10-08T01:13:18+0800",
+      "epoch": 1791393198.6526525,
+      "kind": "SIGNAL",
+      "title": "信号变化：Rece_Data_Sorting_Exec_Status",
+      "idSignal": "plc.Sorting_Exec_Status",
+      "mb": 6054,
+      "before": 0,
+      "value": 1,
+      "rawRegisters": [
+        1
+      ],
+      "connectionGeneration": 1,
+      "recipeRunId": "248e147bd833",
+      "recipeStep": 13
+    },
+    {
+      "id": "e6cee54dd7",
+      "at": "2026-10-08T01:13:18+0800",
+      "epoch": 1791393198.6862009,
+      "kind": "SIGNAL",
+      "title": "信号变化：Send_Data_Grab_Target_Z",
+      "idSignal": "pc.Grab_Target_Z",
+      "mb": 2040,
+      "before": 6.0,
+      "value": 2.0,
+      "rawRegisters": [
+        0,
+        16384
+      ],
+      "connectionGeneration": 1,
+      "recipeRunId": "248e147bd833",
+      "recipeStep": 13
+    },
+    {
+      "id": "9529383643",
+      "at": "2026-10-08T01:13:18+0800",
+      "epoch": 1791393198.7007356,
+      "kind": "SIGNAL",
+      "title": "信号变化：Send_Data_Z_Grab_Move_Start",
+      "operationId": "recipe-248e147bd833-13",
+      "actionId": "6981fc8bc2",
+      "idSignal": "pc.Z_Grab_Move_Start",
+      "mb": 2005,
+      "before": 0,
+      "value": 1,
+      "rawRegisters": [
+        256
+      ],
+      "connectionGeneration": 1,
+      "resource": "ZGrab",
+      "cycle": "6981fc8bc2",
+      "deadline": 43882.328,
+      "recipeRunId": "248e147bd833",
+      "recipeStep": 13
+    },
+    {
+      "id": "dd79cc4861",
+      "at": "2026-10-08T01:13:18+0800",
+      "epoch": 1791393198.7476041,
+      "kind": "SIGNAL",
+      "title": "信号变化：Rece_Data_Z_Grap_Pos_Confirmed",
+      "operationId": "recipe-248e147bd833-13",
+      "actionId": "6981fc8bc2",
+      "idSignal": "plc.Z_Grap_Pos_Confirmed",
+      "mb": 6048,
+      "before": 0,
+      "value": 1,
+      "rawRegisters": [
+        1
+      ],
+      "connectionGeneration": 1,
+      "resource": "ZGrab",
+      "cycle": "6981fc8bc2",
+      "deadline": 43882.328,
+      "recipeRunId": "248e147bd833",
+      "recipeStep": 13
+    },
+    {
+      "id": "17214e753f",
+      "at": "2026-10-08T01:13:18+0800",
+      "epoch": 1791393198.7717829,
+      "kind": "SIGNAL",
+      "title": "信号变化：Send_Data_Z_Grab_Move_Start",
+      "operationId": "recipe-248e147bd833-13",
+      "actionId": "6981fc8bc2",
+      "idSignal": "pc.Z_Grab_Move_Start",
+      "mb": 2005,
+      "before": 1,
+      "value": 0,
+      "rawRegisters": [
+        0
+      ],
+      "connectionGeneration": 1,
+      "resource": "ZGrab",
+      "cycle": "6981fc8bc2",
+      "deadline": 43882.328,
+      "recipeRunId": "248e147bd833",
+      "recipeStep": 13
+    },
+    {
+      "id": "814f714994",
+      "at": "2026-10-08T01:13:18+0800",
+      "epoch": 1791393198.7722917,
+      "kind": "SIGNAL",
+      "title": "信号变化：Rece_Data_Z_Grap_Pos_Confirmed",
+      "operationId": "recipe-248e147bd833-13",
+      "actionId": "6981fc8bc2",
+      "idSignal": "plc.Z_Grap_Pos_Confirmed",
+      "mb": 6048,
+      "before": 1,
+      "value": 0,
+      "rawRegisters": [
+        0
+      ],
+      "connectionGeneration": 1,
+      "resource": "ZGrab",
+      "cycle": "6981fc8bc2",
+      "deadline": 43882.328,
+      "recipeRunId": "248e147bd833",
+      "recipeStep": 13
+    },
+    {
+      "id": "5c3a75c383",
+      "at": "2026-10-08T01:13:18+0800",
+      "epoch": 1791393198.9397762,
+      "kind": "SIGNAL",
+      "title": "信号变化：Send_Data_Camera_Target_X",
+      "idSignal": "pc.Camera_Target_X",
+      "mb": 2024,
+      "before": 10.0,
+      "value": 80.0,
+      "rawRegisters": [
+        0,
+        17056
+      ],
+      "connectionGeneration": 1,
+      "recipeRunId": "248e147bd833",
+      "recipeStep": 13
+    },
+    {
+      "id": "80c1f23443",
+      "at": "2026-10-08T01:13:18+0800",
+      "epoch": 1791393198.953293,
+      "kind": "SIGNAL",
+      "title": "信号变化：Send_Data_X_Move_Start",
+      "operationId": "recipe-248e147bd833-13",
+      "actionId": "5df7060774",
+      "idSignal": "pc.X_Move_Start",
+      "mb": 2001,
+      "before": 0,
+      "value": 1,
+      "rawRegisters": [
+        256
+      ],
+      "connectionGeneration": 1,
+      "resource": "X",
+      "cycle": "5df7060774",
+      "deadline": 43882.578,
+      "recipeRunId": "248e147bd833",
+      "recipeStep": 13
+    },
+    {
+      "id": "1f92e5430a",
+      "at": "2026-10-08T01:13:19+0800",
+      "epoch": 1791393199.009145,
+      "kind": "SIGNAL",
+      "title": "信号变化：Rece_Data_X_Pos_Confirmed",
+      "operationId": "recipe-248e147bd833-13",
+      "actionId": "5df7060774",
+      "idSignal": "plc.X_Pos_Confirmed",
+      "mb": 6040,
+      "before": 0,
+      "value": 1,
+      "rawRegisters": [
+        1
+      ],
+      "connectionGeneration": 1,
+      "resource": "X",
+      "cycle": "5df7060774",
+      "deadline": 43882.578,
+      "recipeRunId": "248e147bd833",
+      "recipeStep": 13
+    },
+    {
+      "id": "b28e6b0632",
+      "at": "2026-10-08T01:13:19+0800",
+      "epoch": 1791393199.0325084,
+      "kind": "SIGNAL",
+      "title": "信号变化：Send_Data_X_Move_Start",
+      "operationId": "recipe-248e147bd833-13",
+      "actionId": "5df7060774",
+      "idSignal": "pc.X_Move_Start",
+      "mb": 2001,
+      "before": 1,
+      "value": 0,
+      "rawRegisters": [
+        0
+      ],
+      "connectionGeneration": 1,
+      "resource": "X",
+      "cycle": "5df7060774",
+      "deadline": 43882.578,
+      "recipeRunId": "248e147bd833",
+      "recipeStep": 13
+    },
+    {
+      "id": "c72f10caf4",
+      "at": "2026-10-08T01:13:19+0800",
+      "epoch": 1791393199.0330226,
+      "kind": "SIGNAL",
+      "title": "信号变化：Rece_Data_X_Pos_Confirmed",
+      "operationId": "recipe-248e147bd833-13",
+      "actionId": "5df7060774",
+      "idSignal": "plc.X_Pos_Confirmed",
+      "mb": 6040,
+      "before": 1,
+      "value": 0,
+      "rawRegisters": [
+        0
+      ],
+      "connectionGeneration": 1,
+      "resource": "X",
+      "cycle": "5df7060774",
+      "deadline": 43882.578,
+      "recipeRunId": "248e147bd833",
+      "recipeStep": 13
+    },
+    {
+      "id": "8cc853dd21",
+      "at": "2026-10-08T01:13:19+0800",
+      "epoch": 1791393199.1110597,
+      "kind": "SIGNAL",
+      "title": "信号变化：Send_Data_Grab_Target_Z",
+      "idSignal": "pc.Grab_Target_Z",
+      "mb": 2040,
+      "before": 2.0,
+      "value": 7.0,
+      "rawRegisters": [
+        0,
+        16608
+      ],
+      "connectionGeneration": 1,
+      "recipeRunId": "248e147bd833",
+      "recipeStep": 13
+    },
+    {
+      "id": "258eaf98fe",
+      "at": "2026-10-08T01:13:19+0800",
+      "epoch": 1791393199.1247296,
+      "kind": "SIGNAL",
+      "title": "信号变化：Send_Data_Z_Grab_Move_Start",
+      "operationId": "recipe-248e147bd833-13",
+      "actionId": "a535e01ae8",
+      "idSignal": "pc.Z_Grab_Move_Start",
+      "mb": 2005,
+      "before": 0,
+      "value": 1,
+      "rawRegisters": [
+        256
+      ],
+      "connectionGeneration": 1,
+      "resource": "ZGrab",
+      "cycle": "a535e01ae8",
+      "deadline": 43882.75,
+      "recipeRunId": "248e147bd833",
+      "recipeStep": 13
+    },
+    {
+      "id": "490949ab4b",
+      "at": "2026-10-08T01:13:19+0800",
+      "epoch": 1791393199.1707048,
+      "kind": "SIGNAL",
+      "title": "信号变化：Rece_Data_Z_Grap_Pos_Confirmed",
+      "operationId": "recipe-248e147bd833-13",
+      "actionId": "a535e01ae8",
+      "idSignal": "plc.Z_Grap_Pos_Confirmed",
+      "mb": 6048,
+      "before": 0,
+      "value": 1,
+      "rawRegisters": [
+        1
+      ],
+      "connectionGeneration": 1,
+      "resource": "ZGrab",
+      "cycle": "a535e01ae8",
+      "deadline": 43882.75,
+      "recipeRunId": "248e147bd833",
+      "recipeStep": 13
+    },
+    {
+      "id": "8efa590b66",
+      "at": "2026-10-08T01:13:19+0800",
+      "epoch": 1791393199.2005494,
+      "kind": "SIGNAL",
+      "title": "信号变化：Send_Data_Z_Grab_Move_Start",
+      "operationId": "recipe-248e147bd833-13",
+      "actionId": "a535e01ae8",
+      "idSignal": "pc.Z_Grab_Move_Start",
+      "mb": 2005,
+      "before": 1,
+      "value": 0,
+      "rawRegisters": [
+        0
+      ],
+      "connectionGeneration": 1,
+      "resource": "ZGrab",
+      "cycle": "a535e01ae8",
+      "deadline": 43882.75,
+      "recipeRunId": "248e147bd833",
+      "recipeStep": 13
+    },
+    {
+      "id": "6cc3bd26ce",
+      "at": "2026-10-08T01:13:19+0800",
+      "epoch": 1791393199.2005494,
+      "kind": "SIGNAL",
+      "title": "信号变化：Rece_Data_Z_Grap_Pos_Confirmed",
+      "operationId": "recipe-248e147bd833-13",
+      "actionId": "a535e01ae8",
+      "idSignal": "plc.Z_Grap_Pos_Confirmed",
+      "mb": 6048,
+      "before": 1,
+      "value": 0,
+      "rawRegisters": [
+        0
+      ],
+      "connectionGeneration": 1,
+      "resource": "ZGrab",
+      "cycle": "a535e01ae8",
+      "deadline": 43882.75,
+      "recipeRunId": "248e147bd833",
+      "recipeStep": 13
+    },
+    {
+      "id": "c99b667305",
+      "at": "2026-10-08T01:13:19+0800",
+      "epoch": 1791393199.248511,
+      "kind": "SIGNAL",
+      "title": "信号变化：Send_Data_Sorting_Cmd",
+      "idSignal": "pc.Sorting_Cmd",
+      "mb": 2016,
+      "before": 1,
+      "value": 2,
+      "rawRegisters": [
+        2
+      ],
+      "connectionGeneration": 1,
+      "recipeRunId": "248e147bd833",
+      "recipeStep": 13
+    },
+    {
+      "id": "a45d448437",
+      "at": "2026-10-08T01:13:19+0800",
+      "epoch": 1791393199.2962356,
+      "kind": "SIGNAL",
+      "title": "信号变化：Rece_Data_Sorting_Exec_Status",
+      "idSignal": "plc.Sorting_Exec_Status",
+      "mb": 6054,
+      "before": 1,
+      "value": 2,
+      "rawRegisters": [
+        2
+      ],
+      "connectionGeneration": 1,
+      "recipeRunId": "248e147bd833",
+      "recipeStep": 13
+    },
+    {
+      "id": "cdee6985a0",
+      "at": "2026-10-08T01:13:19+0800",
+      "epoch": 1791393199.3297613,
+      "kind": "SIGNAL",
+      "title": "信号变化：Send_Data_Grab_Target_Z",
+      "idSignal": "pc.Grab_Target_Z",
+      "mb": 2040,
+      "before": 7.0,
+      "value": 2.0,
+      "rawRegisters": [
+        0,
+        16384
+      ],
+      "connectionGeneration": 1,
+      "recipeRunId": "248e147bd833",
+      "recipeStep": 13
+    },
+    {
+      "id": "e568a05d9d",
+      "at": "2026-10-08T01:13:19+0800",
+      "epoch": 1791393199.343758,
+      "kind": "SIGNAL",
+      "title": "信号变化：Send_Data_Z_Grab_Move_Start",
+      "operationId": "recipe-248e147bd833-13",
+      "actionId": "e7b772facf",
+      "idSignal": "pc.Z_Grab_Move_Start",
+      "mb": 2005,
+      "before": 0,
+      "value": 1,
+      "rawRegisters": [
+        256
+      ],
+      "connectionGeneration": 1,
+      "resource": "ZGrab",
+      "cycle": "e7b772facf",
+      "deadline": 43882.968,
+      "recipeRunId": "248e147bd833",
+      "recipeStep": 13
+    },
+    {
+      "id": "48dd88cb26",
+      "at": "2026-10-08T01:13:19+0800",
+      "epoch": 1791393199.3959231,
+      "kind": "SIGNAL",
+      "title": "信号变化：Rece_Data_Z_Grap_Pos_Confirmed",
+      "operationId": "recipe-248e147bd833-13",
+      "actionId": "e7b772facf",
+      "idSignal": "plc.Z_Grap_Pos_Confirmed",
+      "mb": 6048,
+      "before": 0,
+      "value": 1,
+      "rawRegisters": [
+        1
+      ],
+      "connectionGeneration": 1,
+      "resource": "ZGrab",
+      "cycle": "e7b772facf",
+      "deadline": 43882.968,
+      "recipeRunId": "248e147bd833",
+      "recipeStep": 13
+    },
+    {
+      "id": "5adfa46a1d",
+      "at": "2026-10-08T01:13:19+0800",
+      "epoch": 1791393199.4187305,
+      "kind": "SIGNAL",
+      "title": "信号变化：Send_Data_Z_Grab_Move_Start",
+      "operationId": "recipe-248e147bd833-13",
+      "actionId": "e7b772facf",
+      "idSignal": "pc.Z_Grab_Move_Start",
+      "mb": 2005,
+      "before": 1,
+      "value": 0,
+      "rawRegisters": [
+        0
+      ],
+      "connectionGeneration": 1,
+      "resource": "ZGrab",
+      "cycle": "e7b772facf",
+      "deadline": 43882.968,
+      "recipeRunId": "248e147bd833",
+      "recipeStep": 13
+    },
+    {
+      "id": "599ec4a08b",
+      "at": "2026-10-08T01:13:19+0800",
+      "epoch": 1791393199.4187305,
+      "kind": "SIGNAL",
+      "title": "信号变化：Rece_Data_Z_Grap_Pos_Confirmed",
+      "operationId": "recipe-248e147bd833-13",
+      "actionId": "e7b772facf",
+      "idSignal": "plc.Z_Grap_Pos_Confirmed",
+      "mb": 6048,
+      "before": 1,
+      "value": 0,
+      "rawRegisters": [
+        0
+      ],
+      "connectionGeneration": 1,
+      "resource": "ZGrab",
+      "cycle": "e7b772facf",
+      "deadline": 43882.968,
+      "recipeRunId": "248e147bd833",
+      "recipeStep": 13
+    },
+    {
+      "id": "e180797068",
+      "at": "2026-10-08T01:13:19+0800",
+      "epoch": 1791393199.4645164,
+      "kind": "SIGNAL",
+      "title": "信号变化：Send_Data_Sorting_Cmd",
+      "idSignal": "pc.Sorting_Cmd",
+      "mb": 2016,
+      "before": 2,
+      "value": 0,
+      "rawRegisters": [
+        0
+      ],
+      "connectionGeneration": 1,
+      "recipeRunId": "248e147bd833",
+      "recipeStep": 13
+    },
+    {
+      "id": "8069d8fb67",
+      "at": "2026-10-08T01:13:19+0800",
+      "epoch": 1791393199.4645164,
+      "kind": "SIGNAL",
+      "title": "信号变化：Rece_Data_Sorting_Exec_Status",
+      "idSignal": "plc.Sorting_Exec_Status",
+      "mb": 6054,
+      "before": 2,
+      "value": 0,
+      "rawRegisters": [
+        0
+      ],
+      "connectionGeneration": 1,
+      "recipeRunId": "248e147bd833",
+      "recipeStep": 13
+    },
+    {
+      "id": "62c357b7bf",
+      "at": "2026-10-08T01:13:19+0800",
+      "epoch": 1791393199.5178971,
+      "kind": "SIGNAL",
+      "title": "信号变化：Send_Data_Camera_Target_X",
+      "idSignal": "pc.Camera_Target_X",
+      "mb": 2024,
+      "before": 80.0,
+      "value": 0.0,
+      "rawRegisters": [
+        0,
+        0
+      ],
+      "connectionGeneration": 1,
+      "recipeRunId": "248e147bd833",
+      "recipeStep": 14
+    },
+    {
+      "id": "0349092ff6",
+      "at": "2026-10-08T01:13:19+0800",
+      "epoch": 1791393199.5316532,
+      "kind": "SIGNAL",
+      "title": "信号变化：Send_Data_X_Move_Start",
+      "operationId": "recipe-248e147bd833-14",
+      "actionId": "96cbaa0fe2",
+      "idSignal": "pc.X_Move_Start",
+      "mb": 2001,
+      "before": 0,
+      "value": 1,
+      "rawRegisters": [
+        256
+      ],
+      "connectionGeneration": 1,
+      "resource": "X",
+      "cycle": "96cbaa0fe2",
+      "deadline": 43883.156,
+      "recipeRunId": "248e147bd833",
+      "recipeStep": 14
+    },
+    {
+      "id": "daf2ab4c51",
+      "at": "2026-10-08T01:13:19+0800",
+      "epoch": 1791393199.5862813,
+      "kind": "SIGNAL",
+      "title": "信号变化：Rece_Data_X_Pos_Confirmed",
+      "operationId": "recipe-248e147bd833-14",
+      "actionId": "96cbaa0fe2",
+      "idSignal": "plc.X_Pos_Confirmed",
+      "mb": 6040,
+      "before": 0,
+      "value": 1,
+      "rawRegisters": [
+        1
+      ],
+      "connectionGeneration": 1,
+      "resource": "X",
+      "cycle": "96cbaa0fe2",
+      "deadline": 43883.156,
+      "recipeRunId": "248e147bd833",
+      "recipeStep": 14
+    },
+    {
+      "id": "752bf84e8a",
+      "at": "2026-10-08T01:13:19+0800",
+      "epoch": 1791393199.61055,
+      "kind": "SIGNAL",
+      "title": "信号变化：Send_Data_X_Move_Start",
+      "operationId": "recipe-248e147bd833-14",
+      "actionId": "96cbaa0fe2",
+      "idSignal": "pc.X_Move_Start",
+      "mb": 2001,
+      "before": 1,
+      "value": 0,
+      "rawRegisters": [
+        0
+      ],
+      "connectionGeneration": 1,
+      "resource": "X",
+      "cycle": "96cbaa0fe2",
+      "deadline": 43883.156,
+      "recipeRunId": "248e147bd833",
+      "recipeStep": 14
+    },
+    {
+      "id": "844e692f26",
+      "at": "2026-10-08T01:13:19+0800",
+      "epoch": 1791393199.61055,
+      "kind": "SIGNAL",
+      "title": "信号变化：Rece_Data_X_Pos_Confirmed",
+      "operationId": "recipe-248e147bd833-14",
+      "actionId": "96cbaa0fe2",
+      "idSignal": "plc.X_Pos_Confirmed",
+      "mb": 6040,
+      "before": 1,
+      "value": 0,
+      "rawRegisters": [
+        0
+      ],
+      "connectionGeneration": 1,
+      "resource": "X",
+      "cycle": "96cbaa0fe2",
+      "deadline": 43883.156,
+      "recipeRunId": "248e147bd833",
+      "recipeStep": 14
+    },
+    {
+      "id": "b31d828677",
+      "at": "2026-10-08T01:13:19+0800",
+      "epoch": 1791393199.649081,
+      "kind": "SIGNAL",
+      "title": "信号变化：Send_Data_Camera_Target_Y",
+      "idSignal": "pc.Camera_Target_Y",
+      "mb": 2028,
+      "before": 10.0,
+      "value": 0.0,
+      "rawRegisters": [
+        0,
+        0
+      ],
+      "connectionGeneration": 1,
+      "recipeRunId": "248e147bd833",
+      "recipeStep": 14
+    },
+    {
+      "id": "033d9bf83a",
+      "at": "2026-10-08T01:13:19+0800",
+      "epoch": 1791393199.6633701,
+      "kind": "SIGNAL",
+      "title": "信号变化：Send_Data_Y_Move_Start",
+      "operationId": "recipe-248e147bd833-14",
+      "actionId": "8eb09dbe29",
+      "idSignal": "pc.Y_Move_Start",
+      "mb": 2002,
+      "before": 0,
+      "value": 1,
+      "rawRegisters": [
+        1
+      ],
+      "connectionGeneration": 1,
+      "resource": "Y",
+      "cycle": "8eb09dbe29",
+      "deadline": 43883.281,
+      "recipeRunId": "248e147bd833",
+      "recipeStep": 14
+    },
+    {
+      "id": "3a2f9217c2",
+      "at": "2026-10-08T01:13:19+0800",
+      "epoch": 1791393199.7258158,
+      "kind": "SIGNAL",
+      "title": "信号变化：Rece_Data_Y_Pos_Confirmed",
+      "operationId": "recipe-248e147bd833-14",
+      "actionId": "8eb09dbe29",
+      "idSignal": "plc.Y_Pos_Confirmed",
+      "mb": 6042,
+      "before": 0,
+      "value": 1,
+      "rawRegisters": [
+        1
+      ],
+      "connectionGeneration": 1,
+      "resource": "Y",
+      "cycle": "8eb09dbe29",
+      "deadline": 43883.281,
+      "recipeRunId": "248e147bd833",
+      "recipeStep": 14
+    },
+    {
+      "id": "60f2d28de7",
+      "at": "2026-10-08T01:13:19+0800",
+      "epoch": 1791393199.751814,
+      "kind": "SIGNAL",
+      "title": "信号变化：Send_Data_Y_Move_Start",
+      "operationId": "recipe-248e147bd833-14",
+      "actionId": "8eb09dbe29",
+      "idSignal": "pc.Y_Move_Start",
+      "mb": 2002,
+      "before": 1,
+      "value": 0,
+      "rawRegisters": [
+        0
+      ],
+      "connectionGeneration": 1,
+      "resource": "Y",
+      "cycle": "8eb09dbe29",
+      "deadline": 43883.281,
+      "recipeRunId": "248e147bd833",
+      "recipeStep": 14
+    },
+    {
+      "id": "fc16ddb4ca",
+      "at": "2026-10-08T01:13:19+0800",
+      "epoch": 1791393199.751814,
+      "kind": "SIGNAL",
+      "title": "信号变化：Rece_Data_Y_Pos_Confirmed",
+      "operationId": "recipe-248e147bd833-14",
+      "actionId": "8eb09dbe29",
+      "idSignal": "plc.Y_Pos_Confirmed",
+      "mb": 6042,
+      "before": 1,
+      "value": 0,
+      "rawRegisters": [
+        0
+      ],
+      "connectionGeneration": 1,
+      "resource": "Y",
+      "cycle": "8eb09dbe29",
+      "deadline": 43883.281,
+      "recipeRunId": "248e147bd833",
+      "recipeStep": 14
+    }
+  ],
+  "milestones": [
+    {
+      "id": "2984d88af3",
+      "at": "2026-10-08T01:13:12+0800",
+      "epoch": 1791393192.6622643,
+      "kind": "RECIPE_STEP",
+      "title": "开始步骤：人工上料",
+      "recipeRunId": "248e147bd833",
+      "recipeStep": 1,
+      "connectionGeneration": 1
+    },
+    {
+      "id": "1643cc8b96",
+      "at": "2026-10-08T01:13:12+0800",
+      "epoch": 1791393192.6762643,
+      "kind": "RECIPE_START",
+      "title": "用户开始本盘；真实PLC反馈推进，相机模式=simulated",
+      "recipeRunId": "248e147bd833",
+      "recipeStep": 1,
+      "connectionGeneration": 1
+    },
+    {
+      "id": "3b0550a162",
+      "at": "2026-10-08T01:13:13+0800",
+      "epoch": 1791393193.337424,
+      "kind": "RECIPE_CONFIRM",
+      "title": "人工确认：确认已放盘、一盘一件，PLC设备就绪",
+      "outcome": "OK",
+      "barcode": null,
+      "recordPurpose": "现场确认",
+      "realInspectionResult": false,
+      "recipeRunId": "248e147bd833",
+      "recipeStep": 1,
+      "connectionGeneration": 1
+    },
+    {
+      "id": "8d64e78c5e",
+      "at": "2026-10-08T01:13:13+0800",
+      "epoch": 1791393193.3534238,
+      "kind": "RECIPE_STEP_COMPLETE",
+      "title": "本步已完成",
+      "recipeRunId": "248e147bd833",
+      "recipeStep": 1,
+      "connectionGeneration": 1
+    },
+    {
+      "id": "3f32f8e9e4",
+      "at": "2026-10-08T01:13:13+0800",
+      "epoch": 1791393193.3534238,
+      "kind": "RECIPE_STEP",
+      "title": "开始步骤：3D 初次观察",
+      "recipeRunId": "248e147bd833",
+      "recipeStep": 2,
+      "connectionGeneration": 1
+    },
+    {
+      "id": "e5d6969920",
+      "at": "2026-10-08T01:13:13+0800",
+      "epoch": 1791393193.7721465,
+      "kind": "SIMULATION",
+      "title": "流程测试（模拟）：确认3D有料且姿态正常",
+      "outcome": "OK",
+      "barcode": null,
+      "recordPurpose": "流程测试",
+      "realInspectionResult": false,
+      "recipeRunId": "248e147bd833",
+      "recipeStep": 2,
+      "connectionGeneration": 1
+    },
+    {
+      "id": "80378340e0",
+      "at": "2026-10-08T01:13:13+0800",
+      "epoch": 1791393193.7888134,
+      "kind": "RECIPE_STEP_COMPLETE",
+      "title": "本步已完成",
+      "recipeRunId": "248e147bd833",
+      "recipeStep": 2,
+      "connectionGeneration": 1
+    },
+    {
+      "id": "63c26dbbdd",
+      "at": "2026-10-08T01:13:13+0800",
+      "epoch": 1791393193.789813,
+      "kind": "RECIPE_STEP",
+      "title": "开始步骤：F 相机扫码",
+      "recipeRunId": "248e147bd833",
+      "recipeStep": 3,
+      "connectionGeneration": 1
+    },
+    {
+      "id": "a4a28da1c7",
+      "at": "2026-10-08T01:13:14+0800",
+      "epoch": 1791393194.0874658,
+      "kind": "SIMULATION",
+      "title": "流程测试（模拟）：记录F扫码结果并确认匹配本配方",
+      "outcome": "OK",
+      "barcode": "SIM-翻面件-001",
+      "recordPurpose": "流程测试",
+      "realInspectionResult": false,
+      "recipeRunId": "248e147bd833",
+      "recipeStep": 3,
+      "connectionGeneration": 1
+    },
+    {
+      "id": "6190488bc1",
+      "at": "2026-10-08T01:13:14+0800",
+      "epoch": 1791393194.1026819,
+      "kind": "RECIPE_STEP_COMPLETE",
+      "title": "本步已完成",
+      "recipeRunId": "248e147bd833",
+      "recipeStep": 3,
+      "connectionGeneration": 1
+    },
+    {
+      "id": "c1829f34d8",
+      "at": "2026-10-08T01:13:14+0800",
+      "epoch": 1791393194.103683,
+      "kind": "RECIPE_STEP",
+      "title": "开始步骤：第一面 A 拍照",
+      "recipeRunId": "248e147bd833",
+      "recipeStep": 4,
+      "connectionGeneration": 1
+    },
+    {
+      "id": "9a832910d4",
+      "at": "2026-10-08T01:13:14+0800",
+      "epoch": 1791393194.6545312,
+      "kind": "SIMULATION",
+      "title": "流程测试（模拟）：第1面A拍照与检测完成",
+      "outcome": "OK",
+      "barcode": "SIM-翻面件-001",
+      "recordPurpose": "流程测试",
+      "realInspectionResult": false,
+      "recipeRunId": "248e147bd833",
+      "recipeStep": 4,
+      "connectionGeneration": 1
+    },
+    {
+      "id": "cd85cc2e06",
+      "at": "2026-10-08T01:13:14+0800",
+      "epoch": 1791393194.6702213,
+      "kind": "RECIPE_STEP_COMPLETE",
+      "title": "本步已完成",
+      "recipeRunId": "248e147bd833",
+      "recipeStep": 4,
+      "connectionGeneration": 1
+    },
+    {
+      "id": "60cce6ec2f",
+      "at": "2026-10-08T01:13:14+0800",
+      "epoch": 1791393194.6712766,
+      "kind": "RECIPE_STEP",
+      "title": "开始步骤：第一面 B 拍照",
+      "recipeRunId": "248e147bd833",
+      "recipeStep": 5,
+      "connectionGeneration": 1
+    },
+    {
+      "id": "54674eac13",
+      "at": "2026-10-08T01:13:15+0800",
+      "epoch": 1791393195.2418573,
+      "kind": "SIMULATION",
+      "title": "流程测试（模拟）：第1面B拍照与检测完成",
+      "outcome": "NG",
+      "barcode": "SIM-翻面件-001",
+      "recordPurpose": "流程测试",
+      "realInspectionResult": false,
+      "recipeRunId": "248e147bd833",
+      "recipeStep": 5,
+      "connectionGeneration": 1
+    },
+    {
+      "id": "ccacf488f0",
+      "at": "2026-10-08T01:13:15+0800",
+      "epoch": 1791393195.259037,
+      "kind": "RECIPE_STEP_COMPLETE",
+      "title": "本步已完成",
+      "recipeRunId": "248e147bd833",
+      "recipeStep": 5,
+      "connectionGeneration": 1
+    },
+    {
+      "id": "89585bf0b1",
+      "at": "2026-10-08T01:13:15+0800",
+      "epoch": 1791393195.2605817,
+      "kind": "RECIPE_STEP",
+      "title": "开始步骤：翻面取料定位",
+      "recipeRunId": "248e147bd833",
+      "recipeStep": 6,
+      "connectionGeneration": 1
+    },
+    {
+      "id": "24695a7e6a",
+      "at": "2026-10-08T01:13:15+0800",
+      "epoch": 1791393195.7911928,
+      "kind": "RECIPE_STEP_COMPLETE",
+      "title": "本步已完成",
+      "recipeRunId": "248e147bd833",
+      "recipeStep": 6,
+      "connectionGeneration": 1
+    },
+    {
+      "id": "e4e495e257",
+      "at": "2026-10-08T01:13:15+0800",
+      "epoch": 1791393195.7931929,
+      "kind": "RECIPE_STEP",
+      "title": "开始步骤：翻到第二面",
+      "recipeRunId": "248e147bd833",
+      "recipeStep": 7,
+      "connectionGeneration": 1
+    },
+    {
+      "id": "6e1eb8bbae",
+      "at": "2026-10-08T01:13:15+0800",
+      "epoch": 1791393195.881364,
+      "kind": "RECIPE_PLC_COMPLETE",
+      "title": "PLC反馈本次翻面/取放完成",
+      "mb": 6050,
+      "before": 1,
+      "value": 2,
+      "recipeRunId": "248e147bd833",
+      "recipeStep": 7,
+      "connectionGeneration": 1
+    },
+    {
+      "id": "f97b3ae5ad",
+      "at": "2026-10-08T01:13:15+0800",
+      "epoch": 1791393195.8975275,
+      "kind": "RECIPE_STEP_COMPLETE",
+      "title": "本步已完成",
+      "recipeRunId": "248e147bd833",
+      "recipeStep": 7,
+      "connectionGeneration": 1
+    },
+    {
+      "id": "feca0a93b3",
+      "at": "2026-10-08T01:13:15+0800",
+      "epoch": 1791393195.8990557,
+      "kind": "RECIPE_STEP",
+      "title": "开始步骤：放回原槽定位",
+      "recipeRunId": "248e147bd833",
+      "recipeStep": 8,
+      "connectionGeneration": 1
+    },
+    {
+      "id": "f9e4cdcffb",
+      "at": "2026-10-08T01:13:16+0800",
+      "epoch": 1791393196.0050392,
+      "kind": "RECIPE_STEP_COMPLETE",
+      "title": "本步已完成",
+      "recipeRunId": "248e147bd833",
+      "recipeStep": 8,
+      "connectionGeneration": 1
+    },
+    {
+      "id": "2f0a65c51c",
+      "at": "2026-10-08T01:13:16+0800",
+      "epoch": 1791393196.0060387,
+      "kind": "RECIPE_STEP",
+      "title": "开始步骤：放回原槽",
+      "recipeRunId": "248e147bd833",
+      "recipeStep": 9,
+      "connectionGeneration": 1
+    },
+    {
+      "id": "ebc471ab10",
+      "at": "2026-10-08T01:13:16+0800",
+      "epoch": 1791393196.0942602,
+      "kind": "RECIPE_PLC_COMPLETE",
+      "title": "PLC反馈本次翻面/取放完成",
+      "mb": 6052,
+      "before": 1,
+      "value": 2,
+      "recipeRunId": "248e147bd833",
+      "recipeStep": 9,
+      "connectionGeneration": 1
+    },
+    {
+      "id": "747775ffce",
+      "at": "2026-10-08T01:13:16+0800",
+      "epoch": 1791393196.1177268,
+      "kind": "RECIPE_CLEAR_WAIT",
+      "title": "父请求已复位，等待PLC相关旧反馈全0",
+      "mb": 2014,
+      "writeEnded": 43849918065200,
+      "deadline": 43879.671,
+      "recipeRunId": "248e147bd833",
+      "recipeStep": 9,
+      "connectionGeneration": 1
+    },
+    {
+      "id": "790d842995",
+      "at": "2026-10-08T01:13:16+0800",
+      "epoch": 1791393196.135507,
+      "kind": "RECIPE_CLEAR_CONFIRMED",
+      "title": "父闭环双方清零已确认",
+      "mb": 2014,
+      "writeEnded": 43849918065200,
+      "clearEvidence": {
+        "2014": {
+          "value": 0,
+          "quality": "Good",
+          "registers": [
+            0
+          ],
+          "rawHex": "0000",
+          "realAlternatives": null,
+          "receivedAt": "2026-10-08T01:13:16+0800",
+          "receivedEpoch": 1791393196.1325097,
+          "readStarted": 43849933348400,
+          "readEnded": 43849935620600,
+          "readStartedAt": 43849.765,
+          "generation": 1,
+          "changedAt": 1791393196.135507,
+          "changes": 3
+        },
+        "6050": {
+          "value": 0,
+          "quality": "Good",
+          "registers": [
+            0
+          ],
+          "rawHex": "0000",
+          "realAlternatives": null,
+          "receivedAt": "2026-10-08T01:13:16+0800",
+          "receivedEpoch": 1791393196.135507,
+          "readStarted": 43849935730700,
+          "readEnded": 43849937959300,
+          "readStartedAt": 43849.765,
+          "generation": 1,
+          "changedAt": 1791393196.135507,
+          "changes": 3
+        },
+        "6052": {
+          "value": 0,
+          "quality": "Good",
+          "registers": [
+            0
+          ],
+          "rawHex": "0000",
+          "realAlternatives": null,
+          "receivedAt": "2026-10-08T01:13:16+0800",
+          "receivedEpoch": 1791393196.135507,
+          "readStarted": 43849935730700,
+          "readEnded": 43849937959300,
+          "readStartedAt": 43849.765,
+          "generation": 1,
+          "changedAt": 1791393196.135507,
+          "changes": 3
+        }
+      },
+      "recipeRunId": "248e147bd833",
+      "recipeStep": 9,
+      "connectionGeneration": 1
+    },
+    {
+      "id": "3f0b7adca9",
+      "at": "2026-10-08T01:13:16+0800",
+      "epoch": 1791393196.1517184,
+      "kind": "RECIPE_STEP_COMPLETE",
+      "title": "本步已完成",
+      "recipeRunId": "248e147bd833",
+      "recipeStep": 9,
+      "connectionGeneration": 1
+    },
+    {
+      "id": "7aa45df4f9",
+      "at": "2026-10-08T01:13:16+0800",
+      "epoch": 1791393196.1537182,
+      "kind": "RECIPE_STEP",
+      "title": "开始步骤：3D 姿态复查",
+      "recipeRunId": "248e147bd833",
+      "recipeStep": 10,
+      "connectionGeneration": 1
+    },
+    {
+      "id": "c8281a027b",
+      "at": "2026-10-08T01:13:16+0800",
+      "epoch": 1791393196.6817076,
+      "kind": "SIMULATION",
+      "title": "流程测试（模拟）：确认第二面姿态；此处不重新扫码绑定",
+      "outcome": "OK",
+      "barcode": "SIM-翻面件-001",
+      "recordPurpose": "流程测试",
+      "realInspectionResult": false,
+      "recipeRunId": "248e147bd833",
+      "recipeStep": 10,
+      "connectionGeneration": 1
+    },
+    {
+      "id": "450f5c79ab",
+      "at": "2026-10-08T01:13:16+0800",
+      "epoch": 1791393196.6988275,
+      "kind": "RECIPE_STEP_COMPLETE",
+      "title": "本步已完成",
+      "recipeRunId": "248e147bd833",
+      "recipeStep": 10,
+      "connectionGeneration": 1
+    },
+    {
+      "id": "e5557c3cad",
+      "at": "2026-10-08T01:13:16+0800",
+      "epoch": 1791393196.7003882,
+      "kind": "RECIPE_STEP",
+      "title": "开始步骤：第二面 C 拍照",
+      "recipeRunId": "248e147bd833",
+      "recipeStep": 11,
+      "connectionGeneration": 1
+    },
+    {
+      "id": "d6f56d0049",
+      "at": "2026-10-08T01:13:17+0800",
+      "epoch": 1791393197.269141,
+      "kind": "SIMULATION",
+      "title": "流程测试（模拟）：第2面C拍照与检测完成",
+      "outcome": "OK",
+      "barcode": "SIM-翻面件-001",
+      "recordPurpose": "流程测试",
+      "realInspectionResult": false,
+      "recipeRunId": "248e147bd833",
+      "recipeStep": 11,
+      "connectionGeneration": 1
+    },
+    {
+      "id": "9af3e88147",
+      "at": "2026-10-08T01:13:17+0800",
+      "epoch": 1791393197.2867339,
+      "kind": "RECIPE_STEP_COMPLETE",
+      "title": "本步已完成",
+      "recipeRunId": "248e147bd833",
+      "recipeStep": 11,
+      "connectionGeneration": 1
+    },
+    {
+      "id": "483e386828",
+      "at": "2026-10-08T01:13:17+0800",
+      "epoch": 1791393197.2887363,
+      "kind": "RECIPE_STEP",
+      "title": "开始步骤：第二面 D 拍照",
+      "recipeRunId": "248e147bd833",
+      "recipeStep": 12,
+      "connectionGeneration": 1
+    },
+    {
+      "id": "3f8c499de5",
+      "at": "2026-10-08T01:13:17+0800",
+      "epoch": 1791393197.8473155,
+      "kind": "SIMULATION",
+      "title": "流程测试（模拟）：第2面D拍照与检测完成",
+      "outcome": "OK",
+      "barcode": "SIM-翻面件-001",
+      "recordPurpose": "流程测试",
+      "realInspectionResult": false,
+      "recipeRunId": "248e147bd833",
+      "recipeStep": 12,
+      "connectionGeneration": 1
+    },
+    {
+      "id": "54d9c153c2",
+      "at": "2026-10-08T01:13:17+0800",
+      "epoch": 1791393197.8658473,
+      "kind": "RECIPE_STEP_COMPLETE",
+      "title": "本步已完成",
+      "recipeRunId": "248e147bd833",
+      "recipeStep": 12,
+      "connectionGeneration": 1
+    },
+    {
+      "id": "086ee2dbbb",
+      "at": "2026-10-08T01:13:17+0800",
+      "epoch": 1791393197.867847,
+      "kind": "RECIPE_STEP",
+      "title": "开始步骤：汇总并保存结果",
+      "recipeRunId": "248e147bd833",
+      "recipeStep": 13,
+      "connectionGeneration": 1
+    },
+    {
+      "id": "acede723bd",
+      "at": "2026-10-08T01:13:17+0800",
+      "epoch": 1791393197.8992798,
+      "kind": "SIMULATION",
+      "title": "流程测试（模拟）：汇总结果，保存后按OK/NG/Pending处置",
+      "outcome": "NG",
+      "barcode": "SIM-翻面件-001",
+      "recordPurpose": "流程测试",
+      "realInspectionResult": false,
+      "recipeRunId": "248e147bd833",
+      "recipeStep": 13,
+      "connectionGeneration": 1
+    },
+    {
+      "id": "3c8f651b90",
+      "at": "2026-10-08T01:13:17+0800",
+      "epoch": 1791393197.9013731,
+      "kind": "RECIPE_RESULT",
+      "title": "保存流程测试结果（非真实检测结果）：NG",
+      "simulated": true,
+      "recordPurpose": "流程测试",
+      "realInspectionResult": false,
+      "barcode": "SIM-翻面件-001",
+      "inspections": [
+        {
+          "step": 2,
+          "outcome": "OK",
+          "simulated": true,
+          "recordPurpose": "流程测试",
+          "realInspectionResult": false,
+          "material": "P1有料",
+          "pose": "正常",
+          "fBarcodePosition": {
+            "x": 65,
+            "y": 50
+          }
+        },
+        {
+          "step": 4,
+          "outcome": "OK",
+          "simulated": true,
+          "recordPurpose": "流程测试",
+          "realInspectionResult": false
+        },
+        {
+          "step": 5,
+          "outcome": "NG",
+          "simulated": true,
+          "recordPurpose": "流程测试",
+          "realInspectionResult": false
+        },
+        {
+          "step": 10,
+          "outcome": "OK",
+          "simulated": true,
+          "recordPurpose": "流程测试",
+          "realInspectionResult": false,
+          "pose": "第二面姿态正常"
+        },
+        {
+          "step": 11,
+          "outcome": "OK",
+          "simulated": true,
+          "recordPurpose": "流程测试",
+          "realInspectionResult": false
+        },
+        {
+          "step": 12,
+          "outcome": "OK",
+          "simulated": true,
+          "recordPurpose": "流程测试",
+          "realInspectionResult": false
+        }
+      ],
+      "recipeRunId": "248e147bd833",
+      "recipeStep": 13,
+      "connectionGeneration": 1
+    },
+    {
+      "id": "14d8c27ee2",
+      "at": "2026-10-08T01:13:17+0800",
+      "epoch": 1791393197.9186285,
+      "kind": "RECIPE_GRAB_SELECT",
+      "title": "按本件要求选择夹爪",
+      "memberId": null,
+      "material": null,
+      "grabId": 2,
+      "actual": 0,
+      "recipeRunId": "248e147bd833",
+      "recipeStep": 13,
+      "connectionGeneration": 1
+    },
+    {
+      "id": "5b39b6d76c",
+      "at": "2026-10-08T01:13:17+0800",
+      "epoch": 1791393197.942608,
+      "kind": "RECIPE_GRAB",
+      "title": "PLC有效抓手已确认",
+      "memberId": null,
+      "material": null,
+      "grabId": 2,
+      "actual": 2,
+      "reused": false,
+      "recipeRunId": "248e147bd833",
+      "recipeStep": 13,
+      "connectionGeneration": 1
+    },
+    {
+      "id": "ecd3bc3131",
+      "at": "2026-10-08T01:13:18+0800",
+      "epoch": 1791393198.6526525,
+      "kind": "RECIPE_PLC_COMPLETE",
+      "title": "PLC反馈本次翻面/取放完成",
+      "mb": 6054,
+      "before": 0,
+      "value": 1,
+      "recipeRunId": "248e147bd833",
+      "recipeStep": 13,
+      "connectionGeneration": 1
+    },
+    {
+      "id": "8693b97c61",
+      "at": "2026-10-08T01:13:19+0800",
+      "epoch": 1791393199.2962356,
+      "kind": "RECIPE_PLC_COMPLETE",
+      "title": "PLC反馈本次翻面/取放完成",
+      "mb": 6054,
+      "before": 1,
+      "value": 2,
+      "recipeRunId": "248e147bd833",
+      "recipeStep": 13,
+      "connectionGeneration": 1
+    },
+    {
+      "id": "a3d3e8b7d2",
+      "at": "2026-10-08T01:13:19+0800",
+      "epoch": 1791393199.4474115,
+      "kind": "RECIPE_CLEAR_WAIT",
+      "title": "父请求已复位，等待PLC相关旧反馈全0",
+      "mb": 2016,
+      "writeEnded": 43853247154000,
+      "deadline": 43882.875,
+      "recipeRunId": "248e147bd833",
+      "recipeStep": 13,
+      "connectionGeneration": 1
+    },
+    {
+      "id": "6b1207e910",
+      "at": "2026-10-08T01:13:19+0800",
+      "epoch": 1791393199.4650252,
+      "kind": "RECIPE_CLEAR_CONFIRMED",
+      "title": "父闭环双方清零已确认",
+      "mb": 2016,
+      "writeEnded": 43853247154000,
+      "clearEvidence": {
+        "2016": {
+          "value": 0,
+          "quality": "Good",
+          "registers": [
+            0
+          ],
+          "rawHex": "0000",
+          "realAlternatives": null,
+          "receivedAt": "2026-10-08T01:13:19+0800",
+          "receivedEpoch": 1791393199.461917,
+          "readStarted": 43853262178800,
+          "readEnded": 43853264597400,
+          "readStartedAt": 43853.093,
+          "generation": 1,
+          "changedAt": 1791393199.4645164,
+          "changes": 3
+        },
+        "6054": {
+          "value": 0,
+          "quality": "Good",
+          "registers": [
+            0
+          ],
+          "rawHex": "0000",
+          "realAlternatives": null,
+          "receivedAt": "2026-10-08T01:13:19+0800",
+          "receivedEpoch": 1791393199.4645164,
+          "readStarted": 43853264723300,
+          "readEnded": 43853267055200,
+          "readStartedAt": 43853.093,
+          "generation": 1,
+          "changedAt": 1791393199.4645164,
+          "changes": 3
+        }
+      },
+      "recipeRunId": "248e147bd833",
+      "recipeStep": 13,
+      "connectionGeneration": 1
+    },
+    {
+      "id": "7477315cbd",
+      "at": "2026-10-08T01:13:19+0800",
+      "epoch": 1791393199.4819715,
+      "kind": "RECIPE_STEP_COMPLETE",
+      "title": "本步已完成",
+      "recipeRunId": "248e147bd833",
+      "recipeStep": 13,
+      "connectionGeneration": 1
+    },
+    {
+      "id": "afb8b63b42",
+      "at": "2026-10-08T01:13:19+0800",
+      "epoch": 1791393199.4839754,
+      "kind": "RECIPE_STEP",
+      "title": "开始步骤：返回下料位",
+      "recipeRunId": "248e147bd833",
+      "recipeStep": 14,
+      "connectionGeneration": 1
+    },
+    {
+      "id": "5108dec73c",
+      "at": "2026-10-08T01:13:19+0800",
+      "epoch": 1791393199.781653,
+      "kind": "RECIPE_CONFIRM",
+      "title": "人工确认：确认设备到位、人工取盘，本盘结束",
+      "outcome": "OK",
+      "barcode": "SIM-翻面件-001",
+      "recordPurpose": "现场确认",
+      "realInspectionResult": false,
+      "recipeRunId": "248e147bd833",
+      "recipeStep": 14,
+      "connectionGeneration": 1
+    },
+    {
+      "id": "ab3b82b665",
+      "at": "2026-10-08T01:13:19+0800",
+      "epoch": 1791393199.800571,
+      "kind": "RECIPE_STEP_COMPLETE",
+      "title": "本步已完成",
+      "recipeRunId": "248e147bd833",
+      "recipeStep": 14,
+      "connectionGeneration": 1
+    },
+    {
+      "id": "032a27050e",
+      "at": "2026-10-08T01:13:19+0800",
+      "epoch": 1791393199.803571,
+      "kind": "RECIPE_COMPLETE",
+      "title": "本轮流程测试完成，请人工取走料盘。模拟结果不作为真实检测结果。",
+      "recipeRunId": "248e147bd833",
+      "recipeStep": 14,
+      "connectionGeneration": 1
+    }
+  ],
+  "trail": [
+    {
+      "x": 0.0,
+      "y": 0.0,
+      "step": 1,
+      "at": 1791393193.2021232
+    },
+    {
+      "x": 0.0,
+      "y": 0.0,
+      "step": 1,
+      "at": 1791393193.3219328
+    },
+    {
+      "x": 25.0,
+      "y": 0.0,
+      "step": 2,
+      "at": 1791393193.6128204
+    },
+    {
+      "x": 25.0,
+      "y": 80.0,
+      "step": 2,
+      "at": 1791393193.7334278
+    },
+    {
+      "x": 65.0,
+      "y": 80.0,
+      "step": 3,
+      "at": 1791393193.9269366
+    },
+    {
+      "x": 65.0,
+      "y": 50.0,
+      "step": 3,
+      "at": 1791393194.0554655
+    },
+    {
+      "x": 15.0,
+      "y": 50.0,
+      "step": 4,
+      "at": 1791393194.3522208
+    },
+    {
+      "x": 15.0,
+      "y": 20.0,
+      "step": 4,
+      "at": 1791393194.4792233
+    },
+    {
+      "x": 35.0,
+      "y": 20.0,
+      "step": 5,
+      "at": 1791393195.027938
+    },
+    {
+      "x": 35.0,
+      "y": 20.0,
+      "step": 5,
+      "at": 1791393195.068287
+    },
+    {
+      "x": 10.0,
+      "y": 20.0,
+      "step": 6,
+      "at": 1791393195.6434946
+    },
+    {
+      "x": 10.0,
+      "y": 10.0,
+      "step": 6,
+      "at": 1791393195.7763815
+    },
+    {
+      "x": 10.0,
+      "y": 10.0,
+      "step": 8,
+      "at": 1791393195.940772
+    },
+    {
+      "x": 10.0,
+      "y": 10.0,
+      "step": 8,
+      "at": 1791393195.990027
+    },
+    {
+      "x": 25.0,
+      "y": 10.0,
+      "step": 10,
+      "at": 1791393196.5221143
+    },
+    {
+      "x": 25.0,
+      "y": 80.0,
+      "step": 10,
+      "at": 1791393196.652041
+    },
+    {
+      "x": 65.0,
+      "y": 80.0,
+      "step": 11,
+      "at": 1791393196.9796138
+    },
+    {
+      "x": 65.0,
+      "y": 20.0,
+      "step": 11,
+      "at": 1791393197.1037552
+    },
+    {
+      "x": 85.0,
+      "y": 20.0,
+      "step": 12,
+      "at": 1791393197.6348658
+    },
+    {
+      "x": 85.0,
+      "y": 20.0,
+      "step": 12,
+      "at": 1791393197.6768415
+    },
+    {
+      "x": 10.0,
+      "y": 20.0,
+      "step": 13,
+      "at": 1791393198.298335
+    },
+    {
+      "x": 10.0,
+      "y": 10.0,
+      "step": 13,
+      "at": 1791393198.4267435
+    },
+    {
+      "x": 80.0,
+      "y": 10.0,
+      "step": 13,
+      "at": 1791393199.0387206
+    },
+    {
+      "x": 80.0,
+      "y": 10.0,
+      "step": 13,
+      "at": 1791393199.079343
+    },
+    {
+      "x": 0.0,
+      "y": 10.0,
+      "step": 14,
+      "at": 1791393199.616552
+    },
+    {
+      "x": 0.0,
+      "y": 0.0,
+      "step": 14,
+      "at": 1791393199.7580066
+    }
+  ],
+  "result": "NG",
+  "simulated": true,
+  "recordPurpose": "流程测试",
+  "realInspectionResult": false,
+  "reason": "本轮流程测试完成，请人工取走料盘。模拟结果不作为真实检测结果。",
+  "frozenProfile": {
+    "name": "模拟翻面件-001",
+    "cameraMode": "simulated",
+    "modelCode": 1.25,
+    "grabId": 2,
+    "safeZ": {
+      "ZCamera": 2,
+      "ZScan": 2,
+      "ZGrab": 2
+    },
+    "sorting": {
+      "sourceX": 10,
+      "sourceY": 10,
+      "ngX": 80,
+      "ngY": 10,
+      "pendingX": 95,
+      "pendingY": 10,
+      "pickZ": 6,
+      "placeZ": 7,
+      "transferZ": 2
+    },
+    "steps": [
+      {
+        "id": 1,
+        "name": "人工上料",
+        "kind": "load",
+        "x": 0,
+        "y": 0
+      },
+      {
+        "id": 2,
+        "name": "3D 初次观察",
+        "kind": "pose",
+        "x": 25,
+        "y": 80
+      },
+      {
+        "id": 3,
+        "name": "F 相机扫码",
+        "kind": "scan",
+        "x": 65,
+        "y": 50
+      },
+      {
+        "id": 4,
+        "name": "第一面 A 拍照",
+        "kind": "photo",
+        "camera": "A",
+        "face": 1,
+        "x": 15,
+        "y": 20,
+        "zAxis": "ZCamera",
+        "z": 5
+      },
+      {
+        "id": 5,
+        "name": "第一面 B 拍照",
+        "kind": "photo",
+        "camera": "B",
+        "face": 1,
+        "x": 35,
+        "y": 20,
+        "zAxis": "ZCamera",
+        "z": 5
+      },
+      {
+        "id": 6,
+        "name": "翻面取料定位",
+        "kind": "position",
+        "x": 10,
+        "y": 10
+      },
+      {
+        "id": 7,
+        "name": "翻到第二面",
+        "kind": "flip",
+        "targetFace": 2
+      },
+      {
+        "id": 8,
+        "name": "放回原槽定位",
+        "kind": "position",
+        "x": 10,
+        "y": 10
+      },
+      {
+        "id": 9,
+        "name": "放回原槽",
+        "kind": "unload"
+      },
+      {
+        "id": 10,
+        "name": "3D 姿态复查",
+        "kind": "poseReview",
+        "x": 25,
+        "y": 80
+      },
+      {
+        "id": 11,
+        "name": "第二面 C 拍照",
+        "kind": "photo",
+        "camera": "C",
+        "face": 2,
+        "x": 65,
+        "y": 20,
+        "zAxis": "ZCamera",
+        "z": 5
+      },
+      {
+        "id": 12,
+        "name": "第二面 D 拍照",
+        "kind": "photo",
+        "camera": "D",
+        "face": 2,
+        "x": 85,
+        "y": 20,
+        "zAxis": "ZCamera",
+        "z": 5
+      },
+      {
+        "id": 13,
+        "name": "汇总并保存结果",
+        "kind": "result"
+      },
+      {
+        "id": 14,
+        "name": "返回下料位",
+        "kind": "finish",
+        "x": 0,
+        "y": 0
+      }
+    ],
+    "simulation": {
+      "barcode": "SIM-翻面件-001",
+      "pose": "OK",
+      "poseReview": "OK",
+      "A": "OK",
+      "B": "NG",
+      "C": "OK",
+      "D": "OK"
+    },
+    "positionTolerance": 0.1,
+    "flowTestOnly": false,
+    "gripperMembers": []
+  }
+}

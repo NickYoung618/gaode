@@ -1,0 +1,120 @@
+{
+  "id": "c1cbb1454e88",
+  "name": "模拟翻面件-001",
+  "state": "running",
+  "step": 6,
+  "started": 1791393192.5718608,
+  "steps": [
+    {
+      "id": 1,
+      "name": "人工上料",
+      "state": "running"
+    },
+    {
+      "id": 2,
+      "name": "3D 初次观察",
+      "state": "queued"
+    },
+    {
+      "id": 3,
+      "name": "F 相机扫码",
+      "state": "queued"
+    },
+    {
+      "id": 4,
+      "name": "第一面 A 拍照",
+      "state": "queued"
+    },
+    {
+      "id": 5,
+      "name": "第一面 B 拍照",
+      "state": "queued"
+    },
+    {
+      "id": 6,
+      "name": "翻面取料定位",
+      "state": "running"
+    },
+    {
+      "id": 7,
+      "name": "翻到第二面",
+      "state": "queued"
+    },
+    {
+      "id": 8,
+      "name": "放回原槽定位",
+      "state": "queued"
+    },
+    {
+      "id": 9,
+      "name": "放回原槽",
+      "state": "queued"
+    },
+    {
+      "id": 10,
+      "name": "3D 姿态复查",
+      "state": "queued"
+    },
+    {
+      "id": 11,
+      "name": "第二面 C 拍照",
+      "state": "queued"
+    },
+    {
+      "id": 12,
+      "name": "第二面 D 拍照",
+      "state": "queued"
+    },
+    {
+      "id": 13,
+      "name": "汇总并保存结果",
+      "state": "queued"
+    },
+    {
+      "id": 14,
+      "name": "返回下料位",
+      "state": "queued"
+    }
+  ],
+  "barcode": null,
+  "inspections": [],
+  "signals": [],
+  "milestones": [
+    {
+      "id": "5a46bb05fa",
+      "at": "2026-10-08T01:13:12+0800",
+      "epoch": 1791393192.5718608,
+      "kind": "RECIPE_STEP",
+      "title": "开始步骤：人工上料",
+      "recipeRunId": "c1cbb1454e88",
+      "recipeStep": 1,
+      "connectionGeneration": 1
+    },
+    {
+      "id": "c7b84e83d3",
+      "at": "2026-10-08T01:13:12+0800",
+      "epoch": 1791393192.5868921,
+      "kind": "RECIPE_START",
+      "title": "用户开始本盘；真实PLC反馈推进，相机模式=simulated",
+      "recipeRunId": "c1cbb1454e88",
+      "recipeStep": 1,
+      "connectionGeneration": 1
+    },
+    {
+      "id": "f6b9b2cca4",
+      "at": "2026-10-08T01:13:12+0800",
+      "epoch": 1791393192.5868921,
+      "kind": "RECIPE_STEP",
+      "title": "开始步骤：翻面取料定位",
+      "recipeRunId": "c1cbb1454e88",
+      "recipeStep": 6,
+      "connectionGeneration": 1
+    }
+  ],
+  "trail": [],
+  "result": null,
+  "simulated": true,
+  "recordPurpose": "流程测试",
+  "realInspectionResult": false,
+  "reason": "等待上料定位"
+}

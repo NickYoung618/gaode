@@ -1,0 +1,13 @@
+2026-10-07T16:58:23.3426463+00:00 Information PLC threadpool provider: windowsNative=False; minimum API supported=True 
+2026-10-07T16:58:23.3426509+00:00 Information PLC heartbeat worker minimum: previous=28, effective=28 
+2026-10-07T16:58:23.3426532+00:00 Information PLC starting: 127.0.0.1:49511, acquisition=plc-acquisition/013-1, ioTimeoutMs=1000, heartbeatTimeoutMs=3000 
+2026-10-07T16:58:23.3428275+00:00 Information PLC channel heartbeat connected [::ffff:127.0.0.1]:49513 -> 127.0.0.1:49511; I/O deadline 1000 ms 
+2026-10-07T16:58:23.3429728+00:00 Information PLC channel business connected [::ffff:127.0.0.1]:49514 -> 127.0.0.1:49511; I/O deadline 1000 ms 
+2026-10-07T16:58:23.3434457+00:00 Information PLC channel business connected [::ffff:127.0.0.1]:49515 -> 127.0.0.1:49511; I/O deadline 1000 ms 
+2026-10-07T16:58:23.5473810+00:00 Information PLC startup readiness observed: runId=44338525-0f6f-4dbf-b219-cb83df8f31d1, operationId=6f0ec277-7d91-4862-b176-7ae845791d7f, actionId=6734076a-3f92-4946-813d-e8c98a3618d9, epoch=2; no clamp or physical button fact inferred 
+2026-10-07T16:58:23.6418671+00:00 Information PLC channel heartbeat connected [::ffff:127.0.0.1]:49516 -> 127.0.0.1:49511; I/O deadline 1000 ms 
+2026-10-07T16:58:23.7996810+00:00 Information PlcClearWaiting resource=XPosConfirmed cycle=911048e9-ac7d-4a77-a278-0e8c03f50937 epoch=2 action=e128d6f1-0ecd-49cb-9628-991b468ee766 writeEnded=429576022007 due=429673500699 
+2026-10-07T16:58:24.0021731+00:00 Information PlcClearConfirmed resource=XPosConfirmed cycle=911048e9-ac7d-4a77-a278-0e8c03f50937 epoch=2 action=e128d6f1-0ecd-49cb-9628-991b468ee766 writeEnded=429576022007 readStarted=429578045887 readEnded=429578046492 fields=XMoveStart,XPosConfirmed 
+2026-10-07T16:58:24.0022347+00:00 Information PlcClearWaiting resource=YPosConfirmed cycle=afe93299-158a-4fc4-96ad-170d834d5458 epoch=2 action=e128d6f1-0ecd-49cb-9628-991b468ee766 writeEnded=429578047558 due=429673500699 
+2026-10-07T16:58:24.2033721+00:00 Information PlcClearConfirmed resource=YPosConfirmed cycle=afe93299-158a-4fc4-96ad-170d834d5458 epoch=2 action=e128d6f1-0ecd-49cb-9628-991b468ee766 writeEnded=429578047558 readStarted=429580057822 readEnded=429580058476 fields=YMoveStart,YPosConfirmed 
+2026-10-07T16:58:24.4624097+00:00 Information PLC transition completed: runId=cbca1e76-da2b-400f-b260-637396bd2a00, actionId=daafc61d-e9cf-412d-9f79-8dc5a0a31864, epoch=2, putBack=False 

@@ -1,0 +1,1610 @@
+{
+  "evidence": "OFFLINE:API-saved-recipe;formal-RecipeDetectionExecutor;declared-ports;actual-SQLite-and-media;not-hardware",
+  "run": "5a247de3-83f3-4266-9595-774c8103652b",
+  "tray": "8b321056-0690-4125-bca5-5e8558be11fd",
+  "recipeId": "80cb2fe87f3b4b9aa29c14c264f47c99",
+  "version": "098de66e3a3a4c58b8065fb6869da681",
+  "definitionDigest": "951394B0247EBF9C8E0B109C7CC91FE29795E9DEF245330BFE3188952AEFE7DC",
+  "planRevision": "7C10EB4218F7851084B836C6F7D2110A4B50473573200F60DD5F9591026DA9ED",
+  "purpose": "RealDeviceCommissioning",
+  "database": "C:\\Users\\Administrator\\AppData\\Local\\Temp\\011-configured-detection\\1ff5022e8cb04075a5f541a52f6c199c\\run.db",
+  "mediaRoot": "C:\\Users\\Administrator\\AppData\\Local\\Temp\\011-configured-detection\\1ff5022e8cb04075a5f541a52f6c199c",
+  "fields": [
+    {
+      "id": "P01/P02",
+      "state": "Consumed",
+      "values": {
+        "model": "CaseSensitiveModel",
+        "fCode": "tray-raw",
+        "scenarioId": "component-scenario",
+        "slots": [
+          "s1"
+        ],
+        "steps": [
+          {
+            "sequence": 1,
+            "kind": 4,
+            "unitId": "8b321056-0690-4125-bca5-5e8558be11fd/s1",
+            "memberId": "8b321056-0690-4125-bca5-5e8558be11fd/s1/part",
+            "slotId": "s1",
+            "material": "part",
+            "localFace": 1,
+            "camera": "C",
+            "angleDeg": null,
+            "coordinateEpoch": 1,
+            "when": "Always",
+            "captureProfile": "detect",
+            "algorithmProfile": "defect",
+            "ownerStage": "Detection",
+            "physicalEntityId": "8b321056-0690-4125-bca5-5e8558be11fd/s1/part",
+            "physicalSlotIndex": 1,
+            "pointRef": "f1-C",
+            "stageId": "stage:1",
+            "scanPoseId": null,
+            "targetPose": null
+          },
+          {
+            "sequence": 2,
+            "kind": 5,
+            "unitId": "8b321056-0690-4125-bca5-5e8558be11fd/s1",
+            "memberId": "8b321056-0690-4125-bca5-5e8558be11fd/s1/part",
+            "slotId": "s1",
+            "material": "part",
+            "localFace": 1,
+            "camera": "C",
+            "angleDeg": null,
+            "coordinateEpoch": 1,
+            "when": "Always",
+            "captureProfile": "detect",
+            "algorithmProfile": "defect",
+            "ownerStage": "Detection",
+            "physicalEntityId": "8b321056-0690-4125-bca5-5e8558be11fd/s1/part",
+            "physicalSlotIndex": 1,
+            "pointRef": "f1-C",
+            "stageId": "stage:1",
+            "scanPoseId": null,
+            "targetPose": null
+          },
+          {
+            "sequence": 3,
+            "kind": 4,
+            "unitId": "8b321056-0690-4125-bca5-5e8558be11fd/s1",
+            "memberId": "8b321056-0690-4125-bca5-5e8558be11fd/s1/part",
+            "slotId": "s1",
+            "material": "part",
+            "localFace": 1,
+            "camera": "D",
+            "angleDeg": null,
+            "coordinateEpoch": 1,
+            "when": "Always",
+            "captureProfile": "detect",
+            "algorithmProfile": "defect",
+            "ownerStage": "Detection",
+            "physicalEntityId": "8b321056-0690-4125-bca5-5e8558be11fd/s1/part",
+            "physicalSlotIndex": 1,
+            "pointRef": "f1-D",
+            "stageId": "stage:1",
+            "scanPoseId": null,
+            "targetPose": null
+          },
+          {
+            "sequence": 4,
+            "kind": 5,
+            "unitId": "8b321056-0690-4125-bca5-5e8558be11fd/s1",
+            "memberId": "8b321056-0690-4125-bca5-5e8558be11fd/s1/part",
+            "slotId": "s1",
+            "material": "part",
+            "localFace": 1,
+            "camera": "D",
+            "angleDeg": null,
+            "coordinateEpoch": 1,
+            "when": "Always",
+            "captureProfile": "detect",
+            "algorithmProfile": "defect",
+            "ownerStage": "Detection",
+            "physicalEntityId": "8b321056-0690-4125-bca5-5e8558be11fd/s1/part",
+            "physicalSlotIndex": 1,
+            "pointRef": "f1-D",
+            "stageId": "stage:1",
+            "scanPoseId": null,
+            "targetPose": null
+          },
+          {
+            "sequence": 5,
+            "kind": 0,
+            "unitId": "8b321056-0690-4125-bca5-5e8558be11fd/s1",
+            "memberId": "8b321056-0690-4125-bca5-5e8558be11fd/s1/part",
+            "slotId": "s1",
+            "material": "part",
+            "localFace": null,
+            "camera": null,
+            "angleDeg": null,
+            "coordinateEpoch": 1,
+            "when": "Always",
+            "captureProfile": null,
+            "algorithmProfile": null,
+            "ownerStage": "Detection",
+            "physicalEntityId": "8b321056-0690-4125-bca5-5e8558be11fd/s1/part",
+            "physicalSlotIndex": 1,
+            "pointRef": null,
+            "stageId": "stage:2",
+            "scanPoseId": null,
+            "targetPose": {
+              "profileId": "motion",
+              "profileVersion": "test-1",
+              "poseKey": "face-2"
+            }
+          },
+          {
+            "sequence": 6,
+            "kind": 1,
+            "unitId": "8b321056-0690-4125-bca5-5e8558be11fd/s1",
+            "memberId": null,
+            "slotId": "s1",
+            "material": null,
+            "localFace": null,
+            "camera": null,
+            "angleDeg": null,
+            "coordinateEpoch": 2,
+            "when": "Always",
+            "captureProfile": null,
+            "algorithmProfile": null,
+            "ownerStage": "Detection",
+            "physicalEntityId": "8b321056-0690-4125-bca5-5e8558be11fd/s1",
+            "physicalSlotIndex": 1,
+            "pointRef": null,
+            "stageId": "stage:2",
+            "scanPoseId": null,
+            "targetPose": null
+          },
+          {
+            "sequence": 7,
+            "kind": 4,
+            "unitId": "8b321056-0690-4125-bca5-5e8558be11fd/s1",
+            "memberId": "8b321056-0690-4125-bca5-5e8558be11fd/s1/part",
+            "slotId": "s1",
+            "material": "part",
+            "localFace": 2,
+            "camera": "A",
+            "angleDeg": null,
+            "coordinateEpoch": 2,
+            "when": "Always",
+            "captureProfile": "detect",
+            "algorithmProfile": "defect",
+            "ownerStage": "Detection",
+            "physicalEntityId": "8b321056-0690-4125-bca5-5e8558be11fd/s1/part",
+            "physicalSlotIndex": 1,
+            "pointRef": "f2-A",
+            "stageId": "stage:2",
+            "scanPoseId": null,
+            "targetPose": null
+          },
+          {
+            "sequence": 8,
+            "kind": 5,
+            "unitId": "8b321056-0690-4125-bca5-5e8558be11fd/s1",
+            "memberId": "8b321056-0690-4125-bca5-5e8558be11fd/s1/part",
+            "slotId": "s1",
+            "material": "part",
+            "localFace": 2,
+            "camera": "A",
+            "angleDeg": null,
+            "coordinateEpoch": 2,
+            "when": "Always",
+            "captureProfile": "detect",
+            "algorithmProfile": "defect",
+            "ownerStage": "Detection",
+            "physicalEntityId": "8b321056-0690-4125-bca5-5e8558be11fd/s1/part",
+            "physicalSlotIndex": 1,
+            "pointRef": "f2-A",
+            "stageId": "stage:2",
+            "scanPoseId": null,
+            "targetPose": null
+          },
+          {
+            "sequence": 9,
+            "kind": 4,
+            "unitId": "8b321056-0690-4125-bca5-5e8558be11fd/s1",
+            "memberId": "8b321056-0690-4125-bca5-5e8558be11fd/s1/part",
+            "slotId": "s1",
+            "material": "part",
+            "localFace": 2,
+            "camera": "B",
+            "angleDeg": null,
+            "coordinateEpoch": 2,
+            "when": "Always",
+            "captureProfile": "detect",
+            "algorithmProfile": "defect",
+            "ownerStage": "Detection",
+            "physicalEntityId": "8b321056-0690-4125-bca5-5e8558be11fd/s1/part",
+            "physicalSlotIndex": 1,
+            "pointRef": "f2-B",
+            "stageId": "stage:2",
+            "scanPoseId": null,
+            "targetPose": null
+          },
+          {
+            "sequence": 10,
+            "kind": 5,
+            "unitId": "8b321056-0690-4125-bca5-5e8558be11fd/s1",
+            "memberId": "8b321056-0690-4125-bca5-5e8558be11fd/s1/part",
+            "slotId": "s1",
+            "material": "part",
+            "localFace": 2,
+            "camera": "B",
+            "angleDeg": null,
+            "coordinateEpoch": 2,
+            "when": "Always",
+            "captureProfile": "detect",
+            "algorithmProfile": "defect",
+            "ownerStage": "Detection",
+            "physicalEntityId": "8b321056-0690-4125-bca5-5e8558be11fd/s1/part",
+            "physicalSlotIndex": 1,
+            "pointRef": "f2-B",
+            "stageId": "stage:2",
+            "scanPoseId": null,
+            "targetPose": null
+          },
+          {
+            "sequence": 11,
+            "kind": 7,
+            "unitId": "8b321056-0690-4125-bca5-5e8558be11fd/s1",
+            "memberId": null,
+            "slotId": "s1",
+            "material": null,
+            "localFace": null,
+            "camera": null,
+            "angleDeg": null,
+            "coordinateEpoch": 2,
+            "when": "Always",
+            "captureProfile": null,
+            "algorithmProfile": null,
+            "ownerStage": "Detection",
+            "physicalEntityId": "8b321056-0690-4125-bca5-5e8558be11fd/s1",
+            "physicalSlotIndex": 1,
+            "pointRef": null,
+            "stageId": null,
+            "scanPoseId": null,
+            "targetPose": null
+          },
+          {
+            "sequence": 12,
+            "kind": 8,
+            "unitId": "8b321056-0690-4125-bca5-5e8558be11fd/s1",
+            "memberId": "8b321056-0690-4125-bca5-5e8558be11fd/s1/part",
+            "slotId": "s1",
+            "material": "part",
+            "localFace": null,
+            "camera": null,
+            "angleDeg": null,
+            "coordinateEpoch": 2,
+            "when": "NG|Pending",
+            "captureProfile": null,
+            "algorithmProfile": null,
+            "ownerStage": "Sorting",
+            "physicalEntityId": "8b321056-0690-4125-bca5-5e8558be11fd/s1/part",
+            "physicalSlotIndex": 1,
+            "pointRef": null,
+            "stageId": null,
+            "scanPoseId": null,
+            "targetPose": null
+          },
+          {
+            "sequence": 13,
+            "kind": 10,
+            "unitId": "8b321056-0690-4125-bca5-5e8558be11fd/s1",
+            "memberId": null,
+            "slotId": "s1",
+            "material": null,
+            "localFace": null,
+            "camera": null,
+            "angleDeg": null,
+            "coordinateEpoch": 2,
+            "when": "Always",
+            "captureProfile": null,
+            "algorithmProfile": null,
+            "ownerStage": "Unload",
+            "physicalEntityId": "8b321056-0690-4125-bca5-5e8558be11fd/s1",
+            "physicalSlotIndex": 1,
+            "pointRef": null,
+            "stageId": null,
+            "scanPoseId": null,
+            "targetPose": null
+          }
+        ]
+      }
+    },
+    {
+      "id": "P03",
+      "state": "Consumed",
+      "values": {
+        "targets": [
+          {
+            "stepSequence": 1,
+            "objectId": "8b321056-0690-4125-bca5-5e8558be11fd/s1/part",
+            "slotId": "s1",
+            "physicalSlotIndex": 1,
+            "localFace": 1,
+            "coordinateEpoch": 1,
+            "camera": "C",
+            "pointRef": "f1-C",
+            "point": {
+              "id": "detect-C",
+              "version": "test-1",
+              "x": 10,
+              "y": 20,
+              "unit": "mm",
+              "frame": "test-frame",
+              "z": 3
+            },
+            "source": "DeclaredComponentConfiguration",
+            "zBasis": "Test-only",
+            "stageId": "stage:1",
+            "scanPoseId": null,
+            "resolutionKind": 2,
+            "isValid": true
+          },
+          {
+            "stepSequence": 3,
+            "objectId": "8b321056-0690-4125-bca5-5e8558be11fd/s1/part",
+            "slotId": "s1",
+            "physicalSlotIndex": 1,
+            "localFace": 1,
+            "coordinateEpoch": 1,
+            "camera": "D",
+            "pointRef": "f1-D",
+            "point": {
+              "id": "detect-D",
+              "version": "test-1",
+              "x": 10,
+              "y": 20,
+              "unit": "mm",
+              "frame": "test-frame",
+              "z": 3
+            },
+            "source": "DeclaredComponentConfiguration",
+            "zBasis": "Test-only",
+            "stageId": "stage:1",
+            "scanPoseId": null,
+            "resolutionKind": 2,
+            "isValid": true
+          },
+          {
+            "stepSequence": 7,
+            "objectId": "8b321056-0690-4125-bca5-5e8558be11fd/s1/part",
+            "slotId": "s1",
+            "physicalSlotIndex": 1,
+            "localFace": 2,
+            "coordinateEpoch": 2,
+            "camera": "A",
+            "pointRef": "f2-A",
+            "point": {
+              "id": "detect-A",
+              "version": "test-1",
+              "x": 10,
+              "y": 20,
+              "unit": "mm",
+              "frame": "test-frame",
+              "z": 3
+            },
+            "source": "DeclaredComponentConfiguration",
+            "zBasis": "Test-only",
+            "stageId": "stage:2",
+            "scanPoseId": null,
+            "resolutionKind": 2,
+            "isValid": true
+          },
+          {
+            "stepSequence": 9,
+            "objectId": "8b321056-0690-4125-bca5-5e8558be11fd/s1/part",
+            "slotId": "s1",
+            "physicalSlotIndex": 1,
+            "localFace": 2,
+            "coordinateEpoch": 2,
+            "camera": "B",
+            "pointRef": "f2-B",
+            "point": {
+              "id": "detect-B",
+              "version": "test-1",
+              "x": 10,
+              "y": 20,
+              "unit": "mm",
+              "frame": "test-frame",
+              "z": 3
+            },
+            "source": "DeclaredComponentConfiguration",
+            "zBasis": "Test-only",
+            "stageId": "stage:2",
+            "scanPoseId": null,
+            "resolutionKind": 2,
+            "isValid": true
+          }
+        ],
+        "moves": [
+          {
+            "envelope": {
+              "runId": "5a247de3-83f3-4266-9595-774c8103652b",
+              "operationId": "65883a2d-c3da-4fc7-b137-7aec236b4340",
+              "attempt": 1,
+              "sessionId": "d8b649f2-1885-465e-93b6-80db6832a404",
+              "snapshotId": "declared-snapshot",
+              "configVersion": "1.0.0",
+              "purpose": "RealDeviceCommissioning",
+              "startTick": 648278985487,
+              "dueTick": 650765353017,
+              "clockId": "system-component",
+              "isValid": true
+            },
+            "actionId": "296d3fa3-4c99-4343-8cd8-466d733db184",
+            "target": {
+              "id": "detect-C",
+              "version": "test-1",
+              "x": 10,
+              "y": 20,
+              "unit": "mm",
+              "frame": "test-frame",
+              "z": 3
+            },
+            "intentWriteId": "1062143a-6a3b-4e7d-899b-93336479f699",
+            "bindingId": "sim-plc",
+            "role": "Detection",
+            "flipPreparation": null
+          },
+          {
+            "envelope": {
+              "runId": "5a247de3-83f3-4266-9595-774c8103652b",
+              "operationId": "9ce892da-d6fc-4950-8977-0d1beba0c0d0",
+              "attempt": 1,
+              "sessionId": "d8b649f2-1885-465e-93b6-80db6832a404",
+              "snapshotId": "declared-snapshot",
+              "configVersion": "1.0.0",
+              "purpose": "RealDeviceCommissioning",
+              "startTick": 648280588292,
+              "dueTick": 650765353021,
+              "clockId": "system-component",
+              "isValid": true
+            },
+            "actionId": "32106427-0c74-43ee-b2c3-79366df74595",
+            "target": {
+              "id": "detect-D",
+              "version": "test-1",
+              "x": 10,
+              "y": 20,
+              "unit": "mm",
+              "frame": "test-frame",
+              "z": 3
+            },
+            "intentWriteId": "5103af78-75d7-4174-a19a-6cf174a83f5c",
+            "bindingId": "sim-plc",
+            "role": "Detection",
+            "flipPreparation": null
+          },
+          {
+            "envelope": {
+              "runId": "5a247de3-83f3-4266-9595-774c8103652b",
+              "operationId": "0cd4ccfe-f737-43f3-a494-778f83d1f84b",
+              "attempt": 1,
+              "sessionId": "d8b649f2-1885-465e-93b6-80db6832a404",
+              "snapshotId": "declared-snapshot",
+              "configVersion": "1.0.0",
+              "purpose": "RealDeviceCommissioning",
+              "startTick": 648281612537,
+              "dueTick": 650765353019,
+              "clockId": "system-component",
+              "isValid": true
+            },
+            "actionId": "b8860d2d-4b09-49a6-ae3b-9e0fa18c72f9",
+            "target": {
+              "id": "FlipPick",
+              "version": "test-1",
+              "x": 10,
+              "y": 20,
+              "unit": "mm",
+              "frame": "test-frame",
+              "z": 3
+            },
+            "intentWriteId": "8db6b6b0-1f32-40d6-a4e7-31d6f008f30c",
+            "bindingId": "sim-plc",
+            "role": "FlipPick",
+            "flipPreparation": {
+              "transitionId": "c8e32e67-443d-4847-ad6b-45d76798000b",
+              "model": "CaseSensitiveModel",
+              "targetPose": {
+                "profileId": "motion",
+                "profileVersion": "test-1",
+                "poseKey": "face-2"
+              },
+              "physicalEntityId": "8b321056-0690-4125-bca5-5e8558be11fd/s1/part",
+              "physicalSlotIndex": 1
+            }
+          },
+          {
+            "envelope": {
+              "runId": "5a247de3-83f3-4266-9595-774c8103652b",
+              "operationId": "514e7a87-e6f6-4e4c-8f38-13cc677ed779",
+              "attempt": 1,
+              "sessionId": "d8b649f2-1885-465e-93b6-80db6832a404",
+              "snapshotId": "declared-snapshot",
+              "configVersion": "1.0.0",
+              "purpose": "RealDeviceCommissioning",
+              "startTick": 648282007994,
+              "dueTick": 650765353019,
+              "clockId": "system-component",
+              "isValid": true
+            },
+            "actionId": "3d59e955-bd7f-4a90-879e-5a427f0ae8a5",
+            "target": {
+              "id": "FlipPutBack",
+              "version": "test-1",
+              "x": 10,
+              "y": 20,
+              "unit": "mm",
+              "frame": "test-frame",
+              "z": 3
+            },
+            "intentWriteId": "eee63419-43bf-4947-a1f1-f77a5a0848f2",
+            "bindingId": "sim-plc",
+            "role": "FlipPutBack",
+            "flipPreparation": null
+          },
+          {
+            "envelope": {
+              "runId": "5a247de3-83f3-4266-9595-774c8103652b",
+              "operationId": "0b3365f9-a135-474b-8b61-bc16fb1ef437",
+              "attempt": 1,
+              "sessionId": "d8b649f2-1885-465e-93b6-80db6832a404",
+              "snapshotId": "declared-snapshot",
+              "configVersion": "1.0.0",
+              "purpose": "RealDeviceCommissioning",
+              "startTick": 648282343277,
+              "dueTick": 650765353021,
+              "clockId": "system-component",
+              "isValid": true
+            },
+            "actionId": "de7dcbde-9e38-42f3-9851-03b72975ce04",
+            "target": {
+              "id": "sim-3d-xy",
+              "version": "1.0.0",
+              "x": 100,
+              "y": 100,
+              "unit": "mm",
+              "frame": "test-frame",
+              "z": 0
+            },
+            "intentWriteId": "539cbb0d-d51f-49aa-ab31-14360be3ba4a",
+            "bindingId": "sim-plc",
+            "role": "3D",
+            "flipPreparation": null
+          },
+          {
+            "envelope": {
+              "runId": "5a247de3-83f3-4266-9595-774c8103652b",
+              "operationId": "4784398b-17c8-4d1f-9784-40d0d57daa5d",
+              "attempt": 1,
+              "sessionId": "d8b649f2-1885-465e-93b6-80db6832a404",
+              "snapshotId": "declared-snapshot",
+              "configVersion": "1.0.0",
+              "purpose": "RealDeviceCommissioning",
+              "startTick": 648282762385,
+              "dueTick": 650765353020,
+              "clockId": "system-component",
+              "isValid": true
+            },
+            "actionId": "dd69912c-3a09-44f6-b89c-651a4fafdf14",
+            "target": {
+              "id": "detect-A",
+              "version": "test-1",
+              "x": 10,
+              "y": 20,
+              "unit": "mm",
+              "frame": "test-frame",
+              "z": 3
+            },
+            "intentWriteId": "6dbf70ee-a758-46e8-8774-378dc59385d7",
+            "bindingId": "sim-plc",
+            "role": "Detection",
+            "flipPreparation": null
+          },
+          {
+            "envelope": {
+              "runId": "5a247de3-83f3-4266-9595-774c8103652b",
+              "operationId": "a61cd667-6205-46aa-95d1-f56809779b74",
+              "attempt": 1,
+              "sessionId": "d8b649f2-1885-465e-93b6-80db6832a404",
+              "snapshotId": "declared-snapshot",
+              "configVersion": "1.0.0",
+              "purpose": "RealDeviceCommissioning",
+              "startTick": 648283194894,
+              "dueTick": 650765353021,
+              "clockId": "system-component",
+              "isValid": true
+            },
+            "actionId": "430e62a2-9a74-418a-b568-77006c39cc1d",
+            "target": {
+              "id": "detect-B",
+              "version": "test-1",
+              "x": 10,
+              "y": 20,
+              "unit": "mm",
+              "frame": "test-frame",
+              "z": 3
+            },
+            "intentWriteId": "9ac8580e-c7d0-4a96-b204-09908727d907",
+            "bindingId": "sim-plc",
+            "role": "Detection",
+            "flipPreparation": null
+          }
+        ],
+        "movement": [
+          "move:Detection",
+          "move:Detection",
+          "move:FlipPick",
+          "move:FlipPutBack",
+          "move:3D",
+          "move:Detection",
+          "move:Detection"
+        ]
+      }
+    },
+    {
+      "id": "P04",
+      "state": "Consumed",
+      "values": {
+        "flips": [
+          {
+            "correlation": {
+              "runId": "5a247de3-83f3-4266-9595-774c8103652b",
+              "operationId": "03543c43-682b-4563-b8cd-4668c0b28c1f",
+              "actionId": "197efb4b-8848-44ec-b01f-54008663dc95",
+              "attempt": 1,
+              "sessionId": "d8b649f2-1885-465e-93b6-80db6832a404",
+              "connectionEpoch": 1,
+              "snapshotId": "declared-snapshot",
+              "planRevision": "7C10EB4218F7851084B836C6F7D2110A4B50473573200F60DD5F9591026DA9ED",
+              "trayId": "8b321056-0690-4125-bca5-5e8558be11fd",
+              "objectId": "8b321056-0690-4125-bca5-5e8558be11fd/s1/part",
+              "groupId": null,
+              "assemblyId": null,
+              "localFace": null,
+              "physicalSlotIndex": 1,
+              "isValid": true
+            },
+            "transitionId": "c8e32e67-443d-4847-ad6b-45d76798000b",
+            "model": "CaseSensitiveModel",
+            "targetPose": {
+              "profileId": "motion",
+              "profileVersion": "test-1",
+              "poseKey": "face-2"
+            },
+            "positionEvidence": {
+              "correlation": {
+                "runId": "5a247de3-83f3-4266-9595-774c8103652b",
+                "operationId": "0cd4ccfe-f737-43f3-a494-778f83d1f84b",
+                "actionId": "b8860d2d-4b09-49a6-ae3b-9e0fa18c72f9",
+                "attempt": 1,
+                "sessionId": "d8b649f2-1885-465e-93b6-80db6832a404",
+                "connectionEpoch": 1,
+                "snapshotId": "declared-snapshot",
+                "planRevision": null,
+                "trayId": null,
+                "objectId": null,
+                "groupId": null,
+                "assemblyId": null,
+                "localFace": null,
+                "physicalSlotIndex": null,
+                "isValid": true
+              },
+              "target": {
+                "id": "FlipPick",
+                "version": "test-1",
+                "x": 10,
+                "y": 20,
+                "unit": "mm",
+                "frame": "test-frame",
+                "z": 3
+              },
+              "actual": {
+                "actualX": 10,
+                "actualY": 20,
+                "actualZ": null,
+                "axisPurpose": "XY",
+                "coordinateFrame": "test-frame",
+                "unitBasis": "mm",
+                "identity": {
+                  "observationId": "d2c11f52-8cf3-4f56-90f3-10cfcb370c03",
+                  "connectionEpoch": 1,
+                  "sampleStartedUtc": "2026-10-07T23:02:52.4466605+00:00",
+                  "sampleEndedUtc": "2026-10-07T23:02:52.4466605+00:00",
+                  "reliability": "Reliable",
+                  "isValid": true
+                },
+                "origin": {
+                  "provider": "Simulated",
+                  "componentVersion": "SemanticUnitFixture/1",
+                  "quality": "Derived"
+                },
+                "isReliable": true
+              },
+              "tolerance": 0.01,
+              "matched": true
+            },
+            "window": {
+              "startTick": 648281767834,
+              "dueTick": 648291767834,
+              "clockId": "system-component",
+              "startedUtc": "2026-10-07T23:02:54.3742557+00:00",
+              "deadlineUtc": "2026-10-07T23:02:55.3742557+00:00",
+              "isValid": true
+            },
+            "intentWriteId": "2e7dae0d-3287-4417-a6ea-607ac1f3c8ff"
+          }
+        ],
+        "putBacks": [
+          {
+            "correlation": {
+              "runId": "5a247de3-83f3-4266-9595-774c8103652b",
+              "operationId": "7bd7a307-2e6d-4b86-b9d7-1bbf038ebda6",
+              "actionId": "6dd49a4c-7461-48c3-8a09-fe39aa8eae1b",
+              "attempt": 1,
+              "sessionId": "d8b649f2-1885-465e-93b6-80db6832a404",
+              "connectionEpoch": 1,
+              "snapshotId": "declared-snapshot",
+              "planRevision": "7C10EB4218F7851084B836C6F7D2110A4B50473573200F60DD5F9591026DA9ED",
+              "trayId": "8b321056-0690-4125-bca5-5e8558be11fd",
+              "objectId": "8b321056-0690-4125-bca5-5e8558be11fd/s1/part",
+              "groupId": null,
+              "assemblyId": null,
+              "localFace": null,
+              "physicalSlotIndex": 1,
+              "isValid": true
+            },
+            "transitionId": "c8e32e67-443d-4847-ad6b-45d76798000b",
+            "positionEvidence": {
+              "correlation": {
+                "runId": "5a247de3-83f3-4266-9595-774c8103652b",
+                "operationId": "514e7a87-e6f6-4e4c-8f38-13cc677ed779",
+                "actionId": "3d59e955-bd7f-4a90-879e-5a427f0ae8a5",
+                "attempt": 1,
+                "sessionId": "d8b649f2-1885-465e-93b6-80db6832a404",
+                "connectionEpoch": 1,
+                "snapshotId": "declared-snapshot",
+                "planRevision": null,
+                "trayId": null,
+                "objectId": null,
+                "groupId": null,
+                "assemblyId": null,
+                "localFace": null,
+                "physicalSlotIndex": null,
+                "isValid": true
+              },
+              "target": {
+                "id": "FlipPutBack",
+                "version": "test-1",
+                "x": 10,
+                "y": 20,
+                "unit": "mm",
+                "frame": "test-frame",
+                "z": 3
+              },
+              "actual": {
+                "actualX": 10,
+                "actualY": 20,
+                "actualZ": null,
+                "axisPurpose": "XY",
+                "coordinateFrame": "test-frame",
+                "unitBasis": "mm",
+                "identity": {
+                  "observationId": "d2c11f52-8cf3-4f56-90f3-10cfcb370c03",
+                  "connectionEpoch": 1,
+                  "sampleStartedUtc": "2026-10-07T23:02:52.4466605+00:00",
+                  "sampleEndedUtc": "2026-10-07T23:02:52.4466605+00:00",
+                  "reliability": "Reliable",
+                  "isValid": true
+                },
+                "origin": {
+                  "provider": "Simulated",
+                  "componentVersion": "SemanticUnitFixture/1",
+                  "quality": "Derived"
+                },
+                "isReliable": true
+              },
+              "tolerance": 0.01,
+              "matched": true
+            },
+            "window": {
+              "startTick": 648282173540,
+              "dueTick": 648292173540,
+              "clockId": "system-component",
+              "startedUtc": "2026-10-07T23:02:54.4148262+00:00",
+              "deadlineUtc": "2026-10-07T23:02:55.4148262+00:00",
+              "isValid": true
+            },
+            "intentWriteId": "b0fe1bb7-be01-4932-bc4d-49a189e00b61"
+          }
+        ]
+      }
+    },
+    {
+      "id": "P05/P06",
+      "state": "SavedValidatedFrozen_NotExecutedInDetectionComponent",
+      "values": {
+        "executionPositions": {
+          "s1": {
+            "slotId": "s1",
+            "physicalEntity": {
+              "source": {
+                "point": {
+                  "id": "s1",
+                  "version": "test-1",
+                  "x": 1,
+                  "y": 2,
+                  "unit": "mm",
+                  "frame": "test-frame",
+                  "z": 3
+                },
+                "coordinateEvidenceReference": "Test:source"
+              },
+              "coordinates": [
+                {
+                  "pointRef": "f1-C",
+                  "point": {
+                    "id": "detect-C",
+                    "version": "test-1",
+                    "x": 10,
+                    "y": 20,
+                    "unit": "mm",
+                    "frame": "test-frame"
+                  },
+                  "objectPattern": "{UnitId}/part",
+                  "slotId": "s1",
+                  "physicalSlotIndex": 1,
+                  "localFace": 1,
+                  "camera": "C",
+                  "stageId": "stage:1",
+                  "configurationVersion": "test-1",
+                  "sourceFactReference": "Test:explicit-config",
+                  "fixed": {
+                    "z": 3,
+                    "unit": "mm",
+                    "datum": "test-frame",
+                    "approvalReference": "Test-only",
+                    "configurationVersion": "test-1"
+                  },
+                  "captureProfile": "detect"
+                },
+                {
+                  "pointRef": "f1-D",
+                  "point": {
+                    "id": "detect-D",
+                    "version": "test-1",
+                    "x": 10,
+                    "y": 20,
+                    "unit": "mm",
+                    "frame": "test-frame"
+                  },
+                  "objectPattern": "{UnitId}/part",
+                  "slotId": "s1",
+                  "physicalSlotIndex": 1,
+                  "localFace": 1,
+                  "camera": "D",
+                  "stageId": "stage:1",
+                  "configurationVersion": "test-1",
+                  "sourceFactReference": "Test:explicit-config",
+                  "fixed": {
+                    "z": 3,
+                    "unit": "mm",
+                    "datum": "test-frame",
+                    "approvalReference": "Test-only",
+                    "configurationVersion": "test-1"
+                  },
+                  "captureProfile": "detect"
+                },
+                {
+                  "pointRef": "f2-A",
+                  "point": {
+                    "id": "detect-A",
+                    "version": "test-1",
+                    "x": 10,
+                    "y": 20,
+                    "unit": "mm",
+                    "frame": "test-frame"
+                  },
+                  "objectPattern": "{UnitId}/part",
+                  "slotId": "s1",
+                  "physicalSlotIndex": 1,
+                  "localFace": 2,
+                  "camera": "A",
+                  "stageId": "stage:2",
+                  "configurationVersion": "test-1",
+                  "sourceFactReference": "Test:explicit-config",
+                  "fixed": {
+                    "z": 3,
+                    "unit": "mm",
+                    "datum": "test-frame",
+                    "approvalReference": "Test-only",
+                    "configurationVersion": "test-1"
+                  },
+                  "captureProfile": "detect"
+                },
+                {
+                  "pointRef": "f2-B",
+                  "point": {
+                    "id": "detect-B",
+                    "version": "test-1",
+                    "x": 10,
+                    "y": 20,
+                    "unit": "mm",
+                    "frame": "test-frame"
+                  },
+                  "objectPattern": "{UnitId}/part",
+                  "slotId": "s1",
+                  "physicalSlotIndex": 1,
+                  "localFace": 2,
+                  "camera": "B",
+                  "stageId": "stage:2",
+                  "configurationVersion": "test-1",
+                  "sourceFactReference": "Test:explicit-config",
+                  "fixed": {
+                    "z": 3,
+                    "unit": "mm",
+                    "datum": "test-frame",
+                    "approvalReference": "Test-only",
+                    "configurationVersion": "test-1"
+                  },
+                  "captureProfile": "detect"
+                }
+              ],
+              "flip": {
+                "stages": {
+                  "stage:2": {
+                    "targetPose": {
+                      "profileId": "motion",
+                      "profileVersion": "test-1",
+                      "poseKey": "face-2"
+                    },
+                    "pickPointRef": "pick",
+                    "putBackPointRef": "put"
+                  }
+                }
+              },
+              "rotation": null,
+              "sorting": {
+                "NG": {
+                  "point": {
+                    "id": "ng",
+                    "version": "test-1",
+                    "x": 30,
+                    "y": 40,
+                    "unit": "mm",
+                    "frame": "test-frame",
+                    "z": 3
+                  },
+                  "coordinateEvidenceReference": "Test:ng"
+                },
+                "Pending": {
+                  "point": {
+                    "id": "pending",
+                    "version": "test-1",
+                    "x": 50,
+                    "y": 60,
+                    "unit": "mm",
+                    "frame": "test-frame",
+                    "z": 3
+                  },
+                  "coordinateEvidenceReference": "Test:pending"
+                }
+              },
+              "purposePoints": {
+                "pick": {
+                  "purpose": 0,
+                  "point": {
+                    "id": "FlipPick",
+                    "version": "test-1",
+                    "x": 10,
+                    "y": 20,
+                    "unit": "mm",
+                    "frame": "test-frame"
+                  },
+                  "fixed": {
+                    "z": 3,
+                    "unit": "mm",
+                    "datum": "test-frame",
+                    "approvalReference": "Test-only",
+                    "configurationVersion": "test-1"
+                  },
+                  "coordinateEvidenceReference": "Test:explicit-purpose"
+                },
+                "put": {
+                  "purpose": 1,
+                  "point": {
+                    "id": "FlipPutBack",
+                    "version": "test-1",
+                    "x": 10,
+                    "y": 20,
+                    "unit": "mm",
+                    "frame": "test-frame"
+                  },
+                  "fixed": {
+                    "z": 3,
+                    "unit": "mm",
+                    "datum": "test-frame",
+                    "approvalReference": "Test-only",
+                    "configurationVersion": "test-1"
+                  },
+                  "coordinateEvidenceReference": "Test:explicit-purpose"
+                },
+                "scan": {
+                  "purpose": 2,
+                  "point": {
+                    "id": "EScan",
+                    "version": "test-1",
+                    "x": 10,
+                    "y": 20,
+                    "unit": "mm",
+                    "frame": "test-frame"
+                  },
+                  "fixed": {
+                    "z": 3,
+                    "unit": "mm",
+                    "datum": "test-frame",
+                    "approvalReference": "Test-only",
+                    "configurationVersion": "test-1"
+                  },
+                  "coordinateEvidenceReference": "Test:explicit-purpose",
+                  "captureProfile": "detect"
+                }
+              },
+              "sortingCellIds": {
+                "NG": "r1:c1",
+                "Pending": "r1:c10"
+              }
+            },
+            "members": {}
+          }
+        },
+        "sortingGripperId": 1
+      }
+    },
+    {
+      "id": "P07",
+      "state": "ConsumedByCaptureRequestsAndAlgorithm_WithDeclaredPortFacts",
+      "values": {
+        "requests": [
+          {
+            "envelope": {
+              "runId": "5a247de3-83f3-4266-9595-774c8103652b",
+              "operationId": "83e3e742-5b49-46ce-8b65-e537861f2e87",
+              "attempt": 1,
+              "sessionId": "d8b649f2-1885-465e-93b6-80db6832a404",
+              "snapshotId": "declared-snapshot",
+              "configVersion": "1.0.0",
+              "purpose": "RealDeviceCommissioning",
+              "startTick": 648279606331,
+              "dueTick": 650765353019,
+              "clockId": "system-component",
+              "isValid": true
+            },
+            "captureId": "90d4ec30-baea-4ddc-8da5-310810bfba1d",
+            "role": 2,
+            "pointId": "8b321056-0690-4125-bca5-5e8558be11fd/s1/part",
+            "pointVersion": "7C10EB4218F7851084B836C6F7D2110A4B50473573200F60DD5F9591026DA9ED",
+            "scopeId": "s1",
+            "scopeVersion": "7C10EB4218F7851084B836C6F7D2110A4B50473573200F60DD5F9591026DA9ED",
+            "cameraBindingId": "C",
+            "lightBindingId": "light",
+            "intentWriteId": "ada161c1-2f45-4de3-b968-5511301f02df",
+            "maxBytes": 4194304,
+            "detectionSettings": {
+              "profileId": "detect",
+              "exposureUs": 10,
+              "gain": 1,
+              "roiPixels": [
+                0,
+                0,
+                2,
+                2
+              ],
+              "lightChannel": "light",
+              "brightnessPercent": 1,
+              "settleMs": 0
+            },
+            "publicSettings": null
+          },
+          {
+            "envelope": {
+              "runId": "5a247de3-83f3-4266-9595-774c8103652b",
+              "operationId": "c9e16a0e-3d33-4120-8e11-ba3295bcb200",
+              "attempt": 1,
+              "sessionId": "d8b649f2-1885-465e-93b6-80db6832a404",
+              "snapshotId": "declared-snapshot",
+              "configVersion": "1.0.0",
+              "purpose": "RealDeviceCommissioning",
+              "startTick": 648280809591,
+              "dueTick": 650765353020,
+              "clockId": "system-component",
+              "isValid": true
+            },
+            "captureId": "5915e8c0-0564-4113-addb-cd38bfa00227",
+            "role": 2,
+            "pointId": "8b321056-0690-4125-bca5-5e8558be11fd/s1/part",
+            "pointVersion": "7C10EB4218F7851084B836C6F7D2110A4B50473573200F60DD5F9591026DA9ED",
+            "scopeId": "s1",
+            "scopeVersion": "7C10EB4218F7851084B836C6F7D2110A4B50473573200F60DD5F9591026DA9ED",
+            "cameraBindingId": "D",
+            "lightBindingId": "light",
+            "intentWriteId": "2e3de948-0ccc-43df-a102-572f9fb54abc",
+            "maxBytes": 4194304,
+            "detectionSettings": {
+              "profileId": "detect",
+              "exposureUs": 10,
+              "gain": 1,
+              "roiPixels": [
+                0,
+                0,
+                2,
+                2
+              ],
+              "lightChannel": "light",
+              "brightnessPercent": 1,
+              "settleMs": 0
+            },
+            "publicSettings": null
+          },
+          {
+            "envelope": {
+              "runId": "5a247de3-83f3-4266-9595-774c8103652b",
+              "operationId": "b5da3eec-7827-429a-8be7-8a5c3707d47c",
+              "attempt": 1,
+              "sessionId": "d8b649f2-1885-465e-93b6-80db6832a404",
+              "snapshotId": "declared-snapshot",
+              "configVersion": "1.0.0",
+              "purpose": "RealDeviceCommissioning",
+              "startTick": 648282436102,
+              "dueTick": 650765353019,
+              "clockId": "system-component",
+              "isValid": true
+            },
+            "captureId": "e13196fa-a89f-488e-bde8-05243e2790dc",
+            "role": 0,
+            "pointId": "sim-3d-xy",
+            "pointVersion": "1.0.0",
+            "scopeId": "sim-whole-tray",
+            "scopeVersion": "1.0.0",
+            "cameraBindingId": "sim-3d",
+            "lightBindingId": "sim-light-3d",
+            "intentWriteId": "ac903b32-7fe9-425b-80dd-47aead7fa7f0",
+            "maxBytes": 16777216,
+            "detectionSettings": null,
+            "publicSettings": {
+              "configurationId": "s01-public-dev",
+              "configurationVersion": "1.0.0",
+              "exposureUs": 1000,
+              "lightLevel": 40
+            }
+          },
+          {
+            "envelope": {
+              "runId": "5a247de3-83f3-4266-9595-774c8103652b",
+              "operationId": "aa62df5d-88fe-41d0-a91e-122edd79a01a",
+              "attempt": 1,
+              "sessionId": "d8b649f2-1885-465e-93b6-80db6832a404",
+              "snapshotId": "declared-snapshot",
+              "configVersion": "1.0.0",
+              "purpose": "RealDeviceCommissioning",
+              "startTick": 648282873145,
+              "dueTick": 650765353021,
+              "clockId": "system-component",
+              "isValid": true
+            },
+            "captureId": "ca419934-eb4d-48c2-a53c-591b63278b17",
+            "role": 2,
+            "pointId": "8b321056-0690-4125-bca5-5e8558be11fd/s1/part",
+            "pointVersion": "7C10EB4218F7851084B836C6F7D2110A4B50473573200F60DD5F9591026DA9ED",
+            "scopeId": "s1",
+            "scopeVersion": "7C10EB4218F7851084B836C6F7D2110A4B50473573200F60DD5F9591026DA9ED",
+            "cameraBindingId": "A",
+            "lightBindingId": "light",
+            "intentWriteId": "491a01d8-13ed-43a7-b274-4ff4ae7d86bd",
+            "maxBytes": 4194304,
+            "detectionSettings": {
+              "profileId": "detect",
+              "exposureUs": 10,
+              "gain": 1,
+              "roiPixels": [
+                0,
+                0,
+                2,
+                2
+              ],
+              "lightChannel": "light",
+              "brightnessPercent": 1,
+              "settleMs": 0
+            },
+            "publicSettings": null
+          },
+          {
+            "envelope": {
+              "runId": "5a247de3-83f3-4266-9595-774c8103652b",
+              "operationId": "4328772f-5b08-492a-a84d-1cc358bf7442",
+              "attempt": 1,
+              "sessionId": "d8b649f2-1885-465e-93b6-80db6832a404",
+              "snapshotId": "declared-snapshot",
+              "configVersion": "1.0.0",
+              "purpose": "RealDeviceCommissioning",
+              "startTick": 648283298412,
+              "dueTick": 650765353015,
+              "clockId": "system-component",
+              "isValid": true
+            },
+            "captureId": "7743c93d-4a3e-4284-b725-70554d2a705d",
+            "role": 2,
+            "pointId": "8b321056-0690-4125-bca5-5e8558be11fd/s1/part",
+            "pointVersion": "7C10EB4218F7851084B836C6F7D2110A4B50473573200F60DD5F9591026DA9ED",
+            "scopeId": "s1",
+            "scopeVersion": "7C10EB4218F7851084B836C6F7D2110A4B50473573200F60DD5F9591026DA9ED",
+            "cameraBindingId": "B",
+            "lightBindingId": "light",
+            "intentWriteId": "bffdce21-3610-4cb8-b1e9-7011ac577944",
+            "maxBytes": 4194304,
+            "detectionSettings": {
+              "profileId": "detect",
+              "exposureUs": 10,
+              "gain": 1,
+              "roiPixels": [
+                0,
+                0,
+                2,
+                2
+              ],
+              "lightChannel": "light",
+              "brightnessPercent": 1,
+              "settleMs": 0
+            },
+            "publicSettings": null
+          }
+        ],
+        "captureFacts": [
+          {
+            "runId": "5a247de3-83f3-4266-9595-774c8103652b",
+            "captureId": "90d4ec30-baea-4ddc-8da5-310810bfba1d",
+            "operationId": "83e3e742-5b49-46ce-8b65-e537861f2e87",
+            "connectionEpoch": 1,
+            "requestedSettingsDigest": "D84F8E03801E74B3B1F7C12C8FB6A91F81DCBF517E8B59728174279EF3DAFC6A",
+            "mediaSource": "Test",
+            "cameraOrigin": {
+              "source": 3,
+              "versionRef": "DeclaredSemanticComponent/1",
+              "quality": "DeclaredInput",
+              "isKnown": true
+            },
+            "lightOrigin": {
+              "source": 3,
+              "versionRef": "DeclaredSemanticComponent/1",
+              "quality": "DeclaredInput",
+              "isKnown": true
+            },
+            "applicationState": 2,
+            "actualSettings": {
+              "profileId": "detect",
+              "exposureUs": 10,
+              "gain": 1,
+              "roiPixels": [
+                0,
+                0,
+                2,
+                2
+              ],
+              "lightChannel": "light",
+              "brightnessPercent": 1,
+              "settleMs": 0
+            },
+            "replayed": false,
+            "evidenceReferences": [
+              "DeclaredComponentBuffer;no-SDK-evidence"
+            ],
+            "frameMetadata": null,
+            "cameraApplicationState": 1,
+            "lightApplicationState": 2,
+            "actualCameraSettings": {
+              "exposureUs": 10,
+              "gain": 1,
+              "width": 2,
+              "height": 2,
+              "offsetX": 0,
+              "offsetY": 0
+            },
+            "actualPublicSettings": null,
+            "physicalLightApplied": false
+          },
+          {
+            "runId": "5a247de3-83f3-4266-9595-774c8103652b",
+            "captureId": "5915e8c0-0564-4113-addb-cd38bfa00227",
+            "operationId": "c9e16a0e-3d33-4120-8e11-ba3295bcb200",
+            "connectionEpoch": 1,
+            "requestedSettingsDigest": "D44DE6F450765049BABDC53BA72EFFA7A7CE3035CA0F91E8C5487A1604D3D7D7",
+            "mediaSource": "Test",
+            "cameraOrigin": {
+              "source": 3,
+              "versionRef": "DeclaredSemanticComponent/1",
+              "quality": "DeclaredInput",
+              "isKnown": true
+            },
+            "lightOrigin": {
+              "source": 3,
+              "versionRef": "DeclaredSemanticComponent/1",
+              "quality": "DeclaredInput",
+              "isKnown": true
+            },
+            "applicationState": 2,
+            "actualSettings": {
+              "profileId": "detect",
+              "exposureUs": 10,
+              "gain": 1,
+              "roiPixels": [
+                0,
+                0,
+                2,
+                2
+              ],
+              "lightChannel": "light",
+              "brightnessPercent": 1,
+              "settleMs": 0
+            },
+            "replayed": false,
+            "evidenceReferences": [
+              "DeclaredComponentBuffer;no-SDK-evidence"
+            ],
+            "frameMetadata": null,
+            "cameraApplicationState": 1,
+            "lightApplicationState": 2,
+            "actualCameraSettings": {
+              "exposureUs": 10,
+              "gain": 1,
+              "width": 2,
+              "height": 2,
+              "offsetX": 0,
+              "offsetY": 0
+            },
+            "actualPublicSettings": null,
+            "physicalLightApplied": false
+          },
+          {
+            "runId": "5a247de3-83f3-4266-9595-774c8103652b",
+            "captureId": "e13196fa-a89f-488e-bde8-05243e2790dc",
+            "operationId": "b5da3eec-7827-429a-8be7-8a5c3707d47c",
+            "connectionEpoch": 1,
+            "requestedSettingsDigest": "87DB4475B7324A0E483DF330201751FCE8A147393D4B2F51CAC98054387ED4EA",
+            "mediaSource": "Test",
+            "cameraOrigin": {
+              "source": 3,
+              "versionRef": "DeclaredSemanticComponent/1",
+              "quality": "DeclaredInput",
+              "isKnown": true
+            },
+            "lightOrigin": {
+              "source": 3,
+              "versionRef": "DeclaredSemanticComponent/1",
+              "quality": "DeclaredInput",
+              "isKnown": true
+            },
+            "applicationState": 2,
+            "actualSettings": null,
+            "replayed": false,
+            "evidenceReferences": [
+              "DeclaredComponentBuffer;no-SDK-evidence"
+            ],
+            "frameMetadata": null,
+            "cameraApplicationState": 1,
+            "lightApplicationState": 2,
+            "actualCameraSettings": {
+              "exposureUs": 1000,
+              "gain": 0,
+              "width": 1,
+              "height": 1,
+              "offsetX": 0,
+              "offsetY": 0
+            },
+            "actualPublicSettings": {
+              "configurationId": "s01-public-dev",
+              "configurationVersion": "1.0.0",
+              "exposureUs": 1000,
+              "lightLevel": 40
+            },
+            "physicalLightApplied": false
+          },
+          {
+            "runId": "5a247de3-83f3-4266-9595-774c8103652b",
+            "captureId": "ca419934-eb4d-48c2-a53c-591b63278b17",
+            "operationId": "aa62df5d-88fe-41d0-a91e-122edd79a01a",
+            "connectionEpoch": 1,
+            "requestedSettingsDigest": "C2C28CDAA6E543BB9BFCAF692DE0453834F3B26673432656268B3AFDDEA9E2FC",
+            "mediaSource": "Test",
+            "cameraOrigin": {
+              "source": 3,
+              "versionRef": "DeclaredSemanticComponent/1",
+              "quality": "DeclaredInput",
+              "isKnown": true
+            },
+            "lightOrigin": {
+              "source": 3,
+              "versionRef": "DeclaredSemanticComponent/1",
+              "quality": "DeclaredInput",
+              "isKnown": true
+            },
+            "applicationState": 2,
+            "actualSettings": {
+              "profileId": "detect",
+              "exposureUs": 10,
+              "gain": 1,
+              "roiPixels": [
+                0,
+                0,
+                2,
+                2
+              ],
+              "lightChannel": "light",
+              "brightnessPercent": 1,
+              "settleMs": 0
+            },
+            "replayed": false,
+            "evidenceReferences": [
+              "DeclaredComponentBuffer;no-SDK-evidence"
+            ],
+            "frameMetadata": null,
+            "cameraApplicationState": 1,
+            "lightApplicationState": 2,
+            "actualCameraSettings": {
+              "exposureUs": 10,
+              "gain": 1,
+              "width": 2,
+              "height": 2,
+              "offsetX": 0,
+              "offsetY": 0
+            },
+            "actualPublicSettings": null,
+            "physicalLightApplied": false
+          },
+          {
+            "runId": "5a247de3-83f3-4266-9595-774c8103652b",
+            "captureId": "7743c93d-4a3e-4284-b725-70554d2a705d",
+            "operationId": "4328772f-5b08-492a-a84d-1cc358bf7442",
+            "connectionEpoch": 1,
+            "requestedSettingsDigest": "E3A7776A9FE34C80C663B82005500816CDD067ABD2F29FECA3740BE75037F1AD",
+            "mediaSource": "Test",
+            "cameraOrigin": {
+              "source": 3,
+              "versionRef": "DeclaredSemanticComponent/1",
+              "quality": "DeclaredInput",
+              "isKnown": true
+            },
+            "lightOrigin": {
+              "source": 3,
+              "versionRef": "DeclaredSemanticComponent/1",
+              "quality": "DeclaredInput",
+              "isKnown": true
+            },
+            "applicationState": 2,
+            "actualSettings": {
+              "profileId": "detect",
+              "exposureUs": 10,
+              "gain": 1,
+              "roiPixels": [
+                0,
+                0,
+                2,
+                2
+              ],
+              "lightChannel": "light",
+              "brightnessPercent": 1,
+              "settleMs": 0
+            },
+            "replayed": false,
+            "evidenceReferences": [
+              "DeclaredComponentBuffer;no-SDK-evidence"
+            ],
+            "frameMetadata": null,
+            "cameraApplicationState": 1,
+            "lightApplicationState": 2,
+            "actualCameraSettings": {
+              "exposureUs": 10,
+              "gain": 1,
+              "width": 2,
+              "height": 2,
+              "offsetX": 0,
+              "offsetY": 0
+            },
+            "actualPublicSettings": null,
+            "physicalLightApplied": false
+          }
+        ]
+      }
+    },
+    {
+      "id": "P08",
+      "state": "E_NotApplicable;F_PublicPreparationNotExecutedHere",
+      "values": {
+        "extraE": false
+      }
+    },
+    {
+      "id": "P09",
+      "state": "FrozenPublic3DConsumedForPostPlacement;PublicZMotionNotClaimed",
+      "values": {
+        "points": {
+          "threeD": {
+            "id": "sim-3d-xy",
+            "version": "1.0.0",
+            "x": 100,
+            "y": 100,
+            "unit": "mm",
+            "frame": "test-frame",
+            "z": 0
+          },
+          "f": {
+            "id": "sim-f-xy",
+            "version": "1.0.0",
+            "x": 200,
+            "y": 100,
+            "unit": "mm",
+            "frame": "SIM_MACHINE",
+            "z": 0
+          },
+          "unload": null
+        },
+        "capture3d": {
+          "capability": {
+            "id": "capture.whole-tray",
+            "contractVersion": "1.0"
+          },
+          "bindingId": "sim-3d",
+          "lightBindingId": "sim-light-3d",
+          "scope": {
+            "id": "sim-whole-tray",
+            "version": "1.0.0",
+            "kind": "WholeTray",
+            "unit": "mm",
+            "frame": "SIM_TRAY",
+            "bounds": {
+              "xMin": 0,
+              "xMax": 200,
+              "yMin": 0,
+              "yMax": 150,
+              "zMin": 0,
+              "zMax": 1000
+            }
+          },
+          "parameters": {
+            "exposureUs": 1000,
+            "lightLevel": 40
+          },
+          "maxCaptureBytes": 16777216
+        }
+      }
+    },
+    {
+      "id": "P10",
+      "state": "Consumed",
+      "values": {
+        "planRevision": "7C10EB4218F7851084B836C6F7D2110A4B50473573200F60DD5F9591026DA9ED",
+        "semanticDigest": "101EB639B4884BDE8F90ED7A63D8FF0FA6F83767D4DF5386CEC8877E6DD43B4E",
+        "costProfile": {
+          "id": "component",
+          "version": "1",
+          "purpose": "RealDeviceCommissioning",
+          "source": "Declared component timing",
+          "budgetReference": "s01-budget-dev/3.0.0",
+          "budgetDigest": "component-budget",
+          "captureMs": 5000,
+          "algorithmMs": 10000,
+          "acquisitionReleaseMs": 5000,
+          "ordinarySortDeviceAllowanceMs": 3000,
+          "unloadDeviceAllowanceMs": 0,
+          "captureWaitMs": 8000,
+          "algorithmWaitMs": 15000,
+          "inputReleaseWaitMs": 2000
+        },
+        "kind": 2
+      }
+    }
+  ]
+}

@@ -5,7 +5,7 @@
   "type": "module",
   "scripts": {
     "build": "node scripts/build.mjs",
-    "test": "node scripts/build.mjs && node --test tests/**/*.test.ts",
+    "test": "node scripts/build.mjs && node --test tests/core/*.test.mjs tests/commissioning-console/*.test.mjs",
     "typecheck": "tsc -p tsconfig.json --noEmit",
     "verify:prototype": "pwsh -File scripts/verify-prototype.ps1"
   },

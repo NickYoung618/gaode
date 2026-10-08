@@ -80,11 +80,11 @@ public sealed partial class LatestProtocolStageActionAdapter(
                     _ = device.SortingSafetyTarget(request.SortingSource!, request.TargetPurpose!);
                     _ = device.SortingSafetyTarget(request.SortingTarget!, request.TargetPurpose!);
                     var status = await Signals.ReadWordAsync(SignalId.SortingExecStatus, ct);
-                    if (status != Code(SignalId.SortingExecStatus, "Idle") && status != Code(SignalId.SortingExecStatus, "Placed"))
+                    if (status != Code(SignalId.SortingExecStatus, "Idle") || await Signals.ReadWordAsync(SignalId.SortingCmd, ct) != 0)
                         return "TransferNotReady";
                 }
-                if (device.StageOrigin.Provider == DeviceProvider.Real && request.TargetPurpose != "Production")
-                    return "TargetPurposeNotProduction";
+                if (device.StageOrigin.Provider == DeviceProvider.Real && request.TargetPurpose != device.StageConfigurationPurpose)
+                    return "TargetPurposeNotDeviceConfiguration";
                 EnsureCurrent(request, ct);
                 return null;
             }

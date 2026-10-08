@@ -1,0 +1,64 @@
+{
+  "sourceCommit": "56141cbfdbeb6c0b33addc583ba2c102d8d556cd",
+  "localBase": "ab13a5fe3adbc8f79d34daacd97f6f538ed09ec9",
+  "sourceFiles": 1758,
+  "exactSourceMatches": 1750,
+  "documentedSourceOverrides": [
+    {
+      "path": "README.md",
+      "sourceBlob": "a508f1d9e5cd24b2ce080be369efc47665dd72ac",
+      "localBlob": "5ff5035532d17c5271a3fcbef5495a81073cbf45"
+    },
+    {
+      "path": "backend/tests/Gaode.Communication.Tests/CommissioningWorkflowTests.cs",
+      "sourceBlob": "c67fc4c6b1f4bd4a8e0a56499102a5c0bd628888",
+      "localBlob": "09944e7b0c8c964ef3326cfe7c16783346573adc"
+    },
+    {
+      "path": "backend/tests/Gaode.Communication.Tests/ControlledCommissioningTests.cs",
+      "sourceBlob": "5165d14098b21a9c3fb1cb85b35395f44226b01c",
+      "localBlob": "776630d6581cf0ee70b79c3a76c51965aa6e5fc6"
+    },
+    {
+      "path": "backend/tests/Gaode.Communication.Tests/Gaode.Communication.Tests.csproj",
+      "sourceBlob": "1476fc220f1a84e9ca64ab8cd19f5c38ff5ab180",
+      "localBlob": "9c3590e0402e4accaf4cd3393d5c57acd41433ae"
+    },
+    {
+      "path": "backend/tests/Gaode.Communication.Tests/HandshakeClosureTests.cs",
+      "sourceBlob": "50735f9d5360181032e36e8be53869ca2185411b",
+      "localBlob": "07bbddd94bc3e8ffb402681becc5682dc3c1b153"
+    },
+    {
+      "path": "backend/tests/Gaode.Communication.Tests/MemberGripperTests.cs",
+      "sourceBlob": "2515b803228192260ccd148abf89475d04e75af6",
+      "localBlob": "974c336228f8b1b37cf1511f326c974207b73ab0"
+    },
+    {
+      "path": "backend/tests/Gaode.Communication.Tests/ProtocolTcpFixture.cs",
+      "sourceBlob": "a3e3527c70fbc39e8cda0650f9e8866b1b240289",
+      "localBlob": "0276ce0343750f176ebd0f31769f70ceabafe610"
+    },
+    {
+      "path": "backend/tests/Gaode.Communication.Tests/SamePositionTests.cs",
+      "sourceBlob": "e6730e7a8df718c4eada386022adcfe26bbb29d9",
+      "localBlob": "7585c254b8153fa2e24904a8d0642890e9955b01"
+    }
+  ],
+  "localOnlyFilesRetained": 1739,
+  "localOnlyTestAdaptations": [
+    "backend/tests/Gaode.Contracts.Tests/Acquisition/CaptureCoordinationTests.cs",
+    "backend/tests/Gaode.Contracts.Tests/Recipes/CommittedRecipePlanReaderTests.cs",
+    "backend/tests/Gaode.Contracts.Tests/Recipes/PublicPreparationTargetResolutionTests.cs",
+    "backend/tests/Gaode.Contracts.Tests/Recipes/RecipeBindingSaveProtectionTests.cs",
+    "backend/tests/Gaode.Contracts.Tests/Support/SemanticHandoffInputs.cs",
+    "backend/tests/Gaode.Contracts.Tests/Support/Station01StepHarness.cs",
+    "backend/tests/Gaode.Contracts.Tests/Support/StepSimulationFactory.cs",
+    "backend/tests/Gaode.Contracts.Tests/Workflow/WholeTrayWorkflowOrchestratorTests.cs",
+    "backend/tests/Gaode.Integration.Tests/Storage/RecipeCaptureAdapterTests.cs"
+  ],
+  "removedLocalFiles": [],
+  "protectedLocalFilesVerified": 95,
+  "frontendSampleImagesRetained": 26,
+  "productSourceConfigurationScriptsAndToolParity": "Exact"
+}

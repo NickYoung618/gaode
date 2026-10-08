@@ -169,20 +169,35 @@ public sealed partial class LatestProtocolPlcDevice : IPlcStatePort, IPlcActionP
             ["Ready"] = C(SignalId.PlcReadyState), ["SafetyClear"] = actual.SafetyClear && !C(SignalId.PlcSystemFault),
             ["ResetRequestCleared"] = !C(SignalId.SystemResetCmd),
             ["StopCleared"] = !C(SignalId.SoftStopCmd),
-            ["NoManualOccupancy"] = !C(SignalId.ManualZoneOccupied),
+            ["NoManualOccupancy"] = words.Words.ContainsKey(SignalId.ManualZoneOccupied) && !C(SignalId.ManualZoneOccupied),
             ["AxesNotTriggered"] = new[] { SignalId.XMoveStart, SignalId.YMoveStart, SignalId.ZCameraMoveStart, SignalId.ZScanMoveStart, SignalId.ZGrabMoveStart }.All(id => !C(id)),
             ["FlipCommandCleared"] = R(SignalId.FlipSorting) == SignalCodes.Value(SignalId.FlipSorting, "Idle"),
             ["SortingCleared"] = R(SignalId.SortingCmd) == SignalCodes.Value(SignalId.SortingCmd, "Idle") && R(SignalId.SortingExecStatus) == SignalCodes.Value(SignalId.SortingExecStatus, "Idle"),
             ["AlarmsCleared"] = R(SignalId.AlarmBits) == 0,
             ["FinitePosition"] = double.IsFinite(actual.X) && double.IsFinite(actual.Y) && double.IsFinite(actual.Z)
         };
-        // Formal recovery mechanics/safety inputs remain deferred; no HTTP substitute authorizes restart.
-        checks["RecoveryProtocolConfigured"] = false;
+        var siteRecovery = definitionAdmission.Definition.IsSiteLayout &&
+            options.SiteOperations is { IsValid: true, RestoresWorkpieceAndMechanisms: true };
+        checks["RecoveryProtocolConfigured"] = siteRecovery;
+        if (definitionAdmission.Definition.IsSiteLayout)
+        {
+            // Site safety comes from the confirmed alarm/independent interlocks,
+            // not the absent legacy ManualZoneOccupied point.
+            checks.Remove("NoManualOccupancy");
+            checks["ThisSystemResetObserved"] = verifiedSystemResetEpoch == sampledEpoch && !unknown;
+            checks["PcReadyAndStartClear"] = C(SignalId.PcSystemReady) && !C(SignalId.PcStartCmd);
+            checks["AxisFeedbackCleared"] = PreparedPlcReadPlans.Axes.All(id => R(id) == 0) &&
+                !C(SignalId.RotateStart) && R(SignalId.RPosConfirmed) == 0;
+            checks["FlipFeedbackCleared"] = R(SignalId.FlipStatus) == 0 && R(SignalId.FlipUnloadStatus) == 0;
+            checks["AllLinearAxesAtSafeZero"] = PreparedPlcReadPlans.Position.All(id =>
+                float.IsFinite(words.Float(id)) && Math.Abs(words.Float(id)) <= PositionTolerance);
+        }
         RuntimeDiagnostics.Record("RecoveryInitialObservation", checks.Values.All(x => x) ? "Passed" : "Blocked", null,
             new { actual, checks, protocol = PlcAddressMap.Contract }, warning: checks.Values.Any(x => !x));
         var interpreted = Interpret(actual);
         var blocked = InitialBlockedReasons(checks);
-        return new(blocked.Count == 0 ? InitialReadiness.Ready : InitialReadiness.Blocked, interpreted, blocked);
+        return new(blocked.Count == 0 ? InitialReadiness.Ready : InitialReadiness.Blocked, interpreted, blocked,
+            siteRecovery ? verifiedSystemResetEpoch : null);
     }
 
     public async Task ResetAsync(CancellationToken cancellationToken)
@@ -203,6 +218,7 @@ public sealed partial class LatestProtocolPlcDevice : IPlcStatePort, IPlcActionP
             unknown = false;
             failure = null;
             pcReady = false;
+            verifiedSystemResetEpoch = null;
             stopRequested = false;
             epoch++;
             resetting = true;
@@ -223,6 +239,11 @@ public sealed partial class LatestProtocolPlcDevice : IPlcStatePort, IPlcActionP
         {
         await wire.ResetConnectionAsync(cancellationToken);
         await heartbeat.ResetConnectionAsync(cancellationToken);
+        if (definitionAdmission.Definition.IsSiteLayout)
+        {
+            await ResetSiteHandshakeAsync(cancellationToken);
+            return;
+        }
         await signals.WriteBitAsync(SignalId.SystemResetCmd, true, cancellationToken);
         await signals.WriteBitAsync(SignalId.SystemResetCmd, false, cancellationToken);
         await signals.WriteBitAsync(SignalId.PcSystemReady, false, cancellationToken);
@@ -351,6 +372,13 @@ public sealed partial class LatestProtocolPlcDevice : IPlcStatePort, IPlcActionP
     {
         definitionAdmission.RequireAdmitted();
         var current = ReadProtocolSample();
+        if (current.SafetyUnconfirmed)
+        {
+            RuntimeDiagnostics.Record("PlcAdmission", "SiteSafetyAndInitialAdmissionUnconfirmed", diagnosticEnvelope?.RunId,
+                new { current.ObservationId, current.ConnectionEpoch, protocol = definitionAdmission.Definition.SourceReference,
+                    dependencies = "PLC-Q3/Q4", disposition = "NoMotionDispatch" }, warning: true);
+            throw new InvalidOperationException("SiteSafetyAndInitialAdmissionUnconfirmed:PLC-Q3/Q4");
+        }
         if (!options.ActionsEnabled || unknown || stopRequested || auxiliary || pending is not null ||
             !current.Connected || !current.Automatic || !current.SafetyClear)
         {
@@ -482,6 +510,8 @@ public sealed partial class LatestProtocolPlcDevice : IPlcStatePort, IPlcActionP
             if (observed.PlcReady && observed.SampleStartedUtc >= p.ReadinessRequestedUtc) break;
             after = sampled.Ended + 1; immediate = false;
         }
+        if (definitionAdmission.Definition.IsSiteLayout)
+            await StartSiteHandshakeAsync(admittedEpoch, token);
         var evidence = await CompleteEvidenceAsync(Correlation(p, epoch), DeviceCompletionMeaning.RequestSubmitted,
             Window(p.Envelope), token);
         lock (sync) pending = null;
@@ -495,7 +525,7 @@ public sealed partial class LatestProtocolPlcDevice : IPlcStatePort, IPlcActionP
     internal IPlcTransport StageTransport => scheduled;
 
     private async Task<ObservationIdentity> ExecuteTransitionCommandAsync(ActionCorrelation correlation, ActionWindow window,
-        bool puttingBack, CancellationToken token)
+        bool puttingBack, CancellationToken token, Action admitted)
     {
         lock (sync)
         {
@@ -506,6 +536,7 @@ public sealed partial class LatestProtocolPlcDevice : IPlcStatePort, IPlcActionP
             auxiliary = true;
         }
         WakeSampling();
+        admitted();
         var group = puttingBack ? "U" : "F";
         using var dispatch = ActionDispatchEligibility(window, correlation.ConnectionEpoch, token);
         try
@@ -516,6 +547,7 @@ public sealed partial class LatestProtocolPlcDevice : IPlcStatePort, IPlcActionP
             CheckAxisWindow(window, correlation.ConnectionEpoch, token);
             if (baseline == complete || !puttingBack && baseline != SignalCodes.Value(feedback, "Idle"))
                 throw new IOException("TransitionFeedbackNotFresh");
+            lock (sync) axisClosures.Remove(SignalId.ZGrabMoveStart);
             await signals.WriteWordAsync(SignalId.FlipSorting,
                 SignalCodes.Value(SignalId.FlipSorting, puttingBack ? "PutBack" : "Flip"), token);
             CheckAxisWindow(window, correlation.ConnectionEpoch, token);
@@ -538,7 +570,8 @@ public sealed partial class LatestProtocolPlcDevice : IPlcStatePort, IPlcActionP
                     if (puttingBack)
                     {
                         CheckAxisWindow(window, correlation.ConnectionEpoch, token);
-                        await signals.WriteWordAsync(SignalId.FlipSorting, SignalCodes.Value(SignalId.FlipSorting, "Idle"), token);
+                        await ClearAndConfirmAsync("FlipPutBack", "U", SignalId.FlipSorting, false,
+                            PreparedPlcReadPlans.FlipClear, window, correlation.ConnectionEpoch, token);
                     }
                     CheckAxisWindow(window, correlation.ConnectionEpoch, token);
                     logger.LogInformation("PLC transition completed: runId={RunId}, actionId={ActionId}, epoch={Epoch}, putBack={PutBack}",
@@ -551,7 +584,7 @@ public sealed partial class LatestProtocolPlcDevice : IPlcStatePort, IPlcActionP
             }
         }
         catch (Exception error) { LatchFailure(error.Message); stopRequested = true; WakeSampling(); throw; }
-        finally { SetFeedback(group, false); lock (sync) auxiliary = false; WakeSampling(); }
+        finally { SetFeedback(group, false); WakeSampling(); }
     }
     internal Float32ByteOrder StageFloat32ByteOrder => options.Float32ByteOrder;
     internal ILogger StageLogger => logger;
@@ -619,7 +652,9 @@ public sealed partial class LatestProtocolPlcDevice : IPlcStatePort, IPlcActionP
         {
             var preparation = request.FlipPreparation ?? throw new InvalidOperationException("FlipPreparationMissing");
             var program = ResolveProgram(preparation);
-            await signals.WriteWordsAsync(SignalId.ModelPayload, program.ModelWords, stop.Token);
+            if (definitionAdmission.Definition.IsSiteLayout)
+                await signals.WriteFloatAsync(SignalId.ModelNumber, checked((float)program.ModelNumber!.Value), stop.Token);
+            else await signals.WriteWordsAsync(SignalId.ModelPayload, program.ModelWords, stop.Token);
             await signals.WriteWordAsync(SignalId.FlipTargetFace, program.TargetFaceWord, stop.Token);
         }
         await DriveTargetAsync(request.Target, request.Role, Window(request.Envelope), epoch,
@@ -648,7 +683,7 @@ public sealed partial class LatestProtocolPlcDevice : IPlcStatePort, IPlcActionP
             if (unknown) return;
             prior = observation;
             failedEpoch = epoch;
-            unknown = true; failure = message; work = pending;
+            unknown = true; axisClosures.Clear(); failure = message; work = pending;
             CaptureFailureEvidence(failedCorrelation ?? (work is not null ? Correlation(work, epoch) :
                 (auxiliary || activeInspection is not null ? evidenceCorrelation : null)),
                 prior, origin + ":" + message);

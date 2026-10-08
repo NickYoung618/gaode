@@ -376,6 +376,7 @@
   }
   tick(); setInterval(tick, 1000);
 
+  if (window.__GAODE_HOST_CONFIG__?.mode !== 'RealDeviceCommissioning') {
   // ---- data: scene → parts → stats ----
   // ng breakdown [凹坑, 划伤, 机加纹路, 脏污, 其他]
   const dataByScene = {
@@ -561,6 +562,7 @@
   }
   document.addEventListener('keydown', e => { if (e.key==='Escape') closeReport(); });
 
+  }
   lucide.createIcons();
 </script>
 </body>

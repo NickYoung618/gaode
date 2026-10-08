@@ -1,0 +1,33 @@
+{
+  "schemaVersion": "commissioning-plc-sequence-confirmation/1",
+  "recordedUtc": "2026-10-08T02:22:36.1916567+00:00",
+  "reset": {
+    "request": "MB2009",
+    "feedback": "MB6015",
+    "sequence": "PLC收到复位后就绪1->0，完成后0->1；PC观察本次0->1后清MB2009",
+    "trigger": "rising-edge"
+  },
+  "start": {
+    "clearTiming": "pending user decision after explanation",
+    "request": "MB2007",
+    "continuouslyHeldRequired": false,
+    "trigger": "rising-edge"
+  },
+  "stop": {
+    "userStatement": "设备就停住就行",
+    "proposedBehavior": "stop in place, no automatic return",
+    "exactScope": "待明确是否同时适用MB2008软停和心跳断线；原表自动回位与用户新答复存在需裁决差异"
+  },
+  "safePosition": {
+    "userStatement": "安全位置位于0",
+    "tolerance": "未由本次答复定义；不得当作运动目标发出自动回零",
+    "interpretation": "协议所述启动检查X/Y/检测Z目标0"
+  },
+  "sourceFindings": [
+    "ResetAsync当前将SystemResetCmd置1后立即清0，未等待Ready本次0->1",
+    "AdvanceStart当前写PcSystemReady并等待PlcReady，未派发MB2007"
+  ],
+  "productCodeChanged": false,
+  "hardwareConnected": false,
+  "fieldValidationPassed": false
+}

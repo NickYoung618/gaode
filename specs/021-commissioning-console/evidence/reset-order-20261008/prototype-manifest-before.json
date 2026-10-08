@@ -1,0 +1,1366 @@
+{
+  "schema": "recipe-authoring-prototype-differences/1",
+  "archiveSha256": "3dc791c1f8ab5eedfa037f5dbae450b2d20522fed654f86ea700c0284945e1e0",
+  "authority": "006 original archive protection; 012 confirmed three-step/manual10x10, original OK slot, local capture parameters/grippers; DUI02/03 original previews explicitly approved 2026-10-06, only member/inspection-part navigation in current cell detail. 016 authorized independent public-position/anomaly dialogs, end reason and member physical positions.",
+  "pages": [
+    {
+      "page": "a.html",
+      "archiveTextSha256": "9351e7f10ad776f92159840670d8f4ee20942321bbd932973235b991bab4ebb6",
+      "patches": [
+        {
+          "id": "a.html-01",
+          "requirement": "012 FR-025/026/027/028/029; confirmed 2026-10-05 manual10x10 and original-OK-slot rules; approved DUI02/03 removal of unused side-rail selector only",
+          "region": "scoped recipe dialog styles",
+          "archiveStartLine": 163,
+          "offset": 5892,
+          "before": "",
+          "beforeSha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+          "after": "  /* 012: scoped to the authorized existing recipe dialog. */\r\n  .recipe-authoring .hmi-modal { background: #0f172a; border-color: rgba(148,163,184,.22); border-radius: 12px; }\r\n  .recipe-authoring .hmi-title { height: 52px; background: rgba(30,41,59,.8); border-color: rgba(148,163,184,.22); border-radius: 12px 12px 0 0; }\r\n  .recipe-authoring .hmi-input { color: #e2e8f0; background: rgba(15,23,42,.7); border: 1px solid rgba(148,163,184,.25); border-radius: 6px; height: 32px; }\r\n  .recipe-authoring .hmi-input[readonly] { color: #94a3b8; background: rgba(30,41,59,.5); }\r\n  .recipe-authoring .hmi-btn { background: rgba(30,41,59,.8); border-color: rgba(148,163,184,.3); border-radius: 6px; letter-spacing: normal; }\r\n  .recipe-authoring .hmi-btn-primary { background: rgba(6,182,212,.2); color: #a5f3fc; border-color: rgba(34,211,238,.5); }\r\n  .recipe-authoring button:disabled, .recipe-authoring select:disabled { opacity: .5; cursor: not-allowed; }\r\n  .recipe-authoring .recipe-small-button { min-width: 60px; height: 30px; padding: 0 10px; font-size: 12px; }\r\n  .recipe-authoring .recipe-setup, .recipe-authoring .recipe-review-layout { display:grid;grid-template-columns:minmax(0,1fr) 320px;gap:16px; }\r\n  .recipe-authoring .recipe-panel { border:1px solid rgba(148,163,184,.22);border-radius:10px;padding:18px;background:rgba(30,41,59,.35);min-width:0; }\r\n  .recipe-authoring h2 { font-size:18px;color:#e2e8f0;margin-bottom:16px; }\r\n  .recipe-authoring h3 { font-size:14px;color:#cbd5e1;margin-bottom:12px; }\r\n  .recipe-authoring .recipe-basic-grid, .recipe-authoring .recipe-point-grid { display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:18px; }\r\n  .recipe-authoring .recipe-input { display:flex;flex-direction:column;gap:7px;font-size:12px;color:#94a3b8;margin-bottom:12px; }\r\n  .recipe-authoring .recipe-input .hmi-input { width:100%;padding:0 10px; }\r\n  .recipe-authoring .recipe-summary p { padding:12px 0;border-bottom:1px solid rgba(148,163,184,.12);font-size:14px;color:#cbd5e1; }\r\n  .recipe-authoring .recipe-note { font-size:12px!important;color:#94a3b8!important;line-height:1.8; }\r\n  .recipe-authoring .recipe-editor-layout { display:grid;grid-template-columns:190px 235px minmax(0,1fr);gap:12px;min-height:440px; }\r\n  .recipe-authoring .recipe-nav, .recipe-authoring .recipe-slots { padding:14px; }\r\n  .recipe-authoring .recipe-nav-button { display:block;width:100%;margin:0 0 10px;text-align:left;padding:10px;font-size:12px;height:auto; }\r\n  .recipe-authoring .active { border-color:rgba(34,211,238,.6);background:rgba(6,182,212,.13);color:#a5f3fc; }\r\n  .recipe-authoring .recipe-face-rail, .recipe-authoring .recipe-camera-pair { display:flex;gap:8px;align-items:center;flex-wrap:wrap;margin-bottom:18px;font-size:12px; }\r\n  .recipe-authoring .recipe-point-card { border:1px solid rgba(148,163,184,.2);border-radius:8px;padding:15px;background:rgba(15,23,42,.5); }\r\n  .recipe-authoring .recipe-point-card .recipe-input { display:flex;flex-direction:column;align-items:stretch;gap:5px;margin:0; }\r\n  .recipe-authoring .recipe-axis-fields { display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:10px;margin-top:12px; }\r\n  .recipe-authoring .recipe-axis-fields .recipe-input:last-child { grid-column:1/-1; }\r\n  .recipe-authoring .recipe-capture-fields { display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:10px;margin-top:12px; }\r\n  .recipe-authoring .recipe-editor-footer { display:flex;justify-content:flex-end;gap:12px;margin-top:14px; }\r\n  .recipe-authoring .recipe-review-table { width:100%;border-collapse:collapse;font-size:13px; }\r\n  .recipe-authoring .recipe-review-table th, .recipe-authoring .recipe-review-table td { padding:14px 8px;border-bottom:1px solid rgba(148,163,184,.18);text-align:left; }\r\n  .recipe-authoring .recipe-issue { padding:10px 0;color:#fda4af;font-size:13px; }\r\n  .recipe-authoring .recipe-editor-layout { grid-template-columns:150px 420px minmax(0,1fr); }\r\n  .recipe-authoring .recipe-matrix-panel { margin-top:16px; padding:12px; border:1px solid rgba(148,163,184,.22);border-radius:10px;background:rgba(30,41,59,.35); }\r\n  .recipe-authoring .recipe-paint-tools { display:flex;gap:8px;margin-bottom:12px; }\r\n  .recipe-authoring .recipe-matrix { display:grid;grid-template-columns:20px repeat(10,minmax(24px,1fr));gap:4px;min-width:330px; }\r\n  .recipe-authoring .recipe-matrix-cell { padding:0;height:34px;border:1px solid #334155;border-radius:4px;background:#141f31;color:#94a3b8;font-size:11px;cursor:pointer; }\r\n  .recipe-authoring .recipe-matrix-axis { text-align:center;color:#94a3b8;font-size:10px; }\r\n  .recipe-authoring .recipe-matrix-empty { height:34px;border:1px dashed #33415577;border-radius:4px;background:#101a2a; }\r\n  .recipe-authoring .recipe-matrix-cell.area-ng { border-color:#fb718588;background:#421d2c99;color:#fecdd3; }\r\n  .recipe-authoring .recipe-matrix-cell.area-ok { border-color:#34d39988;background:#12352a99;color:#a7f3d0; }\r\n  .recipe-authoring .recipe-matrix-cell.area-pending { border-color:#fbbf2488;background:#46361a99;color:#fde68a; }\r\n  .recipe-authoring .recipe-matrix-cell.selected { border-color:#67e8f9;background:#087b98;color:white; }\r\n  @media(max-width:1100px){ .recipe-authoring .recipe-editor-layout {grid-template-columns:150px minmax(0,1fr);} .recipe-authoring .recipe-detail {grid-column:1/-1;} }\r\n",
+          "afterSha256": "dc9b7176f77d1a2f8763a4f16b39d768ae9947805e40810a7d2423228caa58e4"
+        },
+        {
+          "id": "a.html-operational-status",
+          "requirement": "006 FR-001/004/005/006/009; 012 T046 US8 actual API/status binding, no inference from quality or recipe",
+          "region": "Existing header status data binding",
+          "archiveStartLine": 178,
+          "offset": 6525,
+          "before": "<span class=\"dot ok\"></span>设备在线 · 检测中",
+          "beforeSha256": "69b3bbfed28ef29bc3ab8f70cdc77ba9c5dc60bdf72f65dd181a9156da2b5955",
+          "after": "<span id=\"stationConnectionDot\" class=\"dot\"></span><span id=\"stationOperationalStatus\">状态未提供</span>",
+          "afterSha256": "1530df77b6cb3ffaa10c9c4d3075e2f1e76fe0fb2e1f7d240180324fc7e685a5"
+        },
+        {
+          "id": "a.html-02",
+          "requirement": "006 prototype-map recipe binding",
+          "region": "existing selected-recipe name/version data binding",
+          "archiveStartLine": 186,
+          "offset": 6901,
+          "before": "        <span class=\"text-xs text-slate-100\">大底座 · 密封面</span>\r\n        <span class=\"num-font text-[10px] px-1.5 py-0.5 rounded bg-cyan-500/15 text-cyan-300\">v3.2</span>\r\n",
+          "beforeSha256": "d34e0d10a75350d27b0b1ac339a45bc09c3ba8f0066a80b788d8744dfa462d90",
+          "after": "        <span id=\"selectedRecipeName\" class=\"text-xs text-slate-100\">未选用配方</span>\n        <span id=\"selectedRecipeVersion\" class=\"num-font text-[10px] px-1.5 py-0.5 rounded bg-cyan-500/15 text-cyan-300\">—</span>\n",
+          "afterSha256": "8a4b8277f0c0bb030d128554044e254ffb71abf479d91fde0a71bb428188e0fb"
+        },
+        {
+          "id": "a.html-016-positions-button",
+          "requirement": "新016 FR-011；006/contracts/public-tray-flow-016.md；2026-10-06用户授权",
+          "region": "positions-button",
+          "archiveStartLine": 198,
+          "offset": 7696,
+          "before": "",
+          "beforeSha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+          "after": "      <button id=\"btnPositions\" class=\"btn px-3 py-1.5 rounded-md bg-cyan-500/20 text-cyan-100 border border-cyan-500/50 text-sm\">示教／公共位置</button>\r\n",
+          "afterSha256": "3a0e75ef851f8216d956fc6572bcb113d1c5ecd0cd9e04b3279e693694f14666"
+        },
+        {
+          "id": "a.html-016-end-state",
+          "requirement": "新016 FR-011；006/contracts/public-tray-flow-016.md；2026-10-06用户授权",
+          "region": "end-state",
+          "archiveStartLine": 205,
+          "offset": 8012,
+          "before": "",
+          "beforeSha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+          "after": "  <p id=\"trayEndState\" class=\"text-xs px-3 text-slate-300\"></p>\r\n",
+          "afterSha256": "3ed99c4fa3df1b32ee4d848b61684e68632a55f263bbfd8c784ad83aa56a1079"
+        },
+        {
+          "id": "a.html-03",
+          "requirement": "006 prototype-map safety binding",
+          "region": "existing emergency button visual binding",
+          "archiveStartLine": 238,
+          "offset": 10059,
+          "before": "              <button class=\"btn px-2.5 py-1 rounded bg-rose-700 text-white text-[11px] flex items-center gap-1\"><i data-lucide=\"octagon-alert\" class=\"w-3 h-3\"></i>急停</button>\r\n",
+          "beforeSha256": "fbb4f0cf4d35d8c64c44b2e6ee534bcf4e0cb2486ccb6fe68135d2b69b2a59e6",
+          "after": "              <button class=\"btn px-2.5 py-1 rounded bg-rose-700 text-white text-[11px] flex items-center gap-1\"><i data-lucide=\"octagon-alert\" class=\"w-3 h-3\"></i>急停</button>\n              <input id=\"manualRemovalReason\" class=\"hmi-input text-[11px]\" style=\"width:110px;\" value=\"已取盘\" aria-label=\"取盘确认原因\" disabled>\n              <button id=\"manualRemovalButton\" class=\"btn px-2.5 py-1 rounded bg-cyan-700 text-white text-[11px]\" disabled>确认已取盘</button>\n",
+          "afterSha256": "ba7b02d57f4c9dd1dd4fa28f21e42739d59dc39951d5c6e03a234064bd7a0f7e"
+        },
+        {
+          "id": "a.html-04",
+          "requirement": "012 FR-001/002/014",
+          "region": "existing recipeModal replacement",
+          "archiveStartLine": 360,
+          "offset": 16077,
+          "before": "  <!-- ============== RECIPE MODAL · 工业 HMI 风格 ============== -->\r\n  <div id=\"recipeModal\" class=\"absolute inset-0 z-50 hidden items-center justify-center bg-black/60\" onclick=\"closeRecipe(event)\">\r\n    <div class=\"hmi-modal flex flex-col\" style=\"width: 1480px; height: 780px;\" onclick=\"event.stopPropagation()\">\r\n\r\n      <!-- title bar -->\r\n",
+          "beforeSha256": "9fc2e676d68a0ddadda8ad339b3f1e2f95f5a10247bc409448c1dde295efba93",
+          "after": "  <!-- ============== RECIPE MODAL · 012授权弹窗 ============== -->\r\n  <div id=\"recipeModal\" class=\"recipe-authoring absolute inset-0 z-50 hidden items-center justify-center bg-black/60\" onclick=\"closeRecipe(event)\">\r\n    <div class=\"hmi-modal flex flex-col\" style=\"width: 1480px; height: 780px;\" onclick=\"event.stopPropagation()\" role=\"dialog\" aria-modal=\"true\" aria-labelledby=\"recipeAuthoringTitle\">\r\n",
+          "afterSha256": "7c95319ab5ff212d026a4c75338770954c102d901ac46f1b4a3a1ad92effa274"
+        },
+        {
+          "id": "a.html-05",
+          "requirement": "012 FR-001/002/014",
+          "region": "existing recipeModal replacement",
+          "archiveStartLine": 366,
+          "offset": 16489,
+          "before": "        <div class=\"flex items-center gap-2\">\r\n          <i data-lucide=\"sliders-horizontal\" class=\"w-5 h-5\"></i>\r\n          <span class=\"text-base tracking-wide\">配方配置</span>\r\n        </div>\r\n        <div class=\"flex items-center gap-4\">\r\n          <div class=\"flex items-center gap-2\">\r\n            <span class=\"text-sm text-slate-300\">产品型号：</span>\r\n            <select class=\"hmi-input\" style=\"width:140px;\"><option>JLB-DDZ</option><option>JLB-YDG</option><option>JLB-ZWZ</option></select>\r\n          </div>\r\n          <button onclick=\"closeRecipe()\" class=\"text-slate-300 hover:text-white\"><i data-lucide=\"x\" class=\"w-5 h-5\"></i></button>\r\n",
+          "beforeSha256": "702d7400af15fbb060cddc62a3f1d08e6a007c51a45d29d269cbcb4ad0e739b2",
+          "after": "        <span id=\"recipeAuthoringTitle\" class=\"text-base\">配方配置</span>\r\n        <div class=\"flex items-center gap-3\">\r\n          <label for=\"recipeAuthoringCatalog\" class=\"text-sm\">已保存配方</label>\r\n          <select id=\"recipeAuthoringCatalog\" class=\"hmi-input\" style=\"width:320px;\"><option value=\"\">选择已保存配方</option></select>\r\n          <button id=\"recipeAuthoringNew\" class=\"hmi-btn recipe-small-button\" type=\"button\">新建</button>\r\n          <button onclick=\"closeRecipe()\" class=\"text-slate-300 hover:text-white\" type=\"button\" aria-label=\"关闭配方配置\">✕</button>\r\n",
+          "afterSha256": "df9c5b083cc216511c87024428d55507b85974481163c322221771634a436b66"
+        },
+        {
+          "id": "a.html-06",
+          "requirement": "012 FR-001/002/014",
+          "region": "existing recipeModal replacement",
+          "archiveStartLine": 378,
+          "offset": 17162,
+          "before": "\r\n      <!-- body: 3 columns -->\r\n      <div class=\"flex-1 min-h-0 p-4 grid gap-4 overflow-hidden\" style=\"grid-template-columns: 380px minmax(0,1fr) minmax(0,1fr);\">\r\n\r\n        <!-- ========== 列 1：基础配置 ========== -->\r\n        <fieldset class=\"hmi-fieldset min-h-0 overflow-y-auto\">\r\n          <legend>基础配置</legend>\r\n\r\n          <div class=\"hmi-row\"><label>产品类型：</label>\r\n            <select class=\"hmi-input\">\r\n              <option>大底座</option><option>压缩端盖</option><option>转子外罩</option>\r\n              <option>电机外壳</option><option>杜瓦</option><option>冷指保护筒</option>\r\n              <option>阀钉</option><option>半成品</option>\r\n            </select>\r\n          </div>\r\n          <div class=\"hmi-row\"><label>单配方产品个数：</label><input class=\"hmi-input\" type=\"number\" value=\"1\" /></div>\r\n          <div class=\"hmi-row\"><label>内部产品编码：</label><input class=\"hmi-input\" value=\"PRD-DDZ-001\" readonly /></div>\r\n          <div class=\"hmi-row\"><label>配方 ID：</label><input class=\"hmi-input\" value=\"RCP-20260422-001\" readonly /></div>\r\n\r\n          <div class=\"hmi-sep\"></div>\r\n\r\n          <div class=\"hmi-row\"><label>MES 批次号：</label><input class=\"hmi-input\" value=\"B26042103\" /></div>\r\n          <div class=\"hmi-row\"><label>MES 工单号：</label><input class=\"hmi-input\" value=\"MO-917245\" /></div>\r\n          <div class=\"hmi-row\"><label>MES 接口：</label><input class=\"hmi-input\" value=\"http://mes.local/api/lot\" /></div>\r\n\r\n          <div class=\"hmi-sep\"></div>\r\n\r\n          <div class=\"hmi-row\"><label>检测场景：</label>\r\n            <select class=\"hmi-input\">\r\n              <option>单一零件检测</option>\r\n              <option selected>半成品检测</option>\r\n              <option>成品检测</option>\r\n            </select>\r\n          </div>\r\n\r\n          <div class=\"hmi-sep\"></div>\r\n\r\n          <div class=\"hmi-row\"><label>识别 LotId：</label>\r\n            <div class=\"flex items-center gap-4\">\r\n              <label class=\"flex items-center gap-1 text-sm\"><input type=\"radio\" name=\"lot\" checked /> 需要</label>\r\n              <label class=\"flex items-center gap-1 text-sm\"><input type=\"radio\" name=\"lot\" /> 不需要</label>\r\n            </div>\r\n          </div>\r\n          <div class=\"hmi-row\"><label>编码类型：</label>\r\n            <select class=\"hmi-input\"><option>二维码 QR</option><option>一维码</option><option>DataMatrix</option></select>\r\n          </div>\r\n          <div class=\"hmi-row\"><label>匹配正则：</label><input class=\"hmi-input\" value=\"^[A-Z]{3}-\\\\d{6}$\" /></div>\r\n\r\n          <div class=\"hmi-sep\"></div>\r\n\r\n          <div class=\"hmi-row\"><label>翻面检测 isNeedFlip：</label>\r\n            <div class=\"flex items-center gap-4\">\r\n              <label class=\"flex items-center gap-1 text-sm\"><input id=\"flipToggle\" type=\"checkbox\" checked /> true</label>\r\n            </div>\r\n          </div>\r\n          <div id=\"flipParams\">\r\n            <div class=\"hmi-row\"><label>翻转角度 (°)：</label><input class=\"hmi-input\" type=\"number\" value=\"180\" /></div>\r\n            <div class=\"hmi-row\"><label>翻转速度 (°/s)：</label><input class=\"hmi-input\" type=\"number\" value=\"90\" /></div>\r\n            <div class=\"hmi-row\"><label>定位精度 (mm)：</label><input class=\"hmi-input\" type=\"number\" value=\"0.05\" step=\"0.01\" /></div>\r\n          </div>\r\n        </fieldset>\r\n\r\n        <!-- ========== 列 2：硬件 / 对焦 / 位置 ========== -->\r\n        <fieldset class=\"hmi-fieldset min-h-0 flex flex-col overflow-hidden\">\r\n          <legend>硬件与位置参数</legend>\r\n          <div class=\"flex-1 min-h-0 overflow-y-auto\">\r\n            <table class=\"hmi-table\">\r\n              <thead>\r\n                <tr><th style=\"width:38%;\">参数名称</th><th>值</th></tr>\r\n              </thead>\r\n              <tbody>\r\n                <tr class=\"hmi-tr-hi\"><td colspan=\"2\" class=\"hmi-sub\">相机</td></tr>\r\n                <tr><td>型号 / 通道数</td><td><input class=\"hmi-input\" value=\"HIK MV-CU120-10GM × 4\" /></td></tr>\r\n                <tr><td>曝光 (ms)</td><td><input class=\"hmi-input\" type=\"number\" value=\"12.5\" step=\"0.1\" /></td></tr>\r\n                <tr><td>增益 (dB)</td><td><input class=\"hmi-input\" type=\"number\" value=\"6\" /></td></tr>\r\n                <tr><td>像素比例 (mm/px)</td><td><input class=\"hmi-input\" type=\"number\" value=\"0.01\" step=\"0.001\" /></td></tr>\r\n\r\n                <tr class=\"hmi-tr-hi\"><td colspan=\"2\" class=\"hmi-sub\">光源</td></tr>\r\n                <tr><td>模式</td><td><select class=\"hmi-input\"><option>同轴</option><option>环形</option><option>条形</option><option>多光源联动</option></select></td></tr>\r\n                <tr><td>通道数</td><td><input class=\"hmi-input\" type=\"number\" value=\"8\" /></td></tr>\r\n                <tr><td>强度 (%)</td><td><input class=\"hmi-input\" type=\"number\" value=\"75\" /></td></tr>\r\n                <tr><td>色温 (K)</td><td><input class=\"hmi-input\" type=\"number\" value=\"6500\" /></td></tr>\r\n\r\n                <tr class=\"hmi-tr-hi\"><td colspan=\"2\" class=\"hmi-sub\">PLC</td></tr>\r\n                <tr><td>型号</td><td><input class=\"hmi-input\" value=\"西门子 S7-1200\" /></td></tr>\r\n                <tr><td>IP : Port</td><td><input class=\"hmi-input\" value=\"10.1.1.50:502\" /></td></tr>\r\n                <tr><td>节拍 (s)</td><td><input class=\"hmi-input\" type=\"number\" value=\"1.8\" step=\"0.1\" /></td></tr>\r\n\r\n                <tr class=\"hmi-tr-hi\"><td colspan=\"2\" class=\"hmi-sub\">自动对焦</td></tr>\r\n                <tr><td>对焦模式</td><td><select class=\"hmi-input\"><option>自动</option><option>手动</option></select></td></tr>\r\n                <tr><td>对焦范围 (mm)</td><td><input class=\"hmi-input\" type=\"number\" value=\"5.0\" step=\"0.1\" /></td></tr>\r\n                <tr><td>对焦步长 (mm)</td><td><input class=\"hmi-input\" type=\"number\" value=\"0.05\" step=\"0.01\" /></td></tr>\r\n\r\n                <tr class=\"hmi-tr-hi\"><td colspan=\"2\" class=\"hmi-sub\">检测位置</td></tr>\r\n                <tr><td>检测位 X (mm)</td><td><input class=\"hmi-input\" type=\"number\" value=\"125.30\" step=\"0.01\" /></td></tr>\r\n                <tr><td>检测位 Y (mm)</td><td><input class=\"hmi-input\" type=\"number\" value=\"68.20\" step=\"0.01\" /></td></tr>\r\n                <tr><td>Z 基准 (mm)</td><td><input class=\"hmi-input\" type=\"number\" value=\"42.50\" step=\"0.01\" /></td></tr>\r\n              </tbody>\r\n            </table>\r\n          </div>\r\n        </fieldset>\r\n\r\n        <!-- ========== 列 3：算法 / 合格判定 ========== -->\r\n        <fieldset class=\"hmi-fieldset min-h-0 flex flex-col overflow-hidden\">\r\n          <legend>算法与合格判定</legend>\r\n          <div class=\"flex-1 min-h-0 overflow-y-auto\">\r\n            <table class=\"hmi-table\">\r\n              <thead>\r\n                <tr><th style=\"width:42%;\">参数名称</th><th>值</th></tr>\r\n              </thead>\r\n              <tbody>\r\n                <tr class=\"hmi-tr-hi\"><td colspan=\"2\" class=\"hmi-sub\">算法配置</td></tr>\r\n                <tr><td>检测模型</td><td><select class=\"hmi-input\"><option>JLB-Defect-v3.2</option><option>JLB-Defect-v3.1</option></select></td></tr>\r\n                <tr><td>分类模型</td><td><select class=\"hmi-input\"><option>DefectCls-v2.4</option></select></td></tr>\r\n                <tr><td>置信度阈值 (%)</td><td><input class=\"hmi-input\" type=\"number\" value=\"85\" min=\"0\" max=\"100\" /></td></tr>\r\n                <tr><td>推理设备</td><td><select class=\"hmi-input\"><option>GPU 0</option><option>GPU 1</option><option>CPU</option></select></td></tr>\r\n\r\n                <tr class=\"hmi-tr-hi\"><td colspan=\"2\" class=\"hmi-sub\">合格判定规则</td></tr>\r\n                <tr><td>合并策略</td><td>\r\n                  <select class=\"hmi-input\">\r\n                    <option>任一面 NG → 整件 NG</option>\r\n                    <option>加权缺陷评分 ≥ 阈值 → NG</option>\r\n                    <option>按面计数：NG 面数 ≥ 阈值 → NG</option>\r\n                  </select>\r\n                </td></tr>\r\n                <tr><td>整件 NG 阈值</td><td><input class=\"hmi-input\" type=\"number\" value=\"1\" /></td></tr>\r\n              </tbody>\r\n            </table>\r\n\r\n            <div class=\"mt-3 text-xs text-slate-300 mb-1\">各面缺陷合并 · 权重 / 启用</div>\r\n            <table class=\"hmi-table\">\r\n              <thead>\r\n                <tr><th style=\"width:38%;\">面 / 工位</th><th>缺陷类型</th><th style=\"width:80px;\">权重</th><th style=\"width:60px;\">启用</th></tr>\r\n              </thead>\r\n              <tbody>\r\n                <tr><td>密封面环面 1</td><td class=\"text-slate-300\">凹坑 · 划伤 · 脏污</td><td><input class=\"hmi-input\" type=\"number\" value=\"1.0\" step=\"0.1\" /></td><td class=\"text-center\"><input type=\"checkbox\" checked /></td></tr>\r\n                <tr><td>密封面环面 2</td><td class=\"text-slate-300\">凹坑 · 划伤</td><td><input class=\"hmi-input\" type=\"number\" value=\"1.0\" step=\"0.1\" /></td><td class=\"text-center\"><input type=\"checkbox\" checked /></td></tr>\r\n                <tr><td>密封面孔底 1</td><td class=\"text-slate-300\">凹坑 · 脏污</td><td><input class=\"hmi-input\" type=\"number\" value=\"0.8\" step=\"0.1\" /></td><td class=\"text-center\"><input type=\"checkbox\" checked /></td></tr>\r\n                <tr><td>密封面孔底 2</td><td class=\"text-slate-300\">深孔异物</td><td><input class=\"hmi-input\" type=\"number\" value=\"1.2\" step=\"0.1\" /></td><td class=\"text-center\"><input type=\"checkbox\" checked /></td></tr>\r\n                <tr><td>来料 2D</td><td class=\"text-slate-300\">形变缺料</td><td><input class=\"hmi-input\" type=\"number\" value=\"0.6\" step=\"0.1\" /></td><td class=\"text-center\"><input type=\"checkbox\" /></td></tr>\r\n                <tr><td>来料 3D</td><td class=\"text-slate-300\">形变 · 缺料</td><td><input class=\"hmi-input\" type=\"number\" value=\"0.6\" step=\"0.1\" /></td><td class=\"text-center\"><input type=\"checkbox\" /></td></tr>\r\n              </tbody>\r\n            </table>\r\n          </div>\r\n        </fieldset>\r\n\r\n",
+          "beforeSha256": "ef477efe0cdbc40f08a7372215bcac7019beca743a909e38106aea25ec2709a8",
+          "after": "      <div class=\"flex gap-3 px-5 py-3 border-b border-slate-700/40\" role=\"tablist\" aria-label=\"配方制作\">\r\n        <button type=\"button\" class=\"tab active\" data-authoring-section=\"basic\" role=\"tab\" aria-selected=\"true\">基础信息</button>\r\n        <button type=\"button\" class=\"tab\" data-authoring-section=\"points\" role=\"tab\" aria-selected=\"false\">坐标配置</button>\r\n        <button type=\"button\" class=\"tab\" data-authoring-section=\"review\" role=\"tab\" aria-selected=\"false\">检查保存</button>\r\n",
+          "afterSha256": "2afe0b227d8a5d621fac9a50ccc4ba03440519ddfc9f21fcd1688038d38e6228"
+        },
+        {
+          "id": "a.html-07",
+          "requirement": "012 FR-001/002/014",
+          "region": "existing recipeModal replacement",
+          "archiveStartLine": 525,
+          "offset": 26502,
+          "before": "\r\n      <!-- footer -->\r\n",
+          "beforeSha256": "1d93b79b64388af53d4678db4028f888ea6a0fad1811e53832259be1f3a00e95",
+          "after": "      <div id=\"recipeAuthoringForm\" class=\"flex-1 min-h-0 overflow-y-auto px-5 py-4\"></div>\r\n      <div id=\"recipeAuthoringNotice\" class=\"text-sm px-5 py-2 text-slate-300\" role=\"status\" aria-live=\"polite\"></div>\r\n",
+          "afterSha256": "c95fa66f9f8d57dcceff0674ab365e98bfa34e9d59ff25d15d6756c849d3def2"
+        },
+        {
+          "id": "a.html-08",
+          "requirement": "012 FR-001/002/014",
+          "region": "existing recipeModal replacement",
+          "archiveStartLine": 528,
+          "offset": 26613,
+          "before": "        <button onclick=\"closeRecipe()\" class=\"hmi-btn\">取 消</button>\r\n        <button class=\"hmi-btn hmi-btn-primary\">保 存</button>\r\n",
+          "beforeSha256": "d3ef511e7ee2e8ec81ba40da9cc972f007f3b742b08c6287371678ff081bc983",
+          "after": "        <button onclick=\"closeRecipe()\" class=\"hmi-btn\" type=\"button\">关闭</button>\r\n        <button id=\"recipeAuthoringCheck\" class=\"hmi-btn\" type=\"button\" disabled>检查</button>\r\n        <button id=\"recipeAuthoringSave\" class=\"hmi-btn hmi-btn-primary\" type=\"button\" disabled>保存</button>\r\n",
+          "afterSha256": "4ca91250d27c876700265e52c878037c66ce76bfef63c04798ecf1d71108cb4a"
+        },
+        {
+          "id": "a.html-09",
+          "requirement": "012 FR-001/002/014",
+          "region": "existing recipeModal replacement",
+          "archiveStartLine": 533,
+          "offset": 26781,
+          "before": "",
+          "beforeSha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+          "after": "\r\n",
+          "afterSha256": "7eb70257593da06f682a3ddda54a9d260d4fc514f645237f5ca74b08f8da61a6"
+        },
+        {
+          "id": "a.html-10",
+          "requirement": "012 FR-014",
+          "region": "recipe dialog close notification only",
+          "archiveStartLine": 728,
+          "offset": 36562,
+          "before": "",
+          "beforeSha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+          "after": "    window.dispatchEvent(new CustomEvent('recipe-authoring:closed'));\r\n",
+          "afterSha256": "28a7a6708817bd01c47502168687d1ddda10483a9c808649ad16430679c98b0e"
+        },
+        {
+          "id": "a.html-11",
+          "requirement": "012 FR-020",
+          "region": "remove replaced dialog flip demo listener",
+          "archiveStartLine": 730,
+          "offset": 36655,
+          "before": "\r\n  // flip params visibility follows isNeedFlip\r\n  const flipToggle = document.getElementById('flipToggle');\r\n  const flipParams = document.getElementById('flipParams');\r\n  flipToggle.addEventListener('change', () => {\r\n    flipParams.style.display = flipToggle.checked ? '' : 'none';\r\n    flipParams.style.opacity = flipToggle.checked ? '1' : '.4';\r\n  });\r\n",
+          "beforeSha256": "9d05c70528300b43cfcf5e2dfcc5d0f8f381d25dcd89b0c079ef0d92f062aba2",
+          "after": "",
+          "afterSha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+        },
+        {
+          "id": "a.html-016-dialogs",
+          "requirement": "新016 FR-011；006/contracts/public-tray-flow-016.md；2026-10-06用户授权",
+          "region": "dialogs",
+          "archiveStartLine": 760,
+          "offset": 37804,
+          "before": "",
+          "beforeSha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+          "after": "<dialog id=\"publicPositionsDialog\" style=\"background:#0f172a;color:#e2e8f0;padding:24px;border:1px solid #64748b;border-radius:10px\"></dialog>\r\n<dialog id=\"trayAnomalyDialog\" style=\"background:#0f172a;color:#e2e8f0;padding:24px;border:1px solid #64748b;border-radius:10px\"></dialog>\r\n",
+          "afterSha256": "fb1a25452a13679c67410f22129af631d85cdd4485b242a86d508539e26a25f0"
+        }
+      ]
+    },
+    {
+      "page": "data-view.html",
+      "archiveTextSha256": "d4b2feb858018acccc2e63704aab6e553f5121e464c2714647a4d0f53992d444",
+      "patches": [
+        {
+          "id": "data-view-021-stop-mock-1",
+          "requirement": "021 FR-012/015 RM-03 T026: new-purpose data queries; preserve legacy demo evidence scope",
+          "region": "Commissioning guard around existing demonstration data script",
+          "archiveStartLine": 379,
+          "offset": 16934,
+          "before": "",
+          "beforeSha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+          "after": "  if (window.__GAODE_HOST_CONFIG__?.mode !== 'RealDeviceCommissioning') {\r\n",
+          "afterSha256": "c6547f6e3f6b182022af09393b60ecfbef2134a5bd218420c8ad8a61d145a34e"
+        },
+        {
+          "id": "data-view-021-stop-mock-3",
+          "requirement": "021 FR-012/015 RM-03 T026: new-purpose data queries; preserve legacy demo evidence scope",
+          "region": "Commissioning guard around existing demonstration data script",
+          "archiveStartLine": 564,
+          "offset": 25907,
+          "before": "",
+          "beforeSha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+          "after": "  }\r\n",
+          "afterSha256": "71345180105b0c66a77dad51bb37901a3732c9654ba4de3981f81e18175248bf"
+        }
+      ]
+    },
+    {
+      "page": "login.html",
+      "archiveTextSha256": "f258210cbbb485fa0bf0fd2be802f0712630e9b48e258ee760f96aa2b36f78a8",
+      "patches": []
+    }
+  ],
+  "resources": [
+    {
+      "path": "scripts/build.mjs",
+      "sha256": "8e074aaa8c8608b629347c86ff8e4c68bfc2f2721dafb1a2468e344dde413739",
+      "previousSha256": "2a9779fdf036f323608f254418ed074b9057b633523837c324908d3c68d59379",
+      "requirement": "021 FR-001/002/003/015; RM-04; T006",
+      "region": "021-script-injection: exact added module copy and script tag, reconstruction retained"
+    },
+    {
+      "path": "src/runtime.js",
+      "sha256": "39f86ed3e85b7765ced199ff0755f5f51b92f77fe342b254630645a1b7a98d10",
+      "previousSha256": "c37d1f43fb8076e066d304638d8ba5501fcccd057cd04ad3c11abe3aeff8b9bc",
+      "exactAuthorizedChanges": [
+        {
+          "id": "021-configured-console-0",
+          "requirement": "021 FR-005–019; SC/RM/CC; user-authorized virtual light and F XY; selection before editor reload",
+          "offsetAfter": 0,
+          "before": "(function () {\r\n",
+          "after": "(async function () {\r\n"
+        },
+        {
+          "id": "021-configured-console-2",
+          "requirement": "021 FR-005–019; SC/RM/CC; user-authorized virtual light and F XY; selection before editor reload",
+          "offsetAfter": 183,
+          "before": "  const token = host.mode === 'Test' ? String(host.testToken || '') : '';\r\n  const prepared = host.mode === 'Test' ? host.preparedStartRequest : null;\r\n",
+          "after": "  let token = host.mode === 'Test' ? String(host.testToken || '') : host.mode === 'RealDeviceCommissioning' ? String(host.commissioningToken || '') : '';\r\n  let confirmedIdentity = null;\r\n  let prepared = host.mode === 'Test' ? host.preparedStartRequest : null;\r\n  const commissioning = host.mode === 'RealDeviceCommissioning';\r\n  if (host.mode === 'RealDeviceCommissioning') {\r\n    // Override the inline demo handler immediately, including during the identity request.\r\n    window.handleLogin = event => { event.preventDefault(); return false; };\r\n    try {\r\n      const response = await fetch(apiBase + '/api/v1/station01/identity', {\r\n        headers: { Authorization: `Bearer ${token}` }, cache: 'no-store'\r\n      });\r\n      if (!response.ok) throw new Error(`IdentityRejected:${response.status}`);\r\n      confirmedIdentity = window.GaodeCommissioningConsole.confirmIdentity(await response.json(), host.commissioningProfile);\r\n      console.info('GaodePageDiagnostic', JSON.stringify({ event: 'IdentityChecked', mode: host.mode,\r\n        subjectId: confirmedIdentity.subjectId, profileId: confirmedIdentity.profileId }));\r\n      const login = window.GaodeCommissioningConsole.bindLogin(document, confirmedIdentity, path => { window.location.href = path; });\r\n      if (login) { window.handleLogin = login; return; }\r\n      const chip = document.querySelector('header .bg-slate-800\\\\/60.border-slate-700\\\\/50:last-of-type');\r\n      const name = chip?.querySelector('.text-xs.text-slate-100');\r\n      const role = chip?.querySelector('[class*=\"text-emerald-300\"]');\r\n      if (name) name.textContent = confirmedIdentity.displayName;\r\n      if (role) role.textContent = confirmedIdentity.role === 'Operator' ? 'L1 · 操作员' : 'L2 · 工程师';\r\n      const loginButton = document.getElementById('btnRecipe');\r\n      if (loginButton) loginButton.disabled = !confirmedIdentity.permissions.includes('Run.Read');\r\n    } catch (error) {\r\n      token = ''; confirmedIdentity = null;\r\n      clearPrototypeDemo();\r\n      document.querySelectorAll('#camGrid img').forEach(image => image.removeAttribute('src'));\r\n      document.querySelectorAll('main button, #btnRecipe, #btnPositions').forEach(button => { button.disabled = true; });\r\n      const input = document.getElementById('user');\r\n      if (input) { input.setCustomValidity('联调身份不可用，请联系维护人员核对配置'); input.reportValidity(); }\r\n      const fault = document.getElementById('faultList'); if (fault) fault.textContent = '联调身份不可用，操作已阻止';\r\n      console.info('GaodePageDiagnostic', JSON.stringify({ event: 'IdentityRejected', mode: host.mode, errorType: error.name }));\r\n      return;\r\n    }\r\n  }\r\n"
+        },
+        {
+          "id": "021-configured-console-4",
+          "requirement": "021 FR-005–019; SC/RM/CC; user-authorized virtual light and F XY; selection before editor reload",
+          "offsetAfter": 3728,
+          "before": "  let selectedRecipe = null;\r\n",
+          "after": "  let selectedRecipe = null, nextAdmission = null, pendingOperation = null;\r\n  const pendingKey = `gaode:station01:pending:${apiBase}:${host.mode}:${host.commissioningTemplate?.contextTemplate?.stationId || ''}`;\r\n  if (commissioning) {\r\n    try { pendingOperation = JSON.parse(viewStorage?.getItem(pendingKey) || 'null'); } catch (_) { interactionNotice='原请求关联无法读取，请维护人员核查'; startSubmitted=true; }\r\n    if (pendingOperation) {\r\n      startSubmitted=true;\r\n      if(pendingOperation.subjectId === confirmedIdentity.subjectId) {\r\n        runId=pendingOperation.runId || null;\r\n      } else { runId=null; interactionNotice='存在另一身份的未核定请求，请由原身份查询；不能接管或重新启动'; }\r\n    } else { const known=new URLSearchParams(location.search).get('runId'); runId=/^[0-9a-f-]{36}$/i.test(known || '')?known:null; }\r\n  }\r\n  function savePending(value) {\r\n    if(!viewStorage) throw new Error('PendingReferenceStorageUnavailable');\r\n    viewStorage.setItem(pendingKey,JSON.stringify(value)); pendingOperation=value;\r\n  }\r\n  async function recoverPending() {\r\n    if(!commissioning || !pendingOperation || pendingOperation.subjectId!==confirmedIdentity.subjectId || pendingOperation.operationKind!=='Start') return;\r\n    if(pendingOperation.runId) { runId=pendingOperation.runId; return; }\r\n    try {\r\n      const original=await request('/api/v1/station01/start-requests/'+encodeURIComponent(pendingOperation.requestId));\r\n      if(!original.runId || original.requestId!==pendingOperation.requestId) throw new Error('OriginalRequestMismatch');\r\n      receipt=original;runId=original.runId;\r\n      savePending({...pendingOperation,commandId:original.commandId,runId,state:'Accepted'});rememberRun(runId);\r\n      diagnostic('OriginalStartRecovered',{requestId:original.requestId,commandId:original.commandId});\r\n    } catch(error) { interactionNotice=`原请求 ${pendingOperation.requestId} 当前无法确认；只查询，不自动重发`; }\r\n  }\r\n\r\n"
+        },
+        {
+          "id": "021-configured-console-6",
+          "requirement": "021 FR-005–019; SC/RM/CC; user-authorized virtual light and F XY; selection before editor reload",
+          "offsetAfter": 10482,
+          "before": "      if (context.purpose !== 'Test' || !Array.isArray(context.occupiedSlots) ||\r\n",
+          "after": "      if (context.purpose !== (commissioning ? 'Commissioning' : 'Test') || !Array.isArray(context.occupiedSlots) ||\r\n"
+        },
+        {
+          "id": "021-configured-console-8",
+          "requirement": "021 FR-005–019; SC/RM/CC; user-authorized virtual light and F XY; selection before editor reload",
+          "offsetAfter": 13883,
+          "before": "    if (host.mode !== 'Test' || !runId || catalog?.runId?.toLowerCase() !== runId.toLowerCase()) return grouped;\r\n    const allocation = testSlotAllocation(runId);\r\n",
+          "after": "    if ((!commissioning && host.mode !== 'Test') || !runId || catalog?.runId?.toLowerCase() !== runId.toLowerCase()) return grouped;\r\n    const allocation = host.mode === 'Test' ? testSlotAllocation(runId) : null;\r\n"
+        },
+        {
+          "id": "021-configured-console-10",
+          "requirement": "021 FR-005–019; SC/RM/CC; user-authorized virtual light and F XY; selection before editor reload",
+          "offsetAfter": 14145,
+          "before": "      const identity = mediaIdentity(item), slot = allocation.get(identity);\r\n",
+          "after": "      const identity = mediaIdentity(item), slot = commissioning ? window.GaodeCommissioningConsole.mediaSlot(item) : allocation.get(identity);\r\n"
+        },
+        {
+          "id": "021-configured-console-12",
+          "requirement": "021 FR-005–019; SC/RM/CC; user-authorized virtual light and F XY; selection before editor reload",
+          "offsetAfter": 23648,
+          "before": "    const allocated = runId && host.mode === 'Test' ? new Set(testSlotAllocation(runId).values()) : new Set();\r\n",
+          "after": "    const allocated = commissioning ? new Set(candidatesBySlot.keys()) : runId && host.mode === 'Test' ? new Set(testSlotAllocation(runId).values()) : new Set();\r\n"
+        },
+        {
+          "id": "021-configured-console-14",
+          "requirement": "021 FR-005–019; SC/RM/CC; user-authorized virtual light and F XY; selection before editor reload",
+          "offsetAfter": 25179,
+          "before": "      if (marker) marker.textContent = !runId ? '未采集' : !allocated.has(slot) ? '未参与 · Test' :\r\n        !item ? mediaError ? '媒体查询受限 · Test' : '未采集 · Test' :\r\n        item.readiness !== 'Ready' ? '未就绪 · Test' :\r\n",
+          "after": "      if (marker) marker.textContent = !runId ? '未采集' : !allocated.has(slot) ? commissioning ? '未参与／未采集' : '未参与 · Test' :\r\n        !item ? mediaError ? commissioning ? '媒体查询受限' : '媒体查询受限 · Test' : commissioning ? '未采集' : '未采集 · Test' :\r\n        item.readiness !== 'Ready' ? commissioning ? '未就绪' : '未就绪 · Test' :\r\n"
+        },
+        {
+          "id": "021-configured-console-16",
+          "requirement": "021 FR-005–019; SC/RM/CC; user-authorized virtual light and F XY; selection before editor reload",
+          "offsetAfter": 25535,
+          "before": "          `${item.source || '来源未知'} · 临时格位 · ${item.role}/${item.businessCamera}${faceLabel}${choiceLabel}`;\r\n",
+          "after": "          `${item.source || '来源未知'} · ${commissioning ? '当前运行' : '临时格位'} · ${item.role}/${item.businessCamera}${faceLabel}${choiceLabel}`;\r\n"
+        },
+        {
+          "id": "021-configured-console-18",
+          "requirement": "021 FR-005–019; SC/RM/CC; user-authorized virtual light and F XY; selection before editor reload",
+          "offsetAfter": 34796,
+          "before": "",
+          "after": "    if(commissioning && document.getElementById('partsTbody')) {\r\n      const body=document.getElementById('partsTbody');\r\n      const records=Array.isArray(run?.results)?run.results:[];\r\n      setText('partsCount',records.length?String(records.length):'未提供');\r\n      body.innerHTML=records.map((result,index)=>`<tr><td>${index+1}</td><td>${escaped(result.id||'对象待查')}</td><td>—</td><td colspan=\"3\">${escaped(result.availability==='Committed'?result.disposition||'结果未提供':'结果未提交')}</td><td>—</td><td>指标未提供</td><td><button data-result-index=\"${index}\" class=\"btn-action\">详情</button></td></tr>`).join('') || '<tr><td colspan=\"9\">本运行暂无已提交检测结果</td></tr>';\r\n      window.closeReport=()=>{const modal=document.getElementById('reportModal');modal?.classList.add('hidden');modal?.classList.remove('flex');};\r\n      window.openReport=index=>{\r\n        const result=records[Number(index)]; if(!result) return;\r\n        setText('reportPid',result.id);setText('reportPart',result.kind||'未提供');setText('reportDate','本运行');setText('reportCount','未提供');\r\n        const rows=document.getElementById('reportRows');rows.replaceChildren();\r\n        for(const item of latestMedia?.items||[]) {\r\n          const url=mediaUrls.get(item.mediaId);if(!url)continue;\r\n          const row=document.createElement('tr'),cell=document.createElement('td');cell.colSpan=4;\r\n          const title=document.createElement('div');title.textContent=`${item.role}/${item.businessCamera} · ${item.mediaId} · ${item.source}`;\r\n          const image=document.createElement('img');image.src=url;image.dataset.runId=runId;image.dataset.mediaId=item.mediaId;\r\n          cell.append(title,image);row.append(cell);rows.append(row);\r\n        }\r\n        const modal=document.getElementById('reportModal');modal?.classList.remove('hidden');modal?.classList.add('flex');\r\n      };\r\n      body.querySelectorAll('[data-result-index]').forEach(button=>button.onclick=()=>window.openReport(button.dataset.resultIndex));\r\n      document.querySelectorAll('#reportModal .grid .num-font,#reportModal .grid b').forEach(node=>node.textContent='未提供');\r\n      document.querySelectorAll('#stage button').forEach(button=>{\r\n        if(/查询|复检|导出/.test(button.textContent)) {button.onclick=()=>{setText('currentScene','当前仅支持已知运行查询，历史查询／复检／导出未提供');};}\r\n      });\r\n    }\r\n"
+        },
+        {
+          "id": "021-configured-console-20",
+          "requirement": "021 FR-005–019; SC/RM/CC; user-authorized virtual light and F XY; selection before editor reload",
+          "offsetAfter": 38219,
+          "before": "      runId ||= latestStatus?.currentRun?.runId || null;\r\n",
+          "after": "      if (commissioning) { await recoverPending(); nextAdmission=await request('/api/v1/station01/start-admission'); }\r\n      else runId ||= latestStatus?.currentRun?.runId || null;\r\n"
+        },
+        {
+          "id": "021-configured-console-22",
+          "requirement": "021 FR-005–019; SC/RM/CC; user-authorized virtual light and F XY; selection before editor reload",
+          "offsetAfter": 41971,
+          "before": "",
+          "after": "    diagnostic('NotificationsConnected',{transport:'LongPolling'});\r\n"
+        },
+        {
+          "id": "021-configured-console-24",
+          "requirement": "021 FR-005–019; SC/RM/CC; user-authorized virtual light and F XY; selection before editor reload",
+          "offsetAfter": 43351,
+          "before": "  });\r\n",
+          "after": "  }, true); // Capture the chosen value before the editor reload renders the selector.\r\n"
+        },
+        {
+          "id": "021-configured-console-26",
+          "requirement": "021 FR-005–019; SC/RM/CC; user-authorized virtual light and F XY; selection before editor reload",
+          "offsetAfter": 46678,
+          "before": "",
+          "after": "      if(commissioning && pendingOperation?.operationKind==='ManualRemoval' && pendingOperation.runId===runId) {\r\n        interactionNotice='人工确认结果尚未核定，只查询原运行，不重复提交';await refresh();return;\r\n      }\r\n      const confirmationId=crypto.randomUUID();\r\n      if(commissioning) savePending({schemaVersion:'commissioning-pending/1',operationKind:'ManualRemoval',subjectId:confirmedIdentity.subjectId,\r\n        apiOrigin:apiBase,mode:host.mode,runId,requestId:confirmationId,state:'Submitting'});\r\n"
+        },
+        {
+          "id": "021-configured-console-28",
+          "requirement": "021 FR-005–019; SC/RM/CC; user-authorized virtual light and F XY; selection before editor reload",
+          "offsetAfter": 47294,
+          "before": "        requestId: crypto.randomUUID(), expectedRevision: latestRun.observedRevision, reason\r\n",
+          "after": "        requestId: confirmationId, expectedRevision: latestRun.observedRevision, reason\r\n"
+        },
+        {
+          "id": "021-configured-console-30",
+          "requirement": "021 FR-005–019; SC/RM/CC; user-authorized virtual light and F XY; selection before editor reload",
+          "offsetAfter": 48112,
+          "before": "",
+          "after": "    const finalSaved = latestEvidence?.finalResult === 'FinalUnloadCompletion' && !!latestEvidence?.finalSourceMatrix;\r\n    const normalNext = commissioning && finalSaved && nextAdmission?.state === 'Available' &&\r\n      (!pendingOperation || pendingOperation.subjectId===confirmedIdentity.subjectId);\r\n    if (normalNext) { startSubmitted=false; pendingOperation=null; }\r\n    if (commissioning && !startSubmitted) {\r\n      try { prepared=window.GaodeCommissioningConsole.newStart(host.commissioningTemplate, selectedRecipe,()=>crypto.randomUUID()); }\r\n      catch(error) { interactionNotice='请先选择已保存配方，并核对联调启动配置';render(latestStatus,latestRun,latestEvidence);return; }\r\n    }\r\n"
+        },
+        {
+          "id": "021-configured-console-32",
+          "requirement": "021 FR-005–019; SC/RM/CC; user-authorized virtual light and F XY; selection before editor reload",
+          "offsetAfter": 49283,
+          "before": "    if (runId && !restartReady) { interactionNotice = `已有运行 ${runId}，不能再次启动；仅查询原任务或请授权人员核查`; render(latestStatus, latestRun, latestEvidence); return; }\r\n",
+          "after": "    if (runId && !restartReady && !normalNext) { interactionNotice = `已有运行 ${runId}，不能再次启动；仅查询原任务或请授权人员核查`; render(latestStatus, latestRun, latestEvidence); return; }\r\n"
+        },
+        {
+          "id": "021-configured-console-34",
+          "requirement": "021 FR-005–019; SC/RM/CC; user-authorized virtual light and F XY; selection before editor reload",
+          "offsetAfter": 49744,
+          "before": "      setText('faultList', 'Test上料请求未准备或配置不符'); return;\r\n",
+          "after": "      setText('faultList', commissioning ? '联调启动资料未准备或配置不符' : 'Test上料请求未准备或配置不符'); return;\r\n"
+        },
+        {
+          "id": "021-configured-console-36",
+          "requirement": "021 FR-005–019; SC/RM/CC; user-authorized virtual light and F XY; selection before editor reload",
+          "offsetAfter": 50389,
+          "before": "",
+          "after": "      if (commissioning) {\r\n        const bytes=new TextEncoder().encode(JSON.stringify(request));\r\n        const digest=Array.from(new Uint8Array(await crypto.subtle.digest('SHA-256',bytes))).map(b=>b.toString(16).padStart(2,'0')).join('');\r\n        savePending({schemaVersion:'commissioning-pending/1',operationKind:'Start',apiOrigin:apiBase,mode:host.mode,\r\n          stationScope:host.commissioningTemplate.contextTemplate.stationId,subjectId:confirmedIdentity.subjectId,\r\n          requestId:request.requestId,trayId:JSON.parse(request.contextJson).trayId,requestDigest:digest,state:'Submitting'});\r\n      }\r\n"
+        },
+        {
+          "id": "021-configured-console-38",
+          "requirement": "021 FR-005–019; SC/RM/CC; user-authorized virtual light and F XY; selection before editor reload",
+          "offsetAfter": 51059,
+          "before": "",
+          "after": "      if(commissioning) savePending({...pendingOperation,commandId:receipt?.commandId,runId:receipt?.runId,state:'Accepted'});\r\n"
+        },
+        {
+          "id": "021-configured-console-40",
+          "requirement": "021 FR-005–019; SC/RM/CC; user-authorized virtual light and F XY; selection before editor reload",
+          "offsetAfter": 52155,
+          "before": "",
+          "after": "      if(commissioning && error.contract?.details?.runCreated===false) { viewStorage?.removeItem(pendingKey);pendingOperation=null;startSubmitted=false; }\r\n"
+        }
+      ],
+      "authorizationHistory": [
+        {
+          "sha256": "53a1c21cb2c06fbc70d89238d0b382e3b29f0a126d32ef7012e0085929d41800",
+          "changes": [
+            {
+              "id": "021-identity-runtime-1",
+              "requirement": "021 FR-001/002/003/004/014/015; IH-03; T010",
+              "offsetAfter": 0,
+              "before": "(function () {\r\n",
+              "after": "(async function () {\r\n"
+            },
+            {
+              "id": "021-identity-runtime-2",
+              "requirement": "021 FR-001/002/003/004/014/015; IH-03; T010",
+              "offsetAfter": 183,
+              "before": "  const token = host.mode === 'Test' ? String(host.testToken || '') : '';\r\n",
+              "after": "  let token = host.mode === 'Test' ? String(host.testToken || '') : host.mode === 'RealDeviceCommissioning' ? String(host.commissioningToken || '') : '';\r\n  let confirmedIdentity = null;\r\n"
+            },
+            {
+              "id": "021-identity-runtime-3",
+              "requirement": "021 FR-001/002/003/004/014/015; IH-03; T010",
+              "offsetAfter": 448,
+              "before": "",
+              "after": "  if (host.mode === 'RealDeviceCommissioning') {\r\n    // Override the inline demo handler immediately, including during the identity request.\r\n    window.handleLogin = event => { event.preventDefault(); return false; };\r\n    try {\r\n      const response = await fetch(apiBase + '/api/v1/station01/identity', {\r\n        headers: { Authorization: `Bearer ${token}` }, cache: 'no-store'\r\n      });\r\n      if (!response.ok) throw new Error(`IdentityRejected:${response.status}`);\r\n      confirmedIdentity = window.GaodeCommissioningConsole.confirmIdentity(await response.json(), host.commissioningProfile);\r\n      console.info('GaodePageDiagnostic', JSON.stringify({ event: 'IdentityChecked', mode: host.mode,\r\n        subjectId: confirmedIdentity.subjectId, profileId: confirmedIdentity.profileId }));\r\n      const login = window.GaodeCommissioningConsole.bindLogin(document, confirmedIdentity, path => { window.location.href = path; });\r\n      if (login) { window.handleLogin = login; return; }\r\n      const chip = document.querySelector('header .bg-slate-800\\\\/60.border-slate-700\\\\/50:last-of-type');\r\n      const name = chip?.querySelector('.text-xs.text-slate-100');\r\n      const role = chip?.querySelector('[class*=\"text-emerald-300\"]');\r\n      if (name) name.textContent = confirmedIdentity.displayName;\r\n      if (role) role.textContent = confirmedIdentity.role === 'Operator' ? 'L1 · 操作员' : 'L2 · 工程师';\r\n      const loginButton = document.getElementById('btnRecipe');\r\n      if (loginButton && !confirmedIdentity.permissions.includes('Recipe.Write')) loginButton.disabled = true;\r\n    } catch (error) {\r\n      token = ''; confirmedIdentity = null;\r\n      clearPrototypeDemo();\r\n      document.querySelectorAll('#camGrid img').forEach(image => image.removeAttribute('src'));\r\n      document.querySelectorAll('main button, #btnRecipe, #btnPositions').forEach(button => { button.disabled = true; });\r\n      const input = document.getElementById('user');\r\n      if (input) { input.setCustomValidity('联调身份不可用，请联系维护人员核对配置'); input.reportValidity(); }\r\n      const fault = document.getElementById('faultList'); if (fault) fault.textContent = '联调身份不可用，操作已阻止';\r\n      console.info('GaodePageDiagnostic', JSON.stringify({ event: 'IdentityRejected', mode: host.mode, errorType: error.name }));\r\n      return;\r\n    }\r\n  }\r\n"
+            },
+            {
+              "id": "021-identity-runtime-4",
+              "requirement": "021 FR-001/002/003/004/014/015; IH-03; T010",
+              "offsetAfter": 26071,
+              "before": "    const slotDetails = (run?.slotStates || []).map(slot => `${slot.region || '区域未提供'}区 第${displayValue(slot.row)}行 第${displayValue(slot.column)}列 · 物理槽${slot.physicalSlotIndex}：${displayValue(slot.presence)}/${displayValue(slot.poseState)}${slot.detectionState ? ' · '+({NotInspected:'未检测',FurtherInspectionTerminated:'后续检测终止',NoMaterial:'无物料'})[slot.detectionState] : ''}${slot.physicalDisposition ? ' · '+(slot.physicalDisposition==='Pending'?'Pending已分拣':'Pending待分拣') : ''}${slot.reasonCodes?.length ? ' · ' + slot.reasonCodes.join('、') : ''}`);\n",
+              "after": "    const slotDetails = (run?.slotStates || []).map(slot => `${slot.region || '区域未提供'}区 第${displayValue(slot.row)}行 第${displayValue(slot.column)}列 · 物理槽${slot.physicalSlotIndex}：${displayValue(slot.presence)}/${displayValue(slot.poseState)}${slot.detectionState ? ' · '+({NotInspected:'未检测',FurtherInspectionTerminated:'后续检测终止',NoMaterial:'无物料'})[slot.detectionState] : ''}${slot.physicalDisposition ? ' · '+(slot.physicalDisposition==='Pending'?'Pending已分拣':'Pending待分拣') : ''}${slot.reasonCodes?.length ? ' · ' + slot.reasonCodes.join('、') : ''}`);\r\n"
+            },
+            {
+              "id": "021-identity-runtime-5",
+              "requirement": "021 FR-001/002/003/004/014/015; IH-03; T010",
+              "offsetAfter": 33985,
+              "before": "          latestRun = responseRun;\n          publicTrayFlow?.render(latestRun);\n",
+              "after": "          latestRun = responseRun;\r\n          publicTrayFlow?.render(latestRun);\r\n"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "path": "src/recipe-authoring.js",
+      "sha256": "ffb578acc63d92c75732a2949ef0b6c0eac8a17e9313665e4069d76d64a97e5c",
+      "previousSha256": "ae66a59fa0ae2632d62374de01af3ea634c3d27292cb80742b6fadd888d3c238",
+      "exactAuthorizedChanges": [
+        {
+          "id": "021-configured-console-1",
+          "requirement": "021 FR-005–019; SC/RM/CC; user-authorized virtual light and F XY; preserve 012 member gripper",
+          "offsetAfter": 1608,
+          "before": "",
+          "after": "      lightExecution: fields('schemaVersion mode'),\r\n      commissioningFPosition: fields('schemaVersion x y'),\r\n"
+        },
+        {
+          "id": "021-configured-console-3",
+          "requirement": "021 FR-005–019; SC/RM/CC; user-authorized virtual light and F XY; preserve 012 member gripper",
+          "offsetAfter": 2273,
+          "before": "      composition: [fields('material localFaces')],\r\n",
+          "after": "      composition: [fields('material localFaces sortingGripperId')],\r\n"
+        },
+        {
+          "id": "021-configured-console-5",
+          "requirement": "021 FR-005–019; SC/RM/CC; user-authorized virtual light and F XY; preserve 012 member gripper",
+          "offsetAfter": 7924,
+          "before": "        if (current.phase === 'Closed' || busy()) return;\r\n",
+          "after": "        if (current.phase === 'Closed' || busy() || !current.canSave) return;\r\n"
+        },
+        {
+          "id": "021-configured-console-7",
+          "requirement": "021 FR-005–019; SC/RM/CC; user-authorized virtual light and F XY; preserve 012 member gripper",
+          "offsetAfter": 8538,
+          "before": "        const id = begin(), basic = { fCode: current.definition.fCode, sortingGripperId: current.definition.sortingGripperId, rotationLoadingGripperId: current.definition.rotationLoadingGripperId };\r\n",
+          "after": "        const id = begin(), basic = { commissioningFPosition: current.definition.commissioningFPosition, lightExecution: current.definition.lightExecution, fCode: current.definition.fCode, sortingGripperId: current.definition.sortingGripperId, rotationLoadingGripperId: current.definition.rotationLoadingGripperId };\r\n"
+        },
+        {
+          "id": "021-configured-console-9",
+          "requirement": "021 FR-005–019; SC/RM/CC; user-authorized virtual light and F XY; preserve 012 member gripper",
+          "offsetAfter": 10066,
+          "before": "        if (!current.definition || busy()) return;\r\n",
+          "after": "        if (!current.definition || busy() || !current.canSave) return;\r\n"
+        },
+        {
+          "id": "021-configured-console-11",
+          "requirement": "021 FR-005–019; SC/RM/CC; user-authorized virtual light and F XY; preserve 012 member gripper",
+          "offsetAfter": 10833,
+          "before": "        if (current.phase === 'Closed' || current.phase === 'Loading' || busy() || !current.definition || current.unsupported.length) return;\r\n        change(current.definition); current.phase = 'Editing'; current.issues = [];\r\n",
+          "after": "        if (current.phase === 'Closed' || current.phase === 'Loading' || busy() || !current.canSave || !current.definition || current.unsupported.length) return;\r\n        if (change(current.definition) === false) { current.message = '修改未应用：缺少对应参数或来源，请核对配方'; emit(); return; }\r\n        current.phase = 'Editing'; current.issues = [];\r\n"
+        },
+        {
+          "id": "021-configured-console-13",
+          "requirement": "021 FR-005–019; SC/RM/CC; user-authorized virtual light and F XY; preserve 012 member gripper",
+          "offsetAfter": 15056,
+          "before": "      sortingGripperId: null, plcRecipeId: null, fCode: '', model: context?.model || '', scenarioId: context?.scenarioId || '', unitKind: context?.unitKind || '', primaryMaterial: '', layoutProfile: '',\r\n",
+          "after": "      sortingGripperId: null, plcRecipeId: null, fCode: '', model: context?.model || '', scenarioId: context?.scenarioId || '', unitKind: context?.unitKind || '', primaryMaterial: '', layoutProfile: '', lightExecution:{schemaVersion:'light-execution/1',mode:'Simulated'}, commissioningFPosition:{schemaVersion:'commissioning-f-position/1',x:null,y:null},\r\n"
+        },
+        {
+          "id": "021-configured-console-15",
+          "requirement": "021 FR-005–019; SC/RM/CC; user-authorized virtual light and F XY; preserve 012 member gripper",
+          "offsetAfter": 26216,
+          "before": "          if (actual) change(d,actual); return;\r\n",
+          "after": "          return actual ? change(d,actual) : false;\r\n"
+        },
+        {
+          "id": "021-configured-console-17",
+          "requirement": "021 FR-005–019; SC/RM/CC; user-authorized virtual light and F XY; preserve 012 member gripper",
+          "offsetAfter": 26490,
+          "before": "          change(d,actual); return;\r\n",
+          "after": "          return change(d,actual);\r\n"
+        },
+        {
+          "id": "021-configured-console-19",
+          "requirement": "021 FR-005–019; SC/RM/CC; user-authorized virtual light and F XY; preserve 012 member gripper",
+          "offsetAfter": 26908,
+          "before": "        if (actual) change(d,actual);\r\n",
+          "after": "        return actual ? change(d,actual) : false;\r\n"
+        },
+        {
+          "id": "021-configured-console-21",
+          "requirement": "021 FR-005–019; SC/RM/CC; user-authorized virtual light and F XY; preserve 012 member gripper",
+          "offsetAfter": 31337,
+          "before": "      return xyz.every(v => Number.isFinite(v)) && (!card.camera || ['exposureUs', 'gain', 'brightnessPercent'].every(k => Number.isFinite(profileFor(d, card)?.settings[k])));\r\n",
+          "after": "      return xyz.every(v => Number.isFinite(v)) && (!card.camera || (d.lightExecution?.mode === 'Simulated' ? ['exposureUs', 'gain'] : ['exposureUs', 'gain', 'brightnessPercent']).every(k => Number.isFinite(profileFor(d, card)?.settings[k])));\r\n"
+        },
+        {
+          "id": "021-configured-console-23",
+          "requirement": "021 FR-005–019; SC/RM/CC; user-authorized virtual light and F XY; preserve 012 member gripper",
+          "offsetAfter": 33854,
+          "before": "        ['E扫码', d.eCode?.enabled ? '需要' : '不需要'], ['分拣夹爪', d.sortingGripperId ? '夹爪' + d.sortingGripperId : '未配置']])\r\n",
+          "after": "        ['E扫码', d.eCode?.enabled ? '需要' : '不需要'], ['分拣夹爪', d.unitKind === 'looseGroup' ? d.composition.map(m => m.material + '：' + (m.sortingGripperId ? '夹爪' + m.sortingGripperId : '未配置')).join('、') : d.sortingGripperId ? '夹爪' + d.sortingGripperId : '未配置']])\r\n"
+        },
+        {
+          "id": "021-configured-console-25",
+          "requirement": "021 FR-005–019; SC/RM/CC; user-authorized virtual light and F XY; preserve 012 member gripper",
+          "offsetAfter": 35235,
+          "before": "      picker.disabled = busy; document.getElementById('recipeAuthoringNew').disabled = busy;\r\n",
+          "after": "      picker.disabled = busy; document.getElementById('recipeAuthoringNew').disabled = busy || !next.canSave;\r\n"
+        },
+        {
+          "id": "021-configured-console-27",
+          "requirement": "021 FR-005–019; SC/RM/CC; user-authorized virtual light and F XY; preserve 012 member gripper",
+          "offsetAfter": 36260,
+          "before": "",
+          "after": "        const virtualLabel = node('label', '虚拟光源 '), virtualLight = node('input');\r\n        virtualLight.type = 'checkbox'; virtualLight.checked = d.lightExecution?.mode === 'Simulated';\r\n        virtualLight.dataset.lightMode = 'recipe';\r\n        virtualLight.onchange = () => session.edit(x => x.lightExecution = {schemaVersion:'light-execution/1',mode:virtualLight.checked?'Simulated':'Real'});\r\n        virtualLabel.append(virtualLight); grid.append(virtualLabel);\r\n        for (const [axis,label] of [['x','虚拟算法 F读码X (mm)'],['y','虚拟算法 F读码Y (mm)']])\r\n          input(grid,label,d.commissioningFPosition?.[axis],v => session.edit(x => {\r\n            x.commissioningFPosition ??= {schemaVersion:'commissioning-f-position/1',x:null,y:null};\r\n            x.commissioningFPosition[axis]=v;\r\n          }));\r\n"
+        },
+        {
+          "id": "021-configured-console-29",
+          "requirement": "021 FR-005–019; SC/RM/CC; user-authorized virtual light and F XY; preserve 012 member gripper",
+          "offsetAfter": 38034,
+          "before": "        input(grid, '分拣夹爪', d.sortingGripperId, v => session.edit(x => x.sortingGripperId = v), 'number', [[1,'夹爪1'],[2,'夹爪2']]);\r\n",
+          "after": "        if (d.unitKind !== 'looseGroup') input(grid, '分拣夹爪', d.sortingGripperId, v => session.edit(x => x.sortingGripperId = v), 'number', [[1,'夹爪1'],[2,'夹爪2']]);\r\n"
+        },
+        {
+          "id": "021-configured-console-31",
+          "requirement": "021 FR-005–019; SC/RM/CC; user-authorized virtual light and F XY; preserve 012 member gripper",
+          "offsetAfter": 39026,
+          "before": "          for (const member of d.composition) input(form, member.material + '检测面数', member.localFaces.length, v => void session.layout({ material: member.material, faces: v }));\r\n",
+          "after": "          for (const member of d.composition) {\r\n            input(form, member.material + '检测面数', member.localFaces.length, v => void session.layout({ material: member.material, faces: v }));\r\n            input(form, member.material + '分拣夹爪', member.sortingGripperId,\r\n              v => session.edit(x => x.composition.find(m => m.material === member.material).sortingGripperId = v),\r\n              'number', [[1,'夹爪1'],[2,'夹爪2']]);\r\n          }\r\n"
+        },
+        {
+          "id": "021-configured-console-33",
+          "requirement": "021 FR-005–019; SC/RM/CC; user-authorized virtual light and F XY; preserve 012 member gripper",
+          "offsetAfter": 49498,
+          "before": "      panel.querySelectorAll('input,select,button').forEach(e => e.disabled = busy);\r\n",
+          "after": "      panel.querySelectorAll('input,select').forEach(e => e.disabled = busy || !next.canSave);\r\n      panel.querySelectorAll('button').forEach(e => e.disabled = busy || (!next.canSave && !e.classList.contains('recipe-nav-button') && !e.classList.contains('recipe-face-rail')));\r\n      if (d.lightExecution?.mode === 'Simulated') panel.querySelectorAll('.recipe-capture-fields label').forEach(label => {\r\n        if (label.textContent.includes('光源亮度')) { const field=label.querySelector('input'); if(field) field.disabled=true; }\r\n      });\r\n"
+        }
+      ],
+      "baselineSourceCommit": "b0e0098995a4e97ac5cb33e44520543328d3a57a",
+      "currentSourceCommit": "0f91f95",
+      "requirement": "021 T006: reconcile stale resource manifest against preserved approved member-gripper source; no new recipe UI edits",
+      "authorizationHistory": [
+        {
+          "sha256": "d96e4d67b776b5c0907d0f8211a36de3897797073537404e7ec28eaac6f9b1af",
+          "exactAuthorizedChanges": [
+            {
+              "id": "021-existing-member-gripper-baseline-1",
+              "requirement": "Existing approved member-gripper implementation in source commit 0f91f95; 021 T006 preserves and exactly verifies existing changes",
+              "offsetAfter": 2207,
+              "before": "",
+              "after": " sortingGripperId"
+            },
+            {
+              "id": "021-existing-member-gripper-baseline-2",
+              "requirement": "Existing approved member-gripper implementation in source commit 0f91f95; 021 T006 preserves and exactly verifies existing changes",
+              "offsetAfter": 33303,
+              "before": "",
+              "after": "unitKind === 'looseGroup' ? d.composition.map(m => m.material + '：' + (m.sortingGripperId ? '夹爪' + m.sortingGripperId : '未配置')).join('、') : d."
+            },
+            {
+              "id": "021-existing-member-gripper-baseline-3",
+              "requirement": "Existing approved member-gripper implementation in source commit 0f91f95; 021 T006 preserves and exactly verifies existing changes",
+              "offsetAfter": 36608,
+              "before": "",
+              "after": "f (d.unitKind !== 'looseGroup') i"
+            },
+            {
+              "id": "021-existing-member-gripper-baseline-4",
+              "requirement": "Existing approved member-gripper implementation in source commit 0f91f95; 021 T006 preserves and exactly verifies existing changes",
+              "offsetAfter": 37637,
+              "before": "",
+              "after": "{\r\n            "
+            },
+            {
+              "id": "021-existing-member-gripper-baseline-5",
+              "requirement": "Existing approved member-gripper implementation in source commit 0f91f95; 021 T006 preserves and exactly verifies existing changes",
+              "offsetAfter": 37783,
+              "before": "",
+              "after": "\r\n            input(form, member.material + '分拣夹爪', member.sortingGripperId,\r\n              v => session.edit(x => x.composition.find(m => m.material === member.material).sortingGripperId = v),\r\n              'number', [[1,'夹爪1'],[2,'夹爪2']]);\r\n          }"
+            }
+          ]
+        },
+        {
+          "sha256": "d0bdadd907f85352563d66ff8a6b635e0bc81e394ccc361cc6be1394a160b0fa",
+          "changes": [
+            {
+              "id": "021-recipe-preserved-and-missing-source-1",
+              "requirement": "Prior approved member-gripper source commit 0f91f95; 021 FR-005/006/008 RM-01 T014 missing parameter source cannot pretend edit success",
+              "offsetAfter": 2160,
+              "before": "      composition: [fields('material localFaces')],\r\n",
+              "after": "      composition: [fields('material localFaces sortingGripperId')],\r\n"
+            },
+            {
+              "id": "021-recipe-preserved-and-missing-source-2",
+              "requirement": "Prior approved member-gripper source commit 0f91f95; 021 FR-005/006/008 RM-01 T014 missing parameter source cannot pretend edit success",
+              "offsetAfter": 10705,
+              "before": "        change(current.definition); current.phase = 'Editing'; current.issues = [];\r\n",
+              "after": "        if (change(current.definition) === false) { current.message = '修改未应用：缺少对应参数或来源，请核对配方'; emit(); return; }\r\n        current.phase = 'Editing'; current.issues = [];\r\n"
+            },
+            {
+              "id": "021-recipe-preserved-and-missing-source-3",
+              "requirement": "Prior approved member-gripper source commit 0f91f95; 021 FR-005/006/008 RM-01 T014 missing parameter source cannot pretend edit success",
+              "offsetAfter": 25773,
+              "before": "          if (actual) change(d,actual); return;\r\n",
+              "after": "          return actual ? change(d,actual) : false;\r\n"
+            },
+            {
+              "id": "021-recipe-preserved-and-missing-source-4",
+              "requirement": "Prior approved member-gripper source commit 0f91f95; 021 FR-005/006/008 RM-01 T014 missing parameter source cannot pretend edit success",
+              "offsetAfter": 26047,
+              "before": "          change(d,actual); return;\r\n",
+              "after": "          return change(d,actual);\r\n"
+            },
+            {
+              "id": "021-recipe-preserved-and-missing-source-5",
+              "requirement": "Prior approved member-gripper source commit 0f91f95; 021 FR-005/006/008 RM-01 T014 missing parameter source cannot pretend edit success",
+              "offsetAfter": 26465,
+              "before": "        if (actual) change(d,actual);\r\n",
+              "after": "        return actual ? change(d,actual) : false;\r\n"
+            },
+            {
+              "id": "021-recipe-preserved-and-missing-source-6",
+              "requirement": "Prior approved member-gripper source commit 0f91f95; 021 FR-005/006/008 RM-01 T014 missing parameter source cannot pretend edit success",
+              "offsetAfter": 33343,
+              "before": "        ['E扫码', d.eCode?.enabled ? '需要' : '不需要'], ['分拣夹爪', d.sortingGripperId ? '夹爪' + d.sortingGripperId : '未配置']])\r\n",
+              "after": "        ['E扫码', d.eCode?.enabled ? '需要' : '不需要'], ['分拣夹爪', d.unitKind === 'looseGroup' ? d.composition.map(m => m.material + '：' + (m.sortingGripperId ? '夹爪' + m.sortingGripperId : '未配置')).join('、') : d.sortingGripperId ? '夹爪' + d.sortingGripperId : '未配置']])\r\n"
+            },
+            {
+              "id": "021-recipe-preserved-and-missing-source-7",
+              "requirement": "Prior approved member-gripper source commit 0f91f95; 021 FR-005/006/008 RM-01 T014 missing parameter source cannot pretend edit success",
+              "offsetAfter": 36700,
+              "before": "        input(grid, '分拣夹爪', d.sortingGripperId, v => session.edit(x => x.sortingGripperId = v), 'number', [[1,'夹爪1'],[2,'夹爪2']]);\r\n",
+              "after": "        if (d.unitKind !== 'looseGroup') input(grid, '分拣夹爪', d.sortingGripperId, v => session.edit(x => x.sortingGripperId = v), 'number', [[1,'夹爪1'],[2,'夹爪2']]);\r\n"
+            },
+            {
+              "id": "021-recipe-preserved-and-missing-source-8",
+              "requirement": "Prior approved member-gripper source commit 0f91f95; 021 FR-005/006/008 RM-01 T014 missing parameter source cannot pretend edit success",
+              "offsetAfter": 37692,
+              "before": "          for (const member of d.composition) input(form, member.material + '检测面数', member.localFaces.length, v => void session.layout({ material: member.material, faces: v }));\r\n",
+              "after": "          for (const member of d.composition) {\r\n            input(form, member.material + '检测面数', member.localFaces.length, v => void session.layout({ material: member.material, faces: v }));\r\n            input(form, member.material + '分拣夹爪', member.sortingGripperId,\r\n              v => session.edit(x => x.composition.find(m => m.material === member.material).sortingGripperId = v),\r\n              'number', [[1,'夹爪1'],[2,'夹爪2']]);\r\n          }\r\n"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "path": "dist/runtime.js",
+      "sha256": "39f86ed3e85b7765ced199ff0755f5f51b92f77fe342b254630645a1b7a98d10",
+      "previousSha256": "c37d1f43fb8076e066d304638d8ba5501fcccd057cd04ad3c11abe3aeff8b9bc",
+      "exactAuthorizedChanges": [
+        {
+          "id": "021-configured-console-0",
+          "requirement": "021 FR-005–019; SC/RM/CC; user-authorized virtual light and F XY; selection before editor reload",
+          "offsetAfter": 0,
+          "before": "(function () {\r\n",
+          "after": "(async function () {\r\n"
+        },
+        {
+          "id": "021-configured-console-2",
+          "requirement": "021 FR-005–019; SC/RM/CC; user-authorized virtual light and F XY; selection before editor reload",
+          "offsetAfter": 183,
+          "before": "  const token = host.mode === 'Test' ? String(host.testToken || '') : '';\r\n  const prepared = host.mode === 'Test' ? host.preparedStartRequest : null;\r\n",
+          "after": "  let token = host.mode === 'Test' ? String(host.testToken || '') : host.mode === 'RealDeviceCommissioning' ? String(host.commissioningToken || '') : '';\r\n  let confirmedIdentity = null;\r\n  let prepared = host.mode === 'Test' ? host.preparedStartRequest : null;\r\n  const commissioning = host.mode === 'RealDeviceCommissioning';\r\n  if (host.mode === 'RealDeviceCommissioning') {\r\n    // Override the inline demo handler immediately, including during the identity request.\r\n    window.handleLogin = event => { event.preventDefault(); return false; };\r\n    try {\r\n      const response = await fetch(apiBase + '/api/v1/station01/identity', {\r\n        headers: { Authorization: `Bearer ${token}` }, cache: 'no-store'\r\n      });\r\n      if (!response.ok) throw new Error(`IdentityRejected:${response.status}`);\r\n      confirmedIdentity = window.GaodeCommissioningConsole.confirmIdentity(await response.json(), host.commissioningProfile);\r\n      console.info('GaodePageDiagnostic', JSON.stringify({ event: 'IdentityChecked', mode: host.mode,\r\n        subjectId: confirmedIdentity.subjectId, profileId: confirmedIdentity.profileId }));\r\n      const login = window.GaodeCommissioningConsole.bindLogin(document, confirmedIdentity, path => { window.location.href = path; });\r\n      if (login) { window.handleLogin = login; return; }\r\n      const chip = document.querySelector('header .bg-slate-800\\\\/60.border-slate-700\\\\/50:last-of-type');\r\n      const name = chip?.querySelector('.text-xs.text-slate-100');\r\n      const role = chip?.querySelector('[class*=\"text-emerald-300\"]');\r\n      if (name) name.textContent = confirmedIdentity.displayName;\r\n      if (role) role.textContent = confirmedIdentity.role === 'Operator' ? 'L1 · 操作员' : 'L2 · 工程师';\r\n      const loginButton = document.getElementById('btnRecipe');\r\n      if (loginButton) loginButton.disabled = !confirmedIdentity.permissions.includes('Run.Read');\r\n    } catch (error) {\r\n      token = ''; confirmedIdentity = null;\r\n      clearPrototypeDemo();\r\n      document.querySelectorAll('#camGrid img').forEach(image => image.removeAttribute('src'));\r\n      document.querySelectorAll('main button, #btnRecipe, #btnPositions').forEach(button => { button.disabled = true; });\r\n      const input = document.getElementById('user');\r\n      if (input) { input.setCustomValidity('联调身份不可用，请联系维护人员核对配置'); input.reportValidity(); }\r\n      const fault = document.getElementById('faultList'); if (fault) fault.textContent = '联调身份不可用，操作已阻止';\r\n      console.info('GaodePageDiagnostic', JSON.stringify({ event: 'IdentityRejected', mode: host.mode, errorType: error.name }));\r\n      return;\r\n    }\r\n  }\r\n"
+        },
+        {
+          "id": "021-configured-console-4",
+          "requirement": "021 FR-005–019; SC/RM/CC; user-authorized virtual light and F XY; selection before editor reload",
+          "offsetAfter": 3728,
+          "before": "  let selectedRecipe = null;\r\n",
+          "after": "  let selectedRecipe = null, nextAdmission = null, pendingOperation = null;\r\n  const pendingKey = `gaode:station01:pending:${apiBase}:${host.mode}:${host.commissioningTemplate?.contextTemplate?.stationId || ''}`;\r\n  if (commissioning) {\r\n    try { pendingOperation = JSON.parse(viewStorage?.getItem(pendingKey) || 'null'); } catch (_) { interactionNotice='原请求关联无法读取，请维护人员核查'; startSubmitted=true; }\r\n    if (pendingOperation) {\r\n      startSubmitted=true;\r\n      if(pendingOperation.subjectId === confirmedIdentity.subjectId) {\r\n        runId=pendingOperation.runId || null;\r\n      } else { runId=null; interactionNotice='存在另一身份的未核定请求，请由原身份查询；不能接管或重新启动'; }\r\n    } else { const known=new URLSearchParams(location.search).get('runId'); runId=/^[0-9a-f-]{36}$/i.test(known || '')?known:null; }\r\n  }\r\n  function savePending(value) {\r\n    if(!viewStorage) throw new Error('PendingReferenceStorageUnavailable');\r\n    viewStorage.setItem(pendingKey,JSON.stringify(value)); pendingOperation=value;\r\n  }\r\n  async function recoverPending() {\r\n    if(!commissioning || !pendingOperation || pendingOperation.subjectId!==confirmedIdentity.subjectId || pendingOperation.operationKind!=='Start') return;\r\n    if(pendingOperation.runId) { runId=pendingOperation.runId; return; }\r\n    try {\r\n      const original=await request('/api/v1/station01/start-requests/'+encodeURIComponent(pendingOperation.requestId));\r\n      if(!original.runId || original.requestId!==pendingOperation.requestId) throw new Error('OriginalRequestMismatch');\r\n      receipt=original;runId=original.runId;\r\n      savePending({...pendingOperation,commandId:original.commandId,runId,state:'Accepted'});rememberRun(runId);\r\n      diagnostic('OriginalStartRecovered',{requestId:original.requestId,commandId:original.commandId});\r\n    } catch(error) { interactionNotice=`原请求 ${pendingOperation.requestId} 当前无法确认；只查询，不自动重发`; }\r\n  }\r\n\r\n"
+        },
+        {
+          "id": "021-configured-console-6",
+          "requirement": "021 FR-005–019; SC/RM/CC; user-authorized virtual light and F XY; selection before editor reload",
+          "offsetAfter": 10482,
+          "before": "      if (context.purpose !== 'Test' || !Array.isArray(context.occupiedSlots) ||\r\n",
+          "after": "      if (context.purpose !== (commissioning ? 'Commissioning' : 'Test') || !Array.isArray(context.occupiedSlots) ||\r\n"
+        },
+        {
+          "id": "021-configured-console-8",
+          "requirement": "021 FR-005–019; SC/RM/CC; user-authorized virtual light and F XY; selection before editor reload",
+          "offsetAfter": 13883,
+          "before": "    if (host.mode !== 'Test' || !runId || catalog?.runId?.toLowerCase() !== runId.toLowerCase()) return grouped;\r\n    const allocation = testSlotAllocation(runId);\r\n",
+          "after": "    if ((!commissioning && host.mode !== 'Test') || !runId || catalog?.runId?.toLowerCase() !== runId.toLowerCase()) return grouped;\r\n    const allocation = host.mode === 'Test' ? testSlotAllocation(runId) : null;\r\n"
+        },
+        {
+          "id": "021-configured-console-10",
+          "requirement": "021 FR-005–019; SC/RM/CC; user-authorized virtual light and F XY; selection before editor reload",
+          "offsetAfter": 14145,
+          "before": "      const identity = mediaIdentity(item), slot = allocation.get(identity);\r\n",
+          "after": "      const identity = mediaIdentity(item), slot = commissioning ? window.GaodeCommissioningConsole.mediaSlot(item) : allocation.get(identity);\r\n"
+        },
+        {
+          "id": "021-configured-console-12",
+          "requirement": "021 FR-005–019; SC/RM/CC; user-authorized virtual light and F XY; selection before editor reload",
+          "offsetAfter": 23648,
+          "before": "    const allocated = runId && host.mode === 'Test' ? new Set(testSlotAllocation(runId).values()) : new Set();\r\n",
+          "after": "    const allocated = commissioning ? new Set(candidatesBySlot.keys()) : runId && host.mode === 'Test' ? new Set(testSlotAllocation(runId).values()) : new Set();\r\n"
+        },
+        {
+          "id": "021-configured-console-14",
+          "requirement": "021 FR-005–019; SC/RM/CC; user-authorized virtual light and F XY; selection before editor reload",
+          "offsetAfter": 25179,
+          "before": "      if (marker) marker.textContent = !runId ? '未采集' : !allocated.has(slot) ? '未参与 · Test' :\r\n        !item ? mediaError ? '媒体查询受限 · Test' : '未采集 · Test' :\r\n        item.readiness !== 'Ready' ? '未就绪 · Test' :\r\n",
+          "after": "      if (marker) marker.textContent = !runId ? '未采集' : !allocated.has(slot) ? commissioning ? '未参与／未采集' : '未参与 · Test' :\r\n        !item ? mediaError ? commissioning ? '媒体查询受限' : '媒体查询受限 · Test' : commissioning ? '未采集' : '未采集 · Test' :\r\n        item.readiness !== 'Ready' ? commissioning ? '未就绪' : '未就绪 · Test' :\r\n"
+        },
+        {
+          "id": "021-configured-console-16",
+          "requirement": "021 FR-005–019; SC/RM/CC; user-authorized virtual light and F XY; selection before editor reload",
+          "offsetAfter": 25535,
+          "before": "          `${item.source || '来源未知'} · 临时格位 · ${item.role}/${item.businessCamera}${faceLabel}${choiceLabel}`;\r\n",
+          "after": "          `${item.source || '来源未知'} · ${commissioning ? '当前运行' : '临时格位'} · ${item.role}/${item.businessCamera}${faceLabel}${choiceLabel}`;\r\n"
+        },
+        {
+          "id": "021-configured-console-18",
+          "requirement": "021 FR-005–019; SC/RM/CC; user-authorized virtual light and F XY; selection before editor reload",
+          "offsetAfter": 34796,
+          "before": "",
+          "after": "    if(commissioning && document.getElementById('partsTbody')) {\r\n      const body=document.getElementById('partsTbody');\r\n      const records=Array.isArray(run?.results)?run.results:[];\r\n      setText('partsCount',records.length?String(records.length):'未提供');\r\n      body.innerHTML=records.map((result,index)=>`<tr><td>${index+1}</td><td>${escaped(result.id||'对象待查')}</td><td>—</td><td colspan=\"3\">${escaped(result.availability==='Committed'?result.disposition||'结果未提供':'结果未提交')}</td><td>—</td><td>指标未提供</td><td><button data-result-index=\"${index}\" class=\"btn-action\">详情</button></td></tr>`).join('') || '<tr><td colspan=\"9\">本运行暂无已提交检测结果</td></tr>';\r\n      window.closeReport=()=>{const modal=document.getElementById('reportModal');modal?.classList.add('hidden');modal?.classList.remove('flex');};\r\n      window.openReport=index=>{\r\n        const result=records[Number(index)]; if(!result) return;\r\n        setText('reportPid',result.id);setText('reportPart',result.kind||'未提供');setText('reportDate','本运行');setText('reportCount','未提供');\r\n        const rows=document.getElementById('reportRows');rows.replaceChildren();\r\n        for(const item of latestMedia?.items||[]) {\r\n          const url=mediaUrls.get(item.mediaId);if(!url)continue;\r\n          const row=document.createElement('tr'),cell=document.createElement('td');cell.colSpan=4;\r\n          const title=document.createElement('div');title.textContent=`${item.role}/${item.businessCamera} · ${item.mediaId} · ${item.source}`;\r\n          const image=document.createElement('img');image.src=url;image.dataset.runId=runId;image.dataset.mediaId=item.mediaId;\r\n          cell.append(title,image);row.append(cell);rows.append(row);\r\n        }\r\n        const modal=document.getElementById('reportModal');modal?.classList.remove('hidden');modal?.classList.add('flex');\r\n      };\r\n      body.querySelectorAll('[data-result-index]').forEach(button=>button.onclick=()=>window.openReport(button.dataset.resultIndex));\r\n      document.querySelectorAll('#reportModal .grid .num-font,#reportModal .grid b').forEach(node=>node.textContent='未提供');\r\n      document.querySelectorAll('#stage button').forEach(button=>{\r\n        if(/查询|复检|导出/.test(button.textContent)) {button.onclick=()=>{setText('currentScene','当前仅支持已知运行查询，历史查询／复检／导出未提供');};}\r\n      });\r\n    }\r\n"
+        },
+        {
+          "id": "021-configured-console-20",
+          "requirement": "021 FR-005–019; SC/RM/CC; user-authorized virtual light and F XY; selection before editor reload",
+          "offsetAfter": 38219,
+          "before": "      runId ||= latestStatus?.currentRun?.runId || null;\r\n",
+          "after": "      if (commissioning) { await recoverPending(); nextAdmission=await request('/api/v1/station01/start-admission'); }\r\n      else runId ||= latestStatus?.currentRun?.runId || null;\r\n"
+        },
+        {
+          "id": "021-configured-console-22",
+          "requirement": "021 FR-005–019; SC/RM/CC; user-authorized virtual light and F XY; selection before editor reload",
+          "offsetAfter": 41971,
+          "before": "",
+          "after": "    diagnostic('NotificationsConnected',{transport:'LongPolling'});\r\n"
+        },
+        {
+          "id": "021-configured-console-24",
+          "requirement": "021 FR-005–019; SC/RM/CC; user-authorized virtual light and F XY; selection before editor reload",
+          "offsetAfter": 43351,
+          "before": "  });\r\n",
+          "after": "  }, true); // Capture the chosen value before the editor reload renders the selector.\r\n"
+        },
+        {
+          "id": "021-configured-console-26",
+          "requirement": "021 FR-005–019; SC/RM/CC; user-authorized virtual light and F XY; selection before editor reload",
+          "offsetAfter": 46678,
+          "before": "",
+          "after": "      if(commissioning && pendingOperation?.operationKind==='ManualRemoval' && pendingOperation.runId===runId) {\r\n        interactionNotice='人工确认结果尚未核定，只查询原运行，不重复提交';await refresh();return;\r\n      }\r\n      const confirmationId=crypto.randomUUID();\r\n      if(commissioning) savePending({schemaVersion:'commissioning-pending/1',operationKind:'ManualRemoval',subjectId:confirmedIdentity.subjectId,\r\n        apiOrigin:apiBase,mode:host.mode,runId,requestId:confirmationId,state:'Submitting'});\r\n"
+        },
+        {
+          "id": "021-configured-console-28",
+          "requirement": "021 FR-005–019; SC/RM/CC; user-authorized virtual light and F XY; selection before editor reload",
+          "offsetAfter": 47294,
+          "before": "        requestId: crypto.randomUUID(), expectedRevision: latestRun.observedRevision, reason\r\n",
+          "after": "        requestId: confirmationId, expectedRevision: latestRun.observedRevision, reason\r\n"
+        },
+        {
+          "id": "021-configured-console-30",
+          "requirement": "021 FR-005–019; SC/RM/CC; user-authorized virtual light and F XY; selection before editor reload",
+          "offsetAfter": 48112,
+          "before": "",
+          "after": "    const finalSaved = latestEvidence?.finalResult === 'FinalUnloadCompletion' && !!latestEvidence?.finalSourceMatrix;\r\n    const normalNext = commissioning && finalSaved && nextAdmission?.state === 'Available' &&\r\n      (!pendingOperation || pendingOperation.subjectId===confirmedIdentity.subjectId);\r\n    if (normalNext) { startSubmitted=false; pendingOperation=null; }\r\n    if (commissioning && !startSubmitted) {\r\n      try { prepared=window.GaodeCommissioningConsole.newStart(host.commissioningTemplate, selectedRecipe,()=>crypto.randomUUID()); }\r\n      catch(error) { interactionNotice='请先选择已保存配方，并核对联调启动配置';render(latestStatus,latestRun,latestEvidence);return; }\r\n    }\r\n"
+        },
+        {
+          "id": "021-configured-console-32",
+          "requirement": "021 FR-005–019; SC/RM/CC; user-authorized virtual light and F XY; selection before editor reload",
+          "offsetAfter": 49283,
+          "before": "    if (runId && !restartReady) { interactionNotice = `已有运行 ${runId}，不能再次启动；仅查询原任务或请授权人员核查`; render(latestStatus, latestRun, latestEvidence); return; }\r\n",
+          "after": "    if (runId && !restartReady && !normalNext) { interactionNotice = `已有运行 ${runId}，不能再次启动；仅查询原任务或请授权人员核查`; render(latestStatus, latestRun, latestEvidence); return; }\r\n"
+        },
+        {
+          "id": "021-configured-console-34",
+          "requirement": "021 FR-005–019; SC/RM/CC; user-authorized virtual light and F XY; selection before editor reload",
+          "offsetAfter": 49744,
+          "before": "      setText('faultList', 'Test上料请求未准备或配置不符'); return;\r\n",
+          "after": "      setText('faultList', commissioning ? '联调启动资料未准备或配置不符' : 'Test上料请求未准备或配置不符'); return;\r\n"
+        },
+        {
+          "id": "021-configured-console-36",
+          "requirement": "021 FR-005–019; SC/RM/CC; user-authorized virtual light and F XY; selection before editor reload",
+          "offsetAfter": 50389,
+          "before": "",
+          "after": "      if (commissioning) {\r\n        const bytes=new TextEncoder().encode(JSON.stringify(request));\r\n        const digest=Array.from(new Uint8Array(await crypto.subtle.digest('SHA-256',bytes))).map(b=>b.toString(16).padStart(2,'0')).join('');\r\n        savePending({schemaVersion:'commissioning-pending/1',operationKind:'Start',apiOrigin:apiBase,mode:host.mode,\r\n          stationScope:host.commissioningTemplate.contextTemplate.stationId,subjectId:confirmedIdentity.subjectId,\r\n          requestId:request.requestId,trayId:JSON.parse(request.contextJson).trayId,requestDigest:digest,state:'Submitting'});\r\n      }\r\n"
+        },
+        {
+          "id": "021-configured-console-38",
+          "requirement": "021 FR-005–019; SC/RM/CC; user-authorized virtual light and F XY; selection before editor reload",
+          "offsetAfter": 51059,
+          "before": "",
+          "after": "      if(commissioning) savePending({...pendingOperation,commandId:receipt?.commandId,runId:receipt?.runId,state:'Accepted'});\r\n"
+        },
+        {
+          "id": "021-configured-console-40",
+          "requirement": "021 FR-005–019; SC/RM/CC; user-authorized virtual light and F XY; selection before editor reload",
+          "offsetAfter": 52155,
+          "before": "",
+          "after": "      if(commissioning && error.contract?.details?.runCreated===false) { viewStorage?.removeItem(pendingKey);pendingOperation=null;startSubmitted=false; }\r\n"
+        }
+      ],
+      "authorizationHistory": [
+        {
+          "sha256": "53a1c21cb2c06fbc70d89238d0b382e3b29f0a126d32ef7012e0085929d41800",
+          "changes": [
+            {
+              "id": "021-identity-runtime-1",
+              "requirement": "021 FR-001/002/003/004/014/015; IH-03; T010",
+              "offsetAfter": 0,
+              "before": "(function () {\r\n",
+              "after": "(async function () {\r\n"
+            },
+            {
+              "id": "021-identity-runtime-2",
+              "requirement": "021 FR-001/002/003/004/014/015; IH-03; T010",
+              "offsetAfter": 183,
+              "before": "  const token = host.mode === 'Test' ? String(host.testToken || '') : '';\r\n",
+              "after": "  let token = host.mode === 'Test' ? String(host.testToken || '') : host.mode === 'RealDeviceCommissioning' ? String(host.commissioningToken || '') : '';\r\n  let confirmedIdentity = null;\r\n"
+            },
+            {
+              "id": "021-identity-runtime-3",
+              "requirement": "021 FR-001/002/003/004/014/015; IH-03; T010",
+              "offsetAfter": 448,
+              "before": "",
+              "after": "  if (host.mode === 'RealDeviceCommissioning') {\r\n    // Override the inline demo handler immediately, including during the identity request.\r\n    window.handleLogin = event => { event.preventDefault(); return false; };\r\n    try {\r\n      const response = await fetch(apiBase + '/api/v1/station01/identity', {\r\n        headers: { Authorization: `Bearer ${token}` }, cache: 'no-store'\r\n      });\r\n      if (!response.ok) throw new Error(`IdentityRejected:${response.status}`);\r\n      confirmedIdentity = window.GaodeCommissioningConsole.confirmIdentity(await response.json(), host.commissioningProfile);\r\n      console.info('GaodePageDiagnostic', JSON.stringify({ event: 'IdentityChecked', mode: host.mode,\r\n        subjectId: confirmedIdentity.subjectId, profileId: confirmedIdentity.profileId }));\r\n      const login = window.GaodeCommissioningConsole.bindLogin(document, confirmedIdentity, path => { window.location.href = path; });\r\n      if (login) { window.handleLogin = login; return; }\r\n      const chip = document.querySelector('header .bg-slate-800\\\\/60.border-slate-700\\\\/50:last-of-type');\r\n      const name = chip?.querySelector('.text-xs.text-slate-100');\r\n      const role = chip?.querySelector('[class*=\"text-emerald-300\"]');\r\n      if (name) name.textContent = confirmedIdentity.displayName;\r\n      if (role) role.textContent = confirmedIdentity.role === 'Operator' ? 'L1 · 操作员' : 'L2 · 工程师';\r\n      const loginButton = document.getElementById('btnRecipe');\r\n      if (loginButton && !confirmedIdentity.permissions.includes('Recipe.Write')) loginButton.disabled = true;\r\n    } catch (error) {\r\n      token = ''; confirmedIdentity = null;\r\n      clearPrototypeDemo();\r\n      document.querySelectorAll('#camGrid img').forEach(image => image.removeAttribute('src'));\r\n      document.querySelectorAll('main button, #btnRecipe, #btnPositions').forEach(button => { button.disabled = true; });\r\n      const input = document.getElementById('user');\r\n      if (input) { input.setCustomValidity('联调身份不可用，请联系维护人员核对配置'); input.reportValidity(); }\r\n      const fault = document.getElementById('faultList'); if (fault) fault.textContent = '联调身份不可用，操作已阻止';\r\n      console.info('GaodePageDiagnostic', JSON.stringify({ event: 'IdentityRejected', mode: host.mode, errorType: error.name }));\r\n      return;\r\n    }\r\n  }\r\n"
+            },
+            {
+              "id": "021-identity-runtime-4",
+              "requirement": "021 FR-001/002/003/004/014/015; IH-03; T010",
+              "offsetAfter": 26071,
+              "before": "    const slotDetails = (run?.slotStates || []).map(slot => `${slot.region || '区域未提供'}区 第${displayValue(slot.row)}行 第${displayValue(slot.column)}列 · 物理槽${slot.physicalSlotIndex}：${displayValue(slot.presence)}/${displayValue(slot.poseState)}${slot.detectionState ? ' · '+({NotInspected:'未检测',FurtherInspectionTerminated:'后续检测终止',NoMaterial:'无物料'})[slot.detectionState] : ''}${slot.physicalDisposition ? ' · '+(slot.physicalDisposition==='Pending'?'Pending已分拣':'Pending待分拣') : ''}${slot.reasonCodes?.length ? ' · ' + slot.reasonCodes.join('、') : ''}`);\n",
+              "after": "    const slotDetails = (run?.slotStates || []).map(slot => `${slot.region || '区域未提供'}区 第${displayValue(slot.row)}行 第${displayValue(slot.column)}列 · 物理槽${slot.physicalSlotIndex}：${displayValue(slot.presence)}/${displayValue(slot.poseState)}${slot.detectionState ? ' · '+({NotInspected:'未检测',FurtherInspectionTerminated:'后续检测终止',NoMaterial:'无物料'})[slot.detectionState] : ''}${slot.physicalDisposition ? ' · '+(slot.physicalDisposition==='Pending'?'Pending已分拣':'Pending待分拣') : ''}${slot.reasonCodes?.length ? ' · ' + slot.reasonCodes.join('、') : ''}`);\r\n"
+            },
+            {
+              "id": "021-identity-runtime-5",
+              "requirement": "021 FR-001/002/003/004/014/015; IH-03; T010",
+              "offsetAfter": 33985,
+              "before": "          latestRun = responseRun;\n          publicTrayFlow?.render(latestRun);\n",
+              "after": "          latestRun = responseRun;\r\n          publicTrayFlow?.render(latestRun);\r\n"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "path": "dist/recipe-authoring.js",
+      "sha256": "ffb578acc63d92c75732a2949ef0b6c0eac8a17e9313665e4069d76d64a97e5c",
+      "previousSha256": "ae66a59fa0ae2632d62374de01af3ea634c3d27292cb80742b6fadd888d3c238",
+      "exactAuthorizedChanges": [
+        {
+          "id": "021-configured-console-1",
+          "requirement": "021 FR-005–019; SC/RM/CC; user-authorized virtual light and F XY; preserve 012 member gripper",
+          "offsetAfter": 1608,
+          "before": "",
+          "after": "      lightExecution: fields('schemaVersion mode'),\r\n      commissioningFPosition: fields('schemaVersion x y'),\r\n"
+        },
+        {
+          "id": "021-configured-console-3",
+          "requirement": "021 FR-005–019; SC/RM/CC; user-authorized virtual light and F XY; preserve 012 member gripper",
+          "offsetAfter": 2273,
+          "before": "      composition: [fields('material localFaces')],\r\n",
+          "after": "      composition: [fields('material localFaces sortingGripperId')],\r\n"
+        },
+        {
+          "id": "021-configured-console-5",
+          "requirement": "021 FR-005–019; SC/RM/CC; user-authorized virtual light and F XY; preserve 012 member gripper",
+          "offsetAfter": 7924,
+          "before": "        if (current.phase === 'Closed' || busy()) return;\r\n",
+          "after": "        if (current.phase === 'Closed' || busy() || !current.canSave) return;\r\n"
+        },
+        {
+          "id": "021-configured-console-7",
+          "requirement": "021 FR-005–019; SC/RM/CC; user-authorized virtual light and F XY; preserve 012 member gripper",
+          "offsetAfter": 8538,
+          "before": "        const id = begin(), basic = { fCode: current.definition.fCode, sortingGripperId: current.definition.sortingGripperId, rotationLoadingGripperId: current.definition.rotationLoadingGripperId };\r\n",
+          "after": "        const id = begin(), basic = { commissioningFPosition: current.definition.commissioningFPosition, lightExecution: current.definition.lightExecution, fCode: current.definition.fCode, sortingGripperId: current.definition.sortingGripperId, rotationLoadingGripperId: current.definition.rotationLoadingGripperId };\r\n"
+        },
+        {
+          "id": "021-configured-console-9",
+          "requirement": "021 FR-005–019; SC/RM/CC; user-authorized virtual light and F XY; preserve 012 member gripper",
+          "offsetAfter": 10066,
+          "before": "        if (!current.definition || busy()) return;\r\n",
+          "after": "        if (!current.definition || busy() || !current.canSave) return;\r\n"
+        },
+        {
+          "id": "021-configured-console-11",
+          "requirement": "021 FR-005–019; SC/RM/CC; user-authorized virtual light and F XY; preserve 012 member gripper",
+          "offsetAfter": 10833,
+          "before": "        if (current.phase === 'Closed' || current.phase === 'Loading' || busy() || !current.definition || current.unsupported.length) return;\r\n        change(current.definition); current.phase = 'Editing'; current.issues = [];\r\n",
+          "after": "        if (current.phase === 'Closed' || current.phase === 'Loading' || busy() || !current.canSave || !current.definition || current.unsupported.length) return;\r\n        if (change(current.definition) === false) { current.message = '修改未应用：缺少对应参数或来源，请核对配方'; emit(); return; }\r\n        current.phase = 'Editing'; current.issues = [];\r\n"
+        },
+        {
+          "id": "021-configured-console-13",
+          "requirement": "021 FR-005–019; SC/RM/CC; user-authorized virtual light and F XY; preserve 012 member gripper",
+          "offsetAfter": 15056,
+          "before": "      sortingGripperId: null, plcRecipeId: null, fCode: '', model: context?.model || '', scenarioId: context?.scenarioId || '', unitKind: context?.unitKind || '', primaryMaterial: '', layoutProfile: '',\r\n",
+          "after": "      sortingGripperId: null, plcRecipeId: null, fCode: '', model: context?.model || '', scenarioId: context?.scenarioId || '', unitKind: context?.unitKind || '', primaryMaterial: '', layoutProfile: '', lightExecution:{schemaVersion:'light-execution/1',mode:'Simulated'}, commissioningFPosition:{schemaVersion:'commissioning-f-position/1',x:null,y:null},\r\n"
+        },
+        {
+          "id": "021-configured-console-15",
+          "requirement": "021 FR-005–019; SC/RM/CC; user-authorized virtual light and F XY; preserve 012 member gripper",
+          "offsetAfter": 26216,
+          "before": "          if (actual) change(d,actual); return;\r\n",
+          "after": "          return actual ? change(d,actual) : false;\r\n"
+        },
+        {
+          "id": "021-configured-console-17",
+          "requirement": "021 FR-005–019; SC/RM/CC; user-authorized virtual light and F XY; preserve 012 member gripper",
+          "offsetAfter": 26490,
+          "before": "          change(d,actual); return;\r\n",
+          "after": "          return change(d,actual);\r\n"
+        },
+        {
+          "id": "021-configured-console-19",
+          "requirement": "021 FR-005–019; SC/RM/CC; user-authorized virtual light and F XY; preserve 012 member gripper",
+          "offsetAfter": 26908,
+          "before": "        if (actual) change(d,actual);\r\n",
+          "after": "        return actual ? change(d,actual) : false;\r\n"
+        },
+        {
+          "id": "021-configured-console-21",
+          "requirement": "021 FR-005–019; SC/RM/CC; user-authorized virtual light and F XY; preserve 012 member gripper",
+          "offsetAfter": 31337,
+          "before": "      return xyz.every(v => Number.isFinite(v)) && (!card.camera || ['exposureUs', 'gain', 'brightnessPercent'].every(k => Number.isFinite(profileFor(d, card)?.settings[k])));\r\n",
+          "after": "      return xyz.every(v => Number.isFinite(v)) && (!card.camera || (d.lightExecution?.mode === 'Simulated' ? ['exposureUs', 'gain'] : ['exposureUs', 'gain', 'brightnessPercent']).every(k => Number.isFinite(profileFor(d, card)?.settings[k])));\r\n"
+        },
+        {
+          "id": "021-configured-console-23",
+          "requirement": "021 FR-005–019; SC/RM/CC; user-authorized virtual light and F XY; preserve 012 member gripper",
+          "offsetAfter": 33854,
+          "before": "        ['E扫码', d.eCode?.enabled ? '需要' : '不需要'], ['分拣夹爪', d.sortingGripperId ? '夹爪' + d.sortingGripperId : '未配置']])\r\n",
+          "after": "        ['E扫码', d.eCode?.enabled ? '需要' : '不需要'], ['分拣夹爪', d.unitKind === 'looseGroup' ? d.composition.map(m => m.material + '：' + (m.sortingGripperId ? '夹爪' + m.sortingGripperId : '未配置')).join('、') : d.sortingGripperId ? '夹爪' + d.sortingGripperId : '未配置']])\r\n"
+        },
+        {
+          "id": "021-configured-console-25",
+          "requirement": "021 FR-005–019; SC/RM/CC; user-authorized virtual light and F XY; preserve 012 member gripper",
+          "offsetAfter": 35235,
+          "before": "      picker.disabled = busy; document.getElementById('recipeAuthoringNew').disabled = busy;\r\n",
+          "after": "      picker.disabled = busy; document.getElementById('recipeAuthoringNew').disabled = busy || !next.canSave;\r\n"
+        },
+        {
+          "id": "021-configured-console-27",
+          "requirement": "021 FR-005–019; SC/RM/CC; user-authorized virtual light and F XY; preserve 012 member gripper",
+          "offsetAfter": 36260,
+          "before": "",
+          "after": "        const virtualLabel = node('label', '虚拟光源 '), virtualLight = node('input');\r\n        virtualLight.type = 'checkbox'; virtualLight.checked = d.lightExecution?.mode === 'Simulated';\r\n        virtualLight.dataset.lightMode = 'recipe';\r\n        virtualLight.onchange = () => session.edit(x => x.lightExecution = {schemaVersion:'light-execution/1',mode:virtualLight.checked?'Simulated':'Real'});\r\n        virtualLabel.append(virtualLight); grid.append(virtualLabel);\r\n        for (const [axis,label] of [['x','虚拟算法 F读码X (mm)'],['y','虚拟算法 F读码Y (mm)']])\r\n          input(grid,label,d.commissioningFPosition?.[axis],v => session.edit(x => {\r\n            x.commissioningFPosition ??= {schemaVersion:'commissioning-f-position/1',x:null,y:null};\r\n            x.commissioningFPosition[axis]=v;\r\n          }));\r\n"
+        },
+        {
+          "id": "021-configured-console-29",
+          "requirement": "021 FR-005–019; SC/RM/CC; user-authorized virtual light and F XY; preserve 012 member gripper",
+          "offsetAfter": 38034,
+          "before": "        input(grid, '分拣夹爪', d.sortingGripperId, v => session.edit(x => x.sortingGripperId = v), 'number', [[1,'夹爪1'],[2,'夹爪2']]);\r\n",
+          "after": "        if (d.unitKind !== 'looseGroup') input(grid, '分拣夹爪', d.sortingGripperId, v => session.edit(x => x.sortingGripperId = v), 'number', [[1,'夹爪1'],[2,'夹爪2']]);\r\n"
+        },
+        {
+          "id": "021-configured-console-31",
+          "requirement": "021 FR-005–019; SC/RM/CC; user-authorized virtual light and F XY; preserve 012 member gripper",
+          "offsetAfter": 39026,
+          "before": "          for (const member of d.composition) input(form, member.material + '检测面数', member.localFaces.length, v => void session.layout({ material: member.material, faces: v }));\r\n",
+          "after": "          for (const member of d.composition) {\r\n            input(form, member.material + '检测面数', member.localFaces.length, v => void session.layout({ material: member.material, faces: v }));\r\n            input(form, member.material + '分拣夹爪', member.sortingGripperId,\r\n              v => session.edit(x => x.composition.find(m => m.material === member.material).sortingGripperId = v),\r\n              'number', [[1,'夹爪1'],[2,'夹爪2']]);\r\n          }\r\n"
+        },
+        {
+          "id": "021-configured-console-33",
+          "requirement": "021 FR-005–019; SC/RM/CC; user-authorized virtual light and F XY; preserve 012 member gripper",
+          "offsetAfter": 49498,
+          "before": "      panel.querySelectorAll('input,select,button').forEach(e => e.disabled = busy);\r\n",
+          "after": "      panel.querySelectorAll('input,select').forEach(e => e.disabled = busy || !next.canSave);\r\n      panel.querySelectorAll('button').forEach(e => e.disabled = busy || (!next.canSave && !e.classList.contains('recipe-nav-button') && !e.classList.contains('recipe-face-rail')));\r\n      if (d.lightExecution?.mode === 'Simulated') panel.querySelectorAll('.recipe-capture-fields label').forEach(label => {\r\n        if (label.textContent.includes('光源亮度')) { const field=label.querySelector('input'); if(field) field.disabled=true; }\r\n      });\r\n"
+        }
+      ],
+      "baselineSourceCommit": "b0e0098995a4e97ac5cb33e44520543328d3a57a",
+      "currentSourceCommit": "0f91f95",
+      "requirement": "021 T006: reconcile stale resource manifest against preserved approved member-gripper source; no new recipe UI edits",
+      "authorizationHistory": [
+        {
+          "sha256": "d96e4d67b776b5c0907d0f8211a36de3897797073537404e7ec28eaac6f9b1af",
+          "exactAuthorizedChanges": [
+            {
+              "id": "021-existing-member-gripper-baseline-1",
+              "requirement": "Existing approved member-gripper implementation in source commit 0f91f95; 021 T006 preserves and exactly verifies existing changes",
+              "offsetAfter": 2207,
+              "before": "",
+              "after": " sortingGripperId"
+            },
+            {
+              "id": "021-existing-member-gripper-baseline-2",
+              "requirement": "Existing approved member-gripper implementation in source commit 0f91f95; 021 T006 preserves and exactly verifies existing changes",
+              "offsetAfter": 33303,
+              "before": "",
+              "after": "unitKind === 'looseGroup' ? d.composition.map(m => m.material + '：' + (m.sortingGripperId ? '夹爪' + m.sortingGripperId : '未配置')).join('、') : d."
+            },
+            {
+              "id": "021-existing-member-gripper-baseline-3",
+              "requirement": "Existing approved member-gripper implementation in source commit 0f91f95; 021 T006 preserves and exactly verifies existing changes",
+              "offsetAfter": 36608,
+              "before": "",
+              "after": "f (d.unitKind !== 'looseGroup') i"
+            },
+            {
+              "id": "021-existing-member-gripper-baseline-4",
+              "requirement": "Existing approved member-gripper implementation in source commit 0f91f95; 021 T006 preserves and exactly verifies existing changes",
+              "offsetAfter": 37637,
+              "before": "",
+              "after": "{\r\n            "
+            },
+            {
+              "id": "021-existing-member-gripper-baseline-5",
+              "requirement": "Existing approved member-gripper implementation in source commit 0f91f95; 021 T006 preserves and exactly verifies existing changes",
+              "offsetAfter": 37783,
+              "before": "",
+              "after": "\r\n            input(form, member.material + '分拣夹爪', member.sortingGripperId,\r\n              v => session.edit(x => x.composition.find(m => m.material === member.material).sortingGripperId = v),\r\n              'number', [[1,'夹爪1'],[2,'夹爪2']]);\r\n          }"
+            }
+          ]
+        },
+        {
+          "sha256": "d0bdadd907f85352563d66ff8a6b635e0bc81e394ccc361cc6be1394a160b0fa",
+          "changes": [
+            {
+              "id": "021-recipe-preserved-and-missing-source-1",
+              "requirement": "Prior approved member-gripper source commit 0f91f95; 021 FR-005/006/008 RM-01 T014 missing parameter source cannot pretend edit success",
+              "offsetAfter": 2160,
+              "before": "      composition: [fields('material localFaces')],\r\n",
+              "after": "      composition: [fields('material localFaces sortingGripperId')],\r\n"
+            },
+            {
+              "id": "021-recipe-preserved-and-missing-source-2",
+              "requirement": "Prior approved member-gripper source commit 0f91f95; 021 FR-005/006/008 RM-01 T014 missing parameter source cannot pretend edit success",
+              "offsetAfter": 10705,
+              "before": "        change(current.definition); current.phase = 'Editing'; current.issues = [];\r\n",
+              "after": "        if (change(current.definition) === false) { current.message = '修改未应用：缺少对应参数或来源，请核对配方'; emit(); return; }\r\n        current.phase = 'Editing'; current.issues = [];\r\n"
+            },
+            {
+              "id": "021-recipe-preserved-and-missing-source-3",
+              "requirement": "Prior approved member-gripper source commit 0f91f95; 021 FR-005/006/008 RM-01 T014 missing parameter source cannot pretend edit success",
+              "offsetAfter": 25773,
+              "before": "          if (actual) change(d,actual); return;\r\n",
+              "after": "          return actual ? change(d,actual) : false;\r\n"
+            },
+            {
+              "id": "021-recipe-preserved-and-missing-source-4",
+              "requirement": "Prior approved member-gripper source commit 0f91f95; 021 FR-005/006/008 RM-01 T014 missing parameter source cannot pretend edit success",
+              "offsetAfter": 26047,
+              "before": "          change(d,actual); return;\r\n",
+              "after": "          return change(d,actual);\r\n"
+            },
+            {
+              "id": "021-recipe-preserved-and-missing-source-5",
+              "requirement": "Prior approved member-gripper source commit 0f91f95; 021 FR-005/006/008 RM-01 T014 missing parameter source cannot pretend edit success",
+              "offsetAfter": 26465,
+              "before": "        if (actual) change(d,actual);\r\n",
+              "after": "        return actual ? change(d,actual) : false;\r\n"
+            },
+            {
+              "id": "021-recipe-preserved-and-missing-source-6",
+              "requirement": "Prior approved member-gripper source commit 0f91f95; 021 FR-005/006/008 RM-01 T014 missing parameter source cannot pretend edit success",
+              "offsetAfter": 33343,
+              "before": "        ['E扫码', d.eCode?.enabled ? '需要' : '不需要'], ['分拣夹爪', d.sortingGripperId ? '夹爪' + d.sortingGripperId : '未配置']])\r\n",
+              "after": "        ['E扫码', d.eCode?.enabled ? '需要' : '不需要'], ['分拣夹爪', d.unitKind === 'looseGroup' ? d.composition.map(m => m.material + '：' + (m.sortingGripperId ? '夹爪' + m.sortingGripperId : '未配置')).join('、') : d.sortingGripperId ? '夹爪' + d.sortingGripperId : '未配置']])\r\n"
+            },
+            {
+              "id": "021-recipe-preserved-and-missing-source-7",
+              "requirement": "Prior approved member-gripper source commit 0f91f95; 021 FR-005/006/008 RM-01 T014 missing parameter source cannot pretend edit success",
+              "offsetAfter": 36700,
+              "before": "        input(grid, '分拣夹爪', d.sortingGripperId, v => session.edit(x => x.sortingGripperId = v), 'number', [[1,'夹爪1'],[2,'夹爪2']]);\r\n",
+              "after": "        if (d.unitKind !== 'looseGroup') input(grid, '分拣夹爪', d.sortingGripperId, v => session.edit(x => x.sortingGripperId = v), 'number', [[1,'夹爪1'],[2,'夹爪2']]);\r\n"
+            },
+            {
+              "id": "021-recipe-preserved-and-missing-source-8",
+              "requirement": "Prior approved member-gripper source commit 0f91f95; 021 FR-005/006/008 RM-01 T014 missing parameter source cannot pretend edit success",
+              "offsetAfter": 37692,
+              "before": "          for (const member of d.composition) input(form, member.material + '检测面数', member.localFaces.length, v => void session.layout({ material: member.material, faces: v }));\r\n",
+              "after": "          for (const member of d.composition) {\r\n            input(form, member.material + '检测面数', member.localFaces.length, v => void session.layout({ material: member.material, faces: v }));\r\n            input(form, member.material + '分拣夹爪', member.sortingGripperId,\r\n              v => session.edit(x => x.composition.find(m => m.material === member.material).sortingGripperId = v),\r\n              'number', [[1,'夹爪1'],[2,'夹爪2']]);\r\n          }\r\n"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "path": "src/assets/孔底刀纹异常.jpg",
+      "sha256": "6181cf9faa7553faa5c9704ffedcc55b05e53dcdfb5cd2a0d7d961006c40b816"
+    },
+    {
+      "path": "src/assets/孔底异物.jpg",
+      "sha256": "017e703bff5023f454a52404f7d071bfe4694a07404c4265d2bec8c1f22fce61"
+    },
+    {
+      "path": "src/assets/孔底点状凹坑+带判定刀纹异常.jpg",
+      "sha256": "0899d5d3002c48fb7afc037cd671fe92f813063b7ee4cdd2af8203005b5ae5c4"
+    },
+    {
+      "path": "src/assets/密封面孔底检测1.jpg",
+      "sha256": "737ceee7fb55b8c12fcc38340365e70947d9d46d2eb6e3954a3dc43e690ab67b"
+    },
+    {
+      "path": "src/assets/密封面孔底检测2.jpg",
+      "sha256": "aa26e284798674c86c103edf35ddc971fbabc64ad4ab02d84128d429e576fd0d"
+    },
+    {
+      "path": "src/assets/密封面环面检测1.jpg",
+      "sha256": "817bea856e0e71e9085536a1b28e41fcd7306036f8918d78e3476c6dc540b650"
+    },
+    {
+      "path": "src/assets/密封面环面检测2.jpg",
+      "sha256": "2d1b64641b493b2e2f6bc23b92827c9a1537e84286382ea536e8a0f63b42a382"
+    },
+    {
+      "path": "src/assets/来料状态2D检测.png",
+      "sha256": "67735528c5abdf85b67bfcd3a7b8dcbcad6b670a5c2592f11a5a30c3f756b53e"
+    },
+    {
+      "path": "src/assets/来料状态3D检测.png",
+      "sha256": "4774754c74df8d478a5e50ef56ce308553d0d404ed18092dff5b3610bb72628f"
+    },
+    {
+      "path": "src/assets/环面划痕.jpg",
+      "sha256": "42a85bf8e9729a4287f74e3a30da7d789aab7dd8c4004ed7c122a074eac9e45e"
+    },
+    {
+      "path": "src/assets/环面划痕1.jpg",
+      "sha256": "636f488f8d38f7e0e511fdf2b611ce3e143ff566afe2609f5cd7dff74fa79776"
+    },
+    {
+      "path": "src/assets/环面点状凹坑.jpg",
+      "sha256": "fddfcd1e438e598bffeb5e815c300496bcd9e554e9061619a0f37d97dc016c80"
+    },
+    {
+      "path": "src/assets/读码参数.png",
+      "sha256": "111c5a2851c5ee81ffa452fb1afce0c44049d86e8b6f2f539edceec82a141bb4"
+    },
+    {
+      "path": "src/assets/�׵׵�״����+���ж������쳣.jpg",
+      "sha256": "0899d5d3002c48fb7afc037cd671fe92f813063b7ee4cdd2af8203005b5ae5c4"
+    },
+    {
+      "path": "src/assets/�׵׵����쳣.jpg",
+      "sha256": "6181cf9faa7553faa5c9704ffedcc55b05e53dcdfb5cd2a0d7d961006c40b816"
+    },
+    {
+      "path": "src/assets/�׵�����.jpg",
+      "sha256": "017e703bff5023f454a52404f7d071bfe4694a07404c4265d2bec8c1f22fce61"
+    },
+    {
+      "path": "src/assets/�ܷ��滷����1.jpg",
+      "sha256": "817bea856e0e71e9085536a1b28e41fcd7306036f8918d78e3476c6dc540b650"
+    },
+    {
+      "path": "src/assets/�ܷ��滷����2.jpg",
+      "sha256": "2d1b64641b493b2e2f6bc23b92827c9a1537e84286382ea536e8a0f63b42a382"
+    },
+    {
+      "path": "src/assets/�ܷ���׵׼��1.jpg",
+      "sha256": "737ceee7fb55b8c12fcc38340365e70947d9d46d2eb6e3954a3dc43e690ab67b"
+    },
+    {
+      "path": "src/assets/�ܷ���׵׼��2.jpg",
+      "sha256": "aa26e284798674c86c103edf35ddc971fbabc64ad4ab02d84128d429e576fd0d"
+    },
+    {
+      "path": "src/assets/���滮��.jpg",
+      "sha256": "42a85bf8e9729a4287f74e3a30da7d789aab7dd8c4004ed7c122a074eac9e45e"
+    },
+    {
+      "path": "src/assets/���滮��1.jpg",
+      "sha256": "636f488f8d38f7e0e511fdf2b611ce3e143ff566afe2609f5cd7dff74fa79776"
+    },
+    {
+      "path": "src/assets/����״̬2D���.png",
+      "sha256": "67735528c5abdf85b67bfcd3a7b8dcbcad6b670a5c2592f11a5a30c3f756b53e"
+    },
+    {
+      "path": "src/assets/����״̬3D���.png",
+      "sha256": "4774754c74df8d478a5e50ef56ce308553d0d404ed18092dff5b3610bb72628f"
+    },
+    {
+      "path": "src/assets/�����״����.jpg",
+      "sha256": "fddfcd1e438e598bffeb5e815c300496bcd9e554e9061619a0f37d97dc016c80"
+    },
+    {
+      "path": "src/assets/�������.png",
+      "sha256": "111c5a2851c5ee81ffa452fb1afce0c44049d86e8b6f2f539edceec82a141bb4"
+    },
+    {
+      "path": "src/vendor/fonts.css",
+      "sha256": "9cf91f6a42e0b5d91255c5ac43a4e8307a866712e082dee68fd438d0115cba89"
+    },
+    {
+      "path": "src/vendor/lucide-runtime.js",
+      "sha256": "6c5466777eafd5940624fb7710bbb5fa79ad3aabdc9acda9e1b293aac2177f8a"
+    },
+    {
+      "path": "src/vendor/tailwind-runtime.js",
+      "sha256": "077c509396259906ddc7f1798e6d72e1d8f7fdd1c12eecbf7a68cfab76bbe007"
+    },
+    {
+      "path": "dist/assets/孔底刀纹异常.jpg",
+      "sha256": "6181cf9faa7553faa5c9704ffedcc55b05e53dcdfb5cd2a0d7d961006c40b816"
+    },
+    {
+      "path": "dist/assets/孔底异物.jpg",
+      "sha256": "017e703bff5023f454a52404f7d071bfe4694a07404c4265d2bec8c1f22fce61"
+    },
+    {
+      "path": "dist/assets/孔底点状凹坑+带判定刀纹异常.jpg",
+      "sha256": "0899d5d3002c48fb7afc037cd671fe92f813063b7ee4cdd2af8203005b5ae5c4"
+    },
+    {
+      "path": "dist/assets/密封面孔底检测1.jpg",
+      "sha256": "737ceee7fb55b8c12fcc38340365e70947d9d46d2eb6e3954a3dc43e690ab67b"
+    },
+    {
+      "path": "dist/assets/密封面孔底检测2.jpg",
+      "sha256": "aa26e284798674c86c103edf35ddc971fbabc64ad4ab02d84128d429e576fd0d"
+    },
+    {
+      "path": "dist/assets/密封面环面检测1.jpg",
+      "sha256": "817bea856e0e71e9085536a1b28e41fcd7306036f8918d78e3476c6dc540b650"
+    },
+    {
+      "path": "dist/assets/密封面环面检测2.jpg",
+      "sha256": "2d1b64641b493b2e2f6bc23b92827c9a1537e84286382ea536e8a0f63b42a382"
+    },
+    {
+      "path": "dist/assets/来料状态2D检测.png",
+      "sha256": "67735528c5abdf85b67bfcd3a7b8dcbcad6b670a5c2592f11a5a30c3f756b53e"
+    },
+    {
+      "path": "dist/assets/来料状态3D检测.png",
+      "sha256": "4774754c74df8d478a5e50ef56ce308553d0d404ed18092dff5b3610bb72628f"
+    },
+    {
+      "path": "dist/assets/环面划痕.jpg",
+      "sha256": "42a85bf8e9729a4287f74e3a30da7d789aab7dd8c4004ed7c122a074eac9e45e"
+    },
+    {
+      "path": "dist/assets/环面划痕1.jpg",
+      "sha256": "636f488f8d38f7e0e511fdf2b611ce3e143ff566afe2609f5cd7dff74fa79776"
+    },
+    {
+      "path": "dist/assets/环面点状凹坑.jpg",
+      "sha256": "fddfcd1e438e598bffeb5e815c300496bcd9e554e9061619a0f37d97dc016c80"
+    },
+    {
+      "path": "dist/assets/读码参数.png",
+      "sha256": "111c5a2851c5ee81ffa452fb1afce0c44049d86e8b6f2f539edceec82a141bb4"
+    },
+    {
+      "path": "dist/assets/�׵׵�״����+���ж������쳣.jpg",
+      "sha256": "0899d5d3002c48fb7afc037cd671fe92f813063b7ee4cdd2af8203005b5ae5c4"
+    },
+    {
+      "path": "dist/assets/�׵׵����쳣.jpg",
+      "sha256": "6181cf9faa7553faa5c9704ffedcc55b05e53dcdfb5cd2a0d7d961006c40b816"
+    },
+    {
+      "path": "dist/assets/�׵�����.jpg",
+      "sha256": "017e703bff5023f454a52404f7d071bfe4694a07404c4265d2bec8c1f22fce61"
+    },
+    {
+      "path": "dist/assets/�ܷ��滷����1.jpg",
+      "sha256": "817bea856e0e71e9085536a1b28e41fcd7306036f8918d78e3476c6dc540b650"
+    },
+    {
+      "path": "dist/assets/�ܷ��滷����2.jpg",
+      "sha256": "2d1b64641b493b2e2f6bc23b92827c9a1537e84286382ea536e8a0f63b42a382"
+    },
+    {
+      "path": "dist/assets/�ܷ���׵׼��1.jpg",
+      "sha256": "737ceee7fb55b8c12fcc38340365e70947d9d46d2eb6e3954a3dc43e690ab67b"
+    },
+    {
+      "path": "dist/assets/�ܷ���׵׼��2.jpg",
+      "sha256": "aa26e284798674c86c103edf35ddc971fbabc64ad4ab02d84128d429e576fd0d"
+    },
+    {
+      "path": "dist/assets/���滮��.jpg",
+      "sha256": "42a85bf8e9729a4287f74e3a30da7d789aab7dd8c4004ed7c122a074eac9e45e"
+    },
+    {
+      "path": "dist/assets/���滮��1.jpg",
+      "sha256": "636f488f8d38f7e0e511fdf2b611ce3e143ff566afe2609f5cd7dff74fa79776"
+    },
+    {
+      "path": "dist/assets/����״̬2D���.png",
+      "sha256": "67735528c5abdf85b67bfcd3a7b8dcbcad6b670a5c2592f11a5a30c3f756b53e"
+    },
+    {
+      "path": "dist/assets/����״̬3D���.png",
+      "sha256": "4774754c74df8d478a5e50ef56ce308553d0d404ed18092dff5b3610bb72628f"
+    },
+    {
+      "path": "dist/assets/�����״����.jpg",
+      "sha256": "fddfcd1e438e598bffeb5e815c300496bcd9e554e9061619a0f37d97dc016c80"
+    },
+    {
+      "path": "dist/assets/�������.png",
+      "sha256": "111c5a2851c5ee81ffa452fb1afce0c44049d86e8b6f2f539edceec82a141bb4"
+    },
+    {
+      "path": "dist/vendor/fonts.css",
+      "sha256": "9cf91f6a42e0b5d91255c5ac43a4e8307a866712e082dee68fd438d0115cba89"
+    },
+    {
+      "path": "dist/vendor/lucide-runtime.js",
+      "sha256": "6c5466777eafd5940624fb7710bbb5fa79ad3aabdc9acda9e1b293aac2177f8a"
+    },
+    {
+      "path": "dist/vendor/lucide.min.js",
+      "sha256": "3411692820cb8d47543f69496aa25fd603a358f4498046f41c508a5a3342210e"
+    },
+    {
+      "path": "dist/vendor/signalr.min.js",
+      "sha256": "e28a720a359b37cb015758d543f908730ed5bbe478db09506bb6887f18313538"
+    },
+    {
+      "path": "dist/vendor/tailwind-runtime.js",
+      "sha256": "077c509396259906ddc7f1798e6d72e1d8f7fdd1c12eecbf7a68cfab76bbe007"
+    },
+    {
+      "path": "dist/vendor/tailwind.css",
+      "sha256": "f4871a45b9ceb018cb8ffedc2b732a7886ecc3f584151f77d33f9412fff6ce4e"
+    },
+    {
+      "path": "src/public-tray-flow.js",
+      "sha256": "9c035843f56ad767c72721f0ac3ca7d0f2b679d40ab418329f5d48bf74a0d437"
+    },
+    {
+      "path": "dist/public-tray-flow.js",
+      "sha256": "9c035843f56ad767c72721f0ac3ca7d0f2b679d40ab418329f5d48bf74a0d437"
+    },
+    {
+      "path": "src/commissioning-console.js",
+      "sha256": "713672db03c173e190ca7da54ed23fc9be4244feacb85b66cfb4bd635365c970",
+      "requirement": "021 IH/SC/RM/CC: confirmed identity, versioned start intent and seven-camera mapping; entire new module",
+      "region": "021-confirmed-identity-and-existing-login-binding"
+    },
+    {
+      "path": "dist/commissioning-console.js",
+      "sha256": "713672db03c173e190ca7da54ed23fc9be4244feacb85b66cfb4bd635365c970",
+      "requirement": "021 IH/SC/RM/CC: confirmed identity, versioned start intent and seven-camera mapping; entire new module",
+      "region": "021-confirmed-identity-and-existing-login-binding"
+    }
+  ],
+  "navigationAuthority": {
+    "confirmation": "确认DUI02、DUI03，严格按预览完成012剩余工作，不增加其他选项。",
+    "previews": [
+      {
+        "path": "specs/012-recipe-authoring/previews/dui-02-group-navigation.html",
+        "sha256": "1c29c1c77c259af28024f5392f9447e51c4371319e1011e4da14de77f2d74c9d"
+      },
+      {
+        "path": "specs/012-recipe-authoring/previews/dui-03-assembly-navigation.html",
+        "sha256": "8dd6ef2fda6bb4a3ec8c2473ea5683f02ad290f8fbaeac7fa9716fa5dab308c6"
+      }
+    ],
+    "scope": "current-cell detail: member/inspection part -> actual face -> camera cards; whole assembly mechanical owner; no additional controls"
+  },
+  "commissioning021Bindings": [
+    {
+      "id": "021-script-injection",
+      "requirement": "021 FR-001/002/003/015; IH-03; RM-04",
+      "region": "build-only exact commissioning-console.js injection before runtime.js on the three existing pages; no source HTML changes",
+      "files": [
+        "scripts/build.mjs",
+        "scripts/verify-prototype.ps1",
+        "src/commissioning-console.js"
+      ]
+    }
+  ]
+}

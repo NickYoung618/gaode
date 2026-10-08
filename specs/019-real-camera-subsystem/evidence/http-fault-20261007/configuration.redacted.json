@@ -1,0 +1,22 @@
+{
+  "Urls": "http://127.0.0.1:5197",
+  "Gaode": {
+    "Tokens": {
+      "Operator": "[REDACTED]",
+      "SystemAdministrator": "[REDACTED]"
+    },
+    "Mode": "Production",
+    "Cameras": {
+      "WorkerPath": "D:\\gaode\\backend\\tests\\Gaode.CameraWorkerFixture\\bin\\Debug\\net10.0\\Gaode.CameraWorkerFixture.exe",
+      "GalaxySdkPath": "D:\\gaode\\artifacts\\camera-http-fault-20261007-r1\\no-sdk",
+      "CaptureTimeoutMs": 5000,
+      "StartupTimeoutMs": 5000,
+      "CameraProSdkPath": "D:\\gaode\\artifacts\\camera-http-fault-20261007-r1\\no-sdk",
+      "ShutdownTimeoutMs": 3000,
+      "SitePath": "D:\\gaode\\artifacts\\camera-http-fault-20261007-r1\\site.json",
+      "StateRoot": "D:\\gaode\\artifacts\\camera-http-fault-20261007-r1\\state"
+    },
+    "CaptureOnly": true,
+    "CameraStoreRoot": "D:\\gaode\\artifacts\\camera-http-fault-20261007-r1\\store"
+  }
+}

@@ -1,0 +1,387 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<TestRun id="0b8f3873-b63c-490c-ad79-b8592695140b" name="Administrator@DEMO 2026-10-08 10:36:50" runUser="demo\Administrator" xmlns="http://microsoft.com/schemas/VisualStudio/TeamTest/2010">
+  <Times creation="2026-10-08T10:36:50.3637656+08:00" queuing="2026-10-08T10:36:50.3637657+08:00" start="2026-10-08T10:36:48.6536729+08:00" finish="2026-10-08T10:37:28.9155950+08:00" />
+  <TestSettings name="default" id="559f0394-0a4e-47f6-8827-cc19e2828cba">
+    <Deployment runDeploymentRoot="Administrator_DEMO_2026-10-08_10_36_50" />
+  </TestSettings>
+  <Results>
+    <UnitTestResult executionId="9c7123df-bde7-403d-bb6e-84b9d451016a" testId="f519da79-9063-21d2-dfcf-37386682c5c3" testName="Gaode.Communication.Tests.Devices.HandshakeClosureTests.TransitionOwnsDeviceUntilRealSqliteSaveReceipt(failReceipt: False, puttingBack: True)" computerName="DEMO" duration="00:00:01.8679340" startTime="2026-10-08T10:37:06.4039397+08:00" endTime="2026-10-08T10:37:08.2720419+08:00" testType="13cdc9d9-ddb5-4fa4-a97d-d965ccfc6d4b" outcome="Passed" testListId="8c84fa94-04c1-424b-9868-57a2d4851a1d" relativeResultsDirectory="9c7123df-bde7-403d-bb6e-84b9d451016a" />
+    <UnitTestResult executionId="57b15b33-1ebf-4297-86b8-a476a43f5964" testId="f8539f2b-aa75-b463-1039-7e501d211002" testName="Gaode.Communication.Tests.SiteOperationHandshakeTests.SoftStopRequestsStopWithoutResetOrHomingAndHoldsUnknown" computerName="DEMO" duration="00:00:00.0275860" startTime="2026-10-08T10:37:28.8309172+08:00" endTime="2026-10-08T10:37:28.8586241+08:00" testType="13cdc9d9-ddb5-4fa4-a97d-d965ccfc6d4b" outcome="Failed" testListId="8c84fa94-04c1-424b-9868-57a2d4851a1d" relativeResultsDirectory="57b15b33-1ebf-4297-86b8-a476a43f5964">
+      <Output>
+        <ErrorInfo>
+          <Message>System.Collections.Generic.KeyNotFoundException : The given key 'ManualZoneOccupied' was not present in the dictionary.</Message>
+          <StackTrace>   at System.Collections.Generic.Dictionary`2.get_Item(TKey key)&#xD;
+   at Gaode.Infrastructure.Devices.Plc.SignalValues.Word(SignalId id) in D:\gaode\backend\src\Gaode.Infrastructure\Devices\Plc\PlcSignalAccessor.cs:line 57&#xD;
+   at Gaode.Infrastructure.Devices.Plc.SignalValues.Bit(SignalId id) in D:\gaode\backend\src\Gaode.Infrastructure\Devices\Plc\PlcSignalAccessor.cs:line 58&#xD;
+   at Gaode.Infrastructure.Devices.Plc.LatestProtocolPlcDevice.ObserveAxisClosures(SignalValues values, Int64 sampledEpoch) in D:\gaode\backend\src\Gaode.Infrastructure\Devices\Plc\LatestProtocolPlcDevice.Handshakes.cs:line 44&#xD;
+   at Gaode.Infrastructure.Devices.Plc.LatestProtocolPlcDevice.ReadRoundAsync(AcquisitionGroup group, Int32 generation, Int64 sampledEpoch, Int64 due, Boolean demand, Int64 awakened, CancellationToken ct) in D:\gaode\backend\src\Gaode.Infrastructure\Devices\Plc\LatestProtocolPlcDevice.Polling.cs:line 177&#xD;
+   at Gaode.Infrastructure.Devices.Plc.LatestProtocolPlcDevice.StartAsync(CancellationToken cancellationToken) in D:\gaode\backend\src\Gaode.Infrastructure\Devices\Plc\LatestProtocolPlcDevice.cs:line 150&#xD;
+   at Gaode.Communication.Tests.SiteOperationHandshakeTests.SoftStopRequestsStopWithoutResetOrHomingAndHoldsUnknown() in D:\gaode\backend\tests\Gaode.Communication.Tests\SiteOperationHandshakeTests.cs:line 155&#xD;
+   at Gaode.Communication.Tests.SiteOperationHandshakeTests.SoftStopRequestsStopWithoutResetOrHomingAndHoldsUnknown() in D:\gaode\backend\tests\Gaode.Communication.Tests\SiteOperationHandshakeTests.cs:line 162&#xD;
+   at Gaode.Communication.Tests.SiteOperationHandshakeTests.SoftStopRequestsStopWithoutResetOrHomingAndHoldsUnknown() in D:\gaode\backend\tests\Gaode.Communication.Tests\SiteOperationHandshakeTests.cs:line 162&#xD;
+   at Gaode.Communication.Tests.SiteOperationHandshakeTests.SoftStopRequestsStopWithoutResetOrHomingAndHoldsUnknown() in D:\gaode\backend\tests\Gaode.Communication.Tests\SiteOperationHandshakeTests.cs:line 162&#xD;
+--- End of stack trace from previous location ---</StackTrace>
+        </ErrorInfo>
+      </Output>
+    </UnitTestResult>
+    <UnitTestResult executionId="4ff08399-9034-474b-9db2-e3a04a1f6375" testId="2dd942b7-93ed-b025-8709-5ea78f33b167" testName="Gaode.Communication.Tests.Devices.HandshakeClosureTests.DelayedClearHoldsOwnershipAndPreservesArrivalEvidence" computerName="DEMO" duration="00:00:03.0178927" startTime="2026-10-08T10:37:25.1869788+08:00" endTime="2026-10-08T10:37:28.2048778+08:00" testType="13cdc9d9-ddb5-4fa4-a97d-d965ccfc6d4b" outcome="Passed" testListId="8c84fa94-04c1-424b-9868-57a2d4851a1d" relativeResultsDirectory="4ff08399-9034-474b-9db2-e3a04a1f6375" />
+    <UnitTestResult executionId="3570e473-ebc0-4cd2-859b-125808156168" testId="1c4b9ec4-0ab4-2e40-1081-06d4bf82c5ea" testName="Gaode.Communication.Tests.Devices.SamePositionTests.RepeatedTargetsReuseOnlySatisfiedAxes(x: 11, y: 23, z: 34, expected: &quot;Y,DetectionZ&quot;)" computerName="DEMO" duration="00:00:01.3796413" startTime="2026-10-08T10:36:51.4470441+08:00" endTime="2026-10-08T10:36:52.8267560+08:00" testType="13cdc9d9-ddb5-4fa4-a97d-d965ccfc6d4b" outcome="Passed" testListId="8c84fa94-04c1-424b-9868-57a2d4851a1d" relativeResultsDirectory="3570e473-ebc0-4cd2-859b-125808156168" />
+    <UnitTestResult executionId="5c4ba95b-9bfb-403e-b5e4-3a027ff34246" testId="fa4d4887-c499-e285-2f8d-768e6554fc22" testName="Gaode.Communication.Tests.Devices.SamePositionTests.StaticPositionWithoutCurrentClosureMustActuallyDispatch(cause: &quot;reset&quot;)" computerName="DEMO" duration="00:00:02.1336654" startTime="2026-10-08T10:36:57.1670581+08:00" endTime="2026-10-08T10:36:59.3008226+08:00" testType="13cdc9d9-ddb5-4fa4-a97d-d965ccfc6d4b" outcome="Passed" testListId="8c84fa94-04c1-424b-9868-57a2d4851a1d" relativeResultsDirectory="5c4ba95b-9bfb-403e-b5e4-3a027ff34246" />
+    <UnitTestResult executionId="5065e0a5-9330-4c37-b50f-d036150cfe72" testId="7d106857-df16-65f4-742a-0daf6223ecf0" testName="Gaode.Communication.Tests.Devices.HandshakeClosureTests.ClearanceRejectsOldOrInvalidReads(fault: &quot;expired&quot;)" computerName="DEMO" duration="00:00:00.0000110" startTime="2026-10-08T10:37:13.2932720+08:00" endTime="2026-10-08T10:37:13.2932817+08:00" testType="13cdc9d9-ddb5-4fa4-a97d-d965ccfc6d4b" outcome="Passed" testListId="8c84fa94-04c1-424b-9868-57a2d4851a1d" relativeResultsDirectory="5065e0a5-9330-4c37-b50f-d036150cfe72" />
+    <UnitTestResult executionId="b78df53b-70d8-4771-92ee-b9511684610d" testId="9b2c71a5-148f-acf0-20a4-e4f44241ebeb" testName="Gaode.Communication.Tests.Devices.HandshakeClosureTests.ClearanceRejectsOldOrInvalidReads(fault: &quot;before-write&quot;)" computerName="DEMO" duration="00:00:00.0006436" startTime="2026-10-08T10:37:13.2925067+08:00" endTime="2026-10-08T10:37:13.2930973+08:00" testType="13cdc9d9-ddb5-4fa4-a97d-d965ccfc6d4b" outcome="Passed" testListId="8c84fa94-04c1-424b-9868-57a2d4851a1d" relativeResultsDirectory="b78df53b-70d8-4771-92ee-b9511684610d" />
+    <UnitTestResult executionId="e5ddb3ee-006c-4f41-8d40-74a17ede8081" testId="66a52e9f-c6d7-f433-1542-ed9d67c24f2c" testName="Gaode.Communication.Tests.Devices.HandshakeClosureTests.TransitionOwnsDeviceUntilRealSqliteSaveReceipt(failReceipt: True, puttingBack: True)" computerName="DEMO" duration="00:00:01.9133163" startTime="2026-10-08T10:37:08.2721221+08:00" endTime="2026-10-08T10:37:10.1856268+08:00" testType="13cdc9d9-ddb5-4fa4-a97d-d965ccfc6d4b" outcome="Passed" testListId="8c84fa94-04c1-424b-9868-57a2d4851a1d" relativeResultsDirectory="e5ddb3ee-006c-4f41-8d40-74a17ede8081" />
+    <UnitTestResult executionId="9738a7ad-bd3d-42e7-a59b-6844d60e0848" testId="f565c066-da1b-b4d2-a40f-7c3a23ba26af" testName="Gaode.Communication.Tests.SiteProtocolAdaptationTests.ConfirmedSiteDefinitionUsesRealTypesAndHasNoRetiredTeachingRequirement" computerName="DEMO" duration="00:00:00.0120287" startTime="2026-10-08T10:36:49.1305624+08:00" endTime="2026-10-08T10:36:49.1378587+08:00" testType="13cdc9d9-ddb5-4fa4-a97d-d965ccfc6d4b" outcome="Passed" testListId="8c84fa94-04c1-424b-9868-57a2d4851a1d" relativeResultsDirectory="9738a7ad-bd3d-42e7-a59b-6844d60e0848" />
+    <UnitTestResult executionId="4ff63259-b69c-4dc1-8385-9eebe44cb6c3" testId="dd0771af-630c-084d-5774-5c6b7e29d385" testName="Gaode.Communication.Tests.Devices.HandshakeClosureTests.TransitionOwnsDeviceUntilRealSqliteSaveReceipt(failReceipt: True, puttingBack: False)" computerName="DEMO" duration="00:00:01.2535333" startTime="2026-10-08T10:37:05.1502102+08:00" endTime="2026-10-08T10:37:06.4038465+08:00" testType="13cdc9d9-ddb5-4fa4-a97d-d965ccfc6d4b" outcome="Passed" testListId="8c84fa94-04c1-424b-9868-57a2d4851a1d" relativeResultsDirectory="4ff63259-b69c-4dc1-8385-9eebe44cb6c3" />
+    <UnitTestResult executionId="80e5f023-93b5-43fe-b334-4b2087d3898f" testId="c7d7d52d-ccc4-2f63-3800-5bd5d89e13a1" testName="Gaode.Communication.Tests.Devices.HandshakeClosureTests.SixAxisMappingsClearIndependentlyAndRepeat" computerName="DEMO" duration="00:00:03.0242322" startTime="2026-10-08T10:36:59.3015569+08:00" endTime="2026-10-08T10:37:02.3259554+08:00" testType="13cdc9d9-ddb5-4fa4-a97d-d965ccfc6d4b" outcome="Passed" testListId="8c84fa94-04c1-424b-9868-57a2d4851a1d" relativeResultsDirectory="80e5f023-93b5-43fe-b334-4b2087d3898f" />
+    <UnitTestResult executionId="523213b8-540f-4cc1-b00f-568ea8d2e1bd" testId="1261ce25-b5c7-054b-0dc6-7e0278347d75" testName="Gaode.Communication.Tests.Devices.SamePositionTests.StaticPositionWithoutCurrentClosureMustActuallyDispatch(cause: &quot;drift&quot;)" computerName="DEMO" duration="00:00:01.9271698" startTime="2026-10-08T10:36:55.2398016+08:00" endTime="2026-10-08T10:36:57.1669285+08:00" testType="13cdc9d9-ddb5-4fa4-a97d-d965ccfc6d4b" outcome="Passed" testListId="8c84fa94-04c1-424b-9868-57a2d4851a1d" relativeResultsDirectory="523213b8-540f-4cc1-b00f-568ea8d2e1bd" />
+    <UnitTestResult executionId="9b902098-2a80-440e-a0d1-3f9006f1c2bd" testId="47675aff-3a4d-eeb6-cf81-89be75b16f06" testName="Gaode.Communication.Tests.Devices.SamePositionTests.RepeatedTargetsReuseOnlySatisfiedAxes(x: 12, y: 22, z: 33, expected: &quot;X&quot;)" computerName="DEMO" duration="00:00:00.9623233" startTime="2026-10-08T10:36:52.8272747+08:00" endTime="2026-10-08T10:36:53.7892513+08:00" testType="13cdc9d9-ddb5-4fa4-a97d-d965ccfc6d4b" outcome="Passed" testListId="8c84fa94-04c1-424b-9868-57a2d4851a1d" relativeResultsDirectory="9b902098-2a80-440e-a0d1-3f9006f1c2bd" />
+    <UnitTestResult executionId="b64d66e5-c362-4178-afa7-a2d3c50ac7d1" testId="274fa7c0-a5a9-d22f-e366-fd91b7732bc9" testName="Gaode.Communication.Tests.Devices.HandshakeClosureTests.UnknownWriteOrDelayedTransportDoesNotReplay(fault: AxisWriteResponseLost)" computerName="DEMO" duration="00:00:00.7415920" startTime="2026-10-08T10:37:10.4731234+08:00" endTime="2026-10-08T10:37:11.2148246+08:00" testType="13cdc9d9-ddb5-4fa4-a97d-d965ccfc6d4b" outcome="Passed" testListId="8c84fa94-04c1-424b-9868-57a2d4851a1d" relativeResultsDirectory="b64d66e5-c362-4178-afa7-a2d3c50ac7d1" />
+    <UnitTestResult executionId="d7acc77a-4fd6-43de-a0da-0cd3059cd703" testId="0984ea54-3413-17c0-33aa-54984872cad2" testName="Gaode.Communication.Tests.Devices.HandshakeClosureTests.ClearanceRejectsOldOrInvalidReads(fault: &quot;wrong-epoch&quot;)" computerName="DEMO" duration="00:00:00.0001346" startTime="2026-10-08T10:37:13.2931519+08:00" endTime="2026-10-08T10:37:13.2932489+08:00" testType="13cdc9d9-ddb5-4fa4-a97d-d965ccfc6d4b" outcome="Passed" testListId="8c84fa94-04c1-424b-9868-57a2d4851a1d" relativeResultsDirectory="d7acc77a-4fd6-43de-a0da-0cd3059cd703" />
+    <UnitTestResult executionId="96b397f4-0884-451c-9bd7-3cc8141fe1c9" testId="403dd66a-9951-0caa-b652-3226f7c597bf" testName="Gaode.Communication.Tests.Devices.HandshakeClosureTests.SortingUsesActualCommitAndFinalSafetyBeforeParentClear(omitIntent: False)" computerName="DEMO" duration="00:00:06.0275231" startTime="2026-10-08T10:37:17.5429582+08:00" endTime="2026-10-08T10:37:23.5703245+08:00" testType="13cdc9d9-ddb5-4fa4-a97d-d965ccfc6d4b" outcome="Passed" testListId="8c84fa94-04c1-424b-9868-57a2d4851a1d" relativeResultsDirectory="96b397f4-0884-451c-9bd7-3cc8141fe1c9" />
+    <UnitTestResult executionId="83a61d1f-b30d-4bef-a812-a7a771a35f86" testId="33b7965e-168e-f3cd-2ab0-1b9073b87661" testName="Gaode.Communication.Tests.Devices.SamePositionTests.StaticPositionWithoutCurrentClosureMustActuallyDispatch(cause: &quot;initial&quot;)" computerName="DEMO" duration="00:00:01.4496739" startTime="2026-10-08T10:36:53.7893823+08:00" endTime="2026-10-08T10:36:55.2396937+08:00" testType="13cdc9d9-ddb5-4fa4-a97d-d965ccfc6d4b" outcome="Passed" testListId="8c84fa94-04c1-424b-9868-57a2d4851a1d" relativeResultsDirectory="83a61d1f-b30d-4bef-a812-a7a771a35f86" />
+    <UnitTestResult executionId="1377653b-21ce-46df-8b1d-acfe3bf8125b" testId="07217e56-4b70-bb63-0e83-6c80afc23639" testName="Gaode.Communication.Tests.Devices.HandshakeClosureTests.InactiveGripperPlaceholderCannotDispatchWithoutSortingSafetyConfiguration" computerName="DEMO" duration="00:00:00.5401853" startTime="2026-10-08T10:37:12.7521301+08:00" endTime="2026-10-08T10:37:13.2924113+08:00" testType="13cdc9d9-ddb5-4fa4-a97d-d965ccfc6d4b" outcome="Passed" testListId="8c84fa94-04c1-424b-9868-57a2d4851a1d" relativeResultsDirectory="1377653b-21ce-46df-8b1d-acfe3bf8125b" />
+    <UnitTestResult executionId="b1566906-f4e7-46bc-ad1e-cf00b076e528" testId="44233950-ca35-cc53-970b-991a3f8842f2" testName="Gaode.Communication.Tests.SiteOperationHandshakeTests.ResetWaitsForThisReadyFallingAndRisingEdgeBeforeClearingRequest" computerName="DEMO" duration="00:00:00.0446442" startTime="2026-10-08T10:37:28.6989556+08:00" endTime="2026-10-08T10:37:28.7465993+08:00" testType="13cdc9d9-ddb5-4fa4-a97d-d965ccfc6d4b" outcome="Failed" testListId="8c84fa94-04c1-424b-9868-57a2d4851a1d" relativeResultsDirectory="b1566906-f4e7-46bc-ad1e-cf00b076e528">
+      <Output>
+        <ErrorInfo>
+          <Message>System.Collections.Generic.KeyNotFoundException : The given key 'ManualZoneOccupied' was not present in the dictionary.</Message>
+          <StackTrace>   at System.Collections.Generic.Dictionary`2.get_Item(TKey key)&#xD;
+   at Gaode.Infrastructure.Devices.Plc.SignalValues.Word(SignalId id) in D:\gaode\backend\src\Gaode.Infrastructure\Devices\Plc\PlcSignalAccessor.cs:line 57&#xD;
+   at Gaode.Infrastructure.Devices.Plc.SignalValues.Bit(SignalId id) in D:\gaode\backend\src\Gaode.Infrastructure\Devices\Plc\PlcSignalAccessor.cs:line 58&#xD;
+   at Gaode.Infrastructure.Devices.Plc.LatestProtocolPlcDevice.ObserveAxisClosures(SignalValues values, Int64 sampledEpoch) in D:\gaode\backend\src\Gaode.Infrastructure\Devices\Plc\LatestProtocolPlcDevice.Handshakes.cs:line 44&#xD;
+   at Gaode.Infrastructure.Devices.Plc.LatestProtocolPlcDevice.ReadRoundAsync(AcquisitionGroup group, Int32 generation, Int64 sampledEpoch, Int64 due, Boolean demand, Int64 awakened, CancellationToken ct) in D:\gaode\backend\src\Gaode.Infrastructure\Devices\Plc\LatestProtocolPlcDevice.Polling.cs:line 177&#xD;
+   at Gaode.Infrastructure.Devices.Plc.LatestProtocolPlcDevice.StartAsync(CancellationToken cancellationToken) in D:\gaode\backend\src\Gaode.Infrastructure\Devices\Plc\LatestProtocolPlcDevice.cs:line 150&#xD;
+   at Gaode.Communication.Tests.SiteOperationHandshakeTests.ResetWaitsForThisReadyFallingAndRisingEdgeBeforeClearingRequest() in D:\gaode\backend\tests\Gaode.Communication.Tests\SiteOperationHandshakeTests.cs:line 80&#xD;
+   at Gaode.Communication.Tests.SiteOperationHandshakeTests.ResetWaitsForThisReadyFallingAndRisingEdgeBeforeClearingRequest() in D:\gaode\backend\tests\Gaode.Communication.Tests\SiteOperationHandshakeTests.cs:line 91&#xD;
+   at Gaode.Communication.Tests.SiteOperationHandshakeTests.ResetWaitsForThisReadyFallingAndRisingEdgeBeforeClearingRequest() in D:\gaode\backend\tests\Gaode.Communication.Tests\SiteOperationHandshakeTests.cs:line 91&#xD;
+   at Gaode.Communication.Tests.SiteOperationHandshakeTests.ResetWaitsForThisReadyFallingAndRisingEdgeBeforeClearingRequest() in D:\gaode\backend\tests\Gaode.Communication.Tests\SiteOperationHandshakeTests.cs:line 91&#xD;
+--- End of stack trace from previous location ---</StackTrace>
+        </ErrorInfo>
+      </Output>
+    </UnitTestResult>
+    <UnitTestResult executionId="4448611b-c666-40d9-abc1-923ac9dccc68" testId="3dd2ceb6-1280-4b99-9784-9725f0c0f505" testName="Gaode.Communication.Tests.Devices.HandshakeClosureTests.FlipHoldsParentUntilPutBackWithItsOwnWindow" computerName="DEMO" duration="00:00:04.2491581" startTime="2026-10-08T10:37:13.2933104+08:00" endTime="2026-10-08T10:37:17.5426290+08:00" testType="13cdc9d9-ddb5-4fa4-a97d-d965ccfc6d4b" outcome="Passed" testListId="8c84fa94-04c1-424b-9868-57a2d4851a1d" relativeResultsDirectory="4448611b-c666-40d9-abc1-923ac9dccc68" />
+    <UnitTestResult executionId="2f3a2da3-75ee-441d-be2f-1c3f80bac757" testId="91302dea-0254-6079-2828-0fc1bfdaa4d4" testName="Gaode.Communication.Tests.Devices.HandshakeClosureTests.DisconnectWhileWaitingClearCannotStartSuccessor" computerName="DEMO" duration="00:00:00.4937219" startTime="2026-10-08T10:37:28.2050759+08:00" endTime="2026-10-08T10:37:28.6987459+08:00" testType="13cdc9d9-ddb5-4fa4-a97d-d965ccfc6d4b" outcome="Passed" testListId="8c84fa94-04c1-424b-9868-57a2d4851a1d" relativeResultsDirectory="2f3a2da3-75ee-441d-be2f-1c3f80bac757" />
+    <UnitTestResult executionId="7d1e8c15-9d26-4668-a93f-e9330811e685" testId="d8dbd12e-c2dd-6023-e8cd-c93c15acfba2" testName="Gaode.Communication.Tests.Devices.HandshakeClosureTests.SortingUsesActualCommitAndFinalSafetyBeforeParentClear(omitIntent: True)" computerName="DEMO" duration="00:00:01.6162993" startTime="2026-10-08T10:37:23.5705437+08:00" endTime="2026-10-08T10:37:25.1867890+08:00" testType="13cdc9d9-ddb5-4fa4-a97d-d965ccfc6d4b" outcome="Passed" testListId="8c84fa94-04c1-424b-9868-57a2d4851a1d" relativeResultsDirectory="7d1e8c15-9d26-4668-a93f-e9330811e685" />
+    <UnitTestResult executionId="dd77cb0f-50c6-4013-82c5-6e730ff9cfba" testId="6fd6dff2-3cef-3a00-e37d-2993c16ff439" testName="Gaode.Communication.Tests.SiteOperationHandshakeTests.ResetOldReadyOneTimesOutWithoutClearingOrReplaying" computerName="DEMO" duration="00:00:00.0265645" startTime="2026-10-08T10:37:28.7760977+08:00" endTime="2026-10-08T10:37:28.8025978+08:00" testType="13cdc9d9-ddb5-4fa4-a97d-d965ccfc6d4b" outcome="Failed" testListId="8c84fa94-04c1-424b-9868-57a2d4851a1d" relativeResultsDirectory="dd77cb0f-50c6-4013-82c5-6e730ff9cfba">
+      <Output>
+        <ErrorInfo>
+          <Message>System.Collections.Generic.KeyNotFoundException : The given key 'ManualZoneOccupied' was not present in the dictionary.</Message>
+          <StackTrace>   at System.Collections.Generic.Dictionary`2.get_Item(TKey key)&#xD;
+   at Gaode.Infrastructure.Devices.Plc.SignalValues.Word(SignalId id) in D:\gaode\backend\src\Gaode.Infrastructure\Devices\Plc\PlcSignalAccessor.cs:line 57&#xD;
+   at Gaode.Infrastructure.Devices.Plc.SignalValues.Bit(SignalId id) in D:\gaode\backend\src\Gaode.Infrastructure\Devices\Plc\PlcSignalAccessor.cs:line 58&#xD;
+   at Gaode.Infrastructure.Devices.Plc.LatestProtocolPlcDevice.ObserveAxisClosures(SignalValues values, Int64 sampledEpoch) in D:\gaode\backend\src\Gaode.Infrastructure\Devices\Plc\LatestProtocolPlcDevice.Handshakes.cs:line 44&#xD;
+   at Gaode.Infrastructure.Devices.Plc.LatestProtocolPlcDevice.ReadRoundAsync(AcquisitionGroup group, Int32 generation, Int64 sampledEpoch, Int64 due, Boolean demand, Int64 awakened, CancellationToken ct) in D:\gaode\backend\src\Gaode.Infrastructure\Devices\Plc\LatestProtocolPlcDevice.Polling.cs:line 177&#xD;
+   at Gaode.Infrastructure.Devices.Plc.LatestProtocolPlcDevice.StartAsync(CancellationToken cancellationToken) in D:\gaode\backend\src\Gaode.Infrastructure\Devices\Plc\LatestProtocolPlcDevice.cs:line 150&#xD;
+   at Gaode.Communication.Tests.SiteOperationHandshakeTests.ResetOldReadyOneTimesOutWithoutClearingOrReplaying() in D:\gaode\backend\tests\Gaode.Communication.Tests\SiteOperationHandshakeTests.cs:line 99&#xD;
+   at Gaode.Communication.Tests.SiteOperationHandshakeTests.ResetOldReadyOneTimesOutWithoutClearingOrReplaying() in D:\gaode\backend\tests\Gaode.Communication.Tests\SiteOperationHandshakeTests.cs:line 105&#xD;
+   at Gaode.Communication.Tests.SiteOperationHandshakeTests.ResetOldReadyOneTimesOutWithoutClearingOrReplaying() in D:\gaode\backend\tests\Gaode.Communication.Tests\SiteOperationHandshakeTests.cs:line 105&#xD;
+   at Gaode.Communication.Tests.SiteOperationHandshakeTests.ResetOldReadyOneTimesOutWithoutClearingOrReplaying() in D:\gaode\backend\tests\Gaode.Communication.Tests\SiteOperationHandshakeTests.cs:line 105&#xD;
+--- End of stack trace from previous location ---</StackTrace>
+        </ErrorInfo>
+      </Output>
+    </UnitTestResult>
+    <UnitTestResult executionId="282b5771-5bc7-4805-acf8-0d68d9b83e9a" testId="48f10811-4144-df39-fe0c-1785342ff15b" testName="Gaode.Communication.Tests.Devices.HandshakeClosureTests.UnknownWriteOrDelayedTransportDoesNotReplay(fault: AxisClearWriteResponseLost)" computerName="DEMO" duration="00:00:00.2872054" startTime="2026-10-08T10:37:10.1857135+08:00" endTime="2026-10-08T10:37:10.4730429+08:00" testType="13cdc9d9-ddb5-4fa4-a97d-d965ccfc6d4b" outcome="Passed" testListId="8c84fa94-04c1-424b-9868-57a2d4851a1d" relativeResultsDirectory="282b5771-5bc7-4805-acf8-0d68d9b83e9a" />
+    <UnitTestResult executionId="31419081-e8a6-42fc-93dc-a666ac317ce6" testId="427fb3d9-6aa1-ee38-7f22-3d27174b0f47" testName="Gaode.Communication.Tests.Devices.HandshakeClosureTests.UnknownWriteOrDelayedTransportDoesNotReplay(fault: AxisResponseDelayed)" computerName="DEMO" duration="00:00:01.5369934" startTime="2026-10-08T10:37:11.2149105+08:00" endTime="2026-10-08T10:37:12.7520238+08:00" testType="13cdc9d9-ddb5-4fa4-a97d-d965ccfc6d4b" outcome="Passed" testListId="8c84fa94-04c1-424b-9868-57a2d4851a1d" relativeResultsDirectory="31419081-e8a6-42fc-93dc-a666ac317ce6" />
+    <UnitTestResult executionId="cce6f9d1-7238-4dba-b8df-1dcdde140aae" testId="a5ace3c4-9a69-d270-377a-91a5c934e8eb" testName="Gaode.Communication.Tests.SiteOperationHandshakeTests.StartClearsAfterFullActualXYAndZClosureAndSameCoordinateReuseStillWorks" computerName="DEMO" duration="00:00:00.0275809" startTime="2026-10-08T10:37:28.8029451+08:00" endTime="2026-10-08T10:37:28.8305981+08:00" testType="13cdc9d9-ddb5-4fa4-a97d-d965ccfc6d4b" outcome="Failed" testListId="8c84fa94-04c1-424b-9868-57a2d4851a1d" relativeResultsDirectory="cce6f9d1-7238-4dba-b8df-1dcdde140aae">
+      <Output>
+        <ErrorInfo>
+          <Message>System.Collections.Generic.KeyNotFoundException : The given key 'ManualZoneOccupied' was not present in the dictionary.</Message>
+          <StackTrace>   at System.Collections.Generic.Dictionary`2.get_Item(TKey key)&#xD;
+   at Gaode.Infrastructure.Devices.Plc.SignalValues.Word(SignalId id) in D:\gaode\backend\src\Gaode.Infrastructure\Devices\Plc\PlcSignalAccessor.cs:line 57&#xD;
+   at Gaode.Infrastructure.Devices.Plc.SignalValues.Bit(SignalId id) in D:\gaode\backend\src\Gaode.Infrastructure\Devices\Plc\PlcSignalAccessor.cs:line 58&#xD;
+   at Gaode.Infrastructure.Devices.Plc.LatestProtocolPlcDevice.ObserveAxisClosures(SignalValues values, Int64 sampledEpoch) in D:\gaode\backend\src\Gaode.Infrastructure\Devices\Plc\LatestProtocolPlcDevice.Handshakes.cs:line 44&#xD;
+   at Gaode.Infrastructure.Devices.Plc.LatestProtocolPlcDevice.ReadRoundAsync(AcquisitionGroup group, Int32 generation, Int64 sampledEpoch, Int64 due, Boolean demand, Int64 awakened, CancellationToken ct) in D:\gaode\backend\src\Gaode.Infrastructure\Devices\Plc\LatestProtocolPlcDevice.Polling.cs:line 177&#xD;
+   at Gaode.Infrastructure.Devices.Plc.LatestProtocolPlcDevice.StartAsync(CancellationToken cancellationToken) in D:\gaode\backend\src\Gaode.Infrastructure\Devices\Plc\LatestProtocolPlcDevice.cs:line 150&#xD;
+   at Gaode.Communication.Tests.SiteOperationHandshakeTests.StartClearsAfterFullActualXYAndZClosureAndSameCoordinateReuseStillWorks() in D:\gaode\backend\tests\Gaode.Communication.Tests\SiteOperationHandshakeTests.cs:line 113&#xD;
+   at Gaode.Communication.Tests.SiteOperationHandshakeTests.StartClearsAfterFullActualXYAndZClosureAndSameCoordinateReuseStillWorks() in D:\gaode\backend\tests\Gaode.Communication.Tests\SiteOperationHandshakeTests.cs:line 135&#xD;
+   at Gaode.Communication.Tests.SiteOperationHandshakeTests.StartClearsAfterFullActualXYAndZClosureAndSameCoordinateReuseStillWorks() in D:\gaode\backend\tests\Gaode.Communication.Tests\SiteOperationHandshakeTests.cs:line 135&#xD;
+   at Gaode.Communication.Tests.SiteOperationHandshakeTests.StartClearsAfterFullActualXYAndZClosureAndSameCoordinateReuseStillWorks() in D:\gaode\backend\tests\Gaode.Communication.Tests\SiteOperationHandshakeTests.cs:line 135&#xD;
+--- End of stack trace from previous location ---</StackTrace>
+        </ErrorInfo>
+      </Output>
+    </UnitTestResult>
+    <UnitTestResult executionId="65e10adf-f8c7-4e0a-a60c-fbf09c6e1dd6" testId="3c5d4162-ff76-8c58-c986-e3f55b02d763" testName="Gaode.Communication.Tests.Devices.SamePositionTests.RepeatedTargetsReuseOnlySatisfiedAxes(x: 11, y: 22, z: 33, expected: &quot;&quot;)" computerName="DEMO" duration="00:00:02.3899547" startTime="2026-10-08T10:36:49.0535601+08:00" endTime="2026-10-08T10:36:51.4469119+08:00" testType="13cdc9d9-ddb5-4fa4-a97d-d965ccfc6d4b" outcome="Passed" testListId="8c84fa94-04c1-424b-9868-57a2d4851a1d" relativeResultsDirectory="65e10adf-f8c7-4e0a-a60c-fbf09c6e1dd6" />
+    <UnitTestResult executionId="9c3946ec-593c-4a24-a1bb-e621e31c01ac" testId="7923ee32-0c4b-d942-01cc-b423129530c3" testName="Gaode.Communication.Tests.Devices.HandshakeClosureTests.TransitionOwnsDeviceUntilRealSqliteSaveReceipt(failReceipt: False, puttingBack: False)" computerName="DEMO" duration="00:00:00.5639853" startTime="2026-10-08T10:37:04.5861906+08:00" endTime="2026-10-08T10:37:05.1501323+08:00" testType="13cdc9d9-ddb5-4fa4-a97d-d965ccfc6d4b" outcome="Passed" testListId="8c84fa94-04c1-424b-9868-57a2d4851a1d" relativeResultsDirectory="9c3946ec-593c-4a24-a1bb-e621e31c01ac" />
+    <UnitTestResult executionId="45a375d2-2c5b-4c73-bda4-2b94486da2d7" testId="380d3b26-3591-42a0-c59f-c24ae4deb691" testName="Gaode.Communication.Tests.SiteProtocolAdaptationTests.SiteTcpUsesRealModelEncodingIntPoseAndRejectsAlarmWritesBeforeDispatch" computerName="DEMO" duration="00:00:00.0657781" startTime="2026-10-08T10:36:49.0543528+08:00" endTime="2026-10-08T10:36:49.1250101+08:00" testType="13cdc9d9-ddb5-4fa4-a97d-d965ccfc6d4b" outcome="Passed" testListId="8c84fa94-04c1-424b-9868-57a2d4851a1d" relativeResultsDirectory="45a375d2-2c5b-4c73-bda4-2b94486da2d7" />
+    <UnitTestResult executionId="19f62ba4-24f6-4439-b0ab-562e60f9b19f" testId="e4f4f7b4-68aa-c002-c837-3c41c4632dda" testName="Gaode.Communication.Tests.SiteOperationHandshakeTests.StartupAwayFromSafeZeroDoesNotSendStartOrMotion" computerName="DEMO" duration="00:00:00.0290357" startTime="2026-10-08T10:37:28.7501380+08:00" endTime="2026-10-08T10:37:28.7757403+08:00" testType="13cdc9d9-ddb5-4fa4-a97d-d965ccfc6d4b" outcome="Failed" testListId="8c84fa94-04c1-424b-9868-57a2d4851a1d" relativeResultsDirectory="19f62ba4-24f6-4439-b0ab-562e60f9b19f">
+      <Output>
+        <ErrorInfo>
+          <Message>System.Collections.Generic.KeyNotFoundException : The given key 'ManualZoneOccupied' was not present in the dictionary.</Message>
+          <StackTrace>   at System.Collections.Generic.Dictionary`2.get_Item(TKey key)&#xD;
+   at Gaode.Infrastructure.Devices.Plc.SignalValues.Word(SignalId id) in D:\gaode\backend\src\Gaode.Infrastructure\Devices\Plc\PlcSignalAccessor.cs:line 57&#xD;
+   at Gaode.Infrastructure.Devices.Plc.SignalValues.Bit(SignalId id) in D:\gaode\backend\src\Gaode.Infrastructure\Devices\Plc\PlcSignalAccessor.cs:line 58&#xD;
+   at Gaode.Infrastructure.Devices.Plc.LatestProtocolPlcDevice.ObserveAxisClosures(SignalValues values, Int64 sampledEpoch) in D:\gaode\backend\src\Gaode.Infrastructure\Devices\Plc\LatestProtocolPlcDevice.Handshakes.cs:line 44&#xD;
+   at Gaode.Infrastructure.Devices.Plc.LatestProtocolPlcDevice.ReadRoundAsync(AcquisitionGroup group, Int32 generation, Int64 sampledEpoch, Int64 due, Boolean demand, Int64 awakened, CancellationToken ct) in D:\gaode\backend\src\Gaode.Infrastructure\Devices\Plc\LatestProtocolPlcDevice.Polling.cs:line 177&#xD;
+   at Gaode.Infrastructure.Devices.Plc.LatestProtocolPlcDevice.StartAsync(CancellationToken cancellationToken) in D:\gaode\backend\src\Gaode.Infrastructure\Devices\Plc\LatestProtocolPlcDevice.cs:line 150&#xD;
+   at Gaode.Communication.Tests.SiteOperationHandshakeTests.StartupAwayFromSafeZeroDoesNotSendStartOrMotion() in D:\gaode\backend\tests\Gaode.Communication.Tests\SiteOperationHandshakeTests.cs:line 143&#xD;
+   at Gaode.Communication.Tests.SiteOperationHandshakeTests.StartupAwayFromSafeZeroDoesNotSendStartOrMotion() in D:\gaode\backend\tests\Gaode.Communication.Tests\SiteOperationHandshakeTests.cs:line 147&#xD;
+   at Gaode.Communication.Tests.SiteOperationHandshakeTests.StartupAwayFromSafeZeroDoesNotSendStartOrMotion() in D:\gaode\backend\tests\Gaode.Communication.Tests\SiteOperationHandshakeTests.cs:line 147&#xD;
+   at Gaode.Communication.Tests.SiteOperationHandshakeTests.StartupAwayFromSafeZeroDoesNotSendStartOrMotion() in D:\gaode\backend\tests\Gaode.Communication.Tests\SiteOperationHandshakeTests.cs:line 147&#xD;
+--- End of stack trace from previous location ---</StackTrace>
+        </ErrorInfo>
+      </Output>
+    </UnitTestResult>
+    <UnitTestResult executionId="7e660a99-e5da-412f-8c2a-162dd78de096" testId="47cace73-f00c-f337-0a02-9a2cc1bf51a8" testName="Gaode.Communication.Tests.Devices.HandshakeClosureTests.NoClearTimeoutAndLateZeroNeverAuthorizeAnotherRequest" computerName="DEMO" duration="00:00:02.2597600" startTime="2026-10-08T10:37:02.3262382+08:00" endTime="2026-10-08T10:37:04.5859669+08:00" testType="13cdc9d9-ddb5-4fa4-a97d-d965ccfc6d4b" outcome="Passed" testListId="8c84fa94-04c1-424b-9868-57a2d4851a1d" relativeResultsDirectory="7e660a99-e5da-412f-8c2a-162dd78de096" />
+    <UnitTestResult executionId="41da9ffe-5a85-41c4-87c6-932034289b95" testId="e079763c-525f-3552-0911-348a04c49a5c" testName="Gaode.Communication.Tests.SiteProtocolAdaptationTests.SiteAlarmZeroNeverOverridesCurtainDoorOrIndependentFaultAndUnknownSafetyNeverMoves" computerName="DEMO" duration="00:00:02.0269396" startTime="2026-10-08T10:36:49.1382331+08:00" endTime="2026-10-08T10:36:51.1652103+08:00" testType="13cdc9d9-ddb5-4fa4-a97d-d965ccfc6d4b" outcome="Passed" testListId="8c84fa94-04c1-424b-9868-57a2d4851a1d" relativeResultsDirectory="41da9ffe-5a85-41c4-87c6-932034289b95" />
+  </Results>
+  <TestDefinitions>
+    <UnitTest name="Gaode.Communication.Tests.Devices.SamePositionTests.StaticPositionWithoutCurrentClosureMustActuallyDispatch(cause: &quot;reset&quot;)" storage="d:\gaode\backend\tests\gaode.communication.tests\bin\debug\net10.0\gaode.communication.tests.dll" id="fa4d4887-c499-e285-2f8d-768e6554fc22">
+      <Execution id="5c4ba95b-9bfb-403e-b5e4-3a027ff34246" />
+      <TestMethod codeBase="D:\gaode\backend\tests\Gaode.Communication.Tests\bin\Debug\net10.0\Gaode.Communication.Tests.dll" adapterTypeName="executor://xunit/VsTestRunner3/netcore/" className="Gaode.Communication.Tests.Devices.SamePositionTests" name="StaticPositionWithoutCurrentClosureMustActuallyDispatch" />
+    </UnitTest>
+    <UnitTest name="Gaode.Communication.Tests.Devices.HandshakeClosureTests.DelayedClearHoldsOwnershipAndPreservesArrivalEvidence" storage="d:\gaode\backend\tests\gaode.communication.tests\bin\debug\net10.0\gaode.communication.tests.dll" id="2dd942b7-93ed-b025-8709-5ea78f33b167">
+      <Execution id="4ff08399-9034-474b-9db2-e3a04a1f6375" />
+      <TestMethod codeBase="D:\gaode\backend\tests\Gaode.Communication.Tests\bin\Debug\net10.0\Gaode.Communication.Tests.dll" adapterTypeName="executor://xunit/VsTestRunner3/netcore/" className="Gaode.Communication.Tests.Devices.HandshakeClosureTests" name="DelayedClearHoldsOwnershipAndPreservesArrivalEvidence" />
+    </UnitTest>
+    <UnitTest name="Gaode.Communication.Tests.Devices.HandshakeClosureTests.TransitionOwnsDeviceUntilRealSqliteSaveReceipt(failReceipt: False, puttingBack: False)" storage="d:\gaode\backend\tests\gaode.communication.tests\bin\debug\net10.0\gaode.communication.tests.dll" id="7923ee32-0c4b-d942-01cc-b423129530c3">
+      <Execution id="9c3946ec-593c-4a24-a1bb-e621e31c01ac" />
+      <TestMethod codeBase="D:\gaode\backend\tests\Gaode.Communication.Tests\bin\Debug\net10.0\Gaode.Communication.Tests.dll" adapterTypeName="executor://xunit/VsTestRunner3/netcore/" className="Gaode.Communication.Tests.Devices.HandshakeClosureTests" name="TransitionOwnsDeviceUntilRealSqliteSaveReceipt" />
+    </UnitTest>
+    <UnitTest name="Gaode.Communication.Tests.Devices.SamePositionTests.RepeatedTargetsReuseOnlySatisfiedAxes(x: 11, y: 22, z: 33, expected: &quot;&quot;)" storage="d:\gaode\backend\tests\gaode.communication.tests\bin\debug\net10.0\gaode.communication.tests.dll" id="3c5d4162-ff76-8c58-c986-e3f55b02d763">
+      <Execution id="65e10adf-f8c7-4e0a-a60c-fbf09c6e1dd6" />
+      <TestMethod codeBase="D:\gaode\backend\tests\Gaode.Communication.Tests\bin\Debug\net10.0\Gaode.Communication.Tests.dll" adapterTypeName="executor://xunit/VsTestRunner3/netcore/" className="Gaode.Communication.Tests.Devices.SamePositionTests" name="RepeatedTargetsReuseOnlySatisfiedAxes" />
+    </UnitTest>
+    <UnitTest name="Gaode.Communication.Tests.Devices.HandshakeClosureTests.TransitionOwnsDeviceUntilRealSqliteSaveReceipt(failReceipt: False, puttingBack: True)" storage="d:\gaode\backend\tests\gaode.communication.tests\bin\debug\net10.0\gaode.communication.tests.dll" id="f519da79-9063-21d2-dfcf-37386682c5c3">
+      <Execution id="9c7123df-bde7-403d-bb6e-84b9d451016a" />
+      <TestMethod codeBase="D:\gaode\backend\tests\Gaode.Communication.Tests\bin\Debug\net10.0\Gaode.Communication.Tests.dll" adapterTypeName="executor://xunit/VsTestRunner3/netcore/" className="Gaode.Communication.Tests.Devices.HandshakeClosureTests" name="TransitionOwnsDeviceUntilRealSqliteSaveReceipt" />
+    </UnitTest>
+    <UnitTest name="Gaode.Communication.Tests.Devices.HandshakeClosureTests.InactiveGripperPlaceholderCannotDispatchWithoutSortingSafetyConfiguration" storage="d:\gaode\backend\tests\gaode.communication.tests\bin\debug\net10.0\gaode.communication.tests.dll" id="07217e56-4b70-bb63-0e83-6c80afc23639">
+      <Execution id="1377653b-21ce-46df-8b1d-acfe3bf8125b" />
+      <TestMethod codeBase="D:\gaode\backend\tests\Gaode.Communication.Tests\bin\Debug\net10.0\Gaode.Communication.Tests.dll" adapterTypeName="executor://xunit/VsTestRunner3/netcore/" className="Gaode.Communication.Tests.Devices.HandshakeClosureTests" name="InactiveGripperPlaceholderCannotDispatchWithoutSortingSafetyConfiguration" />
+    </UnitTest>
+    <UnitTest name="Gaode.Communication.Tests.Devices.HandshakeClosureTests.FlipHoldsParentUntilPutBackWithItsOwnWindow" storage="d:\gaode\backend\tests\gaode.communication.tests\bin\debug\net10.0\gaode.communication.tests.dll" id="3dd2ceb6-1280-4b99-9784-9725f0c0f505">
+      <Execution id="4448611b-c666-40d9-abc1-923ac9dccc68" />
+      <TestMethod codeBase="D:\gaode\backend\tests\Gaode.Communication.Tests\bin\Debug\net10.0\Gaode.Communication.Tests.dll" adapterTypeName="executor://xunit/VsTestRunner3/netcore/" className="Gaode.Communication.Tests.Devices.HandshakeClosureTests" name="FlipHoldsParentUntilPutBackWithItsOwnWindow" />
+    </UnitTest>
+    <UnitTest name="Gaode.Communication.Tests.Devices.HandshakeClosureTests.UnknownWriteOrDelayedTransportDoesNotReplay(fault: AxisClearWriteResponseLost)" storage="d:\gaode\backend\tests\gaode.communication.tests\bin\debug\net10.0\gaode.communication.tests.dll" id="48f10811-4144-df39-fe0c-1785342ff15b">
+      <Execution id="282b5771-5bc7-4805-acf8-0d68d9b83e9a" />
+      <TestMethod codeBase="D:\gaode\backend\tests\Gaode.Communication.Tests\bin\Debug\net10.0\Gaode.Communication.Tests.dll" adapterTypeName="executor://xunit/VsTestRunner3/netcore/" className="Gaode.Communication.Tests.Devices.HandshakeClosureTests" name="UnknownWriteOrDelayedTransportDoesNotReplay" />
+    </UnitTest>
+    <UnitTest name="Gaode.Communication.Tests.SiteOperationHandshakeTests.ResetWaitsForThisReadyFallingAndRisingEdgeBeforeClearingRequest" storage="d:\gaode\backend\tests\gaode.communication.tests\bin\debug\net10.0\gaode.communication.tests.dll" id="44233950-ca35-cc53-970b-991a3f8842f2">
+      <Execution id="b1566906-f4e7-46bc-ad1e-cf00b076e528" />
+      <TestMethod codeBase="D:\gaode\backend\tests\Gaode.Communication.Tests\bin\Debug\net10.0\Gaode.Communication.Tests.dll" adapterTypeName="executor://xunit/VsTestRunner3/netcore/" className="Gaode.Communication.Tests.SiteOperationHandshakeTests" name="ResetWaitsForThisReadyFallingAndRisingEdgeBeforeClearingRequest" />
+    </UnitTest>
+    <UnitTest name="Gaode.Communication.Tests.Devices.HandshakeClosureTests.SortingUsesActualCommitAndFinalSafetyBeforeParentClear(omitIntent: False)" storage="d:\gaode\backend\tests\gaode.communication.tests\bin\debug\net10.0\gaode.communication.tests.dll" id="403dd66a-9951-0caa-b652-3226f7c597bf">
+      <Execution id="96b397f4-0884-451c-9bd7-3cc8141fe1c9" />
+      <TestMethod codeBase="D:\gaode\backend\tests\Gaode.Communication.Tests\bin\Debug\net10.0\Gaode.Communication.Tests.dll" adapterTypeName="executor://xunit/VsTestRunner3/netcore/" className="Gaode.Communication.Tests.Devices.HandshakeClosureTests" name="SortingUsesActualCommitAndFinalSafetyBeforeParentClear" />
+    </UnitTest>
+    <UnitTest name="Gaode.Communication.Tests.Devices.HandshakeClosureTests.DisconnectWhileWaitingClearCannotStartSuccessor" storage="d:\gaode\backend\tests\gaode.communication.tests\bin\debug\net10.0\gaode.communication.tests.dll" id="91302dea-0254-6079-2828-0fc1bfdaa4d4">
+      <Execution id="2f3a2da3-75ee-441d-be2f-1c3f80bac757" />
+      <TestMethod codeBase="D:\gaode\backend\tests\Gaode.Communication.Tests\bin\Debug\net10.0\Gaode.Communication.Tests.dll" adapterTypeName="executor://xunit/VsTestRunner3/netcore/" className="Gaode.Communication.Tests.Devices.HandshakeClosureTests" name="DisconnectWhileWaitingClearCannotStartSuccessor" />
+    </UnitTest>
+    <UnitTest name="Gaode.Communication.Tests.Devices.HandshakeClosureTests.UnknownWriteOrDelayedTransportDoesNotReplay(fault: AxisWriteResponseLost)" storage="d:\gaode\backend\tests\gaode.communication.tests\bin\debug\net10.0\gaode.communication.tests.dll" id="274fa7c0-a5a9-d22f-e366-fd91b7732bc9">
+      <Execution id="b64d66e5-c362-4178-afa7-a2d3c50ac7d1" />
+      <TestMethod codeBase="D:\gaode\backend\tests\Gaode.Communication.Tests\bin\Debug\net10.0\Gaode.Communication.Tests.dll" adapterTypeName="executor://xunit/VsTestRunner3/netcore/" className="Gaode.Communication.Tests.Devices.HandshakeClosureTests" name="UnknownWriteOrDelayedTransportDoesNotReplay" />
+    </UnitTest>
+    <UnitTest name="Gaode.Communication.Tests.Devices.HandshakeClosureTests.ClearanceRejectsOldOrInvalidReads(fault: &quot;before-write&quot;)" storage="d:\gaode\backend\tests\gaode.communication.tests\bin\debug\net10.0\gaode.communication.tests.dll" id="9b2c71a5-148f-acf0-20a4-e4f44241ebeb">
+      <Execution id="b78df53b-70d8-4771-92ee-b9511684610d" />
+      <TestMethod codeBase="D:\gaode\backend\tests\Gaode.Communication.Tests\bin\Debug\net10.0\Gaode.Communication.Tests.dll" adapterTypeName="executor://xunit/VsTestRunner3/netcore/" className="Gaode.Communication.Tests.Devices.HandshakeClosureTests" name="ClearanceRejectsOldOrInvalidReads" />
+    </UnitTest>
+    <UnitTest name="Gaode.Communication.Tests.Devices.SamePositionTests.StaticPositionWithoutCurrentClosureMustActuallyDispatch(cause: &quot;drift&quot;)" storage="d:\gaode\backend\tests\gaode.communication.tests\bin\debug\net10.0\gaode.communication.tests.dll" id="1261ce25-b5c7-054b-0dc6-7e0278347d75">
+      <Execution id="523213b8-540f-4cc1-b00f-568ea8d2e1bd" />
+      <TestMethod codeBase="D:\gaode\backend\tests\Gaode.Communication.Tests\bin\Debug\net10.0\Gaode.Communication.Tests.dll" adapterTypeName="executor://xunit/VsTestRunner3/netcore/" className="Gaode.Communication.Tests.Devices.SamePositionTests" name="StaticPositionWithoutCurrentClosureMustActuallyDispatch" />
+    </UnitTest>
+    <UnitTest name="Gaode.Communication.Tests.SiteProtocolAdaptationTests.SiteAlarmZeroNeverOverridesCurtainDoorOrIndependentFaultAndUnknownSafetyNeverMoves" storage="d:\gaode\backend\tests\gaode.communication.tests\bin\debug\net10.0\gaode.communication.tests.dll" id="e079763c-525f-3552-0911-348a04c49a5c">
+      <Execution id="41da9ffe-5a85-41c4-87c6-932034289b95" />
+      <TestMethod codeBase="D:\gaode\backend\tests\Gaode.Communication.Tests\bin\Debug\net10.0\Gaode.Communication.Tests.dll" adapterTypeName="executor://xunit/VsTestRunner3/netcore/" className="Gaode.Communication.Tests.SiteProtocolAdaptationTests" name="SiteAlarmZeroNeverOverridesCurtainDoorOrIndependentFaultAndUnknownSafetyNeverMoves" />
+    </UnitTest>
+    <UnitTest name="Gaode.Communication.Tests.SiteOperationHandshakeTests.StartupAwayFromSafeZeroDoesNotSendStartOrMotion" storage="d:\gaode\backend\tests\gaode.communication.tests\bin\debug\net10.0\gaode.communication.tests.dll" id="e4f4f7b4-68aa-c002-c837-3c41c4632dda">
+      <Execution id="19f62ba4-24f6-4439-b0ab-562e60f9b19f" />
+      <TestMethod codeBase="D:\gaode\backend\tests\Gaode.Communication.Tests\bin\Debug\net10.0\Gaode.Communication.Tests.dll" adapterTypeName="executor://xunit/VsTestRunner3/netcore/" className="Gaode.Communication.Tests.SiteOperationHandshakeTests" name="StartupAwayFromSafeZeroDoesNotSendStartOrMotion" />
+    </UnitTest>
+    <UnitTest name="Gaode.Communication.Tests.SiteProtocolAdaptationTests.ConfirmedSiteDefinitionUsesRealTypesAndHasNoRetiredTeachingRequirement" storage="d:\gaode\backend\tests\gaode.communication.tests\bin\debug\net10.0\gaode.communication.tests.dll" id="f565c066-da1b-b4d2-a40f-7c3a23ba26af">
+      <Execution id="9738a7ad-bd3d-42e7-a59b-6844d60e0848" />
+      <TestMethod codeBase="D:\gaode\backend\tests\Gaode.Communication.Tests\bin\Debug\net10.0\Gaode.Communication.Tests.dll" adapterTypeName="executor://xunit/VsTestRunner3/netcore/" className="Gaode.Communication.Tests.SiteProtocolAdaptationTests" name="ConfirmedSiteDefinitionUsesRealTypesAndHasNoRetiredTeachingRequirement" />
+    </UnitTest>
+    <UnitTest name="Gaode.Communication.Tests.Devices.HandshakeClosureTests.SixAxisMappingsClearIndependentlyAndRepeat" storage="d:\gaode\backend\tests\gaode.communication.tests\bin\debug\net10.0\gaode.communication.tests.dll" id="c7d7d52d-ccc4-2f63-3800-5bd5d89e13a1">
+      <Execution id="80e5f023-93b5-43fe-b334-4b2087d3898f" />
+      <TestMethod codeBase="D:\gaode\backend\tests\Gaode.Communication.Tests\bin\Debug\net10.0\Gaode.Communication.Tests.dll" adapterTypeName="executor://xunit/VsTestRunner3/netcore/" className="Gaode.Communication.Tests.Devices.HandshakeClosureTests" name="SixAxisMappingsClearIndependentlyAndRepeat" />
+    </UnitTest>
+    <UnitTest name="Gaode.Communication.Tests.Devices.HandshakeClosureTests.ClearanceRejectsOldOrInvalidReads(fault: &quot;expired&quot;)" storage="d:\gaode\backend\tests\gaode.communication.tests\bin\debug\net10.0\gaode.communication.tests.dll" id="7d106857-df16-65f4-742a-0daf6223ecf0">
+      <Execution id="5065e0a5-9330-4c37-b50f-d036150cfe72" />
+      <TestMethod codeBase="D:\gaode\backend\tests\Gaode.Communication.Tests\bin\Debug\net10.0\Gaode.Communication.Tests.dll" adapterTypeName="executor://xunit/VsTestRunner3/netcore/" className="Gaode.Communication.Tests.Devices.HandshakeClosureTests" name="ClearanceRejectsOldOrInvalidReads" />
+    </UnitTest>
+    <UnitTest name="Gaode.Communication.Tests.SiteProtocolAdaptationTests.SiteTcpUsesRealModelEncodingIntPoseAndRejectsAlarmWritesBeforeDispatch" storage="d:\gaode\backend\tests\gaode.communication.tests\bin\debug\net10.0\gaode.communication.tests.dll" id="380d3b26-3591-42a0-c59f-c24ae4deb691">
+      <Execution id="45a375d2-2c5b-4c73-bda4-2b94486da2d7" />
+      <TestMethod codeBase="D:\gaode\backend\tests\Gaode.Communication.Tests\bin\Debug\net10.0\Gaode.Communication.Tests.dll" adapterTypeName="executor://xunit/VsTestRunner3/netcore/" className="Gaode.Communication.Tests.SiteProtocolAdaptationTests" name="SiteTcpUsesRealModelEncodingIntPoseAndRejectsAlarmWritesBeforeDispatch" />
+    </UnitTest>
+    <UnitTest name="Gaode.Communication.Tests.Devices.SamePositionTests.RepeatedTargetsReuseOnlySatisfiedAxes(x: 11, y: 23, z: 34, expected: &quot;Y,DetectionZ&quot;)" storage="d:\gaode\backend\tests\gaode.communication.tests\bin\debug\net10.0\gaode.communication.tests.dll" id="1c4b9ec4-0ab4-2e40-1081-06d4bf82c5ea">
+      <Execution id="3570e473-ebc0-4cd2-859b-125808156168" />
+      <TestMethod codeBase="D:\gaode\backend\tests\Gaode.Communication.Tests\bin\Debug\net10.0\Gaode.Communication.Tests.dll" adapterTypeName="executor://xunit/VsTestRunner3/netcore/" className="Gaode.Communication.Tests.Devices.SamePositionTests" name="RepeatedTargetsReuseOnlySatisfiedAxes" />
+    </UnitTest>
+    <UnitTest name="Gaode.Communication.Tests.SiteOperationHandshakeTests.ResetOldReadyOneTimesOutWithoutClearingOrReplaying" storage="d:\gaode\backend\tests\gaode.communication.tests\bin\debug\net10.0\gaode.communication.tests.dll" id="6fd6dff2-3cef-3a00-e37d-2993c16ff439">
+      <Execution id="dd77cb0f-50c6-4013-82c5-6e730ff9cfba" />
+      <TestMethod codeBase="D:\gaode\backend\tests\Gaode.Communication.Tests\bin\Debug\net10.0\Gaode.Communication.Tests.dll" adapterTypeName="executor://xunit/VsTestRunner3/netcore/" className="Gaode.Communication.Tests.SiteOperationHandshakeTests" name="ResetOldReadyOneTimesOutWithoutClearingOrReplaying" />
+    </UnitTest>
+    <UnitTest name="Gaode.Communication.Tests.Devices.HandshakeClosureTests.TransitionOwnsDeviceUntilRealSqliteSaveReceipt(failReceipt: True, puttingBack: False)" storage="d:\gaode\backend\tests\gaode.communication.tests\bin\debug\net10.0\gaode.communication.tests.dll" id="dd0771af-630c-084d-5774-5c6b7e29d385">
+      <Execution id="4ff63259-b69c-4dc1-8385-9eebe44cb6c3" />
+      <TestMethod codeBase="D:\gaode\backend\tests\Gaode.Communication.Tests\bin\Debug\net10.0\Gaode.Communication.Tests.dll" adapterTypeName="executor://xunit/VsTestRunner3/netcore/" className="Gaode.Communication.Tests.Devices.HandshakeClosureTests" name="TransitionOwnsDeviceUntilRealSqliteSaveReceipt" />
+    </UnitTest>
+    <UnitTest name="Gaode.Communication.Tests.Devices.HandshakeClosureTests.SortingUsesActualCommitAndFinalSafetyBeforeParentClear(omitIntent: True)" storage="d:\gaode\backend\tests\gaode.communication.tests\bin\debug\net10.0\gaode.communication.tests.dll" id="d8dbd12e-c2dd-6023-e8cd-c93c15acfba2">
+      <Execution id="7d1e8c15-9d26-4668-a93f-e9330811e685" />
+      <TestMethod codeBase="D:\gaode\backend\tests\Gaode.Communication.Tests\bin\Debug\net10.0\Gaode.Communication.Tests.dll" adapterTypeName="executor://xunit/VsTestRunner3/netcore/" className="Gaode.Communication.Tests.Devices.HandshakeClosureTests" name="SortingUsesActualCommitAndFinalSafetyBeforeParentClear" />
+    </UnitTest>
+    <UnitTest name="Gaode.Communication.Tests.SiteOperationHandshakeTests.StartClearsAfterFullActualXYAndZClosureAndSameCoordinateReuseStillWorks" storage="d:\gaode\backend\tests\gaode.communication.tests\bin\debug\net10.0\gaode.communication.tests.dll" id="a5ace3c4-9a69-d270-377a-91a5c934e8eb">
+      <Execution id="cce6f9d1-7238-4dba-b8df-1dcdde140aae" />
+      <TestMethod codeBase="D:\gaode\backend\tests\Gaode.Communication.Tests\bin\Debug\net10.0\Gaode.Communication.Tests.dll" adapterTypeName="executor://xunit/VsTestRunner3/netcore/" className="Gaode.Communication.Tests.SiteOperationHandshakeTests" name="StartClearsAfterFullActualXYAndZClosureAndSameCoordinateReuseStillWorks" />
+    </UnitTest>
+    <UnitTest name="Gaode.Communication.Tests.SiteOperationHandshakeTests.SoftStopRequestsStopWithoutResetOrHomingAndHoldsUnknown" storage="d:\gaode\backend\tests\gaode.communication.tests\bin\debug\net10.0\gaode.communication.tests.dll" id="f8539f2b-aa75-b463-1039-7e501d211002">
+      <Execution id="57b15b33-1ebf-4297-86b8-a476a43f5964" />
+      <TestMethod codeBase="D:\gaode\backend\tests\Gaode.Communication.Tests\bin\Debug\net10.0\Gaode.Communication.Tests.dll" adapterTypeName="executor://xunit/VsTestRunner3/netcore/" className="Gaode.Communication.Tests.SiteOperationHandshakeTests" name="SoftStopRequestsStopWithoutResetOrHomingAndHoldsUnknown" />
+    </UnitTest>
+    <UnitTest name="Gaode.Communication.Tests.Devices.SamePositionTests.RepeatedTargetsReuseOnlySatisfiedAxes(x: 12, y: 22, z: 33, expected: &quot;X&quot;)" storage="d:\gaode\backend\tests\gaode.communication.tests\bin\debug\net10.0\gaode.communication.tests.dll" id="47675aff-3a4d-eeb6-cf81-89be75b16f06">
+      <Execution id="9b902098-2a80-440e-a0d1-3f9006f1c2bd" />
+      <TestMethod codeBase="D:\gaode\backend\tests\Gaode.Communication.Tests\bin\Debug\net10.0\Gaode.Communication.Tests.dll" adapterTypeName="executor://xunit/VsTestRunner3/netcore/" className="Gaode.Communication.Tests.Devices.SamePositionTests" name="RepeatedTargetsReuseOnlySatisfiedAxes" />
+    </UnitTest>
+    <UnitTest name="Gaode.Communication.Tests.Devices.HandshakeClosureTests.NoClearTimeoutAndLateZeroNeverAuthorizeAnotherRequest" storage="d:\gaode\backend\tests\gaode.communication.tests\bin\debug\net10.0\gaode.communication.tests.dll" id="47cace73-f00c-f337-0a02-9a2cc1bf51a8">
+      <Execution id="7e660a99-e5da-412f-8c2a-162dd78de096" />
+      <TestMethod codeBase="D:\gaode\backend\tests\Gaode.Communication.Tests\bin\Debug\net10.0\Gaode.Communication.Tests.dll" adapterTypeName="executor://xunit/VsTestRunner3/netcore/" className="Gaode.Communication.Tests.Devices.HandshakeClosureTests" name="NoClearTimeoutAndLateZeroNeverAuthorizeAnotherRequest" />
+    </UnitTest>
+    <UnitTest name="Gaode.Communication.Tests.Devices.HandshakeClosureTests.UnknownWriteOrDelayedTransportDoesNotReplay(fault: AxisResponseDelayed)" storage="d:\gaode\backend\tests\gaode.communication.tests\bin\debug\net10.0\gaode.communication.tests.dll" id="427fb3d9-6aa1-ee38-7f22-3d27174b0f47">
+      <Execution id="31419081-e8a6-42fc-93dc-a666ac317ce6" />
+      <TestMethod codeBase="D:\gaode\backend\tests\Gaode.Communication.Tests\bin\Debug\net10.0\Gaode.Communication.Tests.dll" adapterTypeName="executor://xunit/VsTestRunner3/netcore/" className="Gaode.Communication.Tests.Devices.HandshakeClosureTests" name="UnknownWriteOrDelayedTransportDoesNotReplay" />
+    </UnitTest>
+    <UnitTest name="Gaode.Communication.Tests.Devices.HandshakeClosureTests.TransitionOwnsDeviceUntilRealSqliteSaveReceipt(failReceipt: True, puttingBack: True)" storage="d:\gaode\backend\tests\gaode.communication.tests\bin\debug\net10.0\gaode.communication.tests.dll" id="66a52e9f-c6d7-f433-1542-ed9d67c24f2c">
+      <Execution id="e5ddb3ee-006c-4f41-8d40-74a17ede8081" />
+      <TestMethod codeBase="D:\gaode\backend\tests\Gaode.Communication.Tests\bin\Debug\net10.0\Gaode.Communication.Tests.dll" adapterTypeName="executor://xunit/VsTestRunner3/netcore/" className="Gaode.Communication.Tests.Devices.HandshakeClosureTests" name="TransitionOwnsDeviceUntilRealSqliteSaveReceipt" />
+    </UnitTest>
+    <UnitTest name="Gaode.Communication.Tests.Devices.HandshakeClosureTests.ClearanceRejectsOldOrInvalidReads(fault: &quot;wrong-epoch&quot;)" storage="d:\gaode\backend\tests\gaode.communication.tests\bin\debug\net10.0\gaode.communication.tests.dll" id="0984ea54-3413-17c0-33aa-54984872cad2">
+      <Execution id="d7acc77a-4fd6-43de-a0da-0cd3059cd703" />
+      <TestMethod codeBase="D:\gaode\backend\tests\Gaode.Communication.Tests\bin\Debug\net10.0\Gaode.Communication.Tests.dll" adapterTypeName="executor://xunit/VsTestRunner3/netcore/" className="Gaode.Communication.Tests.Devices.HandshakeClosureTests" name="ClearanceRejectsOldOrInvalidReads" />
+    </UnitTest>
+    <UnitTest name="Gaode.Communication.Tests.Devices.SamePositionTests.StaticPositionWithoutCurrentClosureMustActuallyDispatch(cause: &quot;initial&quot;)" storage="d:\gaode\backend\tests\gaode.communication.tests\bin\debug\net10.0\gaode.communication.tests.dll" id="33b7965e-168e-f3cd-2ab0-1b9073b87661">
+      <Execution id="83a61d1f-b30d-4bef-a812-a7a771a35f86" />
+      <TestMethod codeBase="D:\gaode\backend\tests\Gaode.Communication.Tests\bin\Debug\net10.0\Gaode.Communication.Tests.dll" adapterTypeName="executor://xunit/VsTestRunner3/netcore/" className="Gaode.Communication.Tests.Devices.SamePositionTests" name="StaticPositionWithoutCurrentClosureMustActuallyDispatch" />
+    </UnitTest>
+  </TestDefinitions>
+  <TestEntries>
+    <TestEntry testId="f519da79-9063-21d2-dfcf-37386682c5c3" executionId="9c7123df-bde7-403d-bb6e-84b9d451016a" testListId="8c84fa94-04c1-424b-9868-57a2d4851a1d" />
+    <TestEntry testId="f8539f2b-aa75-b463-1039-7e501d211002" executionId="57b15b33-1ebf-4297-86b8-a476a43f5964" testListId="8c84fa94-04c1-424b-9868-57a2d4851a1d" />
+    <TestEntry testId="2dd942b7-93ed-b025-8709-5ea78f33b167" executionId="4ff08399-9034-474b-9db2-e3a04a1f6375" testListId="8c84fa94-04c1-424b-9868-57a2d4851a1d" />
+    <TestEntry testId="1c4b9ec4-0ab4-2e40-1081-06d4bf82c5ea" executionId="3570e473-ebc0-4cd2-859b-125808156168" testListId="8c84fa94-04c1-424b-9868-57a2d4851a1d" />
+    <TestEntry testId="fa4d4887-c499-e285-2f8d-768e6554fc22" executionId="5c4ba95b-9bfb-403e-b5e4-3a027ff34246" testListId="8c84fa94-04c1-424b-9868-57a2d4851a1d" />
+    <TestEntry testId="7d106857-df16-65f4-742a-0daf6223ecf0" executionId="5065e0a5-9330-4c37-b50f-d036150cfe72" testListId="8c84fa94-04c1-424b-9868-57a2d4851a1d" />
+    <TestEntry testId="9b2c71a5-148f-acf0-20a4-e4f44241ebeb" executionId="b78df53b-70d8-4771-92ee-b9511684610d" testListId="8c84fa94-04c1-424b-9868-57a2d4851a1d" />
+    <TestEntry testId="66a52e9f-c6d7-f433-1542-ed9d67c24f2c" executionId="e5ddb3ee-006c-4f41-8d40-74a17ede8081" testListId="8c84fa94-04c1-424b-9868-57a2d4851a1d" />
+    <TestEntry testId="f565c066-da1b-b4d2-a40f-7c3a23ba26af" executionId="9738a7ad-bd3d-42e7-a59b-6844d60e0848" testListId="8c84fa94-04c1-424b-9868-57a2d4851a1d" />
+    <TestEntry testId="dd0771af-630c-084d-5774-5c6b7e29d385" executionId="4ff63259-b69c-4dc1-8385-9eebe44cb6c3" testListId="8c84fa94-04c1-424b-9868-57a2d4851a1d" />
+    <TestEntry testId="c7d7d52d-ccc4-2f63-3800-5bd5d89e13a1" executionId="80e5f023-93b5-43fe-b334-4b2087d3898f" testListId="8c84fa94-04c1-424b-9868-57a2d4851a1d" />
+    <TestEntry testId="1261ce25-b5c7-054b-0dc6-7e0278347d75" executionId="523213b8-540f-4cc1-b00f-568ea8d2e1bd" testListId="8c84fa94-04c1-424b-9868-57a2d4851a1d" />
+    <TestEntry testId="47675aff-3a4d-eeb6-cf81-89be75b16f06" executionId="9b902098-2a80-440e-a0d1-3f9006f1c2bd" testListId="8c84fa94-04c1-424b-9868-57a2d4851a1d" />
+    <TestEntry testId="274fa7c0-a5a9-d22f-e366-fd91b7732bc9" executionId="b64d66e5-c362-4178-afa7-a2d3c50ac7d1" testListId="8c84fa94-04c1-424b-9868-57a2d4851a1d" />
+    <TestEntry testId="0984ea54-3413-17c0-33aa-54984872cad2" executionId="d7acc77a-4fd6-43de-a0da-0cd3059cd703" testListId="8c84fa94-04c1-424b-9868-57a2d4851a1d" />
+    <TestEntry testId="403dd66a-9951-0caa-b652-3226f7c597bf" executionId="96b397f4-0884-451c-9bd7-3cc8141fe1c9" testListId="8c84fa94-04c1-424b-9868-57a2d4851a1d" />
+    <TestEntry testId="33b7965e-168e-f3cd-2ab0-1b9073b87661" executionId="83a61d1f-b30d-4bef-a812-a7a771a35f86" testListId="8c84fa94-04c1-424b-9868-57a2d4851a1d" />
+    <TestEntry testId="07217e56-4b70-bb63-0e83-6c80afc23639" executionId="1377653b-21ce-46df-8b1d-acfe3bf8125b" testListId="8c84fa94-04c1-424b-9868-57a2d4851a1d" />
+    <TestEntry testId="44233950-ca35-cc53-970b-991a3f8842f2" executionId="b1566906-f4e7-46bc-ad1e-cf00b076e528" testListId="8c84fa94-04c1-424b-9868-57a2d4851a1d" />
+    <TestEntry testId="3dd2ceb6-1280-4b99-9784-9725f0c0f505" executionId="4448611b-c666-40d9-abc1-923ac9dccc68" testListId="8c84fa94-04c1-424b-9868-57a2d4851a1d" />
+    <TestEntry testId="91302dea-0254-6079-2828-0fc1bfdaa4d4" executionId="2f3a2da3-75ee-441d-be2f-1c3f80bac757" testListId="8c84fa94-04c1-424b-9868-57a2d4851a1d" />
+    <TestEntry testId="d8dbd12e-c2dd-6023-e8cd-c93c15acfba2" executionId="7d1e8c15-9d26-4668-a93f-e9330811e685" testListId="8c84fa94-04c1-424b-9868-57a2d4851a1d" />
+    <TestEntry testId="6fd6dff2-3cef-3a00-e37d-2993c16ff439" executionId="dd77cb0f-50c6-4013-82c5-6e730ff9cfba" testListId="8c84fa94-04c1-424b-9868-57a2d4851a1d" />
+    <TestEntry testId="48f10811-4144-df39-fe0c-1785342ff15b" executionId="282b5771-5bc7-4805-acf8-0d68d9b83e9a" testListId="8c84fa94-04c1-424b-9868-57a2d4851a1d" />
+    <TestEntry testId="427fb3d9-6aa1-ee38-7f22-3d27174b0f47" executionId="31419081-e8a6-42fc-93dc-a666ac317ce6" testListId="8c84fa94-04c1-424b-9868-57a2d4851a1d" />
+    <TestEntry testId="a5ace3c4-9a69-d270-377a-91a5c934e8eb" executionId="cce6f9d1-7238-4dba-b8df-1dcdde140aae" testListId="8c84fa94-04c1-424b-9868-57a2d4851a1d" />
+    <TestEntry testId="3c5d4162-ff76-8c58-c986-e3f55b02d763" executionId="65e10adf-f8c7-4e0a-a60c-fbf09c6e1dd6" testListId="8c84fa94-04c1-424b-9868-57a2d4851a1d" />
+    <TestEntry testId="7923ee32-0c4b-d942-01cc-b423129530c3" executionId="9c3946ec-593c-4a24-a1bb-e621e31c01ac" testListId="8c84fa94-04c1-424b-9868-57a2d4851a1d" />
+    <TestEntry testId="380d3b26-3591-42a0-c59f-c24ae4deb691" executionId="45a375d2-2c5b-4c73-bda4-2b94486da2d7" testListId="8c84fa94-04c1-424b-9868-57a2d4851a1d" />
+    <TestEntry testId="e4f4f7b4-68aa-c002-c837-3c41c4632dda" executionId="19f62ba4-24f6-4439-b0ab-562e60f9b19f" testListId="8c84fa94-04c1-424b-9868-57a2d4851a1d" />
+    <TestEntry testId="47cace73-f00c-f337-0a02-9a2cc1bf51a8" executionId="7e660a99-e5da-412f-8c2a-162dd78de096" testListId="8c84fa94-04c1-424b-9868-57a2d4851a1d" />
+    <TestEntry testId="e079763c-525f-3552-0911-348a04c49a5c" executionId="41da9ffe-5a85-41c4-87c6-932034289b95" testListId="8c84fa94-04c1-424b-9868-57a2d4851a1d" />
+  </TestEntries>
+  <TestLists>
+    <TestList name="列表中未列出的结果" id="8c84fa94-04c1-424b-9868-57a2d4851a1d" />
+    <TestList name="所有已加载的结果" id="19431567-8539-422a-85d7-44ee4e166bda" />
+  </TestLists>
+  <ResultSummary outcome="Failed">
+    <Counters total="32" executed="32" passed="27" failed="5" error="0" timeout="0" aborted="0" inconclusive="0" passedButRunAborted="0" notRunnable="0" notExecuted="0" disconnected="0" warning="0" completed="0" inProgress="0" pending="0" />
+    <Output>
+      <StdOut>[xUnit.net 00:00:00.00] xUnit.net VSTest Adapter v3.1.5+1b188a7b0a (64-bit .NET 10.0.12)&#xD;
+[xUnit.net 00:00:00.11]   Discovering: Gaode.Communication.Tests&#xD;
+[xUnit.net 00:00:00.14]   Discovered:  Gaode.Communication.Tests&#xD;
+[xUnit.net 00:00:00.16]   Starting:    Gaode.Communication.Tests&#xD;
+[xUnit.net 00:00:39.87]       System.Collections.Generic.KeyNotFoundException : The given key 'ManualZoneOccupied' was not present in the dictionary.&#xD;
+[xUnit.net 00:00:39.87]       Stack Trace:&#xD;
+[xUnit.net 00:00:39.87]            at System.Collections.Generic.Dictionary`2.get_Item(TKey key)&#xD;
+[xUnit.net 00:00:39.87]         D:\gaode\backend\src\Gaode.Infrastructure\Devices\Plc\PlcSignalAccessor.cs(57,0): at Gaode.Infrastructure.Devices.Plc.SignalValues.Word(SignalId id)&#xD;
+[xUnit.net 00:00:39.87]         D:\gaode\backend\src\Gaode.Infrastructure\Devices\Plc\PlcSignalAccessor.cs(58,0): at Gaode.Infrastructure.Devices.Plc.SignalValues.Bit(SignalId id)&#xD;
+[xUnit.net 00:00:39.87]         D:\gaode\backend\src\Gaode.Infrastructure\Devices\Plc\LatestProtocolPlcDevice.Handshakes.cs(44,0): at Gaode.Infrastructure.Devices.Plc.LatestProtocolPlcDevice.ObserveAxisClosures(SignalValues values, Int64 sampledEpoch)&#xD;
+[xUnit.net 00:00:39.87]         D:\gaode\backend\src\Gaode.Infrastructure\Devices\Plc\LatestProtocolPlcDevice.Polling.cs(177,0): at Gaode.Infrastructure.Devices.Plc.LatestProtocolPlcDevice.ReadRoundAsync(AcquisitionGroup group, Int32 generation, Int64 sampledEpoch, Int64 due, Boolean demand, Int64 awakened, CancellationToken ct)&#xD;
+[xUnit.net 00:00:39.87]         D:\gaode\backend\src\Gaode.Infrastructure\Devices\Plc\LatestProtocolPlcDevice.cs(150,0): at Gaode.Infrastructure.Devices.Plc.LatestProtocolPlcDevice.StartAsync(CancellationToken cancellationToken)&#xD;
+[xUnit.net 00:00:39.87]         D:\gaode\backend\tests\Gaode.Communication.Tests\SiteOperationHandshakeTests.cs(80,0): at Gaode.Communication.Tests.SiteOperationHandshakeTests.ResetWaitsForThisReadyFallingAndRisingEdgeBeforeClearingRequest()&#xD;
+[xUnit.net 00:00:39.87]         D:\gaode\backend\tests\Gaode.Communication.Tests\SiteOperationHandshakeTests.cs(91,0): at Gaode.Communication.Tests.SiteOperationHandshakeTests.ResetWaitsForThisReadyFallingAndRisingEdgeBeforeClearingRequest()&#xD;
+[xUnit.net 00:00:39.87]         D:\gaode\backend\tests\Gaode.Communication.Tests\SiteOperationHandshakeTests.cs(91,0): at Gaode.Communication.Tests.SiteOperationHandshakeTests.ResetWaitsForThisReadyFallingAndRisingEdgeBeforeClearingRequest()&#xD;
+[xUnit.net 00:00:39.87]         D:\gaode\backend\tests\Gaode.Communication.Tests\SiteOperationHandshakeTests.cs(91,0): at Gaode.Communication.Tests.SiteOperationHandshakeTests.ResetWaitsForThisReadyFallingAndRisingEdgeBeforeClearingRequest()&#xD;
+[xUnit.net 00:00:39.87]         --- End of stack trace from previous location ---&#xD;
+[xUnit.net 00:00:39.90]       System.Collections.Generic.KeyNotFoundException : The given key 'ManualZoneOccupied' was not present in the dictionary.&#xD;
+[xUnit.net 00:00:39.90]       Stack Trace:&#xD;
+[xUnit.net 00:00:39.90]            at System.Collections.Generic.Dictionary`2.get_Item(TKey key)&#xD;
+[xUnit.net 00:00:39.90]         D:\gaode\backend\src\Gaode.Infrastructure\Devices\Plc\PlcSignalAccessor.cs(57,0): at Gaode.Infrastructure.Devices.Plc.SignalValues.Word(SignalId id)&#xD;
+[xUnit.net 00:00:39.90]         D:\gaode\backend\src\Gaode.Infrastructure\Devices\Plc\PlcSignalAccessor.cs(58,0): at Gaode.Infrastructure.Devices.Plc.SignalValues.Bit(SignalId id)&#xD;
+[xUnit.net 00:00:39.90]         D:\gaode\backend\src\Gaode.Infrastructure\Devices\Plc\LatestProtocolPlcDevice.Handshakes.cs(44,0): at Gaode.Infrastructure.Devices.Plc.LatestProtocolPlcDevice.ObserveAxisClosures(SignalValues values, Int64 sampledEpoch)&#xD;
+[xUnit.net 00:00:39.90]         D:\gaode\backend\src\Gaode.Infrastructure\Devices\Plc\LatestProtocolPlcDevice.Polling.cs(177,0): at Gaode.Infrastructure.Devices.Plc.LatestProtocolPlcDevice.ReadRoundAsync(AcquisitionGroup group, Int32 generation, Int64 sampledEpoch, Int64 due, Boolean demand, Int64 awakened, CancellationToken ct)&#xD;
+[xUnit.net 00:00:39.90]         D:\gaode\backend\src\Gaode.Infrastructure\Devices\Plc\LatestProtocolPlcDevice.cs(150,0): at Gaode.Infrastructure.Devices.Plc.LatestProtocolPlcDevice.StartAsync(CancellationToken cancellationToken)&#xD;
+[xUnit.net 00:00:39.90]         D:\gaode\backend\tests\Gaode.Communication.Tests\SiteOperationHandshakeTests.cs(143,0): at Gaode.Communication.Tests.SiteOperationHandshakeTests.StartupAwayFromSafeZeroDoesNotSendStartOrMotion()&#xD;
+[xUnit.net 00:00:39.90]         D:\gaode\backend\tests\Gaode.Communication.Tests\SiteOperationHandshakeTests.cs(147,0): at Gaode.Communication.Tests.SiteOperationHandshakeTests.StartupAwayFromSafeZeroDoesNotSendStartOrMotion()&#xD;
+[xUnit.net 00:00:39.90]         D:\gaode\backend\tests\Gaode.Communication.Tests\SiteOperationHandshakeTests.cs(147,0): at Gaode.Communication.Tests.SiteOperationHandshakeTests.StartupAwayFromSafeZeroDoesNotSendStartOrMotion()&#xD;
+[xUnit.net 00:00:39.90]         D:\gaode\backend\tests\Gaode.Communication.Tests\SiteOperationHandshakeTests.cs(147,0): at Gaode.Communication.Tests.SiteOperationHandshakeTests.StartupAwayFromSafeZeroDoesNotSendStartOrMotion()&#xD;
+[xUnit.net 00:00:39.90]         --- End of stack trace from previous location ---&#xD;
+[xUnit.net 00:00:39.92]       System.Collections.Generic.KeyNotFoundException : The given key 'ManualZoneOccupied' was not present in the dictionary.&#xD;
+[xUnit.net 00:00:39.92]       Stack Trace:&#xD;
+[xUnit.net 00:00:39.92]            at System.Collections.Generic.Dictionary`2.get_Item(TKey key)&#xD;
+[xUnit.net 00:00:39.92]         D:\gaode\backend\src\Gaode.Infrastructure\Devices\Plc\PlcSignalAccessor.cs(57,0): at Gaode.Infrastructure.Devices.Plc.SignalValues.Word(SignalId id)&#xD;
+[xUnit.net 00:00:39.92]         D:\gaode\backend\src\Gaode.Infrastructure\Devices\Plc\PlcSignalAccessor.cs(58,0): at Gaode.Infrastructure.Devices.Plc.SignalValues.Bit(SignalId id)&#xD;
+[xUnit.net 00:00:39.92]         D:\gaode\backend\src\Gaode.Infrastructure\Devices\Plc\LatestProtocolPlcDevice.Handshakes.cs(44,0): at Gaode.Infrastructure.Devices.Plc.LatestProtocolPlcDevice.ObserveAxisClosures(SignalValues values, Int64 sampledEpoch)&#xD;
+[xUnit.net 00:00:39.92]         D:\gaode\backend\src\Gaode.Infrastructure\Devices\Plc\LatestProtocolPlcDevice.Polling.cs(177,0): at Gaode.Infrastructure.Devices.Plc.LatestProtocolPlcDevice.ReadRoundAsync(AcquisitionGroup group, Int32 generation, Int64 sampledEpoch, Int64 due, Boolean demand, Int64 awakened, CancellationToken ct)&#xD;
+[xUnit.net 00:00:39.92]         D:\gaode\backend\src\Gaode.Infrastructure\Devices\Plc\LatestProtocolPlcDevice.cs(150,0): at Gaode.Infrastructure.Devices.Plc.LatestProtocolPlcDevice.StartAsync(CancellationToken cancellationToken)&#xD;
+[xUnit.net 00:00:39.92]         D:\gaode\backend\tests\Gaode.Communication.Tests\SiteOperationHandshakeTests.cs(99,0): at Gaode.Communication.Tests.SiteOperationHandshakeTests.ResetOldReadyOneTimesOutWithoutClearingOrReplaying()&#xD;
+[xUnit.net 00:00:39.92]         D:\gaode\backend\tests\Gaode.Communication.Tests\SiteOperationHandshakeTests.cs(105,0): at Gaode.Communication.Tests.SiteOperationHandshakeTests.ResetOldReadyOneTimesOutWithoutClearingOrReplaying()&#xD;
+[xUnit.net 00:00:39.92]         D:\gaode\backend\tests\Gaode.Communication.Tests\SiteOperationHandshakeTests.cs(105,0): at Gaode.Communication.Tests.SiteOperationHandshakeTests.ResetOldReadyOneTimesOutWithoutClearingOrReplaying()&#xD;
+[xUnit.net 00:00:39.92]         D:\gaode\backend\tests\Gaode.Communication.Tests\SiteOperationHandshakeTests.cs(105,0): at Gaode.Communication.Tests.SiteOperationHandshakeTests.ResetOldReadyOneTimesOutWithoutClearingOrReplaying()&#xD;
+[xUnit.net 00:00:39.92]         --- End of stack trace from previous location ---&#xD;
+[xUnit.net 00:00:39.95]       System.Collections.Generic.KeyNotFoundException : The given key 'ManualZoneOccupied' was not present in the dictionary.&#xD;
+[xUnit.net 00:00:39.95]       Stack Trace:&#xD;
+[xUnit.net 00:00:39.95]            at System.Collections.Generic.Dictionary`2.get_Item(TKey key)&#xD;
+[xUnit.net 00:00:39.95]         D:\gaode\backend\src\Gaode.Infrastructure\Devices\Plc\PlcSignalAccessor.cs(57,0): at Gaode.Infrastructure.Devices.Plc.SignalValues.Word(SignalId id)&#xD;
+[xUnit.net 00:00:39.95]         D:\gaode\backend\src\Gaode.Infrastructure\Devices\Plc\PlcSignalAccessor.cs(58,0): at Gaode.Infrastructure.Devices.Plc.SignalValues.Bit(SignalId id)&#xD;
+[xUnit.net 00:00:39.95]         D:\gaode\backend\src\Gaode.Infrastructure\Devices\Plc\LatestProtocolPlcDevice.Handshakes.cs(44,0): at Gaode.Infrastructure.Devices.Plc.LatestProtocolPlcDevice.ObserveAxisClosures(SignalValues values, Int64 sampledEpoch)&#xD;
+[xUnit.net 00:00:39.95]         D:\gaode\backend\src\Gaode.Infrastructure\Devices\Plc\LatestProtocolPlcDevice.Polling.cs(177,0): at Gaode.Infrastructure.Devices.Plc.LatestProtocolPlcDevice.ReadRoundAsync(AcquisitionGroup group, Int32 generation, Int64 sampledEpoch, Int64 due, Boolean demand, Int64 awakened, CancellationToken ct)&#xD;
+[xUnit.net 00:00:39.95]         D:\gaode\backend\src\Gaode.Infrastructure\Devices\Plc\LatestProtocolPlcDevice.cs(150,0): at Gaode.Infrastructure.Devices.Plc.LatestProtocolPlcDevice.StartAsync(CancellationToken cancellationToken)&#xD;
+[xUnit.net 00:00:39.95]         D:\gaode\backend\tests\Gaode.Communication.Tests\SiteOperationHandshakeTests.cs(113,0): at Gaode.Communication.Tests.SiteOperationHandshakeTests.StartClearsAfterFullActualXYAndZClosureAndSameCoordinateReuseStillWorks()&#xD;
+[xUnit.net 00:00:39.95]         D:\gaode\backend\tests\Gaode.Communication.Tests\SiteOperationHandshakeTests.cs(135,0): at Gaode.Communication.Tests.SiteOperationHandshakeTests.StartClearsAfterFullActualXYAndZClosureAndSameCoordinateReuseStillWorks()&#xD;
+[xUnit.net 00:00:39.95]         D:\gaode\backend\tests\Gaode.Communication.Tests\SiteOperationHandshakeTests.cs(135,0): at Gaode.Communication.Tests.SiteOperationHandshakeTests.StartClearsAfterFullActualXYAndZClosureAndSameCoordinateReuseStillWorks()&#xD;
+[xUnit.net 00:00:39.95]         D:\gaode\backend\tests\Gaode.Communication.Tests\SiteOperationHandshakeTests.cs(135,0): at Gaode.Communication.Tests.SiteOperationHandshakeTests.StartClearsAfterFullActualXYAndZClosureAndSameCoordinateReuseStillWorks()&#xD;
+[xUnit.net 00:00:39.95]         --- End of stack trace from previous location ---&#xD;
+[xUnit.net 00:00:39.98]       System.Collections.Generic.KeyNotFoundException : The given key 'ManualZoneOccupied' was not present in the dictionary.&#xD;
+[xUnit.net 00:00:39.98]       Stack Trace:&#xD;
+[xUnit.net 00:00:39.98]            at System.Collections.Generic.Dictionary`2.get_Item(TKey key)&#xD;
+[xUnit.net 00:00:39.98]         D:\gaode\backend\src\Gaode.Infrastructure\Devices\Plc\PlcSignalAccessor.cs(57,0): at Gaode.Infrastructure.Devices.Plc.SignalValues.Word(SignalId id)&#xD;
+[xUnit.net 00:00:39.98]         D:\gaode\backend\src\Gaode.Infrastructure\Devices\Plc\PlcSignalAccessor.cs(58,0): at Gaode.Infrastructure.Devices.Plc.SignalValues.Bit(SignalId id)&#xD;
+[xUnit.net 00:00:39.98]         D:\gaode\backend\src\Gaode.Infrastructure\Devices\Plc\LatestProtocolPlcDevice.Handshakes.cs(44,0): at Gaode.Infrastructure.Devices.Plc.LatestProtocolPlcDevice.ObserveAxisClosures(SignalValues values, Int64 sampledEpoch)&#xD;
+[xUnit.net 00:00:39.98]         D:\gaode\backend\src\Gaode.Infrastructure\Devices\Plc\LatestProtocolPlcDevice.Polling.cs(177,0): at Gaode.Infrastructure.Devices.Plc.LatestProtocolPlcDevice.ReadRoundAsync(AcquisitionGroup group, Int32 generation, Int64 sampledEpoch, Int64 due, Boolean demand, Int64 awakened, CancellationToken ct)&#xD;
+[xUnit.net 00:00:39.98]         D:\gaode\backend\src\Gaode.Infrastructure\Devices\Plc\LatestProtocolPlcDevice.cs(150,0): at Gaode.Infrastructure.Devices.Plc.LatestProtocolPlcDevice.StartAsync(CancellationToken cancellationToken)&#xD;
+[xUnit.net 00:00:39.98]         D:\gaode\backend\tests\Gaode.Communication.Tests\SiteOperationHandshakeTests.cs(155,0): at Gaode.Communication.Tests.SiteOperationHandshakeTests.SoftStopRequestsStopWithoutResetOrHomingAndHoldsUnknown()&#xD;
+[xUnit.net 00:00:39.98]         D:\gaode\backend\tests\Gaode.Communication.Tests\SiteOperationHandshakeTests.cs(162,0): at Gaode.Communication.Tests.SiteOperationHandshakeTests.SoftStopRequestsStopWithoutResetOrHomingAndHoldsUnknown()&#xD;
+[xUnit.net 00:00:39.98]         D:\gaode\backend\tests\Gaode.Communication.Tests\SiteOperationHandshakeTests.cs(162,0): at Gaode.Communication.Tests.SiteOperationHandshakeTests.SoftStopRequestsStopWithoutResetOrHomingAndHoldsUnknown()&#xD;
+[xUnit.net 00:00:39.98]         D:\gaode\backend\tests\Gaode.Communication.Tests\SiteOperationHandshakeTests.cs(162,0): at Gaode.Communication.Tests.SiteOperationHandshakeTests.SoftStopRequestsStopWithoutResetOrHomingAndHoldsUnknown()&#xD;
+[xUnit.net 00:00:39.98]         --- End of stack trace from previous location ---&#xD;
+[xUnit.net 00:00:39.98]   Finished:    Gaode.Communication.Tests&#xD;
+</StdOut>
+    </Output>
+    <RunInfos>
+      <RunInfo computerName="DEMO" outcome="Error" timestamp="2026-10-08T10:37:28.7481377+08:00">
+        <Text>[xUnit.net 00:00:39.87]     Gaode.Communication.Tests.SiteOperationHandshakeTests.ResetWaitsForThisReadyFallingAndRisingEdgeBeforeClearingRequest [FAIL]</Text>
+      </RunInfo>
+      <RunInfo computerName="DEMO" outcome="Error" timestamp="2026-10-08T10:37:28.7760487+08:00">
+        <Text>[xUnit.net 00:00:39.90]     Gaode.Communication.Tests.SiteOperationHandshakeTests.StartupAwayFromSafeZeroDoesNotSendStartOrMotion [FAIL]</Text>
+      </RunInfo>
+      <RunInfo computerName="DEMO" outcome="Error" timestamp="2026-10-08T10:37:28.8029007+08:00">
+        <Text>[xUnit.net 00:00:39.92]     Gaode.Communication.Tests.SiteOperationHandshakeTests.ResetOldReadyOneTimesOutWithoutClearingOrReplaying [FAIL]</Text>
+      </RunInfo>
+      <RunInfo computerName="DEMO" outcome="Error" timestamp="2026-10-08T10:37:28.8307862+08:00">
+        <Text>[xUnit.net 00:00:39.95]     Gaode.Communication.Tests.SiteOperationHandshakeTests.StartClearsAfterFullActualXYAndZClosureAndSameCoordinateReuseStillWorks [FAIL]</Text>
+      </RunInfo>
+      <RunInfo computerName="DEMO" outcome="Error" timestamp="2026-10-08T10:37:28.8588156+08:00">
+        <Text>[xUnit.net 00:00:39.98]     Gaode.Communication.Tests.SiteOperationHandshakeTests.SoftStopRequestsStopWithoutResetOrHomingAndHoldsUnknown [FAIL]</Text>
+      </RunInfo>
+    </RunInfos>
+  </ResultSummary>
+</TestRun>

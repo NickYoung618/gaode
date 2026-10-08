@@ -45,7 +45,7 @@ public sealed class CommittedRecipePlanReader(ITraceQuery traces, IStageHandoffQ
             var inputs = frozen.Deserialize<FrozenExecutionInputs>(Json);
             if (inputs is null || !inputs.IsValid || inputs.RunId != runId || inputs.TrayId != handoff.Identity.TrayId ||
                 inputs.PlanRevision != handoff.PlanRevision || inputs.Plan.FCode != handoff.UniqueFCode ||
-                inputs.Plan.ScenarioId != scenarioId || inputs.Plan.Approval.Purpose != handoff.Identity.Purpose.ToString() ||
+                inputs.Plan.ScenarioId != scenarioId || !RecipeAdmission.MatchesRunPurpose(inputs, handoff.Identity.Purpose) ||
                 !inputs.Plan.Steps.Select(s => s.SlotId).OfType<string>().Distinct(StringComparer.Ordinal).Order(StringComparer.Ordinal)
                     .SequenceEqual(occupiedSlots.Order(StringComparer.Ordinal), StringComparer.Ordinal))
                 throw new InvalidOperationException("CommittedExecutionInputsMismatch");

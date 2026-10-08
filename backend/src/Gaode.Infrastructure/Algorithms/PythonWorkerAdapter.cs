@@ -4,11 +4,12 @@ using System.Text.Json;
 using Gaode.Application.Ports;
 using Gaode.Domain.Station01;
 using Gaode.Diagnostics;
+using Gaode.Application.Recipes;
 
 namespace Gaode.Infrastructure.Algorithms;
 
 /// <summary>Serializes Test calls over the one Host-owned worker process.</summary>
-public sealed class PythonWorkerAdapter : IAlgorithmPort
+public sealed class PythonWorkerAdapter : IAlgorithmPort, IAlgorithmCapabilityProvider
 {
     private readonly WorkerProcessSupervisor? supervisor;
     private readonly SemaphoreSlim calls = new(1, 1);
@@ -17,6 +18,11 @@ public sealed class PythonWorkerAdapter : IAlgorithmPort
     public ComponentExecutionOrigin Origin => supervisor is null ? ComponentExecutionOrigin.Unknown :
         new(ComponentEvidenceSource.Test, supervisor.Implementation?.Name ?? "PythonWorkerAdapter/1", "IndependentTestWorker");
     public string ImplementationReference => supervisor?.Implementation?.Reference ?? GetType().FullName!;
+    public IReadOnlyList<AlgorithmCapabilityDeclaration> AlgorithmCapabilities { get; } = [
+        new(AlgorithmPurpose.SingleDetection, "detection.single", "1.0", "image-quality/1", 1, "worker-request"),
+        new(AlgorithmPurpose.FaceFusion, "detection.fusion", "1.0", "face-quality/1", 2, "worker-request"),
+        new(AlgorithmPurpose.EntityCode, "code.raw-candidates", "1.0", "decoded-code/1", 1, "worker-request"),
+        new(AlgorithmPurpose.TrayPose, "tray.observation", "1.0", "tray-observation/2", 1, "worker-request") ];
     public bool InputsAndExecutionsReleased => calls.CurrentCount == 1 &&
         (Volatile.Read(ref unresolvedExecution) == 0 || supervisor?.HasExited == true);
     public PythonWorkerAdapter(WorkerProcessSupervisor? supervisor = null) => this.supervisor = supervisor;
