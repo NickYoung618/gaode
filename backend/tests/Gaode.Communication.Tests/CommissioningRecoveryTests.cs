@@ -87,7 +87,8 @@ public sealed class CommissioningRecoveryTests
     {
         internal string Root { get; } = Path.Combine(Environment.GetEnvironmentVariable("GAODE_RECOVERY_EVIDENCE") ??
             Path.GetTempPath(), "recovery-" + Guid.NewGuid().ToString("N"));
-        internal SiteProtocolTcpFixture Plc { get; } = new() { ExerciseConfirmedOperations = true, ReadyOnReset = 0 };
+        internal SiteProtocolTcpFixture Plc { get; } = new() {
+            ExerciseConfirmedOperations = true, ReadyOnReset = 0, PreserveIdleAxisFeedback = true };
         internal LatestProtocolPlcDevice Device { get; }
         internal TraceWriter Writer { get; }
         internal TraceQuery Query { get; }
@@ -163,10 +164,12 @@ public sealed class CommissioningRecoveryTests
         using var budget = new CancellationTokenSource(15000);
         await using var f = new Fixture(); await f.Seed(rehydrated, budget.Token);
         f.Plc.ReadyOnReset = 1;
+        foreach (var mb in new[] { 6040, 6042, 6044, 6046, 6048, 6060 }) f.Plc.SetWord(mb, 1);
         var result = await f.Recovery.ResetAsync("operator", budget.Token);
         Assert.Equal(0, f.Plc.ResetReadyZeroReads); Assert.True(f.Plc.ResetReadyOneReads > 0);
         Assert.Equal(0, f.Plc.Byte(2009));
         Assert.True(result.Reset && result.RecoveryClosed && result.ManualStartRequired);
+        foreach (var mb in new[] { 6040, 6042, 6044, 6046, 6048, 6060 }) Assert.Equal(1, f.Plc.Word(mb));
         var stored = await f.Query.GetRunAsync(f.RunId, budget.Token); Assert.Equal(TerminalOutcome.Cancelled, stored!.Terminal);
         var proof = CommissioningRecoveryService.ReadProof(stored, await f.Query.GetWritesAsync(f.RunId, budget.Token)); Assert.NotNull(proof);
         Assert.False(f.Lease.Unknown); Assert.Null(f.Lease.Owner);
@@ -205,16 +208,22 @@ public sealed class CommissioningRecoveryTests
         Assert.True(f.Lease.Unknown); Assert.Equal(f.RunId, f.Commands.PhysicalOwner);
         Assert.Equal(0, f.Plc.StartEdges); f.Evidence(new { failedSave = true, released = false });
     }
-    [Fact]
-    public async Task StaleFlipFeedbackBlocksRecoveryAndNewRun()
+    [Theory]
+    [InlineData(6050, 2)]
+    [InlineData(6052, 1)]
+    [InlineData(6040, 2)]
+    public async Task InvalidResetFeedbackBlocksRecoveryAndNewRun(int feedbackAddress, int feedback)
     {
         using var budget = new CancellationTokenSource(10000);
-        await using var f = new Fixture(); await f.Seed(true, budget.Token); f.Plc.SetWord(6050, 2);
+        await using var f = new Fixture(); await f.Seed(true, budget.Token); f.Plc.SetWord(feedbackAddress, (ushort)feedback);
         var operation = f.Recovery.ResetAsync("operator", budget.Token); await f.CompleteReset(budget.Token);
         await Assert.ThrowsAnyAsync<OperationCanceledException>(() => operation);
         Assert.Equal(TerminalOutcome.None, (await f.Query.GetRunAsync(f.RunId, budget.Token))!.Terminal);
         Assert.Equal(f.RunId, f.Commands.PhysicalOwner); Assert.Equal(0, f.Plc.StartEdges);
-        f.Evidence(new { staleFlipFeedback = true, released = false });
+        Assert.Equal(0, f.Plc.Byte(2009));
+        var log = File.ReadAllText(Path.Combine(f.Root, "runtime.log"));
+        Assert.Contains("AxisFeedbackValid", log); Assert.Contains("putBackFeedback", log);
+        f.Evidence(new { feedbackAddress, feedback, released = false });
     }
     [Fact]
     public async Task ReadyOneWithoutThisResetOrWithoutRestorationPolicyNeverPassesRecovery()

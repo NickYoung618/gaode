@@ -24,6 +24,8 @@ internal sealed class SiteProtocolTcpFixture : IAsyncDisposable
     internal int MotionEdges { get; private set; }
     internal bool KeepSoftStopAsserted { get; set; }
     internal byte? ReadyOnReset { get; set; }
+    internal bool KeepAxisArrivedOnMove { get; set; }
+    internal bool PreserveIdleAxisFeedback { get; set; }
     internal int ResetReadyZeroReads { get; private set; }
     internal int ResetReadyOneReads { get; private set; }
     internal ConcurrentQueue<(byte PcReady, byte SoftStop, int Readbacks)> ResetPreconditions { get; } = new();
@@ -141,14 +143,20 @@ internal sealed class SiteProtocolTcpFixture : IAsyncDisposable
                 if (mb / 2 >= offset && mb / 2 < offset + words.Length)
                 {
                     var requested = Byte(mb) != 0;
-                    registers[feedback / 2] = requested && !ExerciseConfirmedOperations ? (ushort)1 : (ushort)0;
+                    if (!PreserveIdleAxisFeedback || requested || priorAxes[mb] != 0)
+                        registers[feedback / 2] = requested && !ExerciseConfirmedOperations ? (ushort)1 : (ushort)0;
                     if (ExerciseConfirmedOperations && requested && priorAxes[mb] == 0)
                     {
                         MotionEdges++;
                         var target = new[] { 2024, 2028, 2032, 2036, 2040 }[mb - 2001];
                         var actual = new[] { 6064, 6076, 6084, 6088, 6092 }[mb - 2001];
                         var targetWords = new[] { registers[target / 2], registers[target / 2 + 1] };
-                        _ = CompleteMotionAsync(mb, feedback, actual, targetWords);
+                        if (KeepAxisArrivedOnMove)
+                        {
+                            registers[actual / 2] = targetWords[0]; registers[actual / 2 + 1] = targetWords[1];
+                            registers[feedback / 2] = 1;
+                        }
+                        else _ = CompleteMotionAsync(mb, feedback, actual, targetWords);
                     }
                 }
             return function == 6 ? request : [16, request[1], request[2], request[3], request[4]];

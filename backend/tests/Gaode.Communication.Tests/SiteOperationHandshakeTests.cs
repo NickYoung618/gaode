@@ -189,18 +189,25 @@ public sealed class SiteOperationHandshakeTests
         Assert.DoesNotContain("ResetRequestClearWriteResponded", log);
         evidence.Save(plc, "Ready stays zero; timeout blocks start and does not clear or replay");
     }
-    [Fact]
-    public async Task StartClearsAfterFullActualXYAndZClosureAndSameCoordinateReuseStillWorks()
+    [Theory]
+    [InlineData(false)]
+    [InlineData(true)]
+    public async Task StartClearsAfterFullActualXYAndZClosureAndSameCoordinateReuseStillWorks(bool retainArrived)
     {
         using var deadline = new CancellationTokenSource(20000);
         await using var evidence = new Evidence();
-        await using var plc = new SiteProtocolTcpFixture { ExerciseConfirmedOperations = true }; Zero(plc);
+        await using var plc = new SiteProtocolTcpFixture {
+            ExerciseConfirmedOperations = true, PreserveIdleAxisFeedback = retainArrived }; Zero(plc);
+        if (retainArrived) foreach (var mb in new[] { 6040, 6042, 6044 }) plc.SetWord(mb, 1);
         await using var device = Device(plc, evidence); await device.StartAsync(deadline.Token);
         Assert.Equal(DeviceEventKind.Accepted, (await Start(device, deadline.Token)).Kind);
         Assert.Equal(1, plc.Byte(2007)); Assert.Equal(1, plc.StartEdges);
         var target = new FixedPoint("offline", "1", 1, 2, "mm", "OFFLINE_ONLY", 3);
-        for (var round = 0; round < 2; round++)
+        for (var round = 0; round < 3; round++)
         {
+            if (round > 0 && retainArrived)
+                foreach (var mb in new[] { 6040, 6042, 6044 }) plc.SetWord(mb, 1);
+            if (round == 2) target = target with { X = 2 };
             var finished = new TaskCompletionSource<DeviceEvent>(TaskCreationOptions.RunContinuationsAsynchronously);
             await device.RequestMoveAsync(new(Envelope(), Guid.NewGuid(), target, Guid.NewGuid(), "offline", "Detection"),
                 e => { if (e.Kind is DeviceEventKind.Completed or DeviceEventKind.Failed) finished.TrySetResult(e); }, deadline.Token);
@@ -216,8 +223,29 @@ public sealed class SiteOperationHandshakeTests
         Assert.Equal(0, clear.ZLow); Assert.Equal(0x4040, clear.ZHigh); // independent CDAB 3.0
         Assert.Equal(0, clear.ZRequest); Assert.Equal(0, clear.ZFeedback);
         Assert.Equal(0, plc.Byte(2007)); Assert.Equal(1, plc.StartEdges);
-        Assert.Equal(3, plc.MotionEdges); // X, Y, Z only once; shared-register preservation is not another edge.
-        evidence.Save(plc, "Full XYZ closure before startup clear; second same-target action reused");
+        Assert.Equal(4, plc.MotionEdges); // First XYZ, then none, then only changed X.
+        if (retainArrived) Assert.Contains("\"feedback\":1", File.ReadAllText(Path.Combine(evidence.Root, "runtime.log")));
+        evidence.Save(plc, "Full XYZ closure; same-target retained arrival reused; mixed target moves only X");
+    }
+    [Fact]
+    public async Task ActualMoveCannotCompleteFromArrivedOneWithoutMovingObservation()
+    {
+        using var deadline = new CancellationTokenSource(10000);
+        await using var evidence = new Evidence();
+        await using var plc = new SiteProtocolTcpFixture { ExerciseConfirmedOperations = true, KeepAxisArrivedOnMove = true }; Zero(plc);
+        await using var device = Device(plc, evidence); await device.StartAsync(deadline.Token);
+        Assert.Equal(DeviceEventKind.Accepted, (await Start(device, deadline.Token)).Kind);
+        var envelope = Envelope(); envelope = envelope with { DueTick = envelope.StartTick + 2 * Stopwatch.Frequency };
+        var completion = new TaskCompletionSource<DeviceEvent>(TaskCreationOptions.RunContinuationsAsynchronously);
+        await device.RequestMoveAsync(new(envelope, Guid.NewGuid(), new("different", "1", 1, 2, "mm", "OFFLINE_ONLY", 3),
+            Guid.NewGuid(), "offline", "Detection"), e => {
+                if (e.Kind is DeviceEventKind.Completed or DeviceEventKind.Failed or DeviceEventKind.UnknownHeld) completion.TrySetResult(e);
+            }, deadline.Token);
+        var result = await completion.Task.WaitAsync(deadline.Token);
+        Assert.NotEqual(DeviceEventKind.Completed, result.Kind);
+        Assert.Equal(2, plc.MotionEdges); // No Z or retry after unconfirmed XY motion.
+        Assert.Equal(1, plc.Byte(2007));
+        evidence.Save(plc, "Actual coordinate change without observed Moving does not complete or dispatch next axes");
     }
     [Fact]
     public async Task StartupAwayFromSafeZeroDoesNotSendStartOrMotion()

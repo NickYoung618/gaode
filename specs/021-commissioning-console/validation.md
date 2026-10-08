@@ -1,5 +1,16 @@
 # 021软件实施记录
 
+## 2026-10-09 最新增量：SC-021-PLC-R6复位轴反馈及同坐标
+
+用户说明本问题是在现有部署点击一键复位时发现，并报告现场已经打补丁。本轮仅修改源码并推送，不覆盖现场安装。现场复位初始核验接受五个直线轴及R轴反馈0/1，MB6052和MB6050仍须0，反馈2/未知、位置越界及其他检查仍阻断。同坐标沿用保留本连接已有运动闭环记录及两次新鲜坐标核验，允许到位反馈1保持；不新增用复位记录替代轴运动记录的资格。实际移动仍要求本次Moving→Arrived及真实坐标核验和原清零闭环。
+
+Release验证：复位/现场定位27/27通过，旧同坐标6/6通过；原握手闭环扩展18项中17项通过，FlipHoldsParentUntilPutBackWithItsOwnWindow出现一次FlipCurrentExecutionUnconfirmed，使用同一二进制隔离复测1/1通过。不能将扩展回归表述为一次性51/51全绿；偶发根因未定，记录T070，不改翻面握手绕过失败。
+
+首轮51项有一项新轴超时测试失败：模拟PLC在重复写请求0时将反馈2清0，未保持所需故障场景。已增加模拟器PreserveIdleAxisFeedback，保留未执行运动时的到位/故障值；正式源码未因此放宽。复位成功测试明确断言收尾后六个到位反馈仍为1；MB6052=1或X反馈=2时旧任务仍Held。现场同坐标/混合目标测试覆盖首轮XYZ三次运动、同目标零次运动、改变X仅一次运动；实际移动即使坐标已更新但没有Moving观察仍不能完成或进入后继Z。
+
+命令：`dotnet test backend/tests/Gaode.Communication.Tests/Gaode.Communication.Tests.csproj -c Release --no-restore --filter 'FullyQualifiedName~CommissioningRecoveryTests|FullyQualifiedName~SiteOperationHandshakeTests|FullyQualifiedName~SamePositionTests|FullyQualifiedName~HandshakeClosureTests'`。失败翻面用例使用`--no-build --no-restore --filter FullyQualifiedName~HandshakeClosureTests.FlipHoldsParentUntilPutBackWithItsOwnWindow`隔离复测。证据：[汇总](evidence/axis-feedback-r6-20261009/summary.json)、[关键事件](evidence/axis-feedback-r6-20261009/runtime-events.json)、同目录三份TRX保留两轮及复测原始结果。`git -c core.whitespace=cr-at-eol diff --check`通过。仅127.0.0.1模拟PLC和真实SQLite；没有连接现场PLC或声称真机验收通过。
+
+
 ## 2026-10-09 最新增量：SC-021-PLC-R5复位确认
 
 用户确认发出MB2009后，由PLC完成动作并置MB6015=1，PC新读1后清MB2009。本轮按此取代历史先0再1要求，并将清MB2009前移至后续安全/位置核验之前。未新增信号或延时；现有旧高请求拒绝、真实安全/位置/反馈核验及旧Run持久取消条件仍有效。

@@ -1,0 +1,1601 @@
+[
+  {
+    "source": "recovery\\recovery-058b143782974297922ab9cd920ff48a\\runtime.log",
+    "event": {
+      "schema": "station01-runtime/1",
+      "utc": "2026-10-08T21:02:12.6188222+00:00",
+      "tick": 49920518910921,
+      "tickFrequency": 10000000,
+      "processId": 5492,
+      "step": "CommissioningRecovery",
+      "category": "Workflow",
+      "outcome": "ResetRequested",
+      "runId": "0eb0bc2b-b284-46ba-8011-0da285bcec9b",
+      "spanId": null,
+      "elapsedMs": null,
+      "facts": {
+        "resetId": "719174de-a166-4b13-93ce-984986b8b0ec",
+        "actor": "operator",
+        "failedEpoch": 1,
+        "resetBudgetMs": 2000
+      },
+      "level": "Information",
+      "exceptionType": null
+    }
+  },
+  {
+    "source": "recovery\\recovery-058b143782974297922ab9cd920ff48a\\runtime.log",
+    "event": {
+      "schema": "station01-runtime/1",
+      "utc": "2026-10-08T21:02:12.9989688+00:00",
+      "tick": 49920522712361,
+      "tickFrequency": 10000000,
+      "processId": 5492,
+      "step": "RecoveryInitialObservation",
+      "category": "Workflow",
+      "outcome": "Blocked",
+      "runId": null,
+      "spanId": null,
+      "elapsedMs": null,
+      "facts": {
+        "actual": {
+          "Connected": true,
+          "Automatic": true,
+          "SafetyClear": true,
+          "X": 0,
+          "Y": 0,
+          "ConnectionEpoch": 2,
+          "MotionStatus": "Idle",
+          "ObservedUtc": "2026-10-08T21:02:12.9988842+00:00",
+          "Z": 0,
+          "Source": "Real",
+          "AlarmBits": 0,
+          "AlarmSeverity": 0,
+          "PlcSystemFault": false,
+          "PlcReady": true,
+          "DiagnosticCode": null,
+          "FailureOrigin": null,
+          "ManualZoneOccupied": false,
+          "ObservationId": "5dbf682b-9017-42b5-9327-16f3d44af663",
+          "SampleConnectionEpoch": 2,
+          "SampleStartedUtc": "2026-10-08T21:02:12.9980945+00:00",
+          "ScanZ": 0,
+          "GrabZ": 0,
+          "PositionIdentity": {
+            "ObservationId": "9addcccc-47d8-4f89-9069-af46bf0b46b7",
+            "ConnectionEpoch": 2,
+            "SampleStartedUtc": "2026-10-08T21:02:12.9980945+00:00",
+            "SampleEndedUtc": "2026-10-08T21:02:12.9988867+00:00",
+            "Reliability": "Reliable",
+            "IsValid": true
+          },
+          "SafetyUnconfirmed": false,
+          "ManualAreaUnconfirmed": false,
+          "IndependentSafetyFaults": []
+        },
+        "checks": {
+          "Connected": true,
+          "Automatic": true,
+          "Ready": true,
+          "SafetyClear": true,
+          "ResetRequestCleared": true,
+          "StopCleared": true,
+          "ThisSystemResetObserved": true,
+          "AxesNotTriggered": true,
+          "FlipCommandCleared": true,
+          "SortingCleared": true,
+          "AlarmsCleared": true,
+          "FinitePosition": true,
+          "RecoveryProtocolConfigured": true,
+          "PcReadyAndStartClear": true,
+          "AxisFeedbackValid": true,
+          "FlipFeedbackCleared": false,
+          "AllLinearAxesAtSafeZero": true
+        },
+        "protocol": "plc-interaction-011-test-map",
+        "axisFeedback": [
+          {
+            "signal": "XPosConfirmed",
+            "raw": 0
+          },
+          {
+            "signal": "YPosConfirmed",
+            "raw": 0
+          },
+          {
+            "signal": "ZCameraPosConfirmed",
+            "raw": 0
+          },
+          {
+            "signal": "ZScanPosConfirmed",
+            "raw": 0
+          },
+          {
+            "signal": "ZGrapPosConfirmed",
+            "raw": 0
+          }
+        ],
+        "rotationFeedback": 0,
+        "putBackFeedback": 1
+      },
+      "level": "Warning",
+      "exceptionType": null
+    }
+  },
+  {
+    "source": "recovery\\recovery-058b143782974297922ab9cd920ff48a\\runtime.log",
+    "event": {
+      "schema": "station01-runtime/1",
+      "utc": "2026-10-08T21:02:14.8151091+00:00",
+      "tick": 49920540873656,
+      "tickFrequency": 10000000,
+      "processId": 5492,
+      "step": "CommissioningRecovery",
+      "category": "Workflow",
+      "outcome": "Blocked",
+      "runId": "0eb0bc2b-b284-46ba-8011-0da285bcec9b",
+      "spanId": null,
+      "elapsedMs": 2227.8695,
+      "facts": {
+        "resetId": "719174de-a166-4b13-93ce-984986b8b0ec",
+        "actor": "operator",
+        "phase": "InitialStateVerification",
+        "resetBudgetMs": 2000,
+        "requestCancellationObserved": false,
+        "resetBudgetExpired": true,
+        "cancellationObservation": "ResetBudget",
+        "automaticRetry": false
+      },
+      "level": "Warning",
+      "exceptionType": "System.Threading.Tasks.TaskCanceledException"
+    }
+  },
+  {
+    "source": "recovery\\recovery-1a4dc988b98148568071b777115a121a\\runtime.log",
+    "event": {
+      "schema": "station01-runtime/1",
+      "utc": "2026-10-08T21:02:09.186757+00:00",
+      "tick": 49920484590477,
+      "tickFrequency": 10000000,
+      "processId": 5492,
+      "step": "CommissioningRecovery",
+      "category": "Workflow",
+      "outcome": "ResetRequested",
+      "runId": "950cadb1-db46-4612-87c0-67644032c65b",
+      "spanId": null,
+      "elapsedMs": null,
+      "facts": {
+        "resetId": "1256d583-35a4-47ec-bdbd-c560cdbdec55",
+        "actor": "operator",
+        "failedEpoch": 1,
+        "resetBudgetMs": 1500
+      },
+      "level": "Information",
+      "exceptionType": null
+    }
+  },
+  {
+    "source": "recovery\\recovery-1a4dc988b98148568071b777115a121a\\runtime.log",
+    "event": {
+      "schema": "station01-runtime/1",
+      "utc": "2026-10-08T21:02:10.700402+00:00",
+      "tick": 49920499726834,
+      "tickFrequency": 10000000,
+      "processId": 5492,
+      "step": "CommissioningRecovery",
+      "category": "Workflow",
+      "outcome": "Blocked",
+      "runId": "950cadb1-db46-4612-87c0-67644032c65b",
+      "spanId": null,
+      "elapsedMs": 1542.7047,
+      "facts": {
+        "resetId": "1256d583-35a4-47ec-bdbd-c560cdbdec55",
+        "actor": "operator",
+        "phase": "PlcReset",
+        "resetBudgetMs": 1500,
+        "requestCancellationObserved": false,
+        "resetBudgetExpired": true,
+        "cancellationObservation": "ResetBudget",
+        "automaticRetry": false
+      },
+      "level": "Warning",
+      "exceptionType": "System.Threading.Tasks.TaskCanceledException"
+    }
+  },
+  {
+    "source": "recovery\\recovery-292740b01da343d989b47ab45663d9f7\\runtime.log",
+    "event": {
+      "schema": "station01-runtime/1",
+      "utc": "2026-10-08T21:02:16.2710828+00:00",
+      "tick": 49920555433303,
+      "tickFrequency": 10000000,
+      "processId": 5492,
+      "step": "CommissioningRecovery",
+      "category": "Workflow",
+      "outcome": "ResetRequested",
+      "runId": "f5357e1d-fde8-4f87-b27e-1424cdc9d11d",
+      "spanId": null,
+      "elapsedMs": null,
+      "facts": {
+        "resetId": "37cc3cbf-1ebf-479f-a075-68481aace8f5",
+        "actor": "operator",
+        "failedEpoch": 1,
+        "resetBudgetMs": 2000
+      },
+      "level": "Information",
+      "exceptionType": null
+    }
+  },
+  {
+    "source": "recovery\\recovery-292740b01da343d989b47ab45663d9f7\\runtime.log",
+    "event": {
+      "schema": "station01-runtime/1",
+      "utc": "2026-10-08T21:02:16.7978187+00:00",
+      "tick": 49920560700628,
+      "tickFrequency": 10000000,
+      "processId": 5492,
+      "step": "RecoveryInitialObservation",
+      "category": "Workflow",
+      "outcome": "Blocked",
+      "runId": null,
+      "spanId": null,
+      "elapsedMs": null,
+      "facts": {
+        "actual": {
+          "Connected": true,
+          "Automatic": true,
+          "SafetyClear": true,
+          "X": 0,
+          "Y": 0,
+          "ConnectionEpoch": 2,
+          "MotionStatus": "Unknown",
+          "ObservedUtc": "2026-10-08T21:02:16.7977331+00:00",
+          "Z": 0,
+          "Source": "Real",
+          "AlarmBits": 0,
+          "AlarmSeverity": 0,
+          "PlcSystemFault": false,
+          "PlcReady": true,
+          "DiagnosticCode": null,
+          "FailureOrigin": null,
+          "ManualZoneOccupied": false,
+          "ObservationId": "88a61019-2e3f-4e56-9e7a-28afe1c1becd",
+          "SampleConnectionEpoch": 2,
+          "SampleStartedUtc": "2026-10-08T21:02:16.7969431+00:00",
+          "ScanZ": 0,
+          "GrabZ": 0,
+          "PositionIdentity": {
+            "ObservationId": "c6eb0ad3-9b96-4036-b336-f171ae20a150",
+            "ConnectionEpoch": 2,
+            "SampleStartedUtc": "2026-10-08T21:02:16.7969431+00:00",
+            "SampleEndedUtc": "2026-10-08T21:02:16.7977378+00:00",
+            "Reliability": "Reliable",
+            "IsValid": true
+          },
+          "SafetyUnconfirmed": false,
+          "ManualAreaUnconfirmed": false,
+          "IndependentSafetyFaults": []
+        },
+        "checks": {
+          "Connected": true,
+          "Automatic": true,
+          "Ready": true,
+          "SafetyClear": true,
+          "ResetRequestCleared": true,
+          "StopCleared": true,
+          "ThisSystemResetObserved": true,
+          "AxesNotTriggered": true,
+          "FlipCommandCleared": true,
+          "SortingCleared": true,
+          "AlarmsCleared": true,
+          "FinitePosition": true,
+          "RecoveryProtocolConfigured": true,
+          "PcReadyAndStartClear": true,
+          "AxisFeedbackValid": false,
+          "FlipFeedbackCleared": true,
+          "AllLinearAxesAtSafeZero": true
+        },
+        "protocol": "plc-interaction-011-test-map",
+        "axisFeedback": [
+          {
+            "signal": "XPosConfirmed",
+            "raw": 2
+          },
+          {
+            "signal": "YPosConfirmed",
+            "raw": 0
+          },
+          {
+            "signal": "ZCameraPosConfirmed",
+            "raw": 0
+          },
+          {
+            "signal": "ZScanPosConfirmed",
+            "raw": 0
+          },
+          {
+            "signal": "ZGrapPosConfirmed",
+            "raw": 0
+          }
+        ],
+        "rotationFeedback": 0,
+        "putBackFeedback": 0
+      },
+      "level": "Warning",
+      "exceptionType": null
+    }
+  },
+  {
+    "source": "recovery\\recovery-292740b01da343d989b47ab45663d9f7\\runtime.log",
+    "event": {
+      "schema": "station01-runtime/1",
+      "utc": "2026-10-08T21:02:18.273271+00:00",
+      "tick": 49920575455069,
+      "tickFrequency": 10000000,
+      "processId": 5492,
+      "step": "CommissioningRecovery",
+      "category": "Workflow",
+      "outcome": "Blocked",
+      "runId": "f5357e1d-fde8-4f87-b27e-1424cdc9d11d",
+      "spanId": null,
+      "elapsedMs": 2034.9297,
+      "facts": {
+        "resetId": "37cc3cbf-1ebf-479f-a075-68481aace8f5",
+        "actor": "operator",
+        "phase": "InitialStateVerification",
+        "resetBudgetMs": 2000,
+        "requestCancellationObserved": false,
+        "resetBudgetExpired": true,
+        "cancellationObservation": "ResetBudget",
+        "automaticRetry": false
+      },
+      "level": "Warning",
+      "exceptionType": "System.Threading.Tasks.TaskCanceledException"
+    }
+  },
+  {
+    "source": "recovery\\recovery-328cdacb65e54acf8a2cc8a9168e7ac6\\runtime.log",
+    "event": {
+      "schema": "station01-runtime/1",
+      "utc": "2026-10-08T21:02:07.6169196+00:00",
+      "tick": 49920468892198,
+      "tickFrequency": 10000000,
+      "processId": 5492,
+      "step": "CommissioningRecovery",
+      "category": "Workflow",
+      "outcome": "ResetRequested",
+      "runId": "24551535-d7a7-41f3-a0bf-bce36106735e",
+      "spanId": null,
+      "elapsedMs": null,
+      "facts": {
+        "resetId": "5d7e550f-c1a3-4c37-9b2b-760e39da9bdd",
+        "actor": "operator",
+        "failedEpoch": 1,
+        "resetBudgetMs": 2000
+      },
+      "level": "Information",
+      "exceptionType": null
+    }
+  },
+  {
+    "source": "recovery\\recovery-328cdacb65e54acf8a2cc8a9168e7ac6\\runtime.log",
+    "event": {
+      "schema": "station01-runtime/1",
+      "utc": "2026-10-08T21:02:08.000395+00:00",
+      "tick": 49920472726930,
+      "tickFrequency": 10000000,
+      "processId": 5492,
+      "step": "RecoveryInitialObservation",
+      "category": "Workflow",
+      "outcome": "Passed",
+      "runId": null,
+      "spanId": null,
+      "elapsedMs": null,
+      "facts": {
+        "actual": {
+          "Connected": true,
+          "Automatic": true,
+          "SafetyClear": true,
+          "X": 0,
+          "Y": 0,
+          "ConnectionEpoch": 2,
+          "MotionStatus": "Idle",
+          "ObservedUtc": "2026-10-08T21:02:08.0002967+00:00",
+          "Z": 0,
+          "Source": "Real",
+          "AlarmBits": 0,
+          "AlarmSeverity": 0,
+          "PlcSystemFault": false,
+          "PlcReady": true,
+          "DiagnosticCode": null,
+          "FailureOrigin": null,
+          "ManualZoneOccupied": false,
+          "ObservationId": "eb5d3216-09ef-402e-ba95-eab7990f7bb1",
+          "SampleConnectionEpoch": 2,
+          "SampleStartedUtc": "2026-10-08T21:02:07.999463+00:00",
+          "ScanZ": 0,
+          "GrabZ": 0,
+          "PositionIdentity": {
+            "ObservationId": "d6271093-72e2-4b22-9df6-6460191c9521",
+            "ConnectionEpoch": 2,
+            "SampleStartedUtc": "2026-10-08T21:02:07.999463+00:00",
+            "SampleEndedUtc": "2026-10-08T21:02:08.0002993+00:00",
+            "Reliability": "Reliable",
+            "IsValid": true
+          },
+          "SafetyUnconfirmed": false,
+          "ManualAreaUnconfirmed": false,
+          "IndependentSafetyFaults": []
+        },
+        "checks": {
+          "Connected": true,
+          "Automatic": true,
+          "Ready": true,
+          "SafetyClear": true,
+          "ResetRequestCleared": true,
+          "StopCleared": true,
+          "ThisSystemResetObserved": true,
+          "AxesNotTriggered": true,
+          "FlipCommandCleared": true,
+          "SortingCleared": true,
+          "AlarmsCleared": true,
+          "FinitePosition": true,
+          "RecoveryProtocolConfigured": true,
+          "PcReadyAndStartClear": true,
+          "AxisFeedbackValid": true,
+          "FlipFeedbackCleared": true,
+          "AllLinearAxesAtSafeZero": true
+        },
+        "protocol": "plc-interaction-011-test-map",
+        "axisFeedback": [
+          {
+            "signal": "XPosConfirmed",
+            "raw": 0
+          },
+          {
+            "signal": "YPosConfirmed",
+            "raw": 0
+          },
+          {
+            "signal": "ZCameraPosConfirmed",
+            "raw": 0
+          },
+          {
+            "signal": "ZScanPosConfirmed",
+            "raw": 0
+          },
+          {
+            "signal": "ZGrapPosConfirmed",
+            "raw": 0
+          }
+        ],
+        "rotationFeedback": 0,
+        "putBackFeedback": 0
+      },
+      "level": "Information",
+      "exceptionType": null
+    }
+  },
+  {
+    "source": "recovery\\recovery-328cdacb65e54acf8a2cc8a9168e7ac6\\runtime.log",
+    "event": {
+      "schema": "station01-runtime/1",
+      "utc": "2026-10-08T21:02:08.0560609+00:00",
+      "tick": 49920473283585,
+      "tickFrequency": 10000000,
+      "processId": 5492,
+      "step": "CommissioningRecovery",
+      "category": "Workflow",
+      "outcome": "Blocked",
+      "runId": "24551535-d7a7-41f3-a0bf-bce36106735e",
+      "spanId": null,
+      "elapsedMs": 473.5685,
+      "facts": {
+        "resetId": "5d7e550f-c1a3-4c37-9b2b-760e39da9bdd",
+        "actor": "operator",
+        "phase": "SaveRecoveryClosure",
+        "resetBudgetMs": 2000,
+        "requestCancellationObserved": false,
+        "resetBudgetExpired": false,
+        "cancellationObservation": "NotCancelled",
+        "automaticRetry": false
+      },
+      "level": "Error",
+      "exceptionType": "System.InvalidOperationException"
+    }
+  },
+  {
+    "source": "recovery\\recovery-75bc02a93871444b94f69fd567854608\\runtime.log",
+    "event": {
+      "schema": "station01-runtime/1",
+      "utc": "2026-10-08T21:02:11.7178795+00:00",
+      "tick": 49920509901549,
+      "tickFrequency": 10000000,
+      "processId": 5492,
+      "step": "CommissioningRecovery",
+      "category": "Workflow",
+      "outcome": "Blocked",
+      "runId": "8efbc696-f32b-4189-9ab7-6a7339629f74",
+      "spanId": null,
+      "elapsedMs": 0.0521,
+      "facts": {
+        "resetId": "f8a09083-34ae-4060-ba7e-14fd3f7db963",
+        "actor": "operator",
+        "phase": "Admission",
+        "resetBudgetMs": 2000,
+        "requestCancellationObserved": false,
+        "resetBudgetExpired": false,
+        "cancellationObservation": "NotCancelled",
+        "automaticRetry": false
+      },
+      "level": "Error",
+      "exceptionType": "System.InvalidOperationException"
+    }
+  },
+  {
+    "source": "recovery\\recovery-79e9dac5d382438bba505dc8ea096ca0\\runtime.log",
+    "event": {
+      "schema": "station01-runtime/1",
+      "utc": "2026-10-08T21:02:12.0445109+00:00",
+      "tick": 49920513167843,
+      "tickFrequency": 10000000,
+      "processId": 5492,
+      "step": "CommissioningRecovery",
+      "category": "Workflow",
+      "outcome": "Blocked",
+      "runId": "9cba91ab-686e-4819-998e-67797b1301aa",
+      "spanId": null,
+      "elapsedMs": 8.7319,
+      "facts": {
+        "resetId": "4d911a82-a536-4b06-b205-c346efa3994d",
+        "actor": "operator",
+        "phase": "Admission",
+        "resetBudgetMs": 2000,
+        "requestCancellationObserved": false,
+        "resetBudgetExpired": false,
+        "cancellationObservation": "NotCancelled",
+        "automaticRetry": false
+      },
+      "level": "Error",
+      "exceptionType": "System.InvalidOperationException"
+    }
+  },
+  {
+    "source": "recovery\\recovery-7b6195a0d7d249d5b5c8f8f7cf7ba915\\runtime.log",
+    "event": {
+      "schema": "station01-runtime/1",
+      "utc": "2026-10-08T21:02:11.157325+00:00",
+      "tick": 49920504296036,
+      "tickFrequency": 10000000,
+      "processId": 5492,
+      "step": "CommissioningRecovery",
+      "category": "Workflow",
+      "outcome": "ResetRequested",
+      "runId": "bb842f7b-5ece-4601-be3f-4d118de813fa",
+      "spanId": null,
+      "elapsedMs": null,
+      "facts": {
+        "resetId": "07b731e0-0b58-4e17-8f53-b77295ef02bf",
+        "actor": "operator",
+        "failedEpoch": 1,
+        "resetBudgetMs": 1500
+      },
+      "level": "Information",
+      "exceptionType": null
+    }
+  },
+  {
+    "source": "recovery\\recovery-7b6195a0d7d249d5b5c8f8f7cf7ba915\\runtime.log",
+    "event": {
+      "schema": "station01-runtime/1",
+      "utc": "2026-10-08T21:02:11.1829111+00:00",
+      "tick": 49920504551895,
+      "tickFrequency": 10000000,
+      "processId": 5492,
+      "step": "CommissioningRecovery",
+      "category": "Workflow",
+      "outcome": "Blocked",
+      "runId": "bb842f7b-5ece-4601-be3f-4d118de813fa",
+      "spanId": null,
+      "elapsedMs": 53.3786,
+      "facts": {
+        "resetId": "07b731e0-0b58-4e17-8f53-b77295ef02bf",
+        "actor": "operator",
+        "phase": "PlcReset",
+        "resetBudgetMs": 1500,
+        "requestCancellationObserved": true,
+        "resetBudgetExpired": false,
+        "cancellationObservation": "Request",
+        "automaticRetry": false
+      },
+      "level": "Warning",
+      "exceptionType": "System.Threading.Tasks.TaskCanceledException"
+    }
+  },
+  {
+    "source": "recovery\\recovery-a46ee32313fa4039970bc46041604634\\runtime.log",
+    "event": {
+      "schema": "station01-runtime/1",
+      "utc": "2026-10-08T21:02:07.1474958+00:00",
+      "tick": 49920464197988,
+      "tickFrequency": 10000000,
+      "processId": 5492,
+      "step": "CommissioningRecovery",
+      "category": "Workflow",
+      "outcome": "ResetRequested",
+      "runId": "998bea3a-1a7a-448f-9f2c-6ab7ebcee843",
+      "spanId": null,
+      "elapsedMs": null,
+      "facts": {
+        "resetId": "8928f503-eaec-4baf-882e-72163056512d",
+        "actor": "operator",
+        "failedEpoch": 1,
+        "resetBudgetMs": 2000
+      },
+      "level": "Information",
+      "exceptionType": null
+    }
+  },
+  {
+    "source": "recovery\\recovery-a46ee32313fa4039970bc46041604634\\runtime.log",
+    "event": {
+      "schema": "station01-runtime/1",
+      "utc": "2026-10-08T21:02:07.1970757+00:00",
+      "tick": 49920464693786,
+      "tickFrequency": 10000000,
+      "processId": 5492,
+      "step": "RecoveryInitialObservation",
+      "category": "Workflow",
+      "outcome": "Passed",
+      "runId": null,
+      "spanId": null,
+      "elapsedMs": null,
+      "facts": {
+        "actual": {
+          "Connected": true,
+          "Automatic": true,
+          "SafetyClear": true,
+          "X": 0,
+          "Y": 0,
+          "ConnectionEpoch": 2,
+          "MotionStatus": "Idle",
+          "ObservedUtc": "2026-10-08T21:02:07.1969408+00:00",
+          "Z": 0,
+          "Source": "Real",
+          "AlarmBits": 0,
+          "AlarmSeverity": 0,
+          "PlcSystemFault": false,
+          "PlcReady": true,
+          "DiagnosticCode": null,
+          "FailureOrigin": null,
+          "ManualZoneOccupied": false,
+          "ObservationId": "52fb7262-30c3-4492-aba3-65704806af7a",
+          "SampleConnectionEpoch": 2,
+          "SampleStartedUtc": "2026-10-08T21:02:07.1959809+00:00",
+          "ScanZ": 0,
+          "GrabZ": 0,
+          "PositionIdentity": {
+            "ObservationId": "3effa41a-2760-4b18-970c-1027c96a30e4",
+            "ConnectionEpoch": 2,
+            "SampleStartedUtc": "2026-10-08T21:02:07.1959809+00:00",
+            "SampleEndedUtc": "2026-10-08T21:02:07.1969434+00:00",
+            "Reliability": "Reliable",
+            "IsValid": true
+          },
+          "SafetyUnconfirmed": false,
+          "ManualAreaUnconfirmed": false,
+          "IndependentSafetyFaults": []
+        },
+        "checks": {
+          "Connected": true,
+          "Automatic": true,
+          "Ready": true,
+          "SafetyClear": true,
+          "ResetRequestCleared": true,
+          "StopCleared": true,
+          "ThisSystemResetObserved": true,
+          "AxesNotTriggered": true,
+          "FlipCommandCleared": true,
+          "SortingCleared": true,
+          "AlarmsCleared": true,
+          "FinitePosition": true,
+          "RecoveryProtocolConfigured": true,
+          "PcReadyAndStartClear": true,
+          "AxisFeedbackValid": true,
+          "FlipFeedbackCleared": true,
+          "AllLinearAxesAtSafeZero": true
+        },
+        "protocol": "plc-interaction-011-test-map",
+        "axisFeedback": [
+          {
+            "signal": "XPosConfirmed",
+            "raw": 1
+          },
+          {
+            "signal": "YPosConfirmed",
+            "raw": 1
+          },
+          {
+            "signal": "ZCameraPosConfirmed",
+            "raw": 1
+          },
+          {
+            "signal": "ZScanPosConfirmed",
+            "raw": 1
+          },
+          {
+            "signal": "ZGrapPosConfirmed",
+            "raw": 1
+          }
+        ],
+        "rotationFeedback": 1,
+        "putBackFeedback": 0
+      },
+      "level": "Information",
+      "exceptionType": null
+    }
+  },
+  {
+    "source": "recovery\\recovery-a46ee32313fa4039970bc46041604634\\runtime.log",
+    "event": {
+      "schema": "station01-runtime/1",
+      "utc": "2026-10-08T21:02:07.2153913+00:00",
+      "tick": 49920464876938,
+      "tickFrequency": 10000000,
+      "processId": 5492,
+      "step": "CommissioningRecovery",
+      "category": "Workflow",
+      "outcome": "ClosedAfterVerifiedReset",
+      "runId": "998bea3a-1a7a-448f-9f2c-6ab7ebcee843",
+      "spanId": null,
+      "elapsedMs": 98.504,
+      "facts": {
+        "resetId": "8928f503-eaec-4baf-882e-72163056512d",
+        "recoveryWriteId": "54a6df31-8fce-4cbb-8c06-ef374f3ebd7d",
+        "initial": {
+          "Readiness": "Ready",
+          "Observation": {
+            "Reliability": "Reliable",
+            "Connection": "Connected",
+            "ConnectionEpoch": 2,
+            "OperatingMode": "Automatic",
+            "Readiness": "Ready",
+            "SafetyAssessment": "Clear",
+            "Clamp": "Unconfirmed",
+            "MotionAvailability": "Available",
+            "AcquisitionReadiness": "Available",
+            "ManualArea": "Clear",
+            "ManualHandling": "Unconfirmed",
+            "Position": {
+              "ActualX": 0,
+              "ActualY": 0,
+              "ActualZ": 0,
+              "AxisPurpose": "MachineAxes",
+              "CoordinateFrame": "OFFLINE_ONLY",
+              "UnitBasis": "OFFLINE:recovery-fixture:mm",
+              "Identity": {
+                "ObservationId": "3effa41a-2760-4b18-970c-1027c96a30e4",
+                "ConnectionEpoch": 2,
+                "SampleStartedUtc": "2026-10-08T21:02:07.1959809+00:00",
+                "SampleEndedUtc": "2026-10-08T21:02:07.1969434+00:00",
+                "Reliability": "Reliable",
+                "IsValid": true
+              },
+              "Origin": {
+                "Provider": "Real",
+                "ComponentVersion": "Real:confirmed-20261006-v2;sources/PC.xls:37095748a61574d9a1c9bf17ad0ac9118d554fa73ac8f5e10003718b6627511d;sources/PLC(2).xls:8e846d0f71351f87b42db1bf40790f40766a392fd0a9e0968201f8c2056eb476;field:Offline:XLS-address-convention-fixture",
+                "Quality": "Measured"
+              },
+              "IsReliable": true
+            },
+            "Face": null,
+            "Alarms": [],
+            "ReasonCodes": [],
+            "ExecutionOrigin": {
+              "Provider": "Real",
+              "ComponentVersion": "Real:confirmed-20261006-v2;sources/PC.xls:37095748a61574d9a1c9bf17ad0ac9118d554fa73ac8f5e10003718b6627511d;sources/PLC(2).xls:8e846d0f71351f87b42db1bf40790f40766a392fd0a9e0968201f8c2056eb476;field:Offline:XLS-address-convention-fixture",
+              "Quality": "Measured"
+            },
+            "Identity": {
+              "ObservationId": "52fb7262-30c3-4492-aba3-65704806af7a",
+              "ConnectionEpoch": 2,
+              "SampleStartedUtc": "2026-10-08T21:02:07.1959809+00:00",
+              "SampleEndedUtc": "2026-10-08T21:02:07.1969408+00:00",
+              "Reliability": "Reliable",
+              "IsValid": true
+            },
+            "DiagnosticEvidenceReference": null,
+            "SchemaVersion": "device-semantics/1",
+            "AxisPositions": {
+              "X": 0,
+              "Y": 0,
+              "DetectionZ": 0,
+              "ScanZ": 0,
+              "GrabZ": 0
+            },
+            "HasReliableObservation": true
+          },
+          "BlockedReasons": [],
+          "ResetGeneration": 2,
+          "Passed": true
+        },
+        "manualStartRequired": true
+      },
+      "level": "Information",
+      "exceptionType": null
+    }
+  },
+  {
+    "source": "recovery\\recovery-a527734d3cd640c299a16e7d734b90e5\\runtime.log",
+    "event": {
+      "schema": "station01-runtime/1",
+      "utc": "2026-10-08T21:02:08.375141+00:00",
+      "tick": 49920476474461,
+      "tickFrequency": 10000000,
+      "processId": 5492,
+      "step": "RecoveryInitialObservation",
+      "category": "Workflow",
+      "outcome": "Blocked",
+      "runId": null,
+      "spanId": null,
+      "elapsedMs": null,
+      "facts": {
+        "actual": {
+          "Connected": true,
+          "Automatic": true,
+          "SafetyClear": true,
+          "X": 0,
+          "Y": 0,
+          "ConnectionEpoch": 1,
+          "MotionStatus": "Idle",
+          "ObservedUtc": "2026-10-08T21:02:08.3750424+00:00",
+          "Z": 0,
+          "Source": "Real",
+          "AlarmBits": 0,
+          "AlarmSeverity": 0,
+          "PlcSystemFault": false,
+          "PlcReady": true,
+          "DiagnosticCode": null,
+          "FailureOrigin": null,
+          "ManualZoneOccupied": false,
+          "ObservationId": "bea7683b-f4a9-425d-bbdc-79174c785134",
+          "SampleConnectionEpoch": 1,
+          "SampleStartedUtc": "2026-10-08T21:02:08.3736497+00:00",
+          "ScanZ": 0,
+          "GrabZ": 0,
+          "PositionIdentity": {
+            "ObservationId": "47402cd0-a574-45ec-b0cc-3766ff2860c1",
+            "ConnectionEpoch": 1,
+            "SampleStartedUtc": "2026-10-08T21:02:08.3736497+00:00",
+            "SampleEndedUtc": "2026-10-08T21:02:08.3750453+00:00",
+            "Reliability": "Reliable",
+            "IsValid": true
+          },
+          "SafetyUnconfirmed": false,
+          "ManualAreaUnconfirmed": false,
+          "IndependentSafetyFaults": []
+        },
+        "checks": {
+          "Connected": true,
+          "Automatic": true,
+          "Ready": true,
+          "SafetyClear": true,
+          "ResetRequestCleared": true,
+          "StopCleared": true,
+          "ThisSystemResetObserved": false,
+          "AxesNotTriggered": true,
+          "FlipCommandCleared": true,
+          "SortingCleared": true,
+          "AlarmsCleared": true,
+          "FinitePosition": true,
+          "RecoveryProtocolConfigured": false,
+          "PcReadyAndStartClear": false,
+          "AxisFeedbackValid": true,
+          "FlipFeedbackCleared": true,
+          "AllLinearAxesAtSafeZero": true
+        },
+        "protocol": "plc-interaction-011-test-map",
+        "axisFeedback": [
+          {
+            "signal": "XPosConfirmed",
+            "raw": 0
+          },
+          {
+            "signal": "YPosConfirmed",
+            "raw": 0
+          },
+          {
+            "signal": "ZCameraPosConfirmed",
+            "raw": 0
+          },
+          {
+            "signal": "ZScanPosConfirmed",
+            "raw": 0
+          },
+          {
+            "signal": "ZGrapPosConfirmed",
+            "raw": 0
+          }
+        ],
+        "rotationFeedback": 0,
+        "putBackFeedback": 0
+      },
+      "level": "Warning",
+      "exceptionType": null
+    }
+  },
+  {
+    "source": "recovery\\recovery-a527734d3cd640c299a16e7d734b90e5\\runtime.log",
+    "event": {
+      "schema": "station01-runtime/1",
+      "utc": "2026-10-08T21:02:08.4048647+00:00",
+      "tick": 49920476771604,
+      "tickFrequency": 10000000,
+      "processId": 5492,
+      "step": "CommissioningRecovery",
+      "category": "Workflow",
+      "outcome": "ResetRequested",
+      "runId": "6d02d056-aa67-4efc-884f-a5b8a64d7dab",
+      "spanId": null,
+      "elapsedMs": null,
+      "facts": {
+        "resetId": "b43df2ae-b55e-4b78-83d5-b69360bb7e6a",
+        "actor": "operator",
+        "failedEpoch": 1,
+        "resetBudgetMs": 2000
+      },
+      "level": "Information",
+      "exceptionType": null
+    }
+  },
+  {
+    "source": "recovery\\recovery-a527734d3cd640c299a16e7d734b90e5\\runtime.log",
+    "event": {
+      "schema": "station01-runtime/1",
+      "utc": "2026-10-08T21:02:08.862336+00:00",
+      "tick": 49920481346287,
+      "tickFrequency": 10000000,
+      "processId": 5492,
+      "step": "CommissioningRecovery",
+      "category": "Workflow",
+      "outcome": "Blocked",
+      "runId": "6d02d056-aa67-4efc-884f-a5b8a64d7dab",
+      "spanId": null,
+      "elapsedMs": 486.4922,
+      "facts": {
+        "resetId": "b43df2ae-b55e-4b78-83d5-b69360bb7e6a",
+        "actor": "operator",
+        "phase": "InitialStateVerification",
+        "resetBudgetMs": 2000,
+        "requestCancellationObserved": false,
+        "resetBudgetExpired": false,
+        "cancellationObservation": "NotCancelled",
+        "automaticRetry": false
+      },
+      "level": "Error",
+      "exceptionType": "System.InvalidOperationException"
+    }
+  },
+  {
+    "source": "recovery\\recovery-c52a56992e4043fbb4404372e31669bd\\runtime.log",
+    "event": {
+      "schema": "station01-runtime/1",
+      "utc": "2026-10-08T21:02:19.011717+00:00",
+      "tick": 49920582839477,
+      "tickFrequency": 10000000,
+      "processId": 5492,
+      "step": "CommissioningRecovery",
+      "category": "Workflow",
+      "outcome": "ResetRequested",
+      "runId": "8e1e5bde-1052-46f1-8196-292ebe6b8af3",
+      "spanId": null,
+      "elapsedMs": null,
+      "facts": {
+        "resetId": "c509ad07-6dfb-40d2-b3ed-dd57c0ca205f",
+        "actor": "operator",
+        "failedEpoch": 1,
+        "resetBudgetMs": 2000
+      },
+      "level": "Information",
+      "exceptionType": null
+    }
+  },
+  {
+    "source": "recovery\\recovery-c52a56992e4043fbb4404372e31669bd\\runtime.log",
+    "event": {
+      "schema": "station01-runtime/1",
+      "utc": "2026-10-08T21:02:19.4372209+00:00",
+      "tick": 49920587094488,
+      "tickFrequency": 10000000,
+      "processId": 5492,
+      "step": "RecoveryInitialObservation",
+      "category": "Workflow",
+      "outcome": "Blocked",
+      "runId": null,
+      "spanId": null,
+      "elapsedMs": null,
+      "facts": {
+        "actual": {
+          "Connected": true,
+          "Automatic": true,
+          "SafetyClear": true,
+          "X": 0,
+          "Y": 0,
+          "ConnectionEpoch": 2,
+          "MotionStatus": "Idle",
+          "ObservedUtc": "2026-10-08T21:02:19.43713+00:00",
+          "Z": 0,
+          "Source": "Real",
+          "AlarmBits": 0,
+          "AlarmSeverity": 0,
+          "PlcSystemFault": false,
+          "PlcReady": true,
+          "DiagnosticCode": null,
+          "FailureOrigin": null,
+          "ManualZoneOccupied": false,
+          "ObservationId": "f4eee9da-6964-43c9-b5dd-0a6377aeeb1e",
+          "SampleConnectionEpoch": 2,
+          "SampleStartedUtc": "2026-10-08T21:02:19.436305+00:00",
+          "ScanZ": 0,
+          "GrabZ": 0,
+          "PositionIdentity": {
+            "ObservationId": "de16de89-7c58-4368-906f-e14dbfb9e747",
+            "ConnectionEpoch": 2,
+            "SampleStartedUtc": "2026-10-08T21:02:19.436305+00:00",
+            "SampleEndedUtc": "2026-10-08T21:02:19.4371338+00:00",
+            "Reliability": "Reliable",
+            "IsValid": true
+          },
+          "SafetyUnconfirmed": false,
+          "ManualAreaUnconfirmed": false,
+          "IndependentSafetyFaults": []
+        },
+        "checks": {
+          "Connected": true,
+          "Automatic": true,
+          "Ready": true,
+          "SafetyClear": true,
+          "ResetRequestCleared": true,
+          "StopCleared": true,
+          "ThisSystemResetObserved": true,
+          "AxesNotTriggered": true,
+          "FlipCommandCleared": true,
+          "SortingCleared": true,
+          "AlarmsCleared": true,
+          "FinitePosition": true,
+          "RecoveryProtocolConfigured": true,
+          "PcReadyAndStartClear": true,
+          "AxisFeedbackValid": true,
+          "FlipFeedbackCleared": false,
+          "AllLinearAxesAtSafeZero": true
+        },
+        "protocol": "plc-interaction-011-test-map",
+        "axisFeedback": [
+          {
+            "signal": "XPosConfirmed",
+            "raw": 0
+          },
+          {
+            "signal": "YPosConfirmed",
+            "raw": 0
+          },
+          {
+            "signal": "ZCameraPosConfirmed",
+            "raw": 0
+          },
+          {
+            "signal": "ZScanPosConfirmed",
+            "raw": 0
+          },
+          {
+            "signal": "ZGrapPosConfirmed",
+            "raw": 0
+          }
+        ],
+        "rotationFeedback": 0,
+        "putBackFeedback": 0
+      },
+      "level": "Warning",
+      "exceptionType": null
+    }
+  },
+  {
+    "source": "recovery\\recovery-c52a56992e4043fbb4404372e31669bd\\runtime.log",
+    "event": {
+      "schema": "station01-runtime/1",
+      "utc": "2026-10-08T21:02:21.2202651+00:00",
+      "tick": 49920604924823,
+      "tickFrequency": 10000000,
+      "processId": 5492,
+      "step": "CommissioningRecovery",
+      "category": "Workflow",
+      "outcome": "Blocked",
+      "runId": "8e1e5bde-1052-46f1-8196-292ebe6b8af3",
+      "spanId": null,
+      "elapsedMs": 2253.8164,
+      "facts": {
+        "resetId": "c509ad07-6dfb-40d2-b3ed-dd57c0ca205f",
+        "actor": "operator",
+        "phase": "InitialStateVerification",
+        "resetBudgetMs": 2000,
+        "requestCancellationObserved": false,
+        "resetBudgetExpired": true,
+        "cancellationObservation": "ResetBudget",
+        "automaticRetry": false
+      },
+      "level": "Warning",
+      "exceptionType": "System.Threading.Tasks.TaskCanceledException"
+    }
+  },
+  {
+    "source": "recovery\\recovery-cae19ae67a804701b46c9cca5d7f841c\\runtime.log",
+    "event": {
+      "schema": "station01-runtime/1",
+      "utc": "2026-10-08T21:02:06.2838868+00:00",
+      "tick": 49920455561953,
+      "tickFrequency": 10000000,
+      "processId": 5492,
+      "step": "CommissioningRecovery",
+      "category": "Workflow",
+      "outcome": "ResetRequested",
+      "runId": "cb7d7a39-333b-400d-8775-4986b53a8346",
+      "spanId": null,
+      "elapsedMs": null,
+      "facts": {
+        "resetId": "5a9e8b49-29d6-4d84-8b10-ca4f800a0ea4",
+        "actor": "operator",
+        "failedEpoch": 1,
+        "resetBudgetMs": 2000
+      },
+      "level": "Information",
+      "exceptionType": null
+    }
+  },
+  {
+    "source": "recovery\\recovery-cae19ae67a804701b46c9cca5d7f841c\\runtime.log",
+    "event": {
+      "schema": "station01-runtime/1",
+      "utc": "2026-10-08T21:02:06.342033+00:00",
+      "tick": 49920456143413,
+      "tickFrequency": 10000000,
+      "processId": 5492,
+      "step": "RecoveryInitialObservation",
+      "category": "Workflow",
+      "outcome": "Passed",
+      "runId": null,
+      "spanId": null,
+      "elapsedMs": null,
+      "facts": {
+        "actual": {
+          "Connected": true,
+          "Automatic": true,
+          "SafetyClear": true,
+          "X": 0,
+          "Y": 0,
+          "ConnectionEpoch": 2,
+          "MotionStatus": "Idle",
+          "ObservedUtc": "2026-10-08T21:02:06.3379443+00:00",
+          "Z": 0,
+          "Source": "Real",
+          "AlarmBits": 0,
+          "AlarmSeverity": 0,
+          "PlcSystemFault": false,
+          "PlcReady": true,
+          "DiagnosticCode": null,
+          "FailureOrigin": null,
+          "ManualZoneOccupied": false,
+          "ObservationId": "b587f486-fa02-4fec-94b6-d6e966a2fefe",
+          "SampleConnectionEpoch": 2,
+          "SampleStartedUtc": "2026-10-08T21:02:06.3345581+00:00",
+          "ScanZ": 0,
+          "GrabZ": 0,
+          "PositionIdentity": {
+            "ObservationId": "b1337e17-0311-410b-94a3-501ecc4e01b8",
+            "ConnectionEpoch": 2,
+            "SampleStartedUtc": "2026-10-08T21:02:06.3345581+00:00",
+            "SampleEndedUtc": "2026-10-08T21:02:06.3379491+00:00",
+            "Reliability": "Reliable",
+            "IsValid": true
+          },
+          "SafetyUnconfirmed": false,
+          "ManualAreaUnconfirmed": false,
+          "IndependentSafetyFaults": []
+        },
+        "checks": {
+          "Connected": true,
+          "Automatic": true,
+          "Ready": true,
+          "SafetyClear": true,
+          "ResetRequestCleared": true,
+          "StopCleared": true,
+          "ThisSystemResetObserved": true,
+          "AxesNotTriggered": true,
+          "FlipCommandCleared": true,
+          "SortingCleared": true,
+          "AlarmsCleared": true,
+          "FinitePosition": true,
+          "RecoveryProtocolConfigured": true,
+          "PcReadyAndStartClear": true,
+          "AxisFeedbackValid": true,
+          "FlipFeedbackCleared": true,
+          "AllLinearAxesAtSafeZero": true
+        },
+        "protocol": "plc-interaction-011-test-map",
+        "axisFeedback": [
+          {
+            "signal": "XPosConfirmed",
+            "raw": 1
+          },
+          {
+            "signal": "YPosConfirmed",
+            "raw": 1
+          },
+          {
+            "signal": "ZCameraPosConfirmed",
+            "raw": 1
+          },
+          {
+            "signal": "ZScanPosConfirmed",
+            "raw": 1
+          },
+          {
+            "signal": "ZGrapPosConfirmed",
+            "raw": 1
+          }
+        ],
+        "rotationFeedback": 1,
+        "putBackFeedback": 0
+      },
+      "level": "Information",
+      "exceptionType": null
+    }
+  },
+  {
+    "source": "recovery\\recovery-cae19ae67a804701b46c9cca5d7f841c\\runtime.log",
+    "event": {
+      "schema": "station01-runtime/1",
+      "utc": "2026-10-08T21:02:06.627791+00:00",
+      "tick": 49920459000976,
+      "tickFrequency": 10000000,
+      "processId": 5492,
+      "step": "CommissioningRecovery",
+      "category": "Workflow",
+      "outcome": "ClosedAfterVerifiedReset",
+      "runId": "cb7d7a39-333b-400d-8775-4986b53a8346",
+      "spanId": null,
+      "elapsedMs": 489.2019,
+      "facts": {
+        "resetId": "5a9e8b49-29d6-4d84-8b10-ca4f800a0ea4",
+        "recoveryWriteId": "010d3308-72e7-410a-a486-a05fb56fa4b6",
+        "initial": {
+          "Readiness": "Ready",
+          "Observation": {
+            "Reliability": "Reliable",
+            "Connection": "Connected",
+            "ConnectionEpoch": 2,
+            "OperatingMode": "Automatic",
+            "Readiness": "Ready",
+            "SafetyAssessment": "Clear",
+            "Clamp": "Unconfirmed",
+            "MotionAvailability": "Available",
+            "AcquisitionReadiness": "Available",
+            "ManualArea": "Clear",
+            "ManualHandling": "Unconfirmed",
+            "Position": {
+              "ActualX": 0,
+              "ActualY": 0,
+              "ActualZ": 0,
+              "AxisPurpose": "MachineAxes",
+              "CoordinateFrame": "OFFLINE_ONLY",
+              "UnitBasis": "OFFLINE:recovery-fixture:mm",
+              "Identity": {
+                "ObservationId": "b1337e17-0311-410b-94a3-501ecc4e01b8",
+                "ConnectionEpoch": 2,
+                "SampleStartedUtc": "2026-10-08T21:02:06.3345581+00:00",
+                "SampleEndedUtc": "2026-10-08T21:02:06.3379491+00:00",
+                "Reliability": "Reliable",
+                "IsValid": true
+              },
+              "Origin": {
+                "Provider": "Real",
+                "ComponentVersion": "Real:confirmed-20261006-v2;sources/PC.xls:37095748a61574d9a1c9bf17ad0ac9118d554fa73ac8f5e10003718b6627511d;sources/PLC(2).xls:8e846d0f71351f87b42db1bf40790f40766a392fd0a9e0968201f8c2056eb476;field:Offline:XLS-address-convention-fixture",
+                "Quality": "Measured"
+              },
+              "IsReliable": true
+            },
+            "Face": null,
+            "Alarms": [],
+            "ReasonCodes": [],
+            "ExecutionOrigin": {
+              "Provider": "Real",
+              "ComponentVersion": "Real:confirmed-20261006-v2;sources/PC.xls:37095748a61574d9a1c9bf17ad0ac9118d554fa73ac8f5e10003718b6627511d;sources/PLC(2).xls:8e846d0f71351f87b42db1bf40790f40766a392fd0a9e0968201f8c2056eb476;field:Offline:XLS-address-convention-fixture",
+              "Quality": "Measured"
+            },
+            "Identity": {
+              "ObservationId": "b587f486-fa02-4fec-94b6-d6e966a2fefe",
+              "ConnectionEpoch": 2,
+              "SampleStartedUtc": "2026-10-08T21:02:06.3345581+00:00",
+              "SampleEndedUtc": "2026-10-08T21:02:06.3379443+00:00",
+              "Reliability": "Reliable",
+              "IsValid": true
+            },
+            "DiagnosticEvidenceReference": null,
+            "SchemaVersion": "device-semantics/1",
+            "AxisPositions": {
+              "X": 0,
+              "Y": 0,
+              "DetectionZ": 0,
+              "ScanZ": 0,
+              "GrabZ": 0
+            },
+            "HasReliableObservation": true
+          },
+          "BlockedReasons": [],
+          "ResetGeneration": 2,
+          "Passed": true
+        },
+        "manualStartRequired": true
+      },
+      "level": "Information",
+      "exceptionType": null
+    }
+  },
+  {
+    "source": "site\\site-operations-45d7b17f18c1441abc86085552feb12a\\runtime.log",
+    "event": {
+      "schema": "station01-runtime/1",
+      "utc": "2026-10-08T21:02:02.0275709+00:00",
+      "tick": 49920412999050,
+      "tickFrequency": 10000000,
+      "processId": 5492,
+      "step": "AxisPosition",
+      "category": "Workflow",
+      "outcome": "Reused",
+      "runId": "8d88255f-180d-405f-adca-105afd57c130",
+      "spanId": null,
+      "elapsedMs": null,
+      "facts": {
+        "action": {
+          "RunId": "8d88255f-180d-405f-adca-105afd57c130",
+          "OperationId": "f6a7dde8-fdba-4903-86bb-c683669e328e",
+          "ActionId": "7df5dce8-45d7-491c-aa53-0b8aefbb1d31",
+          "Attempt": 1,
+          "SessionId": "4e812490-ad5f-473f-8082-cfb84f3728cc",
+          "ConnectionEpoch": 1,
+          "SnapshotId": "offline-site",
+          "PlanRevision": null,
+          "TrayId": null,
+          "ObjectId": null,
+          "GroupId": null,
+          "AssemblyId": null,
+          "LocalFace": null,
+          "PhysicalSlotIndex": null,
+          "IsValid": true
+        },
+        "expectedEpoch": 1,
+        "axis": "XPosConfirmed",
+        "target": 1,
+        "actual": 1,
+        "tolerance": 0.01,
+        "feedback": 1
+      },
+      "level": "Information",
+      "exceptionType": null
+    }
+  },
+  {
+    "source": "site\\site-operations-45d7b17f18c1441abc86085552feb12a\\runtime.log",
+    "event": {
+      "schema": "station01-runtime/1",
+      "utc": "2026-10-08T21:02:02.0326165+00:00",
+      "tick": 49920413049512,
+      "tickFrequency": 10000000,
+      "processId": 5492,
+      "step": "AxisPosition",
+      "category": "Workflow",
+      "outcome": "Reused",
+      "runId": "8d88255f-180d-405f-adca-105afd57c130",
+      "spanId": null,
+      "elapsedMs": null,
+      "facts": {
+        "action": {
+          "RunId": "8d88255f-180d-405f-adca-105afd57c130",
+          "OperationId": "f6a7dde8-fdba-4903-86bb-c683669e328e",
+          "ActionId": "7df5dce8-45d7-491c-aa53-0b8aefbb1d31",
+          "Attempt": 1,
+          "SessionId": "4e812490-ad5f-473f-8082-cfb84f3728cc",
+          "ConnectionEpoch": 1,
+          "SnapshotId": "offline-site",
+          "PlanRevision": null,
+          "TrayId": null,
+          "ObjectId": null,
+          "GroupId": null,
+          "AssemblyId": null,
+          "LocalFace": null,
+          "PhysicalSlotIndex": null,
+          "IsValid": true
+        },
+        "expectedEpoch": 1,
+        "axis": "YPosConfirmed",
+        "target": 2,
+        "actual": 2,
+        "tolerance": 0.01,
+        "feedback": 1
+      },
+      "level": "Information",
+      "exceptionType": null
+    }
+  },
+  {
+    "source": "site\\site-operations-45d7b17f18c1441abc86085552feb12a\\runtime.log",
+    "event": {
+      "schema": "station01-runtime/1",
+      "utc": "2026-10-08T21:02:02.044544+00:00",
+      "tick": 49920413168779,
+      "tickFrequency": 10000000,
+      "processId": 5492,
+      "step": "AxisPosition",
+      "category": "Workflow",
+      "outcome": "Reused",
+      "runId": "8d88255f-180d-405f-adca-105afd57c130",
+      "spanId": null,
+      "elapsedMs": null,
+      "facts": {
+        "action": {
+          "RunId": "8d88255f-180d-405f-adca-105afd57c130",
+          "OperationId": "f6a7dde8-fdba-4903-86bb-c683669e328e",
+          "ActionId": "7df5dce8-45d7-491c-aa53-0b8aefbb1d31",
+          "Attempt": 1,
+          "SessionId": "4e812490-ad5f-473f-8082-cfb84f3728cc",
+          "ConnectionEpoch": 1,
+          "SnapshotId": "offline-site",
+          "PlanRevision": null,
+          "TrayId": null,
+          "ObjectId": null,
+          "GroupId": null,
+          "AssemblyId": null,
+          "LocalFace": null,
+          "PhysicalSlotIndex": null,
+          "IsValid": true
+        },
+        "expectedEpoch": 1,
+        "axis": "ZCameraPosConfirmed",
+        "target": 3,
+        "actual": 3,
+        "tolerance": 0.01,
+        "feedback": 1
+      },
+      "level": "Information",
+      "exceptionType": null
+    }
+  },
+  {
+    "source": "site\\site-operations-78ad8c698c554423b342332ae5ad7bd8\\runtime.log",
+    "event": {
+      "schema": "station01-runtime/1",
+      "utc": "2026-10-08T21:02:04.1067285+00:00",
+      "tick": 49920433790502,
+      "tickFrequency": 10000000,
+      "processId": 5492,
+      "step": "AxisPosition",
+      "category": "Workflow",
+      "outcome": "Reused",
+      "runId": "a416a64d-b216-4a9b-8a42-38de844b837c",
+      "spanId": null,
+      "elapsedMs": null,
+      "facts": {
+        "action": {
+          "RunId": "a416a64d-b216-4a9b-8a42-38de844b837c",
+          "OperationId": "7855274a-ca45-4b2f-8ca9-1ebe55b5e1c4",
+          "ActionId": "45342f99-a3c3-41f3-a923-bddc58d0708d",
+          "Attempt": 1,
+          "SessionId": "80f48f1f-a9f2-4b48-977d-e351c2c4c888",
+          "ConnectionEpoch": 1,
+          "SnapshotId": "offline-site",
+          "PlanRevision": null,
+          "TrayId": null,
+          "ObjectId": null,
+          "GroupId": null,
+          "AssemblyId": null,
+          "LocalFace": null,
+          "PhysicalSlotIndex": null,
+          "IsValid": true
+        },
+        "expectedEpoch": 1,
+        "axis": "XPosConfirmed",
+        "target": 1,
+        "actual": 1,
+        "tolerance": 0.01,
+        "feedback": 0
+      },
+      "level": "Information",
+      "exceptionType": null
+    }
+  },
+  {
+    "source": "site\\site-operations-78ad8c698c554423b342332ae5ad7bd8\\runtime.log",
+    "event": {
+      "schema": "station01-runtime/1",
+      "utc": "2026-10-08T21:02:04.1071896+00:00",
+      "tick": 49920433795119,
+      "tickFrequency": 10000000,
+      "processId": 5492,
+      "step": "AxisPosition",
+      "category": "Workflow",
+      "outcome": "Reused",
+      "runId": "a416a64d-b216-4a9b-8a42-38de844b837c",
+      "spanId": null,
+      "elapsedMs": null,
+      "facts": {
+        "action": {
+          "RunId": "a416a64d-b216-4a9b-8a42-38de844b837c",
+          "OperationId": "7855274a-ca45-4b2f-8ca9-1ebe55b5e1c4",
+          "ActionId": "45342f99-a3c3-41f3-a923-bddc58d0708d",
+          "Attempt": 1,
+          "SessionId": "80f48f1f-a9f2-4b48-977d-e351c2c4c888",
+          "ConnectionEpoch": 1,
+          "SnapshotId": "offline-site",
+          "PlanRevision": null,
+          "TrayId": null,
+          "ObjectId": null,
+          "GroupId": null,
+          "AssemblyId": null,
+          "LocalFace": null,
+          "PhysicalSlotIndex": null,
+          "IsValid": true
+        },
+        "expectedEpoch": 1,
+        "axis": "YPosConfirmed",
+        "target": 2,
+        "actual": 2,
+        "tolerance": 0.01,
+        "feedback": 0
+      },
+      "level": "Information",
+      "exceptionType": null
+    }
+  },
+  {
+    "source": "site\\site-operations-78ad8c698c554423b342332ae5ad7bd8\\runtime.log",
+    "event": {
+      "schema": "station01-runtime/1",
+      "utc": "2026-10-08T21:02:04.1435497+00:00",
+      "tick": 49920434158709,
+      "tickFrequency": 10000000,
+      "processId": 5492,
+      "step": "AxisPosition",
+      "category": "Workflow",
+      "outcome": "Reused",
+      "runId": "a416a64d-b216-4a9b-8a42-38de844b837c",
+      "spanId": null,
+      "elapsedMs": null,
+      "facts": {
+        "action": {
+          "RunId": "a416a64d-b216-4a9b-8a42-38de844b837c",
+          "OperationId": "7855274a-ca45-4b2f-8ca9-1ebe55b5e1c4",
+          "ActionId": "45342f99-a3c3-41f3-a923-bddc58d0708d",
+          "Attempt": 1,
+          "SessionId": "80f48f1f-a9f2-4b48-977d-e351c2c4c888",
+          "ConnectionEpoch": 1,
+          "SnapshotId": "offline-site",
+          "PlanRevision": null,
+          "TrayId": null,
+          "ObjectId": null,
+          "GroupId": null,
+          "AssemblyId": null,
+          "LocalFace": null,
+          "PhysicalSlotIndex": null,
+          "IsValid": true
+        },
+        "expectedEpoch": 1,
+        "axis": "ZCameraPosConfirmed",
+        "target": 3,
+        "actual": 3,
+        "tolerance": 0.01,
+        "feedback": 0
+      },
+      "level": "Information",
+      "exceptionType": null
+    }
+  }
+]

@@ -186,14 +186,17 @@ public sealed partial class LatestProtocolPlcDevice : IPlcStatePort, IPlcActionP
             checks.Remove("NoManualOccupancy");
             checks["ThisSystemResetObserved"] = verifiedSystemResetEpoch == sampledEpoch && !unknown;
             checks["PcReadyAndStartClear"] = C(SignalId.PcSystemReady) && !C(SignalId.PcStartCmd);
-            checks["AxisFeedbackCleared"] = PreparedPlcReadPlans.Axes.All(id => R(id) == 0) &&
-                !C(SignalId.RotateStart) && R(SignalId.RPosConfirmed) == 0;
+            checks["AxisFeedbackValid"] = PreparedPlcReadPlans.Axes.All(id => ClosedAxisFeedbackValid(id, R(id))) &&
+                !C(SignalId.RotateStart) && ClosedAxisFeedbackValid(SignalId.RPosConfirmed, R(SignalId.RPosConfirmed));
             checks["FlipFeedbackCleared"] = R(SignalId.FlipStatus) == 0 && R(SignalId.FlipUnloadStatus) == 0;
             checks["AllLinearAxesAtSafeZero"] = PreparedPlcReadPlans.Position.All(id =>
                 float.IsFinite(words.Float(id)) && Math.Abs(words.Float(id)) <= PositionTolerance);
         }
         RuntimeDiagnostics.Record("RecoveryInitialObservation", checks.Values.All(x => x) ? "Passed" : "Blocked", null,
-            new { actual, checks, protocol = PlcAddressMap.Contract }, warning: checks.Values.Any(x => !x));
+            new { actual, checks, protocol = PlcAddressMap.Contract,
+                axisFeedback = PreparedPlcReadPlans.Axes.Select(id => new { signal = id.ToString(), raw = R(id) }).ToArray(),
+                rotationFeedback = R(SignalId.RPosConfirmed), putBackFeedback = R(SignalId.FlipUnloadStatus) },
+            warning: checks.Values.Any(x => !x));
         var interpreted = Interpret(actual);
         var blocked = InitialBlockedReasons(checks);
         return new(blocked.Count == 0 ? InitialReadiness.Ready : InitialReadiness.Blocked, interpreted, blocked,
