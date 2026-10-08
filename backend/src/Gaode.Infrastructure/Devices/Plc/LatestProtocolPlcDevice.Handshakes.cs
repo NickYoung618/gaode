@@ -26,15 +26,12 @@ public sealed partial class LatestProtocolPlcDevice
             fields.ToDictionary(id=>id,id=>values.Stamps[id])) : null;
     }
 
-    private bool ClosedAxisFeedbackValid(SignalId feedback, ushort value) => value == 0 ||
-        definitionAdmission.Definition.IsSiteLayout && value == SignalCodes.Value(feedback, "Arrived");
-
     private bool CanReuseAxis(AxisMove axis, SignalValues values, long expectedEpoch)
     {
         lock (sync)
         {
             if (!axisClosures.TryGetValue(axis.Start, out var closed)) return false;
-            if (closed.Epoch != expectedEpoch || values.Bit(axis.Start) || !ClosedAxisFeedbackValid(axis.Confirmed, values.Word(axis.Confirmed)) ||
+            if (closed.Epoch != expectedEpoch || values.Bit(axis.Start) || values.Word(axis.Confirmed) != 0 ||
                 !float.IsFinite(values.Float(axis.Actual)) ||
                 Math.Abs(values.Float(axis.Actual) - closed.Actual) > PositionTolerance)
             { axisClosures.Remove(axis.Start); return false; }
@@ -59,7 +56,7 @@ public sealed partial class LatestProtocolPlcDevice
             if (!axisClosures.TryGetValue(starts[i], out var closed)) continue;
             if (closed.Epoch != sampledEpoch ||
                 values.Words.ContainsKey(starts[i]) && values.Word(starts[i]) != 0 ||
-                values.Words.ContainsKey(feedbacks[i]) && !ClosedAxisFeedbackValid(feedbacks[i], values.Word(feedbacks[i])) ||
+                values.Words.ContainsKey(feedbacks[i]) && values.Word(feedbacks[i]) != 0 ||
                 values.Words.ContainsKey(positions[i]) && (!float.IsFinite(values.Float(positions[i])) ||
                     Math.Abs(values.Float(positions[i]) - closed.Actual) > PositionTolerance))
                 axisClosures.Remove(starts[i]);

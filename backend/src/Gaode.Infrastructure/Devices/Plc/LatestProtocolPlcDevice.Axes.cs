@@ -95,13 +95,8 @@ public sealed partial class LatestProtocolPlcDevice
         }
         var reused = axes.Where(a => CanReuseAxis(a, baseline, expectedEpoch)).ToArray();
         foreach (var axis in reused)
-        {
             logger.LogInformation("AxisPositionReused: action={ActionId} epoch={Epoch} axis={Axis} target={Target} actual={Actual} tolerance={Tolerance}",
                 pending?.Id, expectedEpoch, axis.Confirmed, axis.Value, baseline.Float(axis.Actual), PositionTolerance);
-            Gaode.Diagnostics.RuntimeDiagnostics.Record("AxisPosition", "Reused", evidenceCorrelation?.RunId,
-                new { action = evidenceCorrelation, expectedEpoch, axis = axis.Confirmed.ToString(), target = axis.Value,
-                    actual = baseline.Float(axis.Actual), tolerance = PositionTolerance, feedback = baseline.Word(axis.Confirmed) });
-        }
         axes = axes.Except(reused).ToArray();
         if (axes.Length == 0)
         {
@@ -113,8 +108,7 @@ public sealed partial class LatestProtocolPlcDevice
         {
             CheckAxisWindow(window, expectedEpoch, token);
             lock (sync) axisClosures.Remove(axis.Start);
-            if (!ClosedAxisFeedbackValid(axis.Confirmed, baseline.Word(axis.Confirmed)))
-                throw new IOException("PreviousAxisNotCleared:" + axis.Confirmed);
+            if (baseline.Word(axis.Confirmed) != 0) throw new IOException("PreviousAxisNotCleared:" + axis.Confirmed);
             await signals.WriteFloatAsync(axis.Target, (float)axis.Value, token);
         }
         var dispatchClocks = axes.ToDictionary(a => a.Confirmed, _ => new PlcExchangeClock());
@@ -200,7 +194,7 @@ public sealed partial class LatestProtocolPlcDevice
         {
             if (current.Bit(axis.Start) || !float.IsFinite(current.Float(axis.Actual)) ||
                 Math.Abs(current.Float(axis.Actual) - (float)axis.Value) > PositionTolerance ||
-                (reused.Contains(axis) ? !CanReuseAxis(axis, current, expectedEpoch) : current.Word(axis.Confirmed) != 0))
+                current.Word(axis.Confirmed) != 0)
                 { lock (sync) axisClosures.Remove(axis.Start); throw new IOException("AxisFinalPositionUnconfirmed:" + axis.Confirmed); }
         }
         var identity = new GroupObservation("P", 0, expectedEpoch, SelectValues(current, PreparedPlcReadPlans.Position), 0, 0, 0).Identity;

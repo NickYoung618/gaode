@@ -1,12 +1,5 @@
 # SC-021：启动关联、未知查询及最终完成合同
 
-## 2026-10-09 SC-021-PLC-R6：复位与定位反馈分开核验
-
-继承R5系统复位握手。初始核验将AxisFeedbackCleared改为AxisFeedbackValid：MB6040/6042/6044/6046/6048及MB6060允许0或1，拒绝2及未知值；MB6052和MB6050仍为0。Ready、位置容差、请求清零、恢复策略和持久收尾不能被轴反馈1覆盖。
-
-现场同坐标复用使用有效动作记录及本次新鲜坐标，不要求反馈下降沿；允许当前到位1或已有闭环清零0。真实运动仍逐轴观察发令后的Moving→Arrived，再校验新鲜实际位置和原闭环清零。当前目标不同不因初始到位1被PreviousAxisNotCleared拒绝。最终复核对复用轴接受已确认状态，对实际运动轴保留清零检查。记录遇断线、代次变化、未知、新运动请求或位置漂移失效。
-
-
 ## 2026-10-09 最新复位判据（SC-021-PLC-R5）
 
 依据当日用户明确确认，现场复位顺序变为：旧MB2009=0 → MB2006=1、MB2008=0并读回 → MB2009=1 → 请求写入返回后新读MB6015=1 → 清MB2009 → 既有安全/当前就绪/XYZ核验与旧请求清理 → 完整初始状态核验 → 旧Run持久取消及释放。此条取代下文R2/R3/R4中的必须观察Ready先0再1及安全/XYZ核验前不得清复位请求的旧要求；其余条款保持。
@@ -107,5 +100,3 @@ R4定向回归修复：清零确认首次可请求立即新读；未清零后沿
 不改变/reset请求/响应、授权、PLC端口、清零顺序及持久取消条件。CommissioningRecovery的Blocked日志增加phase、elapsedMs、requestCancellationObserved、resetBudgetExpired及cancellationObservation；预算到期与外部请求取消用独立CancellationTokenSource观察，两者同时发生则同时记录，均未观察到时为Unclassified。仍使用原30秒配置预算起点和原调用取消传播，不转为后台自动恢复。
 
 PlcSiteHandshake记录ResetRequestObserved、ResetReadyObserved、ResetVerificationObserved、ResetRequestClearWriteResponded等低频事实；handshakeDiagnostic用于失败窗口保留最后阶段。异常前未读取的数据不填默认成功，清写响应不冒充读回清零证明。resetId与PLC事件仍通过现有运行/epoch/时间核对，本次不声称端到端唯一ID已贯通。
-
-R6范围澄清：用户再次说明问题是在部署包点击一键复位时发现，本轮以修正复位核验误判为主，同步已确认的直线轴同坐标规则。没有确认用系统复位记录替代轴运动闭环记录，因此不增加此资格；也不扩展旋转同角度复用规则。现场配置的来源说明同步记录R6，数值参数和原始点表保持。
