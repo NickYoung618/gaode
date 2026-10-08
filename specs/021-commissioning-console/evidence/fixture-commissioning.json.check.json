@@ -1,0 +1,573 @@
+{
+  "scope": "OFFLINE:fixture-foundation-not-page-or-desktop-acceptance",
+  "identity": {
+    "schemaVersion": "station01-identity/1",
+    "profileId": "OFFLINE-operator",
+    "subjectId": "offline:operator",
+    "displayName": "OFFLINE operator",
+    "role": "Operator",
+    "permissions": [
+      "Run.Read",
+      "Run.Start",
+      "Run.Pause",
+      "Run.Cancel",
+      "Media.Read"
+    ],
+    "mode": "RealDeviceCommissioning",
+    "purpose": "Commissioning",
+    "authenticationSource": "PreconfiguredCommissioning"
+  },
+  "catalogStatus": 200,
+  "mediaResults": [
+    {
+      "runId": "3b1f05bf-0b66-480a-aa8c-ba22a13169fb",
+      "items": [
+        {
+          "mediaId": "5f683831-e815-4021-94de-62e73687ac68",
+          "captureId": "cb691e00-f283-4d12-b49e-b766cd6e13c2",
+          "role": "Detection",
+          "stepSequence": 1,
+          "businessCamera": "C",
+          "committedRevision": 4,
+          "committedAtUtc": "2026-10-07T21:27:24.076714\u002B00:00",
+          "readiness": "Ready",
+          "source": "OFFLINE:021-PNG-capture/1",
+          "objectId": "OFFLINE-component-object",
+          "localFace": 1,
+          "heightRound": 1,
+          "requestedCaptureSettings": null,
+          "captureFact": {
+            "runId": "3b1f05bf-0b66-480a-aa8c-ba22a13169fb",
+            "captureId": "cb691e00-f283-4d12-b49e-b766cd6e13c2",
+            "operationId": "f9a81755-690a-4e90-8da1-4ee9059b0c56",
+            "connectionEpoch": 1,
+            "requestedSettingsDigest": "3B7D648EEF6BBFE3632B7F00B037DCE0BD1B24EE74FA54121F9648540972DEF7",
+            "mediaSource": "OFFLINE:021-PNG-capture/1",
+            "cameraOrigin": {
+              "source": 3,
+              "versionRef": "OFFLINE:021-PNG-capture/1",
+              "quality": "DeclaredOfflineFixture",
+              "isKnown": true
+            },
+            "lightOrigin": {
+              "source": 2,
+              "versionRef": "OFFLINE:021-light/1",
+              "quality": "Virtual",
+              "isKnown": true
+            },
+            "applicationState": 1,
+            "actualSettings": null,
+            "replayed": false,
+            "evidenceReferences": [
+              "OFFLINE:021-PNG-input/1;no-real-camera-claim"
+            ],
+            "frameMetadata": null,
+            "cameraApplicationState": 1,
+            "lightApplicationState": 2,
+            "actualCameraSettings": {
+              "exposureUs": 1000,
+              "gain": 0,
+              "width": 1,
+              "height": 1,
+              "offsetX": 0,
+              "offsetY": 0
+            },
+            "actualPublicSettings": {
+              "configurationId": "OFFLINE-capture-settings",
+              "configurationVersion": "1",
+              "exposureUs": 1000,
+              "lightLevel": 0
+            },
+            "physicalLightApplied": false
+          },
+          "purpose": "RealDeviceCommissioning"
+        },
+        {
+          "mediaId": "dacf5caf-04d7-4774-9bcf-3f62e9bdedda",
+          "captureId": "4cd2bc76-fa37-47fc-9156-5e497592d76e",
+          "role": "Detection",
+          "stepSequence": 2,
+          "businessCamera": "D",
+          "committedRevision": 7,
+          "committedAtUtc": "2026-10-07T21:27:24.1772209\u002B00:00",
+          "readiness": "Ready",
+          "source": "OFFLINE:021-PNG-capture/1",
+          "objectId": "OFFLINE-component-object",
+          "localFace": 1,
+          "heightRound": 1,
+          "requestedCaptureSettings": null,
+          "captureFact": {
+            "runId": "3b1f05bf-0b66-480a-aa8c-ba22a13169fb",
+            "captureId": "4cd2bc76-fa37-47fc-9156-5e497592d76e",
+            "operationId": "52d97ccb-c0ca-43f7-984f-804434bd0b92",
+            "connectionEpoch": 1,
+            "requestedSettingsDigest": "59064ADE73C25A64CA9149D516399F1A6D96E64C2DBE28B46392F9B19E674F53",
+            "mediaSource": "OFFLINE:021-PNG-capture/1",
+            "cameraOrigin": {
+              "source": 3,
+              "versionRef": "OFFLINE:021-PNG-capture/1",
+              "quality": "DeclaredOfflineFixture",
+              "isKnown": true
+            },
+            "lightOrigin": {
+              "source": 2,
+              "versionRef": "OFFLINE:021-light/1",
+              "quality": "Virtual",
+              "isKnown": true
+            },
+            "applicationState": 1,
+            "actualSettings": null,
+            "replayed": false,
+            "evidenceReferences": [
+              "OFFLINE:021-PNG-input/1;no-real-camera-claim"
+            ],
+            "frameMetadata": null,
+            "cameraApplicationState": 1,
+            "lightApplicationState": 2,
+            "actualCameraSettings": {
+              "exposureUs": 1000,
+              "gain": 0,
+              "width": 1,
+              "height": 1,
+              "offsetX": 0,
+              "offsetY": 0
+            },
+            "actualPublicSettings": {
+              "configurationId": "OFFLINE-capture-settings",
+              "configurationVersion": "1",
+              "exposureUs": 1000,
+              "lightLevel": 0
+            },
+            "physicalLightApplied": false
+          },
+          "purpose": "RealDeviceCommissioning"
+        },
+        {
+          "mediaId": "41879593-5495-4a28-96ab-fb63c687e43f",
+          "captureId": "014174bd-1dda-44b2-b557-37e389d1c14c",
+          "role": "Detection",
+          "stepSequence": 3,
+          "businessCamera": "A",
+          "committedRevision": 10,
+          "committedAtUtc": "2026-10-07T21:27:24.1937801\u002B00:00",
+          "readiness": "Ready",
+          "source": "OFFLINE:021-PNG-capture/1",
+          "objectId": "OFFLINE-component-object",
+          "localFace": 1,
+          "heightRound": 1,
+          "requestedCaptureSettings": null,
+          "captureFact": {
+            "runId": "3b1f05bf-0b66-480a-aa8c-ba22a13169fb",
+            "captureId": "014174bd-1dda-44b2-b557-37e389d1c14c",
+            "operationId": "7ec47c7a-b3da-44f6-9625-1927be92f8ac",
+            "connectionEpoch": 1,
+            "requestedSettingsDigest": "469F1C2133CD5E8787EE7B9B6381897CDB20780A7D357D8D6E827CB398ECDC7F",
+            "mediaSource": "OFFLINE:021-PNG-capture/1",
+            "cameraOrigin": {
+              "source": 3,
+              "versionRef": "OFFLINE:021-PNG-capture/1",
+              "quality": "DeclaredOfflineFixture",
+              "isKnown": true
+            },
+            "lightOrigin": {
+              "source": 2,
+              "versionRef": "OFFLINE:021-light/1",
+              "quality": "Virtual",
+              "isKnown": true
+            },
+            "applicationState": 1,
+            "actualSettings": null,
+            "replayed": false,
+            "evidenceReferences": [
+              "OFFLINE:021-PNG-input/1;no-real-camera-claim"
+            ],
+            "frameMetadata": null,
+            "cameraApplicationState": 1,
+            "lightApplicationState": 2,
+            "actualCameraSettings": {
+              "exposureUs": 1000,
+              "gain": 0,
+              "width": 1,
+              "height": 1,
+              "offsetX": 0,
+              "offsetY": 0
+            },
+            "actualPublicSettings": {
+              "configurationId": "OFFLINE-capture-settings",
+              "configurationVersion": "1",
+              "exposureUs": 1000,
+              "lightLevel": 0
+            },
+            "physicalLightApplied": false
+          },
+          "purpose": "RealDeviceCommissioning"
+        },
+        {
+          "mediaId": "dd0d61a4-655e-4880-b8d8-a41318b88783",
+          "captureId": "b675f07f-42da-4932-b931-285574218765",
+          "role": "Detection",
+          "stepSequence": 4,
+          "businessCamera": "B",
+          "committedRevision": 13,
+          "committedAtUtc": "2026-10-07T21:27:24.2052024\u002B00:00",
+          "readiness": "Ready",
+          "source": "OFFLINE:021-PNG-capture/1",
+          "objectId": "OFFLINE-component-object",
+          "localFace": 1,
+          "heightRound": 1,
+          "requestedCaptureSettings": null,
+          "captureFact": {
+            "runId": "3b1f05bf-0b66-480a-aa8c-ba22a13169fb",
+            "captureId": "b675f07f-42da-4932-b931-285574218765",
+            "operationId": "31dfa96d-bc1c-4e78-868b-8fdc482d2e79",
+            "connectionEpoch": 1,
+            "requestedSettingsDigest": "8AC295FDA098D11922F5EF141685F2537CA505182D12CF07DA9093A9A8C27D46",
+            "mediaSource": "OFFLINE:021-PNG-capture/1",
+            "cameraOrigin": {
+              "source": 3,
+              "versionRef": "OFFLINE:021-PNG-capture/1",
+              "quality": "DeclaredOfflineFixture",
+              "isKnown": true
+            },
+            "lightOrigin": {
+              "source": 2,
+              "versionRef": "OFFLINE:021-light/1",
+              "quality": "Virtual",
+              "isKnown": true
+            },
+            "applicationState": 1,
+            "actualSettings": null,
+            "replayed": false,
+            "evidenceReferences": [
+              "OFFLINE:021-PNG-input/1;no-real-camera-claim"
+            ],
+            "frameMetadata": null,
+            "cameraApplicationState": 1,
+            "lightApplicationState": 2,
+            "actualCameraSettings": {
+              "exposureUs": 1000,
+              "gain": 0,
+              "width": 1,
+              "height": 1,
+              "offsetX": 0,
+              "offsetY": 0
+            },
+            "actualPublicSettings": {
+              "configurationId": "OFFLINE-capture-settings",
+              "configurationVersion": "1",
+              "exposureUs": 1000,
+              "lightLevel": 0
+            },
+            "physicalLightApplied": false
+          },
+          "purpose": "RealDeviceCommissioning"
+        },
+        {
+          "mediaId": "6c1a5511-cad8-428d-87aa-5ee9c64aaeb8",
+          "captureId": "9a2469d9-1af4-43ea-b709-91444a369cfc",
+          "role": "E",
+          "stepSequence": 5,
+          "businessCamera": "E",
+          "committedRevision": 16,
+          "committedAtUtc": "2026-10-07T21:27:24.217987\u002B00:00",
+          "readiness": "Ready",
+          "source": "OFFLINE:021-PNG-capture/1",
+          "objectId": "OFFLINE-component-object",
+          "localFace": 1,
+          "heightRound": 1,
+          "requestedCaptureSettings": null,
+          "captureFact": {
+            "runId": "3b1f05bf-0b66-480a-aa8c-ba22a13169fb",
+            "captureId": "9a2469d9-1af4-43ea-b709-91444a369cfc",
+            "operationId": "c9fe14a1-ae6e-4ae5-8b94-e9498204e627",
+            "connectionEpoch": 1,
+            "requestedSettingsDigest": "A8470CB26EC933DFCA4290F450E16967336DB54BB8D3433C2F8E694BD90379CC",
+            "mediaSource": "OFFLINE:021-PNG-capture/1",
+            "cameraOrigin": {
+              "source": 3,
+              "versionRef": "OFFLINE:021-PNG-capture/1",
+              "quality": "DeclaredOfflineFixture",
+              "isKnown": true
+            },
+            "lightOrigin": {
+              "source": 2,
+              "versionRef": "OFFLINE:021-light/1",
+              "quality": "Virtual",
+              "isKnown": true
+            },
+            "applicationState": 1,
+            "actualSettings": null,
+            "replayed": false,
+            "evidenceReferences": [
+              "OFFLINE:021-PNG-input/1;no-real-camera-claim"
+            ],
+            "frameMetadata": null,
+            "cameraApplicationState": 1,
+            "lightApplicationState": 2,
+            "actualCameraSettings": {
+              "exposureUs": 1000,
+              "gain": 0,
+              "width": 1,
+              "height": 1,
+              "offsetX": 0,
+              "offsetY": 0
+            },
+            "actualPublicSettings": {
+              "configurationId": "OFFLINE-capture-settings",
+              "configurationVersion": "1",
+              "exposureUs": 1000,
+              "lightLevel": 0
+            },
+            "physicalLightApplied": false
+          },
+          "purpose": "RealDeviceCommissioning"
+        },
+        {
+          "mediaId": "a9ea3888-0535-4a9c-b3f6-6cd1be703780",
+          "captureId": "be231d93-fd3e-4d38-a93e-f75d286f3ba1",
+          "role": "ThreeD",
+          "stepSequence": null,
+          "businessCamera": "ThreeD",
+          "committedRevision": 19,
+          "committedAtUtc": "2026-10-07T21:27:24.2300249\u002B00:00",
+          "readiness": "Ready",
+          "source": "OFFLINE:021-PNG-capture/1",
+          "objectId": null,
+          "localFace": null,
+          "heightRound": null,
+          "requestedCaptureSettings": null,
+          "captureFact": {
+            "runId": "3b1f05bf-0b66-480a-aa8c-ba22a13169fb",
+            "captureId": "be231d93-fd3e-4d38-a93e-f75d286f3ba1",
+            "operationId": "a0ca18d8-e8c1-4546-af94-532214d681c4",
+            "connectionEpoch": 1,
+            "requestedSettingsDigest": "5F592332B9F04768A99B84D7D34FF4D7E01D90C526025DFFB9174EB2A4216C15",
+            "mediaSource": "OFFLINE:021-PNG-capture/1",
+            "cameraOrigin": {
+              "source": 3,
+              "versionRef": "OFFLINE:021-PNG-capture/1",
+              "quality": "DeclaredOfflineFixture",
+              "isKnown": true
+            },
+            "lightOrigin": {
+              "source": 2,
+              "versionRef": "OFFLINE:021-light/1",
+              "quality": "Virtual",
+              "isKnown": true
+            },
+            "applicationState": 1,
+            "actualSettings": null,
+            "replayed": false,
+            "evidenceReferences": [
+              "OFFLINE:021-PNG-input/1;no-real-camera-claim"
+            ],
+            "frameMetadata": null,
+            "cameraApplicationState": 1,
+            "lightApplicationState": 2,
+            "actualCameraSettings": {
+              "exposureUs": 1000,
+              "gain": 0,
+              "width": 1,
+              "height": 1,
+              "offsetX": 0,
+              "offsetY": 0
+            },
+            "actualPublicSettings": {
+              "configurationId": "OFFLINE-capture-settings",
+              "configurationVersion": "1",
+              "exposureUs": 1000,
+              "lightLevel": 0
+            },
+            "physicalLightApplied": false
+          },
+          "purpose": "RealDeviceCommissioning"
+        },
+        {
+          "mediaId": "8e04f949-228c-47c0-98f0-126422eb56d5",
+          "captureId": "f160b53d-c5ba-4245-b5f8-339139a33345",
+          "role": "F",
+          "stepSequence": null,
+          "businessCamera": "F",
+          "committedRevision": 22,
+          "committedAtUtc": "2026-10-07T21:27:24.2414672\u002B00:00",
+          "readiness": "Ready",
+          "source": "OFFLINE:021-PNG-capture/1",
+          "objectId": null,
+          "localFace": null,
+          "heightRound": null,
+          "requestedCaptureSettings": null,
+          "captureFact": {
+            "runId": "3b1f05bf-0b66-480a-aa8c-ba22a13169fb",
+            "captureId": "f160b53d-c5ba-4245-b5f8-339139a33345",
+            "operationId": "ea1f8378-d744-45e4-8fae-b457bfe5b89c",
+            "connectionEpoch": 1,
+            "requestedSettingsDigest": "2108CD807809F6B170E16CE551F2C1B6FE18F6ECE969B07D3C250CE21CFF7AFD",
+            "mediaSource": "OFFLINE:021-PNG-capture/1",
+            "cameraOrigin": {
+              "source": 3,
+              "versionRef": "OFFLINE:021-PNG-capture/1",
+              "quality": "DeclaredOfflineFixture",
+              "isKnown": true
+            },
+            "lightOrigin": {
+              "source": 2,
+              "versionRef": "OFFLINE:021-light/1",
+              "quality": "Virtual",
+              "isKnown": true
+            },
+            "applicationState": 1,
+            "actualSettings": null,
+            "replayed": false,
+            "evidenceReferences": [
+              "OFFLINE:021-PNG-input/1;no-real-camera-claim"
+            ],
+            "frameMetadata": null,
+            "cameraApplicationState": 1,
+            "lightApplicationState": 2,
+            "actualCameraSettings": {
+              "exposureUs": 1000,
+              "gain": 0,
+              "width": 1,
+              "height": 1,
+              "offsetX": 0,
+              "offsetY": 0
+            },
+            "actualPublicSettings": {
+              "configurationId": "OFFLINE-capture-settings",
+              "configurationVersion": "1",
+              "exposureUs": 1000,
+              "lightLevel": 0
+            },
+            "physicalLightApplied": false
+          },
+          "purpose": "RealDeviceCommissioning"
+        },
+        {
+          "mediaId": "424be0f6-48f4-4273-9e6d-a239c968122d",
+          "captureId": "d706673a-1dd9-4e8e-a9c7-14f9a8501632",
+          "role": "Detection",
+          "stepSequence": 8,
+          "businessCamera": "C",
+          "committedRevision": 25,
+          "committedAtUtc": "2026-10-07T21:27:24.2528336\u002B00:00",
+          "readiness": "Ready",
+          "source": "OFFLINE:021-PNG-capture/1",
+          "objectId": "OFFLINE-component-object",
+          "localFace": 1,
+          "heightRound": 1,
+          "requestedCaptureSettings": null,
+          "captureFact": {
+            "runId": "3b1f05bf-0b66-480a-aa8c-ba22a13169fb",
+            "captureId": "d706673a-1dd9-4e8e-a9c7-14f9a8501632",
+            "operationId": "1de4c5a6-025a-4c9b-8969-55e2ff3ca9d4",
+            "connectionEpoch": 1,
+            "requestedSettingsDigest": "3B7D648EEF6BBFE3632B7F00B037DCE0BD1B24EE74FA54121F9648540972DEF7",
+            "mediaSource": "OFFLINE:021-PNG-capture/1",
+            "cameraOrigin": {
+              "source": 3,
+              "versionRef": "OFFLINE:021-PNG-capture/1",
+              "quality": "DeclaredOfflineFixture",
+              "isKnown": true
+            },
+            "lightOrigin": {
+              "source": 2,
+              "versionRef": "OFFLINE:021-light/1",
+              "quality": "Virtual",
+              "isKnown": true
+            },
+            "applicationState": 1,
+            "actualSettings": null,
+            "replayed": false,
+            "evidenceReferences": [
+              "OFFLINE:021-PNG-input/1;no-real-camera-claim"
+            ],
+            "frameMetadata": null,
+            "cameraApplicationState": 1,
+            "lightApplicationState": 2,
+            "actualCameraSettings": {
+              "exposureUs": 1000,
+              "gain": 0,
+              "width": 1,
+              "height": 1,
+              "offsetX": 0,
+              "offsetY": 0
+            },
+            "actualPublicSettings": {
+              "configurationId": "OFFLINE-capture-settings",
+              "configurationVersion": "1",
+              "exposureUs": 1000,
+              "lightLevel": 0
+            },
+            "physicalLightApplied": false
+          },
+          "purpose": "RealDeviceCommissioning"
+        }
+      ]
+    },
+    {
+      "runId": "7f737670-a0ea-4c6a-94f2-5dc34f9187cb",
+      "items": [
+        {
+          "mediaId": "c41f05c8-856a-4da0-97be-28b4a52ca3e1",
+          "captureId": "45e9a8b2-c316-425c-84a9-85cb37bc66f3",
+          "role": "Detection",
+          "stepSequence": 1,
+          "businessCamera": "C",
+          "committedRevision": 4,
+          "committedAtUtc": "2026-10-07T21:27:24.2680367\u002B00:00",
+          "readiness": "Ready",
+          "source": "OFFLINE:021-PNG-capture/1",
+          "objectId": "OFFLINE-component-object",
+          "localFace": 1,
+          "heightRound": 1,
+          "requestedCaptureSettings": null,
+          "captureFact": {
+            "runId": "7f737670-a0ea-4c6a-94f2-5dc34f9187cb",
+            "captureId": "45e9a8b2-c316-425c-84a9-85cb37bc66f3",
+            "operationId": "b551f37d-0949-495b-891b-da9281d8b674",
+            "connectionEpoch": 1,
+            "requestedSettingsDigest": "3B7D648EEF6BBFE3632B7F00B037DCE0BD1B24EE74FA54121F9648540972DEF7",
+            "mediaSource": "OFFLINE:021-PNG-capture/1",
+            "cameraOrigin": {
+              "source": 3,
+              "versionRef": "OFFLINE:021-PNG-capture/1",
+              "quality": "DeclaredOfflineFixture",
+              "isKnown": true
+            },
+            "lightOrigin": {
+              "source": 2,
+              "versionRef": "OFFLINE:021-light/1",
+              "quality": "Virtual",
+              "isKnown": true
+            },
+            "applicationState": 1,
+            "actualSettings": null,
+            "replayed": false,
+            "evidenceReferences": [
+              "OFFLINE:021-PNG-input/1;no-real-camera-claim"
+            ],
+            "frameMetadata": null,
+            "cameraApplicationState": 1,
+            "lightApplicationState": 2,
+            "actualCameraSettings": {
+              "exposureUs": 1000,
+              "gain": 0,
+              "width": 1,
+              "height": 1,
+              "offsetX": 0,
+              "offsetY": 0
+            },
+            "actualPublicSettings": {
+              "configurationId": "OFFLINE-capture-settings",
+              "configurationVersion": "1",
+              "exposureUs": 1000,
+              "lightLevel": 0
+            },
+            "physicalLightApplied": false
+          },
+          "purpose": "RealDeviceCommissioning"
+        }
+      ]
+    }
+  ]
+}

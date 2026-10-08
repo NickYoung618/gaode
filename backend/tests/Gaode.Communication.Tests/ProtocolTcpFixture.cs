@@ -14,12 +14,17 @@ internal sealed partial class ProtocolTcpFixture : IAsyncDisposable
 {
     private TraceWriter? evidenceWriter;
     private string? evidenceDirectory;
-    public LatestProtocolPlcDevice Device()
+    internal TraceWriter EvidenceWriter => evidenceWriter!;
+    internal DbContextOptions<Station01DbContext> DatabaseOptions { get; private set; } = null!;
+    public string EvidenceDirectory => evidenceDirectory!;
+    public List<string> DeviceLogs { get; } = [];
+    public LatestProtocolPlcDevice Device(Action<PlcRuntimeOptions>? configure = null, [System.Runtime.CompilerServices.CallerMemberName] string testName = "")
     {
-        evidenceDirectory = Path.Combine(Path.GetTempPath(), "gaode-same-position-" + Guid.NewGuid().ToString("N"));
+        evidenceDirectory = Path.Combine(Path.GetTempPath(), "gaode-stage-a-" + testName + "-" + Guid.NewGuid().ToString("N"));
         Directory.CreateDirectory(evidenceDirectory);
         var options = new DbContextOptionsBuilder<Station01DbContext>()
             .UseSqlite($"Data Source={Path.Combine(evidenceDirectory, "test.db")};Pooling=False").Options;
+        DatabaseOptions = options;
         var storeId = Guid.NewGuid();
         using (var db = new Station01DbContext(options))
         {
@@ -30,8 +35,10 @@ internal sealed partial class ProtocolTcpFixture : IAsyncDisposable
         }
         evidenceWriter = new TraceWriter(options, TimeProvider.System, 32);
         var recorder = new CommunicationEvidenceRecorder(evidenceWriter, storeId, TimeProvider.System, 2000);
-        return new(new PlcRuntimeOptions { Provider="Virtual", Host="127.0.0.1", Port=Port, UnitId=1,
-            IoTimeoutMs=1000, HeartbeatTimeoutMs=3000 }, .01, recorder: recorder);
+        var runtime = new PlcRuntimeOptions { Provider="Virtual", Host="127.0.0.1", Port=Port, UnitId=1,
+            IoTimeoutMs=1000, HeartbeatTimeoutMs=3000 };
+        configure?.Invoke(runtime);
+        return new(runtime, .01, new FixtureLogger(DeviceLogs), recorder: recorder);
     }
     public PlcDataStore Store { get; }
     public VirtualPlcEngine Engine { get; }
@@ -74,7 +81,18 @@ internal sealed partial class ProtocolTcpFixture : IAsyncDisposable
     public async ValueTask DisposeAsync()
     {
         if (evidenceWriter is not null) await evidenceWriter.DisposeAsync();
-        if (evidenceDirectory is not null) Directory.Delete(evidenceDirectory, true);
+        if (evidenceDirectory is not null)
+        {
+            if (Environment.GetEnvironmentVariable("GAODE_STAGE_A_EVIDENCE") is { Length: > 0 } export)
+            {
+                var destination=Path.Combine(export,Path.GetFileName(evidenceDirectory));
+                Directory.CreateDirectory(destination);
+                foreach(var file in Directory.GetFiles(evidenceDirectory)) File.Copy(file,Path.Combine(destination,Path.GetFileName(file)));
+                File.WriteAllLines(Path.Combine(destination,"device.log"),DeviceLogs);
+                File.WriteAllText(Path.Combine(destination,"plc-audit.json"),System.Text.Json.JsonSerializer.Serialize(new {writes=Store.GetWriteAudit(), actions=Engine.GetActionAudit()},new System.Text.Json.JsonSerializerOptions {WriteIndented=true}));
+            }
+            Directory.Delete(evidenceDirectory, true);
+        }
         using var cleanup = new CancellationTokenSource(TimeSpan.FromSeconds(5));
         try { await Server.StopAsync(cleanup.Token); }
         finally { await Engine.StopAsync(cleanup.Token); Server.Dispose(); Engine.Dispose(); }
@@ -83,3 +101,12 @@ internal sealed partial class ProtocolTcpFixture : IAsyncDisposable
 
 [Xunit.CollectionDefinition("CommunicationTcp", DisableParallelization = true)]
 public sealed class CommunicationTcpCollection { }
+
+internal sealed class FixtureLogger(List<string> entries) : Microsoft.Extensions.Logging.ILogger<LatestProtocolPlcDevice>
+{
+    public IDisposable? BeginScope<TState>(TState state) where TState : notnull => null;
+    public bool IsEnabled(Microsoft.Extensions.Logging.LogLevel level) => true;
+    public void Log<TState>(Microsoft.Extensions.Logging.LogLevel level, Microsoft.Extensions.Logging.EventId id,
+        TState state, Exception? error, Func<TState,Exception?,string> formatter)
+    { lock(entries) entries.Add(DateTimeOffset.UtcNow.ToString("O")+" "+level+" "+formatter(state,error)+" "+error?.Message); }
+}

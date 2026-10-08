@@ -37,6 +37,27 @@ public static class QueryEndpoints
 
     public static RouteGroupBuilder MapQueryEndpoints(this RouteGroupBuilder group)
     {
+        group.MapGet("/start-admission", (CommandRegistry commands) => Results.Ok(commands.StartAdmission()))
+            .RequireAuthorization(Station01Authorization.Read);
+        group.MapGet("/start-requests/{requestId}", async (string requestId, CommandRegistry commands,
+            ITraceQuery traces, System.Security.Claims.ClaimsPrincipal user, ILoggerFactory logs, HttpContext http, CancellationToken ct) =>
+        {
+            http.Response.Headers.CacheControl = "no-store";
+            var subject = user.FindFirst(System.Security.Claims.ClaimTypes.NameIdentifier)?.Value;
+            if (string.IsNullOrWhiteSpace(subject)) return Results.Unauthorized();
+            try
+            {
+                var receipt = commands.FindStart(subject, requestId) ?? await traces.GetStartReceiptAsync(subject, requestId, ct);
+                return receipt is null ? Station01ApiResults.NotFound(http, "StartRequestNotObserved", "当前无法确认原请求，不可自动重发") :
+                    Results.Ok(new { schemaVersion = "station01-start-request/1", requestId, receipt.CommandId,
+                        receipt.RunId, receipt.ReceiptDurability, receipt.StatusUrl, receipt.Accepted });
+            }
+            catch (Exception error) when (error is not OperationCanceledException || !ct.IsCancellationRequested)
+            {
+                logs.CreateLogger("StartQuery").LogError(error, "StartRequestQueryUnavailable requestId={RequestId} traceId={TraceId}", requestId, http.TraceIdentifier);
+                return Station01ApiResults.Error(http, 503, "StartRequestQueryUnavailable", "原请求查询受限，不能据此重复启动", "Storage", true);
+            }
+        }).RequireAuthorization(Station01Authorization.Read);
         group.MapGet("/runs/{runId:guid}", async (Guid runId, Station01Coordinator coordinator,
             ITraceQuery traces, IStageHandoffQuery handoffs,
             IWholeTrayCompletionStore completions, IStageEventStore stageEvents,
@@ -85,6 +106,11 @@ public static class QueryEndpoints
             var resultRevision = Convert.ToHexString(SHA256.HashData(JsonSerializer.SerializeToUtf8Bytes(
                 new { results, movements, display.Context, events = dispositionFacts.Select(f => new { f.EventId, f.Sequence }) })));
             var allowedActions = Array.Empty<string>();
+            var commissioningRecovery = CommissioningRecoveryService.ReadProof(persisted, await traces.GetWritesAsync(runId, ct));
+            if (!historical && services.GetService<CommissioningRecoveryService>() is not null &&
+                commissioningRecovery is null && CommissioningRecoveryService.CanReset(snapshot.State) &&
+                http.User.HasClaim("permission", Station01Authorization.Start))
+                allowedActions = ["CommissioningRecoveryReset"];
             var failedRecovery = services.GetService<FixedMoveRecoveryInteraction>()?.Query(runId);
             var faultRestart = services.GetService<FixedMoveRecoveryInteraction>()?.QueryRestart(runId);
             if (faultRestart is null)
@@ -128,6 +154,7 @@ public static class QueryEndpoints
                 ResultRevision = resultRevision,
                 Movements = movements,
                 FaultRestart = faultRestart,
+                CommissioningRecovery = commissioningRecovery,
                 FailedCommandRecovery = failedRecovery is null ? null : new(failedRecovery.OperationId,
                     failedRecovery.ActionId, failedRecovery.FailedEpoch, failedRecovery.Role,
                     failedRecovery.DeadlineUtc, failedRecovery.ResetEpoch, failedRecovery.CheckId),
@@ -233,20 +260,23 @@ public static class QueryEndpoints
             var plcProjection = DeviceSemanticProjection.Observation(observed);
             var runProjection = DeviceSemanticProjection.Run(currentRun);
             var fileCamera = cameraPort is FileBackedCapture;
-            var camera = new { state = fileCamera ? "Ready" :
+            var realCameras = services.GetService<Gaode.Infrastructure.Devices.Cameras.PersistentCameraGateway>();
+            var camera = new { state = realCameras is not null ?
+                    (realCameras.Status.All(s => s.State == "Ready") ? "Ready" : "NotReady") : fileCamera ? "Ready" :
                     options.Mode == "FullSimulation" ? "Simulated" : "NotIntegrated",
-                source = fileCamera ? "Test/FixedImage" :
+                source = realCameras is not null ? "Real" : fileCamera ? "Test/FixedImage" :
                     options.Mode == "FullSimulation" ? "Simulated" : "Unknown" };
-            var store = StoreCompatibilityProbe.Inspect(options.TestRoot);
+            var store = StoreCompatibilityProbe.Inspect(options.TestRoot, options.StoreProfile);
             var storage = new { state = store.Compatible ? "Ready" : store.Code,
                 maintenance = mediaStore.ActiveJobs == 0 ? "Idle" : "Writing" };
             var maintenance = new { state = "Unknown", maintenance = "NotObserved" };
             var worker = services.GetService<WorkerProcessSupervisor>();
             var workerReady = algorithmPort is PythonWorkerAdapter && worker is { HasExited: false };
-            var algorithm = new AlgorithmAvailability(workerReady ? "Ready" : "NotIntegrated",
-                workerReady ? "Test/IndependentWorker" :
+            var controlledAlgorithm = algorithmPort is Gaode.Infrastructure.Simulation.CommissioningAlgorithm;
+            var algorithm = new AlgorithmAvailability(controlledAlgorithm ? "Configured" : workerReady ? "Ready" : "NotIntegrated",
+                controlledAlgorithm ? "Simulated" : workerReady ? "Test/IndependentWorker" :
                     options.Mode == "FullSimulation" ? "Simulated" : "Unknown",
-                workerReady ? $"session:{worker!.SessionId:D}" : "算法worker不可用");
+                controlledAlgorithm ? algorithmPort.Origin.VersionRef : workerReady ? $"session:{worker!.SessionId:D}" : "算法worker不可用");
             var capabilities = workerReady && fileCamera
                 ? new[] { "Station01PublicPreparation", "FixedXY", "FSingleCapture",
                     "Detection", "WholeTrayWorkflow", "FinalUnloadCompletion" }

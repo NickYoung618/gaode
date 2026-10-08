@@ -177,7 +177,30 @@
     {
       "page": "data-view.html",
       "archiveTextSha256": "d4b2feb858018acccc2e63704aab6e553f5121e464c2714647a4d0f53992d444",
-      "patches": []
+      "patches": [
+        {
+          "id": "data-view-021-stop-mock-1",
+          "requirement": "021 FR-012/015 RM-03 T026: new-purpose data queries; preserve legacy demo evidence scope",
+          "region": "Commissioning guard around existing demonstration data script",
+          "archiveStartLine": 379,
+          "offset": 16934,
+          "before": "",
+          "beforeSha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+          "after": "  if (window.__GAODE_HOST_CONFIG__?.mode !== 'RealDeviceCommissioning') {\r\n",
+          "afterSha256": "c6547f6e3f6b182022af09393b60ecfbef2134a5bd218420c8ad8a61d145a34e"
+        },
+        {
+          "id": "data-view-021-stop-mock-3",
+          "requirement": "021 FR-012/015 RM-03 T026: new-purpose data queries; preserve legacy demo evidence scope",
+          "region": "Commissioning guard around existing demonstration data script",
+          "archiveStartLine": 564,
+          "offset": 25907,
+          "before": "",
+          "beforeSha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+          "after": "  }\r\n",
+          "afterSha256": "71345180105b0c66a77dad51bb37901a3732c9654ba4de3981f81e18175248bf"
+        }
+      ]
     },
     {
       "page": "login.html",
@@ -188,23 +211,964 @@
   "resources": [
     {
       "path": "scripts/build.mjs",
-      "sha256": "2a9779fdf036f323608f254418ed074b9057b633523837c324908d3c68d59379"
+      "sha256": "8e074aaa8c8608b629347c86ff8e4c68bfc2f2721dafb1a2468e344dde413739",
+      "previousSha256": "2a9779fdf036f323608f254418ed074b9057b633523837c324908d3c68d59379",
+      "requirement": "021 FR-001/002/003/015; RM-04; T006",
+      "region": "021-script-injection: exact added module copy and script tag, reconstruction retained"
     },
     {
       "path": "src/runtime.js",
-      "sha256": "71ea95e2cc2add29b40857efcda39ccbe52dfc478d1da24b1e0c6f4e61f1622a"
+      "sha256": "61221a44390c189c217651a6b5e3c40dd8d58dee7127c60197fe8001ea1c9381",
+      "previousSha256": "c37d1f43fb8076e066d304638d8ba5501fcccd057cd04ad3c11abe3aeff8b9bc",
+      "exactAuthorizedChanges": [
+        {
+          "id": "src/runtime.js/021-recovery-r4-0",
+          "requirement": "Existing resource authorizations retained; 021 SC-021-PLC-R4 recovery notification, reset action and explicit new-run binding",
+          "offsetAfter": 0,
+          "before": "(function () {\r\n",
+          "after": "(async function () {\r\n"
+        },
+        {
+          "id": "src/runtime.js/021-recovery-r4-2",
+          "requirement": "Existing resource authorizations retained; 021 SC-021-PLC-R4 recovery notification, reset action and explicit new-run binding",
+          "offsetAfter": 183,
+          "before": "  const token = host.mode === 'Test' ? String(host.testToken || '') : '';\r\n  const prepared = host.mode === 'Test' ? host.preparedStartRequest : null;\r\n",
+          "after": "  let token = host.mode === 'Test' ? String(host.testToken || '') : host.mode === 'RealDeviceCommissioning' ? String(host.commissioningToken || '') : '';\r\n  let confirmedIdentity = null;\r\n  let prepared = host.mode === 'Test' ? host.preparedStartRequest : null;\r\n  const commissioning = host.mode === 'RealDeviceCommissioning';\r\n  if (host.mode === 'RealDeviceCommissioning') {\r\n    // Override the inline demo handler immediately, including during the identity request.\r\n    window.handleLogin = event => { event.preventDefault(); return false; };\r\n    try {\r\n      const response = await fetch(apiBase + '/api/v1/station01/identity', {\r\n        headers: { Authorization: `Bearer ${token}` }, cache: 'no-store'\r\n      });\r\n      if (!response.ok) throw new Error(`IdentityRejected:${response.status}`);\r\n      confirmedIdentity = window.GaodeCommissioningConsole.confirmIdentity(await response.json(), host.commissioningProfile);\r\n      console.info('GaodePageDiagnostic', JSON.stringify({ event: 'IdentityChecked', mode: host.mode,\r\n        subjectId: confirmedIdentity.subjectId, profileId: confirmedIdentity.profileId }));\r\n      const login = window.GaodeCommissioningConsole.bindLogin(document, confirmedIdentity, path => { window.location.href = path; });\r\n      if (login) { window.handleLogin = login; return; }\r\n      const chip = document.querySelector('header .bg-slate-800\\\\/60.border-slate-700\\\\/50:last-of-type');\r\n      const name = chip?.querySelector('.text-xs.text-slate-100');\r\n      const role = chip?.querySelector('[class*=\"text-emerald-300\"]');\r\n      if (name) name.textContent = confirmedIdentity.displayName;\r\n      if (role) role.textContent = confirmedIdentity.role === 'Operator' ? 'L1 · 操作员' : 'L2 · 工程师';\r\n      const loginButton = document.getElementById('btnRecipe');\r\n      if (loginButton) loginButton.disabled = !confirmedIdentity.permissions.includes('Run.Read');\r\n    } catch (error) {\r\n      token = ''; confirmedIdentity = null;\r\n      clearPrototypeDemo();\r\n      document.querySelectorAll('#camGrid img').forEach(image => image.removeAttribute('src'));\r\n      document.querySelectorAll('main button, #btnRecipe, #btnPositions').forEach(button => { button.disabled = true; });\r\n      const input = document.getElementById('user');\r\n      if (input) { input.setCustomValidity('联调身份不可用，请联系维护人员核对配置'); input.reportValidity(); }\r\n      const fault = document.getElementById('faultList'); if (fault) fault.textContent = '联调身份不可用，操作已阻止';\r\n      console.info('GaodePageDiagnostic', JSON.stringify({ event: 'IdentityRejected', mode: host.mode, errorType: error.name }));\r\n      return;\r\n    }\r\n  }\r\n"
+        },
+        {
+          "id": "src/runtime.js/021-recovery-r4-4",
+          "requirement": "Existing resource authorizations retained; 021 SC-021-PLC-R4 recovery notification, reset action and explicit new-run binding",
+          "offsetAfter": 3728,
+          "before": "  let selectedRecipe = null;\r\n",
+          "after": "  let selectedRecipe = null, nextAdmission = null, pendingOperation = null;\r\n  const pendingKey = `gaode:station01:pending:${apiBase}:${host.mode}:${host.commissioningTemplate?.contextTemplate?.stationId || ''}`;\r\n  if (commissioning) {\r\n    try { pendingOperation = JSON.parse(viewStorage?.getItem(pendingKey) || 'null'); } catch (_) { interactionNotice='原请求关联无法读取，请维护人员核查'; startSubmitted=true; }\r\n    if (pendingOperation) {\r\n      startSubmitted=true;\r\n      if(pendingOperation.subjectId === confirmedIdentity.subjectId) {\r\n        runId=pendingOperation.runId || null;\r\n      } else { runId=null; interactionNotice='存在另一身份的未核定请求，请由原身份查询；不能接管或重新启动'; }\r\n    } else { const known=new URLSearchParams(location.search).get('runId'); runId=/^[0-9a-f-]{36}$/i.test(known || '')?known:null; }\r\n  }\r\n  function savePending(value) {\r\n    if(!viewStorage) throw new Error('PendingReferenceStorageUnavailable');\r\n    viewStorage.setItem(pendingKey,JSON.stringify(value)); pendingOperation=value;\r\n  }\r\n  async function recoverPending() {\r\n    if(!commissioning || !pendingOperation || pendingOperation.subjectId!==confirmedIdentity.subjectId || pendingOperation.operationKind!=='Start') return;\r\n    if(pendingOperation.runId) { runId=pendingOperation.runId; return; }\r\n    try {\r\n      const original=await request('/api/v1/station01/start-requests/'+encodeURIComponent(pendingOperation.requestId));\r\n      if(!original.runId || original.requestId!==pendingOperation.requestId) throw new Error('OriginalRequestMismatch');\r\n      receipt=original;runId=original.runId;\r\n      savePending({...pendingOperation,commandId:original.commandId,runId,state:'Accepted'});rememberRun(runId);\r\n      diagnostic('OriginalStartRecovered',{requestId:original.requestId,commandId:original.commandId});\r\n    } catch(error) { interactionNotice=`原请求 ${pendingOperation.requestId} 当前无法确认；只查询，不自动重发`; }\r\n  }\r\n\r\n"
+        },
+        {
+          "id": "src/runtime.js/021-recovery-r4-6",
+          "requirement": "Existing resource authorizations retained; 021 SC-021-PLC-R4 recovery notification, reset action and explicit new-run binding",
+          "offsetAfter": 10482,
+          "before": "      if (context.purpose !== 'Test' || !Array.isArray(context.occupiedSlots) ||\r\n",
+          "after": "      if (context.purpose !== (commissioning ? 'Commissioning' : 'Test') || !Array.isArray(context.occupiedSlots) ||\r\n"
+        },
+        {
+          "id": "src/runtime.js/021-recovery-r4-8",
+          "requirement": "Existing resource authorizations retained; 021 SC-021-PLC-R4 recovery notification, reset action and explicit new-run binding",
+          "offsetAfter": 13883,
+          "before": "    if (host.mode !== 'Test' || !runId || catalog?.runId?.toLowerCase() !== runId.toLowerCase()) return grouped;\r\n    const allocation = testSlotAllocation(runId);\r\n",
+          "after": "    if ((!commissioning && host.mode !== 'Test') || !runId || catalog?.runId?.toLowerCase() !== runId.toLowerCase()) return grouped;\r\n    const allocation = host.mode === 'Test' ? testSlotAllocation(runId) : null;\r\n"
+        },
+        {
+          "id": "src/runtime.js/021-recovery-r4-10",
+          "requirement": "Existing resource authorizations retained; 021 SC-021-PLC-R4 recovery notification, reset action and explicit new-run binding",
+          "offsetAfter": 14145,
+          "before": "      const identity = mediaIdentity(item), slot = allocation.get(identity);\r\n",
+          "after": "      const identity = mediaIdentity(item), slot = commissioning ? window.GaodeCommissioningConsole.mediaSlot(item) : allocation.get(identity);\r\n"
+        },
+        {
+          "id": "src/runtime.js/021-recovery-r4-12",
+          "requirement": "Existing resource authorizations retained; 021 SC-021-PLC-R4 recovery notification, reset action and explicit new-run binding",
+          "offsetAfter": 22483,
+          "before": "",
+          "after": "    const commissioningReset = commissioning && run?.allowedActions?.includes('CommissioningRecoveryReset');\r\n"
+        },
+        {
+          "id": "src/runtime.js/021-recovery-r4-14",
+          "requirement": "Existing resource authorizations retained; 021 SC-021-PLC-R4 recovery notification, reset action and explicit new-run binding",
+          "offsetAfter": 22769,
+          "before": "      removalButton.disabled = !(canConfirmRemoval || recoveryAction && !commandPending);\r\n      removalButton.textContent = recoveryAction === 'RecoveryReset' ? '复位' :\r\n",
+          "after": "      removalButton.disabled = !(canConfirmRemoval || (recoveryAction || commissioningReset) && !commandPending);\r\n      removalButton.textContent = commissioningReset ? '复位并结束旧任务' : recoveryAction === 'RecoveryReset' ? '复位' :\r\n"
+        },
+        {
+          "id": "src/runtime.js/021-recovery-r4-16",
+          "requirement": "Existing resource authorizations retained; 021 SC-021-PLC-R4 recovery notification, reset action and explicit new-run binding",
+          "offsetAfter": 23816,
+          "before": "    const allocated = runId && host.mode === 'Test' ? new Set(testSlotAllocation(runId).values()) : new Set();\r\n",
+          "after": "    const allocated = commissioning ? new Set(candidatesBySlot.keys()) : runId && host.mode === 'Test' ? new Set(testSlotAllocation(runId).values()) : new Set();\r\n"
+        },
+        {
+          "id": "src/runtime.js/021-recovery-r4-18",
+          "requirement": "Existing resource authorizations retained; 021 SC-021-PLC-R4 recovery notification, reset action and explicit new-run binding",
+          "offsetAfter": 25347,
+          "before": "      if (marker) marker.textContent = !runId ? '未采集' : !allocated.has(slot) ? '未参与 · Test' :\r\n        !item ? mediaError ? '媒体查询受限 · Test' : '未采集 · Test' :\r\n        item.readiness !== 'Ready' ? '未就绪 · Test' :\r\n",
+          "after": "      if (marker) marker.textContent = !runId ? '未采集' : !allocated.has(slot) ? commissioning ? '未参与／未采集' : '未参与 · Test' :\r\n        !item ? mediaError ? commissioning ? '媒体查询受限' : '媒体查询受限 · Test' : commissioning ? '未采集' : '未采集 · Test' :\r\n        item.readiness !== 'Ready' ? commissioning ? '未就绪' : '未就绪 · Test' :\r\n"
+        },
+        {
+          "id": "src/runtime.js/021-recovery-r4-20",
+          "requirement": "Existing resource authorizations retained; 021 SC-021-PLC-R4 recovery notification, reset action and explicit new-run binding",
+          "offsetAfter": 25703,
+          "before": "          `${item.source || '来源未知'} · 临时格位 · ${item.role}/${item.businessCamera}${faceLabel}${choiceLabel}`;\r\n",
+          "after": "          `${item.source || '来源未知'} · ${commissioning ? '当前运行' : '临时格位'} · ${item.role}/${item.businessCamera}${faceLabel}${choiceLabel}`;\r\n"
+        },
+        {
+          "id": "src/runtime.js/021-recovery-r4-22",
+          "requirement": "Existing resource authorizations retained; 021 SC-021-PLC-R4 recovery notification, reset action and explicit new-run binding",
+          "offsetAfter": 26392,
+          "before": "    const diagnostic = run?.startupDiagnostic;\r\n",
+          "after": "    const diagnostic = run?.commissioningRecovery ? null : run?.startupDiagnostic;\r\n"
+        },
+        {
+          "id": "src/runtime.js/021-recovery-r4-24",
+          "requirement": "Existing resource authorizations retained; 021 SC-021-PLC-R4 recovery notification, reset action and explicit new-run binding",
+          "offsetAfter": 28187,
+          "before": "    const problem = fBlocked || reason || run?.errorCode || lastStartFailure || (status?.host !== 'Ready' ? status?.host : null) ||\r\n      (!token ? 'AuthUnavailable' : null) || (status?.algorithm?.state !== 'Ready' ? status?.algorithm?.state : null);\r\n",
+          "after": "    const problem = fBlocked || reason || run?.errorCode || (run?.commissioningRecovery ? null : lastStartFailure) || (status?.host !== 'Ready' ? status?.host : null) ||\r\n      (!token ? 'AuthUnavailable' : null) || (!['Ready','Configured'].includes(status?.algorithm?.state) ? status?.algorithm?.state : null);\r\n"
+        },
+        {
+          "id": "src/runtime.js/021-recovery-r4-26",
+          "requirement": "Existing resource authorizations retained; 021 SC-021-PLC-R4 recovery notification, reset action and explicit new-run binding",
+          "offsetAfter": 30734,
+          "before": "",
+          "after": "      commissioning ? window.GaodeCommissioningConsole?.recoveryNotice(run) : null,\r\n"
+        },
+        {
+          "id": "src/runtime.js/021-recovery-r4-28",
+          "requirement": "Existing resource authorizations retained; 021 SC-021-PLC-R4 recovery notification, reset action and explicit new-run binding",
+          "offsetAfter": 35145,
+          "before": "",
+          "after": "    if(commissioning && document.getElementById('partsTbody')) {\r\n      const body=document.getElementById('partsTbody');\r\n      const records=Array.isArray(run?.results)?run.results:[];\r\n      setText('partsCount',records.length?String(records.length):'未提供');\r\n      body.innerHTML=records.map((result,index)=>`<tr><td>${index+1}</td><td>${escaped(result.id||'对象待查')}</td><td>—</td><td colspan=\"3\">${escaped(result.availability==='Committed'?result.disposition||'结果未提供':'结果未提交')}</td><td>—</td><td>指标未提供</td><td><button data-result-index=\"${index}\" class=\"btn-action\">详情</button></td></tr>`).join('') || '<tr><td colspan=\"9\">本运行暂无已提交检测结果</td></tr>';\r\n      window.closeReport=()=>{const modal=document.getElementById('reportModal');modal?.classList.add('hidden');modal?.classList.remove('flex');};\r\n      window.openReport=index=>{\r\n        const result=records[Number(index)]; if(!result) return;\r\n        setText('reportPid',result.id);setText('reportPart',result.kind||'未提供');setText('reportDate','本运行');setText('reportCount','未提供');\r\n        const rows=document.getElementById('reportRows');rows.replaceChildren();\r\n        for(const item of latestMedia?.items||[]) {\r\n          const url=mediaUrls.get(item.mediaId);if(!url)continue;\r\n          const row=document.createElement('tr'),cell=document.createElement('td');cell.colSpan=4;\r\n          const title=document.createElement('div');title.textContent=`${item.role}/${item.businessCamera} · ${item.mediaId} · ${item.source}`;\r\n          const image=document.createElement('img');image.src=url;image.dataset.runId=runId;image.dataset.mediaId=item.mediaId;\r\n          cell.append(title,image);row.append(cell);rows.append(row);\r\n        }\r\n        const modal=document.getElementById('reportModal');modal?.classList.remove('hidden');modal?.classList.add('flex');\r\n      };\r\n      body.querySelectorAll('[data-result-index]').forEach(button=>button.onclick=()=>window.openReport(button.dataset.resultIndex));\r\n      document.querySelectorAll('#reportModal .grid .num-font,#reportModal .grid b').forEach(node=>node.textContent='未提供');\r\n      document.querySelectorAll('#stage button').forEach(button=>{\r\n        if(/查询|复检|导出/.test(button.textContent)) {button.onclick=()=>{setText('currentScene','当前仅支持已知运行查询，历史查询／复检／导出未提供');};}\r\n      });\r\n    }\r\n"
+        },
+        {
+          "id": "src/runtime.js/021-recovery-r4-30",
+          "requirement": "Existing resource authorizations retained; 021 SC-021-PLC-R4 recovery notification, reset action and explicit new-run binding",
+          "offsetAfter": 38568,
+          "before": "      runId ||= latestStatus?.currentRun?.runId || null;\r\n",
+          "after": "      if (commissioning) { await recoverPending(); nextAdmission=await request('/api/v1/station01/start-admission'); }\r\n      else runId ||= latestStatus?.currentRun?.runId || null;\r\n"
+        },
+        {
+          "id": "src/runtime.js/021-recovery-r4-32",
+          "requirement": "Existing resource authorizations retained; 021 SC-021-PLC-R4 recovery notification, reset action and explicit new-run binding",
+          "offsetAfter": 42320,
+          "before": "",
+          "after": "    diagnostic('NotificationsConnected',{transport:'LongPolling'});\r\n"
+        },
+        {
+          "id": "src/runtime.js/021-recovery-r4-34",
+          "requirement": "Existing resource authorizations retained; 021 SC-021-PLC-R4 recovery notification, reset action and explicit new-run binding",
+          "offsetAfter": 43700,
+          "before": "  });\r\n",
+          "after": "  }, true); // Capture the chosen value before the editor reload renders the selector.\r\n"
+        },
+        {
+          "id": "src/runtime.js/021-recovery-r4-36",
+          "requirement": "Existing resource authorizations retained; 021 SC-021-PLC-R4 recovery notification, reset action and explicit new-run binding",
+          "offsetAfter": 44944,
+          "before": "",
+          "after": "    if (commissioning && !commandPending && latestRun?.allowedActions?.includes('CommissioningRecoveryReset')) {\r\n      commandPending = true; manualRemovalButton.disabled = true;\r\n      try {\r\n        const result = await post('/api/v1/station01/reset', {});\r\n        interactionNotice = result.recoveryClosed\r\n          ? '复位核验通过，旧任务已结束；核对配方后手动点击启动新一轮'\r\n          : 'PLC复位已完成；请查询旧任务和启动准入，不自动启动';\r\n        diagnostic('CommissioningRecoveryResetAccepted', { runId: result.runId, recoveryWriteId: result.recoveryWriteId });\r\n      } catch (error) {\r\n        interactionNotice = window.GaodeCommissioningConsole.resetFailure(error.message);\r\n        diagnostic('CommissioningRecoveryResetFailed', { code: error.message, disposition: 'Held_NoAutomaticRetry' });\r\n      } finally { commandPending = false; await refresh(); }\r\n      return;\r\n    }\r\n"
+        },
+        {
+          "id": "src/runtime.js/021-recovery-r4-38",
+          "requirement": "Existing resource authorizations retained; 021 SC-021-PLC-R4 recovery notification, reset action and explicit new-run binding",
+          "offsetAfter": 47871,
+          "before": "",
+          "after": "      if(commissioning && pendingOperation?.operationKind==='ManualRemoval' && pendingOperation.runId===runId) {\r\n        interactionNotice='人工确认结果尚未核定，只查询原运行，不重复提交';await refresh();return;\r\n      }\r\n      const confirmationId=crypto.randomUUID();\r\n      if(commissioning) savePending({schemaVersion:'commissioning-pending/1',operationKind:'ManualRemoval',subjectId:confirmedIdentity.subjectId,\r\n        apiOrigin:apiBase,mode:host.mode,runId,requestId:confirmationId,state:'Submitting'});\r\n"
+        },
+        {
+          "id": "src/runtime.js/021-recovery-r4-40",
+          "requirement": "Existing resource authorizations retained; 021 SC-021-PLC-R4 recovery notification, reset action and explicit new-run binding",
+          "offsetAfter": 48487,
+          "before": "        requestId: crypto.randomUUID(), expectedRevision: latestRun.observedRevision, reason\r\n",
+          "after": "        requestId: confirmationId, expectedRevision: latestRun.observedRevision, reason\r\n"
+        },
+        {
+          "id": "src/runtime.js/021-recovery-r4-42",
+          "requirement": "Existing resource authorizations retained; 021 SC-021-PLC-R4 recovery notification, reset action and explicit new-run binding",
+          "offsetAfter": 49305,
+          "before": "",
+          "after": "    const finalSaved = latestEvidence?.finalResult === 'FinalUnloadCompletion' && !!latestEvidence?.finalSourceMatrix;\r\n    const recoveredNext = commissioning && window.GaodeCommissioningConsole.canStartAfterRecovery(latestRun, nextAdmission);\r\n    const normalNext = commissioning && (finalSaved || recoveredNext) && nextAdmission?.state === 'Available' &&\r\n      (!pendingOperation || pendingOperation.subjectId===confirmedIdentity.subjectId);\r\n    if (normalNext) { startSubmitted=false; pendingOperation=null; }\r\n    if (commissioning && !startSubmitted) {\r\n      try { prepared=window.GaodeCommissioningConsole.newStart(host.commissioningTemplate, selectedRecipe,()=>crypto.randomUUID()); }\r\n      catch(error) { interactionNotice='请先选择已保存配方，并核对联调启动配置';render(latestStatus,latestRun,latestEvidence);return; }\r\n    }\r\n"
+        },
+        {
+          "id": "src/runtime.js/021-recovery-r4-44",
+          "requirement": "Existing resource authorizations retained; 021 SC-021-PLC-R4 recovery notification, reset action and explicit new-run binding",
+          "offsetAfter": 50621,
+          "before": "    if (runId && !restartReady) { interactionNotice = `已有运行 ${runId}，不能再次启动；仅查询原任务或请授权人员核查`; render(latestStatus, latestRun, latestEvidence); return; }\r\n",
+          "after": "    if (runId && !restartReady && !normalNext) { interactionNotice = `已有运行 ${runId}，不能再次启动；仅查询原任务或请授权人员核查`; render(latestStatus, latestRun, latestEvidence); return; }\r\n"
+        },
+        {
+          "id": "src/runtime.js/021-recovery-r4-46",
+          "requirement": "Existing resource authorizations retained; 021 SC-021-PLC-R4 recovery notification, reset action and explicit new-run binding",
+          "offsetAfter": 51082,
+          "before": "      setText('faultList', 'Test上料请求未准备或配置不符'); return;\r\n",
+          "after": "      setText('faultList', commissioning ? '联调启动资料未准备或配置不符' : 'Test上料请求未准备或配置不符'); return;\r\n"
+        },
+        {
+          "id": "src/runtime.js/021-recovery-r4-48",
+          "requirement": "Existing resource authorizations retained; 021 SC-021-PLC-R4 recovery notification, reset action and explicit new-run binding",
+          "offsetAfter": 51432,
+          "before": "      const request = restartReady ? { ...preparedRequest, requestId: crypto.randomUUID(),\r\n",
+          "after": "      const request = recoveredNext ? { ...preparedRequest,\r\n        commissioningRestartFrom: { runId, recoveryWriteId: latestRun.commissioningRecovery.recoveryWriteId } }\r\n        : restartReady ? { ...preparedRequest, requestId: crypto.randomUUID(),\r\n"
+        },
+        {
+          "id": "src/runtime.js/021-recovery-r4-50",
+          "requirement": "Existing resource authorizations retained; 021 SC-021-PLC-R4 recovery notification, reset action and explicit new-run binding",
+          "offsetAfter": 51889,
+          "before": "",
+          "after": "      if (commissioning) {\r\n        const bytes=new TextEncoder().encode(JSON.stringify(request));\r\n        const digest=Array.from(new Uint8Array(await crypto.subtle.digest('SHA-256',bytes))).map(b=>b.toString(16).padStart(2,'0')).join('');\r\n        savePending({schemaVersion:'commissioning-pending/1',operationKind:'Start',apiOrigin:apiBase,mode:host.mode,\r\n          stationScope:host.commissioningTemplate.contextTemplate.stationId,subjectId:confirmedIdentity.subjectId,\r\n          requestId:request.requestId,trayId:JSON.parse(request.contextJson).trayId,requestDigest:digest,state:'Submitting'});\r\n      }\r\n"
+        },
+        {
+          "id": "src/runtime.js/021-recovery-r4-52",
+          "requirement": "Existing resource authorizations retained; 021 SC-021-PLC-R4 recovery notification, reset action and explicit new-run binding",
+          "offsetAfter": 52559,
+          "before": "",
+          "after": "      if(commissioning) savePending({...pendingOperation,commandId:receipt?.commandId,runId:receipt?.runId,state:'Accepted'});\r\n"
+        },
+        {
+          "id": "src/runtime.js/021-recovery-r4-54",
+          "requirement": "Existing resource authorizations retained; 021 SC-021-PLC-R4 recovery notification, reset action and explicit new-run binding",
+          "offsetAfter": 53655,
+          "before": "",
+          "after": "      if(commissioning && error.contract?.details?.runCreated===false) { viewStorage?.removeItem(pendingKey);pendingOperation=null;startSubmitted=false; }\r\n"
+        }
+      ],
+      "authorizationHistory": [
+        {
+          "sha256": "53a1c21cb2c06fbc70d89238d0b382e3b29f0a126d32ef7012e0085929d41800",
+          "changes": [
+            {
+              "id": "021-identity-runtime-1",
+              "requirement": "021 FR-001/002/003/004/014/015; IH-03; T010",
+              "offsetAfter": 0,
+              "before": "(function () {\r\n",
+              "after": "(async function () {\r\n"
+            },
+            {
+              "id": "021-identity-runtime-2",
+              "requirement": "021 FR-001/002/003/004/014/015; IH-03; T010",
+              "offsetAfter": 183,
+              "before": "  const token = host.mode === 'Test' ? String(host.testToken || '') : '';\r\n",
+              "after": "  let token = host.mode === 'Test' ? String(host.testToken || '') : host.mode === 'RealDeviceCommissioning' ? String(host.commissioningToken || '') : '';\r\n  let confirmedIdentity = null;\r\n"
+            },
+            {
+              "id": "021-identity-runtime-3",
+              "requirement": "021 FR-001/002/003/004/014/015; IH-03; T010",
+              "offsetAfter": 448,
+              "before": "",
+              "after": "  if (host.mode === 'RealDeviceCommissioning') {\r\n    // Override the inline demo handler immediately, including during the identity request.\r\n    window.handleLogin = event => { event.preventDefault(); return false; };\r\n    try {\r\n      const response = await fetch(apiBase + '/api/v1/station01/identity', {\r\n        headers: { Authorization: `Bearer ${token}` }, cache: 'no-store'\r\n      });\r\n      if (!response.ok) throw new Error(`IdentityRejected:${response.status}`);\r\n      confirmedIdentity = window.GaodeCommissioningConsole.confirmIdentity(await response.json(), host.commissioningProfile);\r\n      console.info('GaodePageDiagnostic', JSON.stringify({ event: 'IdentityChecked', mode: host.mode,\r\n        subjectId: confirmedIdentity.subjectId, profileId: confirmedIdentity.profileId }));\r\n      const login = window.GaodeCommissioningConsole.bindLogin(document, confirmedIdentity, path => { window.location.href = path; });\r\n      if (login) { window.handleLogin = login; return; }\r\n      const chip = document.querySelector('header .bg-slate-800\\\\/60.border-slate-700\\\\/50:last-of-type');\r\n      const name = chip?.querySelector('.text-xs.text-slate-100');\r\n      const role = chip?.querySelector('[class*=\"text-emerald-300\"]');\r\n      if (name) name.textContent = confirmedIdentity.displayName;\r\n      if (role) role.textContent = confirmedIdentity.role === 'Operator' ? 'L1 · 操作员' : 'L2 · 工程师';\r\n      const loginButton = document.getElementById('btnRecipe');\r\n      if (loginButton && !confirmedIdentity.permissions.includes('Recipe.Write')) loginButton.disabled = true;\r\n    } catch (error) {\r\n      token = ''; confirmedIdentity = null;\r\n      clearPrototypeDemo();\r\n      document.querySelectorAll('#camGrid img').forEach(image => image.removeAttribute('src'));\r\n      document.querySelectorAll('main button, #btnRecipe, #btnPositions').forEach(button => { button.disabled = true; });\r\n      const input = document.getElementById('user');\r\n      if (input) { input.setCustomValidity('联调身份不可用，请联系维护人员核对配置'); input.reportValidity(); }\r\n      const fault = document.getElementById('faultList'); if (fault) fault.textContent = '联调身份不可用，操作已阻止';\r\n      console.info('GaodePageDiagnostic', JSON.stringify({ event: 'IdentityRejected', mode: host.mode, errorType: error.name }));\r\n      return;\r\n    }\r\n  }\r\n"
+            },
+            {
+              "id": "021-identity-runtime-4",
+              "requirement": "021 FR-001/002/003/004/014/015; IH-03; T010",
+              "offsetAfter": 26071,
+              "before": "    const slotDetails = (run?.slotStates || []).map(slot => `${slot.region || '区域未提供'}区 第${displayValue(slot.row)}行 第${displayValue(slot.column)}列 · 物理槽${slot.physicalSlotIndex}：${displayValue(slot.presence)}/${displayValue(slot.poseState)}${slot.detectionState ? ' · '+({NotInspected:'未检测',FurtherInspectionTerminated:'后续检测终止',NoMaterial:'无物料'})[slot.detectionState] : ''}${slot.physicalDisposition ? ' · '+(slot.physicalDisposition==='Pending'?'Pending已分拣':'Pending待分拣') : ''}${slot.reasonCodes?.length ? ' · ' + slot.reasonCodes.join('、') : ''}`);\n",
+              "after": "    const slotDetails = (run?.slotStates || []).map(slot => `${slot.region || '区域未提供'}区 第${displayValue(slot.row)}行 第${displayValue(slot.column)}列 · 物理槽${slot.physicalSlotIndex}：${displayValue(slot.presence)}/${displayValue(slot.poseState)}${slot.detectionState ? ' · '+({NotInspected:'未检测',FurtherInspectionTerminated:'后续检测终止',NoMaterial:'无物料'})[slot.detectionState] : ''}${slot.physicalDisposition ? ' · '+(slot.physicalDisposition==='Pending'?'Pending已分拣':'Pending待分拣') : ''}${slot.reasonCodes?.length ? ' · ' + slot.reasonCodes.join('、') : ''}`);\r\n"
+            },
+            {
+              "id": "021-identity-runtime-5",
+              "requirement": "021 FR-001/002/003/004/014/015; IH-03; T010",
+              "offsetAfter": 33985,
+              "before": "          latestRun = responseRun;\n          publicTrayFlow?.render(latestRun);\n",
+              "after": "          latestRun = responseRun;\r\n          publicTrayFlow?.render(latestRun);\r\n"
+            }
+          ]
+        }
+      ]
     },
     {
       "path": "src/recipe-authoring.js",
-      "sha256": "ae66a59fa0ae2632d62374de01af3ea634c3d27292cb80742b6fadd888d3c238"
+      "sha256": "ffb578acc63d92c75732a2949ef0b6c0eac8a17e9313665e4069d76d64a97e5c",
+      "previousSha256": "ae66a59fa0ae2632d62374de01af3ea634c3d27292cb80742b6fadd888d3c238",
+      "exactAuthorizedChanges": [
+        {
+          "id": "021-configured-console-1",
+          "requirement": "021 FR-005–019; SC/RM/CC; user-authorized virtual light and F XY; preserve 012 member gripper",
+          "offsetAfter": 1608,
+          "before": "",
+          "after": "      lightExecution: fields('schemaVersion mode'),\r\n      commissioningFPosition: fields('schemaVersion x y'),\r\n"
+        },
+        {
+          "id": "021-configured-console-3",
+          "requirement": "021 FR-005–019; SC/RM/CC; user-authorized virtual light and F XY; preserve 012 member gripper",
+          "offsetAfter": 2273,
+          "before": "      composition: [fields('material localFaces')],\r\n",
+          "after": "      composition: [fields('material localFaces sortingGripperId')],\r\n"
+        },
+        {
+          "id": "021-configured-console-5",
+          "requirement": "021 FR-005–019; SC/RM/CC; user-authorized virtual light and F XY; preserve 012 member gripper",
+          "offsetAfter": 7924,
+          "before": "        if (current.phase === 'Closed' || busy()) return;\r\n",
+          "after": "        if (current.phase === 'Closed' || busy() || !current.canSave) return;\r\n"
+        },
+        {
+          "id": "021-configured-console-7",
+          "requirement": "021 FR-005–019; SC/RM/CC; user-authorized virtual light and F XY; preserve 012 member gripper",
+          "offsetAfter": 8538,
+          "before": "        const id = begin(), basic = { fCode: current.definition.fCode, sortingGripperId: current.definition.sortingGripperId, rotationLoadingGripperId: current.definition.rotationLoadingGripperId };\r\n",
+          "after": "        const id = begin(), basic = { commissioningFPosition: current.definition.commissioningFPosition, lightExecution: current.definition.lightExecution, fCode: current.definition.fCode, sortingGripperId: current.definition.sortingGripperId, rotationLoadingGripperId: current.definition.rotationLoadingGripperId };\r\n"
+        },
+        {
+          "id": "021-configured-console-9",
+          "requirement": "021 FR-005–019; SC/RM/CC; user-authorized virtual light and F XY; preserve 012 member gripper",
+          "offsetAfter": 10066,
+          "before": "        if (!current.definition || busy()) return;\r\n",
+          "after": "        if (!current.definition || busy() || !current.canSave) return;\r\n"
+        },
+        {
+          "id": "021-configured-console-11",
+          "requirement": "021 FR-005–019; SC/RM/CC; user-authorized virtual light and F XY; preserve 012 member gripper",
+          "offsetAfter": 10833,
+          "before": "        if (current.phase === 'Closed' || current.phase === 'Loading' || busy() || !current.definition || current.unsupported.length) return;\r\n        change(current.definition); current.phase = 'Editing'; current.issues = [];\r\n",
+          "after": "        if (current.phase === 'Closed' || current.phase === 'Loading' || busy() || !current.canSave || !current.definition || current.unsupported.length) return;\r\n        if (change(current.definition) === false) { current.message = '修改未应用：缺少对应参数或来源，请核对配方'; emit(); return; }\r\n        current.phase = 'Editing'; current.issues = [];\r\n"
+        },
+        {
+          "id": "021-configured-console-13",
+          "requirement": "021 FR-005–019; SC/RM/CC; user-authorized virtual light and F XY; preserve 012 member gripper",
+          "offsetAfter": 15056,
+          "before": "      sortingGripperId: null, plcRecipeId: null, fCode: '', model: context?.model || '', scenarioId: context?.scenarioId || '', unitKind: context?.unitKind || '', primaryMaterial: '', layoutProfile: '',\r\n",
+          "after": "      sortingGripperId: null, plcRecipeId: null, fCode: '', model: context?.model || '', scenarioId: context?.scenarioId || '', unitKind: context?.unitKind || '', primaryMaterial: '', layoutProfile: '', lightExecution:{schemaVersion:'light-execution/1',mode:'Simulated'}, commissioningFPosition:{schemaVersion:'commissioning-f-position/1',x:null,y:null},\r\n"
+        },
+        {
+          "id": "021-configured-console-15",
+          "requirement": "021 FR-005–019; SC/RM/CC; user-authorized virtual light and F XY; preserve 012 member gripper",
+          "offsetAfter": 26216,
+          "before": "          if (actual) change(d,actual); return;\r\n",
+          "after": "          return actual ? change(d,actual) : false;\r\n"
+        },
+        {
+          "id": "021-configured-console-17",
+          "requirement": "021 FR-005–019; SC/RM/CC; user-authorized virtual light and F XY; preserve 012 member gripper",
+          "offsetAfter": 26490,
+          "before": "          change(d,actual); return;\r\n",
+          "after": "          return change(d,actual);\r\n"
+        },
+        {
+          "id": "021-configured-console-19",
+          "requirement": "021 FR-005–019; SC/RM/CC; user-authorized virtual light and F XY; preserve 012 member gripper",
+          "offsetAfter": 26908,
+          "before": "        if (actual) change(d,actual);\r\n",
+          "after": "        return actual ? change(d,actual) : false;\r\n"
+        },
+        {
+          "id": "021-configured-console-21",
+          "requirement": "021 FR-005–019; SC/RM/CC; user-authorized virtual light and F XY; preserve 012 member gripper",
+          "offsetAfter": 31337,
+          "before": "      return xyz.every(v => Number.isFinite(v)) && (!card.camera || ['exposureUs', 'gain', 'brightnessPercent'].every(k => Number.isFinite(profileFor(d, card)?.settings[k])));\r\n",
+          "after": "      return xyz.every(v => Number.isFinite(v)) && (!card.camera || (d.lightExecution?.mode === 'Simulated' ? ['exposureUs', 'gain'] : ['exposureUs', 'gain', 'brightnessPercent']).every(k => Number.isFinite(profileFor(d, card)?.settings[k])));\r\n"
+        },
+        {
+          "id": "021-configured-console-23",
+          "requirement": "021 FR-005–019; SC/RM/CC; user-authorized virtual light and F XY; preserve 012 member gripper",
+          "offsetAfter": 33854,
+          "before": "        ['E扫码', d.eCode?.enabled ? '需要' : '不需要'], ['分拣夹爪', d.sortingGripperId ? '夹爪' + d.sortingGripperId : '未配置']])\r\n",
+          "after": "        ['E扫码', d.eCode?.enabled ? '需要' : '不需要'], ['分拣夹爪', d.unitKind === 'looseGroup' ? d.composition.map(m => m.material + '：' + (m.sortingGripperId ? '夹爪' + m.sortingGripperId : '未配置')).join('、') : d.sortingGripperId ? '夹爪' + d.sortingGripperId : '未配置']])\r\n"
+        },
+        {
+          "id": "021-configured-console-25",
+          "requirement": "021 FR-005–019; SC/RM/CC; user-authorized virtual light and F XY; preserve 012 member gripper",
+          "offsetAfter": 35235,
+          "before": "      picker.disabled = busy; document.getElementById('recipeAuthoringNew').disabled = busy;\r\n",
+          "after": "      picker.disabled = busy; document.getElementById('recipeAuthoringNew').disabled = busy || !next.canSave;\r\n"
+        },
+        {
+          "id": "021-configured-console-27",
+          "requirement": "021 FR-005–019; SC/RM/CC; user-authorized virtual light and F XY; preserve 012 member gripper",
+          "offsetAfter": 36260,
+          "before": "",
+          "after": "        const virtualLabel = node('label', '虚拟光源 '), virtualLight = node('input');\r\n        virtualLight.type = 'checkbox'; virtualLight.checked = d.lightExecution?.mode === 'Simulated';\r\n        virtualLight.dataset.lightMode = 'recipe';\r\n        virtualLight.onchange = () => session.edit(x => x.lightExecution = {schemaVersion:'light-execution/1',mode:virtualLight.checked?'Simulated':'Real'});\r\n        virtualLabel.append(virtualLight); grid.append(virtualLabel);\r\n        for (const [axis,label] of [['x','虚拟算法 F读码X (mm)'],['y','虚拟算法 F读码Y (mm)']])\r\n          input(grid,label,d.commissioningFPosition?.[axis],v => session.edit(x => {\r\n            x.commissioningFPosition ??= {schemaVersion:'commissioning-f-position/1',x:null,y:null};\r\n            x.commissioningFPosition[axis]=v;\r\n          }));\r\n"
+        },
+        {
+          "id": "021-configured-console-29",
+          "requirement": "021 FR-005–019; SC/RM/CC; user-authorized virtual light and F XY; preserve 012 member gripper",
+          "offsetAfter": 38034,
+          "before": "        input(grid, '分拣夹爪', d.sortingGripperId, v => session.edit(x => x.sortingGripperId = v), 'number', [[1,'夹爪1'],[2,'夹爪2']]);\r\n",
+          "after": "        if (d.unitKind !== 'looseGroup') input(grid, '分拣夹爪', d.sortingGripperId, v => session.edit(x => x.sortingGripperId = v), 'number', [[1,'夹爪1'],[2,'夹爪2']]);\r\n"
+        },
+        {
+          "id": "021-configured-console-31",
+          "requirement": "021 FR-005–019; SC/RM/CC; user-authorized virtual light and F XY; preserve 012 member gripper",
+          "offsetAfter": 39026,
+          "before": "          for (const member of d.composition) input(form, member.material + '检测面数', member.localFaces.length, v => void session.layout({ material: member.material, faces: v }));\r\n",
+          "after": "          for (const member of d.composition) {\r\n            input(form, member.material + '检测面数', member.localFaces.length, v => void session.layout({ material: member.material, faces: v }));\r\n            input(form, member.material + '分拣夹爪', member.sortingGripperId,\r\n              v => session.edit(x => x.composition.find(m => m.material === member.material).sortingGripperId = v),\r\n              'number', [[1,'夹爪1'],[2,'夹爪2']]);\r\n          }\r\n"
+        },
+        {
+          "id": "021-configured-console-33",
+          "requirement": "021 FR-005–019; SC/RM/CC; user-authorized virtual light and F XY; preserve 012 member gripper",
+          "offsetAfter": 49498,
+          "before": "      panel.querySelectorAll('input,select,button').forEach(e => e.disabled = busy);\r\n",
+          "after": "      panel.querySelectorAll('input,select').forEach(e => e.disabled = busy || !next.canSave);\r\n      panel.querySelectorAll('button').forEach(e => e.disabled = busy || (!next.canSave && !e.classList.contains('recipe-nav-button') && !e.classList.contains('recipe-face-rail')));\r\n      if (d.lightExecution?.mode === 'Simulated') panel.querySelectorAll('.recipe-capture-fields label').forEach(label => {\r\n        if (label.textContent.includes('光源亮度')) { const field=label.querySelector('input'); if(field) field.disabled=true; }\r\n      });\r\n"
+        }
+      ],
+      "baselineSourceCommit": "b0e0098995a4e97ac5cb33e44520543328d3a57a",
+      "currentSourceCommit": "0f91f95",
+      "requirement": "021 T006: reconcile stale resource manifest against preserved approved member-gripper source; no new recipe UI edits",
+      "authorizationHistory": [
+        {
+          "sha256": "d96e4d67b776b5c0907d0f8211a36de3897797073537404e7ec28eaac6f9b1af",
+          "exactAuthorizedChanges": [
+            {
+              "id": "021-existing-member-gripper-baseline-1",
+              "requirement": "Existing approved member-gripper implementation in source commit 0f91f95; 021 T006 preserves and exactly verifies existing changes",
+              "offsetAfter": 2207,
+              "before": "",
+              "after": " sortingGripperId"
+            },
+            {
+              "id": "021-existing-member-gripper-baseline-2",
+              "requirement": "Existing approved member-gripper implementation in source commit 0f91f95; 021 T006 preserves and exactly verifies existing changes",
+              "offsetAfter": 33303,
+              "before": "",
+              "after": "unitKind === 'looseGroup' ? d.composition.map(m => m.material + '：' + (m.sortingGripperId ? '夹爪' + m.sortingGripperId : '未配置')).join('、') : d."
+            },
+            {
+              "id": "021-existing-member-gripper-baseline-3",
+              "requirement": "Existing approved member-gripper implementation in source commit 0f91f95; 021 T006 preserves and exactly verifies existing changes",
+              "offsetAfter": 36608,
+              "before": "",
+              "after": "f (d.unitKind !== 'looseGroup') i"
+            },
+            {
+              "id": "021-existing-member-gripper-baseline-4",
+              "requirement": "Existing approved member-gripper implementation in source commit 0f91f95; 021 T006 preserves and exactly verifies existing changes",
+              "offsetAfter": 37637,
+              "before": "",
+              "after": "{\r\n            "
+            },
+            {
+              "id": "021-existing-member-gripper-baseline-5",
+              "requirement": "Existing approved member-gripper implementation in source commit 0f91f95; 021 T006 preserves and exactly verifies existing changes",
+              "offsetAfter": 37783,
+              "before": "",
+              "after": "\r\n            input(form, member.material + '分拣夹爪', member.sortingGripperId,\r\n              v => session.edit(x => x.composition.find(m => m.material === member.material).sortingGripperId = v),\r\n              'number', [[1,'夹爪1'],[2,'夹爪2']]);\r\n          }"
+            }
+          ]
+        },
+        {
+          "sha256": "d0bdadd907f85352563d66ff8a6b635e0bc81e394ccc361cc6be1394a160b0fa",
+          "changes": [
+            {
+              "id": "021-recipe-preserved-and-missing-source-1",
+              "requirement": "Prior approved member-gripper source commit 0f91f95; 021 FR-005/006/008 RM-01 T014 missing parameter source cannot pretend edit success",
+              "offsetAfter": 2160,
+              "before": "      composition: [fields('material localFaces')],\r\n",
+              "after": "      composition: [fields('material localFaces sortingGripperId')],\r\n"
+            },
+            {
+              "id": "021-recipe-preserved-and-missing-source-2",
+              "requirement": "Prior approved member-gripper source commit 0f91f95; 021 FR-005/006/008 RM-01 T014 missing parameter source cannot pretend edit success",
+              "offsetAfter": 10705,
+              "before": "        change(current.definition); current.phase = 'Editing'; current.issues = [];\r\n",
+              "after": "        if (change(current.definition) === false) { current.message = '修改未应用：缺少对应参数或来源，请核对配方'; emit(); return; }\r\n        current.phase = 'Editing'; current.issues = [];\r\n"
+            },
+            {
+              "id": "021-recipe-preserved-and-missing-source-3",
+              "requirement": "Prior approved member-gripper source commit 0f91f95; 021 FR-005/006/008 RM-01 T014 missing parameter source cannot pretend edit success",
+              "offsetAfter": 25773,
+              "before": "          if (actual) change(d,actual); return;\r\n",
+              "after": "          return actual ? change(d,actual) : false;\r\n"
+            },
+            {
+              "id": "021-recipe-preserved-and-missing-source-4",
+              "requirement": "Prior approved member-gripper source commit 0f91f95; 021 FR-005/006/008 RM-01 T014 missing parameter source cannot pretend edit success",
+              "offsetAfter": 26047,
+              "before": "          change(d,actual); return;\r\n",
+              "after": "          return change(d,actual);\r\n"
+            },
+            {
+              "id": "021-recipe-preserved-and-missing-source-5",
+              "requirement": "Prior approved member-gripper source commit 0f91f95; 021 FR-005/006/008 RM-01 T014 missing parameter source cannot pretend edit success",
+              "offsetAfter": 26465,
+              "before": "        if (actual) change(d,actual);\r\n",
+              "after": "        return actual ? change(d,actual) : false;\r\n"
+            },
+            {
+              "id": "021-recipe-preserved-and-missing-source-6",
+              "requirement": "Prior approved member-gripper source commit 0f91f95; 021 FR-005/006/008 RM-01 T014 missing parameter source cannot pretend edit success",
+              "offsetAfter": 33343,
+              "before": "        ['E扫码', d.eCode?.enabled ? '需要' : '不需要'], ['分拣夹爪', d.sortingGripperId ? '夹爪' + d.sortingGripperId : '未配置']])\r\n",
+              "after": "        ['E扫码', d.eCode?.enabled ? '需要' : '不需要'], ['分拣夹爪', d.unitKind === 'looseGroup' ? d.composition.map(m => m.material + '：' + (m.sortingGripperId ? '夹爪' + m.sortingGripperId : '未配置')).join('、') : d.sortingGripperId ? '夹爪' + d.sortingGripperId : '未配置']])\r\n"
+            },
+            {
+              "id": "021-recipe-preserved-and-missing-source-7",
+              "requirement": "Prior approved member-gripper source commit 0f91f95; 021 FR-005/006/008 RM-01 T014 missing parameter source cannot pretend edit success",
+              "offsetAfter": 36700,
+              "before": "        input(grid, '分拣夹爪', d.sortingGripperId, v => session.edit(x => x.sortingGripperId = v), 'number', [[1,'夹爪1'],[2,'夹爪2']]);\r\n",
+              "after": "        if (d.unitKind !== 'looseGroup') input(grid, '分拣夹爪', d.sortingGripperId, v => session.edit(x => x.sortingGripperId = v), 'number', [[1,'夹爪1'],[2,'夹爪2']]);\r\n"
+            },
+            {
+              "id": "021-recipe-preserved-and-missing-source-8",
+              "requirement": "Prior approved member-gripper source commit 0f91f95; 021 FR-005/006/008 RM-01 T014 missing parameter source cannot pretend edit success",
+              "offsetAfter": 37692,
+              "before": "          for (const member of d.composition) input(form, member.material + '检测面数', member.localFaces.length, v => void session.layout({ material: member.material, faces: v }));\r\n",
+              "after": "          for (const member of d.composition) {\r\n            input(form, member.material + '检测面数', member.localFaces.length, v => void session.layout({ material: member.material, faces: v }));\r\n            input(form, member.material + '分拣夹爪', member.sortingGripperId,\r\n              v => session.edit(x => x.composition.find(m => m.material === member.material).sortingGripperId = v),\r\n              'number', [[1,'夹爪1'],[2,'夹爪2']]);\r\n          }\r\n"
+            }
+          ]
+        }
+      ]
     },
     {
       "path": "dist/runtime.js",
-      "sha256": "71ea95e2cc2add29b40857efcda39ccbe52dfc478d1da24b1e0c6f4e61f1622a"
+      "sha256": "61221a44390c189c217651a6b5e3c40dd8d58dee7127c60197fe8001ea1c9381",
+      "previousSha256": "c37d1f43fb8076e066d304638d8ba5501fcccd057cd04ad3c11abe3aeff8b9bc",
+      "exactAuthorizedChanges": [
+        {
+          "id": "dist/runtime.js/021-recovery-r4-0",
+          "requirement": "Existing resource authorizations retained; 021 SC-021-PLC-R4 recovery notification, reset action and explicit new-run binding",
+          "offsetAfter": 0,
+          "before": "(function () {\r\n",
+          "after": "(async function () {\r\n"
+        },
+        {
+          "id": "dist/runtime.js/021-recovery-r4-2",
+          "requirement": "Existing resource authorizations retained; 021 SC-021-PLC-R4 recovery notification, reset action and explicit new-run binding",
+          "offsetAfter": 183,
+          "before": "  const token = host.mode === 'Test' ? String(host.testToken || '') : '';\r\n  const prepared = host.mode === 'Test' ? host.preparedStartRequest : null;\r\n",
+          "after": "  let token = host.mode === 'Test' ? String(host.testToken || '') : host.mode === 'RealDeviceCommissioning' ? String(host.commissioningToken || '') : '';\r\n  let confirmedIdentity = null;\r\n  let prepared = host.mode === 'Test' ? host.preparedStartRequest : null;\r\n  const commissioning = host.mode === 'RealDeviceCommissioning';\r\n  if (host.mode === 'RealDeviceCommissioning') {\r\n    // Override the inline demo handler immediately, including during the identity request.\r\n    window.handleLogin = event => { event.preventDefault(); return false; };\r\n    try {\r\n      const response = await fetch(apiBase + '/api/v1/station01/identity', {\r\n        headers: { Authorization: `Bearer ${token}` }, cache: 'no-store'\r\n      });\r\n      if (!response.ok) throw new Error(`IdentityRejected:${response.status}`);\r\n      confirmedIdentity = window.GaodeCommissioningConsole.confirmIdentity(await response.json(), host.commissioningProfile);\r\n      console.info('GaodePageDiagnostic', JSON.stringify({ event: 'IdentityChecked', mode: host.mode,\r\n        subjectId: confirmedIdentity.subjectId, profileId: confirmedIdentity.profileId }));\r\n      const login = window.GaodeCommissioningConsole.bindLogin(document, confirmedIdentity, path => { window.location.href = path; });\r\n      if (login) { window.handleLogin = login; return; }\r\n      const chip = document.querySelector('header .bg-slate-800\\\\/60.border-slate-700\\\\/50:last-of-type');\r\n      const name = chip?.querySelector('.text-xs.text-slate-100');\r\n      const role = chip?.querySelector('[class*=\"text-emerald-300\"]');\r\n      if (name) name.textContent = confirmedIdentity.displayName;\r\n      if (role) role.textContent = confirmedIdentity.role === 'Operator' ? 'L1 · 操作员' : 'L2 · 工程师';\r\n      const loginButton = document.getElementById('btnRecipe');\r\n      if (loginButton) loginButton.disabled = !confirmedIdentity.permissions.includes('Run.Read');\r\n    } catch (error) {\r\n      token = ''; confirmedIdentity = null;\r\n      clearPrototypeDemo();\r\n      document.querySelectorAll('#camGrid img').forEach(image => image.removeAttribute('src'));\r\n      document.querySelectorAll('main button, #btnRecipe, #btnPositions').forEach(button => { button.disabled = true; });\r\n      const input = document.getElementById('user');\r\n      if (input) { input.setCustomValidity('联调身份不可用，请联系维护人员核对配置'); input.reportValidity(); }\r\n      const fault = document.getElementById('faultList'); if (fault) fault.textContent = '联调身份不可用，操作已阻止';\r\n      console.info('GaodePageDiagnostic', JSON.stringify({ event: 'IdentityRejected', mode: host.mode, errorType: error.name }));\r\n      return;\r\n    }\r\n  }\r\n"
+        },
+        {
+          "id": "dist/runtime.js/021-recovery-r4-4",
+          "requirement": "Existing resource authorizations retained; 021 SC-021-PLC-R4 recovery notification, reset action and explicit new-run binding",
+          "offsetAfter": 3728,
+          "before": "  let selectedRecipe = null;\r\n",
+          "after": "  let selectedRecipe = null, nextAdmission = null, pendingOperation = null;\r\n  const pendingKey = `gaode:station01:pending:${apiBase}:${host.mode}:${host.commissioningTemplate?.contextTemplate?.stationId || ''}`;\r\n  if (commissioning) {\r\n    try { pendingOperation = JSON.parse(viewStorage?.getItem(pendingKey) || 'null'); } catch (_) { interactionNotice='原请求关联无法读取，请维护人员核查'; startSubmitted=true; }\r\n    if (pendingOperation) {\r\n      startSubmitted=true;\r\n      if(pendingOperation.subjectId === confirmedIdentity.subjectId) {\r\n        runId=pendingOperation.runId || null;\r\n      } else { runId=null; interactionNotice='存在另一身份的未核定请求，请由原身份查询；不能接管或重新启动'; }\r\n    } else { const known=new URLSearchParams(location.search).get('runId'); runId=/^[0-9a-f-]{36}$/i.test(known || '')?known:null; }\r\n  }\r\n  function savePending(value) {\r\n    if(!viewStorage) throw new Error('PendingReferenceStorageUnavailable');\r\n    viewStorage.setItem(pendingKey,JSON.stringify(value)); pendingOperation=value;\r\n  }\r\n  async function recoverPending() {\r\n    if(!commissioning || !pendingOperation || pendingOperation.subjectId!==confirmedIdentity.subjectId || pendingOperation.operationKind!=='Start') return;\r\n    if(pendingOperation.runId) { runId=pendingOperation.runId; return; }\r\n    try {\r\n      const original=await request('/api/v1/station01/start-requests/'+encodeURIComponent(pendingOperation.requestId));\r\n      if(!original.runId || original.requestId!==pendingOperation.requestId) throw new Error('OriginalRequestMismatch');\r\n      receipt=original;runId=original.runId;\r\n      savePending({...pendingOperation,commandId:original.commandId,runId,state:'Accepted'});rememberRun(runId);\r\n      diagnostic('OriginalStartRecovered',{requestId:original.requestId,commandId:original.commandId});\r\n    } catch(error) { interactionNotice=`原请求 ${pendingOperation.requestId} 当前无法确认；只查询，不自动重发`; }\r\n  }\r\n\r\n"
+        },
+        {
+          "id": "dist/runtime.js/021-recovery-r4-6",
+          "requirement": "Existing resource authorizations retained; 021 SC-021-PLC-R4 recovery notification, reset action and explicit new-run binding",
+          "offsetAfter": 10482,
+          "before": "      if (context.purpose !== 'Test' || !Array.isArray(context.occupiedSlots) ||\r\n",
+          "after": "      if (context.purpose !== (commissioning ? 'Commissioning' : 'Test') || !Array.isArray(context.occupiedSlots) ||\r\n"
+        },
+        {
+          "id": "dist/runtime.js/021-recovery-r4-8",
+          "requirement": "Existing resource authorizations retained; 021 SC-021-PLC-R4 recovery notification, reset action and explicit new-run binding",
+          "offsetAfter": 13883,
+          "before": "    if (host.mode !== 'Test' || !runId || catalog?.runId?.toLowerCase() !== runId.toLowerCase()) return grouped;\r\n    const allocation = testSlotAllocation(runId);\r\n",
+          "after": "    if ((!commissioning && host.mode !== 'Test') || !runId || catalog?.runId?.toLowerCase() !== runId.toLowerCase()) return grouped;\r\n    const allocation = host.mode === 'Test' ? testSlotAllocation(runId) : null;\r\n"
+        },
+        {
+          "id": "dist/runtime.js/021-recovery-r4-10",
+          "requirement": "Existing resource authorizations retained; 021 SC-021-PLC-R4 recovery notification, reset action and explicit new-run binding",
+          "offsetAfter": 14145,
+          "before": "      const identity = mediaIdentity(item), slot = allocation.get(identity);\r\n",
+          "after": "      const identity = mediaIdentity(item), slot = commissioning ? window.GaodeCommissioningConsole.mediaSlot(item) : allocation.get(identity);\r\n"
+        },
+        {
+          "id": "dist/runtime.js/021-recovery-r4-12",
+          "requirement": "Existing resource authorizations retained; 021 SC-021-PLC-R4 recovery notification, reset action and explicit new-run binding",
+          "offsetAfter": 22483,
+          "before": "",
+          "after": "    const commissioningReset = commissioning && run?.allowedActions?.includes('CommissioningRecoveryReset');\r\n"
+        },
+        {
+          "id": "dist/runtime.js/021-recovery-r4-14",
+          "requirement": "Existing resource authorizations retained; 021 SC-021-PLC-R4 recovery notification, reset action and explicit new-run binding",
+          "offsetAfter": 22769,
+          "before": "      removalButton.disabled = !(canConfirmRemoval || recoveryAction && !commandPending);\r\n      removalButton.textContent = recoveryAction === 'RecoveryReset' ? '复位' :\r\n",
+          "after": "      removalButton.disabled = !(canConfirmRemoval || (recoveryAction || commissioningReset) && !commandPending);\r\n      removalButton.textContent = commissioningReset ? '复位并结束旧任务' : recoveryAction === 'RecoveryReset' ? '复位' :\r\n"
+        },
+        {
+          "id": "dist/runtime.js/021-recovery-r4-16",
+          "requirement": "Existing resource authorizations retained; 021 SC-021-PLC-R4 recovery notification, reset action and explicit new-run binding",
+          "offsetAfter": 23816,
+          "before": "    const allocated = runId && host.mode === 'Test' ? new Set(testSlotAllocation(runId).values()) : new Set();\r\n",
+          "after": "    const allocated = commissioning ? new Set(candidatesBySlot.keys()) : runId && host.mode === 'Test' ? new Set(testSlotAllocation(runId).values()) : new Set();\r\n"
+        },
+        {
+          "id": "dist/runtime.js/021-recovery-r4-18",
+          "requirement": "Existing resource authorizations retained; 021 SC-021-PLC-R4 recovery notification, reset action and explicit new-run binding",
+          "offsetAfter": 25347,
+          "before": "      if (marker) marker.textContent = !runId ? '未采集' : !allocated.has(slot) ? '未参与 · Test' :\r\n        !item ? mediaError ? '媒体查询受限 · Test' : '未采集 · Test' :\r\n        item.readiness !== 'Ready' ? '未就绪 · Test' :\r\n",
+          "after": "      if (marker) marker.textContent = !runId ? '未采集' : !allocated.has(slot) ? commissioning ? '未参与／未采集' : '未参与 · Test' :\r\n        !item ? mediaError ? commissioning ? '媒体查询受限' : '媒体查询受限 · Test' : commissioning ? '未采集' : '未采集 · Test' :\r\n        item.readiness !== 'Ready' ? commissioning ? '未就绪' : '未就绪 · Test' :\r\n"
+        },
+        {
+          "id": "dist/runtime.js/021-recovery-r4-20",
+          "requirement": "Existing resource authorizations retained; 021 SC-021-PLC-R4 recovery notification, reset action and explicit new-run binding",
+          "offsetAfter": 25703,
+          "before": "          `${item.source || '来源未知'} · 临时格位 · ${item.role}/${item.businessCamera}${faceLabel}${choiceLabel}`;\r\n",
+          "after": "          `${item.source || '来源未知'} · ${commissioning ? '当前运行' : '临时格位'} · ${item.role}/${item.businessCamera}${faceLabel}${choiceLabel}`;\r\n"
+        },
+        {
+          "id": "dist/runtime.js/021-recovery-r4-22",
+          "requirement": "Existing resource authorizations retained; 021 SC-021-PLC-R4 recovery notification, reset action and explicit new-run binding",
+          "offsetAfter": 26392,
+          "before": "    const diagnostic = run?.startupDiagnostic;\r\n",
+          "after": "    const diagnostic = run?.commissioningRecovery ? null : run?.startupDiagnostic;\r\n"
+        },
+        {
+          "id": "dist/runtime.js/021-recovery-r4-24",
+          "requirement": "Existing resource authorizations retained; 021 SC-021-PLC-R4 recovery notification, reset action and explicit new-run binding",
+          "offsetAfter": 28187,
+          "before": "    const problem = fBlocked || reason || run?.errorCode || lastStartFailure || (status?.host !== 'Ready' ? status?.host : null) ||\r\n      (!token ? 'AuthUnavailable' : null) || (status?.algorithm?.state !== 'Ready' ? status?.algorithm?.state : null);\r\n",
+          "after": "    const problem = fBlocked || reason || run?.errorCode || (run?.commissioningRecovery ? null : lastStartFailure) || (status?.host !== 'Ready' ? status?.host : null) ||\r\n      (!token ? 'AuthUnavailable' : null) || (!['Ready','Configured'].includes(status?.algorithm?.state) ? status?.algorithm?.state : null);\r\n"
+        },
+        {
+          "id": "dist/runtime.js/021-recovery-r4-26",
+          "requirement": "Existing resource authorizations retained; 021 SC-021-PLC-R4 recovery notification, reset action and explicit new-run binding",
+          "offsetAfter": 30734,
+          "before": "",
+          "after": "      commissioning ? window.GaodeCommissioningConsole?.recoveryNotice(run) : null,\r\n"
+        },
+        {
+          "id": "dist/runtime.js/021-recovery-r4-28",
+          "requirement": "Existing resource authorizations retained; 021 SC-021-PLC-R4 recovery notification, reset action and explicit new-run binding",
+          "offsetAfter": 35145,
+          "before": "",
+          "after": "    if(commissioning && document.getElementById('partsTbody')) {\r\n      const body=document.getElementById('partsTbody');\r\n      const records=Array.isArray(run?.results)?run.results:[];\r\n      setText('partsCount',records.length?String(records.length):'未提供');\r\n      body.innerHTML=records.map((result,index)=>`<tr><td>${index+1}</td><td>${escaped(result.id||'对象待查')}</td><td>—</td><td colspan=\"3\">${escaped(result.availability==='Committed'?result.disposition||'结果未提供':'结果未提交')}</td><td>—</td><td>指标未提供</td><td><button data-result-index=\"${index}\" class=\"btn-action\">详情</button></td></tr>`).join('') || '<tr><td colspan=\"9\">本运行暂无已提交检测结果</td></tr>';\r\n      window.closeReport=()=>{const modal=document.getElementById('reportModal');modal?.classList.add('hidden');modal?.classList.remove('flex');};\r\n      window.openReport=index=>{\r\n        const result=records[Number(index)]; if(!result) return;\r\n        setText('reportPid',result.id);setText('reportPart',result.kind||'未提供');setText('reportDate','本运行');setText('reportCount','未提供');\r\n        const rows=document.getElementById('reportRows');rows.replaceChildren();\r\n        for(const item of latestMedia?.items||[]) {\r\n          const url=mediaUrls.get(item.mediaId);if(!url)continue;\r\n          const row=document.createElement('tr'),cell=document.createElement('td');cell.colSpan=4;\r\n          const title=document.createElement('div');title.textContent=`${item.role}/${item.businessCamera} · ${item.mediaId} · ${item.source}`;\r\n          const image=document.createElement('img');image.src=url;image.dataset.runId=runId;image.dataset.mediaId=item.mediaId;\r\n          cell.append(title,image);row.append(cell);rows.append(row);\r\n        }\r\n        const modal=document.getElementById('reportModal');modal?.classList.remove('hidden');modal?.classList.add('flex');\r\n      };\r\n      body.querySelectorAll('[data-result-index]').forEach(button=>button.onclick=()=>window.openReport(button.dataset.resultIndex));\r\n      document.querySelectorAll('#reportModal .grid .num-font,#reportModal .grid b').forEach(node=>node.textContent='未提供');\r\n      document.querySelectorAll('#stage button').forEach(button=>{\r\n        if(/查询|复检|导出/.test(button.textContent)) {button.onclick=()=>{setText('currentScene','当前仅支持已知运行查询，历史查询／复检／导出未提供');};}\r\n      });\r\n    }\r\n"
+        },
+        {
+          "id": "dist/runtime.js/021-recovery-r4-30",
+          "requirement": "Existing resource authorizations retained; 021 SC-021-PLC-R4 recovery notification, reset action and explicit new-run binding",
+          "offsetAfter": 38568,
+          "before": "      runId ||= latestStatus?.currentRun?.runId || null;\r\n",
+          "after": "      if (commissioning) { await recoverPending(); nextAdmission=await request('/api/v1/station01/start-admission'); }\r\n      else runId ||= latestStatus?.currentRun?.runId || null;\r\n"
+        },
+        {
+          "id": "dist/runtime.js/021-recovery-r4-32",
+          "requirement": "Existing resource authorizations retained; 021 SC-021-PLC-R4 recovery notification, reset action and explicit new-run binding",
+          "offsetAfter": 42320,
+          "before": "",
+          "after": "    diagnostic('NotificationsConnected',{transport:'LongPolling'});\r\n"
+        },
+        {
+          "id": "dist/runtime.js/021-recovery-r4-34",
+          "requirement": "Existing resource authorizations retained; 021 SC-021-PLC-R4 recovery notification, reset action and explicit new-run binding",
+          "offsetAfter": 43700,
+          "before": "  });\r\n",
+          "after": "  }, true); // Capture the chosen value before the editor reload renders the selector.\r\n"
+        },
+        {
+          "id": "dist/runtime.js/021-recovery-r4-36",
+          "requirement": "Existing resource authorizations retained; 021 SC-021-PLC-R4 recovery notification, reset action and explicit new-run binding",
+          "offsetAfter": 44944,
+          "before": "",
+          "after": "    if (commissioning && !commandPending && latestRun?.allowedActions?.includes('CommissioningRecoveryReset')) {\r\n      commandPending = true; manualRemovalButton.disabled = true;\r\n      try {\r\n        const result = await post('/api/v1/station01/reset', {});\r\n        interactionNotice = result.recoveryClosed\r\n          ? '复位核验通过，旧任务已结束；核对配方后手动点击启动新一轮'\r\n          : 'PLC复位已完成；请查询旧任务和启动准入，不自动启动';\r\n        diagnostic('CommissioningRecoveryResetAccepted', { runId: result.runId, recoveryWriteId: result.recoveryWriteId });\r\n      } catch (error) {\r\n        interactionNotice = window.GaodeCommissioningConsole.resetFailure(error.message);\r\n        diagnostic('CommissioningRecoveryResetFailed', { code: error.message, disposition: 'Held_NoAutomaticRetry' });\r\n      } finally { commandPending = false; await refresh(); }\r\n      return;\r\n    }\r\n"
+        },
+        {
+          "id": "dist/runtime.js/021-recovery-r4-38",
+          "requirement": "Existing resource authorizations retained; 021 SC-021-PLC-R4 recovery notification, reset action and explicit new-run binding",
+          "offsetAfter": 47871,
+          "before": "",
+          "after": "      if(commissioning && pendingOperation?.operationKind==='ManualRemoval' && pendingOperation.runId===runId) {\r\n        interactionNotice='人工确认结果尚未核定，只查询原运行，不重复提交';await refresh();return;\r\n      }\r\n      const confirmationId=crypto.randomUUID();\r\n      if(commissioning) savePending({schemaVersion:'commissioning-pending/1',operationKind:'ManualRemoval',subjectId:confirmedIdentity.subjectId,\r\n        apiOrigin:apiBase,mode:host.mode,runId,requestId:confirmationId,state:'Submitting'});\r\n"
+        },
+        {
+          "id": "dist/runtime.js/021-recovery-r4-40",
+          "requirement": "Existing resource authorizations retained; 021 SC-021-PLC-R4 recovery notification, reset action and explicit new-run binding",
+          "offsetAfter": 48487,
+          "before": "        requestId: crypto.randomUUID(), expectedRevision: latestRun.observedRevision, reason\r\n",
+          "after": "        requestId: confirmationId, expectedRevision: latestRun.observedRevision, reason\r\n"
+        },
+        {
+          "id": "dist/runtime.js/021-recovery-r4-42",
+          "requirement": "Existing resource authorizations retained; 021 SC-021-PLC-R4 recovery notification, reset action and explicit new-run binding",
+          "offsetAfter": 49305,
+          "before": "",
+          "after": "    const finalSaved = latestEvidence?.finalResult === 'FinalUnloadCompletion' && !!latestEvidence?.finalSourceMatrix;\r\n    const recoveredNext = commissioning && window.GaodeCommissioningConsole.canStartAfterRecovery(latestRun, nextAdmission);\r\n    const normalNext = commissioning && (finalSaved || recoveredNext) && nextAdmission?.state === 'Available' &&\r\n      (!pendingOperation || pendingOperation.subjectId===confirmedIdentity.subjectId);\r\n    if (normalNext) { startSubmitted=false; pendingOperation=null; }\r\n    if (commissioning && !startSubmitted) {\r\n      try { prepared=window.GaodeCommissioningConsole.newStart(host.commissioningTemplate, selectedRecipe,()=>crypto.randomUUID()); }\r\n      catch(error) { interactionNotice='请先选择已保存配方，并核对联调启动配置';render(latestStatus,latestRun,latestEvidence);return; }\r\n    }\r\n"
+        },
+        {
+          "id": "dist/runtime.js/021-recovery-r4-44",
+          "requirement": "Existing resource authorizations retained; 021 SC-021-PLC-R4 recovery notification, reset action and explicit new-run binding",
+          "offsetAfter": 50621,
+          "before": "    if (runId && !restartReady) { interactionNotice = `已有运行 ${runId}，不能再次启动；仅查询原任务或请授权人员核查`; render(latestStatus, latestRun, latestEvidence); return; }\r\n",
+          "after": "    if (runId && !restartReady && !normalNext) { interactionNotice = `已有运行 ${runId}，不能再次启动；仅查询原任务或请授权人员核查`; render(latestStatus, latestRun, latestEvidence); return; }\r\n"
+        },
+        {
+          "id": "dist/runtime.js/021-recovery-r4-46",
+          "requirement": "Existing resource authorizations retained; 021 SC-021-PLC-R4 recovery notification, reset action and explicit new-run binding",
+          "offsetAfter": 51082,
+          "before": "      setText('faultList', 'Test上料请求未准备或配置不符'); return;\r\n",
+          "after": "      setText('faultList', commissioning ? '联调启动资料未准备或配置不符' : 'Test上料请求未准备或配置不符'); return;\r\n"
+        },
+        {
+          "id": "dist/runtime.js/021-recovery-r4-48",
+          "requirement": "Existing resource authorizations retained; 021 SC-021-PLC-R4 recovery notification, reset action and explicit new-run binding",
+          "offsetAfter": 51432,
+          "before": "      const request = restartReady ? { ...preparedRequest, requestId: crypto.randomUUID(),\r\n",
+          "after": "      const request = recoveredNext ? { ...preparedRequest,\r\n        commissioningRestartFrom: { runId, recoveryWriteId: latestRun.commissioningRecovery.recoveryWriteId } }\r\n        : restartReady ? { ...preparedRequest, requestId: crypto.randomUUID(),\r\n"
+        },
+        {
+          "id": "dist/runtime.js/021-recovery-r4-50",
+          "requirement": "Existing resource authorizations retained; 021 SC-021-PLC-R4 recovery notification, reset action and explicit new-run binding",
+          "offsetAfter": 51889,
+          "before": "",
+          "after": "      if (commissioning) {\r\n        const bytes=new TextEncoder().encode(JSON.stringify(request));\r\n        const digest=Array.from(new Uint8Array(await crypto.subtle.digest('SHA-256',bytes))).map(b=>b.toString(16).padStart(2,'0')).join('');\r\n        savePending({schemaVersion:'commissioning-pending/1',operationKind:'Start',apiOrigin:apiBase,mode:host.mode,\r\n          stationScope:host.commissioningTemplate.contextTemplate.stationId,subjectId:confirmedIdentity.subjectId,\r\n          requestId:request.requestId,trayId:JSON.parse(request.contextJson).trayId,requestDigest:digest,state:'Submitting'});\r\n      }\r\n"
+        },
+        {
+          "id": "dist/runtime.js/021-recovery-r4-52",
+          "requirement": "Existing resource authorizations retained; 021 SC-021-PLC-R4 recovery notification, reset action and explicit new-run binding",
+          "offsetAfter": 52559,
+          "before": "",
+          "after": "      if(commissioning) savePending({...pendingOperation,commandId:receipt?.commandId,runId:receipt?.runId,state:'Accepted'});\r\n"
+        },
+        {
+          "id": "dist/runtime.js/021-recovery-r4-54",
+          "requirement": "Existing resource authorizations retained; 021 SC-021-PLC-R4 recovery notification, reset action and explicit new-run binding",
+          "offsetAfter": 53655,
+          "before": "",
+          "after": "      if(commissioning && error.contract?.details?.runCreated===false) { viewStorage?.removeItem(pendingKey);pendingOperation=null;startSubmitted=false; }\r\n"
+        }
+      ],
+      "authorizationHistory": [
+        {
+          "sha256": "53a1c21cb2c06fbc70d89238d0b382e3b29f0a126d32ef7012e0085929d41800",
+          "changes": [
+            {
+              "id": "021-identity-runtime-1",
+              "requirement": "021 FR-001/002/003/004/014/015; IH-03; T010",
+              "offsetAfter": 0,
+              "before": "(function () {\r\n",
+              "after": "(async function () {\r\n"
+            },
+            {
+              "id": "021-identity-runtime-2",
+              "requirement": "021 FR-001/002/003/004/014/015; IH-03; T010",
+              "offsetAfter": 183,
+              "before": "  const token = host.mode === 'Test' ? String(host.testToken || '') : '';\r\n",
+              "after": "  let token = host.mode === 'Test' ? String(host.testToken || '') : host.mode === 'RealDeviceCommissioning' ? String(host.commissioningToken || '') : '';\r\n  let confirmedIdentity = null;\r\n"
+            },
+            {
+              "id": "021-identity-runtime-3",
+              "requirement": "021 FR-001/002/003/004/014/015; IH-03; T010",
+              "offsetAfter": 448,
+              "before": "",
+              "after": "  if (host.mode === 'RealDeviceCommissioning') {\r\n    // Override the inline demo handler immediately, including during the identity request.\r\n    window.handleLogin = event => { event.preventDefault(); return false; };\r\n    try {\r\n      const response = await fetch(apiBase + '/api/v1/station01/identity', {\r\n        headers: { Authorization: `Bearer ${token}` }, cache: 'no-store'\r\n      });\r\n      if (!response.ok) throw new Error(`IdentityRejected:${response.status}`);\r\n      confirmedIdentity = window.GaodeCommissioningConsole.confirmIdentity(await response.json(), host.commissioningProfile);\r\n      console.info('GaodePageDiagnostic', JSON.stringify({ event: 'IdentityChecked', mode: host.mode,\r\n        subjectId: confirmedIdentity.subjectId, profileId: confirmedIdentity.profileId }));\r\n      const login = window.GaodeCommissioningConsole.bindLogin(document, confirmedIdentity, path => { window.location.href = path; });\r\n      if (login) { window.handleLogin = login; return; }\r\n      const chip = document.querySelector('header .bg-slate-800\\\\/60.border-slate-700\\\\/50:last-of-type');\r\n      const name = chip?.querySelector('.text-xs.text-slate-100');\r\n      const role = chip?.querySelector('[class*=\"text-emerald-300\"]');\r\n      if (name) name.textContent = confirmedIdentity.displayName;\r\n      if (role) role.textContent = confirmedIdentity.role === 'Operator' ? 'L1 · 操作员' : 'L2 · 工程师';\r\n      const loginButton = document.getElementById('btnRecipe');\r\n      if (loginButton && !confirmedIdentity.permissions.includes('Recipe.Write')) loginButton.disabled = true;\r\n    } catch (error) {\r\n      token = ''; confirmedIdentity = null;\r\n      clearPrototypeDemo();\r\n      document.querySelectorAll('#camGrid img').forEach(image => image.removeAttribute('src'));\r\n      document.querySelectorAll('main button, #btnRecipe, #btnPositions').forEach(button => { button.disabled = true; });\r\n      const input = document.getElementById('user');\r\n      if (input) { input.setCustomValidity('联调身份不可用，请联系维护人员核对配置'); input.reportValidity(); }\r\n      const fault = document.getElementById('faultList'); if (fault) fault.textContent = '联调身份不可用，操作已阻止';\r\n      console.info('GaodePageDiagnostic', JSON.stringify({ event: 'IdentityRejected', mode: host.mode, errorType: error.name }));\r\n      return;\r\n    }\r\n  }\r\n"
+            },
+            {
+              "id": "021-identity-runtime-4",
+              "requirement": "021 FR-001/002/003/004/014/015; IH-03; T010",
+              "offsetAfter": 26071,
+              "before": "    const slotDetails = (run?.slotStates || []).map(slot => `${slot.region || '区域未提供'}区 第${displayValue(slot.row)}行 第${displayValue(slot.column)}列 · 物理槽${slot.physicalSlotIndex}：${displayValue(slot.presence)}/${displayValue(slot.poseState)}${slot.detectionState ? ' · '+({NotInspected:'未检测',FurtherInspectionTerminated:'后续检测终止',NoMaterial:'无物料'})[slot.detectionState] : ''}${slot.physicalDisposition ? ' · '+(slot.physicalDisposition==='Pending'?'Pending已分拣':'Pending待分拣') : ''}${slot.reasonCodes?.length ? ' · ' + slot.reasonCodes.join('、') : ''}`);\n",
+              "after": "    const slotDetails = (run?.slotStates || []).map(slot => `${slot.region || '区域未提供'}区 第${displayValue(slot.row)}行 第${displayValue(slot.column)}列 · 物理槽${slot.physicalSlotIndex}：${displayValue(slot.presence)}/${displayValue(slot.poseState)}${slot.detectionState ? ' · '+({NotInspected:'未检测',FurtherInspectionTerminated:'后续检测终止',NoMaterial:'无物料'})[slot.detectionState] : ''}${slot.physicalDisposition ? ' · '+(slot.physicalDisposition==='Pending'?'Pending已分拣':'Pending待分拣') : ''}${slot.reasonCodes?.length ? ' · ' + slot.reasonCodes.join('、') : ''}`);\r\n"
+            },
+            {
+              "id": "021-identity-runtime-5",
+              "requirement": "021 FR-001/002/003/004/014/015; IH-03; T010",
+              "offsetAfter": 33985,
+              "before": "          latestRun = responseRun;\n          publicTrayFlow?.render(latestRun);\n",
+              "after": "          latestRun = responseRun;\r\n          publicTrayFlow?.render(latestRun);\r\n"
+            }
+          ]
+        }
+      ]
     },
     {
       "path": "dist/recipe-authoring.js",
-      "sha256": "ae66a59fa0ae2632d62374de01af3ea634c3d27292cb80742b6fadd888d3c238"
+      "sha256": "ffb578acc63d92c75732a2949ef0b6c0eac8a17e9313665e4069d76d64a97e5c",
+      "previousSha256": "ae66a59fa0ae2632d62374de01af3ea634c3d27292cb80742b6fadd888d3c238",
+      "exactAuthorizedChanges": [
+        {
+          "id": "021-configured-console-1",
+          "requirement": "021 FR-005–019; SC/RM/CC; user-authorized virtual light and F XY; preserve 012 member gripper",
+          "offsetAfter": 1608,
+          "before": "",
+          "after": "      lightExecution: fields('schemaVersion mode'),\r\n      commissioningFPosition: fields('schemaVersion x y'),\r\n"
+        },
+        {
+          "id": "021-configured-console-3",
+          "requirement": "021 FR-005–019; SC/RM/CC; user-authorized virtual light and F XY; preserve 012 member gripper",
+          "offsetAfter": 2273,
+          "before": "      composition: [fields('material localFaces')],\r\n",
+          "after": "      composition: [fields('material localFaces sortingGripperId')],\r\n"
+        },
+        {
+          "id": "021-configured-console-5",
+          "requirement": "021 FR-005–019; SC/RM/CC; user-authorized virtual light and F XY; preserve 012 member gripper",
+          "offsetAfter": 7924,
+          "before": "        if (current.phase === 'Closed' || busy()) return;\r\n",
+          "after": "        if (current.phase === 'Closed' || busy() || !current.canSave) return;\r\n"
+        },
+        {
+          "id": "021-configured-console-7",
+          "requirement": "021 FR-005–019; SC/RM/CC; user-authorized virtual light and F XY; preserve 012 member gripper",
+          "offsetAfter": 8538,
+          "before": "        const id = begin(), basic = { fCode: current.definition.fCode, sortingGripperId: current.definition.sortingGripperId, rotationLoadingGripperId: current.definition.rotationLoadingGripperId };\r\n",
+          "after": "        const id = begin(), basic = { commissioningFPosition: current.definition.commissioningFPosition, lightExecution: current.definition.lightExecution, fCode: current.definition.fCode, sortingGripperId: current.definition.sortingGripperId, rotationLoadingGripperId: current.definition.rotationLoadingGripperId };\r\n"
+        },
+        {
+          "id": "021-configured-console-9",
+          "requirement": "021 FR-005–019; SC/RM/CC; user-authorized virtual light and F XY; preserve 012 member gripper",
+          "offsetAfter": 10066,
+          "before": "        if (!current.definition || busy()) return;\r\n",
+          "after": "        if (!current.definition || busy() || !current.canSave) return;\r\n"
+        },
+        {
+          "id": "021-configured-console-11",
+          "requirement": "021 FR-005–019; SC/RM/CC; user-authorized virtual light and F XY; preserve 012 member gripper",
+          "offsetAfter": 10833,
+          "before": "        if (current.phase === 'Closed' || current.phase === 'Loading' || busy() || !current.definition || current.unsupported.length) return;\r\n        change(current.definition); current.phase = 'Editing'; current.issues = [];\r\n",
+          "after": "        if (current.phase === 'Closed' || current.phase === 'Loading' || busy() || !current.canSave || !current.definition || current.unsupported.length) return;\r\n        if (change(current.definition) === false) { current.message = '修改未应用：缺少对应参数或来源，请核对配方'; emit(); return; }\r\n        current.phase = 'Editing'; current.issues = [];\r\n"
+        },
+        {
+          "id": "021-configured-console-13",
+          "requirement": "021 FR-005–019; SC/RM/CC; user-authorized virtual light and F XY; preserve 012 member gripper",
+          "offsetAfter": 15056,
+          "before": "      sortingGripperId: null, plcRecipeId: null, fCode: '', model: context?.model || '', scenarioId: context?.scenarioId || '', unitKind: context?.unitKind || '', primaryMaterial: '', layoutProfile: '',\r\n",
+          "after": "      sortingGripperId: null, plcRecipeId: null, fCode: '', model: context?.model || '', scenarioId: context?.scenarioId || '', unitKind: context?.unitKind || '', primaryMaterial: '', layoutProfile: '', lightExecution:{schemaVersion:'light-execution/1',mode:'Simulated'}, commissioningFPosition:{schemaVersion:'commissioning-f-position/1',x:null,y:null},\r\n"
+        },
+        {
+          "id": "021-configured-console-15",
+          "requirement": "021 FR-005–019; SC/RM/CC; user-authorized virtual light and F XY; preserve 012 member gripper",
+          "offsetAfter": 26216,
+          "before": "          if (actual) change(d,actual); return;\r\n",
+          "after": "          return actual ? change(d,actual) : false;\r\n"
+        },
+        {
+          "id": "021-configured-console-17",
+          "requirement": "021 FR-005–019; SC/RM/CC; user-authorized virtual light and F XY; preserve 012 member gripper",
+          "offsetAfter": 26490,
+          "before": "          change(d,actual); return;\r\n",
+          "after": "          return change(d,actual);\r\n"
+        },
+        {
+          "id": "021-configured-console-19",
+          "requirement": "021 FR-005–019; SC/RM/CC; user-authorized virtual light and F XY; preserve 012 member gripper",
+          "offsetAfter": 26908,
+          "before": "        if (actual) change(d,actual);\r\n",
+          "after": "        return actual ? change(d,actual) : false;\r\n"
+        },
+        {
+          "id": "021-configured-console-21",
+          "requirement": "021 FR-005–019; SC/RM/CC; user-authorized virtual light and F XY; preserve 012 member gripper",
+          "offsetAfter": 31337,
+          "before": "      return xyz.every(v => Number.isFinite(v)) && (!card.camera || ['exposureUs', 'gain', 'brightnessPercent'].every(k => Number.isFinite(profileFor(d, card)?.settings[k])));\r\n",
+          "after": "      return xyz.every(v => Number.isFinite(v)) && (!card.camera || (d.lightExecution?.mode === 'Simulated' ? ['exposureUs', 'gain'] : ['exposureUs', 'gain', 'brightnessPercent']).every(k => Number.isFinite(profileFor(d, card)?.settings[k])));\r\n"
+        },
+        {
+          "id": "021-configured-console-23",
+          "requirement": "021 FR-005–019; SC/RM/CC; user-authorized virtual light and F XY; preserve 012 member gripper",
+          "offsetAfter": 33854,
+          "before": "        ['E扫码', d.eCode?.enabled ? '需要' : '不需要'], ['分拣夹爪', d.sortingGripperId ? '夹爪' + d.sortingGripperId : '未配置']])\r\n",
+          "after": "        ['E扫码', d.eCode?.enabled ? '需要' : '不需要'], ['分拣夹爪', d.unitKind === 'looseGroup' ? d.composition.map(m => m.material + '：' + (m.sortingGripperId ? '夹爪' + m.sortingGripperId : '未配置')).join('、') : d.sortingGripperId ? '夹爪' + d.sortingGripperId : '未配置']])\r\n"
+        },
+        {
+          "id": "021-configured-console-25",
+          "requirement": "021 FR-005–019; SC/RM/CC; user-authorized virtual light and F XY; preserve 012 member gripper",
+          "offsetAfter": 35235,
+          "before": "      picker.disabled = busy; document.getElementById('recipeAuthoringNew').disabled = busy;\r\n",
+          "after": "      picker.disabled = busy; document.getElementById('recipeAuthoringNew').disabled = busy || !next.canSave;\r\n"
+        },
+        {
+          "id": "021-configured-console-27",
+          "requirement": "021 FR-005–019; SC/RM/CC; user-authorized virtual light and F XY; preserve 012 member gripper",
+          "offsetAfter": 36260,
+          "before": "",
+          "after": "        const virtualLabel = node('label', '虚拟光源 '), virtualLight = node('input');\r\n        virtualLight.type = 'checkbox'; virtualLight.checked = d.lightExecution?.mode === 'Simulated';\r\n        virtualLight.dataset.lightMode = 'recipe';\r\n        virtualLight.onchange = () => session.edit(x => x.lightExecution = {schemaVersion:'light-execution/1',mode:virtualLight.checked?'Simulated':'Real'});\r\n        virtualLabel.append(virtualLight); grid.append(virtualLabel);\r\n        for (const [axis,label] of [['x','虚拟算法 F读码X (mm)'],['y','虚拟算法 F读码Y (mm)']])\r\n          input(grid,label,d.commissioningFPosition?.[axis],v => session.edit(x => {\r\n            x.commissioningFPosition ??= {schemaVersion:'commissioning-f-position/1',x:null,y:null};\r\n            x.commissioningFPosition[axis]=v;\r\n          }));\r\n"
+        },
+        {
+          "id": "021-configured-console-29",
+          "requirement": "021 FR-005–019; SC/RM/CC; user-authorized virtual light and F XY; preserve 012 member gripper",
+          "offsetAfter": 38034,
+          "before": "        input(grid, '分拣夹爪', d.sortingGripperId, v => session.edit(x => x.sortingGripperId = v), 'number', [[1,'夹爪1'],[2,'夹爪2']]);\r\n",
+          "after": "        if (d.unitKind !== 'looseGroup') input(grid, '分拣夹爪', d.sortingGripperId, v => session.edit(x => x.sortingGripperId = v), 'number', [[1,'夹爪1'],[2,'夹爪2']]);\r\n"
+        },
+        {
+          "id": "021-configured-console-31",
+          "requirement": "021 FR-005–019; SC/RM/CC; user-authorized virtual light and F XY; preserve 012 member gripper",
+          "offsetAfter": 39026,
+          "before": "          for (const member of d.composition) input(form, member.material + '检测面数', member.localFaces.length, v => void session.layout({ material: member.material, faces: v }));\r\n",
+          "after": "          for (const member of d.composition) {\r\n            input(form, member.material + '检测面数', member.localFaces.length, v => void session.layout({ material: member.material, faces: v }));\r\n            input(form, member.material + '分拣夹爪', member.sortingGripperId,\r\n              v => session.edit(x => x.composition.find(m => m.material === member.material).sortingGripperId = v),\r\n              'number', [[1,'夹爪1'],[2,'夹爪2']]);\r\n          }\r\n"
+        },
+        {
+          "id": "021-configured-console-33",
+          "requirement": "021 FR-005–019; SC/RM/CC; user-authorized virtual light and F XY; preserve 012 member gripper",
+          "offsetAfter": 49498,
+          "before": "      panel.querySelectorAll('input,select,button').forEach(e => e.disabled = busy);\r\n",
+          "after": "      panel.querySelectorAll('input,select').forEach(e => e.disabled = busy || !next.canSave);\r\n      panel.querySelectorAll('button').forEach(e => e.disabled = busy || (!next.canSave && !e.classList.contains('recipe-nav-button') && !e.classList.contains('recipe-face-rail')));\r\n      if (d.lightExecution?.mode === 'Simulated') panel.querySelectorAll('.recipe-capture-fields label').forEach(label => {\r\n        if (label.textContent.includes('光源亮度')) { const field=label.querySelector('input'); if(field) field.disabled=true; }\r\n      });\r\n"
+        }
+      ],
+      "baselineSourceCommit": "b0e0098995a4e97ac5cb33e44520543328d3a57a",
+      "currentSourceCommit": "0f91f95",
+      "requirement": "021 T006: reconcile stale resource manifest against preserved approved member-gripper source; no new recipe UI edits",
+      "authorizationHistory": [
+        {
+          "sha256": "d96e4d67b776b5c0907d0f8211a36de3897797073537404e7ec28eaac6f9b1af",
+          "exactAuthorizedChanges": [
+            {
+              "id": "021-existing-member-gripper-baseline-1",
+              "requirement": "Existing approved member-gripper implementation in source commit 0f91f95; 021 T006 preserves and exactly verifies existing changes",
+              "offsetAfter": 2207,
+              "before": "",
+              "after": " sortingGripperId"
+            },
+            {
+              "id": "021-existing-member-gripper-baseline-2",
+              "requirement": "Existing approved member-gripper implementation in source commit 0f91f95; 021 T006 preserves and exactly verifies existing changes",
+              "offsetAfter": 33303,
+              "before": "",
+              "after": "unitKind === 'looseGroup' ? d.composition.map(m => m.material + '：' + (m.sortingGripperId ? '夹爪' + m.sortingGripperId : '未配置')).join('、') : d."
+            },
+            {
+              "id": "021-existing-member-gripper-baseline-3",
+              "requirement": "Existing approved member-gripper implementation in source commit 0f91f95; 021 T006 preserves and exactly verifies existing changes",
+              "offsetAfter": 36608,
+              "before": "",
+              "after": "f (d.unitKind !== 'looseGroup') i"
+            },
+            {
+              "id": "021-existing-member-gripper-baseline-4",
+              "requirement": "Existing approved member-gripper implementation in source commit 0f91f95; 021 T006 preserves and exactly verifies existing changes",
+              "offsetAfter": 37637,
+              "before": "",
+              "after": "{\r\n            "
+            },
+            {
+              "id": "021-existing-member-gripper-baseline-5",
+              "requirement": "Existing approved member-gripper implementation in source commit 0f91f95; 021 T006 preserves and exactly verifies existing changes",
+              "offsetAfter": 37783,
+              "before": "",
+              "after": "\r\n            input(form, member.material + '分拣夹爪', member.sortingGripperId,\r\n              v => session.edit(x => x.composition.find(m => m.material === member.material).sortingGripperId = v),\r\n              'number', [[1,'夹爪1'],[2,'夹爪2']]);\r\n          }"
+            }
+          ]
+        },
+        {
+          "sha256": "d0bdadd907f85352563d66ff8a6b635e0bc81e394ccc361cc6be1394a160b0fa",
+          "changes": [
+            {
+              "id": "021-recipe-preserved-and-missing-source-1",
+              "requirement": "Prior approved member-gripper source commit 0f91f95; 021 FR-005/006/008 RM-01 T014 missing parameter source cannot pretend edit success",
+              "offsetAfter": 2160,
+              "before": "      composition: [fields('material localFaces')],\r\n",
+              "after": "      composition: [fields('material localFaces sortingGripperId')],\r\n"
+            },
+            {
+              "id": "021-recipe-preserved-and-missing-source-2",
+              "requirement": "Prior approved member-gripper source commit 0f91f95; 021 FR-005/006/008 RM-01 T014 missing parameter source cannot pretend edit success",
+              "offsetAfter": 10705,
+              "before": "        change(current.definition); current.phase = 'Editing'; current.issues = [];\r\n",
+              "after": "        if (change(current.definition) === false) { current.message = '修改未应用：缺少对应参数或来源，请核对配方'; emit(); return; }\r\n        current.phase = 'Editing'; current.issues = [];\r\n"
+            },
+            {
+              "id": "021-recipe-preserved-and-missing-source-3",
+              "requirement": "Prior approved member-gripper source commit 0f91f95; 021 FR-005/006/008 RM-01 T014 missing parameter source cannot pretend edit success",
+              "offsetAfter": 25773,
+              "before": "          if (actual) change(d,actual); return;\r\n",
+              "after": "          return actual ? change(d,actual) : false;\r\n"
+            },
+            {
+              "id": "021-recipe-preserved-and-missing-source-4",
+              "requirement": "Prior approved member-gripper source commit 0f91f95; 021 FR-005/006/008 RM-01 T014 missing parameter source cannot pretend edit success",
+              "offsetAfter": 26047,
+              "before": "          change(d,actual); return;\r\n",
+              "after": "          return change(d,actual);\r\n"
+            },
+            {
+              "id": "021-recipe-preserved-and-missing-source-5",
+              "requirement": "Prior approved member-gripper source commit 0f91f95; 021 FR-005/006/008 RM-01 T014 missing parameter source cannot pretend edit success",
+              "offsetAfter": 26465,
+              "before": "        if (actual) change(d,actual);\r\n",
+              "after": "        return actual ? change(d,actual) : false;\r\n"
+            },
+            {
+              "id": "021-recipe-preserved-and-missing-source-6",
+              "requirement": "Prior approved member-gripper source commit 0f91f95; 021 FR-005/006/008 RM-01 T014 missing parameter source cannot pretend edit success",
+              "offsetAfter": 33343,
+              "before": "        ['E扫码', d.eCode?.enabled ? '需要' : '不需要'], ['分拣夹爪', d.sortingGripperId ? '夹爪' + d.sortingGripperId : '未配置']])\r\n",
+              "after": "        ['E扫码', d.eCode?.enabled ? '需要' : '不需要'], ['分拣夹爪', d.unitKind === 'looseGroup' ? d.composition.map(m => m.material + '：' + (m.sortingGripperId ? '夹爪' + m.sortingGripperId : '未配置')).join('、') : d.sortingGripperId ? '夹爪' + d.sortingGripperId : '未配置']])\r\n"
+            },
+            {
+              "id": "021-recipe-preserved-and-missing-source-7",
+              "requirement": "Prior approved member-gripper source commit 0f91f95; 021 FR-005/006/008 RM-01 T014 missing parameter source cannot pretend edit success",
+              "offsetAfter": 36700,
+              "before": "        input(grid, '分拣夹爪', d.sortingGripperId, v => session.edit(x => x.sortingGripperId = v), 'number', [[1,'夹爪1'],[2,'夹爪2']]);\r\n",
+              "after": "        if (d.unitKind !== 'looseGroup') input(grid, '分拣夹爪', d.sortingGripperId, v => session.edit(x => x.sortingGripperId = v), 'number', [[1,'夹爪1'],[2,'夹爪2']]);\r\n"
+            },
+            {
+              "id": "021-recipe-preserved-and-missing-source-8",
+              "requirement": "Prior approved member-gripper source commit 0f91f95; 021 FR-005/006/008 RM-01 T014 missing parameter source cannot pretend edit success",
+              "offsetAfter": 37692,
+              "before": "          for (const member of d.composition) input(form, member.material + '检测面数', member.localFaces.length, v => void session.layout({ material: member.material, faces: v }));\r\n",
+              "after": "          for (const member of d.composition) {\r\n            input(form, member.material + '检测面数', member.localFaces.length, v => void session.layout({ material: member.material, faces: v }));\r\n            input(form, member.material + '分拣夹爪', member.sortingGripperId,\r\n              v => session.edit(x => x.composition.find(m => m.material === member.material).sortingGripperId = v),\r\n              'number', [[1,'夹爪1'],[2,'夹爪2']]);\r\n          }\r\n"
+            }
+          ]
+        }
+      ]
     },
     {
       "path": "src/assets/孔底刀纹异常.jpg",
@@ -457,6 +1421,38 @@
     {
       "path": "dist/public-tray-flow.js",
       "sha256": "9c035843f56ad767c72721f0ac3ca7d0f2b679d40ab418329f5d48bf74a0d437"
+    },
+    {
+      "path": "src/commissioning-console.js",
+      "sha256": "2bda84c81f6bbe61c3e8da6c797fa8f7cffd39d0d5ab9d12f219c6904d163024",
+      "requirement": "021 IH/SC/RM/CC: confirmed identity, versioned start intent and seven-camera mapping; entire new module",
+      "region": "021-confirmed-identity-and-existing-login-binding",
+      "previousSha256": "713672db03c173e190ca7da54ed23fc9be4244feacb85b66cfb4bd635365c970",
+      "exactAuthorizedChanges": [
+        {
+          "id": "src/commissioning-console.js/021-recovery-r4-1",
+          "requirement": "Existing resource authorizations retained; 021 SC-021-PLC-R4 recovery notification, reset action and explicit new-run binding",
+          "offsetAfter": 3282,
+          "before": "  return Object.freeze({ confirmIdentity, loginMatches, bindLogin, newStart, mediaSlot });\r\n",
+          "after": "  function recoveryNotice(run) {\r\n    if (run?.commissioningRecovery?.status === 'ClosedAfterVerifiedReset')\r\n      return 'PLC复位及旧任务恢复核验已通过，旧任务已结束；核对配方后手动点击启动，开启完整新一轮，不继续旧动作。';\r\n    if (!run || !['RecoveryRequired', 'Blocked', 'Restricted'].includes(run.state)) return null;\r\n    const actions = run.allowedActions || [];\r\n    if (actions.includes('CommissioningRecoveryReset')) return '旧任务待恢复：排除现场故障后，点击“复位并结束旧任务”或一键复位；后台会核验本次复位、旧反馈清零和资源退出，成功后才允许手动开始新一轮。';\r\n    if (actions.includes('RecoveryReset')) return '旧任务待恢复：先排除故障，填写原因并执行复位；复位成功后仍须初始核验。';\r\n    if (actions.includes('RecoveryCheck')) return 'PLC复位已观察，旧任务仍待核验：核对料盘、零件和冻结配置，填写依据并执行初始核验。';\r\n    if (run.faultRestart?.status === 'InitialReady') return '旧任务初始核验已通过；请显式点击启动，开启完整新轮，不继续旧动作。';\r\n    if (run.state === 'RecoveryRequired' || run.action === 'Unknown')\r\n      return `旧任务 ${run.runId || '编号未提供'} 待恢复核验，当前身份没有可用的恢复操作入口。请由具备运行权限的操作员使用一键复位完成恢复核验；若仍无入口，请维护人员核对安装及确认配置。重开程序或重复点击启动无效，不要删除原任务。`;\r\n    return null;\r\n  }\r\n  function canStartAfterRecovery(run, admission) {\r\n    return run?.state === 'Cancelled' && run?.commissioningRecovery?.status === 'ClosedAfterVerifiedReset' &&\r\n      !!run.commissioningRecovery.recoveryWriteId && admission?.state === 'Available';\r\n  }\r\n  function resetFailure(message) {\r\n    if (message?.startsWith('PreviousResetRequestNotReleased')) return '上次复位请求仍为1，本次没有重新发送；请核对上次复位结果和后台记录。';\r\n    if (message?.startsWith('RecoveryExecutionStillActive')) return '旧流程尚未退出，请等待停止后查询状态。';\r\n    if (message?.startsWith('RecoverySoftwareResourcesNotReleased')) return '旧采集、算法或存图资源尚未释放，旧任务继续保持阻断。';\r\n    if (message?.startsWith('RecoveryInitialStateIncomplete')) return '复位后的安全、零位或请求/反馈清零核验尚未全部通过，旧任务未放行；请查看后台缺项。';\r\n    return '复位恢复结果未确认，旧任务未放行；请查询原任务与后台日志，不要重复点击。';\r\n  }\r\n  return Object.freeze({ confirmIdentity, loginMatches, bindLogin, newStart, mediaSlot, recoveryNotice, canStartAfterRecovery, resetFailure });\r\n"
+        }
+      ]
+    },
+    {
+      "path": "dist/commissioning-console.js",
+      "sha256": "2bda84c81f6bbe61c3e8da6c797fa8f7cffd39d0d5ab9d12f219c6904d163024",
+      "requirement": "021 IH/SC/RM/CC: confirmed identity, versioned start intent and seven-camera mapping; entire new module",
+      "region": "021-confirmed-identity-and-existing-login-binding",
+      "previousSha256": "713672db03c173e190ca7da54ed23fc9be4244feacb85b66cfb4bd635365c970",
+      "exactAuthorizedChanges": [
+        {
+          "id": "dist/commissioning-console.js/021-recovery-r4-1",
+          "requirement": "Existing resource authorizations retained; 021 SC-021-PLC-R4 recovery notification, reset action and explicit new-run binding",
+          "offsetAfter": 3282,
+          "before": "  return Object.freeze({ confirmIdentity, loginMatches, bindLogin, newStart, mediaSlot });\r\n",
+          "after": "  function recoveryNotice(run) {\r\n    if (run?.commissioningRecovery?.status === 'ClosedAfterVerifiedReset')\r\n      return 'PLC复位及旧任务恢复核验已通过，旧任务已结束；核对配方后手动点击启动，开启完整新一轮，不继续旧动作。';\r\n    if (!run || !['RecoveryRequired', 'Blocked', 'Restricted'].includes(run.state)) return null;\r\n    const actions = run.allowedActions || [];\r\n    if (actions.includes('CommissioningRecoveryReset')) return '旧任务待恢复：排除现场故障后，点击“复位并结束旧任务”或一键复位；后台会核验本次复位、旧反馈清零和资源退出，成功后才允许手动开始新一轮。';\r\n    if (actions.includes('RecoveryReset')) return '旧任务待恢复：先排除故障，填写原因并执行复位；复位成功后仍须初始核验。';\r\n    if (actions.includes('RecoveryCheck')) return 'PLC复位已观察，旧任务仍待核验：核对料盘、零件和冻结配置，填写依据并执行初始核验。';\r\n    if (run.faultRestart?.status === 'InitialReady') return '旧任务初始核验已通过；请显式点击启动，开启完整新轮，不继续旧动作。';\r\n    if (run.state === 'RecoveryRequired' || run.action === 'Unknown')\r\n      return `旧任务 ${run.runId || '编号未提供'} 待恢复核验，当前身份没有可用的恢复操作入口。请由具备运行权限的操作员使用一键复位完成恢复核验；若仍无入口，请维护人员核对安装及确认配置。重开程序或重复点击启动无效，不要删除原任务。`;\r\n    return null;\r\n  }\r\n  function canStartAfterRecovery(run, admission) {\r\n    return run?.state === 'Cancelled' && run?.commissioningRecovery?.status === 'ClosedAfterVerifiedReset' &&\r\n      !!run.commissioningRecovery.recoveryWriteId && admission?.state === 'Available';\r\n  }\r\n  function resetFailure(message) {\r\n    if (message?.startsWith('PreviousResetRequestNotReleased')) return '上次复位请求仍为1，本次没有重新发送；请核对上次复位结果和后台记录。';\r\n    if (message?.startsWith('RecoveryExecutionStillActive')) return '旧流程尚未退出，请等待停止后查询状态。';\r\n    if (message?.startsWith('RecoverySoftwareResourcesNotReleased')) return '旧采集、算法或存图资源尚未释放，旧任务继续保持阻断。';\r\n    if (message?.startsWith('RecoveryInitialStateIncomplete')) return '复位后的安全、零位或请求/反馈清零核验尚未全部通过，旧任务未放行；请查看后台缺项。';\r\n    return '复位恢复结果未确认，旧任务未放行；请查询原任务与后台日志，不要重复点击。';\r\n  }\r\n  return Object.freeze({ confirmIdentity, loginMatches, bindLogin, newStart, mediaSlot, recoveryNotice, canStartAfterRecovery, resetFailure });\r\n"
+        }
+      ]
     }
   ],
   "navigationAuthority": {
@@ -472,5 +1468,17 @@
       }
     ],
     "scope": "current-cell detail: member/inspection part -> actual face -> camera cards; whole assembly mechanical owner; no additional controls"
-  }
+  },
+  "commissioning021Bindings": [
+    {
+      "id": "021-script-injection",
+      "requirement": "021 FR-001/002/003/015; IH-03; RM-04",
+      "region": "build-only exact commissioning-console.js injection before runtime.js on the three existing pages; no source HTML changes",
+      "files": [
+        "scripts/build.mjs",
+        "scripts/verify-prototype.ps1",
+        "src/commissioning-console.js"
+      ]
+    }
+  ]
 }

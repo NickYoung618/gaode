@@ -13,6 +13,47 @@ public sealed class CommandRegistry
     private readonly Dictionary<Guid, StartReceipt> _commands = [];
     private Guid? _physicalOwner;
     private Guid? _faultRestartOwner;
+    private Guid? _completedRun;
+    private bool _maintenance;
+    public Guid? PhysicalOwner { get { lock (_gate) return _physicalOwner; } }
+    public Guid? BeginMaintenance()
+    {
+        lock (_gate)
+        {
+            if (_maintenance || _faultRestartOwner is not null) throw new InvalidOperationException("RecoveryMaintenanceBusy");
+            _maintenance = true; return _physicalOwner;
+        }
+    }
+    public void EndMaintenance() { lock (_gate) _maintenance = false; }
+    public void ReleaseAfterCommissioningRecovery(Guid runId)
+    {
+        lock (_gate)
+        {
+            if (!_maintenance || _physicalOwner != runId) throw new InvalidOperationException("RecoveryOwnerChanged");
+            _physicalOwner = null;
+        }
+    }
+    public StartReceipt? FindStart(string subject, string requestId)
+    {
+        lock (_gate) return _requests.TryGetValue((subject, requestId), out var value) ? value.Receipt : null;
+    }
+    // Only called by the completion store after committed same-run proof has been checked.
+    public void ReleaseAfterCommittedFinal(Guid runId)
+    {
+        lock (_gate)
+        {
+            if (_physicalOwner != runId) return;
+            _physicalOwner = null; _completedRun = runId;
+        }
+    }
+    public object StartAdmission()
+    {
+        lock (_gate) return new { schemaVersion = "station01-start-admission/1",
+            state = !_maintenance && _physicalOwner is null && _faultRestartOwner is null ? "Available" : "Held",
+            ownerRunId = _physicalOwner, completedRunId = _completedRun,
+            reasonCodes = _maintenance ? new[] { "RecoveryInProgress" } : _faultRestartOwner is not null ? new[] { "FaultRequiresNewRun" } :
+                _physicalOwner is not null ? new[] { "PhysicalRunHeld" } : Array.Empty<string>() };
+    }
 
     public StartReceipt? Replay(string subject, string requestId, string canonicalRequest)
     {
@@ -49,6 +90,7 @@ public sealed class CommandRegistry
             }
             if (_faultRestartOwner is not null && _faultRestartOwner != faultRunId)
                 throw new InvalidOperationException("FaultRequiresNewRun");
+            if (_maintenance) throw new InvalidOperationException("RecoveryInProgress");
             if (_physicalOwner is not null) throw new InvalidOperationException("PhysicalRunHeld");
             var receipt = new StartReceipt(Guid.NewGuid(), Guid.NewGuid(), "Pending",
                 "/api/v1/station01/runs/" + Guid.Empty, true);

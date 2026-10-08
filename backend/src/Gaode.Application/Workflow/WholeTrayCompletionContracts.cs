@@ -68,6 +68,7 @@ public sealed record ManualTrayRemovalConfirmationRequest(
 
 public interface IWholeTrayCompletionStore
 {
+    Task<bool> ReconcileFinalAsync(Guid runId, Guid trayId, CancellationToken cancellationToken);
     Task<WholeTrayCompletionRecord> CreateAsync(WholeTrayCompletionCreateRequest request,
         CancellationToken cancellationToken = default);
 

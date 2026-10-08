@@ -1,0 +1,190 @@
+{
+  "scope": "OFFLINE:formal-commissioning-DI-and-Start;site-layout-loopback;workers-not-started",
+  "missingInput": true,
+  "state": {
+    "runId": "b1d54056-7f36-4867-8520-210db25a3a68",
+    "requestId": "start-missing-input",
+    "subjectId": "OFFLINE",
+    "state": 20,
+    "observedRevision": 6,
+    "persistedRevision": 2,
+    "finalOutcome": 0,
+    "cancelRequested": false,
+    "action": 0,
+    "capture": 0,
+    "algorithm": 0,
+    "save": 3,
+    "handoff": 0,
+    "publicVersion": "1.0.0",
+    "budgetVersion": "3.0.0",
+    "simulationVersion": null,
+    "events": [
+      "Preparing",
+      "Blocked"
+    ],
+    "errorCode": "InvalidOperationException",
+    "identity": {
+      "runId": "b1d54056-7f36-4867-8520-210db25a3a68",
+      "trayId": "a282bbb7-c6b9-4eec-bb3e-2c58d482c750",
+      "stationId": "2018965e-460a-463e-a15b-76db62585807",
+      "lineId": "648d7927-f203-4942-9b26-600cd09ea5bc",
+      "requestId": "start-missing-input",
+      "scenarioId": "OFFLINE-scenario",
+      "occupiedSlots": [],
+      "startedAt": "2026-10-07T22:06:06.3328184+00:00",
+      "actorId": "OFFLINE",
+      "purpose": 2,
+      "publicConfigRevision": "1.0.0",
+      "budgetRevision": "3.0.0",
+      "simulationConfigRevision": "1"
+    },
+    "physicalAlarmRaised": false,
+    "automaticContinuationAllowed": false,
+    "physicalRestrictionCode": null,
+    "recipeState": "Unmatched",
+    "qualityState": "NotEvaluated",
+    "sortingState": "NotStarted",
+    "wholeTaskState": "NotCompleted",
+    "planRevision": null,
+    "recipeBindingReference": null,
+    "handoffId": null,
+    "wholeTrayCompletionId": null,
+    "readyForUnlockSourceMatrixId": null,
+    "unlockObservedEventId": null,
+    "startupDiagnostic": {
+      "reasonCodes": [
+        "SafetyInterlockDenied"
+      ],
+      "safetyAssessment": "ExplicitUnsafe",
+      "stopStage": "Preparing",
+      "disposition": "BlockedNoAutomaticRetry",
+      "connectionEpoch": 1,
+      "observedAtUtc": "2026-10-07T22:06:06.3200335+00:00",
+      "executionOrigin": {
+        "provider": "Real",
+        "componentVersion": "Real:confirmed-20261006-v2;sources/PC.xls:37095748a61574d9a1c9bf17ad0ac9118d554fa73ac8f5e10003718b6627511d;sources/PLC(2).xls:8e846d0f71351f87b42db1bf40790f40766a392fd0a9e0968201f8c2056eb476;field:Offline:XLS-address-convention-fixture",
+        "quality": "Measured"
+      },
+      "semanticObservation": {
+        "reliability": "Reliable",
+        "connection": "Connected",
+        "connectionEpoch": 1,
+        "operatingMode": "Automatic",
+        "readiness": "Ready",
+        "safetyAssessment": "Unconfirmed",
+        "clamp": "Unconfirmed",
+        "motionAvailability": "Available",
+        "acquisitionReadiness": "Unavailable",
+        "manualArea": "Unconfirmed",
+        "manualHandling": "Unconfirmed",
+        "position": {
+          "actualX": 1.25,
+          "actualY": 1.25,
+          "actualZ": 1.25,
+          "axisPurpose": "MachineAxes",
+          "coordinateFrame": "test-frame",
+          "unitBasis": "OFFLINE:position-interpretation:mm",
+          "identity": {
+            "observationId": "ac8f2b7f-50c7-4fca-bad8-186dde59f1c3",
+            "connectionEpoch": 1,
+            "sampleStartedUtc": "2026-10-07T22:06:06.3197191+00:00",
+            "sampleEndedUtc": "2026-10-07T22:06:06.3201157+00:00",
+            "reliability": "Reliable",
+            "isValid": true
+          },
+          "origin": {
+            "provider": "Real",
+            "componentVersion": "Real:confirmed-20261006-v2;sources/PC.xls:37095748a61574d9a1c9bf17ad0ac9118d554fa73ac8f5e10003718b6627511d;sources/PLC(2).xls:8e846d0f71351f87b42db1bf40790f40766a392fd0a9e0968201f8c2056eb476;field:Offline:XLS-address-convention-fixture",
+            "quality": "Measured"
+          },
+          "isReliable": true
+        },
+        "face": null,
+        "alarms": [],
+        "reasonCodes": [
+          "SiteSafetyAndInitialAdmissionUnconfirmed:PLC-Q3/Q4"
+        ],
+        "executionOrigin": {
+          "provider": "Real",
+          "componentVersion": "Real:confirmed-20261006-v2;sources/PC.xls:37095748a61574d9a1c9bf17ad0ac9118d554fa73ac8f5e10003718b6627511d;sources/PLC(2).xls:8e846d0f71351f87b42db1bf40790f40766a392fd0a9e0968201f8c2056eb476;field:Offline:XLS-address-convention-fixture",
+          "quality": "Measured"
+        },
+        "identity": {
+          "observationId": "a5861a47-21d1-4b5d-b325-6ec771c90e55",
+          "connectionEpoch": 1,
+          "sampleStartedUtc": "2026-10-07T22:06:06.3185559+00:00",
+          "sampleEndedUtc": "2026-10-07T22:06:06.3200335+00:00",
+          "reliability": "Reliable",
+          "isValid": true
+        },
+        "diagnosticEvidenceReference": null,
+        "schemaVersion": "device-semantics/1",
+        "axisPositions": {
+          "x": 1.25,
+          "y": 1.25,
+          "detectionZ": 1.25,
+          "scanZ": 1.25,
+          "grabZ": 1.25
+        },
+        "hasReliableObservation": true
+      },
+      "diagnosticEvidenceReference": null
+    },
+    "readyForRemovalSourceMatrixId": null,
+    "manualRemovalAllowedEventId": null,
+    "recipeSelection": null,
+    "recipeExecution": null,
+    "executionPhase": null,
+    "axisObservations": [],
+    "slotStates": [],
+    "abnormalPhysicalSlotIndices": null,
+    "observationCoverage": {
+      "state": "NotObserved",
+      "lastObservationRef": null
+    },
+    "allowedActions": [],
+    "waitingManualFlip": null,
+    "failedCommandRecovery": null,
+    "results": [],
+    "executionState": "Blocked",
+    "deviceSchemaVersion": "device-semantics/1",
+    "resultSchemaVersion": "station01-result-display/1.0",
+    "resultRevision": null,
+    "resultContext": null,
+    "faultRestart": null,
+    "movements": [],
+    "trayAnomalyDecision": null,
+    "trayEndReason": null,
+    "inspectionCompleted": null
+  },
+  "trace": [
+    {
+      "writeId": "3dddfcaa-d207-4876-8917-bdcd01da218f",
+      "runId": "b1d54056-7f36-4867-8520-210db25a3a68",
+      "revision": 1,
+      "kind": 0,
+      "payloadJson": "{\u0022commandId\u0022:\u00221620eea1-bf11-4e36-a312-194689f60efe\u0022,\u0022requestId\u0022:\u0022start-missing-input\u0022,\u0022subjectId\u0022:\u0022OFFLINE\u0022,\u0022contextJson\u0022:\u0022{\\u0022schemaVersion\\u0022:\\u0022station01-start-run-context/1.0\\u0022,\\u0022trayId\\u0022:\\u0022a282bbb7-c6b9-4eec-bb3e-2c58d482c750\\u0022,\\u0022stationId\\u0022:\\u00222018965e-460a-463e-a15b-76db62585807\\u0022,\\u0022lineId\\u0022:\\u0022648d7927-f203-4942-9b26-600cd09ea5bc\\u0022,\\u0022scenarioId\\u0022:\\u0022OFFLINE-scenario\\u0022,\\u0022occupiedSlots\\u0022:[],\\u0022purpose\\u0022:\\u0022Commissioning\\u0022}\u0022,\u0022publicJson\u0022:\u0022NotFrozen:s01-public-dev/1.0.0\u0022,\u0022budgetJson\u0022:\u0022NotFrozen:s01-budget-dev/3.0.0\u0022,\u0022simulationJson\u0022:\u0022NotFrozen:OFFLINE-inputs/1\u0022,\u0022snapshotId\u0022:\u0022PendingFreeze\u0022,\u0022publicDigest\u0022:\u0022\u0022,\u0022budgetDigest\u0022:\u0022\u0022,\u0022simulationDigest\u0022:\u0022\u0022,\u0022canonicalRequest\u0022:\u0022{\\u0022requestId\\u0022:\\u0022start-missing-input\\u0022,\\u0022contextJson\\u0022:\\u0022{\\\\u0022schemaVersion\\\\u0022:\\\\u0022station01-start-run-context/1.0\\\\u0022,\\\\u0022trayId\\\\u0022:\\\\u0022a282bbb7-c6b9-4eec-bb3e-2c58d482c750\\\\u0022,\\\\u0022stationId\\\\u0022:\\\\u00222018965e-460a-463e-a15b-76db62585807\\\\u0022,\\\\u0022lineId\\\\u0022:\\\\u0022648d7927-f203-4942-9b26-600cd09ea5bc\\\\u0022,\\\\u0022scenarioId\\\\u0022:\\\\u0022OFFLINE-scenario\\\\u0022,\\\\u0022occupiedSlots\\\\u0022:[],\\\\u0022purpose\\\\u0022:\\\\u0022Commissioning\\\\u0022}\\u0022,\\u0022publicConfigRef\\u0022:{\\u0022id\\u0022:\\u0022s01-public-dev\\u0022,\\u0022version\\u0022:\\u00221.0.0\\u0022},\\u0022budgetRef\\u0022:{\\u0022id\\u0022:\\u0022s01-budget-dev\\u0022,\\u0022version\\u0022:\\u00223.0.0\\u0022},\\u0022simulationRef\\u0022:{\\u0022id\\u0022:\\u0022OFFLINE-inputs\\u0022,\\u0022version\\u0022:\\u00221\\u0022},\\u0022restartFrom\\u0022:null}\u0022}",
+      "payloadDigest": "1BE19ACCF1BB644B4437FA7457BF3D46F84F01212B27FF0F708FEC707C8E7956",
+      "state": 1
+    },
+    {
+      "writeId": "654e01f6-0337-4c39-9c83-a48a0df27ed2",
+      "runId": "b1d54056-7f36-4867-8520-210db25a3a68",
+      "revision": 2,
+      "kind": 12,
+      "payloadJson": "{\u0022kind\u0022:\u0022FrozenPublicConfiguration\u0022,\u0022snapshotId\u0022:\u0022ECB8C5289911255D1B4E958DE2DC94963192AB717A6E57AB842DF6E27DDF16B7\u0022,\u0022publicJson\u0022:\u0022{\\u0022algorithms\\u0022:{\\u0022fDecode\\u0022:{\\u0022bindingId\\u0022:\\u0022sim-decode\\u0022,\\u0022capability\\u0022:{\\u0022contractVersion\\u0022:\\u00221.0\\u0022,\\u0022id\\u0022:\\u0022code.raw-candidates\\u0022},\\u0022parametersVersion\\u0022:\\u00221\\u0022},\\u0022trayPose\\u0022:{\\u0022bindingId\\u0022:\\u0022OFFLINE-tray-pose\\u0022,\\u0022capability\\u0022:{\\u0022contractVersion\\u0022:\\u00221.0\\u0022,\\u0022id\\u0022:\\u0022tray.observation\\u0022},\\u0022parametersVersion\\u0022:\\u00221\\u0022}},\\u0022bindings\\u0022:[{\\u0022id\\u0022:\\u0022sim-plc\\u0022,\\u0022provider\\u0022:\\u0022Real\\u0022,\\u0022role\\u0022:\\u0022PLC\\u0022},{\\u0022id\\u0022:\\u00223D\\u0022,\\u0022provider\\u0022:\\u0022Real\\u0022,\\u0022role\\u0022:\\u0022Camera3D\\u0022},{\\u0022id\\u0022:\\u0022F\\u0022,\\u0022provider\\u0022:\\u0022Real\\u0022,\\u0022role\\u0022:\\u0022CameraF\\u0022},{\\u0022id\\u0022:\\u0022sim-light-3d\\u0022,\\u0022provider\\u0022:\\u0022Simulated\\u0022,\\u0022role\\u0022:\\u0022Light3D\\u0022},{\\u0022id\\u0022:\\u0022sim-light-f\\u0022,\\u0022provider\\u0022:\\u0022Simulated\\u0022,\\u0022role\\u0022:\\u0022LightF\\u0022},{\\u0022id\\u0022:\\u0022OFFLINE-tray-pose\\u0022,\\u0022provider\\u0022:\\u0022Simulated\\u0022,\\u0022role\\u0022:\\u0022TrayPose\\u0022},{\\u0022id\\u0022:\\u0022sim-decode\\u0022,\\u0022provider\\u0022:\\u0022Simulated\\u0022,\\u0022role\\u0022:\\u0022FDecode\\u0022}],\\u0022capture3d\\u0022:{\\u0022bindingId\\u0022:\\u00223D\\u0022,\\u0022capability\\u0022:{\\u0022contractVersion\\u0022:\\u00221.0\\u0022,\\u0022id\\u0022:\\u0022capture.whole-tray\\u0022},\\u0022lightBindingId\\u0022:\\u0022sim-light-3d\\u0022,\\u0022maxCaptureBytes\\u0022:16777216,\\u0022parameters\\u0022:{\\u0022exposureUs\\u0022:1000,\\u0022lightLevel\\u0022:40},\\u0022scope\\u0022:{\\u0022bounds\\u0022:{\\u0022xMax\\u0022:200,\\u0022xMin\\u0022:0,\\u0022yMax\\u0022:150,\\u0022yMin\\u0022:0},\\u0022frame\\u0022:\\u0022SIM_TRAY\\u0022,\\u0022id\\u0022:\\u0022sim-whole-tray\\u0022,\\u0022kind\\u0022:\\u0022WholeTray\\u0022,\\u0022unit\\u0022:\\u0022mm\\u0022,\\u0022version\\u0022:\\u00221.0.0\\u0022}},\\u0022captureF\\u0022:{\\u0022automaticRetry\\u0022:false,\\u0022bindingId\\u0022:\\u0022F\\u0022,\\u0022capability\\u0022:{\\u0022contractVersion\\u0022:\\u00221.0\\u0022,\\u0022id\\u0022:\\u0022capture.single-frame\\u0022},\\u0022frameCount\\u0022:1,\\u0022lightBindingId\\u0022:\\u0022sim-light-f\\u0022,\\u0022maxCaptureBytes\\u0022:4194304,\\u0022parameters\\u0022:{\\u0022exposureUs\\u0022:500,\\u0022lightLevel\\u0022:30}},\\u0022id\\u0022:\\u0022s01-public-dev\\u0022,\\u0022motion\\u0022:{\\u0022axes\\u0022:[\\u0022X\\u0022,\\u0022Y\\u0022],\\u0022capability\\u0022:{\\u0022contractVersion\\u0022:\\u00221.0\\u0022,\\u0022id\\u0022:\\u0022xy.fixed\\u0022},\\u0022coordinateDigest\\u0022:\\u0022\\u0022,\\u0022coordinateSource\\u0022:\\u0022Test:Recipe011Data explicit component coordinates\\u0022,\\u0022frame\\u0022:\\u0022test-frame\\u0022,\\u0022limits\\u0022:{\\u0022xMax\\u0022:500,\\u0022xMin\\u0022:0,\\u0022yMax\\u0022:500,\\u0022yMin\\u0022:0,\\u0022zMax\\u0022:1000,\\u0022zMin\\u0022:0},\\u0022points\\u0022:{\\u0022f\\u0022:{\\u0022frame\\u0022:\\u0022test-frame\\u0022,\\u0022id\\u0022:\\u0022sim-f-xy\\u0022,\\u0022unit\\u0022:\\u0022mm\\u0022,\\u0022version\\u0022:\\u00221.0.0\\u0022,\\u0022x\\u0022:200,\\u0022y\\u0022:100,\\u0022z\\u0022:0},\\u0022threeD\\u0022:{\\u0022frame\\u0022:\\u0022test-frame\\u0022,\\u0022id\\u0022:\\u0022sim-3d-xy\\u0022,\\u0022unit\\u0022:\\u0022mm\\u0022,\\u0022version\\u0022:\\u00221.0.0\\u0022,\\u0022x\\u0022:100,\\u0022y\\u0022:100,\\u0022z\\u0022:0}},\\u0022positionTolerance\\u0022:0,\\u0022unit\\u0022:\\u0022mm\\u0022},\\u0022parser\\u0022:{\\u0022capability\\u0022:{\\u0022contractVersion\\u0022:\\u00221.0\\u0022,\\u0022id\\u0022:\\u0022decoded-content-exact\\u0022},\\u0022parametersVersion\\u0022:\\u00221\\u0022},\\u0022purpose\\u0022:\\u0022RealDeviceCommissioning\\u0022,\\u0022qualityState\\u0022:\\u0022NotEvaluated\\u0022,\\u0022schemaVersion\\u0022:\\u00221.0\\u0022,\\u0022source\\u0022:\\u0022OFFLINE:matrix-fixture;no-field-authority\\u0022,\\u0022stopAfter\\u0022:\\u0022PublicHandoff\\u0022,\\u0022version\\u0022:\\u00221.0.0\\u0022}\u0022,\u0022budgetJson\u0022:\u0022{\\u0022businessMs\\u0022:{\\u0022capture3d\\u0022:1500,\\u0022captureF\\u0022:1000,\\u0022clampCompletion\\u0022:1500,\\u0022criticalSave\\u0022:2000,\\u0022fDecode\\u0022:700,\\u0022heartbeatDisconnect\\u0022:3000,\\u0022heartbeatFlip\\u0022:500,\\u0022heightAlgorithm\\u0022:1000,\\u0022plcAcceptance\\u0022:300,\\u0022plcIo\\u0022:40,\\u0022query\\u0022:1000,\\u0022recipeApplication\\u0022:10000,\\u0022safetyReady\\u0022:1000,\\u0022stopAcceptance\\u0022:300,\\u0022stopCompletion\\u0022:1000,\\u0022workerReleaseGrace\\u0022:500,\\u0022xyCompletion\\u0022:1500},\\u0022id\\u0022:\\u0022s01-budget-dev\\u0022,\\u0022limits\\u0022:{\\u0022algorithmQueuePerRole\\u0022:1,\\u0022dataQuotaBytes\\u0022:268435456,\\u0022duplicateSummariesPerOperation\\u0022:1,\\u0022fReservedMemoryBytes\\u0022:4194304,\\u0022flowControl\\u0022:8,\\u0022flowNormal\\u0022:64,\\u0022lateEvidencePerOperation\\u0022:16,\\u0022maxIpcMessageBytes\\u0022:65536,\\u0022maxPendingTimerEvents\\u0022:128,\\u0022mediaJobs\\u0022:2,\\u0022mediaMemoryBytes\\u0022:67108864,\\u0022minFreeDiskBytes\\u0022:536870912,\\u0022notificationClients\\u0022:8,\\u0022notificationsPerClient\\u0022:16,\\u0022queryConcurrency\\u0022:2,\\u0022queryPageMax\\u0022:200,\\u0022runMediaQuotaBytes\\u0022:67108864,\\u0022terminalReservations\\u0022:16,\\u0022workerPerRole\\u0022:1,\\u0022writer\\u0022:32},\\u0022physicalButtonWait\\u0022:\\u0022ExplicitHumanInput\\u0022,\\u0022purpose\\u0022:\\u0022RealDeviceCommissioning\\u0022,\\u0022recipeExecution\\u0022:{\\u0022acquisitionReleaseMs\\u0022:345,\\u0022algorithmMs\\u0022:234,\\u0022algorithmWaitMs\\u0022:567,\\u0022captureMs\\u0022:123,\\u0022captureWaitMs\\u0022:456,\\u0022inputReleaseWaitMs\\u0022:678},\\u0022schemaVersion\\u0022:\\u00222.0\\u0022,\\u0022source\\u0022:\\u0022OFFLINE:explicit-budget\\u0022,\\u0022timeoutBoundary\\u0022:\\u0022ResponseBeforeDeadline\\u0022,\\u0022version\\u0022:\\u00223.0.0\\u0022}\u0022,\u0022simulationJson\u0022:\u0022\u0022,\u0022publicDigest\u0022:\u0022933AAD818FD709FD366F026A959784943AAE53F90B2BC55E0EA52591952E53C1\u0022,\u0022budgetDigest\u0022:\u00221804ADA5E0A6E4B1AEC9D8FDDD2A5841C682F2533ED74786187B6EF5307745D8\u0022,\u0022simulationDigest\u0022:\u0022\u0022,\u0022commissioningJson\u0022:\u0022{\\u0022schemaVersion\\u0022:\\u0022020-commissioning/1\\u0022,\\u0022id\\u0022:\\u0022OFFLINE-inputs\\u0022,\\u0022version\\u0022:\\u00221\\u0022,\\u0022purpose\\u0022:\\u0022RealDeviceCommissioning\\u0022,\\u0022source\\u0022:\\u0022OFFLINE:confirmed-fixture-only\\u0022,\\u0022publicConfigRef\\u0022:{\\u0022id\\u0022:\\u0022s01-public-dev\\u0022,\\u0022version\\u0022:\\u00221.0.0\\u0022},\\u0022budgetRef\\u0022:{\\u0022id\\u0022:\\u0022s01-budget-dev\\u0022,\\u0022version\\u0022:\\u00223.0.0\\u0022},\\u0022expectedRecipe\\u0022:{\\u0022recipeId\\u0022:\\u0022OFFLINE-recipe\\u0022,\\u0022version\\u0022:\\u00221\\u0022,\\u0022definitionDigest\\u0022:\\u0022OFFLINE-digest\\u0022,\\u0022scenarioId\\u0022:\\u0022OFFLINE-scenario\\u0022,\\u0022model\\u0022:\\u0022OFFLINE-model\\u0022,\\u0022fCode\\u0022:\\u0022OFFLINE-tray\\u0022},\\u0022codeRule\\u0022:{\\u0022id\\u0022:\\u0022decoded-content-exact\\u0022,\\u0022version\\u0022:\\u00221.0\\u0022,\\u0022source\\u0022:\\u0022OFFLINE:exact-code-rule\\u0022},\\u0022publicLightChannels\\u0022:{\\u0022sim-light-3d\\u0022:\\u00223d\\u0022,\\u0022sim-light-f\\u0022:\\u0022f\\u0022},\\u0022algorithms\\u0022:[{\\u0022purpose\\u0022:1,\\u0022capabilityId\\u0022:\\u0022code.raw-candidates\\u0022,\\u0022capabilityVersion\\u0022:\\u00221.0\\u0022,\\u0022resultContract\\u0022:\\u0022decoded-code/1\\u0022,\\u0022inputCount\\u0022:1,\\u0022parametersVersion\\u0022:\\u00221\\u0022},{\\u0022purpose\\u0022:5,\\u0022capabilityId\\u0022:\\u0022tray.observation\\u0022,\\u0022capabilityVersion\\u0022:\\u00221.0\\u0022,\\u0022resultContract\\u0022:\\u0022tray-observation/2\\u0022,\\u0022inputCount\\u0022:1,\\u0022parametersVersion\\u0022:\\u00221\\u0022}],\\u0022slots\\u0022:[{\\u0022physicalSlotIndex\\u0022:1,\\u0022presence\\u0022:\\u0022Present\\u0022,\\u0022pose\\u0022:\\u0022Normal\\u0022,\\u0022reason\\u0022:null,\\u0022cellId\\u0022:\\u0022r1:c4\\u0022,\\u0022region\\u0022:\\u0022OK\\u0022,\\u0022row\\u0022:1,\\u0022column\\u0022:4,\\u0022hasPositionIdentity\\u0022:true}],\\u0022fLocation\\u0022:null,\\u0022mappingSourceReference\\u0022:\\u0022OFFLINE:slot-map\\u0022,\\u0022rawCodes\\u0022:[\\u0022OFFLINE-tray\\u0022],\\u0022results\\u0022:[]}\u0022,\u0022commissioningDigest\u0022:\u0022B8B264D5B57A779FA72683590DCE4C06198DFADC275F5E3485E30ACB09179BA4\u0022,\u0022commissioningSourceFile\u0022:\u0022C:\\\\Users\\\\Administrator\\\\AppData\\\\Local\\\\Temp\\\\gaode-controlled-OFFLINE-85a5d0cdb1124d2888f1040894f7f18d\\\\inputs.json\u0022,\u0022capabilityVersions\u0022:{\u0022xyz.fixed\u0022:\u00221.0\u0022,\u0022xy.fixed\u0022:\u00221.0\u0022,\u0022capture.whole-tray\u0022:\u00221.0\u0022,\u0022capture.single-frame\u0022:\u00221.0\u0022,\u0022height.values\u0022:\u00221.0\u0022,\u0022tray.observation\u0022:\u00221.0\u0022,\u0022code.raw-candidates\u0022:\u00221.0\u0022,\u0022code.test-tray-format\u0022:\u00221.0\u0022,\u0022decoded-content-exact\u0022:\u00221.0\u0022}}",
+      "payloadDigest": "83B0548BF1FDB3DA78ECC0D8BB5B44B5FA82EB63CF2AE5FE55B168C914D630B2",
+      "state": 1
+    }
+  ],
+  "writes": [
+    {
+      "offset": 1005,
+      "words": [
+        0
+      ],
+      "accepted": true
+    }
+  ],
+  "inputDigest": "B8B264D5B57A779FA72683590DCE4C06198DFADC275F5E3485E30ACB09179BA4"
+}

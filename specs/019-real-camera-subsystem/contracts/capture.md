@@ -1,3 +1,5 @@
+> 020阶段B当前实施（2026-10-08）：[CP-020](../../020-real-device-commissioning/contracts/camera-parameters.md)的wire v2原子设置/读回/采集及逐组件事实已实施并离线验证，优先于下述v1历史行为；真实SDK效果待T055，019历史验证不扩大。无设置CaptureOnly仍保持参数。
+
 # 采集与管道合同 v1
 
 ## 业务采集

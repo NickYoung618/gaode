@@ -1,0 +1,1126 @@
+{
+  "writes": [
+    {
+      "OccurredAtUtc": "2026-10-07T16:58:30.4755545+00:00",
+      "Area": 0,
+      "DocumentNumber": 2,
+      "Value": 0,
+      "Accepted": true,
+      "RejectionReason": null,
+      "RequestHex": "000200000006010500010000",
+      "ResponseHex": "000200000006010500010000",
+      "ResponseSentAtUtc": "2026-10-07T16:58:30.4755668+00:00",
+      "Sequence": 1,
+      "ConnectionId": "8f079d61-4ffe-4d5a-9e3b-9ff03c7f7fa9",
+      "TransactionId": 2,
+      "Function": 5,
+      "ByteOrder": "Abcd",
+      "Receipt": "Accepted",
+      "StartAddress": 1,
+      "Count": 1,
+      "ReceivedAtUtc": "2026-10-07T16:58:30.4755531+00:00",
+      "PduOffset": 1,
+      "RawWords": [
+        0
+      ],
+      "RegisterCount": 1
+    },
+    {
+      "OccurredAtUtc": "2026-10-07T16:58:30.4760913+00:00",
+      "Area": 0,
+      "DocumentNumber": 7,
+      "Value": 1,
+      "Accepted": true,
+      "RejectionReason": null,
+      "RequestHex": "00010000000601050006FF00",
+      "ResponseHex": "00010000000601050006FF00",
+      "ResponseSentAtUtc": "2026-10-07T16:58:30.4761217+00:00",
+      "Sequence": 2,
+      "ConnectionId": "971876ea-e815-465f-9deb-2eff3bdc20a2",
+      "TransactionId": 1,
+      "Function": 5,
+      "ByteOrder": "Abcd",
+      "Receipt": "Accepted",
+      "StartAddress": 6,
+      "Count": 1,
+      "ReceivedAtUtc": "2026-10-07T16:58:30.4760895+00:00",
+      "PduOffset": 6,
+      "RawWords": [
+        65280
+      ],
+      "RegisterCount": 1
+    },
+    {
+      "OccurredAtUtc": "2026-10-07T16:58:30.4761645+00:00",
+      "Area": 0,
+      "DocumentNumber": 7,
+      "Value": 0,
+      "Accepted": true,
+      "RejectionReason": null,
+      "RequestHex": "000200000006010500060000",
+      "ResponseHex": "000200000006010500060000",
+      "ResponseSentAtUtc": "2026-10-07T16:58:30.4761818+00:00",
+      "Sequence": 3,
+      "ConnectionId": "971876ea-e815-465f-9deb-2eff3bdc20a2",
+      "TransactionId": 2,
+      "Function": 5,
+      "ByteOrder": "Abcd",
+      "Receipt": "Accepted",
+      "StartAddress": 6,
+      "Count": 1,
+      "ReceivedAtUtc": "2026-10-07T16:58:30.4761632+00:00",
+      "PduOffset": 6,
+      "RawWords": [
+        0
+      ],
+      "RegisterCount": 1
+    },
+    {
+      "OccurredAtUtc": "2026-10-07T16:58:30.4762172+00:00",
+      "Area": 0,
+      "DocumentNumber": 3,
+      "Value": 0,
+      "Accepted": true,
+      "RejectionReason": null,
+      "RequestHex": "000300000006010500020000",
+      "ResponseHex": "000300000006010500020000",
+      "ResponseSentAtUtc": "2026-10-07T16:58:30.4762244+00:00",
+      "Sequence": 4,
+      "ConnectionId": "971876ea-e815-465f-9deb-2eff3bdc20a2",
+      "TransactionId": 3,
+      "Function": 5,
+      "ByteOrder": "Abcd",
+      "Receipt": "Accepted",
+      "StartAddress": 2,
+      "Count": 1,
+      "ReceivedAtUtc": "2026-10-07T16:58:30.4762167+00:00",
+      "PduOffset": 2,
+      "RawWords": [
+        0
+      ],
+      "RegisterCount": 1
+    },
+    {
+      "OccurredAtUtc": "2026-10-07T16:58:30.4762502+00:00",
+      "Area": 0,
+      "DocumentNumber": 3,
+      "Value": 1,
+      "Accepted": true,
+      "RejectionReason": null,
+      "RequestHex": "00040000000601050002FF00",
+      "ResponseHex": "00040000000601050002FF00",
+      "ResponseSentAtUtc": "2026-10-07T16:58:30.4762566+00:00",
+      "Sequence": 5,
+      "ConnectionId": "971876ea-e815-465f-9deb-2eff3bdc20a2",
+      "TransactionId": 4,
+      "Function": 5,
+      "ByteOrder": "Abcd",
+      "Receipt": "Accepted",
+      "StartAddress": 2,
+      "Count": 1,
+      "ReceivedAtUtc": "2026-10-07T16:58:30.4762497+00:00",
+      "PduOffset": 2,
+      "RawWords": [
+        65280
+      ],
+      "RegisterCount": 1
+    },
+    {
+      "OccurredAtUtc": "2026-10-07T16:58:30.4766569+00:00",
+      "Area": 0,
+      "DocumentNumber": 3,
+      "Value": 1,
+      "Accepted": true,
+      "RejectionReason": null,
+      "RequestHex": "000F0000000601050002FF00",
+      "ResponseHex": "000F0000000601050002FF00",
+      "ResponseSentAtUtc": "2026-10-07T16:58:30.4766677+00:00",
+      "Sequence": 6,
+      "ConnectionId": "971876ea-e815-465f-9deb-2eff3bdc20a2",
+      "TransactionId": 15,
+      "Function": 5,
+      "ByteOrder": "Abcd",
+      "Receipt": "Accepted",
+      "StartAddress": 2,
+      "Count": 1,
+      "ReceivedAtUtc": "2026-10-07T16:58:30.4766558+00:00",
+      "PduOffset": 2,
+      "RawWords": [
+        65280
+      ],
+      "RegisterCount": 1
+    },
+    {
+      "OccurredAtUtc": "2026-10-07T16:58:30.4796485+00:00",
+      "Area": 1,
+      "DocumentNumber": 98,
+      "Value": 0,
+      "Accepted": true,
+      "RejectionReason": null,
+      "RequestHex": "001B00000027011000610010200000000000000000000000000000000000000000000000000000000000000000",
+      "ResponseHex": "001B00000006011000610010",
+      "ResponseSentAtUtc": "2026-10-07T16:58:30.4796706+00:00",
+      "Sequence": 7,
+      "ConnectionId": "971876ea-e815-465f-9deb-2eff3bdc20a2",
+      "TransactionId": 27,
+      "Function": 16,
+      "ByteOrder": "Abcd",
+      "Receipt": "Accepted",
+      "StartAddress": 97,
+      "Count": 16,
+      "ReceivedAtUtc": "2026-10-07T16:58:30.4796433+00:00",
+      "PduOffset": 97,
+      "RawWords": [
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0
+      ],
+      "RegisterCount": 16
+    },
+    {
+      "OccurredAtUtc": "2026-10-07T16:58:30.4797559+00:00",
+      "Area": 1,
+      "DocumentNumber": 21,
+      "Value": 1,
+      "Accepted": true,
+      "RejectionReason": null,
+      "RequestHex": "001D00000006010600140001",
+      "ResponseHex": "001D00000006010600140001",
+      "ResponseSentAtUtc": "2026-10-07T16:58:30.4797662+00:00",
+      "Sequence": 8,
+      "ConnectionId": "971876ea-e815-465f-9deb-2eff3bdc20a2",
+      "TransactionId": 29,
+      "Function": 6,
+      "ByteOrder": "Abcd",
+      "Receipt": "Accepted",
+      "StartAddress": 20,
+      "Count": 1,
+      "ReceivedAtUtc": "2026-10-07T16:58:30.4797512+00:00",
+      "PduOffset": 20,
+      "RawWords": [
+        1
+      ],
+      "RegisterCount": 1
+    },
+    {
+      "OccurredAtUtc": "2026-10-07T16:58:30.4801849+00:00",
+      "Area": 1,
+      "DocumentNumber": 3,
+      "Value": 16512,
+      "Accepted": true,
+      "RejectionReason": null,
+      "RequestHex": "002D0000000B0110000200020440800000",
+      "ResponseHex": "002D00000006011000020002",
+      "ResponseSentAtUtc": "2026-10-07T16:58:30.4801948+00:00",
+      "Sequence": 9,
+      "ConnectionId": "971876ea-e815-465f-9deb-2eff3bdc20a2",
+      "TransactionId": 45,
+      "Function": 16,
+      "ByteOrder": "Abcd",
+      "Receipt": "Accepted",
+      "StartAddress": 2,
+      "Count": 2,
+      "ReceivedAtUtc": "2026-10-07T16:58:30.4801799+00:00",
+      "PduOffset": 2,
+      "RawWords": [
+        16512,
+        0
+      ],
+      "RegisterCount": 2
+    },
+    {
+      "OccurredAtUtc": "2026-10-07T16:58:30.4802113+00:00",
+      "Area": 1,
+      "DocumentNumber": 5,
+      "Value": 16544,
+      "Accepted": true,
+      "RejectionReason": null,
+      "RequestHex": "002E0000000B0110000400020440A00000",
+      "ResponseHex": "002E00000006011000040002",
+      "ResponseSentAtUtc": "2026-10-07T16:58:30.4802176+00:00",
+      "Sequence": 10,
+      "ConnectionId": "971876ea-e815-465f-9deb-2eff3bdc20a2",
+      "TransactionId": 46,
+      "Function": 16,
+      "ByteOrder": "Abcd",
+      "Receipt": "Accepted",
+      "StartAddress": 4,
+      "Count": 2,
+      "ReceivedAtUtc": "2026-10-07T16:58:30.4802103+00:00",
+      "PduOffset": 4,
+      "RawWords": [
+        16544,
+        0
+      ],
+      "RegisterCount": 2
+    },
+    {
+      "OccurredAtUtc": "2026-10-07T16:58:30.4802403+00:00",
+      "Area": 0,
+      "DocumentNumber": 34,
+      "Value": 1,
+      "Accepted": true,
+      "RejectionReason": null,
+      "RequestHex": "002F0000000601050021FF00",
+      "ResponseHex": "002F0000000601050021FF00",
+      "ResponseSentAtUtc": "2026-10-07T16:58:30.4802484+00:00",
+      "Sequence": 11,
+      "ConnectionId": "971876ea-e815-465f-9deb-2eff3bdc20a2",
+      "TransactionId": 47,
+      "Function": 5,
+      "ByteOrder": "Abcd",
+      "Receipt": "Accepted",
+      "StartAddress": 33,
+      "Count": 1,
+      "ReceivedAtUtc": "2026-10-07T16:58:30.480239+00:00",
+      "PduOffset": 33,
+      "RawWords": [
+        65280
+      ],
+      "RegisterCount": 1
+    },
+    {
+      "OccurredAtUtc": "2026-10-07T16:58:30.4803565+00:00",
+      "Area": 0,
+      "DocumentNumber": 35,
+      "Value": 1,
+      "Accepted": true,
+      "RejectionReason": null,
+      "RequestHex": "00320000000601050022FF00",
+      "ResponseHex": "00320000000601050022FF00",
+      "ResponseSentAtUtc": "2026-10-07T16:58:30.4803656+00:00",
+      "Sequence": 12,
+      "ConnectionId": "971876ea-e815-465f-9deb-2eff3bdc20a2",
+      "TransactionId": 50,
+      "Function": 5,
+      "ByteOrder": "Abcd",
+      "Receipt": "Accepted",
+      "StartAddress": 34,
+      "Count": 1,
+      "ReceivedAtUtc": "2026-10-07T16:58:30.4803553+00:00",
+      "PduOffset": 34,
+      "RawWords": [
+        65280
+      ],
+      "RegisterCount": 1
+    },
+    {
+      "OccurredAtUtc": "2026-10-07T16:58:30.7319711+00:00",
+      "Area": 0,
+      "DocumentNumber": 34,
+      "Value": 0,
+      "Accepted": true,
+      "RejectionReason": null,
+      "RequestHex": "004600000006010500210000",
+      "ResponseHex": "004600000006010500210000",
+      "ResponseSentAtUtc": "2026-10-07T16:58:30.7319847+00:00",
+      "Sequence": 13,
+      "ConnectionId": "971876ea-e815-465f-9deb-2eff3bdc20a2",
+      "TransactionId": 70,
+      "Function": 5,
+      "ByteOrder": "Abcd",
+      "Receipt": "Accepted",
+      "StartAddress": 33,
+      "Count": 1,
+      "ReceivedAtUtc": "2026-10-07T16:58:30.7319691+00:00",
+      "PduOffset": 33,
+      "RawWords": [
+        0
+      ],
+      "RegisterCount": 1
+    },
+    {
+      "OccurredAtUtc": "2026-10-07T16:58:30.7768065+00:00",
+      "Area": 0,
+      "DocumentNumber": 2,
+      "Value": 1,
+      "Accepted": true,
+      "RejectionReason": null,
+      "RequestHex": "00020000000601050001FF00",
+      "ResponseHex": "00020000000601050001FF00",
+      "ResponseSentAtUtc": "2026-10-07T16:58:30.7768306+00:00",
+      "Sequence": 14,
+      "ConnectionId": "8716fd4e-17a1-4ebd-9e28-9f4564215363",
+      "TransactionId": 2,
+      "Function": 5,
+      "ByteOrder": "Abcd",
+      "Receipt": "Accepted",
+      "StartAddress": 1,
+      "Count": 1,
+      "ReceivedAtUtc": "2026-10-07T16:58:30.7768033+00:00",
+      "PduOffset": 1,
+      "RawWords": [
+        65280
+      ],
+      "RegisterCount": 1
+    },
+    {
+      "OccurredAtUtc": "2026-10-07T16:58:30.9366081+00:00",
+      "Area": 0,
+      "DocumentNumber": 35,
+      "Value": 0,
+      "Accepted": true,
+      "RejectionReason": null,
+      "RequestHex": "00BF00000006010500220000",
+      "ResponseHex": "00BF00000006010500220000",
+      "ResponseSentAtUtc": "2026-10-07T16:58:30.9366205+00:00",
+      "Sequence": 15,
+      "ConnectionId": "971876ea-e815-465f-9deb-2eff3bdc20a2",
+      "TransactionId": 191,
+      "Function": 5,
+      "ByteOrder": "Abcd",
+      "Receipt": "Accepted",
+      "StartAddress": 34,
+      "Count": 1,
+      "ReceivedAtUtc": "2026-10-07T16:58:30.9366062+00:00",
+      "PduOffset": 34,
+      "RawWords": [
+        0
+      ],
+      "RegisterCount": 1
+    },
+    {
+      "OccurredAtUtc": "2026-10-07T16:58:30.9479367+00:00",
+      "Area": 1,
+      "DocumentNumber": 96,
+      "Value": 1,
+      "Accepted": true,
+      "RejectionReason": null,
+      "RequestHex": "0147000000060106005F0001",
+      "ResponseHex": "0147000000060106005F0001",
+      "ResponseSentAtUtc": "2026-10-07T16:58:30.9479712+00:00",
+      "Sequence": 16,
+      "ConnectionId": "971876ea-e815-465f-9deb-2eff3bdc20a2",
+      "TransactionId": 327,
+      "Function": 6,
+      "ByteOrder": "Abcd",
+      "Receipt": "Accepted",
+      "StartAddress": 95,
+      "Count": 1,
+      "ReceivedAtUtc": "2026-10-07T16:58:30.9479244+00:00",
+      "PduOffset": 95,
+      "RawWords": [
+        1
+      ],
+      "RegisterCount": 1
+    },
+    {
+      "OccurredAtUtc": "2026-10-07T16:58:31.3783729+00:00",
+      "Area": 0,
+      "DocumentNumber": 2,
+      "Value": 0,
+      "Accepted": true,
+      "RejectionReason": null,
+      "RequestHex": "000500000006010500010000",
+      "ResponseHex": "000500000006010500010000",
+      "ResponseSentAtUtc": "2026-10-07T16:58:31.3783951+00:00",
+      "Sequence": 17,
+      "ConnectionId": "8716fd4e-17a1-4ebd-9e28-9f4564215363",
+      "TransactionId": 5,
+      "Function": 5,
+      "ByteOrder": "Abcd",
+      "Receipt": "Accepted",
+      "StartAddress": 1,
+      "Count": 1,
+      "ReceivedAtUtc": "2026-10-07T16:58:31.3783703+00:00",
+      "PduOffset": 1,
+      "RawWords": [
+        0
+      ],
+      "RegisterCount": 1
+    },
+    {
+      "OccurredAtUtc": "2026-10-07T16:58:31.677646+00:00",
+      "Area": 0,
+      "DocumentNumber": 2,
+      "Value": 1,
+      "Accepted": true,
+      "RejectionReason": null,
+      "RequestHex": "00070000000601050001FF00",
+      "ResponseHex": "00070000000601050001FF00",
+      "ResponseSentAtUtc": "2026-10-07T16:58:31.6776594+00:00",
+      "Sequence": 18,
+      "ConnectionId": "8716fd4e-17a1-4ebd-9e28-9f4564215363",
+      "TransactionId": 7,
+      "Function": 5,
+      "ByteOrder": "Abcd",
+      "Receipt": "Accepted",
+      "StartAddress": 1,
+      "Count": 1,
+      "ReceivedAtUtc": "2026-10-07T16:58:31.6776434+00:00",
+      "PduOffset": 1,
+      "RawWords": [
+        65280
+      ],
+      "RegisterCount": 1
+    },
+    {
+      "OccurredAtUtc": "2026-10-07T16:58:32.2775391+00:00",
+      "Area": 0,
+      "DocumentNumber": 2,
+      "Value": 0,
+      "Accepted": true,
+      "RejectionReason": null,
+      "RequestHex": "000A00000006010500010000",
+      "ResponseHex": "000A00000006010500010000",
+      "ResponseSentAtUtc": "2026-10-07T16:58:32.2775681+00:00",
+      "Sequence": 19,
+      "ConnectionId": "8716fd4e-17a1-4ebd-9e28-9f4564215363",
+      "TransactionId": 10,
+      "Function": 5,
+      "ByteOrder": "Abcd",
+      "Receipt": "Accepted",
+      "StartAddress": 1,
+      "Count": 1,
+      "ReceivedAtUtc": "2026-10-07T16:58:32.2774101+00:00",
+      "PduOffset": 1,
+      "RawWords": [
+        0
+      ],
+      "RegisterCount": 1
+    },
+    {
+      "OccurredAtUtc": "2026-10-07T16:58:32.3065901+00:00",
+      "Area": 1,
+      "DocumentNumber": 96,
+      "Value": 2,
+      "Accepted": true,
+      "RejectionReason": null,
+      "RequestHex": "0184000000060106005F0002",
+      "ResponseHex": "0184000000060106005F0002",
+      "ResponseSentAtUtc": "2026-10-07T16:58:32.3066041+00:00",
+      "Sequence": 20,
+      "ConnectionId": "971876ea-e815-465f-9deb-2eff3bdc20a2",
+      "TransactionId": 388,
+      "Function": 6,
+      "ByteOrder": "Abcd",
+      "Receipt": "Accepted",
+      "StartAddress": 95,
+      "Count": 1,
+      "ReceivedAtUtc": "2026-10-07T16:58:32.3065838+00:00",
+      "PduOffset": 95,
+      "RawWords": [
+        2
+      ],
+      "RegisterCount": 1
+    },
+    {
+      "OccurredAtUtc": "2026-10-07T16:58:32.5575718+00:00",
+      "Area": 1,
+      "DocumentNumber": 96,
+      "Value": 0,
+      "Accepted": true,
+      "RejectionReason": null,
+      "RequestHex": "0197000000060106005F0000",
+      "ResponseHex": "0197000000060106005F0000",
+      "ResponseSentAtUtc": "2026-10-07T16:58:32.5575871+00:00",
+      "Sequence": 21,
+      "ConnectionId": "971876ea-e815-465f-9deb-2eff3bdc20a2",
+      "TransactionId": 407,
+      "Function": 6,
+      "ByteOrder": "Abcd",
+      "Receipt": "Accepted",
+      "StartAddress": 95,
+      "Count": 1,
+      "ReceivedAtUtc": "2026-10-07T16:58:32.5575646+00:00",
+      "PduOffset": 95,
+      "RawWords": [
+        0
+      ],
+      "RegisterCount": 1
+    },
+    {
+      "OccurredAtUtc": "2026-10-07T16:58:32.5766362+00:00",
+      "Area": 0,
+      "DocumentNumber": 2,
+      "Value": 1,
+      "Accepted": true,
+      "RejectionReason": null,
+      "RequestHex": "000C0000000601050001FF00",
+      "ResponseHex": "000C0000000601050001FF00",
+      "ResponseSentAtUtc": "2026-10-07T16:58:32.5766475+00:00",
+      "Sequence": 22,
+      "ConnectionId": "8716fd4e-17a1-4ebd-9e28-9f4564215363",
+      "TransactionId": 12,
+      "Function": 5,
+      "ByteOrder": "Abcd",
+      "Receipt": "Accepted",
+      "StartAddress": 1,
+      "Count": 1,
+      "ReceivedAtUtc": "2026-10-07T16:58:32.5766337+00:00",
+      "PduOffset": 1,
+      "RawWords": [
+        65280
+      ],
+      "RegisterCount": 1
+    },
+    {
+      "OccurredAtUtc": "2026-10-07T16:58:32.7639261+00:00",
+      "Area": 1,
+      "DocumentNumber": 98,
+      "Value": 0,
+      "Accepted": true,
+      "RejectionReason": null,
+      "RequestHex": "01BE00000027011000610010200000000000000000000000000000000000000000000000000000000000000000",
+      "ResponseHex": "01BE00000006011000610010",
+      "ResponseSentAtUtc": "2026-10-07T16:58:32.763952+00:00",
+      "Sequence": 23,
+      "ConnectionId": "971876ea-e815-465f-9deb-2eff3bdc20a2",
+      "TransactionId": 446,
+      "Function": 16,
+      "ByteOrder": "Abcd",
+      "Receipt": "Accepted",
+      "StartAddress": 97,
+      "Count": 16,
+      "ReceivedAtUtc": "2026-10-07T16:58:32.7639198+00:00",
+      "PduOffset": 97,
+      "RawWords": [
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0
+      ],
+      "RegisterCount": 16
+    },
+    {
+      "OccurredAtUtc": "2026-10-07T16:58:32.764023+00:00",
+      "Area": 1,
+      "DocumentNumber": 21,
+      "Value": 1,
+      "Accepted": true,
+      "RejectionReason": null,
+      "RequestHex": "01C000000006010600140001",
+      "ResponseHex": "01C000000006010600140001",
+      "ResponseSentAtUtc": "2026-10-07T16:58:32.764035+00:00",
+      "Sequence": 24,
+      "ConnectionId": "971876ea-e815-465f-9deb-2eff3bdc20a2",
+      "TransactionId": 448,
+      "Function": 6,
+      "ByteOrder": "Abcd",
+      "Receipt": "Accepted",
+      "StartAddress": 20,
+      "Count": 1,
+      "ReceivedAtUtc": "2026-10-07T16:58:32.7640189+00:00",
+      "PduOffset": 20,
+      "RawWords": [
+        1
+      ],
+      "RegisterCount": 1
+    },
+    {
+      "OccurredAtUtc": "2026-10-07T16:58:32.7674247+00:00",
+      "Area": 1,
+      "DocumentNumber": 96,
+      "Value": 1,
+      "Accepted": true,
+      "RejectionReason": null,
+      "RequestHex": "01D9000000060106005F0001",
+      "ResponseHex": "01D9000000060106005F0001",
+      "ResponseSentAtUtc": "2026-10-07T16:58:32.7674354+00:00",
+      "Sequence": 25,
+      "ConnectionId": "971876ea-e815-465f-9deb-2eff3bdc20a2",
+      "TransactionId": 473,
+      "Function": 6,
+      "ByteOrder": "Abcd",
+      "Receipt": "Accepted",
+      "StartAddress": 95,
+      "Count": 1,
+      "ReceivedAtUtc": "2026-10-07T16:58:32.7674205+00:00",
+      "PduOffset": 95,
+      "RawWords": [
+        1
+      ],
+      "RegisterCount": 1
+    },
+    {
+      "OccurredAtUtc": "2026-10-07T16:58:32.8769701+00:00",
+      "Area": 0,
+      "DocumentNumber": 2,
+      "Value": 0,
+      "Accepted": true,
+      "RejectionReason": null,
+      "RequestHex": "000E00000006010500010000",
+      "ResponseHex": "000E00000006010500010000",
+      "ResponseSentAtUtc": "2026-10-07T16:58:32.8769923+00:00",
+      "Sequence": 26,
+      "ConnectionId": "8716fd4e-17a1-4ebd-9e28-9f4564215363",
+      "TransactionId": 14,
+      "Function": 5,
+      "ByteOrder": "Abcd",
+      "Receipt": "Accepted",
+      "StartAddress": 1,
+      "Count": 1,
+      "ReceivedAtUtc": "2026-10-07T16:58:32.8769662+00:00",
+      "PduOffset": 1,
+      "RawWords": [
+        0
+      ],
+      "RegisterCount": 1
+    },
+    {
+      "OccurredAtUtc": "2026-10-07T16:58:33.4781534+00:00",
+      "Area": 0,
+      "DocumentNumber": 2,
+      "Value": 1,
+      "Accepted": true,
+      "RejectionReason": null,
+      "RequestHex": "00110000000601050001FF00",
+      "ResponseHex": "00110000000601050001FF00",
+      "ResponseSentAtUtc": "2026-10-07T16:58:33.4781759+00:00",
+      "Sequence": 27,
+      "ConnectionId": "8716fd4e-17a1-4ebd-9e28-9f4564215363",
+      "TransactionId": 17,
+      "Function": 5,
+      "ByteOrder": "Abcd",
+      "Receipt": "Accepted",
+      "StartAddress": 1,
+      "Count": 1,
+      "ReceivedAtUtc": "2026-10-07T16:58:33.4781496+00:00",
+      "PduOffset": 1,
+      "RawWords": [
+        65280
+      ],
+      "RegisterCount": 1
+    },
+    {
+      "OccurredAtUtc": "2026-10-07T16:58:33.778551+00:00",
+      "Area": 0,
+      "DocumentNumber": 2,
+      "Value": 0,
+      "Accepted": true,
+      "RejectionReason": null,
+      "RequestHex": "001300000006010500010000",
+      "ResponseHex": "001300000006010500010000",
+      "ResponseSentAtUtc": "2026-10-07T16:58:33.7785782+00:00",
+      "Sequence": 28,
+      "ConnectionId": "8716fd4e-17a1-4ebd-9e28-9f4564215363",
+      "TransactionId": 19,
+      "Function": 5,
+      "ByteOrder": "Abcd",
+      "Receipt": "Accepted",
+      "StartAddress": 1,
+      "Count": 1,
+      "ReceivedAtUtc": "2026-10-07T16:58:33.7785494+00:00",
+      "PduOffset": 1,
+      "RawWords": [
+        0
+      ],
+      "RegisterCount": 1
+    },
+    {
+      "OccurredAtUtc": "2026-10-07T16:58:34.0796871+00:00",
+      "Area": 0,
+      "DocumentNumber": 2,
+      "Value": 1,
+      "Accepted": true,
+      "RejectionReason": null,
+      "RequestHex": "00150000000601050001FF00",
+      "ResponseHex": "00150000000601050001FF00",
+      "ResponseSentAtUtc": "2026-10-07T16:58:34.079703+00:00",
+      "Sequence": 29,
+      "ConnectionId": "8716fd4e-17a1-4ebd-9e28-9f4564215363",
+      "TransactionId": 21,
+      "Function": 5,
+      "ByteOrder": "Abcd",
+      "Receipt": "Accepted",
+      "StartAddress": 1,
+      "Count": 1,
+      "ReceivedAtUtc": "2026-10-07T16:58:34.0796839+00:00",
+      "PduOffset": 1,
+      "RawWords": [
+        65280
+      ],
+      "RegisterCount": 1
+    },
+    {
+      "OccurredAtUtc": "2026-10-07T16:58:34.1269217+00:00",
+      "Area": 1,
+      "DocumentNumber": 96,
+      "Value": 2,
+      "Accepted": true,
+      "RejectionReason": null,
+      "RequestHex": "0216000000060106005F0002",
+      "ResponseHex": "0216000000060106005F0002",
+      "ResponseSentAtUtc": "2026-10-07T16:58:34.1269358+00:00",
+      "Sequence": 30,
+      "ConnectionId": "971876ea-e815-465f-9deb-2eff3bdc20a2",
+      "TransactionId": 534,
+      "Function": 6,
+      "ByteOrder": "Abcd",
+      "Receipt": "Accepted",
+      "StartAddress": 95,
+      "Count": 1,
+      "ReceivedAtUtc": "2026-10-07T16:58:34.1269162+00:00",
+      "PduOffset": 95,
+      "RawWords": [
+        2
+      ],
+      "RegisterCount": 1
+    },
+    {
+      "OccurredAtUtc": "2026-10-07T16:58:34.3771375+00:00",
+      "Area": 1,
+      "DocumentNumber": 96,
+      "Value": 0,
+      "Accepted": true,
+      "RejectionReason": null,
+      "RequestHex": "0229000000060106005F0000",
+      "ResponseHex": "0229000000060106005F0000",
+      "ResponseSentAtUtc": "2026-10-07T16:58:34.3771509+00:00",
+      "Sequence": 31,
+      "ConnectionId": "971876ea-e815-465f-9deb-2eff3bdc20a2",
+      "TransactionId": 553,
+      "Function": 6,
+      "ByteOrder": "Abcd",
+      "Receipt": "Accepted",
+      "StartAddress": 95,
+      "Count": 1,
+      "ReceivedAtUtc": "2026-10-07T16:58:34.3771301+00:00",
+      "PduOffset": 95,
+      "RawWords": [
+        0
+      ],
+      "RegisterCount": 1
+    }
+  ],
+  "actions": {
+    "OldestSequence": 1,
+    "LatestSequence": 12,
+    "Gap": false,
+    "Actions": [
+      {
+        "Sequence": 1,
+        "ActionSequence": 1,
+        "Generation": 1,
+        "OccurredAtUtc": "2026-10-07T16:58:30.4824999+00:00",
+        "Kind": "AxisMove",
+        "Command": 1,
+        "Phase": "accepted",
+        "WriteSequenceRefs": [
+          9,
+          11
+        ],
+        "Target": {
+          "value": 4
+        },
+        "AxisRole": "X",
+        "Actual": {
+          "value": 0
+        },
+        "Handshake": {
+          "confirmed": 0
+        }
+      },
+      {
+        "Sequence": 2,
+        "ActionSequence": 2,
+        "Generation": 1,
+        "OccurredAtUtc": "2026-10-07T16:58:30.482505+00:00",
+        "Kind": "AxisMove",
+        "Command": 1,
+        "Phase": "accepted",
+        "WriteSequenceRefs": [
+          10,
+          12
+        ],
+        "Target": {
+          "value": 5
+        },
+        "AxisRole": "Y",
+        "Actual": {
+          "value": 0
+        },
+        "Handshake": {
+          "confirmed": 0
+        }
+      },
+      {
+        "Sequence": 3,
+        "ActionSequence": 1,
+        "Generation": 1,
+        "OccurredAtUtc": "2026-10-07T16:58:30.6380453+00:00",
+        "Kind": "AxisMove",
+        "Command": 1,
+        "Phase": "completed",
+        "WriteSequenceRefs": [
+          9,
+          11
+        ],
+        "Target": {
+          "value": 4
+        },
+        "AxisRole": "X",
+        "Actual": {
+          "value": 4
+        },
+        "Handshake": {
+          "confirmed": 1
+        }
+      },
+      {
+        "Sequence": 4,
+        "ActionSequence": 2,
+        "Generation": 1,
+        "OccurredAtUtc": "2026-10-07T16:58:30.6380523+00:00",
+        "Kind": "AxisMove",
+        "Command": 1,
+        "Phase": "completed",
+        "WriteSequenceRefs": [
+          10,
+          12
+        ],
+        "Target": {
+          "value": 5
+        },
+        "AxisRole": "Y",
+        "Actual": {
+          "value": 5
+        },
+        "Handshake": {
+          "confirmed": 1
+        }
+      },
+      {
+        "Sequence": 5,
+        "ActionSequence": 3,
+        "Generation": 1,
+        "OccurredAtUtc": "2026-10-07T16:58:30.9531498+00:00",
+        "Kind": "Flip",
+        "Command": 1,
+        "Phase": "accepted",
+        "WriteSequenceRefs": [
+          7,
+          8,
+          16
+        ],
+        "Target": null,
+        "AxisRole": null,
+        "Actual": {
+          "x": 4,
+          "y": 5,
+          "z": 0
+        },
+        "Handshake": {
+          "x": 0,
+          "y": 0,
+          "sort": 0,
+          "flip": 0,
+          "putBack": 0
+        }
+      },
+      {
+        "Sequence": 6,
+        "ActionSequence": 3,
+        "Generation": 1,
+        "OccurredAtUtc": "2026-10-07T16:58:31.0428019+00:00",
+        "Kind": "Flip",
+        "Command": 1,
+        "Phase": "completed",
+        "WriteSequenceRefs": [
+          7,
+          8,
+          16
+        ],
+        "Target": null,
+        "AxisRole": null,
+        "Actual": {
+          "x": 4,
+          "y": 5,
+          "z": 0
+        },
+        "Handshake": {
+          "x": 0,
+          "y": 0,
+          "sort": 0,
+          "flip": 2,
+          "putBack": 0
+        }
+      },
+      {
+        "Sequence": 7,
+        "ActionSequence": 4,
+        "Generation": 1,
+        "OccurredAtUtc": "2026-10-07T16:58:32.3072093+00:00",
+        "Kind": "PutBack",
+        "Command": 2,
+        "Phase": "accepted",
+        "WriteSequenceRefs": [
+          20
+        ],
+        "Target": null,
+        "AxisRole": null,
+        "Actual": {
+          "x": 4,
+          "y": 5,
+          "z": 0
+        },
+        "Handshake": {
+          "x": 0,
+          "y": 0,
+          "sort": 0,
+          "flip": 2,
+          "putBack": 0
+        }
+      },
+      {
+        "Sequence": 8,
+        "ActionSequence": 4,
+        "Generation": 1,
+        "OccurredAtUtc": "2026-10-07T16:58:32.4016573+00:00",
+        "Kind": "PutBack",
+        "Command": 2,
+        "Phase": "completed",
+        "WriteSequenceRefs": [
+          20
+        ],
+        "Target": null,
+        "AxisRole": null,
+        "Actual": {
+          "x": 4,
+          "y": 5,
+          "z": 150
+        },
+        "Handshake": {
+          "x": 0,
+          "y": 0,
+          "sort": 0,
+          "flip": 2,
+          "putBack": 2
+        }
+      },
+      {
+        "Sequence": 9,
+        "ActionSequence": 5,
+        "Generation": 1,
+        "OccurredAtUtc": "2026-10-07T16:58:32.767915+00:00",
+        "Kind": "Flip",
+        "Command": 1,
+        "Phase": "accepted",
+        "WriteSequenceRefs": [
+          23,
+          24,
+          25
+        ],
+        "Target": null,
+        "AxisRole": null,
+        "Actual": {
+          "x": 4,
+          "y": 5,
+          "z": 0
+        },
+        "Handshake": {
+          "x": 0,
+          "y": 0,
+          "sort": 0,
+          "flip": 0,
+          "putBack": 0
+        }
+      },
+      {
+        "Sequence": 10,
+        "ActionSequence": 5,
+        "Generation": 1,
+        "OccurredAtUtc": "2026-10-07T16:58:32.8535476+00:00",
+        "Kind": "Flip",
+        "Command": 1,
+        "Phase": "completed",
+        "WriteSequenceRefs": [
+          23,
+          24,
+          25
+        ],
+        "Target": null,
+        "AxisRole": null,
+        "Actual": {
+          "x": 4,
+          "y": 5,
+          "z": 0
+        },
+        "Handshake": {
+          "x": 0,
+          "y": 0,
+          "sort": 0,
+          "flip": 2,
+          "putBack": 0
+        }
+      },
+      {
+        "Sequence": 11,
+        "ActionSequence": 6,
+        "Generation": 1,
+        "OccurredAtUtc": "2026-10-07T16:58:34.1285265+00:00",
+        "Kind": "PutBack",
+        "Command": 2,
+        "Phase": "accepted",
+        "WriteSequenceRefs": [
+          30
+        ],
+        "Target": null,
+        "AxisRole": null,
+        "Actual": {
+          "x": 4,
+          "y": 5,
+          "z": 150
+        },
+        "Handshake": {
+          "x": 0,
+          "y": 0,
+          "sort": 0,
+          "flip": 2,
+          "putBack": 0
+        }
+      },
+      {
+        "Sequence": 12,
+        "ActionSequence": 6,
+        "Generation": 1,
+        "OccurredAtUtc": "2026-10-07T16:58:34.2129945+00:00",
+        "Kind": "PutBack",
+        "Command": 2,
+        "Phase": "completed",
+        "WriteSequenceRefs": [
+          30
+        ],
+        "Target": null,
+        "AxisRole": null,
+        "Actual": {
+          "x": 4,
+          "y": 5,
+          "z": 150
+        },
+        "Handshake": {
+          "x": 0,
+          "y": 0,
+          "sort": 0,
+          "flip": 2,
+          "putBack": 2
+        }
+      }
+    ]
+  }
+}

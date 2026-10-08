@@ -1,4 +1,14 @@
+> 020阶段B当前实施（2026-10-08）：现场Model_Number REAL、姿态INT、报警只读及已知轴用途已按[SP-020](../../020-real-device-commissioning/contracts/site-plc-adaptation.md)接入。机械配置显式业务Purpose及PositionBasis，元数据只解释实测坐标，不构造到位/安全；首次/复位/软停和未明报警语义仍阻断相关动作。原清零窗口及未知不重发保留，见[实际验证](../../020-real-device-commissioning/validation-stage-b.md)。
+
 # PLC与VirtualPlc通信合同 plc-interaction/1.0
+
+## 2026-10-08有效增量：020阶段A清零契约
+
+本增量是当前设计要求，已在020阶段A实现及离线验证，见[实际记录](../../020-real-device-commissioning/validation.md)。PC02/03/04中“到位后复位触发/清命令”必须继续执行[HC-020](../../020-real-device-commissioning/contracts/closed-loop-handshake.md)：本次物理完成及位置成立→清PC请求→同连接、清写应答之后发起的新读确认相关请求和PLC反馈全部0→才允许下一相关请求。写应答、旧缓存、固定延时均不够；过期、断线、超时阻断且不自动重发。
+
+轴/R分别清自身请求；翻面完成仍持件，不清2014，放回完成才清并等6050/6052全0；分拣取料后保留父命令及提交门，放料和最终安全位子轴闭环后才清2016并等6054为0。抓手选择、Ready、心跳不清。清零0与启动后Moving0按阶段解释，后一次实际运动不要求启动前必须反馈1；正式派发后运动/到位及实测判据保留。
+
+同坐标沿[更新后位置证据](../../same-position-axis-move/contracts/position-evidence.md)，不能继续以当前反馈1直接沿用。实际运动保留清零前到位身份；复用则生成本次新鲜复核的定位证据，引用历史完成/清零资格。其他规则继续有效；正式地址、旧型号/报警及F轴用途的历史描述由017及020后续适配处理，本增量不猜定缺失安全语义。逐文档处理见[同步记录](../../020-real-device-commissioning/document-sync.md)。
 
 
 

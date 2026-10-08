@@ -11,7 +11,7 @@ public sealed record PortEnvelope(Guid RunId, Guid OperationId, int Attempt, Gui
     public bool IsValid => RunId != Guid.Empty && OperationId != Guid.Empty &&
         Attempt >= 1 && SessionId != Guid.Empty && !string.IsNullOrWhiteSpace(SnapshotId) &&
         !string.IsNullOrWhiteSpace(ConfigVersion) && !string.IsNullOrWhiteSpace(ClockId) &&
-        Purpose is "Test" or "Production" && DueTick > StartTick;
+        Purpose is "Test" or "Production" or RuntimePurposes.RealDeviceCommissioning && DueTick > StartTick;
 }
 
 public enum DeviceEventKind { Accepted, Executing, Completed, Failed, UnknownHeld, ButtonPressed, ClampStarted, ClampCompleted, Stopped }

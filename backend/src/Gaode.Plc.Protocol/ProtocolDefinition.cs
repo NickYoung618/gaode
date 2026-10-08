@@ -22,6 +22,8 @@ public sealed class ProtocolDefinition
     public Float32ByteOrder ByteOrder { get; }
     public BoolByteOrder ByteOrderForBools { get; init; } = BoolByteOrder.EvenLow;
     public string Purpose { get; init; } = "Unspecified";
+    public string? LayoutId { get; init; }
+    public bool IsSiteLayout => LayoutId == ConfirmedMemoryLayout.CurrentId;
     public string SourceReference { get; init; } = "";
     public ProtocolDefinition(IEnumerable<PlcPoint> fields, IEnumerable<AlarmBitDefinition> alarmBits,
         int coilCapacity, int registerCapacity, Float32ByteOrder byteOrder)
@@ -60,7 +62,7 @@ public sealed class ProtocolDefinition
             Fail("AddressRangeInvalid", "Profile capacities must fit a Modbus address area.");
         if (!Enum.IsDefined(ByteOrder)) Fail("TypeWidthMismatch", "Unsupported Float32 byte order.");
         if (!Enum.IsDefined(ByteOrderForBools)) Fail("TypeWidthMismatch", "Unsupported BOOL byte order.");
-        var requirements = ConfirmedProtocol.RequiredFields;
+        var requirements = IsSiteLayout ? ConfirmedMemoryLayout.Load().RequiredSemanticFields : ConfirmedProtocol.RequiredFields;
         foreach (var required in requirements.Values)
         {
             var entries = Fields.Where(p => p.Id == required.Id).ToArray();

@@ -4,6 +4,7 @@ using Gaode.Application.Ports;
 using Gaode.Host.Composition;
 using Gaode.Domain.Configuration;
 using Gaode.Infrastructure.Diagnostics;
+using Gaode.Infrastructure.Simulation;
 
 namespace Gaode.Host.Api;
 
@@ -45,16 +46,21 @@ public static class ConfigurationEndpoints
             }).RequireAuthorization(Station01Authorization.ConfigWrite);
         group.MapPost("/public-config/validate", (PublicConfigValidateRequest request,
             IPublicConfiguration configurations, PublicConfigurationValidator validator,
-            CapabilityRegistry capabilities, Station01RuntimeOptions options, HttpContext http) =>
+            CapabilityRegistry capabilities, Station01RuntimeOptions options, HttpContext http,
+            IServiceProvider services) =>
         {
             try
             {
                 var config = configurations.LoadPublic(request.PublicConfigRef);
                 var budget = configurations.LoadBudget(request.BudgetRef);
-                var simulation = request.SimulationRef is { } sim
+                var commissioning = options.Mode == RuntimePurposes.RealDeviceCommissioning;
+                if (commissioning && request.SimulationRef is { } supplied && supplied != options.SimulationReference)
+                    throw new InvalidOperationException("CommissioningFixedReferenceMismatch");
+                var simulation = !commissioning && request.SimulationRef is { } sim
                     ? configurations.LoadSimulation(sim).Value : null;
                 var result = validator.Validate(config.Value, budget.Value, simulation,
-                    options.Mode == "FullSimulation", options.Mode == "VirtualPlcIntegration", options.PlcProvider);
+                    options.Mode == "FullSimulation", options.Mode == "VirtualPlcIntegration", options.PlcProvider,
+                    commissioning, services.GetService<LoadedConfiguration<CommissioningConfiguration>>()?.Value);
                 return Results.Ok(new
                 {
                     publicConfig = new { request.PublicConfigRef.Id, request.PublicConfigRef.Version },

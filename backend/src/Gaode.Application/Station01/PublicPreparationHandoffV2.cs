@@ -173,7 +173,7 @@ public sealed class PublicPreparationHandoffV2Consumer(IStageHandoffQuery handof
             .Distinct(StringComparer.Ordinal).ToArray();
         var request = new DetectionRequest(expectedRunId, expectedTrayId, stationId, lineId,
             WholeTrayWorkflowStage.Detection, operationId, handoff.PlanRevision,
-            connectionEpoch, deadline, media, inputs.Plan.Approval.Purpose, idempotencyKey,
+            connectionEpoch, deadline, media, inputs.CostProfile.Purpose, idempotencyKey,
             StageStartedAtUtc: stageStartedAtUtc ??
                 deadline - Gaode.Application.Workflow.StageRetryPolicy.StageDuration,
             ComponentEvidenceReferences: handoff.EvidenceReferences,

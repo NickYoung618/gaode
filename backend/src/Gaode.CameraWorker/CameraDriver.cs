@@ -22,6 +22,7 @@ internal abstract class CameraDriver(CameraBinding binding, Guid session, string
     public virtual long MaxBytes => CameraWorkerProtocol.MaxPayloadBytes;
     public abstract void Open();
     public abstract WorkerFrame Capture();
+    public abstract ActualCameraSettings ApplySettings(CameraImagingSettings settings);
     public abstract void Close();
     protected void Save(string file, object value) => File.WriteAllText(Path.Combine(StateRoot, file), JsonSerializer.Serialize(value, CameraWorkerProtocol.Json));
     protected static string Mac(string value) => new(value.Where(Uri.IsHexDigit).Select(char.ToUpperInvariant).ToArray());

@@ -77,3 +77,21 @@ clearPrototypeDemo仍保护其他演示区域；localStorage只存不可信run�
 ## 本次新建与采集组输入映射
 
 基础信息已有场景/类型选择→API-L00的ScenarioId/UnitKind/InspectionKind，Route由程序按共同关系确定，不操作者编辑；型号相同的普通/特殊来源精确隔离。SourceRecipeId是程序上下文，切换清不相容来源，无技术selector。第一组/第二组卡片将各自StageId随布局映射传递，不新增阶段技术操作；未填candidate保JSON null，严格保存不放宽。来源准备属真实后台主流程义务，DUI02/03导航仍待用户确认。
+
+
+## 021受控联调用途增量（2026-10-08）
+
+本次仅定向更新021消费者合同，旧用途/历史证据保持原范围。独立规格与设计见[021规格](../../021-commissioning-console/spec.md)、[计划](../../021-commissioning-console/plan.md)、[任务](../../021-commissioning-console/tasks.md)。新用途为RealDeviceCommissioning，运行purpose为Commissioning。
+
+021复用共同正文/校验/实际SQLite读存、原ETag和完整隐藏字段，逐次坐标/曝光编辑作用于后续冻结，在途用旧值。新用途软件校验并保存后可选，不额外批准；实际F绑定/冻结及旧用途准入保持。显示PlcRecipeId不当现场REAL型号。P01–P10归属和逐卡片profile按[RM合同](../../021-commissioning-console/contracts/recipe-media-ui.md)，身份权限按[IH合同](../../021-commissioning-console/contracts/identity-host.md)。不扩技术编辑器/整套导入，不补造旧根部规格或原型附件。
+
+
+## 021用户追加授权：虚拟光源（2026-10-08）
+
+用户明确要求既有配方弹窗增加“虚拟光源”复选框，作为本次对“不增控件”的定向例外；只改变光源参数启用状态，不改原型归档或其他导航/布局。勾选后亮度不必填、外部灯控制跳过；相机曝光/增益保留。选择随配方保存重读及冻结，真实模式缺真实装配明确受限。详见[CC-021](../../021-commissioning-console/contracts/configurable-commissioning.md)，T033先定版共享模型，T034–T037实施验证，当前未通过。
+
+## 用户确认增量：配方中的虚拟F定位（2026-10-08）
+
+用户确认示教坐标人工填配方，本次单品翻面样件的虚拟质量结果为OK；虚拟算法必须实际消费本Run媒体后记录调用成功，不绕过采集/保存或设备动作。用户将提供F读码XY，并要求加到虚拟算法联调用的配方设置。新增FR-019/SC-009：共同配方可选commissioningFPosition={schemaVersion:"commissioning-f-position/1",x,y}，页面在既有配方弹窗基础信息增加“虚拟算法 F读码X (mm)”及Y，由人员手填，不补默认坐标。后端校验有限值，启动再按公共运动配置核单位/坐标系/行程；所选配方版本与目录一致后从实际保存正文读取，构成带配方版本来源的FLocation，冻结给本Run虚拟3D的首次定位结果，实际F读码后仍再次核绑定。真实算法不消费该字段。旧记录保留原声明的受控输入策略；新建联调配方必须显式填写F位置才能通过相关运动准入，不能偷偷沿用旧示例F位置。
+
+准确字段及端口：RecipeDefinition.CommissioningFPosition随正文/摘要保存；ICommissioningRunInputs.FreezeRun(..., selection=null, fLocation=null)增加可选冻结定位输入。StartPublicPreparation从本次expectedRecipeRef匹配的真实目录取得该位置，校验引用后转换FLocation，不从前端POST直接接收运动值。运行开始后修改配方不改变已冻结公共/虚拟输入。已有公共F固定位置及真实3D定位职责不改；新增位置仅适用本联调虚拟算法。FR-009/原“不在页面设置算法坐标”对此用户明确授权的F XY作唯一例外，其余安全值仍不允许默认补齐。

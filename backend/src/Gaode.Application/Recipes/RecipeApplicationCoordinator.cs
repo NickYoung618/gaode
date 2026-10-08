@@ -19,7 +19,8 @@ public sealed class RecipeApplicationCoordinator
             new[] { id, version, source, digest, snapshot }.Any(string.IsNullOrWhiteSpace))
             throw new InvalidOperationException("RecipeApplicationBudgetInvalid");
         if (purpose == "Production") throw new InvalidOperationException("RecipeApplicationProductionBudgetUnapproved");
-        if (purpose != "Test") throw new InvalidOperationException("RecipeApplicationPurposeInvalid");
+        if (purpose is not ("Test" or Gaode.Domain.Configuration.RuntimePurposes.RealDeviceCommissioning))
+            throw new InvalidOperationException("RecipeApplicationPurposeInvalid");
         return new(id, version, schema, purpose, source, digest, snapshot, milliseconds.Value);
     }
     public static ActionWindow RegisterWindow(TimeProvider clock, string clockId, int milliseconds,

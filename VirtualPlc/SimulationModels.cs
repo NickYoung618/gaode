@@ -45,7 +45,8 @@ public enum SimulationFault
     PauseHeartbeat,
     SortingPositionMismatch,
     AxisResponseDelayed,
-    AxisWriteResponseLost
+    AxisWriteResponseLost,
+    AxisClearWriteResponseLost
 }
 
 public sealed record RegisterValue(

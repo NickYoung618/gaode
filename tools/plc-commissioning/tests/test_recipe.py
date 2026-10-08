@@ -7,6 +7,7 @@ import sys
 import tempfile
 import time
 import unittest
+import os
 ROOT=Path(__file__).resolve().parents[1]
 sys.path.insert(0,str(ROOT/'src'))
 sys.path.insert(0,str(ROOT/'tests'))
@@ -22,6 +23,7 @@ class RecipeSimulator(Simulator):
         self.last_flip=self.last_sort=0
         self.flip_motion=self.sort_motion=None
         self.flipMovesZ=False
+        self.flip_terminal=self.sort_terminal=False
 
     def start_edges(self,before):
         prior=set(self.motion)
@@ -35,23 +37,31 @@ class RecipeSimulator(Simulator):
         self.set(6062,self.get(2018))
         flip=self.get(2014)
         if flip!=self.last_flip:
-            self.last_flip=flip
+            self.last_flip=flip;self.clear_due.pop('Flip',None)
             if flip:
+                self.flip_terminal=False
                 feedback=6050 if flip==1 else 6052
                 self.set(feedback,1);self.flip_motion=(time.monotonic(),feedback)
-            else:
-                self.set(6050,0);self.set(6052,0);self.flip_motion=None
         if self.flip_motion and time.monotonic()-self.flip_motion[0]>self.command_duration:
             self.set(self.flip_motion[1],2)
+            self.flip_terminal=self.flip_motion[1]==6052
             if self.flipMovesZ:self.set(6092,8.0)
             self.flip_motion=None
+        if flip==0 and self.flip_motion is None and self.flip_terminal:
+            self.clear_due.setdefault('Flip',time.monotonic()+self.clear_delay)
+            if 'Flip' not in self.hold_clear and time.monotonic()>=self.clear_due['Flip']:
+                self.set(6050,0);self.set(6052,0)
         sort=self.get(2016)
         if sort!=self.last_sort:
-            self.last_sort=sort
-            self.set(6054,0)
+            self.last_sort=sort;self.clear_due.pop('Sort',None)
             self.sort_motion=(time.monotonic(),sort) if sort else None
+            if sort:self.sort_terminal=False
         if self.sort_motion and time.monotonic()-self.sort_motion[0]>self.command_duration:
-            self.set(6054,self.sort_motion[1]);self.sort_motion=None
+            self.set(6054,self.sort_motion[1]);self.sort_terminal=self.sort_motion[1]==2;self.sort_motion=None
+        if sort==0 and self.sort_motion is None and self.sort_terminal:
+            self.clear_due.setdefault('Sort',time.monotonic()+self.clear_delay)
+            if 'Sort' not in self.hold_clear and time.monotonic()>=self.clear_due['Sort']:self.set(6054,0)
+
 
 
 class RecipeTests(unittest.IsolatedAsyncioTestCase):
@@ -65,6 +75,10 @@ class RecipeTests(unittest.IsolatedAsyncioTestCase):
         await self.app.command('recipe-settings',{'profile':p})
 
     async def asyncTearDown(self):
+        if os.environ.get('GAODE_TOOL_EVIDENCE'):
+            dest=Path(os.environ['GAODE_TOOL_EVIDENCE'])/self.id().split('.')[-1];dest.mkdir(parents=True,exist_ok=True)
+            for name in ('events.jsonl','recipe-run.json','config.snapshot.json','protocol.snapshot.json'):
+                if (self.app.logdir/name).exists():shutil.copy2(self.app.logdir/name,dest/name)
         await self.app.command('disconnect',{});await self.sim.close();self.tmp.cleanup()
 
     async def poll(self):
@@ -100,22 +114,25 @@ class RecipeTests(unittest.IsolatedAsyncioTestCase):
         self.assertTrue(any(e['mb']==2006 and e['value']==1 for e in writes))
         self.assertTrue(any(e['mb']==2011 for e in writes))
         self.assertTrue(any(e['mb']==2048 and e.get('recipeStep')==6 for e in writes))
-        self.assertEqual([e['mb'] for e in writes if e.get('recipeStep')==8 and e['mb'] in (2001,2002) and e['value']==1],[2001,2002])
+        self.assertEqual([e['mb'] for e in writes if e.get('recipeStep')==8 and e['mb'] in (2001,2002) and e['value']==1],[]) # Same XY was actually completed and cleared before flip.
         self.assertFalse(any(e['mb'] in (2003,2004,2005,2032,2036,2040) and e.get('recipeStep')==8 for e in writes))
         flip_writes=[e for e in writes if e.get('recipeStep') in (7,9)]
         self.assertFalse(any(e['mb'] in (2003,2004,2005,2032,2036,2040) for e in flip_writes))
         self.assertFalse(any(e['mb'] in (2004,2005,2036,2040) for e in writes))
-        self.assertEqual([e['value'] for e in writes if e['mb']==2032],[5,5,5,5])
-        self.assertEqual([e['recipeStep'] for e in writes if e['mb']==2032],[4,5,11,12])
+        self.assertEqual([e['value'] for e in writes if e['mb']==2032],[5])
+        self.assertEqual([e['recipeStep'] for e in writes if e['mb']==2032],[4])
         for step in (2,3,4,5,6,8,10,11,12,14):
             stepwrites=[e for e in writes if e.get('recipeStep')==step and e['mb'] in (2024,2028,2001,2002)]
-            self.assertEqual([e['mb'] for e in stepwrites[:4]],[2024,2028,2001,2002])
+            targets=[e['mb'] for e in stepwrites if e['mb'] in (2024,2028)]
+            starts=[e['mb'] for e in stepwrites if e['mb'] in (2001,2002) and e['value']==1]
+            self.assertEqual([2001 if mb==2024 else 2002 for mb in targets],starts)
+            if starts:self.assertLess(max(i for i,e in enumerate(stepwrites) if e['mb'] in (2024,2028)),min(i for i,e in enumerate(stepwrites) if e['mb'] in (2001,2002) and e['value']==1))
         self.assertFalse(any(e['mb'] in (2003,2004,2005,2032,2036,2040) and e.get('recipeStep') in (3,14) for e in writes))
         self.assertFalse(any(e['mb'] in (2016,2018) for e in writes))
         self.assertTrue(all(x['recordPurpose']=='流程测试' and not x['realInspectionResult'] for x in run['inspections']))
         self.assertTrue(run['trail']);self.assertTrue(run['signals'])
         for a in self.app.actions:
-            self.assertTrue(a['busySeen']);self.assertTrue(a['cleared'])
+            self.assertTrue(a['busySeen'] or a['reusedPosition'] or a['plcCompleted'] is True and a['coordinateAcceptance'] is True and 'fresh post-start arrived' in a['completionEvidence']);self.assertTrue(a['cleared'])
         capture=[e for e in run['milestones'] if e['kind']=='SIMULATION' and e.get('recipeStep')==3]
         self.assertEqual(len(capture),1)
 
@@ -162,7 +179,7 @@ class RecipeTests(unittest.IsolatedAsyncioTestCase):
 
     async def test_old_flip_done_does_not_start_or_pass(self):
         await self.app.command('recipe-start',{})
-        self.sim.set(6050,2);await self.poll()
+        self.sim.hold_clear.add('Flip');self.sim.set(6050,2);await self.poll()
         self.app.recipe.run['step']=7;self.app.recipe.prepare()
         for _ in range(5):await self.poll()
         self.assertEqual(self.app.recipe.run['state'],'failed')
@@ -202,26 +219,32 @@ class RecipeTests(unittest.IsolatedAsyncioTestCase):
         self.assertEqual(action['state'],'pending');self.assertFalse(action['cleared'])
         self.assertEqual(self.sim.get(2001),1)
         self.sim.set(6064,9.95);await self.poll()
+        self.assertTrue(action['plcCompleted']);self.assertFalse(action['cleared'])
+        self.sim.completed_axes.add('X');await self.poll()
         self.assertTrue(action['cleared']);self.assertTrue(action['coordinateAcceptance'])
 
     async def test_recipe_same_position_arrived_without_busy_completes(self):
         for axis,actual,feedback,start in [('Y',6076,6042,2002),('ZCamera',6084,6044,2003)]:
-            self.sim.stale_axes.add(axis);self.sim.set(actual,5);self.sim.set(feedback,1);await self.poll()
-            action=await self.app.begin_axis(axis,5,'same-position-'+axis)
-            action.update(requirePositionMatch=True,positionTolerance=.1)
-            await self.poll()
+            self.sim.stale_axes.add(axis);self.sim.set(actual,5);await self.poll()
+            action=await self.app.begin_axis(axis,5,'same-position-'+axis,position_tolerance=.1)
+            # Independent PLC completion arrives after start, without a sampled Moving transition.
+            self.sim.set(feedback,1);await self.poll()
+            self.assertTrue(action['plcCompleted']);self.assertFalse(action['cleared'])
+            self.sim.completed_axes.add(axis);await self.poll()
             self.assertTrue(action['cleared']);self.assertEqual(action['state'],'completed')
             self.assertFalse(action['busySeen']);self.assertFalse(action['motionEvidence'])
-            self.assertIn('motion transition not observed',action['completionEvidence'])
+            self.assertIn('fresh post-start arrived',action['completionEvidence'])
             self.assertEqual(self.sim.get(start),0)
 
     async def test_recipe_arrived_without_busy_but_wrong_position_waits(self):
         self.sim.stale_axes.add('Y');self.sim.set(6076,20);await self.poll()
         action=await self.app.begin_axis('Y',25,'wrong-position')
         action.update(requirePositionMatch=True,positionTolerance=.1)
-        await self.poll()
+        self.sim.set(6042,1);await self.poll()
         self.assertFalse(action['cleared']);self.assertEqual(self.sim.get(2002),1)
         self.sim.set(6076,24.95);await self.poll()
+        self.assertFalse(action['cleared'])
+        self.sim.completed_axes.add('Y');await self.poll()
         self.assertTrue(action['cleared']);self.assertTrue(action['coordinateAcceptance'])
 
     async def test_failed_recipe_manual_clear_stays_in_real_signal_timeline(self):
@@ -235,5 +258,50 @@ class RecipeTests(unittest.IsolatedAsyncioTestCase):
         self.assertTrue(records[-1]['matched'])
         self.assertFalse(any(e['mb'] in (2011,6038) for e in self.app.snapshot()['signalTimeline']))
 
+
+    async def test_two_rounds_preserve_flip_parent_until_terminal_and_clear(self):
+        for _ in range(2):
+            await self.finish()
+            self.assertEqual((self.sim.get(2014),self.sim.get(6050),self.sim.get(6052)),(0,0,0))
+        retained=[json.loads(line) for line in (self.app.logdir/'events.jsonl').read_text(encoding='utf-8').splitlines()]
+        writes=[e['value'] for e in retained if e['kind']=='WRITE_ACCEPTED' and e.get('mb')==2014]
+        self.assertEqual(writes,[1,2,0,1,2,0])
+        self.assertEqual(len([e for e in retained if e['kind']=='RECIPE_CLEAR_CONFIRMED' and e.get('mb')==2014]),2)
+
+    async def test_parent_clear_wait_and_original_terminal_deadline(self):
+        await self.app.command('recipe-start',{})
+        recipe=self.app.recipe
+        recipe.jobs=[dict(type='command',mb=2014,value=1,feedback=6050,busy=1,done=2)]
+        for _ in range(30):
+            await self.poll()
+            if not recipe.jobs:break
+            await asyncio.sleep(.01)
+        self.assertEqual(self.sim.get(2014),1);self.assertEqual(self.sim.get(6050),2)
+        self.sim.hold_clear.add('Flip');self.app.cfg['actionTimeout']=.35
+        recipe.jobs=[dict(type='command',mb=2014,value=2,feedback=6052,busy=1,done=2),dict(type='parentClear',mb=2014,feedbacks=(6050,6052))]
+        for _ in range(60):
+            await self.poll()
+            if recipe.run['state']=='failed':break
+            await asyncio.sleep(.01)
+        self.assertEqual(recipe.run['state'],'failed');self.assertIn('末段超时',recipe.run['reason'])
+        self.assertEqual(self.sim.get(2014),0);self.assertEqual(self.sim.get(6050),2);self.assertEqual(self.sim.get(6052),2)
+        self.sim.hold_clear.clear()
+        if self.app.transport is None:
+            await self.app.command('connect',dict(host='127.0.0.1',port=self.port))
+        else:await self.poll()
+        with self.assertRaises(ValueError):await self.app.command('axis',dict(axis='X',target=1))
+        self.assertEqual(recipe.run['state'],'failed')
+
+    async def test_sort_clear_follows_final_safe_axis_and_feedback_zero(self):
+        self.app.recipe.profile['flowTestOnly']=False
+        self.app.recipe.profile['simulation']['B']='NG'
+        self.sim.clear_delay=.04
+        await self.finish()
+        events=self.app.events
+        place=next(i for i,e in enumerate(events) if e['kind']=='WRITE_ACCEPTED' and e.get('mb')==2016 and e['value']==2)
+        clear=next(i for i,e in enumerate(events) if e['kind']=='WRITE_ACCEPTED' and e.get('mb')==2016 and e['value']==0)
+        self.assertTrue(any(e['kind']=='CLEAR' and e.get('mb')==2005 for e in events[place+1:clear]))
+        self.assertEqual(self.sim.get(6054),0);self.assertEqual(self.sim.get(6092),self.app.recipe.profile['sorting']['transferZ'])
+        self.assertEqual(self.sim.get(6062),2)
 
 if __name__=='__main__':unittest.main(verbosity=2)

@@ -1,9 +1,43 @@
-(function () {
+(async function () {
   const host = window.__GAODE_HOST_CONFIG__ || {};
   delete window.__GAODE_HOST_CONFIG__;
   const apiBase = String(host.apiBaseUrl || '').replace(/\/$/, '');
-  const token = host.mode === 'Test' ? String(host.testToken || '') : '';
-  const prepared = host.mode === 'Test' ? host.preparedStartRequest : null;
+  let token = host.mode === 'Test' ? String(host.testToken || '') : host.mode === 'RealDeviceCommissioning' ? String(host.commissioningToken || '') : '';
+  let confirmedIdentity = null;
+  let prepared = host.mode === 'Test' ? host.preparedStartRequest : null;
+  const commissioning = host.mode === 'RealDeviceCommissioning';
+  if (host.mode === 'RealDeviceCommissioning') {
+    // Override the inline demo handler immediately, including during the identity request.
+    window.handleLogin = event => { event.preventDefault(); return false; };
+    try {
+      const response = await fetch(apiBase + '/api/v1/station01/identity', {
+        headers: { Authorization: `Bearer ${token}` }, cache: 'no-store'
+      });
+      if (!response.ok) throw new Error(`IdentityRejected:${response.status}`);
+      confirmedIdentity = window.GaodeCommissioningConsole.confirmIdentity(await response.json(), host.commissioningProfile);
+      console.info('GaodePageDiagnostic', JSON.stringify({ event: 'IdentityChecked', mode: host.mode,
+        subjectId: confirmedIdentity.subjectId, profileId: confirmedIdentity.profileId }));
+      const login = window.GaodeCommissioningConsole.bindLogin(document, confirmedIdentity, path => { window.location.href = path; });
+      if (login) { window.handleLogin = login; return; }
+      const chip = document.querySelector('header .bg-slate-800\\/60.border-slate-700\\/50:last-of-type');
+      const name = chip?.querySelector('.text-xs.text-slate-100');
+      const role = chip?.querySelector('[class*="text-emerald-300"]');
+      if (name) name.textContent = confirmedIdentity.displayName;
+      if (role) role.textContent = confirmedIdentity.role === 'Operator' ? 'L1 · 操作员' : 'L2 · 工程师';
+      const loginButton = document.getElementById('btnRecipe');
+      if (loginButton) loginButton.disabled = !confirmedIdentity.permissions.includes('Run.Read');
+    } catch (error) {
+      token = ''; confirmedIdentity = null;
+      clearPrototypeDemo();
+      document.querySelectorAll('#camGrid img').forEach(image => image.removeAttribute('src'));
+      document.querySelectorAll('main button, #btnRecipe, #btnPositions').forEach(button => { button.disabled = true; });
+      const input = document.getElementById('user');
+      if (input) { input.setCustomValidity('联调身份不可用，请联系维护人员核对配置'); input.reportValidity(); }
+      const fault = document.getElementById('faultList'); if (fault) fault.textContent = '联调身份不可用，操作已阻止';
+      console.info('GaodePageDiagnostic', JSON.stringify({ event: 'IdentityRejected', mode: host.mode, errorType: error.name }));
+      return;
+    }
+  }
   const cache = new Map();
   let runId = null, receipt = null, latestStatus = null, latestRun = null, latestEvidence = null;
   let latestMedia = null, mediaError = null, commandPending = false, startSubmitted = false, lastStartFailure = null;
@@ -16,7 +50,33 @@
   try { runId = viewStorage?.getItem(viewRunKey) || null; } catch (_) {}
   function rememberRun(id) { try { viewStorage?.setItem(viewRunKey, id); } catch (_) {} }
 
-  let selectedRecipe = null;
+  let selectedRecipe = null, nextAdmission = null, pendingOperation = null;
+  const pendingKey = `gaode:station01:pending:${apiBase}:${host.mode}:${host.commissioningTemplate?.contextTemplate?.stationId || ''}`;
+  if (commissioning) {
+    try { pendingOperation = JSON.parse(viewStorage?.getItem(pendingKey) || 'null'); } catch (_) { interactionNotice='原请求关联无法读取，请维护人员核查'; startSubmitted=true; }
+    if (pendingOperation) {
+      startSubmitted=true;
+      if(pendingOperation.subjectId === confirmedIdentity.subjectId) {
+        runId=pendingOperation.runId || null;
+      } else { runId=null; interactionNotice='存在另一身份的未核定请求，请由原身份查询；不能接管或重新启动'; }
+    } else { const known=new URLSearchParams(location.search).get('runId'); runId=/^[0-9a-f-]{36}$/i.test(known || '')?known:null; }
+  }
+  function savePending(value) {
+    if(!viewStorage) throw new Error('PendingReferenceStorageUnavailable');
+    viewStorage.setItem(pendingKey,JSON.stringify(value)); pendingOperation=value;
+  }
+  async function recoverPending() {
+    if(!commissioning || !pendingOperation || pendingOperation.subjectId!==confirmedIdentity.subjectId || pendingOperation.operationKind!=='Start') return;
+    if(pendingOperation.runId) { runId=pendingOperation.runId; return; }
+    try {
+      const original=await request('/api/v1/station01/start-requests/'+encodeURIComponent(pendingOperation.requestId));
+      if(!original.runId || original.requestId!==pendingOperation.requestId) throw new Error('OriginalRequestMismatch');
+      receipt=original;runId=original.runId;
+      savePending({...pendingOperation,commandId:original.commandId,runId,state:'Accepted'});rememberRun(runId);
+      diagnostic('OriginalStartRecovered',{requestId:original.requestId,commandId:original.commandId});
+    } catch(error) { interactionNotice=`原请求 ${pendingOperation.requestId} 当前无法确认；只查询，不自动重发`; }
+  }
+
   const mediaUrls = new Map(), mediaReadErrors = new Map(), mediaSelection = new Map();
   let mediaSelectionRunId = null;
   const diagnosticStates = new Map();
@@ -101,7 +161,7 @@
         ![value.publicConfigRef, value.budgetRef, value.simulationRef].every(reference)) return false;
     try {
       const context = JSON.parse(value.contextJson);
-      if (context.purpose !== 'Test' || !Array.isArray(context.occupiedSlots) ||
+      if (context.purpose !== (commissioning ? 'Commissioning' : 'Test') || !Array.isArray(context.occupiedSlots) ||
           !context.occupiedSlots.every(x => typeof x === 'string') ||
           ![context.trayId, context.stationId, context.lineId, context.scenarioId].every(x => typeof x === 'string' && x.length > 0)) return false;
       if (context.schemaVersion === 'station01-start-run-context/2.0')
@@ -154,10 +214,10 @@
   }
   function mediaCandidates(catalog) {
     const grouped = new Map();
-    if (host.mode !== 'Test' || !runId || catalog?.runId?.toLowerCase() !== runId.toLowerCase()) return grouped;
-    const allocation = testSlotAllocation(runId);
+    if ((!commissioning && host.mode !== 'Test') || !runId || catalog?.runId?.toLowerCase() !== runId.toLowerCase()) return grouped;
+    const allocation = host.mode === 'Test' ? testSlotAllocation(runId) : null;
     for (const item of catalog.items || []) {
-      const identity = mediaIdentity(item), slot = allocation.get(identity);
+      const identity = mediaIdentity(item), slot = commissioning ? window.GaodeCommissioningConsole.mediaSlot(item) : allocation.get(identity);
       if (slot === undefined || !item.mediaId || !item.captureId || !Number.isSafeInteger(item.committedRevision)) continue;
       if (!grouped.has(slot)) grouped.set(slot, []);
       grouped.get(slot).push(item);
@@ -281,11 +341,12 @@
       Array.isArray(run?.allowedActions) && run.allowedActions.includes('ConfirmManualTrayRemoval');
     const recoveryAction = run?.failedCommandRecovery &&
       run.allowedActions?.find(x => x === 'RecoveryReset' || x === 'RecoveryCheck');
+    const commissioningReset = commissioning && run?.allowedActions?.includes('CommissioningRecoveryReset');
     const removalButton = document.getElementById('manualRemovalButton');
     const removalReason = document.getElementById('manualRemovalReason');
     if (removalButton) {
-      removalButton.disabled = !(canConfirmRemoval || recoveryAction && !commandPending);
-      removalButton.textContent = recoveryAction === 'RecoveryReset' ? '复位' :
+      removalButton.disabled = !(canConfirmRemoval || (recoveryAction || commissioningReset) && !commandPending);
+      removalButton.textContent = commissioningReset ? '复位并结束旧任务' : recoveryAction === 'RecoveryReset' ? '复位' :
         recoveryAction === 'RecoveryCheck' ? '初始核验' : '确认已取盘';
     }
     if (removalReason) removalReason.disabled = !(canConfirmRemoval || recoveryAction);
@@ -300,7 +361,7 @@
     const cameraTiles = Array.from(document.querySelectorAll('#camGrid > div'));
     const selected = selectedMedia(latestMedia);
     const candidatesBySlot = mediaCandidates(latestMedia);
-    const allocated = runId && host.mode === 'Test' ? new Set(testSlotAllocation(runId).values()) : new Set();
+    const allocated = commissioning ? new Set(candidatesBySlot.keys()) : runId && host.mode === 'Test' ? new Set(testSlotAllocation(runId).values()) : new Set();
     cameraTiles.forEach((tile, slot) => {
       const image = tile.querySelector('img');
       if (!image) return;
@@ -324,11 +385,11 @@
       const faceLabel = item?.localFace && item?.heightRound
         ? ` · 面${item.localFace}/${item.heightRound === 1 ? '初始测量' : `测量轮${item.heightRound}`}` : '';
       const choiceLabel = choices.length > 1 ? ` · 点击切换${currentIndex + 1}/${choices.length}` : '';
-      if (marker) marker.textContent = !runId ? '未采集' : !allocated.has(slot) ? '未参与 · Test' :
-        !item ? mediaError ? '媒体查询受限 · Test' : '未采集 · Test' :
-        item.readiness !== 'Ready' ? '未就绪 · Test' :
+      if (marker) marker.textContent = !runId ? '未采集' : !allocated.has(slot) ? commissioning ? '未参与／未采集' : '未参与 · Test' :
+        !item ? mediaError ? commissioning ? '媒体查询受限' : '媒体查询受限 · Test' : commissioning ? '未采集' : '未采集 · Test' :
+        item.readiness !== 'Ready' ? commissioning ? '未就绪' : '未就绪 · Test' :
         !url ? `读取受限 · ${item.source}` :
-          `${item.source || '来源未知'} · 临时格位 · ${item.role}/${item.businessCamera}${faceLabel}${choiceLabel}`;
+          `${item.source || '来源未知'} · ${commissioning ? '当前运行' : '临时格位'} · ${item.role}/${item.businessCamera}${faceLabel}${choiceLabel}`;
     });
     const summary = cameraTiles[cameraTiles.length - 1];
     if (summary && !summary.querySelector('img')) {
@@ -338,7 +399,7 @@
       if (cadence) cadence.textContent = runId
         ? `${[...new Set(Array.from(selected.values(), item => item.source || '来源未知'))].join(' · ') || '来源未知'} · 临时格位` : '未采集';
     }
-    const diagnostic = run?.startupDiagnostic;
+    const diagnostic = run?.commissioningRecovery ? null : run?.startupDiagnostic;
     const deviceProvider = diagnostic?.executionOrigin?.provider || status?.plc?.executionOrigin?.provider;
     const sourceLabel = deviceProvider === 'Virtual'
       ? 'Test/VirtualPlc · 非真机' : deviceProvider || '来源未知';
@@ -362,8 +423,8 @@
           : null;
     const fBlocked = run?.errorCode?.includes('FCodeNotUniqueAndParsed')
       ? '扫码操作已结束，但未取得唯一有效F码，配方尚未绑定；请核对本次相机/算法日志' : null;
-    const problem = fBlocked || reason || run?.errorCode || lastStartFailure || (status?.host !== 'Ready' ? status?.host : null) ||
-      (!token ? 'AuthUnavailable' : null) || (status?.algorithm?.state !== 'Ready' ? status?.algorithm?.state : null);
+    const problem = fBlocked || reason || run?.errorCode || (run?.commissioningRecovery ? null : lastStartFailure) || (status?.host !== 'Ready' ? status?.host : null) ||
+      (!token ? 'AuthUnavailable' : null) || (!['Ready','Configured'].includes(status?.algorithm?.state) ? status?.algorithm?.state : null);
     const phase = run?.recipeExecution?.executionPhase || run?.executionPhase;
     const slotDetails = (run?.slotStates || []).map(slot => `${slot.region || '区域未提供'}区 第${displayValue(slot.row)}行 第${displayValue(slot.column)}列 · 物理槽${slot.physicalSlotIndex}：${displayValue(slot.presence)}/${displayValue(slot.poseState)}${slot.detectionState ? ' · '+({NotInspected:'未检测',FurtherInspectionTerminated:'后续检测终止',NoMaterial:'无物料'})[slot.detectionState] : ''}${slot.physicalDisposition ? ' · '+(slot.physicalDisposition==='Pending'?'Pending已分拣':'Pending待分拣') : ''}${slot.reasonCodes?.length ? ' · ' + slot.reasonCodes.join('、') : ''}`);
     const phaseDetails = phase ? `当前动作 ${phase.kind}/${phase.state} · 步骤 ${displayValue(phase.stepSequence)} · 采集组 ${displayValue(phase.stageId)} · 原始格位 ${displayValue(phase.cellId)} · 实体 ${displayValue(phase.entityId)} · 物理槽 ${displayValue(phase.physicalSlotIndex)} · 面 ${displayValue(phase.localFace)} · 扫码姿态 ${displayValue(phase.scanPoseId)} · 观察 ${displayValue(phase.observationRef)} · 转换 ${displayValue(phase.transitionId)} · 依据 ${displayValue(phase.evidenceRef)}` : null;
@@ -376,6 +437,7 @@
       recoveryAction ? `原任务 ${runId}，故障动作 ${run.failedCommandRecovery.operationId}；${recoveryAction === 'RecoveryReset'
         ? '排除故障后填写原因并复位，复位不等于恢复完成'
         : '请核对复位后的料盘、配置和初始状态；填写依据并执行初始核验，成立后通过启动控件开启完整新轮'}` : null,
+      commissioning ? window.GaodeCommissioningConsole?.recoveryNotice(run) : null,
       phaseDetails, abnormalNotice, ...slotDetails, ...axisDetails, removalDetails, interactionNotice].filter(Boolean).join('；'));
     const inspections = (current?.inspections || []).filter(x => !context?.localFace || x.localFace === context.localFace);
     const identity = current ? `${current.kind}/${current.id}${current.parentId ? ` · 所属 ${current.parentId}` : ''}` : '当前对象未提供';
@@ -409,6 +471,31 @@
     setText('partsCount', '—');
     for (const id of ['partsTbody', 'trendChart', 'trendLabels']) { const node = document.getElementById(id); if (node) node.textContent = ''; }
     const donut = document.getElementById('donut'); if (donut) donut.style.background = 'none';
+    if(commissioning && document.getElementById('partsTbody')) {
+      const body=document.getElementById('partsTbody');
+      const records=Array.isArray(run?.results)?run.results:[];
+      setText('partsCount',records.length?String(records.length):'未提供');
+      body.innerHTML=records.map((result,index)=>`<tr><td>${index+1}</td><td>${escaped(result.id||'对象待查')}</td><td>—</td><td colspan="3">${escaped(result.availability==='Committed'?result.disposition||'结果未提供':'结果未提交')}</td><td>—</td><td>指标未提供</td><td><button data-result-index="${index}" class="btn-action">详情</button></td></tr>`).join('') || '<tr><td colspan="9">本运行暂无已提交检测结果</td></tr>';
+      window.closeReport=()=>{const modal=document.getElementById('reportModal');modal?.classList.add('hidden');modal?.classList.remove('flex');};
+      window.openReport=index=>{
+        const result=records[Number(index)]; if(!result) return;
+        setText('reportPid',result.id);setText('reportPart',result.kind||'未提供');setText('reportDate','本运行');setText('reportCount','未提供');
+        const rows=document.getElementById('reportRows');rows.replaceChildren();
+        for(const item of latestMedia?.items||[]) {
+          const url=mediaUrls.get(item.mediaId);if(!url)continue;
+          const row=document.createElement('tr'),cell=document.createElement('td');cell.colSpan=4;
+          const title=document.createElement('div');title.textContent=`${item.role}/${item.businessCamera} · ${item.mediaId} · ${item.source}`;
+          const image=document.createElement('img');image.src=url;image.dataset.runId=runId;image.dataset.mediaId=item.mediaId;
+          cell.append(title,image);row.append(cell);rows.append(row);
+        }
+        const modal=document.getElementById('reportModal');modal?.classList.remove('hidden');modal?.classList.add('flex');
+      };
+      body.querySelectorAll('[data-result-index]').forEach(button=>button.onclick=()=>window.openReport(button.dataset.resultIndex));
+      document.querySelectorAll('#reportModal .grid .num-font,#reportModal .grid b').forEach(node=>node.textContent='未提供');
+      document.querySelectorAll('#stage button').forEach(button=>{
+        if(/查询|复检|导出/.test(button.textContent)) {button.onclick=()=>{setText('currentScene','当前仅支持已知运行查询，历史查询／复检／导出未提供');};}
+      });
+    }
     window.dispatchEvent(new CustomEvent('station01:rendered', { detail: { runId, state, facts, final, source: final ? finalSourceLabel : sourceLabel } }));
     window.dispatchEvent(new CustomEvent('station01:media-rendered', { detail: { runId, temporaryTestAllocation: host.mode === 'Test' && !!runId,
       bindings: Array.from(selected, ([slot, item]) => ({ slot: slot + 1, mediaId: item.mediaId,
@@ -427,7 +514,8 @@
   async function refreshCore() {
     try {
       latestStatus = await request('/api/v1/station01/status');
-      runId ||= latestStatus?.currentRun?.runId || null;
+      if (commissioning) { await recoverPending(); nextAdmission=await request('/api/v1/station01/start-admission'); }
+      else runId ||= latestStatus?.currentRun?.runId || null;
       if (runId) {
         try {
           const requestedRun = runId;
@@ -492,6 +580,7 @@
     }
     connection.onreconnected(() => void refresh());
     await connection.start();
+    diagnostic('NotificationsConnected',{transport:'LongPolling'});
     window.dispatchEvent(new CustomEvent('station01:connected'));
     return connection;
   }
@@ -517,7 +606,7 @@
       interactionNotice = `已选择 ${item.model} 供下次启动使用；当前运行继续使用其冻结配方`;
       render(latestStatus, latestRun, latestEvidence);
     }
-  });
+  }, true); // Capture the chosen value before the editor reload renders the selector.
   const manualRemovalButton = document.getElementById('manualRemovalButton');
   Array.from(document.querySelectorAll('#camGrid > div')).forEach((tile, slot) => {
     tile.addEventListener('click', async () => {
@@ -536,6 +625,20 @@
     });
   });
   if (typeof manualRemovalButton?.addEventListener === 'function') manualRemovalButton.addEventListener('click', async () => {
+    if (commissioning && !commandPending && latestRun?.allowedActions?.includes('CommissioningRecoveryReset')) {
+      commandPending = true; manualRemovalButton.disabled = true;
+      try {
+        const result = await post('/api/v1/station01/reset', {});
+        interactionNotice = result.recoveryClosed
+          ? '复位核验通过，旧任务已结束；核对配方后手动点击启动新一轮'
+          : 'PLC复位已完成；请查询旧任务和启动准入，不自动启动';
+        diagnostic('CommissioningRecoveryResetAccepted', { runId: result.runId, recoveryWriteId: result.recoveryWriteId });
+      } catch (error) {
+        interactionNotice = window.GaodeCommissioningConsole.resetFailure(error.message);
+        diagnostic('CommissioningRecoveryResetFailed', { code: error.message, disposition: 'Held_NoAutomaticRetry' });
+      } finally { commandPending = false; await refresh(); }
+      return;
+    }
     const recoveryAction = latestRun?.failedCommandRecovery && latestRun.allowedActions?.find(x =>
       x === 'RecoveryReset' || x === 'RecoveryCheck');
     if (!commandPending && runId && recoveryAction) {
@@ -572,8 +675,14 @@
     commandPending = true;
     manualRemovalButton.disabled = true;
     try {
+      if(commissioning && pendingOperation?.operationKind==='ManualRemoval' && pendingOperation.runId===runId) {
+        interactionNotice='人工确认结果尚未核定，只查询原运行，不重复提交';await refresh();return;
+      }
+      const confirmationId=crypto.randomUUID();
+      if(commissioning) savePending({schemaVersion:'commissioning-pending/1',operationKind:'ManualRemoval',subjectId:confirmedIdentity.subjectId,
+        apiOrigin:apiBase,mode:host.mode,runId,requestId:confirmationId,state:'Submitting'});
       const confirmation = await post(`/api/v1/station01/runs/${encodeURIComponent(runId)}/manual-removal-confirmations`, {
-        requestId: crypto.randomUUID(), expectedRevision: latestRun.observedRevision, reason
+        requestId: confirmationId, expectedRevision: latestRun.observedRevision, reason
       });
       interactionNotice = `取盘确认已受理；${confirmation?.state || '等待查询最终提交'}`;
       diagnostic('ManualRemovalAccepted', { runId, finalEventId: confirmation?.finalEventId });
@@ -586,26 +695,45 @@
   });
   const startButton = Array.from(document.querySelectorAll('button')).find(button => button.textContent.includes('启动'));
   if (startButton) startButton.addEventListener('click', async () => {
+    const finalSaved = latestEvidence?.finalResult === 'FinalUnloadCompletion' && !!latestEvidence?.finalSourceMatrix;
+    const recoveredNext = commissioning && window.GaodeCommissioningConsole.canStartAfterRecovery(latestRun, nextAdmission);
+    const normalNext = commissioning && (finalSaved || recoveredNext) && nextAdmission?.state === 'Available' &&
+      (!pendingOperation || pendingOperation.subjectId===confirmedIdentity.subjectId);
+    if (normalNext) { startSubmitted=false; pendingOperation=null; }
+    if (commissioning && !startSubmitted) {
+      try { prepared=window.GaodeCommissioningConsole.newStart(host.commissioningTemplate, selectedRecipe,()=>crypto.randomUUID()); }
+      catch(error) { interactionNotice='请先选择已保存配方，并核对联调启动配置';render(latestStatus,latestRun,latestEvidence);return; }
+    }
     const preparedRequest = preparedSelection();
     diagnostic('StartClicked', { commandPending, startSubmitted,
       preparedValid: legalPreparedRequest(preparedRequest) });
     if (commandPending) { interactionNotice = '启动请求处理中；查询原请求，不重复提交'; render(latestStatus, latestRun, latestEvidence); return; }
     const faultRestart = latestRun?.faultRestart;
     const restartReady = runId && latestRun?.allowedActions?.includes('RestartFullRun') && faultRestart?.status === 'InitialReady';
-    if (runId && !restartReady) { interactionNotice = `已有运行 ${runId}，不能再次启动；仅查询原任务或请授权人员核查`; render(latestStatus, latestRun, latestEvidence); return; }
+    if (runId && !restartReady && !normalNext) { interactionNotice = `已有运行 ${runId}，不能再次启动；仅查询原任务或请授权人员核查`; render(latestStatus, latestRun, latestEvidence); return; }
     if (startSubmitted && !restartReady) { interactionNotice = '启动请求已发送；查询原请求，不重复提交'; render(latestStatus, latestRun, latestEvidence); return; }
     if (!legalPreparedRequest(preparedRequest)) {
       diagnostic('StartRejectedLocally', { code: 'PreparedRequestInvalid', postSent: false });
-      setText('faultList', 'Test上料请求未准备或配置不符'); return;
+      setText('faultList', commissioning ? '联调启动资料未准备或配置不符' : 'Test上料请求未准备或配置不符'); return;
     }
     startSubmitted = true; commandPending = true; setText('verdictBig', '—');
     try {
       diagnostic('StartPosting', { publicConfigRef: prepared.publicConfigRef,
         budgetRef: prepared.budgetRef, simulationRef: prepared.simulationRef });
-      const request = restartReady ? { ...preparedRequest, requestId: crypto.randomUUID(),
+      const request = recoveredNext ? { ...preparedRequest,
+        commissioningRestartFrom: { runId, recoveryWriteId: latestRun.commissioningRecovery.recoveryWriteId } }
+        : restartReady ? { ...preparedRequest, requestId: crypto.randomUUID(),
         restartFrom: { faultRunId: runId, resetId: faultRestart.resetId,
           initialCheckId: faultRestart.initialCheckId, expectedFaultRevision: latestRun.observedRevision } } : preparedRequest;
+      if (commissioning) {
+        const bytes=new TextEncoder().encode(JSON.stringify(request));
+        const digest=Array.from(new Uint8Array(await crypto.subtle.digest('SHA-256',bytes))).map(b=>b.toString(16).padStart(2,'0')).join('');
+        savePending({schemaVersion:'commissioning-pending/1',operationKind:'Start',apiOrigin:apiBase,mode:host.mode,
+          stationScope:host.commissioningTemplate.contextTemplate.stationId,subjectId:confirmedIdentity.subjectId,
+          requestId:request.requestId,trayId:JSON.parse(request.contextJson).trayId,requestDigest:digest,state:'Submitting'});
+      }
       receipt = await window.station01.start(request);
+      if(commissioning) savePending({...pendingOperation,commandId:receipt?.commandId,runId:receipt?.runId,state:'Accepted'});
       lastStartFailure = null;
       lastStartHttpStatus = null;
       interactionNotice = null;
@@ -623,6 +751,7 @@
       diagnostic('StartFailed', { code: error.contract?.code || 'ResponseUnknown',
         httpStatus: error.contract?.httpStatus, traceId: error.contract?.traceId,
         runCreated: error.contract?.details?.runCreated, disposition: 'QueryOnly_NoAutomaticResend' });
+      if(commissioning && error.contract?.details?.runCreated===false) { viewStorage?.removeItem(pendingKey);pendingOperation=null;startSubmitted=false; }
       lastStartHttpStatus = error.contract?.httpStatus;
       lastStartFailure = [401, 403].includes(lastStartHttpStatus)
         ? `后端拒绝访问（${lastStartHttpStatus}）；请核对登录与权限`

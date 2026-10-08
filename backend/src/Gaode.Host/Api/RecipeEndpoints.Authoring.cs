@@ -179,16 +179,18 @@ public static partial class RecipeEndpoints
             catch (JsonException error) { return BadAuthoringRequest(http, error.Message); }
             catch (Exception error) when (IsStorageReadError(error)) { return ReadUnavailable(http, error); }
         }).RequireAuthorization(Station01Authorization.RecipeWrite);
-        group.MapGet("/catalog", async (IRecipeCatalog catalog, IAuthorizationService authorization, HttpContext http) =>
+        group.MapGet("/catalog", async (IRecipeCatalog catalog, IAuthorizationService authorization, HttpContext http,
+            Gaode.Application.Ports.IPublicConfiguration configuration, Gaode.Host.Composition.Station01RuntimeOptions runtime) =>
         {
             try
             {
                 var snapshot = catalog.GetSnapshot();
+                var purpose = configuration.LoadPublic(runtime.PublicReference).Value.Purpose;
                 var items = snapshot.Definitions.Select(definition =>
                 {
-                    var admission = RecipeAdmission.Evaluate(definition, definition.Positions.Select(p => p.SlotId), definition.Approval.Purpose);
+                    var admission = RecipeAdmission.Evaluate(definition, definition.Positions.Select(p => p.SlotId), purpose);
                     return new { definition.RecipeId, definition.Version, definition.Model, definition.FCode,
-                        definition.ScenarioId, definition.UnitKind, definition.Route, definition.InspectionKind, purpose = definition.Approval.Purpose,
+                        definition.ScenarioId, definition.UnitKind, definition.Route, definition.InspectionKind, purpose,
                         snapshot.CatalogDigest, definition.DefinitionDigest,
                         availability = admission.Eligible ? "Available" : "Restricted", restriction = admission.Reason, admission };
                 }).ToArray();
@@ -222,7 +224,8 @@ public static partial class RecipeEndpoints
             catch (Exception error) when (IsStorageReadError(error)) { return ReadUnavailable(http, error); }
         }).RequireAuthorization(Station01Authorization.Read);
 
-        group.MapPost("/validate", async (HttpContext http, IRecipeCatalog catalog) =>
+        group.MapPost("/validate", async (HttpContext http, IRecipeCatalog catalog,
+            Gaode.Application.Ports.IPublicConfiguration configuration, Gaode.Host.Composition.Station01RuntimeOptions runtime) =>
         {
             try
             {
@@ -233,7 +236,7 @@ public static partial class RecipeEndpoints
                 CheckMetadata(candidate, existing);
                 var result = RecipeDefinitionValidator.ValidateForSave(candidate, current);
                 return Results.Ok(new { result.Valid, result.Issues,
-                    admission = result.Valid ? RecipeAdmission.Evaluate(candidate, candidate.Positions.Select(p => p.SlotId), candidate.Approval.Purpose) : null });
+                    admission = result.Valid ? RecipeAdmission.Evaluate(candidate, candidate.Positions.Select(p => p.SlotId), configuration.LoadPublic(runtime.PublicReference).Value.Purpose) : null });
             }
             catch (UnauthorizedAccessException) { return MetadataDenied(http); }
             catch (JsonException error) { return BadAuthoringRequest(http, error.Message); }

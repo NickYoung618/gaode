@@ -17,6 +17,7 @@ internal sealed class CameraProDriver(CameraBinding binding, Guid session, strin
     private ulong? previousIndex;
     private long packetLimit;
     private Dictionary<string, string>? imagingBefore;
+    private readonly Dictionary<ParamType, int> changedImaging = [];
     public override long MaxBytes => packetLimit;
     private static void Check(int code, string operation)
     { if (code != CameraPro.AC_OK) throw new IOException($"CameraPro {operation}: {code}"); }
@@ -68,6 +69,31 @@ internal sealed class CameraProDriver(CameraBinding binding, Guid session, strin
         info.outputSettings.sendPoint3D = true; info.outputSettings.sendDepthmap = true; info.outputSettings.sendRemapTexture = true;
         info.outputSettings.sendTexture = false; info.outputSettings.sendPointUV = false; info.outputSettings.sendNormals = false;
         info.outputSettings.sendTriangleIndices = false; info.outputSettings.sendPointColor = false;
+    }
+    public override ActualCameraSettings ApplySettings(CameraImagingSettings settings)
+    {
+        if (!opened || camera is null || info is null) throw new InvalidOperationException("CameraNotReady");
+        // Vendor Camera.cs specifies IR_Exposure in integer ms, range [1,100].
+        if (settings.ExposureUs < 1000 || settings.ExposureUs > 100000 || settings.ExposureUs % 1000 != 0)
+            throw new NotSupportedException("CameraProExposureRequiresIntegerMilliseconds1To100");
+        if (settings.Gain is { } gain && (!double.IsFinite(gain) || gain < 0 || gain > 15 || gain != Math.Truncate(gain)))
+            throw new NotSupportedException("CameraProGainRequiresInteger0To15");
+        if (settings.RoiPixels is { } roi && !roi.SequenceEqual(new[] { 0, 0, Width, Height }))
+            throw new NotSupportedException("CameraProNonFullFrameRoiUnsupported");
+        void Apply(ParamType param, int value)
+        {
+            var original = 0; Check(camera.GetValue(info, param, ref original), "ReadBeforeSet " + param);
+            changedImaging.TryAdd(param, original);
+            Check(camera.SetValue(info, param, value), "Set " + param);
+            var actual = -1; Check(camera.GetValue(info, param, ref actual), "ReadBack " + param);
+            if (actual != value) throw new InvalidDataException("ParameterReadbackMismatch:" + param);
+            Parameters[param.ToString()] = actual.ToString();
+        }
+        Apply(ParamType.IR_Exposure, settings.ExposureUs / 1000);
+        if (settings.Gain is { } requestedGain) Apply(ParamType.IR_Gain, checked((int)requestedGain));
+        var actualGain = -1; Check(camera.GetValue(info, ParamType.IR_Gain, ref actualGain), "ReadActualGain");
+        Save("imaging-settings-to-restore.json", changedImaging);
+        return new(settings.ExposureUs, actualGain, Width, Height, 0, 0);
     }
     public override unsafe WorkerFrame Capture()
     {
@@ -152,6 +178,16 @@ internal sealed class CameraProDriver(CameraBinding binding, Guid session, strin
         var errors = new List<string>();
         if (opened && info is not null && camera is not null)
         {
+            foreach (var pair in changedImaging)
+            {
+                try
+                {
+                    Check(camera.SetValue(info, pair.Key, pair.Value), "Restore " + pair.Key);
+                    var actual = -1; Check(camera.GetValue(info, pair.Key, ref actual), "ReadRestored " + pair.Key);
+                    if (actual != pair.Value) throw new InvalidDataException("RestoredParameterMismatch:" + pair.Key);
+                }
+                catch (Exception error) { errors.Add(error.Message); }
+            }
             if (changed)
             {
                 try
@@ -176,7 +212,8 @@ internal sealed class CameraProDriver(CameraBinding binding, Guid session, strin
                 after = imagingAfter?.GetValueOrDefault(x.Key), equal = imagingAfter?.GetValueOrDefault(x.Key) == x.Value }).ToArray();
             Save("restoration.json", new { restored = errors.Count == 0, errors, originalMode = oldMode, restoredMode,
                 imagingBefore, imagingAfter, comparisons, imagingUnchanged = comparisons is not null && comparisons.All(x => x.equal),
-                imagingComparisonNote = "Read-only comparison. CameraInfo dimensions are SDK cached values, not an independent device dimension readback; no imaging parameter writes." });
+                changedImaging,
+                imagingComparisonNote = "Only requested IR imaging parameters are restored. CameraInfo dimensions remain SDK cached values." });
             try { camera.Close(info); } catch (Exception error) { errors.Add(error.Message); }
             opened = false;
         }

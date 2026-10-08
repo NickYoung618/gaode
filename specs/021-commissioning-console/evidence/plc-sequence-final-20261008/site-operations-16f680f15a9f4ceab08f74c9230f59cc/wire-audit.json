@@ -1,0 +1,118 @@
+{
+  "environment": "OFFLINE_LOOPBACK",
+  "result": "Full XYZ closure before startup clear; second same-target action reused",
+  "ResetEdges": 0,
+  "StartEdges": 1,
+  "MotionEdges": 3,
+  "writes": [
+    {
+      "Offset": 1005,
+      "Words": [
+        256
+      ],
+      "Accepted": true
+    },
+    {
+      "Offset": 1003,
+      "Words": [
+        1
+      ],
+      "Accepted": true
+    },
+    {
+      "Offset": 1003,
+      "Words": [
+        257
+      ],
+      "Accepted": true
+    },
+    {
+      "Offset": 1012,
+      "Words": [
+        0,
+        16256
+      ],
+      "Accepted": true
+    },
+    {
+      "Offset": 1014,
+      "Words": [
+        0,
+        16384
+      ],
+      "Accepted": true
+    },
+    {
+      "Offset": 1000,
+      "Words": [
+        256
+      ],
+      "Accepted": true
+    },
+    {
+      "Offset": 1001,
+      "Words": [
+        1
+      ],
+      "Accepted": true
+    },
+    {
+      "Offset": 1000,
+      "Words": [
+        0
+      ],
+      "Accepted": true
+    },
+    {
+      "Offset": 1001,
+      "Words": [
+        0
+      ],
+      "Accepted": true
+    },
+    {
+      "Offset": 1016,
+      "Words": [
+        0,
+        16448
+      ],
+      "Accepted": true
+    },
+    {
+      "Offset": 1001,
+      "Words": [
+        256
+      ],
+      "Accepted": true
+    },
+    {
+      "Offset": 1005,
+      "Words": [
+        0
+      ],
+      "Accepted": true
+    },
+    {
+      "Offset": 1001,
+      "Words": [
+        0
+      ],
+      "Accepted": true
+    },
+    {
+      "Offset": 1003,
+      "Words": [
+        1
+      ],
+      "Accepted": true
+    }
+  ],
+  "startClears": [
+    {
+      "ZLow": 0,
+      "ZHigh": 16448,
+      "ZRequest": 0,
+      "ZFeedback": 0
+    }
+  ]
+}

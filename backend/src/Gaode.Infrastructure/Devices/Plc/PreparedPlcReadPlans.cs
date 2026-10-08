@@ -20,17 +20,20 @@ internal sealed class PreparedPlcReadPlans
     internal static readonly SignalId[] BaseWithoutAxes = Base.Except(Axes).ToArray();
     internal static readonly SignalId[] BaseWithoutGripper = Base.Where(id=>id!=SignalId.GrabActiveId).ToArray();
     internal static readonly SignalId[] BaseWithoutAxesOrGripper = BaseWithoutAxes.Where(id=>id!=SignalId.GrabActiveId).ToArray();
-    internal static readonly SignalId[] Transfer = [SignalId.SortingExecStatus, .. Position];
+    internal static readonly SignalId[] Transfer = [SignalId.SortingCmd, SignalId.SortingExecStatus, .. Position];
     internal static readonly SignalId[] Gripper = [SignalId.GrabActiveId];
-    internal static readonly SignalId[] Rotation = [SignalId.RPosConfirmed, SignalId.MachineCurrentPosR];
+    internal static readonly SignalId[] FlipClear = [SignalId.FlipSorting, SignalId.FlipStatus, SignalId.FlipUnloadStatus];
+    internal static readonly SignalId[] Rotation = [SignalId.RotateStart, SignalId.RPosConfirmed, SignalId.MachineCurrentPosR];
+    internal static readonly SignalId[] ResetPreconditions = [SignalId.PcSystemReady, SignalId.SoftStopCmd, SignalId.SystemResetCmd];
     private readonly Dictionary<UInt128, PreparedPlcReadPlan> plans = [];
     internal Guid AdmissionId { get; } = Guid.NewGuid();
     internal int Count => plans.Count;
     internal PreparedPlcReadPlans(ProtocolDefinition definition)
     {
         foreach (var field in definition.Fields) Add([field.Id]);
-        Add(definition.Fields.Select(f => f.Id)); Add(Base); Add(BaseWithoutAxes); Add(BaseWithoutGripper); Add(BaseWithoutAxesOrGripper); Add(Position); Add(Transfer); Add(Gripper); Add(Rotation);
+        Add(definition.Fields.Select(f => f.Id)); Add(Base); Add(BaseWithoutAxes); Add(BaseWithoutGripper); Add(BaseWithoutAxesOrGripper); Add(Position); Add(Transfer); Add(Gripper); Add(Rotation); Add(FlipClear);
         Add([.. Base, .. Position]);
+        if (definition.IsSiteLayout) Add(ResetPreconditions);
         Add([SignalId.PlcReadyState, SignalId.PlcModeAuto, SignalId.PlcSystemFault]);
         // Current axis batches are finite. Include every legal subset once at admission.
         for (var mask = 1; mask < 32; mask++)
@@ -42,6 +45,11 @@ internal sealed class PreparedPlcReadPlans
         {
             var values = fields.ToArray(); var key = Key(values);
             if (plans.ContainsKey(key)) return;
+            if (definition.IsSiteLayout)
+            {
+                values = values.Where(id => definition.Fields.Any(f => f.Id == id)).ToArray();
+                if (values.Contains(SignalId.AlarmBits)) values = values.Concat(ConfirmedMemoryLayout.IndependentSafetySignals.Values).Distinct().ToArray();
+            }
             var blocks = definition.ReadPlan(values);
             if (key == Key(Transfer)) blocks = blocks.OrderBy(b => b.Fields.Contains(SignalId.SortingExecStatus) ? 0 : 1).ToImmutableArray();
             var violations = definition.ValidatePlan(blocks);

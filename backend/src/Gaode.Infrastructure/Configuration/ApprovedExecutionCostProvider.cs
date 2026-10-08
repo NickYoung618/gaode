@@ -11,6 +11,17 @@ public sealed class ApprovedExecutionCostProvider : IExecutionCostProvider
     public ExecutionCostProfile Resolve(FrozenConfiguration configuration)
     {
         var budget = configuration.Budget;
+        if (budget.Purpose == Gaode.Domain.Configuration.RuntimePurposes.RealDeviceCommissioning)
+        {
+            if (configuration.Public.Purpose != budget.Purpose || budget.RecipeExecution is not { IsValid: true } cost ||
+                string.IsNullOrWhiteSpace(budget.Source) || string.IsNullOrWhiteSpace(budget.Id) || string.IsNullOrWhiteSpace(budget.Version) ||
+                string.IsNullOrWhiteSpace(configuration.BudgetDigest))
+                throw new InvalidOperationException("CommissioningRecipeExecutionBudgetMissingOrInvalid");
+            return new("configured-recipe-cost", "020-configured/1", budget.Purpose, budget.Source,
+                $"{budget.Id}/{budget.Version}", configuration.BudgetDigest, cost.CaptureMs, cost.AlgorithmMs, cost.AcquisitionReleaseMs,
+                checked(3L * budget.BusinessMs.PlcIo), 0)
+                { CaptureWaitMs = cost.CaptureWaitMs, AlgorithmWaitMs = cost.AlgorithmWaitMs, InputReleaseWaitMs = cost.InputReleaseWaitMs };
+        }
         if (budget.Purpose != "Test" || configuration.Public.Purpose != "Test" ||
             string.IsNullOrWhiteSpace(budget.Source) || string.IsNullOrWhiteSpace(configuration.BudgetDigest))
             throw new InvalidOperationException("RecipeExecutionBudgetNotApproved");

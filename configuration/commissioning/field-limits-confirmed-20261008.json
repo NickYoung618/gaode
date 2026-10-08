@@ -1,0 +1,12 @@
+{
+  "schemaVersion": "commissioning-axis-limits/1",
+  "sourceReference": "User-confirmed 2026-10-08: XY each 0-100, detection/scan/flip-grab Z each 0-10, all mm",
+  "unit": "mm",
+  "x": { "min": 0, "max": 100 },
+  "y": { "min": 0, "max": 100 },
+  "detectionZ": { "min": 0, "max": 10 },
+  "scanZ": { "min": 0, "max": 10 },
+  "flipGrabZ": { "min": 0, "max": 10 },
+  "startupSafePosition": { "x": 0, "y": 0, "detectionZ": 0 },
+  "note": "Confirmed inputs for assembling formal runtime configuration; not an executable motion command or a complete runtime profile. No new tolerance is assumed."
+}

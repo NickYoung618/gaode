@@ -1,0 +1,296 @@
+{
+  "id": "506def67a821",
+  "name": "模拟翻面件-001",
+  "state": "failed",
+  "step": 1,
+  "started": 1791393200.0128443,
+  "steps": [
+    {
+      "id": 1,
+      "name": "人工上料",
+      "state": "running"
+    },
+    {
+      "id": 2,
+      "name": "3D 初次观察",
+      "state": "queued"
+    },
+    {
+      "id": 3,
+      "name": "F 相机扫码",
+      "state": "queued"
+    },
+    {
+      "id": 4,
+      "name": "第一面 A 拍照",
+      "state": "queued"
+    },
+    {
+      "id": 5,
+      "name": "第一面 B 拍照",
+      "state": "queued"
+    },
+    {
+      "id": 6,
+      "name": "翻面取料定位",
+      "state": "queued"
+    },
+    {
+      "id": 7,
+      "name": "翻到第二面",
+      "state": "queued"
+    },
+    {
+      "id": 8,
+      "name": "放回原槽定位",
+      "state": "queued"
+    },
+    {
+      "id": 9,
+      "name": "放回原槽",
+      "state": "queued"
+    },
+    {
+      "id": 10,
+      "name": "3D 姿态复查",
+      "state": "queued"
+    },
+    {
+      "id": 11,
+      "name": "第二面 C 拍照",
+      "state": "queued"
+    },
+    {
+      "id": 12,
+      "name": "第二面 D 拍照",
+      "state": "queued"
+    },
+    {
+      "id": 13,
+      "name": "汇总并保存结果",
+      "state": "queued"
+    },
+    {
+      "id": 14,
+      "name": "返回下料位",
+      "state": "queued"
+    }
+  ],
+  "barcode": null,
+  "inspections": [],
+  "signals": [
+    {
+      "id": "9fedeb1d03",
+      "at": "2026-10-08T01:13:20+0800",
+      "epoch": 1791393200.033935,
+      "kind": "SIGNAL",
+      "title": "信号变化：Send_Data_PC_System_Ready",
+      "idSignal": "pc.PC_System_Ready",
+      "mb": 2006,
+      "before": 0,
+      "value": 1,
+      "rawRegisters": [
+        1
+      ],
+      "connectionGeneration": 1,
+      "recipeRunId": "506def67a821",
+      "recipeStep": 1
+    },
+    {
+      "id": "7350d068b2",
+      "at": "2026-10-08T01:13:20+0800",
+      "epoch": 1791393200.0620046,
+      "kind": "SIGNAL",
+      "title": "信号变化：Send_Data_Flip_Sorting",
+      "idSignal": "pc.Flip_Sorting",
+      "mb": 2014,
+      "before": 0,
+      "value": 1,
+      "rawRegisters": [
+        1
+      ],
+      "connectionGeneration": 1,
+      "recipeRunId": "506def67a821",
+      "recipeStep": 1
+    },
+    {
+      "id": "4765843d2c",
+      "at": "2026-10-08T01:13:20+0800",
+      "epoch": 1791393200.0620046,
+      "kind": "SIGNAL",
+      "title": "信号变化：Rece_Data_Flip_Status",
+      "idSignal": "plc.Flip_Status",
+      "mb": 6050,
+      "before": 0,
+      "value": 1,
+      "rawRegisters": [
+        1
+      ],
+      "connectionGeneration": 1,
+      "recipeRunId": "506def67a821",
+      "recipeStep": 1
+    },
+    {
+      "id": "0d5172f124",
+      "at": "2026-10-08T01:13:20+0800",
+      "epoch": 1791393200.1147683,
+      "kind": "SIGNAL",
+      "title": "信号变化：Rece_Data_Flip_Status",
+      "idSignal": "plc.Flip_Status",
+      "mb": 6050,
+      "before": 1,
+      "value": 2,
+      "rawRegisters": [
+        2
+      ],
+      "connectionGeneration": 1,
+      "recipeRunId": "506def67a821",
+      "recipeStep": 1
+    },
+    {
+      "id": "db2782e956",
+      "at": "2026-10-08T01:13:20+0800",
+      "epoch": 1791393200.1486394,
+      "kind": "SIGNAL",
+      "title": "信号变化：Send_Data_Flip_Sorting",
+      "idSignal": "pc.Flip_Sorting",
+      "mb": 2014,
+      "before": 1,
+      "value": 2,
+      "rawRegisters": [
+        2
+      ],
+      "connectionGeneration": 1,
+      "recipeRunId": "506def67a821",
+      "recipeStep": 1
+    },
+    {
+      "id": "a6de15884c",
+      "at": "2026-10-08T01:13:20+0800",
+      "epoch": 1791393200.1486394,
+      "kind": "SIGNAL",
+      "title": "信号变化：Rece_Data_Flip_Unload_Status",
+      "idSignal": "plc.Flip_Unload_Status",
+      "mb": 6052,
+      "before": 0,
+      "value": 1,
+      "rawRegisters": [
+        1
+      ],
+      "connectionGeneration": 1,
+      "recipeRunId": "506def67a821",
+      "recipeStep": 1
+    },
+    {
+      "id": "cca43cc548",
+      "at": "2026-10-08T01:13:20+0800",
+      "epoch": 1791393200.1819339,
+      "kind": "SIGNAL",
+      "title": "信号变化：Rece_Data_Flip_Unload_Status",
+      "idSignal": "plc.Flip_Unload_Status",
+      "mb": 6052,
+      "before": 1,
+      "value": 2,
+      "rawRegisters": [
+        2
+      ],
+      "connectionGeneration": 1,
+      "recipeRunId": "506def67a821",
+      "recipeStep": 1
+    },
+    {
+      "id": "65301e4f83",
+      "at": "2026-10-08T01:13:20+0800",
+      "epoch": 1791393200.2310164,
+      "kind": "SIGNAL",
+      "title": "信号变化：Send_Data_Flip_Sorting",
+      "idSignal": "pc.Flip_Sorting",
+      "mb": 2014,
+      "before": 2,
+      "value": 0,
+      "rawRegisters": [
+        0
+      ],
+      "connectionGeneration": 1,
+      "recipeRunId": "506def67a821",
+      "recipeStep": 1
+    }
+  ],
+  "milestones": [
+    {
+      "id": "6df9102eca",
+      "at": "2026-10-08T01:13:20+0800",
+      "epoch": 1791393200.0128443,
+      "kind": "RECIPE_STEP",
+      "title": "开始步骤：人工上料",
+      "recipeRunId": "506def67a821",
+      "recipeStep": 1,
+      "connectionGeneration": 1
+    },
+    {
+      "id": "d9d55fb5e2",
+      "at": "2026-10-08T01:13:20+0800",
+      "epoch": 1791393200.0287828,
+      "kind": "RECIPE_START",
+      "title": "用户开始本盘；真实PLC反馈推进，相机模式=simulated",
+      "recipeRunId": "506def67a821",
+      "recipeStep": 1,
+      "connectionGeneration": 1
+    },
+    {
+      "id": "8120aa1173",
+      "at": "2026-10-08T01:13:20+0800",
+      "epoch": 1791393200.1147683,
+      "kind": "RECIPE_PLC_COMPLETE",
+      "title": "PLC反馈本次翻面/取放完成",
+      "mb": 6050,
+      "before": 1,
+      "value": 2,
+      "recipeRunId": "506def67a821",
+      "recipeStep": 1,
+      "connectionGeneration": 1
+    },
+    {
+      "id": "1df49cd829",
+      "at": "2026-10-08T01:13:20+0800",
+      "epoch": 1791393200.1896582,
+      "kind": "RECIPE_PLC_COMPLETE",
+      "title": "PLC反馈本次翻面/取放完成",
+      "mb": 6052,
+      "before": 1,
+      "value": 2,
+      "recipeRunId": "506def67a821",
+      "recipeStep": 1,
+      "connectionGeneration": 1
+    },
+    {
+      "id": "2476c6a2e4",
+      "at": "2026-10-08T01:13:20+0800",
+      "epoch": 1791393200.2128596,
+      "kind": "RECIPE_CLEAR_WAIT",
+      "title": "父请求已复位，等待PLC相关旧反馈全0",
+      "mb": 2014,
+      "writeEnded": 43854013165200,
+      "deadline": 43854.115,
+      "recipeRunId": "506def67a821",
+      "recipeStep": 1,
+      "connectionGeneration": 1
+    },
+    {
+      "id": "c3315a8b1f",
+      "at": "2026-10-08T01:13:20+0800",
+      "epoch": 1791393200.461946,
+      "kind": "RECIPE_FAILED",
+      "title": "配方停在本步：父闭环末段超时，未确认清零；不自动重发MB2014",
+      "recipeRunId": "506def67a821",
+      "recipeStep": 1,
+      "connectionGeneration": 1
+    }
+  ],
+  "trail": [],
+  "result": null,
+  "simulated": true,
+  "recordPurpose": "流程测试",
+  "realInspectionResult": false,
+  "reason": "父闭环末段超时，未确认清零；不自动重发MB2014"
+}

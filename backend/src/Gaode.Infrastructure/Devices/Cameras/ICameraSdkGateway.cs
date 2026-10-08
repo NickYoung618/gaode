@@ -3,6 +3,7 @@ namespace Gaode.Infrastructure.Devices.Cameras;
 public sealed record CameraFrame(byte[] Bytes, string Format, string ContentType, long ConnectionEpoch)
 {
     public Gaode.Application.Ports.CaptureFrameMetadata? Metadata { get; init; }
+    public Gaode.Application.Ports.ActualCameraSettings? ActualSettings { get; init; }
 }
 
 /// <summary>Vendor SDK boundary. Implementations must invoke callbacks only for their session.</summary>
@@ -16,5 +17,8 @@ public interface ICameraSdkGateway : IAsyncDisposable
     Task ConfigureAsync(string cameraBindingId, int exposureUs, double gain,
         CancellationToken cancellationToken = default);
     Task<CameraFrame> TriggerAsync(string cameraBindingId, string pointVersion,
+        CancellationToken cancellationToken = default);
+    Task<CameraFrame> CaptureConfiguredAsync(string cameraBindingId, string pointVersion,
+        Gaode.Application.Ports.CameraImagingSettings settings, string settingsDigest,
         CancellationToken cancellationToken = default);
 }

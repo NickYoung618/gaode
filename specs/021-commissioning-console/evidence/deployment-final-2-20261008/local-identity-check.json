@@ -1,0 +1,38 @@
+{
+  "schemaVersion": "commissioning-local-identity-check/1",
+  "aclCurrentUserOnly": true,
+  "motionAuthorized": false,
+  "roles": [
+    {
+      "subjectId": "commissioning:station01:operator",
+      "role": "Operator",
+      "desktopProfileValidated": true,
+      "formalRegistryMatched": true,
+      "permissions": [
+        "Run.Read",
+        "Run.Start",
+        "Run.Pause",
+        "Run.Cancel",
+        "Media.Read"
+      ]
+    },
+    {
+      "subjectId": "commissioning:station01:engineer",
+      "role": "ProcessEngineer",
+      "desktopProfileValidated": true,
+      "formalRegistryMatched": true,
+      "permissions": [
+        "Run.Read",
+        "Config.Validate",
+        "Recipe.Write",
+        "Media.Read"
+      ]
+    }
+  ],
+  "credentialValuesOmitted": true,
+  "passed": true,
+  "formalTypesLoadedWithoutApplicationStart": true,
+  "businessContextFormalParserPassed": true,
+  "hardwareConnected": false,
+  "requestDispatched": false
+}

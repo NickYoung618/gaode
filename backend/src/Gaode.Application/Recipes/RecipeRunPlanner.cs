@@ -13,7 +13,7 @@ public static class RecipePlanRevision
 public static class RecipeRunPlanner
 {
     public static RecipeRunPlan BuildExecutable(RecipeDefinition definition, string trayRunId,
-        IReadOnlyList<string> occupiedSlots)
+        IReadOnlyList<string> occupiedSlots, string? purpose = null)
     {
         var recipe = RecipeCatalogSnapshots.Freeze(definition);
         if (string.IsNullOrWhiteSpace(trayRunId)) throw new ArgumentException("TrayIdentityMissing", nameof(trayRunId));
@@ -22,7 +22,7 @@ public static class RecipeRunPlanner
             occupiedSlots.Distinct(StringComparer.Ordinal).Count() != occupiedSlots.Count ||
             occupiedSlots.Any(s => !recipe.Positions.Any(p => p.SlotId == s)))
             throw new ArgumentException("OccupiedSlotsMustBeUniqueKnownAndNonempty", nameof(occupiedSlots));
-        var admission = RecipeAdmission.Evaluate(recipe, occupiedSlots, recipe.Approval.Purpose);
+        var admission = RecipeAdmission.Evaluate(recipe, occupiedSlots, purpose ?? recipe.Approval.Purpose);
         if (!admission.Eligible) throw new InvalidOperationException(admission.Reason);
         var orderedPositions = recipe.UnitKind != "looseGroup" && recipe.TrayLayout is { } layout
             ? layout.Ordered(RecipeTrayRegion.OK).Select(c => recipe.Positions.Single(p => p.CellId == c.CellId))
@@ -143,7 +143,7 @@ public static class RecipeRunPlanner
             recipe.Disposition, recipe.MotionProfile, recipe.QualityProfile, recipe.CaptureProfiles, ResolveSorting(recipe),
             recipe.Positions.Where(p => !occupiedSlots.Contains(p.SlotId, StringComparer.Ordinal)).Select(p => p.SlotId).ToArray(),
             steps, recipe.PlcRecipeId, recipe.NgCapacity, recipe.PendingCapacity)
-        { SortingGrippersByMaterial = recipe.UnitKind == "looseGroup"
+        { LightExecution = recipe.LightExecution, SortingGrippersByMaterial = recipe.UnitKind == "looseGroup"
                 ? recipe.Composition.ToDictionary(m => m.Material, m => m.SortingGripperId!.Value, StringComparer.Ordinal) : null,
             Model = recipe.Model, SortingGripperId = recipe.SortingGripperId, DefinitionDigest = recipe.DefinitionDigest, ECode = recipe.ECode,
             InspectionKind = recipe.InspectionKind, TrayLayout = recipe.TrayLayout, TraySlotMapping = recipe.TraySlotMapping,

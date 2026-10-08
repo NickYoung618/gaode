@@ -32,28 +32,50 @@ public sealed class SamePositionTests
         }, timeout.Token);
         await ready.Task.WaitAsync(timeout.Token);
         await ProtocolTcpFixture.UntilAsync(() => device.Observe().Readiness == DeviceReadiness.Ready, timeout.Token);
-        // Physical starting position: emulate PLC actual registers, not a completed Host inspection.
-        plc.Store.SetFloatFromPlc(PlcAddressMap.HoldingRegisters.MachineCurrentPosX, 11);
-        plc.Store.SetFloatFromPlc(PlcAddressMap.HoldingRegisters.MachineCurrentPosY, 22);
-        plc.Store.SetFloatFromPlc(PlcAddressMap.HoldingRegisters.MachineCurrentPosZ, 33);
-        await ProtocolTcpFixture.UntilAsync(() => device.Observe().PositionForPurpose("DetectionZ")?.ActualZ == 33, timeout.Token);
-        foreach (var id in new[] { SignalId.XPosConfirmed, SignalId.YPosConfirmed, SignalId.ZCameraPosConfirmed })
-            plc.Store.SetHoldingRegisterFromPlc(plc.Store.Definition[id].DocumentNumber, 1);
+        // Establish eligibility through actual TCP motion, durable evidence and both sides clearing.
+        var first = await Move(device, new("first", "1", 11, 22, "mm", "SIM_MACHINE", 33), timeout.Token);
         var before = plc.Engine.GetActionAudit().Actions.Count;
-        await Move(device, new("next", "1", x, y, "mm", "SIM_MACHINE", z), timeout.Token);
+        var next = await Move(device, new("next", "1", x, y, "mm", "SIM_MACHINE", z), timeout.Token);
+        Assert.True(next.Evidence!.IsCorrelated);
+        Assert.NotEqual(first.ActionId,next.ActionId);
+        Assert.NotEqual(first.Evidence!.Positions.Single().Actual.Identity.ObservationId,next.Evidence.Positions.Single().Actual.Identity.ObservationId);
         var dispatched = plc.Engine.GetActionAudit().Actions.Skip(before)
             .Where(a => a.Kind == "AxisMove" && a.Phase == "completed").Select(a => a.AxisRole).ToArray();
         Assert.Equal(expected.Length == 0 ? Array.Empty<string>() : expected.Split(','), dispatched);
         Assert.True(Math.Abs(device.Observe().PositionForPurpose("DetectionZ")!.ActualX!.Value-x) <= .01);
         Assert.True(Math.Abs(device.Observe().PositionForPurpose("DetectionZ")!.ActualY!.Value-y) <= .01);
     }
+    [Theory]
+    [InlineData("initial")]
+    [InlineData("reset")]
+    [InlineData("drift")]
+    public async Task StaticPositionWithoutCurrentClosureMustActuallyDispatch(string cause)
+    {
+        using var timeout=new CancellationTokenSource(TimeSpan.FromSeconds(20));var ct=timeout.Token;
+        await using var plc=new ProtocolTcpFixture(150);await plc.StartAsync(ct);
+        await using var device=plc.Device();await HandshakeClosureTests.Ready(device,ct);
+        var point=new FixedPoint("p","1",0,0,"mm","SIM_MACHINE",0);
+        if(cause!="initial")await Move(device,point,ct);
+        if(cause=="reset")await HandshakeClosureTests.Ready(device,ct,false);
+        if(cause=="drift")
+        {
+            plc.Store.SetFloatFromPlc(plc.Store.Definition[SignalId.MachineCurrentPosX].DocumentNumber,10);
+            await ProtocolTcpFixture.UntilAsync(()=>device.Observe().Position!.ActualX==10,ct);
+            plc.Store.SetFloatFromPlc(plc.Store.Definition[SignalId.MachineCurrentPosX].DocumentNumber,0);
+        }
+        var before=plc.Engine.GetActionAudit().Actions.Count;
+        await Move(device,point,ct);
+        var dispatched=plc.Engine.GetActionAudit().Actions.Skip(before).Where(a=>a.Kind=="AxisMove"&&a.Phase=="accepted").Select(a=>a.AxisRole).ToArray();
+        Assert.Equal(cause=="drift"?new[]{"X"}:new[]{"X","Y","DetectionZ"},dispatched);
+    }
+
     private static PortEnvelope Envelope()
     {
         var start=Stopwatch.GetTimestamp();
         return new(Guid.NewGuid(),Guid.NewGuid(),1,Guid.NewGuid(),"same-position-test","1","Test",start,
             start+Stopwatch.Frequency*10,"Stopwatch");
     }
-    private static async Task Move(LatestProtocolPlcDevice device, FixedPoint target, CancellationToken token)
+    internal static async Task<DeviceEvent> Move(LatestProtocolPlcDevice device, FixedPoint target, CancellationToken token)
     {
         var result=new TaskCompletionSource<DeviceEvent>(TaskCreationOptions.RunContinuationsAsynchronously);
         var accepted=false;
@@ -65,5 +87,11 @@ public sealed class SamePositionTests
         var completion=await result.Task.WaitAsync(token);
         Assert.True(completion.Kind == DeviceEventKind.Completed, completion.ErrorCode ?? device.Failure);
         Assert.True(accepted);
+        var position = Assert.Single(completion.Evidence!.Positions);
+        var window = new ActionWindow(Stopwatch.GetTimestamp(), Stopwatch.GetTimestamp()+Stopwatch.Frequency*5, "Stopwatch", DateTimeOffset.UtcNow, DateTimeOffset.UtcNow.AddSeconds(5));
+        var capture = await device.OpenCaptureWindowAsync(new(position.Correlation, CaptureRole.Detection, target, position, window), token);
+        var closed = await device.FinishCaptureWindowAsync(capture, new(position.Correlation.RunId, position.Correlation.OperationId, [Guid.NewGuid()], true), window, token);
+        Assert.Equal(AcquisitionState.Released, closed.State);
+        return completion;
     }
 }

@@ -53,7 +53,7 @@ try {
         $built = [regex]::Replace($built, '<link rel="preconnect" href="https://fonts\.[^"]*"[^>]*/>\r?\n?', '')
         $built = [regex]::Replace($built, '<link[^>]+href="https://fonts\.googleapis\.com[^"]*"[^>]*/>', '<link rel="stylesheet" href="./vendor/fonts.css" />')
         $authoring = if ($page -eq 'a.html') { '  <script src="./recipe-authoring.js"></script>' + [char]10 + '  <script src="./public-tray-flow.js"></script>' + [char]10 } else { '' }
-        $injection = '  <script src="./vendor/signalr.min.js"></script>' + [char]10 + $authoring + '  <script src="./runtime.js"></script>' + [char]10 + '</body>'
+        $injection = '  <script src="./vendor/signalr.min.js"></script>' + [char]10 + $authoring + '  <script src="./commissioning-console.js"></script>' + [char]10 + '  <script src="./runtime.js"></script>' + [char]10 + '</body>'
         $built = $built.Replace('</body>', $injection)
         if ([IO.File]::ReadAllText((Join-Path $FrontendRoot "dist/$page")) -cne $built) { throw "Unlisted built-page difference: $page" }
         if ($page -eq 'a.html' -and [IO.File]::ReadAllText((Join-Path $FrontendRoot 'dist/prototype.html')) -cne $built) {
@@ -63,6 +63,19 @@ try {
     }
     foreach ($resource in $manifest.resources) {
         $path = Join-Path $FrontendRoot $resource.path
+        if ($resource.exactAuthorizedChanges) {
+            # Reverse exact named existing deltas and prove the prior authorized resource hash.
+            $prior = [IO.File]::ReadAllText($path)
+            foreach ($patch in @($resource.exactAuthorizedChanges | Sort-Object offsetAfter -Descending)) {
+                if (-not $patch.requirement -or $patch.offsetAfter -lt 0 -or
+                    $patch.offsetAfter + $patch.after.Length -gt $prior.Length -or
+                    $prior.Substring($patch.offsetAfter, $patch.after.Length) -cne $patch.after) {
+                    throw "Invalid exact resource replacement: $($resource.path)/$($patch.id)"
+                }
+                $prior = $prior.Remove($patch.offsetAfter, $patch.after.Length).Insert($patch.offsetAfter, $patch.before)
+            }
+            if ((Get-TextHash $prior) -ne $resource.previousSha256) { throw "Resource baseline mismatch: $($resource.path)" }
+        }
         if (-not (Test-Path -LiteralPath $path -PathType Leaf) -or (Get-FileHash -LiteralPath $path).Hash -ne $resource.sha256) {
             throw "Unlisted resource difference: $($resource.path)"
         }

@@ -1,3 +1,5 @@
+> 020阶段B当前实施（2026-10-08）：共同配方、用途及采集消费者已按[RC-020](../../020-real-device-commissioning/contracts/recipe-chain.md)/[MC-020](../../020-real-device-commissioning/contracts/mixed-runtime.md)整合，handoff及重读从冻结CostProfile/联调快照核用途，不从空Approval推导。实际证据见[验证](../../020-real-device-commissioning/validation-stage-b.md)，历史记录不重判。
+
 > 当前确认（2026-10-06）：DUI02/03已获明确批准，原预览只读；严格按navigation-approval-20261006.md推进剩余六项。下文此前“待审/未批”是当时记录，不再作为当前阻塞。实施/验收状态以本轮实际回执更新，批准不等于Passed。
 
 # 014/012共同接入与本次唯一责任
@@ -153,3 +155,15 @@ SY-07消费核对：013保留012真实保存→F匹配新内容→运行快照�
 本会话014/012统一职责不变：014承担合法后台相机/算法/姿态/特殊两组及工位共同配置准备；012沿现StorePrep维护和同IRecipeStore/IRecipeCatalog/SQLite实际落地，调用唯一Serializer/Validator/Identity，交特殊draft→layout→保存完整GET能力。准确请求/解析/SourceRecipeId及来源版本上下文见API-L00/L01a，代码尚未修改，配置值未提供不虚构。
 
 当前目标新写正文4/记录1.5/冻结3，历史2/3与旧冻结原版本读取；同面重复组编辑必须StageId。不建立第二模板库、来源目录、模型或校验。I01—05设计关闭，DUI02/03导航于2026-10-06批准、DEP局部现场输入保留；完整审查见014 design-review，所有实施/契约迁移/删除/采证留后续正常任务，本轮未生成tasks。
+
+
+## 021受控联调用途增量（2026-10-08）
+
+本次仅定向更新021消费者合同，旧用途/历史证据保持原范围。独立规格与设计见[021规格](../../021-commissioning-console/spec.md)、[计划](../../021-commissioning-console/plan.md)、[任务](../../021-commissioning-console/tasks.md)。新用途为RealDeviceCommissioning，运行purpose为Commissioning。
+
+021复用共同正文/校验/实际SQLite读存、原ETag和完整隐藏字段，逐次坐标/曝光编辑作用于后续冻结，在途用旧值。新用途软件校验并保存后可选，不额外批准；实际F绑定/冻结及旧用途准入保持。显示PlcRecipeId不当现场REAL型号。P01–P10归属和逐卡片profile按[RM合同](../../021-commissioning-console/contracts/recipe-media-ui.md)，身份权限按[IH合同](../../021-commissioning-console/contracts/identity-host.md)。不扩技术编辑器/整套导入，不补造旧根部规格或原型附件。
+
+
+## 021追加需求的共享变更顺序（2026-10-08）
+
+用户授权可配置联调配方及“虚拟光源”选择；[CC-021](../../021-commissioning-console/contracts/configurable-commissioning.md)覆盖配方/公共配置光源模式、受控虚拟输入及页面精确例外。先021 T033定版共用字段/序列化/冻结/请求和消费者，再T034后端/T035页面/T036验证/T037证据，继续使用唯一校验/SQLite/正式执行链。不更改原型ZIP、020历史证据或现场阻断，不复制联调专用配方引擎。

@@ -1,0 +1,29 @@
+{
+  "schemaVersion": "plc-mechanics/1",
+  "purpose": "RealDeviceCommissioning",
+  "sourceReference": "User-confirmed 2026-10-08 mm/XY0..100/Z0..10/startupXYZ0; existing successful local recipe sha256:a898bc7001febf8e0d626f0542bacdac7ae7a8c493c80b3dd4d7202c81ff9a75",
+  "sortingSafePosition": null,
+  "positionBasis": {
+    "frame": "COMMISSIONING_MACHINE",
+    "unit": "mm",
+    "purpose": "RealDeviceCommissioning",
+    "sourceReference": "User-confirmed 2026-10-08 mm/XY0..100/Z0..10/startupXYZ0; existing successful local recipe sha256:a898bc7001febf8e0d626f0542bacdac7ae7a8c493c80b3dd4d7202c81ff9a75"
+  },
+  "siteOperations": {
+    "schemaVersion": "plc-site-operations/1",
+    "sourceReference": "User-confirmed 2026-10-08: MB6015 ready means reset complete/stationary/start allowed; MB2009 rising edge then Ready 1->0->1 then clear; MB2007 rising edge then clear after first actual complete motion and bilateral clearance; MB2008 and heartbeat loss stop in place, no automatic return; startup XYZ=0. See specs/021-commissioning-console/contracts/start-and-completion.md SC-021-PLC-R2."
+  },
+  "posePrograms": [
+    {
+      "model": "模拟翻面件-001",
+      "profileId": "commissioning-flip",
+      "profileVersion": "local-1.1.6",
+      "poseKey": "face-2",
+      "targetFaceWord": 2,
+      "modelWords": [],
+      "modelNumber": 666,
+      "sourceReference": "User-confirmed 2026-10-08 mm/XY0..100/Z0..10/startupXYZ0; existing successful local recipe sha256:a898bc7001febf8e0d626f0542bacdac7ae7a8c493c80b3dd4d7202c81ff9a75",
+      "purpose": "RealDeviceCommissioning"
+    }
+  ]
+}

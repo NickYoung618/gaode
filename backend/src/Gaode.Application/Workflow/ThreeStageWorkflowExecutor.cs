@@ -740,9 +740,12 @@ public sealed class ThreeStageWorkflowExecutor(
         DateTimeOffset? stageStartedAtUtc = null, DateTimeOffset? stageDeadlineAtUtc = null)
     {
         var digest = Digest(payload);
+        // Stage idempotencies are unique across the whole store, not only a Run.
+        // Keep replay stable within this tray while allowing ordinary later runs.
+        var scopedKey = $"run:{runId:N}:tray:{trayId:N}:{key}";
         var result = await eventStore.AppendAsync(new StageEventAppendRequest(Guid.NewGuid(), runId, trayId,
             stationId, lineId, stage, operationId, attempt, epoch, eventType, clock.GetUtcNow(), source,
-            quality, error, digest, payload, key, planRevision, stageStartedAtUtc,
+            quality, error, digest, payload, scopedKey, planRevision, stageStartedAtUtc,
             stageDeadlineAtUtc), cancellationToken).WaitAsync(sortingAllocator.CriticalSaveTimeout, clock,
                 cancellationToken);
         if (result.State == StageEventCommitState.Conflict)

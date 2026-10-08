@@ -50,6 +50,14 @@ public sealed class MotionCoordinator(IPlcStatePort state, IPlcActionPort action
         if (!lease.TryBeginAction(runId, actionId)) throw new InvalidOperationException("MotionResourceHeld");
     }
     public void ReleaseAfterObservedUnlock(Guid runId) => lease.ReleaseOnlyAfterVerifiedPhysicalClear(runId);
+    public void ReleaseAfterVerifiedSystemReset(Guid runId, InitialReadinessAssessment initial)
+    {
+        var current = state.Observe();
+        if (!initial.Passed || initial.ResetGeneration != current.ConnectionEpoch || !current.HasReliableObservation ||
+            current.SafetyAssessment != SafetyAssessment.Clear || current.Readiness != DeviceReadiness.Ready)
+            throw new InvalidOperationException("RecoveryResetNotObserved");
+        lease.ReleaseAfterVerifiedSystemReset(runId);
+    }
     public void MarkUnknown(Guid actionId) => lease.MarkUnknown(actionId);
     public ValueTask RequestStopAsync(PortEnvelope envelope, Action<DeviceEvent> onEvent,
         CancellationToken cancellationToken) => action.RequestStopAsync(envelope, onEvent, cancellationToken);

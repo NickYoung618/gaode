@@ -74,7 +74,11 @@ public sealed partial class RecipeDetectionExecutor
             using var reservation = media.ReserveCapture(captureId, "3D", maxBytes);
             var capture = new CaptureRequest(Envelope(request, operation), captureId, CaptureRole.ThreeD,
                 point.Id, point.Version, config.Scope.Id, config.Scope.Version, config.BindingId,
-                config.LightBindingId, intent.WriteId, maxBytes);
+                config.LightBindingId, intent.WriteId, maxBytes)
+            {
+                LightExecution = configuration.LightExecution,
+                PublicSettings = new(configuration.Id, configuration.Version, config.Parameters.ExposureUs, config.Parameters.LightLevel)
+            };
             var gate = new CaptureEvidenceGate();
             var ended = new TaskCompletionSource(TaskCreationOptions.RunContinuationsAsynchronously);
             var epoch = camera.GetConnectionEpoch(config.BindingId);

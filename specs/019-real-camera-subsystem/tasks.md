@@ -87,3 +87,5 @@ T029交付已完成：新ZIP/manifest见evidence/delivery.json，确切运行源
 用户明确重新授权隔离模拟worker＋正式Host的127.0.0.1 HTTP复验，使用全新独立目录/SQLite，不连接真实设备；先前APR-002保留为历史拒绝，不再将其解释为本轮用户禁止。执行脚本scripts/Invoke-CameraHttpFaultAcceptance.ps1，固定测试fixture且SDK路径指向空目录，核实监听地址、无SDK模块、Ready后Exit(17)记录、HTTP409拒绝、显式恢复失败503及新会话Ready，最后正常关闭。发生新的系统拒绝则原样保存并停止，不改写命令。实机SDK超时/物理断线仅形成设备/步骤/参数备份与恢复方案，待用户另行确认；T031仍按实际证据分项关闭，不以HTTP离线结果替代实机。
 
 T031进展：重新授权的正式Host HTTP退出采集409、失败恢复503及新会话Ready200已完成，见evidence/http-fault-20261007/；剩余实机两场景见hardware-fault-acceptance-plan.md，尚未执行/等待用户确认，因此T031/T030保持未完成。
+
+020阶段B共享实施前置（2026-10-08）：当前worker升级v2，新增原子设置/读回/触发及逐组件事实；无设置CaptureOnly保持参数；历史v1证据不改。精确增量以[020合同](../020-real-device-commissioning/contracts/camera-parameters.md)及[任务T031–T060](../020-real-device-commissioning/tasks.md)为准；只承接本次已授权接口，不扩大页面。保留原正文/勾选及历史验收时点。

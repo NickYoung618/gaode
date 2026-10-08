@@ -65,10 +65,19 @@ internal static class Program
                     await CameraWorkerProtocol.WriteAsync(pipe, new("closed", session, request.RequestId), ReadOnlyMemory<byte>.Empty, CancellationToken.None);
                     return 0;
                 }
-                if (request.Kind != "capture") throw new InvalidDataException("WorkerCommandInvalid");
+                if (request.Kind is not ("capture" or "capture-configured")) throw new InvalidDataException("WorkerCommandInvalid");
+                Gaode.Application.Ports.ActualCameraSettings? actual = null;
+                if (request.Kind == "capture-configured")
+                {
+                    if (request.Settings is null || string.IsNullOrWhiteSpace(request.SettingsDigest))
+                        throw new InvalidDataException("WorkerSettingsRequired");
+                    actual = driver.ApplySettings(request.Settings);
+                    Log("settings-readback", new { request.RequestId, request.SettingsDigest, actual });
+                }
                 var frame = driver.Capture();
                 await CameraWorkerProtocol.WriteAsync(pipe, new("frame", session, request.RequestId)
-                    { Metadata = frame.Metadata, Format = frame.Format, ContentType = frame.ContentType }, frame.Bytes, CancellationToken.None);
+                    { Metadata = frame.Metadata, Format = frame.Format, ContentType = frame.ContentType,
+                        ActualSettings = actual, SettingsDigest = request.SettingsDigest }, frame.Bytes, CancellationToken.None);
                 Log("frame", new { request.RequestId, frame.Metadata.FrameId, frame.Metadata.PayloadBytes });
             }
         }

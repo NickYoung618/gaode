@@ -17,6 +17,7 @@ using Microsoft.EntityFrameworkCore;
 using Gaode.Infrastructure.Devices.Plc;
 using Gaode.Infrastructure.Simulation;
 using Gaode.Infrastructure.Algorithms;
+using Gaode.Infrastructure.Devices.Cameras;
 using Gaode.Application.Workflow;
 
 namespace Gaode.Host.Composition;
@@ -26,10 +27,20 @@ public static class Station01Registration
     public static IServiceCollection AddStation01(this IServiceCollection services,
         Station01RuntimeOptions options)
     {
-        if (options.Mode is not ("FullSimulation" or "VirtualPlcIntegration" or "Production"))
+        var commissioningMode = options.Mode == RuntimePurposes.RealDeviceCommissioning;
+        if (options.Mode is not ("FullSimulation" or "VirtualPlcIntegration" or "Production" or RuntimePurposes.RealDeviceCommissioning))
             throw new InvalidOperationException("未知运行模式");
-        if (options.Cameras is not null && options.Mode != "Production")
+        if (options.Cameras is not null && options.Mode != "Production" && !commissioningMode)
             throw new InvalidOperationException("RealCameraWorkersRequireProductionMode");
+        if (commissioningMode && (options.PlcProvider != "Real" || options.Cameras is null ||
+            string.IsNullOrWhiteSpace(options.PlcHost) || options.PlcPort is < 1 or > 65535 ||
+            !double.IsFinite(options.PositionTolerance) || options.PositionTolerance <= 0 ||
+            options.PlcMechanicsPath is null || !Path.IsPathFullyQualified(options.PlcMechanicsPath) ||
+            options.PlcFieldProfilePath is null || !Path.IsPathFullyQualified(options.PlcFieldProfilePath) ||
+            options.CommissioningPath is null || options.CommissioningSha256 is null))
+            throw new InvalidOperationException("CommissioningRealDevicesAndExplicitConfigurationRequired");
+        if (!commissioningMode && (options.CommissioningPath is not null || options.CommissioningSha256 is not null))
+            throw new InvalidOperationException("CommissioningConfigurationRequiresCommissioningMode");
         if (options.PlcProvider is not ("Virtual" or "Real"))
             throw new InvalidOperationException("Gaode:PlcProvider必须为Virtual或Real");
         if (options.TestPersistenceFaultCase is { } faultCase &&
@@ -57,21 +68,32 @@ public static class Station01Registration
         var loader = new ConfigurationLoader(options.ConfigRoot, options.SchemaRoot);
         var publicConfig = loader.LoadPublic(options.PublicReference);
         var budget = loader.LoadBudget(options.BudgetReference);
-        var simulation = loader.LoadSimulation(options.SimulationReference);
-        if (publicConfig.Value.Purpose != "Test" || budget.Value.Purpose != "Test" ||
-            simulation.Value.Purpose != "Test" ||
+        var simulation = commissioningMode ? null : loader.LoadSimulation(options.SimulationReference);
+        var commissioning = commissioningMode
+            ? CommissioningAlgorithmInputs.Load(options.CommissioningPath!, options.CommissioningSha256!) : null;
+        if (!commissioningMode && (publicConfig.Value.Purpose != "Test" || budget.Value.Purpose != "Test" ||
+            simulation!.Value.Purpose != "Test" ||
             (options.Mode == "FullSimulation" && publicConfig.Value.Bindings.Any(b => b.Provider != "Simulated")) ||
-            (options.Mode == "VirtualPlcIntegration" && publicConfig.Value.Bindings.Any(b => b.Provider != (b.Role == "PLC" ? options.PlcProvider : "Simulated"))))
+            (options.Mode == "VirtualPlcIntegration" && publicConfig.Value.Bindings.Any(b => b.Provider != (b.Role == "PLC" ? options.PlcProvider : "Simulated")))))
             throw new InvalidOperationException("Test配置不得用于真实设备绑定");
+        if (commissioningMode)
+        {
+            if (options.SimulationReference != new ConfigReference(commissioning!.Value.Id, commissioning.Value.Version))
+                throw new InvalidOperationException("CommissioningFixedReferenceMismatch");
+            var validation = new PublicConfigurationValidator(Station01Policies.Create()).Validate(
+                publicConfig.Value, budget.Value, null, false, false, options.PlcProvider, true, commissioning.Value);
+            if (!validation.CanStart) throw new InvalidOperationException(string.Join(";", validation.BlockingControlErrors));
+            services.AddSingleton(commissioning);
+        }
         services.AddSingleton(options);
         services.AddSingleton<IPublicConfiguration>(loader);
         services.AddSingleton<PublicPositionTeaching>();
-        services.AddSingleton(sp => CapabilityRegistration.RegisterStation01(sp.GetRequiredService<IAlgorithmPort>(), publicConfig.Value.Purpose));
+        services.AddSingleton(sp => CapabilityRegistration.RegisterStation01(sp.GetRequiredService<IAlgorithmPort>(), publicConfig.Value.Purpose, commissioning?.Value));
         services.AddSingleton<PublicConfigurationValidator>();
         services.AddSingleton<Gaode.Application.Recipes.IExecutionCostProvider, ApprovedExecutionCostProvider>();
         if (options.Mode == "FullSimulation")
         {
-            services.AddSimulationAdapters(simulation.Value, budget.Value);
+            services.AddSimulationAdapters(simulation!.Value, budget.Value);
         }
         else
         {
@@ -79,7 +101,7 @@ public static class Station01Registration
             // test runs. Production must not silently fall back to simulated success.
             if (options.Mode == "VirtualPlcIntegration")
             {
-                services.AddSimulationAdapters(simulation.Value, budget.Value);
+                services.AddSimulationAdapters(simulation!.Value, budget.Value);
                 if (options.ImageManifestPath is not null)
                     services.AddSingleton<ICapturePort>(_ => new FileBackedCapture(options.ImageManifestPath));
                 if (options.WorkerExecutablePath is not null && options.WorkerScriptPath is not null &&
@@ -101,13 +123,25 @@ public static class Station01Registration
             else
             {
                 services.AddSingleton<TimeProvider>(_ => TimeProvider.System);
-                if (options.Cameras is null) services.AddSingleton<ICapturePort, NotIntegratedCapture>();
-                else services.AddRealCameras(options.Cameras);
-                services.AddSingleton<IAlgorithmPort, NotIntegratedAlgorithm>();
+                if (commissioningMode)
+                {
+                    services.AddSingleton<ILightGateway, SimulatedLightGateway>();
+                    services.AddRealCameras(options.Cameras!, commissioning!.Value.PublicLightChannels, requireSeven: true, publicConfig.Value);
+                    services.AddSingleton(sp => new CommissioningAlgorithm(commissioning, sp.GetRequiredService<MediaStore>()));
+                    services.AddSingleton<IAlgorithmPort>(sp => sp.GetRequiredService<CommissioningAlgorithm>());
+                    services.AddSingleton<ICommissioningRunInputs>(sp => sp.GetRequiredService<CommissioningAlgorithm>());
+                }
+                else
+                {
+                    if (options.Cameras is null) services.AddSingleton<ICapturePort, NotIntegratedCapture>();
+                    else services.AddRealCameras(options.Cameras);
+                    services.AddSingleton<IAlgorithmPort, NotIntegratedAlgorithm>();
+                }
             }
             var plcOptions = new PlcRuntimeOptions
             {
                 Provider = options.PlcProvider, Host = options.PlcHost, Port = options.PlcPort,
+                Purpose = commissioningMode ? RuntimePurposes.RealDeviceCommissioning : null,
                 UnitId = options.PlcUnitId,
                 IoTimeoutMs = options.PlcIoTimeoutMs,
                 HeartbeatTimeoutMs = budget.Value.BusinessMs.HeartbeatDisconnect,
@@ -161,7 +195,7 @@ public static class Station01Registration
         {
             _ = sp.GetRequiredService<StoreAccessGuard>();
             var builder = new DbContextOptionsBuilder<Station01DbContext>();
-            builder.UseSqlite(StoreCompatibilityProbe.ReadWriteConnectionString(options.TestRoot));
+            builder.UseSqlite(StoreCompatibilityProbe.ReadWriteConnectionString(options.TestRoot, options.StoreProfile));
             sp.GetService<ControlledTestPersistenceFault>()?.Configure(builder);
             return builder.Options;
         });
@@ -176,7 +210,7 @@ public static class Station01Registration
         services.AddSingleton(sp =>
         {
             _ = sp.GetRequiredService<StoreAccessGuard>();
-            var store = StoreCompatibilityProbe.Inspect(options.TestRoot);
+            var store = StoreCompatibilityProbe.Inspect(options.TestRoot, options.StoreProfile);
             if (!store.Compatible || store.StoreId is not { } id) throw new InvalidOperationException(store.Code);
             return new CommunicationEvidenceRecorder(sp.GetRequiredService<TraceWriter>(), id, sp.GetRequiredService<TimeProvider>(), budget.Value.BusinessMs.CriticalSave);
         });
@@ -184,7 +218,7 @@ public static class Station01Registration
         {
             _ = sp.GetRequiredService<StoreAccessGuard>();
             var builder = new DbContextOptionsBuilder<Station01DbContext>();
-            builder.UseSqlite(StoreCompatibilityProbe.ReadOnlyConnectionString(options.TestRoot));
+            builder.UseSqlite(StoreCompatibilityProbe.ReadOnlyConnectionString(options.TestRoot, options.StoreProfile));
             return new TraceQuery(builder.Options, sp.GetRequiredService<TimeProvider>(),
                 budget.Value.BusinessMs.Query);
         });
@@ -197,7 +231,7 @@ public static class Station01Registration
         services.AddSingleton<IStageEventStore>(sp => sp.GetRequiredService<StageEventStore>());
         services.AddSingleton<IWholeTrayCompletionStore>(sp => new WholeTrayCompletionStore(
             sp.GetRequiredService<DbContextOptions<Station01DbContext>>(),
-            sp.GetRequiredService<TimeProvider>()));
+            sp.GetRequiredService<TimeProvider>(), commands: sp.GetRequiredService<CommandRegistry>()));
         services.AddSingleton<IControlledRecoveryDecisionStore>(sp =>
             new ControlledRecoveryDecisionStore(
                 sp.GetRequiredService<DbContextOptions<Station01DbContext>>()));
@@ -263,8 +297,21 @@ public static class Station01Registration
                 ? bindingSchedule.BeforeRecipeBindingAsync : null,
             sp.GetService<ControlledTestPersistenceFault>() is { } continuationSchedule
                 ? continuationSchedule.BeforeRecipeContinuationAsync : null,
-            sp.GetRequiredService<TrayAnomalyDecisionService>()));
+            sp.GetRequiredService<TrayAnomalyDecisionService>(), commissioning,
+            sp.GetService<ICommissioningRunInputs>()));
         services.AddSingleton<IReservedIntegration>(new NotIntegratedPort("MES"));
+        if (commissioningMode)
+            services.AddSingleton(sp => new CommissioningRecoveryService(
+                sp.GetRequiredService<IPlcResetPort>(), sp.GetRequiredService<MotionCoordinator>(),
+                sp.GetRequiredService<CommandRegistry>(), sp.GetRequiredService<Station01Coordinator>(),
+                sp.GetRequiredService<ITraceWriter>(), sp.GetRequiredService<ITraceQuery>(),
+                id => !sp.GetRequiredService<StartPublicPreparation>().IsExecuting(id),
+                () => sp.GetRequiredService<AlgorithmRuntime>().ActiveExecutions == 0 &&
+                    sp.GetRequiredService<MediaStore>().ActiveJobs == 0 &&
+                    sp.GetRequiredService<MediaStore>().ActiveReservations == 0 &&
+                    sp.GetRequiredService<MediaStore>().ActiveLeases == 0 &&
+                    sp.GetRequiredService<PersistentCameraGateway>().Status.All(s => s.State is "Ready" or "Stopped"),
+                budget.Value.BusinessMs.XyCompletion, budget.Value.BusinessMs.CriticalSave));
         services.AddSingleton<IReservedIntegration>(new NotIntegratedPort("ModelManagement"));
         services.AddSingleton<IReservedIntegration>(new NotIntegratedPort("SampleManagement"));
         services.AddSingleton<StructuredStageDiagnostics>();

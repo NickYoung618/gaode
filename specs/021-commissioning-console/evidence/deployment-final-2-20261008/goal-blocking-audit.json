@@ -1,0 +1,27 @@
+{
+  "hardwareConnected": false,
+  "initialRecoveryPlcSemanticsConfirmed": false,
+  "packageBuiltAndVerified": true,
+  "schemaVersion": "commissioning-goal-blocking-audit/1",
+  "twoRoundBackendVerified": true,
+  "forbiddenSubstitution": "不能用0、任意位置、就绪=1猜测、延时或配置标志冒充安全确认",
+  "runtimeProfilePresent": false,
+  "package": "D:\\gaode\\artifacts\\gaode-commissioning-console-021-final-2.zip",
+  "singleFlipOfflineExecutionVerified": true,
+  "fieldUnitsConfirmed": false,
+  "recipeFormallySavedAndReloaded": true,
+  "remainingRequiredWork": [
+    "确认单位和三个Z轴范围适用性",
+    "确认首次/复位后准入、2007/2009时序、断线/软停行为",
+    "依据答复完成正式安全映射及运行配置并定向验证"
+  ],
+  "controlledIdentityFormalValidationPassed": true,
+  "launchState": "ConfigurationRequired",
+  "zRoleRangesConfirmed": false,
+  "goalComplete": false,
+  "desktopEditIsolationVerified": true,
+  "gitSubmittedOrPushed": false,
+  "blockingConditionsRepeatedAcrossAtLeastThreeGoalTurns": true,
+  "checkedUtc": "2026-10-07T23:11:23.6786177+00:00",
+  "installation": "D:\\Gaode-Station01\\commissioning-021-final-2"
+}

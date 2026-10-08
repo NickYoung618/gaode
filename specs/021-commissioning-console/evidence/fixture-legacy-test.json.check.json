@@ -1,0 +1,22 @@
+{
+  "scope": "OFFLINE:fixture-foundation-not-page-or-desktop-acceptance",
+  "identity": {
+    "schemaVersion": "station01-identity/1",
+    "profileId": null,
+    "subjectId": "test:Operator",
+    "displayName": "test:Operator",
+    "role": "Operator",
+    "permissions": [
+      "Run.Read",
+      "Run.Start",
+      "Run.Pause",
+      "Run.Cancel",
+      "Media.Read"
+    ],
+    "mode": "Test",
+    "purpose": "Test",
+    "authenticationSource": "ExistingTest"
+  },
+  "catalogStatus": 200,
+  "mediaResults": []
+}

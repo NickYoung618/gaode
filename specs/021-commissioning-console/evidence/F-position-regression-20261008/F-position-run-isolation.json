@@ -1,0 +1,105 @@
+{
+  "scope": "OFFLINE:actual-media-read;no-device-motion",
+  "observedA": {
+    "observationId": "4caf1206-a619-4fb8-904a-748856a7db17",
+    "runId": "a999cf3d-fb36-405c-8b0c-7c773ddbcd12",
+    "trayId": "50b96633-185b-4c01-976d-d0842b0401f7",
+    "captureId": "ccb7d678-2802-4413-a7c4-7ca319d9d95c",
+    "callId": "69cd8fea-2060-411d-a6e9-8fbdf64bd773",
+    "observedAtUtc": "2026-10-07T22:14:26.5420029+00:00",
+    "purpose": "InitialPreparation",
+    "checkRound": 1,
+    "relatedTransitionId": null,
+    "slots": [
+      {
+        "physicalSlotIndex": 1,
+        "presence": "Present",
+        "pose": "Normal",
+        "reason": null,
+        "cellId": "r1:c4",
+        "region": "OK",
+        "row": 1,
+        "column": 4,
+        "hasPositionIdentity": true
+      }
+    ],
+    "fLocation": {
+      "x": 10,
+      "y": 20,
+      "unit": "mm",
+      "frame": "test-frame",
+      "sourceReference": "OFFLINE:safe-fixture-only",
+      "isValid": true
+    },
+    "source": {
+      "source": 2,
+      "versionRef": "OFFLINE-inputs/1:7CEA180EF467F8D46BAE24D05245E4704154B1D438C5CFBD2F451FEAD07965F6",
+      "quality": "ControlledCommissioningAlgorithm/1",
+      "isKnown": true
+    },
+    "evidenceReferences": [
+      "controlled-input:OFFLINE-inputs/1:7CEA180EF467F8D46BAE24D05245E4704154B1D438C5CFBD2F451FEAD07965F6",
+      "OFFLINE:confirmed-fixture-only"
+    ],
+    "schemaVersion": "tray-observation/2",
+    "mappingSourceReference": "OFFLINE:slot-map",
+    "expectedPhysicalSlotIndices": [
+      1
+    ],
+    "hasCompleteCoverage": true,
+    "isEmptyTray": false,
+    "isValid": true
+  },
+  "observedB": {
+    "observationId": "fb10e80a-160a-4b75-a610-66efdc23ff19",
+    "runId": "9ef4e27c-7d55-4fd3-b941-424444fced39",
+    "trayId": "50b96633-185b-4c01-976d-d0842b0401f7",
+    "captureId": "8c849ccd-3926-4812-8678-d7febe46e4b2",
+    "callId": "611a761a-8750-4fe7-ad9c-050f95bcf1fb",
+    "observedAtUtc": "2026-10-07T22:14:26.5566608+00:00",
+    "purpose": "InitialPreparation",
+    "checkRound": 1,
+    "relatedTransitionId": null,
+    "slots": [
+      {
+        "physicalSlotIndex": 1,
+        "presence": "Present",
+        "pose": "Normal",
+        "reason": null,
+        "cellId": "r1:c4",
+        "region": "OK",
+        "row": 1,
+        "column": 4,
+        "hasPositionIdentity": true
+      }
+    ],
+    "fLocation": {
+      "x": 11,
+      "y": 21,
+      "unit": "mm",
+      "frame": "test-frame",
+      "sourceReference": "OFFLINE:edited-saved-recipe/2",
+      "isValid": true
+    },
+    "source": {
+      "source": 2,
+      "versionRef": "OFFLINE-inputs/1:7CEA180EF467F8D46BAE24D05245E4704154B1D438C5CFBD2F451FEAD07965F6",
+      "quality": "ControlledCommissioningAlgorithm/1",
+      "isKnown": true
+    },
+    "evidenceReferences": [
+      "controlled-input:OFFLINE-inputs/1:7CEA180EF467F8D46BAE24D05245E4704154B1D438C5CFBD2F451FEAD07965F6",
+      "OFFLINE:confirmed-fixture-only"
+    ],
+    "schemaVersion": "tray-observation/2",
+    "mappingSourceReference": "OFFLINE:slot-map",
+    "expectedPhysicalSlotIndices": [
+      1
+    ],
+    "hasCompleteCoverage": true,
+    "isEmptyTray": false,
+    "isValid": true
+  },
+  "oldRunStillUsesOldLocation": true,
+  "outsideTravelRejected": true
+}

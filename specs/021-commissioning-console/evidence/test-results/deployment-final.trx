@@ -1,0 +1,40 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<TestRun id="1825223f-dad6-44e9-b196-956c3fe0cc26" name="Administrator@DEMO 2026-10-08 06:45:38" runUser="demo\Administrator" xmlns="http://microsoft.com/schemas/VisualStudio/TeamTest/2010">
+  <Times creation="2026-10-08T06:45:38.1755821+08:00" queuing="2026-10-08T06:45:38.1755822+08:00" start="2026-10-08T06:45:35.1523901+08:00" finish="2026-10-08T06:45:38.1792720+08:00" />
+  <TestSettings name="default" id="3bb620ee-b870-4e69-967a-045590eb1cbf">
+    <Deployment runDeploymentRoot="Administrator_DEMO_2026-10-08_06_45_38" />
+  </TestSettings>
+  <Results>
+    <UnitTestResult executionId="83d1c2a9-e637-4a02-a0e9-221ce3016ace" testId="9ae2ccb8-e2eb-2b34-959d-9b86704fcceb" testName="Gaode.Communication.Tests.ImportedCommissioningRecipeTests.LocalFlipSourceSavesReloadsAndExecutesFormalDetectionChain" computerName="DEMO" duration="00:00:01.7049518" startTime="2026-10-08T06:45:35.4984113+08:00" endTime="2026-10-08T06:45:37.2084157+08:00" testType="13cdc9d9-ddb5-4fa4-a97d-d965ccfc6d4b" outcome="Passed" testListId="8c84fa94-04c1-424b-9868-57a2d4851a1d" relativeResultsDirectory="83d1c2a9-e637-4a02-a0e9-221ce3016ace" />
+    <UnitTestResult executionId="d80bc69b-59ab-4212-9775-0f07bd15c7e0" testId="07217e56-4b70-bb63-0e83-6c80afc23639" testName="Gaode.Communication.Tests.Devices.HandshakeClosureTests.InactiveGripperPlaceholderCannotDispatchWithoutSortingSafetyConfiguration" computerName="DEMO" duration="00:00:00.9000334" startTime="2026-10-08T06:45:37.2149974+08:00" endTime="2026-10-08T06:45:38.1122479+08:00" testType="13cdc9d9-ddb5-4fa4-a97d-d965ccfc6d4b" outcome="Passed" testListId="8c84fa94-04c1-424b-9868-57a2d4851a1d" relativeResultsDirectory="d80bc69b-59ab-4212-9775-0f07bd15c7e0" />
+  </Results>
+  <TestDefinitions>
+    <UnitTest name="Gaode.Communication.Tests.ImportedCommissioningRecipeTests.LocalFlipSourceSavesReloadsAndExecutesFormalDetectionChain" storage="d:\gaode\backend\tests\gaode.communication.tests\bin\debug\net10.0\gaode.communication.tests.dll" id="9ae2ccb8-e2eb-2b34-959d-9b86704fcceb">
+      <Execution id="83d1c2a9-e637-4a02-a0e9-221ce3016ace" />
+      <TestMethod codeBase="D:\gaode\backend\tests\Gaode.Communication.Tests\bin\Debug\net10.0\Gaode.Communication.Tests.dll" adapterTypeName="executor://xunit/VsTestRunner3/netcore/" className="Gaode.Communication.Tests.ImportedCommissioningRecipeTests" name="LocalFlipSourceSavesReloadsAndExecutesFormalDetectionChain" />
+    </UnitTest>
+    <UnitTest name="Gaode.Communication.Tests.Devices.HandshakeClosureTests.InactiveGripperPlaceholderCannotDispatchWithoutSortingSafetyConfiguration" storage="d:\gaode\backend\tests\gaode.communication.tests\bin\debug\net10.0\gaode.communication.tests.dll" id="07217e56-4b70-bb63-0e83-6c80afc23639">
+      <Execution id="d80bc69b-59ab-4212-9775-0f07bd15c7e0" />
+      <TestMethod codeBase="D:\gaode\backend\tests\Gaode.Communication.Tests\bin\Debug\net10.0\Gaode.Communication.Tests.dll" adapterTypeName="executor://xunit/VsTestRunner3/netcore/" className="Gaode.Communication.Tests.Devices.HandshakeClosureTests" name="InactiveGripperPlaceholderCannotDispatchWithoutSortingSafetyConfiguration" />
+    </UnitTest>
+  </TestDefinitions>
+  <TestEntries>
+    <TestEntry testId="9ae2ccb8-e2eb-2b34-959d-9b86704fcceb" executionId="83d1c2a9-e637-4a02-a0e9-221ce3016ace" testListId="8c84fa94-04c1-424b-9868-57a2d4851a1d" />
+    <TestEntry testId="07217e56-4b70-bb63-0e83-6c80afc23639" executionId="d80bc69b-59ab-4212-9775-0f07bd15c7e0" testListId="8c84fa94-04c1-424b-9868-57a2d4851a1d" />
+  </TestEntries>
+  <TestLists>
+    <TestList name="列表中未列出的结果" id="8c84fa94-04c1-424b-9868-57a2d4851a1d" />
+    <TestList name="所有已加载的结果" id="19431567-8539-422a-85d7-44ee4e166bda" />
+  </TestLists>
+  <ResultSummary outcome="Completed">
+    <Counters total="2" executed="2" passed="2" failed="0" error="0" timeout="0" aborted="0" inconclusive="0" passedButRunAborted="0" notRunnable="0" notExecuted="0" disconnected="0" warning="0" completed="0" inProgress="0" pending="0" />
+    <Output>
+      <StdOut>[xUnit.net 00:00:00.00] xUnit.net VSTest Adapter v3.1.5+1b188a7b0a (64-bit .NET 10.0.12)&#xD;
+[xUnit.net 00:00:00.06]   Discovering: Gaode.Communication.Tests&#xD;
+[xUnit.net 00:00:00.09]   Discovered:  Gaode.Communication.Tests&#xD;
+[xUnit.net 00:00:00.11]   Starting:    Gaode.Communication.Tests&#xD;
+[xUnit.net 00:00:02.74]   Finished:    Gaode.Communication.Tests&#xD;
+</StdOut>
+    </Output>
+  </ResultSummary>
+</TestRun>

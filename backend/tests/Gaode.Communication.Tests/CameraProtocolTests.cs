@@ -7,6 +7,21 @@ namespace Gaode.Communication.Tests;
 public sealed class CameraProtocolTests
 {
     [Fact]
+    public async Task WireV2CarriesSettingsAndRejectsV1InsteadOfDowngrading()
+    {
+        using var stream = new MemoryStream();
+        var request = new CameraWireMessage("capture-configured", Guid.NewGuid(), Guid.NewGuid())
+            { Settings = new(15000), SettingsDigest = "public-settings" };
+        await CameraWorkerProtocol.WriteAsync(stream, request, ReadOnlyMemory<byte>.Empty, default);
+        stream.Position = 0;
+        var read = (await CameraWorkerProtocol.ReadAsync(stream, 0, default)).Header;
+        Assert.Equal(2, read.Version); Assert.Equal(15000, read.Settings!.ExposureUs); Assert.Null(read.Settings.Gain);
+        using var old = new MemoryStream();
+        await CameraWorkerProtocol.WriteAsync(old, request with { Version = 1 }, ReadOnlyMemory<byte>.Empty, default);
+        old.Position = 0;
+        await Assert.ThrowsAsync<InvalidDataException>(() => CameraWorkerProtocol.ReadAsync(old, 0, default));
+    }
+    [Fact]
     public void OldSessionOrOldRequestCannotSatisfyCurrentCapture()
     {
         var current = new CameraWireMessage("capture", Guid.NewGuid(), Guid.NewGuid());

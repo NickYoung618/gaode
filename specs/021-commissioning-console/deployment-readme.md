@@ -1,0 +1,90 @@
+# 正式上位机联调包
+
+## 最新交付：final-4 / 2026-10-08
+
+本版已合入R3复位修正：有无软停均可显式申请复位；先MB2006=1、MB2008=0，新鲜读回确认后才发MB2009；保留本次MB6015先0再1、安全/XYZ零位核验及未知不重发。最新启动等待身份、关闭和复位脚本随包更新，安装时复制两个一键CMD。32项定向离线回归及2项前端组件验证通过，真实完整流程未验证。
+
+本包是全量软件部署包，不含当前安装的账号凭据、运行数据库或私有运行profile。新安装仍须按本机实际配置受控身份、运行参数及配方引用；不能直接搬用旧目录的绝对路径。config/schemas/public-config.runtime.schema.json是021运行配置schema增量，原public-config.schema.json保留来源。
+
+**PLC复位不等于旧任务恢复放行**：Commissioning重启旧Run受控恢复仍为T056缺口；上次MB2009若仍为1不会自动清除重发。现有final-3安装不会因新包生成而自动更新；使用已准备的安装补丁须先关闭程序。回退保留旧包/旧安装及补丁备份，不能清库或重放未知动作。以下早期交付记录仅代表当时状态，最新源码/验证以本节及evidence/reset-order-r3为准。
+
+本包使用正式Host、桌面、七相机Worker和正式配方/SQLite/执行链。算法为带来源和作用域的虚拟实现；勾选虚拟光源时不控制外部灯，相机仍实际拍照并保存。没有另一套虚拟页面执行程序。
+
+当前交付状态：软件包及本机独立安装；现场配置待核定，不代表正式设备完整流程已通过。本次制作和验证不连接PLC或相机。020 T055/T056继续现场Blocked；021未验子项见evidence/validation.md，不能用本包存在代替验收。
+
+## 安装和检查
+
+需要Windows x64、.NET/ASP.NET Desktop Runtime 10、WebView2 Runtime，以及本机已安装的Galaxy/CameraPro原生SDK。原生SDK未复制分发；托管相机包装及许可证随包保存。
+
+在PowerShell 7运行：
+
+```powershell
+& .\scripts\Install-CommissioningConsole.ps1 -Destination 'D:\Gaode-Station01\commissioning-021-20261008'
+& 'D:\Gaode-Station01\commissioning-021-20261008\scripts\Start-CommissioningConsole.ps1' -CheckOnly
+```
+
+安装到新的版本目录，准备运行SQLite与独立配方SQLite，再经正式SqliteRecipeStore校验录入config/recipe-source.json，新实例重读并生成实际执行计划到data/recipe-readback.json。已有目录拒绝覆盖，不改旧联调包、标签或原配方。默认入口仅检查文件配置，不连接设备。
+
+安装同时生成data/config/commissioning.json：绑定本安装实际保存的配方版本和摘要，记录当前一个单品有料/正常、四张单图与两组融合OK，F位置读取已保存正文。输入结构和摘要经正式加载器验证，不能直接用另一安装的RecipeId/Version；配方编辑后须为新版本补对应虚拟输入。算法调用仍要求本Run实际媒体，不是跳过拍照返回成功。
+
+## 已录入配方及占位
+
+来源为当前本机联调启动入口选中的1.1.6版recipe.local.json，原文件、SHA256和逐字段说明在config/recipe-source-map.json。流程为一个单品：A/B第一面→翻面取件→放回→3D复查→C/D第二面，虚拟结果OK。F位置65/50来自该文件，检测Z为5，取件和放回XY为10/10，型号数值666属于PLC通信装配，不能误用成自动生成的配方显示编号。
+
+外部灯显式虚拟；E扫码及额外旋转未启用。FlipPick/FlipPutBack正文Z=0为XY专用字段占位，不发送Z运动。各相机ROI使用本机既有采集证据的完整帧尺寸；曝光沿既有参数记录，增益1为可调整联调初值。缺失分拣夹爪值暂存1为未启用占位：固定OK路线不分拣；未确认夹爪前不可用于NG/Pending真机分拣，分拣安全配置不作假补齐，适配器在派发前检查。
+
+这些占位不表示机械安全已经确认。行程、安全信号解释和未知动作结果不能用0、延时或假成功跳过。真实算法接入后仍沿已有业务接口替换；本次F扩展只用于虚拟算法，真实算法继续提供定位结果。
+
+## 现场启动前
+
+由维护人员据现场资料配置正式公共配置、预算、PLC地址映射及机械配置、带精确配方版本的commissioning输入、七机绑定、两角色身份及桌面profile。复制runtime-profile.template.json为runtime-profile.json，填入这些文件的绝对路径及来源。身份秘密只放本机受控配置或进程环境，不写入源码、URL或日志。
+
+PLC.xls/PC.xls确定地址及类型，通信协议确定含义。现有剩余解释涉及首次/恢复准入及断线处置，未确认时正式后端保留安全门禁。不得将fieldConfigurationReviewed改成true当作绕过后端门禁；它仅表示维护配置已核对。对不明机械行程不填任意数值驱动设备。
+
+现场条件具备后，显式-Run才会启动Host并连接真实设备；本轮没有执行此操作，也没有验证此分支为现场通过。开始动作前应先查看日志/后台状态和已保存配方，现场验收另行执行。
+
+## 版本与回退
+
+manifest.json记录Git基点、实际分支、脏工作区源码快照摘要及文件校验值，source中保存本轮源码，evidence保留定向测试和桌面证据。没有提交或推送Git。
+
+本机安装使用独立版本目录，不切换旧入口。回退时关闭本版本桌面和Host，保留data日志/数据库，重新使用原有启动入口；不要把新版本运行库覆盖到旧版本。未连接设备的安装/检查无需PLC复位。若现场运行后动作结果未知，必须先按既有人工恢复规则核定，不能仅切包重发动作。
+
+
+## final-2软件修复增量
+
+本版本修复正式离线采集器跨Run误拒F触发，以及正式三阶段事件跨Run幂等键冲突；同Host完整后台两轮、人工取盘确认、SQLite重读和下一轮软件准入已通过。新事件键使用Run/Tray命名空间，同Run回放与不同正文冲突仍严格核对。旧安装/运行库保持，只为新独立运行库制作本版本；禁止用新版本自动重放旧版本在途/结果未知动作。
+
+用户给出的XY0–100、Z0–10已作为数值范围来源记录，单位和各Z轴适用性仍待确认，不能擅自改成已核定现场配置。开机/复位准入解释尚未完成，当前包仍待配置，不声明真实设备完整流程已通过。
+
+## 2026-10-08 PLC确认规则源码落实与补丁验证
+
+本轮用户确认MB2007在第一条实际运动完整闭环后清0；MB2008软停及心跳断线都停住、不自动回位。复位按MB2009上升沿、本次MB6015先0后1、检查新鲜XYZ零位后清请求。协议/地址来源原件不修改；新约定在SC-021-PLC-R2明确裁决旧软停自动回位说明。PcStartCmd新增为现场MB2007 BOOL高字节，旧Test地址表不加点。正式机械配置增加siteOperations（plc-site-operations/1及确认来源）；未提供时仍安全Unconfirmed。已提供时按已确认点表读取报警/独立安全点/光栅，不凭就绪覆盖报警，不写PLC报警。
+
+实现修改包括：现场复位不再立即清请求，等待本次Ready下降及上升；启动前读新鲜XYZ与零位比较，不自动回零；启动发MB2007上升沿，首个实际Move的XY及适用Z全部完成、位置复核与双方清零后清启动。纯同坐标复用不算首次实际运动。另纠正旧ObserveAxisClosures对现场布局无条件撤销资格及引用缺失ManualZoneOccupied的问题；按已确认现场安全点检查保留闭环资格，旧Test逻辑保留。软停仅一次派发MB2008，不发自动回位/复位，之后PhysicalStopUnconfirmed并阻断自动续发；不把软件发出命令当作物理停稳证明。完整恢复的持料/夹爪核定未自动放行。
+
+测试：plc-sequence-final.trx为35/35通过、0跳过（8项新现场握手/零位/软停/报警验证，3项既有现场协议验证，24项清零/同坐标回归）。最终现场原始通信审计、运行日志及实际SQLite位于evidence/plc-sequence-final-20261008；旧Test回归实证位于plc-sequence-legacy-final-20261008。r2/r3/r4失败与r5定向通过保留，前两次发现现场资格无条件撤销，随后暴露缺失旧ManualZoneOccupied依赖并修复；未隐藏失败。所有测试仅loopback，不连接设备，不能当作T055/T056现场通过。
+
+T046/T047完成。下一步制作源版本关联补丁并实际应用/安装校验；原final-2包/安装不覆盖。当前完整运行profile尚未装配，这属于配置工作，不再把本次已确认的PLC含义/轴范围重复列为业务待澄清。现场流程、实际SDK动作及完整桌面正常两轮仍按历史未验证范围保留；requirements只读，无Git提交推送。
+
+### 配置接入方式
+
+将config/site-operations-confirmed-20261008.json正文作为正式plc-mechanics/1中的siteOperations字段，与原posePrograms、positionBasis等并列。该文件是已确认语义来源，不是完整机械配置；不要把它直接当作PlcMechanicsPath文件。config/field-limits-confirmed-20261008.json是已确认范围来源，装配公共配置时采用它；零位检查使用正式已配置容差，不新增猜测值。旧field-limits-source-pending-review.json仅为历史来源，不代表最新确认仍未完成。缺完整运行配置时默认CheckOnly仍拒绝，不启设备。补丁不含任何本机私有身份凭据、旧运行库或自动恢复动作。
+
+## 2026-10-08 final-2→final-3补丁交付实证（T048/T049）
+
+四项Release发布完成（Host/Desktop/CameraWorker/DeploymentPrep），无硬件连接。final-2原包796项清单通过，新包final-3为834项；补丁80项变更、原始payload 6,884,990字节。实际Apply-CommissioningPatch从精确基包校验后生成artifacts/gaode-commissioning-console-021-final-3-patched，834项全部一致；随后在D:/Gaode-Station01/commissioning-021-final-3全新目录安装，正式维护入口准备真实SQLite，保存/重读配方RecipeId=1eb168da6ae44f1f983c17c48d21a59f，Version=3e477719e9454072a999a8b7acdde9d9；虚拟输入六项作用域绑定该版本、摘要校验有效。本机操作员/工程师身份新建且正式Registry/Desktop配置/业务上下文解析通过，秘密仅在新安装data/private-identity，不入包/源码/证据。旧final-2安装再核796项通过。
+
+source-match.json核九个受影响产品源码与包内快照一致；构建后收尾任务/验证文档增量另在补丁delivery-evidence保存，冻结包的tasks是构建当时状态，最终进度以本补充及当前tasks为准。补丁含源文件增量、二进制增量、确认配置来源、35项回归结果、日志与SQLite；基包/目标清单和ZIP SHA256关联，不重复制完整350MB归档。
+
+软件交付任务T046–T049完成，仅限定本次规则实现/定向回归/补丁与独立安装。完整现场公共配置、预算、PLC机械/地址及Host运行profile尚未装配并启动核验，CheckOnly仍为ConfigurationRequired/FieldRuntimeProfileMissing、派发0；不得称真机可运行或完整021验收通过。已确认的PLC就绪、复位/启动清零、停住及轴范围不再当待澄清阻塞；旧完整恢复持料/夹爪核定仍不自动放行，T055/T056保持现场未验。此前工具成功为用户报告，仓库工具本轮未重制：其通用手工MB2007/MB2009写点入口不等同正式程序新托管握手，不能以旧工具记录证明新握手现场通过。未连接设备、未执行-Run、未提交推送，requirements保持只读。
+
+## 2026-10-08 R4：完整复位恢复流程（替代上述R3当前缺口说明）
+用户已明确确认PLC系统复位会全部恢复：零件放回、夹爪松开、翻转机构回到初始状态。已新增来源绑定的restoresWorkpieceAndMechanisms配置，未加载该确认的配置仍不放行。正式/reset要求旧执行退出、采集/算法/媒体资源释放，PC先就绪并取消软停、新鲜读回后发复位上升沿，观察本次Ready先0再1，再核验安全、五根直线轴零位及相关请求/反馈清零。SQLite提交旧Run取消及恢复证据成功后才释放所有权；保留旧历史，不伪造检测完成，不续跑旧动作。
+原故障通知处提供“复位并结束旧任务”；一键复位也走同一后端入口。成功后刷新页面、核对配方，由人员手动启动完整新一轮，新请求关联旧Run及恢复提交ID。Host重启后从真实SQLite恢复旧任务占用；已核验取消的任务不会再次恢复为在途任务。
+软件验证：recovery-r4-verified.trx 40/40通过，包含8项恢复验证（正式Host三实例启动/SQLite重读、旧任务取消及新轮引用、资源未退出零复位派发、取消提交冲突不释放、旧翻转反馈不清零阻断、无来源配置拒绝）和32项现场协议/清零回归；此前final回归40通过/1失败如实保留。失败定位为清零等待连续强制新读造成8192条通信证据环覆盖；修复为首次立即读、后续按既有启用组周期采样，新鲜读回及原动作期限不变，再回归40/40。旧Test完整流程在recovery-r4-final.trx中单独通过，实证在recovery-r4-20261008-legacy。前端start-recovery组件3/3、构建和客户原型精确差异校验通过；未宣称本轮实际桌面交互或真机流程通过。
+交付方式：更新原artifacts/gaode-commissioning-console-021-final-4目录和同名ZIP，不新增编号；旧ZIP/清单/摘要及R3待应用补丁备份到artifacts/rollback-final4-r3-before-recovery-r4。同步原安装updates/reset-r3待应用补丁，根目录“应用复位修正.cmd”沿用。当前运行安装尚未覆盖：先一键关闭，再应用复位修正，再启动软件；应用更新本身不复位PLC、不发运动。完整包不含本机秘密或运行库，本安装机械配置随定向补丁更新，避免覆盖其他站点配置。
+限制：上次MB2009若仍为1，仍拒绝重新发上升沿，须核定旧复位结果；不能自动清0重试。现场完整流程及020 T055/T056继续未验证，不以离线通过替代。requirements只读、无硬件连接/复位/运动、无Git提交推送。最终文件校验及ZIP摘要见evidence/deployment-final-4-20261008/package-audit-r4.json。
+
+R4交付核对：T056/T058/T059软件任务完成，原final-4完整目录和同名ZIP已实际逐项校验；36文件补丁已在隔离目录完成备份/应用/哈希复核，并同步原安装待应用目录。现场运行文件未覆盖，T055安装实际应用/桌面现场验证及020 T055/T056保留未验证。最终摘要见package-audit-r4.json。
+
+2026-10-08 R4安装及GitHub交付状态更新：已按用户授权把R4完整包解压更新至原D:/Gaode-Station01/commissioning-021-final-3，36文件定向补丁亦已应用；964项安装文件校验通过，原配方库及运行库哈希保持不变，账号配置保留，备份位于data/deployment-backups/before-r4-20261008-160556及data/hotfix-backups。此前“补丁待应用/未覆盖本安装”属于该时刻历史记录，当前已由本段替代。T055的软件分发/安装子项已完成，仅实际桌面恢复交互与真机流程未验证，整体不借此勾选。用户后续启动后17:07只读状态为PlcHeartbeatLost、旧Run仍RecoveryRequired/PhysicalRunHeld；本次交付不证明已复位恢复或运行放行。部署包产品源码348文件与待推送源码完全一致，无新增产品改动，不需要再打二进制补丁。版本对应通过ZIP旁source-version.json及安装data/git-source-version.json记录；保留原封包sourceHead/dirtySource构建事实，不倒改历史清单。详见github-delivery-20261008.md。

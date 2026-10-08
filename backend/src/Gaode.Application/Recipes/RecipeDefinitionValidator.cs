@@ -85,10 +85,15 @@ public static class RecipeDefinitionValidator
         Require(special || targets.GroupBy(t => t.Material).All(g => g.Count() != 4 || g.Count(t => t.CameraPair == "AB") == 1),
             "FourFaceRequiresOneABThreeCD", "stages");
         Require(recipe.CaptureProfiles.All(p => p.Key == p.Value.Id && !string.IsNullOrWhiteSpace(p.Value.Version) &&
-            p.Value.Settings is { ExposureUs: > 0, BrightnessPercent: >= 0 and <= 100, SettleMs: >= 0 and <= 1000 } settings &&
+            p.Value.Settings is { ExposureUs: > 0 } settings &&
             double.IsFinite(settings.Gain) && settings.Gain > 0 && settings.RoiPixels.Length == 4 &&
             settings.RoiPixels.All(v => v >= 0) && settings.RoiPixels[2] > 0 && settings.RoiPixels[3] > 0 &&
-            !string.IsNullOrWhiteSpace(settings.LightChannel)), "RecipeCaptureProfileInvalid", "captureProfiles");
+            (recipe.LightExecution?.IsSimulated == true ||
+                !string.IsNullOrWhiteSpace(settings.LightChannel) && settings.BrightnessPercent is >= 0 and <= 100 &&
+                settings.SettleMs is >= 0 and <= 1000)), "RecipeCaptureProfileInvalid", "captureProfiles");
+        Require(recipe.CommissioningFPosition is null || recipe.CommissioningFPosition is { SchemaVersion: "commissioning-f-position/1", X: { } fx, Y: { } fy } &&
+            double.IsFinite(fx) && double.IsFinite(fy), "CommissioningFPositionInvalid", "commissioningFPosition");
+        Require(recipe.LightExecution is null || recipe.LightExecution.IsValid, "RecipeLightModeInvalid", "lightExecution");
         Require(recipe.AlgorithmRequirements.All(p => p.Key == p.Value.Id &&
             !string.IsNullOrWhiteSpace(p.Value.ParametersVersion) && !string.IsNullOrWhiteSpace(p.Value.ResultContract) &&
             p.Value.InputCount == (p.Value.Purpose == AlgorithmPurpose.FaceFusion ? 2 : 1)), "RecipeAlgorithmRequirementInvalid", "algorithmRequirements");

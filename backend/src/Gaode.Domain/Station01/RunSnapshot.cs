@@ -34,6 +34,7 @@ public sealed record RunSnapshot(
     public string? ResultRevision { get; init; }
     public ResultContextProjection? ResultContext { get; init; }
     public FaultRestartProjection? FaultRestart { get; init; }
+    public CommissioningRecoveryProjection? CommissioningRecovery { get; init; }
     public IReadOnlyList<RunMovementProjection> Movements { get; init; } = [];
     public TrayAnomalyDecisionProjection? TrayAnomalyDecision { get; init; }
     public string? TrayEndReason { get; init; }
@@ -57,6 +58,8 @@ public sealed record RunSnapshot(
         Events = [..Events, "PhysicalRestricted:" + code]
     };
 }
+
+public sealed record CommissioningRecoveryProjection(Guid RecoveryWriteId, Guid ResetId, string Status);
 
 public sealed record TrayAnomalyItem(int PhysicalSlotIndex, string CellId, string Region,
     int Row, int Column, string Type, string Reason);

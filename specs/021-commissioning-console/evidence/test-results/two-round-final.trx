@@ -1,0 +1,91 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<TestRun id="4ee838de-4308-42de-a148-339c4dae1f32" name="Administrator@DEMO 2026-10-08 06:55:30" runUser="demo\Administrator" xmlns="http://microsoft.com/schemas/VisualStudio/TeamTest/2010">
+  <Times creation="2026-10-08T06:55:30.8566681+08:00" queuing="2026-10-08T06:55:30.8566682+08:00" start="2026-10-08T06:55:19.5006404+08:00" finish="2026-10-08T06:55:30.8601548+08:00" />
+  <TestSettings name="default" id="64d31cbd-0715-4418-9e3b-9974b49593fb">
+    <Deployment runDeploymentRoot="Administrator_DEMO_2026-10-08_06_55_30" />
+  </TestSettings>
+  <Results>
+    <UnitTestResult executionId="fe1598e4-416e-4baf-bba5-6f354456769f" testId="b572591f-b4af-586f-0997-828280395be5" testName="Gaode.Communication.Tests.CommissioningWorkflowTests.LegacyTestHostRunsPublicPreparationBindingFlipAndDurableWholeTrayWorkflow" computerName="DEMO" duration="00:00:10.9336057" startTime="2026-10-08T06:55:19.8389842+08:00" endTime="2026-10-08T06:55:30.7802616+08:00" testType="13cdc9d9-ddb5-4fa4-a97d-d965ccfc6d4b" outcome="Failed" testListId="8c84fa94-04c1-424b-9868-57a2d4851a1d" relativeResultsDirectory="fe1598e4-416e-4baf-bba5-6f354456769f">
+      <Output>
+        <ErrorInfo>
+          <Message>second state=Blocked; error=InvalidOperationException</Message>
+          <StackTrace>   at Gaode.Communication.Tests.CommissioningWorkflowTests.LegacyTestHostRunsPublicPreparationBindingFlipAndDurableWholeTrayWorkflow() in D:\gaode\backend\tests\Gaode.Communication.Tests\CommissioningWorkflowTests.cs:line 159&#xD;
+   at Gaode.Communication.Tests.CommissioningWorkflowTests.LegacyTestHostRunsPublicPreparationBindingFlipAndDurableWholeTrayWorkflow() in D:\gaode\backend\tests\Gaode.Communication.Tests\CommissioningWorkflowTests.cs:line 181&#xD;
+   at Gaode.Communication.Tests.CommissioningWorkflowTests.LegacyTestHostRunsPublicPreparationBindingFlipAndDurableWholeTrayWorkflow() in D:\gaode\backend\tests\Gaode.Communication.Tests\CommissioningWorkflowTests.cs:line 188&#xD;
+   at Gaode.Communication.Tests.CommissioningWorkflowTests.LegacyTestHostRunsPublicPreparationBindingFlipAndDurableWholeTrayWorkflow() in D:\gaode\backend\tests\Gaode.Communication.Tests\CommissioningWorkflowTests.cs:line 188&#xD;
+   at Gaode.Communication.Tests.CommissioningWorkflowTests.LegacyTestHostRunsPublicPreparationBindingFlipAndDurableWholeTrayWorkflow() in D:\gaode\backend\tests\Gaode.Communication.Tests\CommissioningWorkflowTests.cs:line 188&#xD;
+   at Gaode.Communication.Tests.CommissioningWorkflowTests.LegacyTestHostRunsPublicPreparationBindingFlipAndDurableWholeTrayWorkflow() in D:\gaode\backend\tests\Gaode.Communication.Tests\CommissioningWorkflowTests.cs:line 188&#xD;
+--- End of stack trace from previous location ---</StackTrace>
+        </ErrorInfo>
+      </Output>
+    </UnitTestResult>
+  </Results>
+  <TestDefinitions>
+    <UnitTest name="Gaode.Communication.Tests.CommissioningWorkflowTests.LegacyTestHostRunsPublicPreparationBindingFlipAndDurableWholeTrayWorkflow" storage="d:\gaode\backend\tests\gaode.communication.tests\bin\debug\net10.0\gaode.communication.tests.dll" id="b572591f-b4af-586f-0997-828280395be5">
+      <Execution id="fe1598e4-416e-4baf-bba5-6f354456769f" />
+      <TestMethod codeBase="D:\gaode\backend\tests\Gaode.Communication.Tests\bin\Debug\net10.0\Gaode.Communication.Tests.dll" adapterTypeName="executor://xunit/VsTestRunner3/netcore/" className="Gaode.Communication.Tests.CommissioningWorkflowTests" name="LegacyTestHostRunsPublicPreparationBindingFlipAndDurableWholeTrayWorkflow" />
+    </UnitTest>
+  </TestDefinitions>
+  <TestEntries>
+    <TestEntry testId="b572591f-b4af-586f-0997-828280395be5" executionId="fe1598e4-416e-4baf-bba5-6f354456769f" testListId="8c84fa94-04c1-424b-9868-57a2d4851a1d" />
+  </TestEntries>
+  <TestLists>
+    <TestList name="列表中未列出的结果" id="8c84fa94-04c1-424b-9868-57a2d4851a1d" />
+    <TestList name="所有已加载的结果" id="19431567-8539-422a-85d7-44ee4e166bda" />
+  </TestLists>
+  <ResultSummary outcome="Failed">
+    <Counters total="1" executed="1" passed="0" failed="1" error="0" timeout="0" aborted="0" inconclusive="0" passedButRunAborted="0" notRunnable="0" notExecuted="0" disconnected="0" warning="0" completed="0" inProgress="0" pending="0" />
+    <Output>
+      <StdOut>[xUnit.net 00:00:00.00] xUnit.net VSTest Adapter v3.1.5+1b188a7b0a (64-bit .NET 10.0.12)&#xD;
+[xUnit.net 00:00:00.06]   Discovering: Gaode.Communication.Tests&#xD;
+[xUnit.net 00:00:00.09]   Discovered:  Gaode.Communication.Tests&#xD;
+[xUnit.net 00:00:00.10]   Starting:    Gaode.Communication.Tests&#xD;
+info: Microsoft.Hosting.Lifetime[14]&#xD;
+      Now listening on: http://127.0.0.1:53876&#xD;
+info: Microsoft.Hosting.Lifetime[0]&#xD;
+      Application started. Press Ctrl+C to shut down.&#xD;
+info: Microsoft.Hosting.Lifetime[0]&#xD;
+      Hosting environment: Production&#xD;
+info: Microsoft.Hosting.Lifetime[0]&#xD;
+      Content root path: D:\gaode\backend\tests\Gaode.Communication.Tests\bin\Debug\net10.0&#xD;
+info: Gaode.Host.Lifecycle.Station01HostedService[0]&#xD;
+      StartupPersistence category=Lifecycle phase=Started deviceServicesStarted=false&#xD;
+info: Gaode.Host.Lifecycle.Station01HostedService[0]&#xD;
+      Station01 Host������δ���������=0���ָ�״̬���Զ�����&#xD;
+info: Gaode.Host.Lifecycle.Station01HostedService[0]&#xD;
+      StartupPersistence category=Lifecycle phase=Completed unfinishedRuns=0; device startup may now proceed&#xD;
+info: Gaode.Infrastructure.Diagnostics.StructuredStageDiagnostics[0]&#xD;
+      StartupDiagnostic category=CommandFlow requestId=OFFLINE-normal-chain commandId=d037223b-abd5-475f-8f78-93d9756f657c runId=526a2c43-8b6b-45e4-894c-0225ad5a4523 stage=Admission classification=Accepted disposition=RunCreated connectionEpoch=(null) observedAtUtc=(null) source=(null)&#xD;
+info: Gaode.Infrastructure.Diagnostics.StructuredStageDiagnostics[0]&#xD;
+      StartupDiagnostic category=CommandFlow requestId=OFFLINE-normal-chain-second commandId=a7346f45-0fea-4b4a-8498-a896a1285a64 runId=32d7a429-2d25-431c-9827-c1dde07a2560 stage=Admission classification=Accepted disposition=RunCreated connectionEpoch=(null) observedAtUtc=(null) source=(null)&#xD;
+fail: Gaode.Infrastructure.Diagnostics.StructuredStageDiagnostics[0]&#xD;
+      StartupDiagnostic category=CommandFlow requestId=OFFLINE-normal-chain-second commandId=a7346f45-0fea-4b4a-8498-a896a1285a64 runId=32d7a429-2d25-431c-9827-c1dde07a2560 stage=RunningF classification=Other:InvalidOperationException disposition=BlockedNoAutomaticRetry connectionEpoch=2 observedAtUtc=2026-10-07T22:55:30.7369544+00:00 source=Virtual&#xD;
+      System.InvalidOperationException: F�Ѵ���������������&#xD;
+         at Gaode.Infrastructure.Simulation.SimulatedCapture.RequestCaptureAsync(CaptureRequest request, Action`1 onEvent, CancellationToken cancellationToken) in D:\gaode\backend\src\Gaode.Infrastructure\Simulation\SimulatedCapture.cs:line 26&#xD;
+         at Gaode.Application.Acquisition.CameraAcquisitionService.ReceiveAsync(CaptureRequest request, CancellationToken ct, Action`1 observer) in D:\gaode\backend\src\Gaode.Application\Acquisition\CameraAcquisitionService.cs:line 34&#xD;
+         at Gaode.Application.Acquisition.AcquisitionCoordinator.CaptureCoreAsync(RunExecution run, CaptureRole role, FixedPoint point, String scopeId, String scopeVersion, String cameraBinding, String lightBinding, Int64 maxBytes, CancellationToken cancellationToken) in D:\gaode\backend\src\Gaode.Application\Acquisition\AcquisitionCoordinator.cs:line 82&#xD;
+         at Gaode.Diagnostics.RuntimeDiagnostics.ObserveAsync[T](String step, Nullable`1 runId, Object facts, Func`1 action, Func`2 resultFacts, Func`2 warning) in D:\gaode\backend\src\Gaode.Application\Diagnostics\RuntimeDiagnostics.cs:line 50&#xD;
+         at Gaode.Application.Station01.Steps.FScanStep.ExecuteAsync(RunExecution run, ControlLatch control, CancellationToken cancellationToken) in D:\gaode\backend\src\Gaode.Application\Station01\Steps\FScanStep.cs:line 38&#xD;
+         at Gaode.Application.Station01.Steps.FScanStep.ExecuteAsync(RunExecution run, ControlLatch control, CancellationToken cancellationToken) in D:\gaode\backend\src\Gaode.Application\Station01\Steps\FScanStep.cs:line 78&#xD;
+         at Gaode.Application.Station01.StartPublicPreparation.ExecuteAsync(StartReceipt receipt, StartPublicRequest request, StartRunContext startContext, WorkflowIdentity identity, String subject, CancellationToken cancellationToken) in D:\gaode\backend\src\Gaode.Application\Station01\StartPublicPreparation.cs:line 271&#xD;
+info: Microsoft.Hosting.Lifetime[0]&#xD;
+      Application is shutting down...&#xD;
+[xUnit.net 00:00:11.06]       second state=Blocked; error=InvalidOperationException&#xD;
+[xUnit.net 00:00:11.06]       Stack Trace:&#xD;
+[xUnit.net 00:00:11.06]         D:\gaode\backend\tests\Gaode.Communication.Tests\CommissioningWorkflowTests.cs(159,0): at Gaode.Communication.Tests.CommissioningWorkflowTests.LegacyTestHostRunsPublicPreparationBindingFlipAndDurableWholeTrayWorkflow()&#xD;
+[xUnit.net 00:00:11.06]         D:\gaode\backend\tests\Gaode.Communication.Tests\CommissioningWorkflowTests.cs(181,0): at Gaode.Communication.Tests.CommissioningWorkflowTests.LegacyTestHostRunsPublicPreparationBindingFlipAndDurableWholeTrayWorkflow()&#xD;
+[xUnit.net 00:00:11.06]         D:\gaode\backend\tests\Gaode.Communication.Tests\CommissioningWorkflowTests.cs(188,0): at Gaode.Communication.Tests.CommissioningWorkflowTests.LegacyTestHostRunsPublicPreparationBindingFlipAndDurableWholeTrayWorkflow()&#xD;
+[xUnit.net 00:00:11.06]         D:\gaode\backend\tests\Gaode.Communication.Tests\CommissioningWorkflowTests.cs(188,0): at Gaode.Communication.Tests.CommissioningWorkflowTests.LegacyTestHostRunsPublicPreparationBindingFlipAndDurableWholeTrayWorkflow()&#xD;
+[xUnit.net 00:00:11.06]         D:\gaode\backend\tests\Gaode.Communication.Tests\CommissioningWorkflowTests.cs(188,0): at Gaode.Communication.Tests.CommissioningWorkflowTests.LegacyTestHostRunsPublicPreparationBindingFlipAndDurableWholeTrayWorkflow()&#xD;
+[xUnit.net 00:00:11.06]         D:\gaode\backend\tests\Gaode.Communication.Tests\CommissioningWorkflowTests.cs(188,0): at Gaode.Communication.Tests.CommissioningWorkflowTests.LegacyTestHostRunsPublicPreparationBindingFlipAndDurableWholeTrayWorkflow()&#xD;
+[xUnit.net 00:00:11.06]         --- End of stack trace from previous location ---&#xD;
+[xUnit.net 00:00:11.07]   Finished:    Gaode.Communication.Tests&#xD;
+</StdOut>
+    </Output>
+    <RunInfos>
+      <RunInfo computerName="DEMO" outcome="Error" timestamp="2026-10-08T06:55:30.7818906+08:00">
+        <Text>[xUnit.net 00:00:11.06]     Gaode.Communication.Tests.CommissioningWorkflowTests.LegacyTestHostRunsPublicPreparationBindingFlipAndDurableWholeTrayWorkflow [FAIL]</Text>
+      </RunInfo>
+    </RunInfos>
+  </ResultSummary>
+</TestRun>

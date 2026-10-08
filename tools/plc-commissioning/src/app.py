@@ -32,6 +32,7 @@ AXES = {
     'R': ('旋转R', 2044, 2000, 6060, 6068),
 }
 AXIS_ALARMS = {'X':6028,'Y':6029,'ZCamera':6030,'ZScan':6031,'ZGrab':6032,'R':6033}
+PLC_ALARM_BITS = ('光栅遮挡','急停按下','安全门打开','伺服过载','通信异常','PLC内部故障','心跳报警（等级未确认）','上位机报警')
 
 
 def json_bytes(data):
@@ -99,6 +100,10 @@ class App:
         self.events, self.values, self.sent, self.actions = [], {}, {}, []
         self.signal_timeline = []
         self.transport = None
+        self.generation = 0
+        self.axis_closures = {}
+        self.blocked_axes = set()
+        self.raw_parents = set()
         self.status, self.error, self.error_code = 'disconnected', '', None
         self.last_poll = self.poll_ms = None
         self.timeout_total = 0
@@ -114,6 +119,9 @@ class App:
     def event(self, kind, title, **fields):
         with self.data_lock:
             record = dict(id=uuid.uuid4().hex[:10], at=timestamp(), epoch=time.time(), kind=kind, title=title, **fields)
+            record.setdefault('connectionGeneration',getattr(self,'generation',0))
+            owner=next((a for a in self.actions if a.get('actionId')==fields.get('actionId')),None)
+            if owner:record.update(resource=owner['axis'],cycle=owner['actionId'],deadline=owner.get('deadline'))
             recipe=getattr(self,'recipe',None)
             if recipe and recipe.active():
                 record.setdefault('recipeRunId',recipe.run['id'])
@@ -149,6 +157,7 @@ class App:
             return copy.deepcopy(dict(app='Gaode Independent PLC Commissioning',version=VERSION,processId=os.getpid(),
                 recipe=self.recipe.snapshot(),session=self.session,rootPath=str(self.root),config=self.cfg,points=points,axes=axes,values=self.values,sent=self.sent,
                 actions=self.actions,events=self.events,signalTimeline=self.signal_timeline,heartbeat=self.heartbeat,status=self.status,error=self.error,
+                plcAlarmFeedback=self.alarm_feedback(),
                 localEndpoint=tr.local_endpoint if tr and tr.writer else None,remoteEndpoint=tr.remote_endpoint if tr and tr.writer else None,
                 errorCode=self.error_code,tcpConnected=bool(tr and tr.writer),fresh=self.fresh(),lastPoll=self.last_poll,
                 lastModbusResponse=tr.last_response if tr else None,pollMs=self.poll_ms,timeoutCount=self.timeout_total+(tr.timeouts if tr else 0),
@@ -160,6 +169,8 @@ class App:
             self.transport.context = dict(operationId=operation, actionId=action or operation)
 
     async def disconnect(self):
+        self.generation += 1
+        self.axis_closures.clear()
         self.recipe.disconnected()
         if self.transport:
             self.timeout_total += self.transport.timeouts
@@ -168,18 +179,43 @@ class App:
         self.heartbeat.update(enabled=False,state='off')
         for action in self.actions:
             if action['state'] in ('observing','pending'):
-                action.update(state='interrupted',plcCompleted=False,reason='通信中断，动作结果未知；启动信号需现场核对')
+                self.blocked_axes.add(action['axis'])
+                action.update(state='interrupted',reason='通信中断，动作结果未知；启动信号需现场核对')
                 self.event('ACTION_INTERRUPTED','通信中断，本次动作结果未知',operationId=action['operationId'],actionId=action['actionId'])
         self.status = 'disconnected'
 
     async def poll(self):
+        deadlines=[a['deadline'] for a in self.actions if a['state'] in ('observing','pending') and 'deadline' in a]
+        if self.recipe.active():deadlines += [p['deadline'] for p in getattr(self.recipe,'parents',{}).values() if p.get('deadline') is not None]
+        read_timed_out=False
+        try:
+            if deadlines:
+                async with asyncio.timeout_at(min(deadlines)):await self.capture()
+            else:await self.capture()
+        except TimeoutError:
+            read_timed_out=True
+            budget=min(deadlines)
+            for action in self.actions:
+                if action['state'] in ('observing','pending') and action.get('deadline',float('inf'))<=budget:
+                    action['readDeadlineExpired']=True
+            for parent in getattr(self.recipe,'parents',{}).values():
+                if parent.get('deadline') is not None and parent['deadline']<=budget:parent['readDeadlineExpired']=True
+            self.event('READ_ACTION_DEADLINE','原动作期限内未取得新鲜读取；停止推进，不重发')
+        if not read_timed_out:await self.follow_heartbeat()
+        await self.observe_actions()
+        await self.recipe.tick()
+        if read_timed_out:await self.disconnect()
+
+    async def capture(self):
         started = time.monotonic()
         self.context('poll-'+uuid.uuid4().hex[:8])
         updates = []
         for direction, count in [('PC->PLC',28),('PLC->PC',48)]:
             base = self.cfg['pcBase' if direction=='PC->PLC' else 'plcBase']
             fc = 3 if direction=='PC->PLC' else self.cfg['feedbackFc']
+            read_started = time.perf_counter_ns()
             registers = await self.transport.read(base,count,fc)
+            read_ended = time.perf_counter_ns()
             for p in self.points:
                 if p['direction'] != direction:
                     continue
@@ -188,10 +224,12 @@ class App:
                 value, quality = decode(p,raw,self.cfg)
                 updates.append((p,dict(value=value,quality=quality,registers=raw,
                     rawHex=' '.join(f'{r:04X}' for r in raw),realAlternatives=real_interpretations(raw) if p['type']=='REAL' else None,
-                    receivedAt=timestamp(),receivedEpoch=time.time())))
+                    receivedAt=timestamp(),receivedEpoch=time.time(),readStarted=read_started,readEnded=read_ended,readStartedAt=started,generation=self.generation)))
         with self.data_lock:
             for point,item in updates:
                 old = self.values.get(point['id'])
+                if point['mb']==2009 and item['value']==1 and (old or {}).get('value')!=1:
+                    self.axis_closures.clear()
                 changed = old is not None and (old['value']!=item['value'] or old['quality']!=item['quality'])
                 item['changedAt'] = time.time() if changed else (old or {}).get('changedAt')
                 item['changes'] = (old or {}).get('changes',0)+int(changed)
@@ -211,11 +249,23 @@ class App:
                 self.event('HEARTBEAT_EDGE','PLC 心跳字节翻转',mb=6038,value=request)
             self.last_hb_observed = request
             self.heartbeat['lastRequest'] = request
-        await self.follow_heartbeat()
-        await self.observe_actions()
-        await self.recipe.tick()
+        for axis, closed in list(self.axis_closures.items()):
+            _,_,start,feedback,actual = AXES[axis]
+            position = self.value(actual)
+            if (closed['generation'] != self.generation or self.fault(axis) or self.value(6015)!=1 or self.value(6016)!=1 or
+                self.value(start)!=0 or self.value(feedback)!=0 or position is None or not math.isfinite(position) or
+                abs(position-closed['actual'])>closed['tolerance']):
+                self.axis_closures.pop(axis,None)
 
-    async def write_checked(self, mb, value, operation, action=None):
+    async def write_checked(self, mb, value, operation, action=None, deadline=None):
+        try:
+            async with asyncio.timeout_at(deadline):
+                return await self._write_checked(mb,value,operation,action)
+        except TimeoutError as error:
+            self.event('WRITE_ACTION_DEADLINE','原动作期限内写入/读回未确认，不自动重发',operationId=operation,actionId=action or operation,mb=mb,deadline=deadline)
+            raise ValueError('原动作期限内写入未确认；结果未知，不自动重发') from error
+
+    async def _write_checked(self, mb, value, operation, action=None):
         before=self.value(mb)
         p = self.by_mb[mb]
         encode(p,value,self.cfg)
@@ -229,7 +279,7 @@ class App:
         self.sent[p['id']] = result
         try:
             raw = await self.transport.write(p,value)
-            result['writeResponded'] = True
+            result.update(writeResponded=True, writeEnded=time.perf_counter_ns(), generation=self.generation)
             self.event('WRITE_RESPONSE','PLC 已应答写请求',operationId=operation,actionId=action or operation,mb=mb,value=value,rawRegisters=raw)
             registers = await self.transport.read(pdu_address(p,self.cfg),2 if p['type']=='REAL' else 1,3)
             actual,quality = decode(p,registers,self.cfg)
@@ -277,6 +327,15 @@ class App:
         except Exception as error:
             hb.update(enabled=False,state='failed',error=str(error))
 
+    def alarm_feedback(self):
+        code,level=self.value(6056),self.value(6058)
+        valid=type(code) is int and type(level) is int and level in (0,1,2,3)
+        mask=(code & 0xffff) if type(code) is int else None
+        names=([PLC_ALARM_BITS[bit] if bit<8 else f'未确认报警位Bit{bit}'
+                for bit in range(16) if mask & (1<<bit)] if mask is not None else [])
+        return dict(code=code,level=level,active=names,valid=valid,readOnly=True,
+                    noAlarm=valid and mask==0 and level==0)
+
     def fault(self,axis=None):
         stop,fault = self.value(6020),self.value(6035)
         if stop == 1:
@@ -285,6 +344,10 @@ class App:
             return 'PLC 系统故障（MB6035=1）'
         if stop is None or fault is None:
             return '急停/故障字节无有效解释，请核对当前编码及现场设备'
+        alarm=self.alarm_feedback()
+        if not alarm['valid']:return 'PLC报警码或等级无有效新读值，请核对MB6056/6058'
+        if alarm['active']:return 'PLC报警：'+ '、'.join(alarm['active'])+'（MB6056；等级0不能覆盖报警位）'
+        if alarm['level'] in (2,3):return f"PLC报警等级{alarm['level']}（MB6058），禁止运动"
         if axis in AXIS_ALARMS:
             alarm=self.value(AXIS_ALARMS[axis])
             if alarm==1:return f"本轴报警（MB{AXIS_ALARMS[axis]}=1）"
@@ -294,15 +357,26 @@ class App:
     def position_satisfied(self, axis, target, tolerance):
         _, _, start, feedback, actual = AXES[axis]
         position = self.value(actual)
-        return (self.value(start) == 0 and self.value(feedback) == 1 and
-                position is not None and math.isfinite(position) and abs(position-target) <= tolerance)
+        closed = self.axis_closures.get(axis)
+        return (closed is not None and closed['generation']==self.generation and axis not in self.blocked_axes and
+                not self.fault(axis) and self.sampled_after((start,feedback,actual,6015,6016),0,self.generation) and self.value(6015)==1 and self.value(6016)==1 and
+                self.value(start)==0 and self.value(feedback)==0 and position is not None and math.isfinite(position) and
+                abs(position-closed['actual'])<=closed['tolerance'] and abs(position-target)<=tolerance)
+
+    def sampled_after(self, mbs, watermark, generation):
+        return self.fresh() and generation==self.generation and all(
+            self.values.get(self.by_mb[mb]['id'],{}).get('generation')==generation and
+            self.values[self.by_mb[mb]['id']].get('readStarted',0)>watermark and
+            time.monotonic()-self.values[self.by_mb[mb]['id']].get('readStartedAt',0)<max(3,self.cfg['pollMs']/1000*3) for mb in mbs)
 
     async def begin_axis(self, axis, target, operation, target_result=None, position_tolerance=None):
         if axis not in AXES:
             raise ValueError('未知轴')
+        if self.raw_parents:raise ValueError('手工父动作结果未确认，禁止新的运动；请核对现场状态')
+        if axis in self.blocked_axes:raise ValueError('该轴结果未知，须核对设备并复位；不自动重发')
         if any(a['axis']==axis and a['state'] in ('observing','pending') for a in self.actions):
             raise ValueError('该轴已有本次动作正在观察，请清零或等待结束')
-        await self.poll() # Fresh reads from this connection before deciding to reuse a position.
+        await self.capture() # Fresh reads from this connection before deciding to reuse a position.
         label,tmb,smb,fmb,amb = AXES[axis]
         tolerance = position_tolerance if position_tolerance is not None else self.cfg['axes'][axis].get('tolerance')
         reuse_tolerance = 0 if tolerance is None else tolerance
@@ -331,17 +405,21 @@ class App:
             if target_result is not None:
                 action.update(writeResponded=target_result['writeResponded'],readbackMatched=target_result['readbackMatched'],encodedTarget=target_result['readback'])
             action.update(state='completed', reusedPosition=True, clearRequired=False, cleared=True,
-                actual=self.value(amb), delta=self.value(amb)-target, feedback=1, coordinateAcceptance=True,
-                completionEvidence='fresh arrived=1, start=0 and actual within tolerance; position reused without dispatch',
+                actual=self.value(amb), delta=self.value(amb)-target, feedback=0, coordinateAcceptance=True,
+                completionEvidence='current connection completed and cleared; fresh feedback=0, start=0 and actual within tolerance',
                 reason='当前位置已满足目标，沿用位置；未发送启动，无需清零')
             self.event('POSITION_REUSED', action['reason'], operationId=operation, actionId=action['actionId'],
                        axis=axis, actual=action['actual'], target=target, tolerance=reuse_tolerance)
             return action
+        if self.value(fmb)!=0:
+            action.update(state='failed',reason='旧反馈尚未清零，未启动')
+            raise ValueError(action['reason'])
+        self.axis_closures.pop(axis,None)
         try:
             result=target_result if target_result is not None else await self.write_checked(tmb,target,operation,action['actionId'])
             action.update(writeResponded=result['writeResponded'],readbackMatched=result['readbackMatched'],encodedTarget=result['readback'])
             # Recheck the real fault immediately before start, through the same queue.
-            await self.poll()
+            await self.capture()
             if self.fault(axis):
                 raise ValueError(self.fault(axis))
             if operation.startswith('recipe-') and (self.value(6015)!=1 or self.value(6016)!=1):
@@ -349,69 +427,76 @@ class App:
             if self.value(smb)!=0:
                 raise ValueError('目标写入后启动字节已改变，未再次发送启动')
             action.update(previousFeedback=self.value(fmb),startBaselineFeedback=self.value(fmb),startBaselineActual=self.value(amb))
-            action['startDispatched']=True
-            start_result=await self.write_checked(smb,1,operation,action['actionId'])
-            action.update(startWriteResponded=start_result['writeResponded'],startReadbackMatched=start_result['readbackMatched'])
+            action.update(startDispatched=True,deadline=time.monotonic()+self.cfg['actionTimeout'],generation=self.generation)
+            start_result=await self.write_checked(smb,1,operation,action['actionId'],deadline=action['deadline'])
+            action.update(startWriteResponded=start_result['writeResponded'],startReadbackMatched=start_result['readbackMatched'],startWriteEnded=start_result['writeEnded'])
             action.update(state='observing',startEpoch=time.time(),reason='启动已读回，等待本次运动证据')
             self.event('START','启动 BYTE=1 已读回；观察本次运动',operationId=operation,actionId=action['actionId'],mb=smb)
-            await self.poll()
+            await self.capture()
             return action
         except Exception as error:
             sent=self.sent.get(self.by_mb[smb]['id'])
             if sent and sent['operationId']==operation:
                 action.update(startWriteResponded=sent['writeResponded'],startReadbackMatched=sent['readbackMatched'])
+            if action.get('startDispatched'):self.blocked_axes.add(axis)
             action.update(state='failed',reason=str(error),plcCompleted=False)
             self.event('ACTION_FAILED','动作未完成',operationId=operation,actionId=action['actionId'],error=str(error))
             raise
 
     async def observe_actions(self):
         for action in self.actions:
-            if action['state'] not in ('observing','pending'):
-                continue
+            if action.get('manualClearWriteEnded') and not action['cleared']:
+                start,feedback=AXES[action['axis']][2:4]
+                if self.sampled_after((start,feedback),action['manualClearWriteEnded'],action['manualClearGeneration']) and self.value(start)==0 and self.value(feedback)==0:
+                    action.update(cleared=True,reason='人工撤请求后PLC反馈已清零；动作结果仍未知，不授复用或重试')
+                    self.event('MANUAL_CLEAR_CONFIRMED',action['reason'],actionId=action['actionId'])
+            if action['state'] not in ('observing','pending'):continue
             axis=action['axis'];label,tmb,smb,fmb,amb=AXES[axis]
             feedback,actual=self.value(fmb),self.value(amb)
-            action.update(feedback=feedback,actual=actual,delta=(actual-action.get('encodedTarget',action['target'])) if actual is not None else None)
-            if self.fault(axis):
-                action.update(state='failed',plcCompleted=False,reason=self.fault(axis)+'；启动信号需现场核对/清零')
-                self.event('ACTION_FAILED',action['reason'],operationId=action['operationId'],actionId=action['actionId'])
+            delta=actual-action.get('encodedTarget',action['target']) if actual is not None and math.isfinite(actual) else None
+            action.update(feedback=feedback,actual=actual,delta=delta)
+            reason=self.fault(axis)
+            expired=action.get('readDeadlineExpired',False) or time.monotonic()>=action['deadline']
+            # Compatibility with existing diagnostic test controls: wall time can only shorten, never extend.
+            expired=expired or time.time()-action['startEpoch']>self.cfg['actionTimeout']
+            if reason or feedback not in (0,1,2) or expired or feedback==2 or action['generation']!=self.generation:
+                reason=reason or ('PLC清零等待超时' if action.get('clearWriteEnded') else '动作观察超时或反馈无效')
+                action.update(state='timeout' if expired or feedback==2 else 'failed',reason=reason,clearError=reason,plcCompleted=action.get('plcCompleted') is True)
+                self.blocked_axes.add(axis);self.axis_closures.pop(axis,None)
+                self.event('ACTION_TIMEOUT' if expired else 'ACTION_FAILED',reason,operationId=action['operationId'],actionId=action['actionId'],noReplay=True)
                 continue
-            if feedback not in (0,1,2):
-                action.update(state='failed',plcCompleted=False,reason='本次到位反馈无效；未确认完成，启动信号需现场核对/清零')
-                self.event('ACTION_FAILED',action['reason'],operationId=action['operationId'],actionId=action['actionId'],feedback=feedback)
+            if action.get('clearWriteEnded'):
+                if self.sampled_after((smb,fmb),action['clearWriteEnded'],action['generation']) and self.value(smb)==0 and feedback==0:
+                    action.update(state='completed',cleared=True,reason='本次到位后双方清零已确认')
+                    tolerance=action.get('positionTolerance')
+                    reuse_tolerance=0 if tolerance is None else tolerance
+                    if delta is not None and abs(delta)<=reuse_tolerance:
+                        self.axis_closures[axis]=dict(generation=self.generation,actual=actual,tolerance=reuse_tolerance)
+                    self.event('CLEAR',action['reason'],operationId=action['operationId'],actionId=action['actionId'],mb=smb,writeEnded=action['clearWriteEnded'],readStarted=self.values[self.by_mb[fmb]['id']]['readStarted'],clearEvidence={mb:dict(self.values[self.by_mb[mb]['id']]) for mb in (smb,fmb)})
                 continue
-            previous=action.get('previousFeedback')
-            action['previousFeedback']=feedback
-            action['positionChanged']=actual is not None and action['baselineActual'] is not None and actual!=action['baselineActual']
-            if feedback==0 and previous==1 and not action['busySeen']:
-                action.update(busySeen=True,motionEvidence=True,busyObservedAt=timestamp(),completionEvidence='post-start PLC feedback 1->0')
-                self.event('MOTION_EVIDENCE','启动后观察到本轴PLC反馈1→0（运动中）；坐标变化不作完成依据',operationId=action['operationId'],actionId=action['actionId'],feedback=feedback,previousFeedback=previous,actual=actual)
-            status_position_ok=(action.get('requirePositionMatch') is True and action.get('startWriteResponded') is True and action.get('startReadbackMatched') is True and action.get('writeResponded') is True and action.get('readbackMatched') is True and action.get('delta') is not None and abs(action['delta'])<=action.get('positionTolerance',0.1))
+            if not self.sampled_after((fmb,amb),action['startWriteEnded'],action['generation']):continue
+            action['positionChanged']=actual is not None and actual!=action['baselineActual']
+            if feedback==0 and not action['busySeen']:
+                action.update(busySeen=True,motionEvidence=True,completionEvidence='fresh post-start Moving=0')
+                self.event('MOTION_EVIDENCE','启动后新读到运动中=0',operationId=action['operationId'],actionId=action['actionId'])
+            status_position_ok=action.get('requirePositionMatch') and delta is not None and abs(delta)<=action['positionTolerance']
             if feedback==1 and (action['busySeen'] or status_position_ok):
-                action['completionEvidence']='post-start PLC feedback 1->0->1' if action['busySeen'] else 'post-start arrived=1 and actual within recipe tolerance; motion transition not observed'
-
-                tolerance=action.get('positionTolerance',self.cfg['axes'][axis].get('tolerance'))
-                acceptance=abs(action['delta'])<=tolerance if tolerance is not None and action['delta'] is not None else None
+                tolerance=action.get('positionTolerance')
+                acceptance=abs(delta)<=tolerance if tolerance is not None and delta is not None else None
                 if action.get('requirePositionMatch') and acceptance is not True:
-                    action.update(state='pending',coordinateAcceptance=acceptance,reason='PLC本次到位，但实际位置未落入配方容差；未清零、未继续')
-                    if time.time()-action['startEpoch']>self.cfg['actionTimeout']:
-                        action.update(state='timeout',plcCompleted=False,reason='实际位置匹配超时；启动未自动清零')
-                        self.event('ACTION_TIMEOUT',action['reason'],operationId=action['operationId'],actionId=action['actionId'],actual=actual,delta=action['delta'])
-                    continue
-                action.update(state='completed',plcCompleted=True,coordinateAcceptance=acceptance,reason='PLC到位=1且实际位置符合配方容差；未要求运动中跳变，机械执行由现场观察确认' if not action['busySeen'] else 'PLC 反馈本次到位；机械执行由现场观察确认')
-                self.event('ACTION_COMPLETE','PLC到位且坐标匹配' if not action['busySeen'] else 'PLC 反馈本次动作完成',operationId=action['operationId'],actionId=action['actionId'],actual=actual,delta=action['delta'],coordinateAcceptance=acceptance)
+                    action.update(state='pending',coordinateAcceptance=acceptance,reason='本次到位但坐标未满足容差');continue
+                action.update(state='observing',plcCompleted=True,coordinateAcceptance=acceptance,reason='本次到位，等待PLC旧反馈清零',completionEvidence='post-start Moving/Arrived' if action['busySeen'] else 'fresh post-start arrived and recipe coordinates')
+                self.event('ACTION_COMPLETE','PLC本次到位；尚未确认清零',operationId=action['operationId'],actionId=action['actionId'],actual=actual,coordinateAcceptance=acceptance)
                 try:
-                    await self.write_checked(smb,0,action['operationId'],action['actionId'])
-                    action['cleared']=True
-                    self.event('CLEAR','到位后启动 BYTE=0 已读回',operationId=action['operationId'],actionId=action['actionId'],mb=smb)
+                    result=await self.write_checked(smb,0,action['operationId'],action['actionId'],deadline=action['deadline'])
+                    action['clearWriteEnded']=result['writeEnded']
+                    self.event('CLEAR_WAIT','请求已复位，等待PLC新读全0',operationId=action['operationId'],actionId=action['actionId'],writeEnded=result['writeEnded'],deadline=action['deadline'])
                 except Exception as error:
-                    action['clearError']=str(error)
-                    self.event('CLEAR_FAILED','本次到位，但启动清零失败',operationId=action['operationId'],actionId=action['actionId'],error=str(error))
-            elif feedback==2 or time.time()-action['startEpoch']>self.cfg['actionTimeout']:
-                action.update(state='timeout',plcCompleted=False,reason='PLC 超时反馈；未自动清零，请核对设备' if feedback==2 else ('观察超时，未同时满足PLC到位=1和配方坐标容差；启动未自动清零，请现场核对并手动清零' if action.get('requirePositionMatch') else '观察超时，未确认本次PLC运动中→到位；启动未自动清零，请现场核对并手动清零'))
-                self.event('ACTION_TIMEOUT',action['reason'],operationId=action['operationId'],actionId=action['actionId'],feedback=feedback)
+                    action.update(state='failed',clearError=str(error),reason='PC清写结果未知：'+str(error))
+                    self.blocked_axes.add(axis)
+                    self.event('CLEAR_FAILED',action['reason'],operationId=action['operationId'],actionId=action['actionId'],noReplay=True)
             else:
-                action.update(state='pending' if feedback==1 and not action['motionEvidence'] else 'observing',
-                    reason=('等待PLC到位=1且实际位置进入配方容差' if action.get('requirePositionMatch') else '未观察启动后本轴PLC反馈1→0→1；旧到位及坐标波动不作完成依据，待确认') if not action['busySeen'] else '已观察本次运动中=0，等待到位=1')
+                action.update(state='observing' if action['busySeen'] else 'pending',reason='等待本次运动中到到位' if action['busySeen'] else '等待本次运动证据')
 
     async def command(self, name, data):
         async with self.lock:
@@ -468,7 +553,28 @@ class App:
                     raise ValueError('只能发送PC方向字段')
                 if p['mb']==2011:
                     self.heartbeat.update(enabled=False,state='off')
-                return dict(operationId=operation,result=await self.write_checked(p['mb'],data.get('value'),operation))
+                await self.capture()
+                mb,value=p['mb'],data.get('value')
+                for axis,(_,target,start,_,_) in AXES.items():
+                    if mb==start and value:
+                        return dict(operationId=operation,action=await self.begin_axis(axis,self.value(target),operation))
+                    if self.raw_parents and mb in (start,target):raise ValueError('手工父周期结果未知，禁止后继目标/启动')
+                    if mb==target:self.axis_closures.pop(axis,None)
+                    if mb==start or mb==target:
+                        if axis in self.blocked_axes or any(a['axis']==axis and a['state'] in ('observing','pending') for a in self.actions):
+                            raise ValueError('轴周期尚未结束或结果未知，不能通过通用写入绕过')
+                if mb in (2014,2016) and value:
+                    if self.fault() or self.value(6015)!=1 or self.value(6016)!=1:raise ValueError('设备未就绪或安全状态不满足，未发送父请求')
+                    if any(a['state'] in ('observing','pending') for a in self.actions):raise ValueError('轴周期尚未结束，不能发送父请求')
+                    if mb in self.raw_parents or self.value(mb)!=0 or any(self.value(f)!=0 for f in ((6050,6052) if mb==2014 else (6054,))):
+                        raise ValueError('父周期尚未完成双方清零或结果未知')
+                    self.raw_parents.add(mb)
+                    self.axis_closures.clear()
+                    self.event('RAW_PARENT_UNKNOWN','手工父请求已登记；无托管关联，不自动授完成/复用/后继',mb=mb,operationId=operation,generation=self.generation)
+                if mb==2009 and value:
+                    self.generation+=1;self.axis_closures.clear()
+                    # A reset write alone never proves recovery of unknown motion.
+                return dict(operationId=operation,result=await self.write_checked(mb,value,operation))
             elif name=='axis':
                 return dict(operationId=operation,action=await self.begin_axis(data.get('axis'),data.get('target'),operation))
             elif name=='clear':
@@ -478,7 +584,8 @@ class App:
                 result=await self.write_checked(AXES[axis][2],0,operation)
                 for action in self.actions:
                     if action['axis']==axis and action['state'] in ('pending','observing','timeout','failed'):
-                        action.update(state='cancelled',cleared=True,reason='用户清零；未宣布本次动作完成')
+                        self.blocked_axes.add(axis);self.axis_closures.pop(axis,None)
+                        action.update(state='cancelled',cleared=False,manualClearWriteEnded=result['writeEnded'],manualClearGeneration=self.generation,reason='用户撤请求；动作结果未知，尚未确认PLC清零')
                 self.event('CLEAR','用户清零启动信号',operationId=operation,axis=axis)
                 return dict(operationId=operation,result=result)
             elif name=='shutdown':

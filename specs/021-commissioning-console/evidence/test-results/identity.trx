@@ -1,0 +1,98 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<TestRun id="b75129b5-e5cb-4aab-951a-a38681fc00cb" name="Administrator@DEMO 2026-10-08 05:13:56" runUser="demo\Administrator" xmlns="http://microsoft.com/schemas/VisualStudio/TeamTest/2010">
+  <Times creation="2026-10-08T05:13:56.4197385+08:00" queuing="2026-10-08T05:13:56.4197386+08:00" start="2026-10-08T05:13:55.7260599+08:00" finish="2026-10-08T05:13:56.4230771+08:00" />
+  <TestSettings name="default" id="84496619-6537-409f-89ce-158c20598e9d">
+    <Deployment runDeploymentRoot="Administrator_DEMO_2026-10-08_05_13_56" />
+  </TestSettings>
+  <Results>
+    <UnitTestResult executionId="44dee9ef-284c-4029-9ab3-efa186665519" testId="b70a563a-d3d6-c9ed-2c12-d4694a978c87" testName="Gaode.Communication.Tests.CommissioningIdentityTests.MissingOrDisallowedIdentityConfigurationFailsWithoutTestFallback(role: &quot;Operator&quot;)" computerName="DEMO" duration="00:00:00.0006043" startTime="2026-10-08T05:13:56.3479029+08:00" endTime="2026-10-08T05:13:56.3484373+08:00" testType="13cdc9d9-ddb5-4fa4-a97d-d965ccfc6d4b" outcome="Passed" testListId="8c84fa94-04c1-424b-9868-57a2d4851a1d" relativeResultsDirectory="44dee9ef-284c-4029-9ab3-efa186665519" />
+    <UnitTestResult executionId="50885523-65a6-43bc-8096-8dedd4bd60f9" testId="8dcc896c-36c0-9c9f-b814-a6c551f73d46" testName="Gaode.Communication.Tests.CommissioningIdentityTests.BackendConfirmsIdentityAndEnforcesPermissions(role: &quot;ProcessEngineer&quot;, canRun: False, canEdit: True)" computerName="DEMO" duration="00:00:00.0267020" startTime="2026-10-08T05:13:56.3226088+08:00" endTime="2026-10-08T05:13:56.3446767+08:00" testType="13cdc9d9-ddb5-4fa4-a97d-d965ccfc6d4b" outcome="Passed" testListId="8c84fa94-04c1-424b-9868-57a2d4851a1d" relativeResultsDirectory="50885523-65a6-43bc-8096-8dedd4bd60f9" />
+    <UnitTestResult executionId="0de2219a-d48d-4430-9547-cafdf075df7f" testId="75a9be63-02b7-42f8-c9b0-0df51b17c49e" testName="Gaode.Communication.Tests.CommissioningIdentityTests.MissingOrDisallowedIdentityConfigurationFailsWithoutTestFallback(role: &quot;EquipmentEngineer&quot;)" computerName="DEMO" duration="00:00:00.0007953" startTime="2026-10-08T05:13:56.3470421+08:00" endTime="2026-10-08T05:13:56.3478274+08:00" testType="13cdc9d9-ddb5-4fa4-a97d-d965ccfc6d4b" outcome="Passed" testListId="8c84fa94-04c1-424b-9868-57a2d4851a1d" relativeResultsDirectory="0de2219a-d48d-4430-9547-cafdf075df7f" />
+    <UnitTestResult executionId="900b2836-71c7-4614-852c-6c2817e63c26" testId="5b2af9cc-9212-51e7-8d1e-bb150b9ed4ea" testName="Gaode.Communication.Tests.CommissioningIdentityTests.BackendConfirmsIdentityAndEnforcesPermissions(role: &quot;Operator&quot;, canRun: True, canEdit: False)" computerName="DEMO" duration="00:00:00.2373785" startTime="2026-10-08T05:13:56.0752164+08:00" endTime="2026-10-08T05:13:56.3174686+08:00" testType="13cdc9d9-ddb5-4fa4-a97d-d965ccfc6d4b" outcome="Passed" testListId="8c84fa94-04c1-424b-9868-57a2d4851a1d" relativeResultsDirectory="900b2836-71c7-4614-852c-6c2817e63c26" />
+    <UnitTestResult executionId="4a1c8892-b5e8-4e80-91af-22137de51727" testId="d20312b6-1b16-ea86-6bf4-6a4b28895680" testName="Gaode.Communication.Tests.CommissioningIdentityTests.MissingOrDisallowedIdentityConfigurationFailsWithoutTestFallback(role: &quot;SystemAdministrator&quot;)" computerName="DEMO" duration="00:00:00.0015112" startTime="2026-10-08T05:13:56.3457999+08:00" endTime="2026-10-08T05:13:56.3469816+08:00" testType="13cdc9d9-ddb5-4fa4-a97d-d965ccfc6d4b" outcome="Passed" testListId="8c84fa94-04c1-424b-9868-57a2d4851a1d" relativeResultsDirectory="4a1c8892-b5e8-4e80-91af-22137de51727" />
+  </Results>
+  <TestDefinitions>
+    <UnitTest name="Gaode.Communication.Tests.CommissioningIdentityTests.MissingOrDisallowedIdentityConfigurationFailsWithoutTestFallback(role: &quot;Operator&quot;)" storage="d:\gaode\backend\tests\gaode.communication.tests\bin\debug\net10.0\gaode.communication.tests.dll" id="b70a563a-d3d6-c9ed-2c12-d4694a978c87">
+      <Execution id="44dee9ef-284c-4029-9ab3-efa186665519" />
+      <TestMethod codeBase="D:\gaode\backend\tests\Gaode.Communication.Tests\bin\Debug\net10.0\Gaode.Communication.Tests.dll" adapterTypeName="executor://xunit/VsTestRunner3/netcore/" className="Gaode.Communication.Tests.CommissioningIdentityTests" name="MissingOrDisallowedIdentityConfigurationFailsWithoutTestFallback" />
+    </UnitTest>
+    <UnitTest name="Gaode.Communication.Tests.CommissioningIdentityTests.MissingOrDisallowedIdentityConfigurationFailsWithoutTestFallback(role: &quot;SystemAdministrator&quot;)" storage="d:\gaode\backend\tests\gaode.communication.tests\bin\debug\net10.0\gaode.communication.tests.dll" id="d20312b6-1b16-ea86-6bf4-6a4b28895680">
+      <Execution id="4a1c8892-b5e8-4e80-91af-22137de51727" />
+      <TestMethod codeBase="D:\gaode\backend\tests\Gaode.Communication.Tests\bin\Debug\net10.0\Gaode.Communication.Tests.dll" adapterTypeName="executor://xunit/VsTestRunner3/netcore/" className="Gaode.Communication.Tests.CommissioningIdentityTests" name="MissingOrDisallowedIdentityConfigurationFailsWithoutTestFallback" />
+    </UnitTest>
+    <UnitTest name="Gaode.Communication.Tests.CommissioningIdentityTests.BackendConfirmsIdentityAndEnforcesPermissions(role: &quot;ProcessEngineer&quot;, canRun: False, canEdit: True)" storage="d:\gaode\backend\tests\gaode.communication.tests\bin\debug\net10.0\gaode.communication.tests.dll" id="8dcc896c-36c0-9c9f-b814-a6c551f73d46">
+      <Execution id="50885523-65a6-43bc-8096-8dedd4bd60f9" />
+      <TestMethod codeBase="D:\gaode\backend\tests\Gaode.Communication.Tests\bin\Debug\net10.0\Gaode.Communication.Tests.dll" adapterTypeName="executor://xunit/VsTestRunner3/netcore/" className="Gaode.Communication.Tests.CommissioningIdentityTests" name="BackendConfirmsIdentityAndEnforcesPermissions" />
+    </UnitTest>
+    <UnitTest name="Gaode.Communication.Tests.CommissioningIdentityTests.MissingOrDisallowedIdentityConfigurationFailsWithoutTestFallback(role: &quot;EquipmentEngineer&quot;)" storage="d:\gaode\backend\tests\gaode.communication.tests\bin\debug\net10.0\gaode.communication.tests.dll" id="75a9be63-02b7-42f8-c9b0-0df51b17c49e">
+      <Execution id="0de2219a-d48d-4430-9547-cafdf075df7f" />
+      <TestMethod codeBase="D:\gaode\backend\tests\Gaode.Communication.Tests\bin\Debug\net10.0\Gaode.Communication.Tests.dll" adapterTypeName="executor://xunit/VsTestRunner3/netcore/" className="Gaode.Communication.Tests.CommissioningIdentityTests" name="MissingOrDisallowedIdentityConfigurationFailsWithoutTestFallback" />
+    </UnitTest>
+    <UnitTest name="Gaode.Communication.Tests.CommissioningIdentityTests.BackendConfirmsIdentityAndEnforcesPermissions(role: &quot;Operator&quot;, canRun: True, canEdit: False)" storage="d:\gaode\backend\tests\gaode.communication.tests\bin\debug\net10.0\gaode.communication.tests.dll" id="5b2af9cc-9212-51e7-8d1e-bb150b9ed4ea">
+      <Execution id="900b2836-71c7-4614-852c-6c2817e63c26" />
+      <TestMethod codeBase="D:\gaode\backend\tests\Gaode.Communication.Tests\bin\Debug\net10.0\Gaode.Communication.Tests.dll" adapterTypeName="executor://xunit/VsTestRunner3/netcore/" className="Gaode.Communication.Tests.CommissioningIdentityTests" name="BackendConfirmsIdentityAndEnforcesPermissions" />
+    </UnitTest>
+  </TestDefinitions>
+  <TestEntries>
+    <TestEntry testId="b70a563a-d3d6-c9ed-2c12-d4694a978c87" executionId="44dee9ef-284c-4029-9ab3-efa186665519" testListId="8c84fa94-04c1-424b-9868-57a2d4851a1d" />
+    <TestEntry testId="8dcc896c-36c0-9c9f-b814-a6c551f73d46" executionId="50885523-65a6-43bc-8096-8dedd4bd60f9" testListId="8c84fa94-04c1-424b-9868-57a2d4851a1d" />
+    <TestEntry testId="75a9be63-02b7-42f8-c9b0-0df51b17c49e" executionId="0de2219a-d48d-4430-9547-cafdf075df7f" testListId="8c84fa94-04c1-424b-9868-57a2d4851a1d" />
+    <TestEntry testId="5b2af9cc-9212-51e7-8d1e-bb150b9ed4ea" executionId="900b2836-71c7-4614-852c-6c2817e63c26" testListId="8c84fa94-04c1-424b-9868-57a2d4851a1d" />
+    <TestEntry testId="d20312b6-1b16-ea86-6bf4-6a4b28895680" executionId="4a1c8892-b5e8-4e80-91af-22137de51727" testListId="8c84fa94-04c1-424b-9868-57a2d4851a1d" />
+  </TestEntries>
+  <TestLists>
+    <TestList name="列表中未列出的结果" id="8c84fa94-04c1-424b-9868-57a2d4851a1d" />
+    <TestList name="所有已加载的结果" id="19431567-8539-422a-85d7-44ee4e166bda" />
+  </TestLists>
+  <ResultSummary outcome="Completed">
+    <Counters total="5" executed="5" passed="5" failed="0" error="0" timeout="0" aborted="0" inconclusive="0" passedButRunAborted="0" notRunnable="0" notExecuted="0" disconnected="0" warning="0" completed="0" inProgress="0" pending="0" />
+    <Output>
+      <StdOut>[xUnit.net 00:00:00.00] xUnit.net VSTest Adapter v3.1.5+1b188a7b0a (64-bit .NET 10.0.12)&#xD;
+[xUnit.net 00:00:00.06]   Discovering: Gaode.Communication.Tests&#xD;
+[xUnit.net 00:00:00.09]   Discovered:  Gaode.Communication.Tests&#xD;
+[xUnit.net 00:00:00.11]   Starting:    Gaode.Communication.Tests&#xD;
+info: Microsoft.Hosting.Lifetime[14]&#xD;
+      Now listening on: http://127.0.0.1:64022&#xD;
+info: Microsoft.Hosting.Lifetime[0]&#xD;
+      Application started. Press Ctrl+C to shut down.&#xD;
+info: Microsoft.Hosting.Lifetime[0]&#xD;
+      Hosting environment: Production&#xD;
+info: Microsoft.Hosting.Lifetime[0]&#xD;
+      Content root path: D:\gaode\backend\tests\Gaode.Communication.Tests\bin\Debug\net10.0&#xD;
+info: Gaode.Host.Api.CommissioningAuthenticationHandler[12]&#xD;
+      AuthenticationScheme: Station01Commissioning was challenged.&#xD;
+info: Gaode.Host.Api.CommissioningAuthenticationHandler[13]&#xD;
+      AuthenticationScheme: Station01Commissioning was forbidden.&#xD;
+info: Gaode.Host.Api.CommissioningAuthenticationHandler[7]&#xD;
+      Station01Commissioning was not authenticated. Failure message: ����ƾ����Ч&#xD;
+info: Gaode.Host.Api.CommissioningAuthenticationHandler[12]&#xD;
+      AuthenticationScheme: Station01Commissioning was challenged.&#xD;
+info: Gaode.Host.Api.CommissioningAuthenticationHandler[12]&#xD;
+      AuthenticationScheme: Station01Commissioning was challenged.&#xD;
+info: Microsoft.Hosting.Lifetime[0]&#xD;
+      Application is shutting down...&#xD;
+info: Microsoft.Hosting.Lifetime[14]&#xD;
+      Now listening on: http://127.0.0.1:64030&#xD;
+info: Microsoft.Hosting.Lifetime[0]&#xD;
+      Application started. Press Ctrl+C to shut down.&#xD;
+info: Microsoft.Hosting.Lifetime[0]&#xD;
+      Hosting environment: Production&#xD;
+info: Microsoft.Hosting.Lifetime[0]&#xD;
+      Content root path: D:\gaode\backend\tests\Gaode.Communication.Tests\bin\Debug\net10.0&#xD;
+info: Gaode.Host.Api.CommissioningAuthenticationHandler[12]&#xD;
+      AuthenticationScheme: Station01Commissioning was challenged.&#xD;
+info: Gaode.Host.Api.CommissioningAuthenticationHandler[13]&#xD;
+      AuthenticationScheme: Station01Commissioning was forbidden.&#xD;
+info: Gaode.Host.Api.CommissioningAuthenticationHandler[7]&#xD;
+      Station01Commissioning was not authenticated. Failure message: ����ƾ����Ч&#xD;
+info: Gaode.Host.Api.CommissioningAuthenticationHandler[12]&#xD;
+      AuthenticationScheme: Station01Commissioning was challenged.&#xD;
+info: Gaode.Host.Api.CommissioningAuthenticationHandler[12]&#xD;
+      AuthenticationScheme: Station01Commissioning was challenged.&#xD;
+info: Microsoft.Hosting.Lifetime[0]&#xD;
+      Application is shutting down...&#xD;
+[xUnit.net 00:00:00.40]   Finished:    Gaode.Communication.Tests&#xD;
+</StdOut>
+    </Output>
+  </ResultSummary>
+</TestRun>

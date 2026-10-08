@@ -26,9 +26,12 @@ public sealed partial class CameraBusinessRegressionTests
     [InlineData(true)]
     public Task TwoFacesDetectionPlacementObservationAndCancellation(bool cancelled) =>
         Execute(2,false,false,false,4,1,"OK",cancelled,false,false,false,false);
+    internal Task ExecuteSavedCommissioningRecipe(RecipeDefinition recipe, string fieldTrace, Func<Task>? afterFreeze = null) =>
+        Execute(2, false, false, false, 4, 1, "OK", false, false, false, false, false, recipe, fieldTrace, afterFreeze);
     private async Task Execute(int faces, bool extraE, bool missingCode, bool abnormalRecheck, int captureCount,
         int flips, string? disposition, bool cancelAfterPutBack, bool initiallyExcluded, bool omitInitialCapture,
-        bool holdMoveAcceptance, bool localParameters)
+        bool holdMoveAcceptance, bool localParameters, RecipeDefinition? savedRecipe = null, string? fieldTrace = null,
+        Func<Task>? afterFreeze = null)
     {
         var workerCapacity=Gaode.Infrastructure.Diagnostics.HostWorkerCapacity.Ensure();
         var workspace = Path.GetTempPath();
@@ -43,7 +46,8 @@ public sealed partial class CameraBusinessRegressionTests
             asynchronousWriter="UnchangedChannelConsumerAndTaskRunCommit;ActualSQLite" }));
         var run = Guid.NewGuid(); var tray = Guid.NewGuid();
 
-        var recipe = Recipe011Data.Candidate(faces, extraE) with { RecipeId = "component", Version = "1" };
+        var purpose = savedRecipe is null ? "Test" : RuntimePurposes.RealDeviceCommissioning;
+        var recipe = savedRecipe ?? (Recipe011Data.Candidate(faces, extraE) with { RecipeId = "component", Version = "1" });
         if (localParameters)
         {
             var profiles = recipe.CaptureProfiles.ToDictionary(p => p.Key, p => p.Value);
@@ -66,25 +70,27 @@ public sealed partial class CameraBusinessRegressionTests
                 { ["s1"] = slot with { PhysicalEntity = input } } };
         }
         recipe = recipe with { DefinitionDigest = RecipeDefinitionIdentity.ComputeDefinitionDigest(recipe) };
-        var plan = RecipeRunPlanner.BuildExecutable(recipe, tray.ToString("D"), ["s1"]);
-        var config = ReviewBusinessData.Motion();
+        var plan = RecipeRunPlanner.BuildExecutable(recipe, tray.ToString("D"), ["s1"], purpose);
+        var config = ReviewBusinessData.Motion() with { Purpose = purpose };
+        if (savedRecipe is not null) config = config with { Motion = config.Motion with {
+            Frame = savedRecipe.ExecutionPositions["s1"].PhysicalEntity.Coordinates[0].Point.Frame } };
         config = config with { Motion = config.Motion with { Points = config.Motion.Points with
             { ThreeD = config.Motion.Points.ThreeD with { Frame = config.Motion.Frame } } } };
-        var budget = ReviewBusinessData.Budget() with { BusinessMs = ReviewBusinessData.Budget().BusinessMs with
+        var budget = ReviewBusinessData.Budget() with { Purpose = purpose, BusinessMs = ReviewBusinessData.Budget().BusinessMs with
             { FlipCompletion = 1000, PutBackCompletion = 1000, TrayPoseAlgorithm = 1000 } };
         if (holdMoveAcceptance) budget = budget with { BusinessMs = budget.BusinessMs with { PlcAcceptance = 50 } };
         using var cancellation = new CancellationTokenSource();
-        var ports = new DeclaredPorts(abnormalRecheck, missingCode, cancelAfterPutBack ? cancellation.Cancel : null, holdMoveAcceptance);
+        var ports = new DeclaredPorts(abnormalRecheck, missingCode, cancelAfterPutBack ? cancellation.Cancel : null, holdMoveAcceptance, savedRecipe);
         var registry = new CapabilityRegistry();
         foreach (var req in recipe.AlgorithmRequirements.Values)
             registry.RegisterAlgorithm(req.Purpose, req.Id, "1", req.ResultContract, req.InputCount,
-                "declared-component", ports.Origin.VersionRef!, "Test", "DeclaredComponentOnly");
+                "declared-component", ports.Origin.VersionRef!, purpose, "DeclaredComponentOnly");
         registry.RegisterAlgorithm(AlgorithmPurpose.TrayPose, "tray-pose", "1", "tray-observation/2", 1,
-            "declared-component", ports.Origin.VersionRef!, "Test", "DeclaredComponentOnly");
-        var cost = new ExecutionCostProfile("component", "1", "Test", "Declared component timing",
+            "declared-component", ports.Origin.VersionRef!, purpose, "DeclaredComponentOnly");
+        var cost = new ExecutionCostProfile("component", "1", purpose, "Declared component timing",
             $"{budget.Id}/{budget.Version}", "component-budget", 5000, 10000, 5000, 3000, 0)
             { CaptureWaitMs = 8000, AlgorithmWaitMs = 15000, InputReleaseWaitMs = 2000 };
-        var inputs = RecipeAdmission.Freeze(run, tray, plan, registry, cost, "Test",
+        var inputs = RecipeAdmission.Freeze(run, tray, plan, registry, cost, purpose,
             new(new("tray-pose", "1"), "component", "1"));
         var positions = plan.ExecutionPositions["s1"].PhysicalEntity;
         var targets = plan.Steps.Where(s => s.Kind == RecipeStepKind.PositionForCapture).Select(s =>
@@ -152,7 +158,7 @@ public sealed partial class CameraBusinessRegressionTests
             : await SaveInitial(WriteKind.ActionFact, new { kind = "DeclaredInitialObservation", observation = initial });
         var deadlines = RecipeExecutionBudget.Freeze(plan, budget, DateTimeOffset.UtcNow, cost);
         var request = new DetectionRequest(run, tray, Guid.NewGuid(), Guid.NewGuid(), WholeTrayWorkflowStage.Detection,
-            Guid.NewGuid(), inputs.PlanRevision, 1, deadlines.DetectionDeadlineUtc, initialMediaReferences, "Test", "component",
+            Guid.NewGuid(), inputs.PlanRevision, 1, deadlines.DetectionDeadlineUtc, initialMediaReferences, purpose, "component",
             ExpectedObjects: [new(plan.Steps.First(s => s.Kind == RecipeStepKind.Capture).MemberId!, positions.Source!.Point, "part")],
             Plan: plan, MotionConfiguration: config, Targets: targets)
         { Inputs = inputs, SessionId = Guid.NewGuid(), SnapshotId = "declared-snapshot", ClockId = "system-component",
@@ -191,6 +197,7 @@ public sealed partial class CameraBusinessRegressionTests
                 { evidence = "DeclaredSemanticComponentWithActualSQLite", cancelled = cancellation.IsCancellationRequested, ports.Order, lease.Unknown }));
             return;
         }
+        if (afterFreeze is not null) await afterFreeze();
         var result = await ExecuteAndDecide();
         await File.WriteAllTextAsync(Path.Combine(root, "result.json"), JsonSerializer.Serialize(new { evidence = "DeclaredSemanticComponentWithActualSQLite", result, ports.Order }));
         if (holdMoveAcceptance)
@@ -287,9 +294,44 @@ public sealed partial class CameraBusinessRegressionTests
         }
         Assert.Contains(await db.Writes.Where(w => w.RunId == run && w.Kind == "AlgorithmFact").ToListAsync(),
             w => w.PayloadJson.Contains("PostPlacementObserved", StringComparison.Ordinal));
+        if (fieldTrace is not null)
+        {
+            var actualMoves = ports.Moves.Where(m => m.Role == "Detection").ToArray();
+            Assert.Equal(targets.Length, actualMoves.Length);
+            for (var i = 0; i < targets.Length; i++) Assert.Equal(targets[i].Point, actualMoves[i].Target);
+            var actualCaptures = ports.Requests.Where(c => c.Role == CaptureRole.Detection).ToArray();
+            Assert.Equal(targets.Length, actualCaptures.Length);
+            for (var i = 0; i < actualCaptures.Length; i++)
+            {
+                var settings = actualCaptures[i].DetectionSettings!;
+                var expectedProfile = recipe.ExecutionPositions["s1"].PhysicalEntity.Coordinates
+                    .Single(c => c.PointRef == targets[i].PointRef).CaptureProfile!;
+                Assert.Equal(expectedProfile, settings.ProfileId);
+                var expected = recipe.CaptureProfiles[expectedProfile].Settings;
+                Assert.Equal(expected.ExposureUs, settings.ExposureUs);
+                Assert.Equal(expected.Gain, settings.Gain);
+            }
+            var trace = new {
+                evidence = "OFFLINE:API-saved-recipe;formal-RecipeDetectionExecutor;declared-ports;actual-SQLite-and-media;not-hardware",
+                run, tray, recipe.RecipeId, recipe.Version, recipe.DefinitionDigest, inputs.PlanRevision, purpose,
+                database = Path.Combine(root, "run.db"), mediaRoot = root,
+                fields = new object[] {
+                    new { id = "P01/P02", state = "Consumed", values = new { plan.Model, plan.FCode, plan.ScenarioId, slots = plan.ExecutionPositions.Keys, steps = plan.Steps } },
+                    new { id = "P03", state = "Consumed", values = (object)new { targets, ports.Moves, movement = ports.Order.Where(x => x.StartsWith("move:")) } },
+                    new { id = "P04", state = "Consumed", values = (object)new { ports.Flips, ports.PutBacks } },
+                    new { id = "P05/P06", state = "SavedValidatedFrozen_NotExecutedInDetectionComponent", values = (object)new { plan.ExecutionPositions, plan.SortingGripperId } },
+                    new { id = "P07", state = "ConsumedByCaptureRequestsAndAlgorithm_WithDeclaredPortFacts", values = (object)new { ports.Requests, result.CaptureFacts } },
+                    new { id = "P08", state = "E_NotApplicable;F_PublicPreparationNotExecutedHere", values = (object)new { extraE } },
+                    new { id = "P09", state = "FrozenPublic3DConsumedForPostPlacement;PublicZMotionNotClaimed", values = (object)new { config.Motion.Points, config.Capture3d } },
+                    new { id = "P10", state = "Consumed", values = (object)new { inputs.PlanRevision, inputs.SemanticDigest, inputs.CostProfile, result.Kind } }
+                }
+            };
+            Directory.CreateDirectory(Path.GetDirectoryName(fieldTrace)!);
+            await File.WriteAllTextAsync(fieldTrace, JsonSerializer.Serialize(trace, new JsonSerializerOptions(JsonSerializerDefaults.Web) { WriteIndented = true }));
+        }
     }
 
-    private sealed class DeclaredPorts(bool abnormal, bool missingCode, Action? afterPutBack, bool holdMoveAcceptance) : IPlcStatePort, IPlcActionPort,
+    private sealed class DeclaredPorts(bool abnormal, bool missingCode, Action? afterPutBack, bool holdMoveAcceptance, RecipeDefinition? savedRecipe = null) : IPlcStatePort, IPlcActionPort,
         IMotionPort, IPhysicalHandlingPort, IAcquisitionCyclePort, ICapturePort, IAlgorithmPort
     {
         public ComponentExecutionOrigin Origin => new(ComponentEvidenceSource.Test, "DeclaredSemanticComponent/1", "DeclaredInput");
@@ -301,6 +343,7 @@ public sealed partial class CameraBusinessRegressionTests
         public List<FlipRequest> Flips { get; } = [];
         public List<PutBackRequest> PutBacks { get; } = [];
         public List<CaptureRequest> Requests { get; } = [];
+        public List<MoveRequest> Moves { get; } = [];
         private readonly List<CaptureRole> captures = [];
         private readonly List<AlgorithmRole> calls = [];
         private DeviceObservation observation = SemanticDeviceFixture.Ready(ClampState.Unconfirmed);
@@ -313,7 +356,7 @@ public sealed partial class CameraBusinessRegressionTests
                 position is null ? [] : [position], null, observation.ExecutionOrigin, [new(Guid.NewGuid(), Guid.NewGuid())]);
         public ValueTask RequestMoveAsync(MoveRequest request, Action<DeviceEvent> onEvent, CancellationToken token)
         {
-            token.ThrowIfCancellationRequested(); Order.Add("move:" + request.Role);
+            token.ThrowIfCancellationRequested(); Order.Add("move:" + request.Role); Moves.Add(request);
             MoveToken = token;
             if (holdMoveAcceptance) return ValueTask.CompletedTask;
             var e = request.Envelope;
@@ -341,13 +384,18 @@ public sealed partial class CameraBusinessRegressionTests
             onEvent(new(r, CaptureEventKind.Ended, 1));
             onEvent(new(r, CaptureEventKind.MediaTaken, 1, [1, 2, 3, 4], "bin") { Fact = new(r.Envelope.RunId, r.CaptureId,
                 r.Envelope.OperationId, 1, AcquisitionContract.RequestedSettingsDigest(r), "Test", Origin, Origin,
-                CaptureApplicationState.ConfiguredOnly, null, false, ["DeclaredComponentBuffer"]) });
+                CaptureApplicationState.ConfiguredOnly, r.DetectionSettings, false, ["DeclaredComponentBuffer;no-SDK-evidence"]) {
+                    LightExecution = r.LightExecution, CameraApplicationState = CaptureApplicationState.Applied, LightApplicationState = r.LightExecution?.IsSimulated == true ? CaptureApplicationState.NotApplied : CaptureApplicationState.ConfiguredOnly,
+                    ActualPublicSettings = r.PublicSettings,
+                    ActualCameraSettings = new(r.DetectionSettings?.ExposureUs ?? r.PublicSettings?.ExposureUs ?? 1,
+                        r.DetectionSettings?.Gain ?? 0, r.DetectionSettings?.RoiPixels[2] ?? 1, r.DetectionSettings?.RoiPixels[3] ?? 1,
+                        r.DetectionSettings?.RoiPixels[0] ?? 0, r.DetectionSettings?.RoiPixels[1] ?? 0) } });
             return ValueTask.CompletedTask;
         }
         public TrayObservation Observation(Guid run, Guid tray, Guid capture, Guid call, TrayObservationContext? c) =>
             new(Guid.NewGuid(), run, tray, capture, call, DateTimeOffset.UtcNow, c?.Purpose ?? TrayObservationPurpose.InitialPreparation,
                 c?.CheckRound ?? 1, c?.RelatedTransitionId, [new(1, TrayPresence.Present, c is not null && abnormal ? TrayPose.Abnormal : TrayPose.Normal) {
-                    CellId="r1:c4",Region="OK",Row=1,Column=4 }],
+                    CellId=savedRecipe?.Positions[0].CellId ?? "r1:c4",Region="OK",Row=savedRecipe?.TrayLayout?.Ordered(RecipeTrayRegion.OK).First().Row ?? 1,Column=savedRecipe?.TrayLayout?.Ordered(RecipeTrayRegion.OK).First().Column ?? 4 }],
                 c is null ? new(10, 20, "mm", "test-frame", "DeclaredComponent") : null, Origin, ["DeclaredComponentObservation"]) {
                     SchemaVersion="tray-observation/2",MappingSourceReference="Test:declared-component-map",ExpectedPhysicalSlotIndices=[1] };
         public ValueTask<AlgorithmDispatch> RequestAsync(AlgorithmRequest r, Action<AlgorithmEvent> onEvent, CancellationToken token)

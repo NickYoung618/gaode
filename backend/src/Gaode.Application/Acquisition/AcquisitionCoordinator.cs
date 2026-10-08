@@ -43,7 +43,13 @@ public sealed class AcquisitionCoordinator(ICapturePort camera, IMediaStore medi
             run.Config.SnapshotId, run.Config.Public.Version, run.Config.Public.Purpose,
             window.StartTick, window.DueTick, run.ClockId);
         var request = new CaptureRequest(envelope, captureId, role, point.Id, point.Version,
-            scopeId, scopeVersion, cameraBinding, lightBinding, intentReceipt.WriteId, maxBytes);
+            scopeId, scopeVersion, cameraBinding, lightBinding, intentReceipt.WriteId, maxBytes)
+        {
+            LightExecution = run.Config.Public.LightExecution,
+            PublicSettings = new(run.Config.Public.Id, run.Config.Public.Version,
+                role == CaptureRole.ThreeD ? run.Config.Public.Capture3d.Parameters.ExposureUs : run.Config.Public.CaptureF.Parameters.ExposureUs,
+                role == CaptureRole.ThreeD ? run.Config.Public.Capture3d.Parameters.LightLevel : run.Config.Public.CaptureF.Parameters.LightLevel)
+        };
         var gate = new CaptureEvidenceGate();
         var expectedEpoch = camera.GetConnectionEpoch(cameraBinding);
         var callbackLogs = 0;

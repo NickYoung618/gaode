@@ -14,6 +14,8 @@
       rotation: { entry: auxiliary, poses: { '*': auxiliary }, exits: { '*': auxiliary } }, sorting: { '*': handling },
       purposePoints: { '*': { purpose: null, point: planar, fixed, coordinateEvidenceReference: null, captureProfile: null } } };
     const body = { ...fields('schemaVersion recipeId version definitionDigest catalogDigest releaseStatus plcRecipeId fCode model scenarioId unitKind primaryMaterial layoutProfile capacity ngCapacity pendingCapacity route motionProfile qualityProfile sortingGripperId inspectionKind rotationLoadingGripperId'),
+      lightExecution: fields('schemaVersion mode'),
+      commissioningFPosition: fields('schemaVersion x y'),
       trayLayout: { rows:null, columns:null, cells:[fields('cellId row column region')] },
       traySlotMapping: { ...fields('id version evidenceReference'), bindings:[fields('cellId physicalSlotIndex')] },
       rotationWorkstation: { place:handling, pick:handling }, sortingTargets:{ '*':handling },
@@ -106,14 +108,14 @@
       close() { begin(); configurationSourceId = null; authoringContext = null; current = empty(); emit(); },
       section(name) { if (['basic', 'points', 'review'].includes(name)) { current.section = name; emit(); } },
       create(definition) {
-        if (current.phase === 'Closed' || busy()) return;
+        if (current.phase === 'Closed' || busy() || !current.canSave) return;
         configurationSourceId = current.recipeId;
         begin(); Object.assign(current, { phase: 'Editing', section: 'basic', definition: structuredClone(definition),
           recipeId: null, etag: null, issues: [], message: '新建内容尚未保存。', saved: null, unsupported: unsupportedFields(definition) }); emit();
       },
       async configure() {
         if (current.recipeId || !current.definition?.model || !current.definition?.unitKind || !current.definition?.scenarioId || !current.definition?.inspectionKind || busy()) return;
-        const id = begin(), basic = { fCode: current.definition.fCode, sortingGripperId: current.definition.sortingGripperId, rotationLoadingGripperId: current.definition.rotationLoadingGripperId };
+        const id = begin(), basic = { commissioningFPosition: current.definition.commissioningFPosition, lightExecution: current.definition.lightExecution, fCode: current.definition.fCode, sortingGripperId: current.definition.sortingGripperId, rotationLoadingGripperId: current.definition.rotationLoadingGripperId };
         current.phase = 'Configuring'; emit();
         try {
           const response = await call('/api/v1/recipes/editor-draft', { method: 'POST', headers: { 'Content-Type': 'application/json' },
@@ -129,7 +131,7 @@
         } catch (error) { if (id === generation) fail(error); }
       },
       async layout(layout) {
-        if (!current.definition || busy()) return;
+        if (!current.definition || busy() || !current.canSave) return;
         const id = begin(); current.phase = 'Configuring'; current.message = '正在更新配置…'; emit();
         try {
           const response = await call('/api/v1/recipes/editor-layout', { method: 'POST', headers: { 'Content-Type': 'application/json' },
@@ -140,8 +142,9 @@
         } catch (error) { if (id === generation) fail(error); }
       },
       edit(change) {
-        if (current.phase === 'Closed' || current.phase === 'Loading' || busy() || !current.definition || current.unsupported.length) return;
-        change(current.definition); current.phase = 'Editing'; current.issues = [];
+        if (current.phase === 'Closed' || current.phase === 'Loading' || busy() || !current.canSave || !current.definition || current.unsupported.length) return;
+        if (change(current.definition) === false) { current.message = '修改未应用：缺少对应参数或来源，请核对配方'; emit(); return; }
+        current.phase = 'Editing'; current.issues = [];
         current.message = '内容已修改，尚未保存。'; emit();
       },
       async load(recipeId) {
@@ -208,7 +211,7 @@
       releaseStatus: '', approval: { id: '', version: '', digest: '', purpose: '', allowedSlots: [], evidenceReference: '' },
       trayLayout: { rows:10, columns:10, cells:[] }, traySlotMapping:null, sortingTargets:{},
       inspectionKind:context?.inspectionKind || null, rotationLoadingGripperId:null, rotationWorkstation:null,
-      sortingGripperId: null, plcRecipeId: null, fCode: '', model: context?.model || '', scenarioId: context?.scenarioId || '', unitKind: context?.unitKind || '', primaryMaterial: '', layoutProfile: '',
+      sortingGripperId: null, plcRecipeId: null, fCode: '', model: context?.model || '', scenarioId: context?.scenarioId || '', unitKind: context?.unitKind || '', primaryMaterial: '', layoutProfile: '', lightExecution:{schemaVersion:'light-execution/1',mode:'Simulated'}, commissioningFPosition:{schemaVersion:'commissioning-f-position/1',x:null,y:null},
       capacity: null, ngCapacity: null, pendingCapacity: null, route: '', motionProfile: '', qualityProfile: '',
       positions: [], composition: [], stages: [], executionPositions: {}, captureProfiles: {}, algorithmRequirements: {},
       disposition: { ok: 'originalSlot', ng: 'NG', pending: 'Pending', physicalUnit: '' },
@@ -358,17 +361,17 @@
       session.edit(d => {
         if (card.item.slotId === 'common') {
           const actual = displayedCards(d,card.item,'station').find(c => c.reference === card.reference);
-          if (actual) change(d,actual); return;
+          return actual ? change(d,actual) : false;
         }
         const cell = d.trayLayout?.cells.find(c => c.cellId === card.item.cellId);
         if (cell && cell.region !== 'OK') {
           const actual = { ...card,point:d.sortingTargets[cell.cellId].point };
-          change(d,actual); return;
+          return change(d,actual);
         }
         const item = objects(d).find(it => it.slotId === card.item.slotId && it.member === card.item.member);
         const actual = item && displayedCards(d,item,area).find(c => c.title === card.title && c.reference === card.reference &&
           c.camera === card.camera && c.point.stageId === card.point.stageId && c.transitionStageId === card.transitionStageId);
-        if (actual) change(d,actual);
+        return actual ? change(d,actual) : false;
       });
     }
     function displayedCards(d,item,section) {
@@ -427,7 +430,7 @@
         ...(d.eCode?.enabled ? [{ id: 'E', name: 'E扫码' }] : [])];
     function complete(d, card) {
       const p = card.point, xyz = p.fixed ? [p.point.x, p.point.y, p.fixed.z] : [p.x, p.y, p.z];
-      return xyz.every(v => Number.isFinite(v)) && (!card.camera || ['exposureUs', 'gain', 'brightnessPercent'].every(k => Number.isFinite(profileFor(d, card)?.settings[k])));
+      return xyz.every(v => Number.isFinite(v)) && (!card.camera || (d.lightExecution?.mode === 'Simulated' ? ['exposureUs', 'gain'] : ['exposureUs', 'gain', 'brightnessPercent']).every(k => Number.isFinite(profileFor(d, card)?.settings[k])));
     }
     const entries = (d, section) => section === 'station'
       ? displayedCards(d,{slotId:'common',member:null,name:'旋转工位'},section).map(card => ({it:card.item,card}))
@@ -477,7 +480,7 @@
       document.getElementById('recipeAuthoringNotice').textContent = next.message;
       const busy = next.refreshing || ['Loading', 'Configuring', 'Saving', 'Checking'].includes(next.phase);
       for (const [id, allowed] of [['recipeAuthoringCheck', next.canValidate], ['recipeAuthoringSave', next.canSave]]) document.getElementById(id).disabled = busy || !d || !allowed;
-      picker.disabled = busy; document.getElementById('recipeAuthoringNew').disabled = busy;
+      picker.disabled = busy; document.getElementById('recipeAuthoringNew').disabled = busy || !next.canSave;
       for (const tab of document.querySelectorAll('[data-authoring-section]')) { tab.classList.toggle('active', tab.dataset.authoringSection === next.section); tab.setAttribute('aria-selected', String(tab.dataset.authoringSection === next.section)); }
       panel.replaceChildren();
       panel.dataset.unitKind=d?.unitKind??'';panel.dataset.pointPurpose=area;
@@ -487,6 +490,16 @@
         const layout = node('div', null, 'recipe-setup'), form = node('section', null, 'recipe-panel'), overview = node('aside', null, 'recipe-panel recipe-summary');
         layout.append(form, overview); panel.append(layout); form.append(node('h2', '配方信息'));
         const grid = node('div', null, 'recipe-basic-grid'); form.append(grid);
+        const virtualLabel = node('label', '虚拟光源 '), virtualLight = node('input');
+        virtualLight.type = 'checkbox'; virtualLight.checked = d.lightExecution?.mode === 'Simulated';
+        virtualLight.dataset.lightMode = 'recipe';
+        virtualLight.onchange = () => session.edit(x => x.lightExecution = {schemaVersion:'light-execution/1',mode:virtualLight.checked?'Simulated':'Real'});
+        virtualLabel.append(virtualLight); grid.append(virtualLabel);
+        for (const [axis,label] of [['x','虚拟算法 F读码X (mm)'],['y','虚拟算法 F读码Y (mm)']])
+          input(grid,label,d.commissioningFPosition?.[axis],v => session.edit(x => {
+            x.commissioningFPosition ??= {schemaVersion:'commissioning-f-position/1',x:null,y:null};
+            x.commissioningFPosition[axis]=v;
+          }));
         input(grid, '料盘编号', d.fCode, v => session.edit(x => x.fCode = v), 'text');
         input(grid, '检测场景', d.unitKind, v => { session.edit(x => { x.unitKind = v; x.inspectionKind = v === 'independentPart' ? x.inspectionKind : 'ordinary'; const scenarios = [...new Set(state.catalog.filter(c => c.unitKind === v && c.model === x.model).map(c => c.scenarioId))]; x.scenarioId = scenarios.length === 1 ? scenarios[0] : ''; }); void session.configure(); }, 'text', [['independentPart','单品'],['looseGroup','成组'],['assembledEntity','半成品']]);
         input(grid, '零件型号', d.model, v => { session.edit(x => { x.model = v; const scenarios = [...new Set(state.catalog.filter(c => c.unitKind === x.unitKind && c.model === v).map(c => c.scenarioId))]; x.scenarioId = scenarios.length === 1 ? scenarios[0] : ''; }); void session.configure(); }, 'text',
@@ -619,7 +632,11 @@
         for(const issue of next.issues) { const row=node('p',issue.message || issue.code,'recipe-issue'); button(row,'返回编辑 →',locate,'hmi-btn recipe-small-button'); review.append(row); }
         button(review,'定位缺项 →',locate); button(review,'← 返回基础信息',()=>session.section('basic')); button(aside,'保存配方',()=>void save(),'hmi-btn hmi-btn-primary');
       }
-      panel.querySelectorAll('input,select,button').forEach(e => e.disabled = busy);
+      panel.querySelectorAll('input,select').forEach(e => e.disabled = busy || !next.canSave);
+      panel.querySelectorAll('button').forEach(e => e.disabled = busy || (!next.canSave && !e.classList.contains('recipe-nav-button') && !e.classList.contains('recipe-face-rail')));
+      if (d.lightExecution?.mode === 'Simulated') panel.querySelectorAll('.recipe-capture-fields label').forEach(label => {
+        if (label.textContent.includes('光源亮度')) { const field=label.querySelector('input'); if(field) field.disabled=true; }
+      });
     }
     document.getElementById('recipeAuthoringNew').onclick = () => { session.create(newDraft(state.definition)); void session.configure(); };
     document.getElementById('recipeAuthoringCatalog').onchange = e => void session.load(e.target.value);

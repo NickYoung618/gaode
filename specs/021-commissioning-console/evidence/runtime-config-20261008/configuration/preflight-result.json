@@ -1,0 +1,66 @@
+{
+  "schemaVersion": "commissioning-runtime-preflight/1",
+  "passed": true,
+  "installedAssembliesUsed": true,
+  "formalHostRegistrationPassed": true,
+  "formalRecipeStoreOptionsPassed": true,
+  "formalIdentityRegistryPassed": true,
+  "formalPlcConstructionPassed": true,
+  "protocolViolations": 0,
+  "sevenCameraBindings": [
+    {
+      "Role": "A",
+      "Serial": "GBZ26080956",
+      "State": "Stopped"
+    },
+    {
+      "Role": "B",
+      "Serial": "GBZ26080958",
+      "State": "Stopped"
+    },
+    {
+      "Role": "C",
+      "Serial": "GBZ26080957",
+      "State": "Stopped"
+    },
+    {
+      "Role": "D",
+      "Serial": "GBZ26080955",
+      "State": "Stopped"
+    },
+    {
+      "Role": "E",
+      "Serial": "LJS26085292",
+      "State": "Stopped"
+    },
+    {
+      "Role": "F",
+      "Serial": "LJS26085291",
+      "State": "Stopped"
+    },
+    {
+      "Role": "3D",
+      "Serial": "CPFCBD0002608004",
+      "State": "Stopped"
+    }
+  ],
+  "nativeSdkFilesPresent": true,
+  "publicDigest": "E677C5B6C5D99F0CA1164CDEF8E753200212A65C10B5F93A5F0AC8BC0A05D001",
+  "budgetDigest": "785412720DC0272C7F4EADA756FBF6F65D4FDD467BEF52028843D5B37BB98C66",
+  "inputDigest": "260EDF1FFFCF969EA3D1271495B77A57B373345DFFA667F965F1D9297520D9FB",
+  "recipeId": "1eb168da6ae44f1f983c17c48d21a59f",
+  "recipeVersion": "3e477719e9454072a999a8b7acdde9d9",
+  "recipeDefinitionDigest": "B6DC43883813DE009A75E664C30F2195B73E8F5B2A238325FEB3C7E6CBFEF306",
+  "formalSqliteReadbackPassed": true,
+  "formalAlgorithmFreezeAndRecipeBindPassed": true,
+  "formalRuntimeStoreCompatible": true,
+  "publicAlgorithmIssues": [],
+  "realLightMissingParametersBlocked": true,
+  "poseProgramCount": 1,
+  "sortingConfigured": false,
+  "networkAccess": false,
+  "deviceDispatches": 0,
+  "hostStarted": false,
+  "workersStarted": false,
+  "fieldValidated": false
+}

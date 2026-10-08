@@ -1,0 +1,34 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<TestRun id="04d83f7a-a8f8-429f-8333-1c00c4dd0473" name="Administrator@DEMO 2026-10-08 15:37:56" runUser="demo\Administrator" xmlns="http://microsoft.com/schemas/VisualStudio/TeamTest/2010">
+  <Times creation="2026-10-08T15:37:56.3678033+08:00" queuing="2026-10-08T15:37:56.3678034+08:00" start="2026-10-08T15:37:54.1599991+08:00" finish="2026-10-08T15:37:56.3710967+08:00" />
+  <TestSettings name="default" id="1fcac3af-b707-4767-afb0-12590d42d55c">
+    <Deployment runDeploymentRoot="Administrator_DEMO_2026-10-08_15_37_56" />
+  </TestSettings>
+  <Results>
+    <UnitTestResult executionId="33efdf6d-336c-467d-8d3d-98e69d7b41de" testId="48717e0b-1127-c9e0-8a98-2a9413e85aac" testName="Gaode.Communication.Tests.CommissioningRecoveryTests.FormalHostPersistenceRestartRestoresHeldRunThenDoesNotRestoreVerifiedCancelledRun" computerName="DEMO" duration="00:00:01.7919902" startTime="2026-10-08T15:37:54.5053733+08:00" endTime="2026-10-08T15:37:56.3025662+08:00" testType="13cdc9d9-ddb5-4fa4-a97d-d965ccfc6d4b" outcome="Passed" testListId="8c84fa94-04c1-424b-9868-57a2d4851a1d" relativeResultsDirectory="33efdf6d-336c-467d-8d3d-98e69d7b41de" />
+  </Results>
+  <TestDefinitions>
+    <UnitTest name="Gaode.Communication.Tests.CommissioningRecoveryTests.FormalHostPersistenceRestartRestoresHeldRunThenDoesNotRestoreVerifiedCancelledRun" storage="d:\gaode\backend\tests\gaode.communication.tests\bin\release\net10.0\gaode.communication.tests.dll" id="48717e0b-1127-c9e0-8a98-2a9413e85aac">
+      <Execution id="33efdf6d-336c-467d-8d3d-98e69d7b41de" />
+      <TestMethod codeBase="D:\gaode\backend\tests\Gaode.Communication.Tests\bin\Release\net10.0\Gaode.Communication.Tests.dll" adapterTypeName="executor://xunit/VsTestRunner3/netcore/" className="Gaode.Communication.Tests.CommissioningRecoveryTests" name="FormalHostPersistenceRestartRestoresHeldRunThenDoesNotRestoreVerifiedCancelledRun" />
+    </UnitTest>
+  </TestDefinitions>
+  <TestEntries>
+    <TestEntry testId="48717e0b-1127-c9e0-8a98-2a9413e85aac" executionId="33efdf6d-336c-467d-8d3d-98e69d7b41de" testListId="8c84fa94-04c1-424b-9868-57a2d4851a1d" />
+  </TestEntries>
+  <TestLists>
+    <TestList name="列表中未列出的结果" id="8c84fa94-04c1-424b-9868-57a2d4851a1d" />
+    <TestList name="所有已加载的结果" id="19431567-8539-422a-85d7-44ee4e166bda" />
+  </TestLists>
+  <ResultSummary outcome="Completed">
+    <Counters total="1" executed="1" passed="1" failed="0" error="0" timeout="0" aborted="0" inconclusive="0" passedButRunAborted="0" notRunnable="0" notExecuted="0" disconnected="0" warning="0" completed="0" inProgress="0" pending="0" />
+    <Output>
+      <StdOut>[xUnit.net 00:00:00.00] xUnit.net VSTest Adapter v3.1.5+1b188a7b0a (64-bit .NET 10.0.12)&#xD;
+[xUnit.net 00:00:00.06]   Discovering: Gaode.Communication.Tests&#xD;
+[xUnit.net 00:00:00.09]   Discovered:  Gaode.Communication.Tests&#xD;
+[xUnit.net 00:00:00.11]   Starting:    Gaode.Communication.Tests&#xD;
+[xUnit.net 00:00:01.92]   Finished:    Gaode.Communication.Tests&#xD;
+</StdOut>
+    </Output>
+  </ResultSummary>
+</TestRun>

@@ -32,14 +32,32 @@ await CameraWorkerProtocol.WriteAsync(pipe, new("ready", session, init.RequestId
 File.WriteAllText(previousSessionPath,session.ToString());
 _ = Task.Run(async () => { while (true) { if (File.Exists(Path.Combine(root, "exit"))) Environment.Exit(17); await Task.Delay(10); } });
 long sequence = 0;
+ActualCameraSettings? actualSettings = null;
 while (true)
 {
     var request = (await CameraWorkerProtocol.ReadAsync(pipe, 0, default)).Header;
     if (request.Kind == "close")
     {
+        File.WriteAllText(Path.Combine(root, "restoration.json"), JsonSerializer.Serialize(new { restored = true, modified = actualSettings is not null }));
         await CameraWorkerProtocol.WriteAsync(pipe, new("closed", session, request.RequestId), ReadOnlyMemory<byte>.Empty, default);
         return;
     }
+    if (request.Kind == "capture-configured")
+    {
+        var settings = request.Settings ?? throw new InvalidDataException("FixtureSettingsRequired");
+        if (Mode() is "settings-unsupported" or "settings-readback-fail" ||
+            settings.RoiPixels is { } roi && !roi.SequenceEqual(new[] { 0, 0, 2, 2 }))
+        {
+            await CameraWorkerProtocol.WriteAsync(pipe, new("error", session, request.RequestId)
+                { Error = Mode() == "settings-readback-fail" ? "ParameterReadbackMismatch:ExposureTime" : "CameraParameterUnsupported" },
+                ReadOnlyMemory<byte>.Empty, default);
+            continue;
+        }
+        actualSettings = new(settings.ExposureUs, settings.Gain ?? 1, 2, 2, 0, 0);
+        parameters["ExposureTime"] = settings.ExposureUs.ToString();
+        parameters["Gain"] = actualSettings.Gain.ToString(System.Globalization.CultureInfo.InvariantCulture);
+    }
+    else if (request.Kind != "capture") throw new InvalidDataException("FixtureCommandInvalid");
     File.AppendAllText(Path.Combine(root, "triggers.txt"), session + Environment.NewLine);
     sequence++;
     if (Mode() == "hold") await Task.Delay(1500);
@@ -70,5 +88,7 @@ while (true)
     if (Mode() == "bad-role") metadata = metadata with { Role = "B" };
     if (Mode() == "bad-size") metadata = metadata with { Width = 3 };
     if (Mode() == "old-session") metadata = metadata with { WorkerSessionId = previousSession };
-    await CameraWorkerProtocol.WriteAsync(pipe, new("frame", Mode()=="old-session"?previousSession:session, request.RequestId) { Metadata=metadata,Format=format }, bytes, default);
+    await CameraWorkerProtocol.WriteAsync(pipe, new("frame", Mode()=="old-session"?previousSession:session, request.RequestId)
+        { Metadata=metadata,Format=format, SettingsDigest = request.SettingsDigest,
+            ActualSettings = request.Settings is null ? null : actualSettings }, bytes, default);
 }

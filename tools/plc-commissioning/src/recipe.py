@@ -139,7 +139,7 @@ class Recipe:
             jobs.append(dict(type='command',mb=2014,value=1,feedback=6050,busy=1,done=2))
         if kind=='unload':
             jobs.extend([dict(type='command',mb=2014,value=2,feedback=6052,busy=1,done=2),
-                         dict(type='write',mb=2014,value=0)])
+                         dict(type='parentClear',mb=2014,feedbacks=(6050,6052))])
         if kind=='result':
             checkpoint=self.checkpoint('result','汇总结果，保存后按OK/NG/Pending处置')
             if self.profile['cameraMode']=='simulated':checkpoint['type']='simulation'
@@ -157,7 +157,7 @@ class Recipe:
             self.axis('ZGrab',s['pickZ']),dict(type='command',mb=2016,value=1,feedback=6054,busy=0,done=1),
             self.axis('ZGrab',s['transferZ'])]+self.position(x,y,True)+[
             self.axis('ZGrab',s['placeZ']),dict(type='command',mb=2016,value=2,feedback=6054,busy=0,done=2),
-            dict(type='write',mb=2016,value=0),dict(type='idle',mb=6054),self.axis('ZGrab',s['transferZ'])]
+            self.axis('ZGrab',s['transferZ']),dict(type='parentClear',mb=2016,feedbacks=(6054,))]
 
     async def command(self, name, data):
         if name=='recipe-settings':
@@ -258,6 +258,9 @@ class Recipe:
                 raise ValueError('PLC未就绪或不在自动模式（MB6015/MB6016），停止推进')
             if self.app.heartbeat['state'] in ('failed','invalid','no_edge'):
                 raise ValueError('心跳应答失败或3秒未观察到PLC心跳变化，停止推进')
+            for mb, parent in getattr(self,'parents',{}).items():
+                if parent.get('deadline') is not None and (parent.get('readDeadlineExpired',False) or time.monotonic()>=parent['deadline']):
+                    raise ValueError('父闭环末段超时，未确认清零；不自动重发MB'+str(mb))
             if not self.jobs:
                 if self.run.get('gripperCheck'):
                     self.run.update(state='completed',reason='成组夹爪选择验证完成；未执行运动或取放料，不代表成组检测验收通过')
@@ -274,7 +277,7 @@ class Recipe:
                 if any(self.app.value(mb) is None or abs(self.app.value(mb))>tolerance for mb in (6064,6076)):
                     raise ValueError('人工上料位置不在(0,0)容差内，未启动后续移动')
                 self.jobs.pop(0);self.log('RECIPE_LOADED','启动按钮已确认人工放料，核对XY上料位完成');return
-            self.run['reason']=job.get('message') or {'axis':'等待本次轴运动反馈','command':'等待本次PLC取放/翻面反馈','grab':'等待抓手有效选择'}.get(kind,'发送配方参数并读回')
+            self.run['reason']=job.get('message') or {'axis':'等待本次轴运动反馈','command':'等待本次PLC取放/翻面反馈','grab':'等待抓手有效选择','parentClear':'等待PLC相关旧反馈清零'}.get(kind,'发送配方参数并读回')
             if kind=='simulation':
                 if not job.get('started'):
                     job['started']=time.time();return
@@ -300,7 +303,7 @@ class Recipe:
                         if self.app.value(self.app.axis_map[axis][2])!=0:raise ValueError(axis+'启动字节未为0，未发送本次XY目标/启动')
                         if self.app.fault(axis):raise ValueError(self.app.fault(axis))
                     # Both REAL targets are verified before either start BYTE is sent.
-                    await self.app.poll()
+                    await self.app.capture()
                     tolerance=self.profile.get('positionTolerance',0.1)
                     results={}
                     for axis,mb in (('X',2024),('Y',2028)):
@@ -317,7 +320,7 @@ class Recipe:
                     if action['state'] not in ('completed','observing','pending') or action['state']=='completed' and not action['cleared']:
                         raise ValueError(action['axis']+'动作未完成：'+action.get('reason','清零失败'))
                 if len(actions)==2 and all(a['state']=='completed' and a['cleared'] for a in actions):
-                    await self.app.poll() # Fresh snapshot after start-clear readback.
+                    await self.app.capture() # Fresh snapshot after start-clear readback.
                     tolerance=self.profile.get('positionTolerance',0.1)
                     if not all(self.app.position_satisfied(axis,job[axis.lower()],tolerance) for axis in ('X','Y')):
                         raise ValueError('XY最终位置复核失败，未进入下一步')
@@ -326,13 +329,10 @@ class Recipe:
                 return
             if kind=='reuse':
                 if 'x' in job:
-                    if any(self.app.value(mb)!=1 for mb in (6040,6042)) or any(self.app.value(mb)!=0 for mb in (2001,2002)):
-                        job.setdefault('started',time.time())
-                        if time.time()-job['started']>self.app.cfg['actionTimeout']:raise ValueError('原槽定位复核超时，未继续放料')
-                        return
+                    await self.app.capture()
                     tolerance=self.profile.get('positionTolerance',0.1)
-                    if any(self.app.value(mb) is None or abs(self.app.value(mb)-job[key])>tolerance for mb,key in ((6064,'x'),(6076,'y'))):
-                        raise ValueError('沿用XY实际位置超出配方容差，停止推进')
+                    if not all(self.app.position_satisfied(axis,job[axis.lower()],tolerance) for axis in ('X','Y')):
+                        raise ValueError('本连接XY闭环资格或当前坐标复核失败，停止推进')
                 self.log('RECIPE_REUSE',job['message']);self.jobs.pop(0);return
             if kind=='axis':
                 axis=job['axis'];value=job['value']
@@ -344,7 +344,7 @@ class Recipe:
                     job['actionId']=action['actionId'];return
                 action=next(a for a in self.app.actions if a['actionId']==job['actionId'])
                 if action['state']=='completed' and action['cleared']:
-                    await self.app.poll()
+                    await self.app.capture()
                     if not self.app.position_satisfied(axis,value,self.profile.get('positionTolerance',0.1)):
                         raise ValueError(axis+'最终位置复核失败，未进入下一步')
                     self.last_targets[axis]=value
@@ -376,32 +376,54 @@ class Recipe:
                 return
             if kind=='write':
                 await self.app.write_checked(job['mb'],job['value'],operation);self.jobs.pop(0);return
-            if kind=='idle':
-                if self.app.value(job['mb'])==0:self.jobs.pop(0);return
-                job.setdefault('started',time.time())
-                if time.time()-job['started']>self.app.cfg['actionTimeout']:raise ValueError('分拣清零后反馈未回空闲0，停止推进')
+            if kind=='parentClear':
+                parent=getattr(self,'parents',{}).get(job['mb'])
+                if not parent or not parent.get('terminalCompleted'):raise ValueError('父动作末段尚未完成，不能清父请求')
+                if 'writeEnded' not in job:
+                    result=await self.app.write_checked(job['mb'],0,operation,deadline=parent['deadline'])
+                    job.update(writeEnded=result['writeEnded'],generation=self.app.generation)
+                    self.log('RECIPE_CLEAR_WAIT','父请求已复位，等待PLC相关旧反馈全0',mb=job['mb'],writeEnded=job['writeEnded'],deadline=parent['deadline']);return
+                fields=(job['mb'],)+job['feedbacks']
+                if self.app.sampled_after(fields,job['writeEnded'],job['generation']) and all(self.app.value(mb)==0 for mb in fields):
+                    self.log('RECIPE_CLEAR_CONFIRMED','父闭环双方清零已确认',mb=job['mb'],writeEnded=job['writeEnded'],clearEvidence={mb:dict(self.app.values[self.app.by_mb[mb]['id']]) for mb in fields})
+                    self.parents.pop(job['mb']);self.jobs.pop(0)
                 return
             if kind=='command':
                 if not job.get('started'):
+                    await self.app.capture()
+                    if job['mb'] in self.app.raw_parents:raise ValueError('存在结果未知的手工父周期，禁止配方绕过')
                     current=self.app.value(job['mb'])
                     allowed=(0,1) if job['mb'] in (2014,2016) and job['value']==2 else (0,)
                     if current not in allowed:raise ValueError('指令MB'+str(job['mb'])+'未处于允许状态，请现场处理；未自动清零')
                     baseline=self.app.value(job['feedback'])
                     expected=(1,) if job['mb']==2016 and job['value']==2 else (0,)
                     if baseline not in expected:raise ValueError('反馈MB'+str(job['feedback'])+'不是本次所需前态，不能把旧完成作为本次完成')
-                    await self.app.write_checked(job['mb'],job['value'],operation)
-                    job.update(started=time.time(),seenBusy=job['busy']==0,previous=baseline);return
+                    if not hasattr(self,'parents'):self.parents={}
+                    if job['value']==1 and job['mb'] in self.parents:raise ValueError('上一父周期未清零')
+                    if job['value']==2 and job['mb'] not in self.parents:raise ValueError('缺少同周期前段完成记录')
+                    if job['mb']==2014:self.app.axis_closures.pop('ZGrab',None)
+                    if job['value']==1:self.parents[job['mb']]=dict(generation=self.app.generation)
+                    parent=self.parents[job['mb']]
+                    if parent['generation']!=self.app.generation:raise ValueError('父周期连接已改变')
+                    deadline=time.monotonic()+self.app.cfg['actionTimeout']
+                    if job['value']==2:parent['deadline']=deadline
+                    result=await self.app.write_checked(job['mb'],job['value'],operation,deadline=deadline)
+                    job.update(started=time.time(),deadline=deadline,writeEnded=result['writeEnded'],generation=self.app.generation,seenBusy=job['busy']==0,previous=baseline);return
+                if time.monotonic()>=job['deadline']:raise ValueError('PLC本次父动作超时，未自动重发')
+                if not self.app.sampled_after((job['feedback'],),job['writeEnded'],job['generation']):return
                 feedback=self.app.value(job['feedback'])
                 if feedback==3 or feedback is None:raise ValueError('PLC翻面/取放反馈失败或无效：MB'+str(job['feedback']))
                 if feedback==job['busy']:job['seenBusy']=True
                 if feedback==job['done'] and job['seenBusy'] and job['previous']!=job['done']:
                     self.log('RECIPE_PLC_COMPLETE','PLC反馈本次翻面/取放完成',mb=job['feedback'],before=job['previous'],value=feedback)
+                    if job['value']==2:self.parents[job['mb']]['terminalCompleted']=True
                     if job['feedback'] in (6050,6052):
                         for axis in ('ZCamera','ZScan','ZGrab'):self.last_targets.pop(axis,None)
                     self.jobs.pop(0);return
                 job['previous']=feedback
                 if time.time()-job['started']>self.app.cfg['actionTimeout']:raise ValueError('PLC本次翻面/取放反馈超时；未自动清零')
         except Exception as error:
+            self.app.raw_parents.update(getattr(self,'parents',{}))
             self.run.update(state='failed',reason=str(error));self.wait=None
             self.log('RECIPE_FAILED','配方停在本步：'+str(error))
         finally:self.ticking=False

@@ -18,12 +18,25 @@ public static class RealCameraRegistration
             Required("CameraProSdkPath"), Required("StateRoot"), s.GetValue("StartupTimeoutMs", 30000),
             s.GetValue("CaptureTimeoutMs", 30000), s.GetValue("ShutdownTimeoutMs", 15000));
     }
-    public static IServiceCollection AddRealCameras(this IServiceCollection services, RealCameraOptions options)
+    public static IServiceCollection AddRealCameras(this IServiceCollection services, RealCameraOptions options,
+        IReadOnlyDictionary<string, string>? publicLightChannels = null, bool requireSeven = false,
+        Gaode.Domain.Configuration.PublicConfiguration? publicConfiguration = null)
     {
         services.AddSingleton(options);
-        services.AddSingleton<PersistentCameraGateway>();
+        services.AddSingleton(sp => {
+            var gateway = new PersistentCameraGateway(options);
+            if (requireSeven && !gateway.Status.Select(s => s.Role).Order(StringComparer.Ordinal)
+                .SequenceEqual(new[] { "3D", "A", "B", "C", "D", "E", "F" }))
+                throw new InvalidDataException("CommissioningRequiresSevenCameraRoles");
+            if (publicConfiguration is not null &&
+                (!gateway.Status.Any(s => s.Role == "3D" && (s.Role == publicConfiguration.Capture3d.BindingId || s.Serial == publicConfiguration.Capture3d.BindingId)) ||
+                 !gateway.Status.Any(s => s.Role == "F" && (s.Role == publicConfiguration.CaptureF.BindingId || s.Serial == publicConfiguration.CaptureF.BindingId))))
+                throw new InvalidDataException("CommissioningPublicCameraBindingMismatch");
+            return gateway;
+        });
         services.AddSingleton<ICameraSdkGateway>(sp => sp.GetRequiredService<PersistentCameraGateway>());
-        services.AddSingleton<ICapturePort, CameraCaptureAdapter>();
+        services.AddSingleton<ICapturePort>(sp => new CameraCaptureAdapter(sp.GetRequiredService<ICameraSdkGateway>(),
+            sp.GetService<ILightGateway>(), publicLightChannels));
         services.AddSingleton<CameraAcquisitionService>();
         services.AddHostedService<RealCameraHostedService>();
         return services;

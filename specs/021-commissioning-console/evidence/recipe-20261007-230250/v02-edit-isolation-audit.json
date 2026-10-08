@@ -1,0 +1,41 @@
+{
+  "scope": "OFFLINE:actual-WebView2-edit;formal-saved-recipe-executor;declared-motion-camera-ports;real-SQLite-media",
+  "state": "Passed",
+  "pageEvidence": "specs\\021-commissioning-console\\evidence\\recipe-20261007-230250\\v02-recipe-page-attempt.json",
+  "oldRun": "5a247de3-83f3-4266-9595-774c8103652b",
+  "newRun": "d1c3a398-ebe4-4720-99d2-311a1e9ce871",
+  "oldVersion": "098de66e3a3a4c58b8065fb6869da681",
+  "newVersion": "3c16c240acf74c5dad2a8676419be44d",
+  "actualX": {
+    "old": 10,
+    "new": 11
+  },
+  "actualExposureRequests": {
+    "old": [
+      10,
+      10,
+      10,
+      10
+    ],
+    "new": [
+      110,
+      10,
+      10,
+      10
+    ]
+  },
+  "media": [
+    {
+      "runId": "5a247de3-83f3-4266-9595-774c8103652b",
+      "persistedMediaFiles": 5,
+      "fileLengthsVerified": true
+    },
+    {
+      "runId": "d1c3a398-ebe4-4720-99d2-311a1e9ce871",
+      "persistedMediaFiles": 5,
+      "fileLengthsVerified": true
+    }
+  ],
+  "fromScratchPageAuthoringValidated": false,
+  "fieldHardwareValidated": false
+}

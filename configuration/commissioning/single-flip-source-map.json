@@ -1,0 +1,49 @@
+{
+  "schemaVersion": "commissioning-recipe-conversion/1",
+  "sourcePath": "D:\\Gaode-PlcCommissioning-20261006\\release\\Gaode-PlcCommissioning-1.1.6-win-x64\\config\\recipe.local.json",
+  "sourceSha256": "a898bc7001febf8e0d626f0542bacdac7ae7a8c493c80b3dd4d7202c81ff9a75",
+  "cameraEvidencePath": "artifacts\\camera-runtime\\seven-after-captures.json",
+  "cameraEvidenceSha256": "c3d51d2958ec09decd44b67691d615d1317b56b0029ab3f2c838ab3fa228a304",
+  "currentRoute": "single part AB->flip->putback->3D review->CD->OK original slot",
+  "fXY": [
+    65,
+    50
+  ],
+  "modelNumber": 666,
+  "sourceOnly": true,
+  "authorizesHardware": false,
+  "placeholderPolicy": [
+    {
+      "field": "sortingGripperId",
+      "value": 1,
+      "reason": "source missing; user-authorized inactive placeholder; fixed OK performs no sorting; sorting safety config remains absent"
+    },
+    {
+      "field": "captureProfiles.*.gain",
+      "value": 1,
+      "reason": "user-authorized imaging initial value; must be tuned; no motion semantics"
+    },
+    {
+      "field": "purposePoints.*.fixed.z",
+      "value": 0,
+      "reason": "formal site protocol XY only; no Z request"
+    },
+    {
+      "field": "lightExecution",
+      "value": "Simulated",
+      "reason": "explicit skip all external-light parameters/control"
+    },
+    {
+      "field": "eCode.enabled",
+      "value": false,
+      "reason": "source route does not scan E"
+    }
+  ],
+  "remainingFieldReview": [
+    "PLC first/recovery safety semantics",
+    "mechanical travel limits and frame basis",
+    "sorting gripper before enabling any NG/Pending route",
+    "camera gain/exposure quality",
+    "slot mapping before multi-part use"
+  ]
+}

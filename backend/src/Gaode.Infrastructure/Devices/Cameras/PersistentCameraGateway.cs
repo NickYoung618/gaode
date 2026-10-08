@@ -75,6 +75,14 @@ public sealed class PersistentCameraGateway : ICameraSdkGateway
         ObjectDisposedException.ThrowIf(Volatile.Read(ref _disposed) != 0, this);
         return Find(binding).CaptureAsync(ct);
     }
+    public Task<CameraFrame> CaptureConfiguredAsync(string binding, string pointVersion,
+        CameraImagingSettings settings, string settingsDigest, CancellationToken ct = default)
+    {
+        ObjectDisposedException.ThrowIf(Volatile.Read(ref _disposed) != 0, this);
+        if (settings.ExposureUs <= 0 || settings.Gain is { } gain && (!double.IsFinite(gain) || gain < 0) ||
+            string.IsNullOrWhiteSpace(settingsDigest)) throw new ArgumentException("CameraSettingsInvalid");
+        return Find(binding).CaptureAsync(ct, settings, settingsDigest);
+    }
     public async ValueTask DisposeAsync()
     {
         if (Interlocked.Exchange(ref _disposed, 1) != 0) return;
@@ -203,7 +211,7 @@ public sealed class PersistentCameraGateway : ICameraSdkGateway
             CameraWorkerProtocol.ValidateResponse(request, response.Header, expected);
             return response;
         }
-        public async Task<CameraFrame> CaptureAsync(CancellationToken ct)
+        public async Task<CameraFrame> CaptureAsync(CancellationToken ct, CameraImagingSettings? settings = null, string? digest = null)
         {
             using var budget = CancellationTokenSource.CreateLinkedTokenSource(ct);
             budget.CancelAfter(options.CaptureTimeoutMs);
@@ -218,9 +226,18 @@ public sealed class PersistentCameraGateway : ICameraSdkGateway
                     _state = "Capturing";
                     admitted = true;
                 }
-                var request = new CameraWireMessage("capture", _session, Guid.NewGuid()) { MaxBytes = MaxBytes };
-                Log("CaptureRequested", request.RequestId);
+                var request = new CameraWireMessage(settings is null ? "capture" : "capture-configured", _session, Guid.NewGuid())
+                    { MaxBytes = MaxBytes, Settings = settings, SettingsDigest = digest };
+                Log("CaptureRequested", new { request.RequestId, settings, settingsDigest = digest });
                 var frame = await ExchangeAsync(request, "frame", MaxBytes, budget.Token);
+                if (settings is not null)
+                {
+                    var actual = frame.Header.ActualSettings;
+                    if (frame.Header.SettingsDigest != digest || actual is null || actual.ExposureUs != settings.ExposureUs ||
+                        settings.Gain is { } requestedGain && actual.Gain != requestedGain ||
+                        settings.RoiPixels is { } roi && !roi.SequenceEqual(new[] { actual.OffsetX, actual.OffsetY, actual.Width, actual.Height }))
+                        throw new InvalidDataException("CameraSettingsReadbackMismatch");
+                }
                 var m = frame.Header.Metadata ?? throw new InvalidDataException("CameraFrameMetadataMissing");
                 if (m.WorkerSessionId != _session || m.Serial != binding.Serial || m.Role != binding.Role ||
                     NormalizeMac(m.NicMac) != NormalizeMac(binding.ExpectedNicMac) ||
@@ -236,7 +253,8 @@ public sealed class PersistentCameraGateway : ICameraSdkGateway
                     _metadata = m; _lastFrame = m.FrameId; _lastTrigger = m.TriggerSequence; _state = "Ready";
                 }
                 Log("FrameTaken", new { request.RequestId, m.FrameId, m.TriggerSequence, m.PayloadBytes });
-                return new(frame.Data, frame.Header.Format!, frame.Header.ContentType ?? "application/octet-stream", Epoch) { Metadata = m };
+                return new(frame.Data, frame.Header.Format!, frame.Header.ContentType ?? "application/octet-stream", Epoch)
+                    { Metadata = m, ActualSettings = frame.Header.ActualSettings };
             }
             catch (Exception e) { if (admitted) { Fault(e); _pipe?.Dispose(); _pipe = null; } throw; }
             finally { _gate.Release(); }

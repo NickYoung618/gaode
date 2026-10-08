@@ -1,0 +1,334 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<TestRun id="a9e1a5a9-addb-4a23-88c0-d1a4aa753a00" name="Administrator@DEMO 2026-10-08 06:06:05" runUser="demo\Administrator" xmlns="http://microsoft.com/schemas/VisualStudio/TeamTest/2010">
+  <Times creation="2026-10-08T06:06:05.8053710+08:00" queuing="2026-10-08T06:06:05.8053712+08:00" start="2026-10-08T06:06:05.0521560+08:00" finish="2026-10-08T06:06:50.9913136+08:00" />
+  <TestSettings name="default" id="1285f685-bc11-4a6b-9066-15989904ac93">
+    <Deployment runDeploymentRoot="Administrator_DEMO_2026-10-08_06_06_05" />
+  </TestSettings>
+  <Results>
+    <UnitTestResult executionId="4fa28757-c06c-427a-8ce6-1dfcc23f02a5" testId="47cace73-f00c-f337-0a02-9a2cc1bf51a8" testName="Gaode.Communication.Tests.Devices.HandshakeClosureTests.NoClearTimeoutAndLateZeroNeverAuthorizeAnotherRequest" computerName="DEMO" duration="00:00:02.0538568" startTime="2026-10-08T06:06:17.2176949+08:00" endTime="2026-10-08T06:06:19.2714266+08:00" testType="13cdc9d9-ddb5-4fa4-a97d-d965ccfc6d4b" outcome="Passed" testListId="8c84fa94-04c1-424b-9868-57a2d4851a1d" relativeResultsDirectory="4fa28757-c06c-427a-8ce6-1dfcc23f02a5" />
+    <UnitTestResult executionId="03c61558-a52b-4020-92c3-ee5205b9fb9b" testId="1c4b9ec4-0ab4-2e40-1081-06d4bf82c5ea" testName="Gaode.Communication.Tests.Devices.SamePositionTests.RepeatedTargetsReuseOnlySatisfiedAxes(x: 11, y: 23, z: 34, expected: &quot;Y,DetectionZ&quot;)" computerName="DEMO" duration="00:00:01.2057640" startTime="2026-10-08T06:06:07.0912210+08:00" endTime="2026-10-08T06:06:08.2970794+08:00" testType="13cdc9d9-ddb5-4fa4-a97d-d965ccfc6d4b" outcome="Passed" testListId="8c84fa94-04c1-424b-9868-57a2d4851a1d" relativeResultsDirectory="03c61558-a52b-4020-92c3-ee5205b9fb9b" />
+    <UnitTestResult executionId="17f8e987-a7ef-41b4-ad87-5a099b237126" testId="7923ee32-0c4b-d942-01cc-b423129530c3" testName="Gaode.Communication.Tests.Devices.HandshakeClosureTests.TransitionOwnsDeviceUntilRealSqliteSaveReceipt(failReceipt: False, puttingBack: False)" computerName="DEMO" duration="00:00:01.4563232" startTime="2026-10-08T06:06:19.2716583+08:00" endTime="2026-10-08T06:06:20.7278936+08:00" testType="13cdc9d9-ddb5-4fa4-a97d-d965ccfc6d4b" outcome="Passed" testListId="8c84fa94-04c1-424b-9868-57a2d4851a1d" relativeResultsDirectory="17f8e987-a7ef-41b4-ad87-5a099b237126" />
+    <UnitTestResult executionId="3ff34273-4845-45ee-937c-86d8a6ea689d" testId="1709347c-ea08-b5e0-6184-9398696bf5a5" testName="Gaode.Communication.Tests.ControlledCommissioningTests.FormalCommissioningStartBlocksWithoutSafeInputsOrConfirmedSiteSafety(missingInput: False)" computerName="DEMO" duration="00:00:00.1122732" startTime="2026-10-08T06:06:06.5887819+08:00" endTime="2026-10-08T06:06:06.7003236+08:00" testType="13cdc9d9-ddb5-4fa4-a97d-d965ccfc6d4b" outcome="Passed" testListId="8c84fa94-04c1-424b-9868-57a2d4851a1d" relativeResultsDirectory="3ff34273-4845-45ee-937c-86d8a6ea689d" />
+    <UnitTestResult executionId="e0a220b8-3bcc-44f7-820e-182eed4b8f4b" testId="9b2c71a5-148f-acf0-20a4-e4f44241ebeb" testName="Gaode.Communication.Tests.Devices.HandshakeClosureTests.ClearanceRejectsOldOrInvalidReads(fault: &quot;before-write&quot;)" computerName="DEMO" duration="00:00:00.0005455" startTime="2026-10-08T06:06:25.9151302+08:00" endTime="2026-10-08T06:06:25.9156163+08:00" testType="13cdc9d9-ddb5-4fa4-a97d-d965ccfc6d4b" outcome="Passed" testListId="8c84fa94-04c1-424b-9868-57a2d4851a1d" relativeResultsDirectory="e0a220b8-3bcc-44f7-820e-182eed4b8f4b" />
+    <UnitTestResult executionId="7b22cfd8-cfbd-4549-98aa-37e212567c1b" testId="f519da79-9063-21d2-dfcf-37386682c5c3" testName="Gaode.Communication.Tests.Devices.HandshakeClosureTests.TransitionOwnsDeviceUntilRealSqliteSaveReceipt(failReceipt: False, puttingBack: True)" computerName="DEMO" duration="00:00:01.1597598" startTime="2026-10-08T06:06:21.4801980+08:00" endTime="2026-10-08T06:06:22.6400584+08:00" testType="13cdc9d9-ddb5-4fa4-a97d-d965ccfc6d4b" outcome="Passed" testListId="8c84fa94-04c1-424b-9868-57a2d4851a1d" relativeResultsDirectory="7b22cfd8-cfbd-4549-98aa-37e212567c1b" />
+    <UnitTestResult executionId="8de3b9b7-d4d0-43bb-b415-66c95ee04c8b" testId="5d713dea-4c59-3866-9470-d1c8ffdfcc23" testName="Gaode.Communication.Tests.CommissioningStartQueryTests.LookupDoesNotRegisterOrReleaseAndOldCompletionCannotReleaseNewOwner" computerName="DEMO" duration="00:00:00.0524760" startTime="2026-10-08T06:06:05.5648624+08:00" endTime="2026-10-08T06:06:05.6216160+08:00" testType="13cdc9d9-ddb5-4fa4-a97d-d965ccfc6d4b" outcome="Passed" testListId="8c84fa94-04c1-424b-9868-57a2d4851a1d" relativeResultsDirectory="8de3b9b7-d4d0-43bb-b415-66c95ee04c8b" />
+    <UnitTestResult executionId="661cb364-b209-494a-bb7f-e9935edfc408" testId="91302dea-0254-6079-2828-0fc1bfdaa4d4" testName="Gaode.Communication.Tests.Devices.HandshakeClosureTests.DisconnectWhileWaitingClearCannotStartSuccessor" computerName="DEMO" duration="00:00:00.9532252" startTime="2026-10-08T06:06:40.6718533+08:00" endTime="2026-10-08T06:06:41.6250441+08:00" testType="13cdc9d9-ddb5-4fa4-a97d-d965ccfc6d4b" outcome="Passed" testListId="8c84fa94-04c1-424b-9868-57a2d4851a1d" relativeResultsDirectory="661cb364-b209-494a-bb7f-e9935edfc408" />
+    <UnitTestResult executionId="1e98b5b8-bcc9-4d56-99af-2f0cbd8b8ead" testId="48f10811-4144-df39-fe0c-1785342ff15b" testName="Gaode.Communication.Tests.Devices.HandshakeClosureTests.UnknownWriteOrDelayedTransportDoesNotReplay(fault: AxisClearWriteResponseLost)" computerName="DEMO" duration="00:00:00.7886398" startTime="2026-10-08T06:06:23.8584012+08:00" endTime="2026-10-08T06:06:24.6471497+08:00" testType="13cdc9d9-ddb5-4fa4-a97d-d965ccfc6d4b" outcome="Passed" testListId="8c84fa94-04c1-424b-9868-57a2d4851a1d" relativeResultsDirectory="1e98b5b8-bcc9-4d56-99af-2f0cbd8b8ead" />
+    <UnitTestResult executionId="1c943798-84d1-4cbb-921d-0a5a894edd77" testId="d20312b6-1b16-ea86-6bf4-6a4b28895680" testName="Gaode.Communication.Tests.CommissioningIdentityTests.MissingOrDisallowedIdentityConfigurationFailsWithoutTestFallback(role: &quot;SystemAdministrator&quot;)" computerName="DEMO" duration="00:00:00.0007009" startTime="2026-10-08T06:06:05.8118336+08:00" endTime="2026-10-08T06:06:05.8125390+08:00" testType="13cdc9d9-ddb5-4fa4-a97d-d965ccfc6d4b" outcome="Passed" testListId="8c84fa94-04c1-424b-9868-57a2d4851a1d" relativeResultsDirectory="1c943798-84d1-4cbb-921d-0a5a894edd77" />
+    <UnitTestResult executionId="294668b0-a853-44ee-a9d2-90483fb8e0e2" testId="8dcc896c-36c0-9c9f-b814-a6c551f73d46" testName="Gaode.Communication.Tests.CommissioningIdentityTests.BackendConfirmsIdentityAndEnforcesPermissions(role: &quot;ProcessEngineer&quot;, canRun: False, canEdit: True)" computerName="DEMO" duration="00:00:00.0297186" startTime="2026-10-08T06:06:05.7880218+08:00" endTime="2026-10-08T06:06:05.8114209+08:00" testType="13cdc9d9-ddb5-4fa4-a97d-d965ccfc6d4b" outcome="Passed" testListId="8c84fa94-04c1-424b-9868-57a2d4851a1d" relativeResultsDirectory="294668b0-a853-44ee-a9d2-90483fb8e0e2" />
+    <UnitTestResult executionId="596cc24e-e81b-4080-82c5-dc6bbc778616" testId="6178d0ab-c574-8059-a9d1-c553b27e7cc3" testName="Gaode.Communication.Tests.CommissioningIdentityTests.CompleteButConflictingIdentityConfigurationIsRejected(invalid: &quot;duplicate&quot;)" computerName="DEMO" duration="00:00:00.0009147" startTime="2026-10-08T06:06:05.8134272+08:00" endTime="2026-10-08T06:06:05.8143239+08:00" testType="13cdc9d9-ddb5-4fa4-a97d-d965ccfc6d4b" outcome="Passed" testListId="8c84fa94-04c1-424b-9868-57a2d4851a1d" relativeResultsDirectory="596cc24e-e81b-4080-82c5-dc6bbc778616" />
+    <UnitTestResult executionId="73abd5ca-f26a-430e-b944-8833fc6d20ce" testId="fb0b3f64-c84f-0d7e-7acb-456850a4a6d7" testName="Gaode.Communication.Tests.CommissioningLightModeTests.ExplicitModeControlsLightButNeverSkipsCamera(mode: &quot;Real&quot;, realAdapter: True, expectedCapture: True)" computerName="DEMO" duration="00:00:00.0035722" startTime="2026-10-08T06:06:05.6859606+08:00" endTime="2026-10-08T06:06:05.6894764+08:00" testType="13cdc9d9-ddb5-4fa4-a97d-d965ccfc6d4b" outcome="Passed" testListId="8c84fa94-04c1-424b-9868-57a2d4851a1d" relativeResultsDirectory="73abd5ca-f26a-430e-b944-8833fc6d20ce" />
+    <UnitTestResult executionId="ca7b2da7-2c29-4698-a907-cc1475a61fa0" testId="b6d5c734-cb56-b5f1-0282-92ccd6c8ed5e" testName="Gaode.Communication.Tests.CommissioningStartQueryTests.PersistedLookupIsSubjectScopedAndDatabaseFailureIsNotNotFound" computerName="DEMO" duration="00:00:00.6810646" startTime="2026-10-08T06:06:05.6337960+08:00" endTime="2026-10-08T06:06:06.3028368+08:00" testType="13cdc9d9-ddb5-4fa4-a97d-d965ccfc6d4b" outcome="Passed" testListId="8c84fa94-04c1-424b-9868-57a2d4851a1d" relativeResultsDirectory="ca7b2da7-2c29-4698-a907-cc1475a61fa0" />
+    <UnitTestResult executionId="7940ec72-707b-4486-a66d-069a57f3941b" testId="fa4d4887-c499-e285-2f8d-768e6554fc22" testName="Gaode.Communication.Tests.Devices.SamePositionTests.StaticPositionWithoutCurrentClosureMustActuallyDispatch(cause: &quot;reset&quot;)" computerName="DEMO" duration="00:00:01.7834964" startTime="2026-10-08T06:06:12.3032563+08:00" endTime="2026-10-08T06:06:14.0868240+08:00" testType="13cdc9d9-ddb5-4fa4-a97d-d965ccfc6d4b" outcome="Passed" testListId="8c84fa94-04c1-424b-9868-57a2d4851a1d" relativeResultsDirectory="7940ec72-707b-4486-a66d-069a57f3941b" />
+    <UnitTestResult executionId="f89ee4de-ae9a-4036-ba00-31645241d920" testId="403dd66a-9951-0caa-b652-3226f7c597bf" testName="Gaode.Communication.Tests.Devices.HandshakeClosureTests.SortingUsesActualCommitAndFinalSafetyBeforeParentClear(omitIntent: False)" computerName="DEMO" duration="00:00:05.4743737" startTime="2026-10-08T06:06:30.3553172+08:00" endTime="2026-10-08T06:06:35.8296069+08:00" testType="13cdc9d9-ddb5-4fa4-a97d-d965ccfc6d4b" outcome="Passed" testListId="8c84fa94-04c1-424b-9868-57a2d4851a1d" relativeResultsDirectory="f89ee4de-ae9a-4036-ba00-31645241d920" />
+    <UnitTestResult executionId="6a178131-5987-476e-97c0-582e8d27f881" testId="b572591f-b4af-586f-0997-828280395be5" testName="Gaode.Communication.Tests.CommissioningWorkflowTests.LegacyTestHostRunsPublicPreparationBindingFlipAndDurableWholeTrayWorkflow" computerName="DEMO" duration="00:00:09.2970032" startTime="2026-10-08T06:06:41.6251995+08:00" endTime="2026-10-08T06:06:50.9223671+08:00" testType="13cdc9d9-ddb5-4fa4-a97d-d965ccfc6d4b" outcome="Passed" testListId="8c84fa94-04c1-424b-9868-57a2d4851a1d" relativeResultsDirectory="6a178131-5987-476e-97c0-582e8d27f881" />
+    <UnitTestResult executionId="4fcfa6b3-6947-4290-a79d-17d457a01819" testId="66a52e9f-c6d7-f433-1542-ed9d67c24f2c" testName="Gaode.Communication.Tests.Devices.HandshakeClosureTests.TransitionOwnsDeviceUntilRealSqliteSaveReceipt(failReceipt: True, puttingBack: True)" computerName="DEMO" duration="00:00:01.2180803" startTime="2026-10-08T06:06:22.6401500+08:00" endTime="2026-10-08T06:06:23.8583074+08:00" testType="13cdc9d9-ddb5-4fa4-a97d-d965ccfc6d4b" outcome="Passed" testListId="8c84fa94-04c1-424b-9868-57a2d4851a1d" relativeResultsDirectory="4fcfa6b3-6947-4290-a79d-17d457a01819" />
+    <UnitTestResult executionId="ec8fefcb-2be4-40e4-bfbf-b25eb2eae0f7" testId="5b2af9cc-9212-51e7-8d1e-bb150b9ed4ea" testName="Gaode.Communication.Tests.CommissioningIdentityTests.BackendConfirmsIdentityAndEnforcesPermissions(role: &quot;Operator&quot;, canRun: True, canEdit: False)" computerName="DEMO" duration="00:00:00.2122153" startTime="2026-10-08T06:06:05.5648769+08:00" endTime="2026-10-08T06:06:05.7812553+08:00" testType="13cdc9d9-ddb5-4fa4-a97d-d965ccfc6d4b" outcome="Passed" testListId="8c84fa94-04c1-424b-9868-57a2d4851a1d" relativeResultsDirectory="ec8fefcb-2be4-40e4-bfbf-b25eb2eae0f7" />
+    <UnitTestResult executionId="c980884b-ddd2-4b0f-9b43-952717806acd" testId="2dd942b7-93ed-b025-8709-5ea78f33b167" testName="Gaode.Communication.Tests.Devices.HandshakeClosureTests.DelayedClearHoldsOwnershipAndPreservesArrivalEvidence" computerName="DEMO" duration="00:00:02.8266524" startTime="2026-10-08T06:06:37.8449111+08:00" endTime="2026-10-08T06:06:40.6716318+08:00" testType="13cdc9d9-ddb5-4fa4-a97d-d965ccfc6d4b" outcome="Passed" testListId="8c84fa94-04c1-424b-9868-57a2d4851a1d" relativeResultsDirectory="c980884b-ddd2-4b0f-9b43-952717806acd" />
+    <UnitTestResult executionId="4b4c188f-53b4-492e-9a90-44b3ad6e9bee" testId="3dd2ceb6-1280-4b99-9784-9725f0c0f505" testName="Gaode.Communication.Tests.Devices.HandshakeClosureTests.FlipHoldsParentUntilPutBackWithItsOwnWindow" computerName="DEMO" duration="00:00:04.4390757" startTime="2026-10-08T06:06:25.9158402+08:00" endTime="2026-10-08T06:06:30.3550581+08:00" testType="13cdc9d9-ddb5-4fa4-a97d-d965ccfc6d4b" outcome="Passed" testListId="8c84fa94-04c1-424b-9868-57a2d4851a1d" relativeResultsDirectory="4b4c188f-53b4-492e-9a90-44b3ad6e9bee" />
+    <UnitTestResult executionId="e72f37b7-e54e-4d34-9689-4254e444693c" testId="427fb3d9-6aa1-ee38-7f22-3d27174b0f47" testName="Gaode.Communication.Tests.Devices.HandshakeClosureTests.UnknownWriteOrDelayedTransportDoesNotReplay(fault: AxisResponseDelayed)" computerName="DEMO" duration="00:00:01.2351023" startTime="2026-10-08T06:06:24.6798137+08:00" endTime="2026-10-08T06:06:25.9150330+08:00" testType="13cdc9d9-ddb5-4fa4-a97d-d965ccfc6d4b" outcome="Passed" testListId="8c84fa94-04c1-424b-9868-57a2d4851a1d" relativeResultsDirectory="e72f37b7-e54e-4d34-9689-4254e444693c" />
+    <UnitTestResult executionId="48fd4a68-c26a-45bd-8917-146a9d2c357d" testId="c7d7d52d-ccc4-2f63-3800-5bd5d89e13a1" testName="Gaode.Communication.Tests.Devices.HandshakeClosureTests.SixAxisMappingsClearIndependentlyAndRepeat" computerName="DEMO" duration="00:00:03.1295834" startTime="2026-10-08T06:06:14.0874914+08:00" endTime="2026-10-08T06:06:17.2172378+08:00" testType="13cdc9d9-ddb5-4fa4-a97d-d965ccfc6d4b" outcome="Passed" testListId="8c84fa94-04c1-424b-9868-57a2d4851a1d" relativeResultsDirectory="48fd4a68-c26a-45bd-8917-146a9d2c357d" />
+    <UnitTestResult executionId="440b4f93-fb1b-41d2-ac23-5918237a1711" testId="4f100c36-d0dd-4864-c999-f08003a3a0bf" testName="Gaode.Communication.Tests.ControlledCommissioningTests.FormalCommissioningStartBlocksWithoutSafeInputsOrConfirmedSiteSafety(missingInput: True)" computerName="DEMO" duration="00:00:01.0199927" startTime="2026-10-08T06:06:05.5640428+08:00" endTime="2026-10-08T06:06:06.5878665+08:00" testType="13cdc9d9-ddb5-4fa4-a97d-d965ccfc6d4b" outcome="Passed" testListId="8c84fa94-04c1-424b-9868-57a2d4851a1d" relativeResultsDirectory="440b4f93-fb1b-41d2-ac23-5918237a1711" />
+    <UnitTestResult executionId="ee271309-d85f-4211-947d-8fa0799adbbc" testId="33b7965e-168e-f3cd-2ab0-1b9073b87661" testName="Gaode.Communication.Tests.Devices.SamePositionTests.StaticPositionWithoutCurrentClosureMustActuallyDispatch(cause: &quot;initial&quot;)" computerName="DEMO" duration="00:00:00.9517963" startTime="2026-10-08T06:06:09.2135259+08:00" endTime="2026-10-08T06:06:10.1650728+08:00" testType="13cdc9d9-ddb5-4fa4-a97d-d965ccfc6d4b" outcome="Passed" testListId="8c84fa94-04c1-424b-9868-57a2d4851a1d" relativeResultsDirectory="ee271309-d85f-4211-947d-8fa0799adbbc" />
+    <UnitTestResult executionId="2dec4126-b2d6-479c-aff9-fa312cb61387" testId="3c5d4162-ff76-8c58-c986-e3f55b02d763" testName="Gaode.Communication.Tests.Devices.SamePositionTests.RepeatedTargetsReuseOnlySatisfiedAxes(x: 11, y: 22, z: 33, expected: &quot;&quot;)" computerName="DEMO" duration="00:00:01.5232379" startTime="2026-10-08T06:06:05.5648244+08:00" endTime="2026-10-08T06:06:07.0910961+08:00" testType="13cdc9d9-ddb5-4fa4-a97d-d965ccfc6d4b" outcome="Passed" testListId="8c84fa94-04c1-424b-9868-57a2d4851a1d" relativeResultsDirectory="2dec4126-b2d6-479c-aff9-fa312cb61387" />
+    <UnitTestResult executionId="622305da-be3f-4e8d-ae47-0e398fac316e" testId="1cf235fc-6d61-ae37-5556-563edcf2d264" testName="Gaode.Communication.Tests.CommissioningLightModeTests.MissingLightParametersOnlyAllowedInExplicitVirtualModeAndFPositionRoundTrips" computerName="DEMO" duration="00:00:00.0981747" startTime="2026-10-08T06:06:05.5648490+08:00" endTime="2026-10-08T06:06:05.6659423+08:00" testType="13cdc9d9-ddb5-4fa4-a97d-d965ccfc6d4b" outcome="Passed" testListId="8c84fa94-04c1-424b-9868-57a2d4851a1d" relativeResultsDirectory="622305da-be3f-4e8d-ae47-0e398fac316e" />
+    <UnitTestResult executionId="20f922af-ef7f-42df-abad-fc29569fbc5d" testId="7ba8dada-4b1b-c067-19d9-0121d046bbb4" testName="Gaode.Communication.Tests.CommissioningIdentityTests.CompleteButConflictingIdentityConfigurationIsRejected(invalid: &quot;TestCredential&quot;)" computerName="DEMO" duration="00:00:00.0005400" startTime="2026-10-08T06:06:05.8149667+08:00" endTime="2026-10-08T06:06:05.8154948+08:00" testType="13cdc9d9-ddb5-4fa4-a97d-d965ccfc6d4b" outcome="Passed" testListId="8c84fa94-04c1-424b-9868-57a2d4851a1d" relativeResultsDirectory="20f922af-ef7f-42df-abad-fc29569fbc5d" />
+    <UnitTestResult executionId="5f9221c4-c454-41c0-8526-219c1d9d38e0" testId="7d106857-df16-65f4-742a-0daf6223ecf0" testName="Gaode.Communication.Tests.Devices.HandshakeClosureTests.ClearanceRejectsOldOrInvalidReads(fault: &quot;expired&quot;)" computerName="DEMO" duration="00:00:00.0000120" startTime="2026-10-08T06:06:25.9158057+08:00" endTime="2026-10-08T06:06:25.9158146+08:00" testType="13cdc9d9-ddb5-4fa4-a97d-d965ccfc6d4b" outcome="Passed" testListId="8c84fa94-04c1-424b-9868-57a2d4851a1d" relativeResultsDirectory="5f9221c4-c454-41c0-8526-219c1d9d38e0" />
+    <UnitTestResult executionId="e23ce1fd-804d-44d2-9400-9679caee70ac" testId="b70a563a-d3d6-c9ed-2c12-d4694a978c87" testName="Gaode.Communication.Tests.CommissioningIdentityTests.MissingOrDisallowedIdentityConfigurationFailsWithoutTestFallback(role: &quot;Operator&quot;)" computerName="DEMO" duration="00:00:00.0003127" startTime="2026-10-08T06:06:05.8130837+08:00" endTime="2026-10-08T06:06:05.8133853+08:00" testType="13cdc9d9-ddb5-4fa4-a97d-d965ccfc6d4b" outcome="Passed" testListId="8c84fa94-04c1-424b-9868-57a2d4851a1d" relativeResultsDirectory="e23ce1fd-804d-44d2-9400-9679caee70ac" />
+    <UnitTestResult executionId="c18c7013-71f4-48e1-a173-cf72385d4f65" testId="93adbd8d-cc3f-3a26-233e-157e502fdb21" testName="Gaode.Communication.Tests.CommissioningIdentityTests.CompleteButConflictingIdentityConfigurationIsRejected(invalid: &quot;TestPurpose&quot;)" computerName="DEMO" duration="00:00:00.0005878" startTime="2026-10-08T06:06:05.8143525+08:00" endTime="2026-10-08T06:06:05.8149338+08:00" testType="13cdc9d9-ddb5-4fa4-a97d-d965ccfc6d4b" outcome="Passed" testListId="8c84fa94-04c1-424b-9868-57a2d4851a1d" relativeResultsDirectory="c18c7013-71f4-48e1-a173-cf72385d4f65" />
+    <UnitTestResult executionId="968781f5-9918-43c0-af45-e2c46df17b37" testId="274fa7c0-a5a9-d22f-e366-fd91b7732bc9" testName="Gaode.Communication.Tests.Devices.HandshakeClosureTests.UnknownWriteOrDelayedTransportDoesNotReplay(fault: AxisWriteResponseLost)" computerName="DEMO" duration="00:00:00.0323832" startTime="2026-10-08T06:06:24.6472362+08:00" endTime="2026-10-08T06:06:24.6797383+08:00" testType="13cdc9d9-ddb5-4fa4-a97d-d965ccfc6d4b" outcome="Passed" testListId="8c84fa94-04c1-424b-9868-57a2d4851a1d" relativeResultsDirectory="968781f5-9918-43c0-af45-e2c46df17b37" />
+    <UnitTestResult executionId="a5592e6c-bf33-46a2-be3a-b044446a304d" testId="d8dbd12e-c2dd-6023-e8cd-c93c15acfba2" testName="Gaode.Communication.Tests.Devices.HandshakeClosureTests.SortingUsesActualCommitAndFinalSafetyBeforeParentClear(omitIntent: True)" computerName="DEMO" duration="00:00:02.0148562" startTime="2026-10-08T06:06:35.8298285+08:00" endTime="2026-10-08T06:06:37.8447168+08:00" testType="13cdc9d9-ddb5-4fa4-a97d-d965ccfc6d4b" outcome="Passed" testListId="8c84fa94-04c1-424b-9868-57a2d4851a1d" relativeResultsDirectory="a5592e6c-bf33-46a2-be3a-b044446a304d" />
+    <UnitTestResult executionId="a6e5f9e1-a141-47a3-8e88-f6d1e2ae1606" testId="4c698a9b-30df-41f6-c863-afc843941a2f" testName="Gaode.Communication.Tests.CommissioningLightModeTests.ExplicitModeControlsLightButNeverSkipsCamera(mode: &quot;Simulated&quot;, realAdapter: False, expectedCapture: True)" computerName="DEMO" duration="00:00:00.0114962" startTime="2026-10-08T06:06:05.6743973+08:00" endTime="2026-10-08T06:06:05.6858652+08:00" testType="13cdc9d9-ddb5-4fa4-a97d-d965ccfc6d4b" outcome="Passed" testListId="8c84fa94-04c1-424b-9868-57a2d4851a1d" relativeResultsDirectory="a6e5f9e1-a141-47a3-8e88-f6d1e2ae1606" />
+    <UnitTestResult executionId="77309101-a8bd-4bcb-9560-72d033556085" testId="0984ea54-3413-17c0-33aa-54984872cad2" testName="Gaode.Communication.Tests.Devices.HandshakeClosureTests.ClearanceRejectsOldOrInvalidReads(fault: &quot;wrong-epoch&quot;)" computerName="DEMO" duration="00:00:00.0001410" startTime="2026-10-08T06:06:25.9156428+08:00" endTime="2026-10-08T06:06:25.9157858+08:00" testType="13cdc9d9-ddb5-4fa4-a97d-d965ccfc6d4b" outcome="Passed" testListId="8c84fa94-04c1-424b-9868-57a2d4851a1d" relativeResultsDirectory="77309101-a8bd-4bcb-9560-72d033556085" />
+    <UnitTestResult executionId="245920b6-db29-4037-8129-2699ff2b5ad2" testId="1261ce25-b5c7-054b-0dc6-7e0278347d75" testName="Gaode.Communication.Tests.Devices.SamePositionTests.StaticPositionWithoutCurrentClosureMustActuallyDispatch(cause: &quot;drift&quot;)" computerName="DEMO" duration="00:00:02.1378312" startTime="2026-10-08T06:06:10.1652013+08:00" endTime="2026-10-08T06:06:12.3031350+08:00" testType="13cdc9d9-ddb5-4fa4-a97d-d965ccfc6d4b" outcome="Passed" testListId="8c84fa94-04c1-424b-9868-57a2d4851a1d" relativeResultsDirectory="245920b6-db29-4037-8129-2699ff2b5ad2" />
+    <UnitTestResult executionId="fe21739f-7297-43ae-ab4a-469aa2748e94" testId="47675aff-3a4d-eeb6-cf81-89be75b16f06" testName="Gaode.Communication.Tests.Devices.SamePositionTests.RepeatedTargetsReuseOnlySatisfiedAxes(x: 12, y: 22, z: 33, expected: &quot;X&quot;)" computerName="DEMO" duration="00:00:00.9156898" startTime="2026-10-08T06:06:08.2972069+08:00" endTime="2026-10-08T06:06:09.2129842+08:00" testType="13cdc9d9-ddb5-4fa4-a97d-d965ccfc6d4b" outcome="Passed" testListId="8c84fa94-04c1-424b-9868-57a2d4851a1d" relativeResultsDirectory="fe21739f-7297-43ae-ab4a-469aa2748e94" />
+    <UnitTestResult executionId="0dbc8fe1-cb25-45c3-a333-c5a8c81be5e0" testId="75a9be63-02b7-42f8-c9b0-0df51b17c49e" testName="Gaode.Communication.Tests.CommissioningIdentityTests.MissingOrDisallowedIdentityConfigurationFailsWithoutTestFallback(role: &quot;EquipmentEngineer&quot;)" computerName="DEMO" duration="00:00:00.0004876" startTime="2026-10-08T06:06:05.8125819+08:00" endTime="2026-10-08T06:06:05.8130532+08:00" testType="13cdc9d9-ddb5-4fa4-a97d-d965ccfc6d4b" outcome="Passed" testListId="8c84fa94-04c1-424b-9868-57a2d4851a1d" relativeResultsDirectory="0dbc8fe1-cb25-45c3-a333-c5a8c81be5e0" />
+    <UnitTestResult executionId="39eeaba5-aae3-4cb2-9a41-62a486ab02f8" testId="566177ee-cf2a-6081-26a4-6ba342d32c59" testName="Gaode.Communication.Tests.CommissioningLightModeTests.ExplicitModeControlsLightButNeverSkipsCamera(mode: &quot;Real&quot;, realAdapter: False, expectedCapture: False)" computerName="DEMO" duration="00:00:00.0083164" startTime="2026-10-08T06:06:05.6663543+08:00" endTime="2026-10-08T06:06:05.6743154+08:00" testType="13cdc9d9-ddb5-4fa4-a97d-d965ccfc6d4b" outcome="Passed" testListId="8c84fa94-04c1-424b-9868-57a2d4851a1d" relativeResultsDirectory="39eeaba5-aae3-4cb2-9a41-62a486ab02f8" />
+    <UnitTestResult executionId="760f6c22-13fc-496c-8cfc-c8c810a4e2f7" testId="dd0771af-630c-084d-5774-5c6b7e29d385" testName="Gaode.Communication.Tests.Devices.HandshakeClosureTests.TransitionOwnsDeviceUntilRealSqliteSaveReceipt(failReceipt: True, puttingBack: False)" computerName="DEMO" duration="00:00:00.7520491" startTime="2026-10-08T06:06:20.7279821+08:00" endTime="2026-10-08T06:06:21.4801196+08:00" testType="13cdc9d9-ddb5-4fa4-a97d-d965ccfc6d4b" outcome="Passed" testListId="8c84fa94-04c1-424b-9868-57a2d4851a1d" relativeResultsDirectory="760f6c22-13fc-496c-8cfc-c8c810a4e2f7" />
+  </Results>
+  <TestDefinitions>
+    <UnitTest name="Gaode.Communication.Tests.CommissioningIdentityTests.MissingOrDisallowedIdentityConfigurationFailsWithoutTestFallback(role: &quot;EquipmentEngineer&quot;)" storage="d:\gaode\backend\tests\gaode.communication.tests\bin\debug\net10.0\gaode.communication.tests.dll" id="75a9be63-02b7-42f8-c9b0-0df51b17c49e">
+      <Execution id="0dbc8fe1-cb25-45c3-a333-c5a8c81be5e0" />
+      <TestMethod codeBase="D:\gaode\backend\tests\Gaode.Communication.Tests\bin\Debug\net10.0\Gaode.Communication.Tests.dll" adapterTypeName="executor://xunit/VsTestRunner3/netcore/" className="Gaode.Communication.Tests.CommissioningIdentityTests" name="MissingOrDisallowedIdentityConfigurationFailsWithoutTestFallback" />
+    </UnitTest>
+    <UnitTest name="Gaode.Communication.Tests.ControlledCommissioningTests.FormalCommissioningStartBlocksWithoutSafeInputsOrConfirmedSiteSafety(missingInput: True)" storage="d:\gaode\backend\tests\gaode.communication.tests\bin\debug\net10.0\gaode.communication.tests.dll" id="4f100c36-d0dd-4864-c999-f08003a3a0bf">
+      <Execution id="440b4f93-fb1b-41d2-ac23-5918237a1711" />
+      <TestMethod codeBase="D:\gaode\backend\tests\Gaode.Communication.Tests\bin\Debug\net10.0\Gaode.Communication.Tests.dll" adapterTypeName="executor://xunit/VsTestRunner3/netcore/" className="Gaode.Communication.Tests.ControlledCommissioningTests" name="FormalCommissioningStartBlocksWithoutSafeInputsOrConfirmedSiteSafety" />
+    </UnitTest>
+    <UnitTest name="Gaode.Communication.Tests.Devices.SamePositionTests.StaticPositionWithoutCurrentClosureMustActuallyDispatch(cause: &quot;reset&quot;)" storage="d:\gaode\backend\tests\gaode.communication.tests\bin\debug\net10.0\gaode.communication.tests.dll" id="fa4d4887-c499-e285-2f8d-768e6554fc22">
+      <Execution id="7940ec72-707b-4486-a66d-069a57f3941b" />
+      <TestMethod codeBase="D:\gaode\backend\tests\Gaode.Communication.Tests\bin\Debug\net10.0\Gaode.Communication.Tests.dll" adapterTypeName="executor://xunit/VsTestRunner3/netcore/" className="Gaode.Communication.Tests.Devices.SamePositionTests" name="StaticPositionWithoutCurrentClosureMustActuallyDispatch" />
+    </UnitTest>
+    <UnitTest name="Gaode.Communication.Tests.CommissioningIdentityTests.CompleteButConflictingIdentityConfigurationIsRejected(invalid: &quot;TestPurpose&quot;)" storage="d:\gaode\backend\tests\gaode.communication.tests\bin\debug\net10.0\gaode.communication.tests.dll" id="93adbd8d-cc3f-3a26-233e-157e502fdb21">
+      <Execution id="c18c7013-71f4-48e1-a173-cf72385d4f65" />
+      <TestMethod codeBase="D:\gaode\backend\tests\Gaode.Communication.Tests\bin\Debug\net10.0\Gaode.Communication.Tests.dll" adapterTypeName="executor://xunit/VsTestRunner3/netcore/" className="Gaode.Communication.Tests.CommissioningIdentityTests" name="CompleteButConflictingIdentityConfigurationIsRejected" />
+    </UnitTest>
+    <UnitTest name="Gaode.Communication.Tests.Devices.HandshakeClosureTests.DelayedClearHoldsOwnershipAndPreservesArrivalEvidence" storage="d:\gaode\backend\tests\gaode.communication.tests\bin\debug\net10.0\gaode.communication.tests.dll" id="2dd942b7-93ed-b025-8709-5ea78f33b167">
+      <Execution id="c980884b-ddd2-4b0f-9b43-952717806acd" />
+      <TestMethod codeBase="D:\gaode\backend\tests\Gaode.Communication.Tests\bin\Debug\net10.0\Gaode.Communication.Tests.dll" adapterTypeName="executor://xunit/VsTestRunner3/netcore/" className="Gaode.Communication.Tests.Devices.HandshakeClosureTests" name="DelayedClearHoldsOwnershipAndPreservesArrivalEvidence" />
+    </UnitTest>
+    <UnitTest name="Gaode.Communication.Tests.Devices.HandshakeClosureTests.TransitionOwnsDeviceUntilRealSqliteSaveReceipt(failReceipt: False, puttingBack: False)" storage="d:\gaode\backend\tests\gaode.communication.tests\bin\debug\net10.0\gaode.communication.tests.dll" id="7923ee32-0c4b-d942-01cc-b423129530c3">
+      <Execution id="17f8e987-a7ef-41b4-ad87-5a099b237126" />
+      <TestMethod codeBase="D:\gaode\backend\tests\Gaode.Communication.Tests\bin\Debug\net10.0\Gaode.Communication.Tests.dll" adapterTypeName="executor://xunit/VsTestRunner3/netcore/" className="Gaode.Communication.Tests.Devices.HandshakeClosureTests" name="TransitionOwnsDeviceUntilRealSqliteSaveReceipt" />
+    </UnitTest>
+    <UnitTest name="Gaode.Communication.Tests.Devices.SamePositionTests.RepeatedTargetsReuseOnlySatisfiedAxes(x: 11, y: 22, z: 33, expected: &quot;&quot;)" storage="d:\gaode\backend\tests\gaode.communication.tests\bin\debug\net10.0\gaode.communication.tests.dll" id="3c5d4162-ff76-8c58-c986-e3f55b02d763">
+      <Execution id="2dec4126-b2d6-479c-aff9-fa312cb61387" />
+      <TestMethod codeBase="D:\gaode\backend\tests\Gaode.Communication.Tests\bin\Debug\net10.0\Gaode.Communication.Tests.dll" adapterTypeName="executor://xunit/VsTestRunner3/netcore/" className="Gaode.Communication.Tests.Devices.SamePositionTests" name="RepeatedTargetsReuseOnlySatisfiedAxes" />
+    </UnitTest>
+    <UnitTest name="Gaode.Communication.Tests.CommissioningStartQueryTests.PersistedLookupIsSubjectScopedAndDatabaseFailureIsNotNotFound" storage="d:\gaode\backend\tests\gaode.communication.tests\bin\debug\net10.0\gaode.communication.tests.dll" id="b6d5c734-cb56-b5f1-0282-92ccd6c8ed5e">
+      <Execution id="ca7b2da7-2c29-4698-a907-cc1475a61fa0" />
+      <TestMethod codeBase="D:\gaode\backend\tests\Gaode.Communication.Tests\bin\Debug\net10.0\Gaode.Communication.Tests.dll" adapterTypeName="executor://xunit/VsTestRunner3/netcore/" className="Gaode.Communication.Tests.CommissioningStartQueryTests" name="PersistedLookupIsSubjectScopedAndDatabaseFailureIsNotNotFound" />
+    </UnitTest>
+    <UnitTest name="Gaode.Communication.Tests.CommissioningIdentityTests.CompleteButConflictingIdentityConfigurationIsRejected(invalid: &quot;TestCredential&quot;)" storage="d:\gaode\backend\tests\gaode.communication.tests\bin\debug\net10.0\gaode.communication.tests.dll" id="7ba8dada-4b1b-c067-19d9-0121d046bbb4">
+      <Execution id="20f922af-ef7f-42df-abad-fc29569fbc5d" />
+      <TestMethod codeBase="D:\gaode\backend\tests\Gaode.Communication.Tests\bin\Debug\net10.0\Gaode.Communication.Tests.dll" adapterTypeName="executor://xunit/VsTestRunner3/netcore/" className="Gaode.Communication.Tests.CommissioningIdentityTests" name="CompleteButConflictingIdentityConfigurationIsRejected" />
+    </UnitTest>
+    <UnitTest name="Gaode.Communication.Tests.Devices.HandshakeClosureTests.TransitionOwnsDeviceUntilRealSqliteSaveReceipt(failReceipt: False, puttingBack: True)" storage="d:\gaode\backend\tests\gaode.communication.tests\bin\debug\net10.0\gaode.communication.tests.dll" id="f519da79-9063-21d2-dfcf-37386682c5c3">
+      <Execution id="7b22cfd8-cfbd-4549-98aa-37e212567c1b" />
+      <TestMethod codeBase="D:\gaode\backend\tests\Gaode.Communication.Tests\bin\Debug\net10.0\Gaode.Communication.Tests.dll" adapterTypeName="executor://xunit/VsTestRunner3/netcore/" className="Gaode.Communication.Tests.Devices.HandshakeClosureTests" name="TransitionOwnsDeviceUntilRealSqliteSaveReceipt" />
+    </UnitTest>
+    <UnitTest name="Gaode.Communication.Tests.CommissioningWorkflowTests.LegacyTestHostRunsPublicPreparationBindingFlipAndDurableWholeTrayWorkflow" storage="d:\gaode\backend\tests\gaode.communication.tests\bin\debug\net10.0\gaode.communication.tests.dll" id="b572591f-b4af-586f-0997-828280395be5">
+      <Execution id="6a178131-5987-476e-97c0-582e8d27f881" />
+      <TestMethod codeBase="D:\gaode\backend\tests\Gaode.Communication.Tests\bin\Debug\net10.0\Gaode.Communication.Tests.dll" adapterTypeName="executor://xunit/VsTestRunner3/netcore/" className="Gaode.Communication.Tests.CommissioningWorkflowTests" name="LegacyTestHostRunsPublicPreparationBindingFlipAndDurableWholeTrayWorkflow" />
+    </UnitTest>
+    <UnitTest name="Gaode.Communication.Tests.Devices.HandshakeClosureTests.FlipHoldsParentUntilPutBackWithItsOwnWindow" storage="d:\gaode\backend\tests\gaode.communication.tests\bin\debug\net10.0\gaode.communication.tests.dll" id="3dd2ceb6-1280-4b99-9784-9725f0c0f505">
+      <Execution id="4b4c188f-53b4-492e-9a90-44b3ad6e9bee" />
+      <TestMethod codeBase="D:\gaode\backend\tests\Gaode.Communication.Tests\bin\Debug\net10.0\Gaode.Communication.Tests.dll" adapterTypeName="executor://xunit/VsTestRunner3/netcore/" className="Gaode.Communication.Tests.Devices.HandshakeClosureTests" name="FlipHoldsParentUntilPutBackWithItsOwnWindow" />
+    </UnitTest>
+    <UnitTest name="Gaode.Communication.Tests.Devices.HandshakeClosureTests.UnknownWriteOrDelayedTransportDoesNotReplay(fault: AxisClearWriteResponseLost)" storage="d:\gaode\backend\tests\gaode.communication.tests\bin\debug\net10.0\gaode.communication.tests.dll" id="48f10811-4144-df39-fe0c-1785342ff15b">
+      <Execution id="1e98b5b8-bcc9-4d56-99af-2f0cbd8b8ead" />
+      <TestMethod codeBase="D:\gaode\backend\tests\Gaode.Communication.Tests\bin\Debug\net10.0\Gaode.Communication.Tests.dll" adapterTypeName="executor://xunit/VsTestRunner3/netcore/" className="Gaode.Communication.Tests.Devices.HandshakeClosureTests" name="UnknownWriteOrDelayedTransportDoesNotReplay" />
+    </UnitTest>
+    <UnitTest name="Gaode.Communication.Tests.Devices.HandshakeClosureTests.SortingUsesActualCommitAndFinalSafetyBeforeParentClear(omitIntent: False)" storage="d:\gaode\backend\tests\gaode.communication.tests\bin\debug\net10.0\gaode.communication.tests.dll" id="403dd66a-9951-0caa-b652-3226f7c597bf">
+      <Execution id="f89ee4de-ae9a-4036-ba00-31645241d920" />
+      <TestMethod codeBase="D:\gaode\backend\tests\Gaode.Communication.Tests\bin\Debug\net10.0\Gaode.Communication.Tests.dll" adapterTypeName="executor://xunit/VsTestRunner3/netcore/" className="Gaode.Communication.Tests.Devices.HandshakeClosureTests" name="SortingUsesActualCommitAndFinalSafetyBeforeParentClear" />
+    </UnitTest>
+    <UnitTest name="Gaode.Communication.Tests.Devices.HandshakeClosureTests.DisconnectWhileWaitingClearCannotStartSuccessor" storage="d:\gaode\backend\tests\gaode.communication.tests\bin\debug\net10.0\gaode.communication.tests.dll" id="91302dea-0254-6079-2828-0fc1bfdaa4d4">
+      <Execution id="661cb364-b209-494a-bb7f-e9935edfc408" />
+      <TestMethod codeBase="D:\gaode\backend\tests\Gaode.Communication.Tests\bin\Debug\net10.0\Gaode.Communication.Tests.dll" adapterTypeName="executor://xunit/VsTestRunner3/netcore/" className="Gaode.Communication.Tests.Devices.HandshakeClosureTests" name="DisconnectWhileWaitingClearCannotStartSuccessor" />
+    </UnitTest>
+    <UnitTest name="Gaode.Communication.Tests.Devices.HandshakeClosureTests.UnknownWriteOrDelayedTransportDoesNotReplay(fault: AxisWriteResponseLost)" storage="d:\gaode\backend\tests\gaode.communication.tests\bin\debug\net10.0\gaode.communication.tests.dll" id="274fa7c0-a5a9-d22f-e366-fd91b7732bc9">
+      <Execution id="968781f5-9918-43c0-af45-e2c46df17b37" />
+      <TestMethod codeBase="D:\gaode\backend\tests\Gaode.Communication.Tests\bin\Debug\net10.0\Gaode.Communication.Tests.dll" adapterTypeName="executor://xunit/VsTestRunner3/netcore/" className="Gaode.Communication.Tests.Devices.HandshakeClosureTests" name="UnknownWriteOrDelayedTransportDoesNotReplay" />
+    </UnitTest>
+    <UnitTest name="Gaode.Communication.Tests.CommissioningIdentityTests.MissingOrDisallowedIdentityConfigurationFailsWithoutTestFallback(role: &quot;SystemAdministrator&quot;)" storage="d:\gaode\backend\tests\gaode.communication.tests\bin\debug\net10.0\gaode.communication.tests.dll" id="d20312b6-1b16-ea86-6bf4-6a4b28895680">
+      <Execution id="1c943798-84d1-4cbb-921d-0a5a894edd77" />
+      <TestMethod codeBase="D:\gaode\backend\tests\Gaode.Communication.Tests\bin\Debug\net10.0\Gaode.Communication.Tests.dll" adapterTypeName="executor://xunit/VsTestRunner3/netcore/" className="Gaode.Communication.Tests.CommissioningIdentityTests" name="MissingOrDisallowedIdentityConfigurationFailsWithoutTestFallback" />
+    </UnitTest>
+    <UnitTest name="Gaode.Communication.Tests.Devices.HandshakeClosureTests.ClearanceRejectsOldOrInvalidReads(fault: &quot;before-write&quot;)" storage="d:\gaode\backend\tests\gaode.communication.tests\bin\debug\net10.0\gaode.communication.tests.dll" id="9b2c71a5-148f-acf0-20a4-e4f44241ebeb">
+      <Execution id="e0a220b8-3bcc-44f7-820e-182eed4b8f4b" />
+      <TestMethod codeBase="D:\gaode\backend\tests\Gaode.Communication.Tests\bin\Debug\net10.0\Gaode.Communication.Tests.dll" adapterTypeName="executor://xunit/VsTestRunner3/netcore/" className="Gaode.Communication.Tests.Devices.HandshakeClosureTests" name="ClearanceRejectsOldOrInvalidReads" />
+    </UnitTest>
+    <UnitTest name="Gaode.Communication.Tests.CommissioningIdentityTests.MissingOrDisallowedIdentityConfigurationFailsWithoutTestFallback(role: &quot;Operator&quot;)" storage="d:\gaode\backend\tests\gaode.communication.tests\bin\debug\net10.0\gaode.communication.tests.dll" id="b70a563a-d3d6-c9ed-2c12-d4694a978c87">
+      <Execution id="e23ce1fd-804d-44d2-9400-9679caee70ac" />
+      <TestMethod codeBase="D:\gaode\backend\tests\Gaode.Communication.Tests\bin\Debug\net10.0\Gaode.Communication.Tests.dll" adapterTypeName="executor://xunit/VsTestRunner3/netcore/" className="Gaode.Communication.Tests.CommissioningIdentityTests" name="MissingOrDisallowedIdentityConfigurationFailsWithoutTestFallback" />
+    </UnitTest>
+    <UnitTest name="Gaode.Communication.Tests.Devices.SamePositionTests.StaticPositionWithoutCurrentClosureMustActuallyDispatch(cause: &quot;drift&quot;)" storage="d:\gaode\backend\tests\gaode.communication.tests\bin\debug\net10.0\gaode.communication.tests.dll" id="1261ce25-b5c7-054b-0dc6-7e0278347d75">
+      <Execution id="245920b6-db29-4037-8129-2699ff2b5ad2" />
+      <TestMethod codeBase="D:\gaode\backend\tests\Gaode.Communication.Tests\bin\Debug\net10.0\Gaode.Communication.Tests.dll" adapterTypeName="executor://xunit/VsTestRunner3/netcore/" className="Gaode.Communication.Tests.Devices.SamePositionTests" name="StaticPositionWithoutCurrentClosureMustActuallyDispatch" />
+    </UnitTest>
+    <UnitTest name="Gaode.Communication.Tests.CommissioningLightModeTests.ExplicitModeControlsLightButNeverSkipsCamera(mode: &quot;Real&quot;, realAdapter: False, expectedCapture: False)" storage="d:\gaode\backend\tests\gaode.communication.tests\bin\debug\net10.0\gaode.communication.tests.dll" id="566177ee-cf2a-6081-26a4-6ba342d32c59">
+      <Execution id="39eeaba5-aae3-4cb2-9a41-62a486ab02f8" />
+      <TestMethod codeBase="D:\gaode\backend\tests\Gaode.Communication.Tests\bin\Debug\net10.0\Gaode.Communication.Tests.dll" adapterTypeName="executor://xunit/VsTestRunner3/netcore/" className="Gaode.Communication.Tests.CommissioningLightModeTests" name="ExplicitModeControlsLightButNeverSkipsCamera" />
+    </UnitTest>
+    <UnitTest name="Gaode.Communication.Tests.Devices.HandshakeClosureTests.SixAxisMappingsClearIndependentlyAndRepeat" storage="d:\gaode\backend\tests\gaode.communication.tests\bin\debug\net10.0\gaode.communication.tests.dll" id="c7d7d52d-ccc4-2f63-3800-5bd5d89e13a1">
+      <Execution id="48fd4a68-c26a-45bd-8917-146a9d2c357d" />
+      <TestMethod codeBase="D:\gaode\backend\tests\Gaode.Communication.Tests\bin\Debug\net10.0\Gaode.Communication.Tests.dll" adapterTypeName="executor://xunit/VsTestRunner3/netcore/" className="Gaode.Communication.Tests.Devices.HandshakeClosureTests" name="SixAxisMappingsClearIndependentlyAndRepeat" />
+    </UnitTest>
+    <UnitTest name="Gaode.Communication.Tests.Devices.HandshakeClosureTests.ClearanceRejectsOldOrInvalidReads(fault: &quot;expired&quot;)" storage="d:\gaode\backend\tests\gaode.communication.tests\bin\debug\net10.0\gaode.communication.tests.dll" id="7d106857-df16-65f4-742a-0daf6223ecf0">
+      <Execution id="5f9221c4-c454-41c0-8526-219c1d9d38e0" />
+      <TestMethod codeBase="D:\gaode\backend\tests\Gaode.Communication.Tests\bin\Debug\net10.0\Gaode.Communication.Tests.dll" adapterTypeName="executor://xunit/VsTestRunner3/netcore/" className="Gaode.Communication.Tests.Devices.HandshakeClosureTests" name="ClearanceRejectsOldOrInvalidReads" />
+    </UnitTest>
+    <UnitTest name="Gaode.Communication.Tests.CommissioningIdentityTests.BackendConfirmsIdentityAndEnforcesPermissions(role: &quot;ProcessEngineer&quot;, canRun: False, canEdit: True)" storage="d:\gaode\backend\tests\gaode.communication.tests\bin\debug\net10.0\gaode.communication.tests.dll" id="8dcc896c-36c0-9c9f-b814-a6c551f73d46">
+      <Execution id="294668b0-a853-44ee-a9d2-90483fb8e0e2" />
+      <TestMethod codeBase="D:\gaode\backend\tests\Gaode.Communication.Tests\bin\Debug\net10.0\Gaode.Communication.Tests.dll" adapterTypeName="executor://xunit/VsTestRunner3/netcore/" className="Gaode.Communication.Tests.CommissioningIdentityTests" name="BackendConfirmsIdentityAndEnforcesPermissions" />
+    </UnitTest>
+    <UnitTest name="Gaode.Communication.Tests.Devices.SamePositionTests.RepeatedTargetsReuseOnlySatisfiedAxes(x: 11, y: 23, z: 34, expected: &quot;Y,DetectionZ&quot;)" storage="d:\gaode\backend\tests\gaode.communication.tests\bin\debug\net10.0\gaode.communication.tests.dll" id="1c4b9ec4-0ab4-2e40-1081-06d4bf82c5ea">
+      <Execution id="03c61558-a52b-4020-92c3-ee5205b9fb9b" />
+      <TestMethod codeBase="D:\gaode\backend\tests\Gaode.Communication.Tests\bin\Debug\net10.0\Gaode.Communication.Tests.dll" adapterTypeName="executor://xunit/VsTestRunner3/netcore/" className="Gaode.Communication.Tests.Devices.SamePositionTests" name="RepeatedTargetsReuseOnlySatisfiedAxes" />
+    </UnitTest>
+    <UnitTest name="Gaode.Communication.Tests.CommissioningIdentityTests.CompleteButConflictingIdentityConfigurationIsRejected(invalid: &quot;duplicate&quot;)" storage="d:\gaode\backend\tests\gaode.communication.tests\bin\debug\net10.0\gaode.communication.tests.dll" id="6178d0ab-c574-8059-a9d1-c553b27e7cc3">
+      <Execution id="596cc24e-e81b-4080-82c5-dc6bbc778616" />
+      <TestMethod codeBase="D:\gaode\backend\tests\Gaode.Communication.Tests\bin\Debug\net10.0\Gaode.Communication.Tests.dll" adapterTypeName="executor://xunit/VsTestRunner3/netcore/" className="Gaode.Communication.Tests.CommissioningIdentityTests" name="CompleteButConflictingIdentityConfigurationIsRejected" />
+    </UnitTest>
+    <UnitTest name="Gaode.Communication.Tests.CommissioningLightModeTests.MissingLightParametersOnlyAllowedInExplicitVirtualModeAndFPositionRoundTrips" storage="d:\gaode\backend\tests\gaode.communication.tests\bin\debug\net10.0\gaode.communication.tests.dll" id="1cf235fc-6d61-ae37-5556-563edcf2d264">
+      <Execution id="622305da-be3f-4e8d-ae47-0e398fac316e" />
+      <TestMethod codeBase="D:\gaode\backend\tests\Gaode.Communication.Tests\bin\Debug\net10.0\Gaode.Communication.Tests.dll" adapterTypeName="executor://xunit/VsTestRunner3/netcore/" className="Gaode.Communication.Tests.CommissioningLightModeTests" name="MissingLightParametersOnlyAllowedInExplicitVirtualModeAndFPositionRoundTrips" />
+    </UnitTest>
+    <UnitTest name="Gaode.Communication.Tests.Devices.HandshakeClosureTests.TransitionOwnsDeviceUntilRealSqliteSaveReceipt(failReceipt: True, puttingBack: False)" storage="d:\gaode\backend\tests\gaode.communication.tests\bin\debug\net10.0\gaode.communication.tests.dll" id="dd0771af-630c-084d-5774-5c6b7e29d385">
+      <Execution id="760f6c22-13fc-496c-8cfc-c8c810a4e2f7" />
+      <TestMethod codeBase="D:\gaode\backend\tests\Gaode.Communication.Tests\bin\Debug\net10.0\Gaode.Communication.Tests.dll" adapterTypeName="executor://xunit/VsTestRunner3/netcore/" className="Gaode.Communication.Tests.Devices.HandshakeClosureTests" name="TransitionOwnsDeviceUntilRealSqliteSaveReceipt" />
+    </UnitTest>
+    <UnitTest name="Gaode.Communication.Tests.Devices.HandshakeClosureTests.SortingUsesActualCommitAndFinalSafetyBeforeParentClear(omitIntent: True)" storage="d:\gaode\backend\tests\gaode.communication.tests\bin\debug\net10.0\gaode.communication.tests.dll" id="d8dbd12e-c2dd-6023-e8cd-c93c15acfba2">
+      <Execution id="a5592e6c-bf33-46a2-be3a-b044446a304d" />
+      <TestMethod codeBase="D:\gaode\backend\tests\Gaode.Communication.Tests\bin\Debug\net10.0\Gaode.Communication.Tests.dll" adapterTypeName="executor://xunit/VsTestRunner3/netcore/" className="Gaode.Communication.Tests.Devices.HandshakeClosureTests" name="SortingUsesActualCommitAndFinalSafetyBeforeParentClear" />
+    </UnitTest>
+    <UnitTest name="Gaode.Communication.Tests.ControlledCommissioningTests.FormalCommissioningStartBlocksWithoutSafeInputsOrConfirmedSiteSafety(missingInput: False)" storage="d:\gaode\backend\tests\gaode.communication.tests\bin\debug\net10.0\gaode.communication.tests.dll" id="1709347c-ea08-b5e0-6184-9398696bf5a5">
+      <Execution id="3ff34273-4845-45ee-937c-86d8a6ea689d" />
+      <TestMethod codeBase="D:\gaode\backend\tests\Gaode.Communication.Tests\bin\Debug\net10.0\Gaode.Communication.Tests.dll" adapterTypeName="executor://xunit/VsTestRunner3/netcore/" className="Gaode.Communication.Tests.ControlledCommissioningTests" name="FormalCommissioningStartBlocksWithoutSafeInputsOrConfirmedSiteSafety" />
+    </UnitTest>
+    <UnitTest name="Gaode.Communication.Tests.Devices.SamePositionTests.RepeatedTargetsReuseOnlySatisfiedAxes(x: 12, y: 22, z: 33, expected: &quot;X&quot;)" storage="d:\gaode\backend\tests\gaode.communication.tests\bin\debug\net10.0\gaode.communication.tests.dll" id="47675aff-3a4d-eeb6-cf81-89be75b16f06">
+      <Execution id="fe21739f-7297-43ae-ab4a-469aa2748e94" />
+      <TestMethod codeBase="D:\gaode\backend\tests\Gaode.Communication.Tests\bin\Debug\net10.0\Gaode.Communication.Tests.dll" adapterTypeName="executor://xunit/VsTestRunner3/netcore/" className="Gaode.Communication.Tests.Devices.SamePositionTests" name="RepeatedTargetsReuseOnlySatisfiedAxes" />
+    </UnitTest>
+    <UnitTest name="Gaode.Communication.Tests.Devices.HandshakeClosureTests.NoClearTimeoutAndLateZeroNeverAuthorizeAnotherRequest" storage="d:\gaode\backend\tests\gaode.communication.tests\bin\debug\net10.0\gaode.communication.tests.dll" id="47cace73-f00c-f337-0a02-9a2cc1bf51a8">
+      <Execution id="4fa28757-c06c-427a-8ce6-1dfcc23f02a5" />
+      <TestMethod codeBase="D:\gaode\backend\tests\Gaode.Communication.Tests\bin\Debug\net10.0\Gaode.Communication.Tests.dll" adapterTypeName="executor://xunit/VsTestRunner3/netcore/" className="Gaode.Communication.Tests.Devices.HandshakeClosureTests" name="NoClearTimeoutAndLateZeroNeverAuthorizeAnotherRequest" />
+    </UnitTest>
+    <UnitTest name="Gaode.Communication.Tests.Devices.HandshakeClosureTests.UnknownWriteOrDelayedTransportDoesNotReplay(fault: AxisResponseDelayed)" storage="d:\gaode\backend\tests\gaode.communication.tests\bin\debug\net10.0\gaode.communication.tests.dll" id="427fb3d9-6aa1-ee38-7f22-3d27174b0f47">
+      <Execution id="e72f37b7-e54e-4d34-9689-4254e444693c" />
+      <TestMethod codeBase="D:\gaode\backend\tests\Gaode.Communication.Tests\bin\Debug\net10.0\Gaode.Communication.Tests.dll" adapterTypeName="executor://xunit/VsTestRunner3/netcore/" className="Gaode.Communication.Tests.Devices.HandshakeClosureTests" name="UnknownWriteOrDelayedTransportDoesNotReplay" />
+    </UnitTest>
+    <UnitTest name="Gaode.Communication.Tests.Devices.HandshakeClosureTests.TransitionOwnsDeviceUntilRealSqliteSaveReceipt(failReceipt: True, puttingBack: True)" storage="d:\gaode\backend\tests\gaode.communication.tests\bin\debug\net10.0\gaode.communication.tests.dll" id="66a52e9f-c6d7-f433-1542-ed9d67c24f2c">
+      <Execution id="4fcfa6b3-6947-4290-a79d-17d457a01819" />
+      <TestMethod codeBase="D:\gaode\backend\tests\Gaode.Communication.Tests\bin\Debug\net10.0\Gaode.Communication.Tests.dll" adapterTypeName="executor://xunit/VsTestRunner3/netcore/" className="Gaode.Communication.Tests.Devices.HandshakeClosureTests" name="TransitionOwnsDeviceUntilRealSqliteSaveReceipt" />
+    </UnitTest>
+    <UnitTest name="Gaode.Communication.Tests.Devices.HandshakeClosureTests.ClearanceRejectsOldOrInvalidReads(fault: &quot;wrong-epoch&quot;)" storage="d:\gaode\backend\tests\gaode.communication.tests\bin\debug\net10.0\gaode.communication.tests.dll" id="0984ea54-3413-17c0-33aa-54984872cad2">
+      <Execution id="77309101-a8bd-4bcb-9560-72d033556085" />
+      <TestMethod codeBase="D:\gaode\backend\tests\Gaode.Communication.Tests\bin\Debug\net10.0\Gaode.Communication.Tests.dll" adapterTypeName="executor://xunit/VsTestRunner3/netcore/" className="Gaode.Communication.Tests.Devices.HandshakeClosureTests" name="ClearanceRejectsOldOrInvalidReads" />
+    </UnitTest>
+    <UnitTest name="Gaode.Communication.Tests.CommissioningLightModeTests.ExplicitModeControlsLightButNeverSkipsCamera(mode: &quot;Real&quot;, realAdapter: True, expectedCapture: True)" storage="d:\gaode\backend\tests\gaode.communication.tests\bin\debug\net10.0\gaode.communication.tests.dll" id="fb0b3f64-c84f-0d7e-7acb-456850a4a6d7">
+      <Execution id="73abd5ca-f26a-430e-b944-8833fc6d20ce" />
+      <TestMethod codeBase="D:\gaode\backend\tests\Gaode.Communication.Tests\bin\Debug\net10.0\Gaode.Communication.Tests.dll" adapterTypeName="executor://xunit/VsTestRunner3/netcore/" className="Gaode.Communication.Tests.CommissioningLightModeTests" name="ExplicitModeControlsLightButNeverSkipsCamera" />
+    </UnitTest>
+    <UnitTest name="Gaode.Communication.Tests.Devices.SamePositionTests.StaticPositionWithoutCurrentClosureMustActuallyDispatch(cause: &quot;initial&quot;)" storage="d:\gaode\backend\tests\gaode.communication.tests\bin\debug\net10.0\gaode.communication.tests.dll" id="33b7965e-168e-f3cd-2ab0-1b9073b87661">
+      <Execution id="ee271309-d85f-4211-947d-8fa0799adbbc" />
+      <TestMethod codeBase="D:\gaode\backend\tests\Gaode.Communication.Tests\bin\Debug\net10.0\Gaode.Communication.Tests.dll" adapterTypeName="executor://xunit/VsTestRunner3/netcore/" className="Gaode.Communication.Tests.Devices.SamePositionTests" name="StaticPositionWithoutCurrentClosureMustActuallyDispatch" />
+    </UnitTest>
+    <UnitTest name="Gaode.Communication.Tests.CommissioningIdentityTests.BackendConfirmsIdentityAndEnforcesPermissions(role: &quot;Operator&quot;, canRun: True, canEdit: False)" storage="d:\gaode\backend\tests\gaode.communication.tests\bin\debug\net10.0\gaode.communication.tests.dll" id="5b2af9cc-9212-51e7-8d1e-bb150b9ed4ea">
+      <Execution id="ec8fefcb-2be4-40e4-bfbf-b25eb2eae0f7" />
+      <TestMethod codeBase="D:\gaode\backend\tests\Gaode.Communication.Tests\bin\Debug\net10.0\Gaode.Communication.Tests.dll" adapterTypeName="executor://xunit/VsTestRunner3/netcore/" className="Gaode.Communication.Tests.CommissioningIdentityTests" name="BackendConfirmsIdentityAndEnforcesPermissions" />
+    </UnitTest>
+    <UnitTest name="Gaode.Communication.Tests.CommissioningStartQueryTests.LookupDoesNotRegisterOrReleaseAndOldCompletionCannotReleaseNewOwner" storage="d:\gaode\backend\tests\gaode.communication.tests\bin\debug\net10.0\gaode.communication.tests.dll" id="5d713dea-4c59-3866-9470-d1c8ffdfcc23">
+      <Execution id="8de3b9b7-d4d0-43bb-b415-66c95ee04c8b" />
+      <TestMethod codeBase="D:\gaode\backend\tests\Gaode.Communication.Tests\bin\Debug\net10.0\Gaode.Communication.Tests.dll" adapterTypeName="executor://xunit/VsTestRunner3/netcore/" className="Gaode.Communication.Tests.CommissioningStartQueryTests" name="LookupDoesNotRegisterOrReleaseAndOldCompletionCannotReleaseNewOwner" />
+    </UnitTest>
+    <UnitTest name="Gaode.Communication.Tests.CommissioningLightModeTests.ExplicitModeControlsLightButNeverSkipsCamera(mode: &quot;Simulated&quot;, realAdapter: False, expectedCapture: True)" storage="d:\gaode\backend\tests\gaode.communication.tests\bin\debug\net10.0\gaode.communication.tests.dll" id="4c698a9b-30df-41f6-c863-afc843941a2f">
+      <Execution id="a6e5f9e1-a141-47a3-8e88-f6d1e2ae1606" />
+      <TestMethod codeBase="D:\gaode\backend\tests\Gaode.Communication.Tests\bin\Debug\net10.0\Gaode.Communication.Tests.dll" adapterTypeName="executor://xunit/VsTestRunner3/netcore/" className="Gaode.Communication.Tests.CommissioningLightModeTests" name="ExplicitModeControlsLightButNeverSkipsCamera" />
+    </UnitTest>
+  </TestDefinitions>
+  <TestEntries>
+    <TestEntry testId="47cace73-f00c-f337-0a02-9a2cc1bf51a8" executionId="4fa28757-c06c-427a-8ce6-1dfcc23f02a5" testListId="8c84fa94-04c1-424b-9868-57a2d4851a1d" />
+    <TestEntry testId="1c4b9ec4-0ab4-2e40-1081-06d4bf82c5ea" executionId="03c61558-a52b-4020-92c3-ee5205b9fb9b" testListId="8c84fa94-04c1-424b-9868-57a2d4851a1d" />
+    <TestEntry testId="7923ee32-0c4b-d942-01cc-b423129530c3" executionId="17f8e987-a7ef-41b4-ad87-5a099b237126" testListId="8c84fa94-04c1-424b-9868-57a2d4851a1d" />
+    <TestEntry testId="1709347c-ea08-b5e0-6184-9398696bf5a5" executionId="3ff34273-4845-45ee-937c-86d8a6ea689d" testListId="8c84fa94-04c1-424b-9868-57a2d4851a1d" />
+    <TestEntry testId="9b2c71a5-148f-acf0-20a4-e4f44241ebeb" executionId="e0a220b8-3bcc-44f7-820e-182eed4b8f4b" testListId="8c84fa94-04c1-424b-9868-57a2d4851a1d" />
+    <TestEntry testId="f519da79-9063-21d2-dfcf-37386682c5c3" executionId="7b22cfd8-cfbd-4549-98aa-37e212567c1b" testListId="8c84fa94-04c1-424b-9868-57a2d4851a1d" />
+    <TestEntry testId="5d713dea-4c59-3866-9470-d1c8ffdfcc23" executionId="8de3b9b7-d4d0-43bb-b415-66c95ee04c8b" testListId="8c84fa94-04c1-424b-9868-57a2d4851a1d" />
+    <TestEntry testId="91302dea-0254-6079-2828-0fc1bfdaa4d4" executionId="661cb364-b209-494a-bb7f-e9935edfc408" testListId="8c84fa94-04c1-424b-9868-57a2d4851a1d" />
+    <TestEntry testId="48f10811-4144-df39-fe0c-1785342ff15b" executionId="1e98b5b8-bcc9-4d56-99af-2f0cbd8b8ead" testListId="8c84fa94-04c1-424b-9868-57a2d4851a1d" />
+    <TestEntry testId="d20312b6-1b16-ea86-6bf4-6a4b28895680" executionId="1c943798-84d1-4cbb-921d-0a5a894edd77" testListId="8c84fa94-04c1-424b-9868-57a2d4851a1d" />
+    <TestEntry testId="8dcc896c-36c0-9c9f-b814-a6c551f73d46" executionId="294668b0-a853-44ee-a9d2-90483fb8e0e2" testListId="8c84fa94-04c1-424b-9868-57a2d4851a1d" />
+    <TestEntry testId="6178d0ab-c574-8059-a9d1-c553b27e7cc3" executionId="596cc24e-e81b-4080-82c5-dc6bbc778616" testListId="8c84fa94-04c1-424b-9868-57a2d4851a1d" />
+    <TestEntry testId="fb0b3f64-c84f-0d7e-7acb-456850a4a6d7" executionId="73abd5ca-f26a-430e-b944-8833fc6d20ce" testListId="8c84fa94-04c1-424b-9868-57a2d4851a1d" />
+    <TestEntry testId="b6d5c734-cb56-b5f1-0282-92ccd6c8ed5e" executionId="ca7b2da7-2c29-4698-a907-cc1475a61fa0" testListId="8c84fa94-04c1-424b-9868-57a2d4851a1d" />
+    <TestEntry testId="fa4d4887-c499-e285-2f8d-768e6554fc22" executionId="7940ec72-707b-4486-a66d-069a57f3941b" testListId="8c84fa94-04c1-424b-9868-57a2d4851a1d" />
+    <TestEntry testId="403dd66a-9951-0caa-b652-3226f7c597bf" executionId="f89ee4de-ae9a-4036-ba00-31645241d920" testListId="8c84fa94-04c1-424b-9868-57a2d4851a1d" />
+    <TestEntry testId="b572591f-b4af-586f-0997-828280395be5" executionId="6a178131-5987-476e-97c0-582e8d27f881" testListId="8c84fa94-04c1-424b-9868-57a2d4851a1d" />
+    <TestEntry testId="66a52e9f-c6d7-f433-1542-ed9d67c24f2c" executionId="4fcfa6b3-6947-4290-a79d-17d457a01819" testListId="8c84fa94-04c1-424b-9868-57a2d4851a1d" />
+    <TestEntry testId="5b2af9cc-9212-51e7-8d1e-bb150b9ed4ea" executionId="ec8fefcb-2be4-40e4-bfbf-b25eb2eae0f7" testListId="8c84fa94-04c1-424b-9868-57a2d4851a1d" />
+    <TestEntry testId="2dd942b7-93ed-b025-8709-5ea78f33b167" executionId="c980884b-ddd2-4b0f-9b43-952717806acd" testListId="8c84fa94-04c1-424b-9868-57a2d4851a1d" />
+    <TestEntry testId="3dd2ceb6-1280-4b99-9784-9725f0c0f505" executionId="4b4c188f-53b4-492e-9a90-44b3ad6e9bee" testListId="8c84fa94-04c1-424b-9868-57a2d4851a1d" />
+    <TestEntry testId="427fb3d9-6aa1-ee38-7f22-3d27174b0f47" executionId="e72f37b7-e54e-4d34-9689-4254e444693c" testListId="8c84fa94-04c1-424b-9868-57a2d4851a1d" />
+    <TestEntry testId="c7d7d52d-ccc4-2f63-3800-5bd5d89e13a1" executionId="48fd4a68-c26a-45bd-8917-146a9d2c357d" testListId="8c84fa94-04c1-424b-9868-57a2d4851a1d" />
+    <TestEntry testId="4f100c36-d0dd-4864-c999-f08003a3a0bf" executionId="440b4f93-fb1b-41d2-ac23-5918237a1711" testListId="8c84fa94-04c1-424b-9868-57a2d4851a1d" />
+    <TestEntry testId="33b7965e-168e-f3cd-2ab0-1b9073b87661" executionId="ee271309-d85f-4211-947d-8fa0799adbbc" testListId="8c84fa94-04c1-424b-9868-57a2d4851a1d" />
+    <TestEntry testId="3c5d4162-ff76-8c58-c986-e3f55b02d763" executionId="2dec4126-b2d6-479c-aff9-fa312cb61387" testListId="8c84fa94-04c1-424b-9868-57a2d4851a1d" />
+    <TestEntry testId="1cf235fc-6d61-ae37-5556-563edcf2d264" executionId="622305da-be3f-4e8d-ae47-0e398fac316e" testListId="8c84fa94-04c1-424b-9868-57a2d4851a1d" />
+    <TestEntry testId="7ba8dada-4b1b-c067-19d9-0121d046bbb4" executionId="20f922af-ef7f-42df-abad-fc29569fbc5d" testListId="8c84fa94-04c1-424b-9868-57a2d4851a1d" />
+    <TestEntry testId="7d106857-df16-65f4-742a-0daf6223ecf0" executionId="5f9221c4-c454-41c0-8526-219c1d9d38e0" testListId="8c84fa94-04c1-424b-9868-57a2d4851a1d" />
+    <TestEntry testId="b70a563a-d3d6-c9ed-2c12-d4694a978c87" executionId="e23ce1fd-804d-44d2-9400-9679caee70ac" testListId="8c84fa94-04c1-424b-9868-57a2d4851a1d" />
+    <TestEntry testId="93adbd8d-cc3f-3a26-233e-157e502fdb21" executionId="c18c7013-71f4-48e1-a173-cf72385d4f65" testListId="8c84fa94-04c1-424b-9868-57a2d4851a1d" />
+    <TestEntry testId="274fa7c0-a5a9-d22f-e366-fd91b7732bc9" executionId="968781f5-9918-43c0-af45-e2c46df17b37" testListId="8c84fa94-04c1-424b-9868-57a2d4851a1d" />
+    <TestEntry testId="d8dbd12e-c2dd-6023-e8cd-c93c15acfba2" executionId="a5592e6c-bf33-46a2-be3a-b044446a304d" testListId="8c84fa94-04c1-424b-9868-57a2d4851a1d" />
+    <TestEntry testId="4c698a9b-30df-41f6-c863-afc843941a2f" executionId="a6e5f9e1-a141-47a3-8e88-f6d1e2ae1606" testListId="8c84fa94-04c1-424b-9868-57a2d4851a1d" />
+    <TestEntry testId="0984ea54-3413-17c0-33aa-54984872cad2" executionId="77309101-a8bd-4bcb-9560-72d033556085" testListId="8c84fa94-04c1-424b-9868-57a2d4851a1d" />
+    <TestEntry testId="1261ce25-b5c7-054b-0dc6-7e0278347d75" executionId="245920b6-db29-4037-8129-2699ff2b5ad2" testListId="8c84fa94-04c1-424b-9868-57a2d4851a1d" />
+    <TestEntry testId="47675aff-3a4d-eeb6-cf81-89be75b16f06" executionId="fe21739f-7297-43ae-ab4a-469aa2748e94" testListId="8c84fa94-04c1-424b-9868-57a2d4851a1d" />
+    <TestEntry testId="75a9be63-02b7-42f8-c9b0-0df51b17c49e" executionId="0dbc8fe1-cb25-45c3-a333-c5a8c81be5e0" testListId="8c84fa94-04c1-424b-9868-57a2d4851a1d" />
+    <TestEntry testId="566177ee-cf2a-6081-26a4-6ba342d32c59" executionId="39eeaba5-aae3-4cb2-9a41-62a486ab02f8" testListId="8c84fa94-04c1-424b-9868-57a2d4851a1d" />
+    <TestEntry testId="dd0771af-630c-084d-5774-5c6b7e29d385" executionId="760f6c22-13fc-496c-8cfc-c8c810a4e2f7" testListId="8c84fa94-04c1-424b-9868-57a2d4851a1d" />
+  </TestEntries>
+  <TestLists>
+    <TestList name="列表中未列出的结果" id="8c84fa94-04c1-424b-9868-57a2d4851a1d" />
+    <TestList name="所有已加载的结果" id="19431567-8539-422a-85d7-44ee4e166bda" />
+  </TestLists>
+  <ResultSummary outcome="Completed">
+    <Counters total="40" executed="40" passed="40" failed="0" error="0" timeout="0" aborted="0" inconclusive="0" passedButRunAborted="0" notRunnable="0" notExecuted="0" disconnected="0" warning="0" completed="0" inProgress="0" pending="0" />
+    <Output>
+      <StdOut>[xUnit.net 00:00:00.00] xUnit.net VSTest Adapter v3.1.5+1b188a7b0a (64-bit .NET 10.0.12)&#xD;
+[xUnit.net 00:00:00.22]   Discovering: Gaode.Communication.Tests&#xD;
+[xUnit.net 00:00:00.25]   Discovered:  Gaode.Communication.Tests&#xD;
+[xUnit.net 00:00:00.27]   Starting:    Gaode.Communication.Tests&#xD;
+info: Microsoft.Hosting.Lifetime[14]&#xD;
+      Now listening on: http://127.0.0.1:54597&#xD;
+info: Microsoft.Hosting.Lifetime[0]&#xD;
+      Application started. Press Ctrl+C to shut down.&#xD;
+info: Microsoft.Hosting.Lifetime[0]&#xD;
+      Hosting environment: Production&#xD;
+info: Microsoft.Hosting.Lifetime[0]&#xD;
+      Content root path: D:\gaode\backend\tests\Gaode.Communication.Tests\bin\Debug\net10.0&#xD;
+info: Gaode.Host.Api.CommissioningAuthenticationHandler[12]&#xD;
+      AuthenticationScheme: Station01Commissioning was challenged.&#xD;
+info: CommissioningIdentity[0]&#xD;
+      IdentityChecked offline:Operator offline-Operator RealDeviceCommissioning 0HNP4NSNHEP8F:00000002&#xD;
+info: Gaode.Host.Api.CommissioningAuthenticationHandler[13]&#xD;
+      AuthenticationScheme: Station01Commissioning was forbidden.&#xD;
+warn: Gaode.Host.Api.CommissioningAuthenticationHandler[0]&#xD;
+      CommissioningIdentityRejected InvalidCredential 0HNP4NSNHEP8F:00000007&#xD;
+info: Gaode.Host.Api.CommissioningAuthenticationHandler[7]&#xD;
+      Station01Commissioning was not authenticated. Failure message: ����ƾ����Ч&#xD;
+info: Gaode.Host.Api.CommissioningAuthenticationHandler[12]&#xD;
+      AuthenticationScheme: Station01Commissioning was challenged.&#xD;
+info: Gaode.Host.Api.CommissioningAuthenticationHandler[12]&#xD;
+      AuthenticationScheme: Station01Commissioning was challenged.&#xD;
+info: Microsoft.Hosting.Lifetime[0]&#xD;
+      Application is shutting down...&#xD;
+info: Microsoft.Hosting.Lifetime[14]&#xD;
+      Now listening on: http://127.0.0.1:54599&#xD;
+info: Microsoft.Hosting.Lifetime[0]&#xD;
+      Application started. Press Ctrl+C to shut down.&#xD;
+info: Microsoft.Hosting.Lifetime[0]&#xD;
+      Hosting environment: Production&#xD;
+info: Microsoft.Hosting.Lifetime[0]&#xD;
+      Content root path: D:\gaode\backend\tests\Gaode.Communication.Tests\bin\Debug\net10.0&#xD;
+info: Gaode.Host.Api.CommissioningAuthenticationHandler[12]&#xD;
+      AuthenticationScheme: Station01Commissioning was challenged.&#xD;
+info: CommissioningIdentity[0]&#xD;
+      IdentityChecked offline:ProcessEngineer offline-ProcessEngineer RealDeviceCommissioning 0HNP4NSNHEP8G:00000002&#xD;
+info: Gaode.Host.Api.CommissioningAuthenticationHandler[13]&#xD;
+      AuthenticationScheme: Station01Commissioning was forbidden.&#xD;
+warn: Gaode.Host.Api.CommissioningAuthenticationHandler[0]&#xD;
+      CommissioningIdentityRejected InvalidCredential 0HNP4NSNHEP8G:00000007&#xD;
+info: Gaode.Host.Api.CommissioningAuthenticationHandler[7]&#xD;
+      Station01Commissioning was not authenticated. Failure message: ����ƾ����Ч&#xD;
+info: Gaode.Host.Api.CommissioningAuthenticationHandler[12]&#xD;
+      AuthenticationScheme: Station01Commissioning was challenged.&#xD;
+info: Gaode.Host.Api.CommissioningAuthenticationHandler[12]&#xD;
+      AuthenticationScheme: Station01Commissioning was challenged.&#xD;
+info: Microsoft.Hosting.Lifetime[0]&#xD;
+      Application is shutting down...&#xD;
+info: Microsoft.Hosting.Lifetime[14]&#xD;
+      Now listening on: http://127.0.0.1:49642&#xD;
+info: Microsoft.Hosting.Lifetime[0]&#xD;
+      Application started. Press Ctrl+C to shut down.&#xD;
+info: Microsoft.Hosting.Lifetime[0]&#xD;
+      Hosting environment: Production&#xD;
+info: Microsoft.Hosting.Lifetime[0]&#xD;
+      Content root path: D:\gaode\backend\tests\Gaode.Communication.Tests\bin\Debug\net10.0&#xD;
+info: Gaode.Host.Lifecycle.Station01HostedService[0]&#xD;
+      StartupPersistence category=Lifecycle phase=Started deviceServicesStarted=false&#xD;
+info: Gaode.Host.Lifecycle.Station01HostedService[0]&#xD;
+      Station01 Host������δ���������=0���ָ�״̬���Զ�����&#xD;
+info: Gaode.Host.Lifecycle.Station01HostedService[0]&#xD;
+      StartupPersistence category=Lifecycle phase=Completed unfinishedRuns=0; device startup may now proceed&#xD;
+info: Gaode.Infrastructure.Diagnostics.StructuredStageDiagnostics[0]&#xD;
+      StartupDiagnostic category=CommandFlow requestId=OFFLINE-normal-chain commandId=12fb438b-1a0b-442c-aacc-42704887f909 runId=0efc546d-1ec8-4016-b6fe-9e5a17aa09a4 stage=Admission classification=Accepted disposition=RunCreated connectionEpoch=(null) observedAtUtc=(null) source=(null)&#xD;
+info: Microsoft.Hosting.Lifetime[0]&#xD;
+      Application is shutting down...&#xD;
+[xUnit.net 00:00:45.65]   Finished:    Gaode.Communication.Tests&#xD;
+</StdOut>
+    </Output>
+  </ResultSummary>
+</TestRun>

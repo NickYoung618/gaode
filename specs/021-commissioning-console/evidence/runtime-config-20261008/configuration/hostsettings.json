@@ -1,0 +1,42 @@
+{
+  "Urls": "http://127.0.0.1:5190",
+  "Gaode": {
+    "Mode": "RealDeviceCommissioning",
+    "TestRoot": "D:\\Gaode-Station01\\commissioning-021-final-3\\data\\store",
+    "AllowedTestRoot": "D:\\Gaode-Station01\\commissioning-021-final-3\\data",
+    "ConfigRoot": "D:\\Gaode-Station01\\commissioning-021-final-3\\data\\config\\runtime-r1",
+    "SchemaRoot": "D:\\Gaode-Station01\\commissioning-021-final-3\\data\\config\\runtime-r1\\schemas",
+    "PublicId": "station01-public-commissioning",
+    "PublicVersion": "1",
+    "BudgetId": "station01-budget-commissioning",
+    "BudgetVersion": "1",
+    "CommissioningId": "station01-virtual-algorithm",
+    "CommissioningVersion": "1",
+    "CommissioningPath": "D:\\Gaode-Station01\\commissioning-021-final-3\\data\\config\\commissioning.json",
+    "CommissioningSha256": "260EDF1FFFCF969EA3D1271495B77A57B373345DFFA667F965F1D9297520D9FB",
+    "PlcHost": "192.168.0.10",
+    "PlcPort": 502,
+    "PlcUnitId": 1,
+    "PlcProvider": "Real",
+    "PlcIoTimeoutMs": 1000,
+    "PositionTolerance": 0.1,
+    "PlcMechanicsPath": "D:\\Gaode-Station01\\commissioning-021-final-3\\data\\config\\runtime-r1\\plc-mechanics.json",
+    "PlcFieldProfilePath": "D:\\Gaode-Station01\\commissioning-021-final-3\\data\\config\\runtime-r1\\plc-field.json",
+    "Cameras": {
+      "Enabled": true,
+      "SitePath": "D:\\Gaode-Station01\\commissioning-021-final-3\\config\\camera.site.json",
+      "WorkerPath": "D:\\Gaode-Station01\\commissioning-021-final-3\\app\\worker\\Gaode.CameraWorker.exe",
+      "GalaxySdkPath": "D:\\GalaxySDK\\APIDll\\Win64",
+      "CameraProSdkPath": "D:\\软件开发sdk\\3DCameraViewer\\CamSDK\\CamSDK_CSharp\\bin",
+      "StateRoot": "D:\\Gaode-Station01\\commissioning-021-final-3\\data\\camera-state",
+      "StartupTimeoutMs": 30000,
+      "CaptureTimeoutMs": 30000,
+      "ShutdownTimeoutMs": 15000
+    }
+  },
+  "RecipeStore": {
+    "DatabasePath": "D:\\Gaode-Station01\\commissioning-021-final-3\\data\\recipes\\recipes.db",
+    "ReadWriteTimeoutMs": 2000,
+    "DbLockTimeoutSeconds": 2
+  }
+}

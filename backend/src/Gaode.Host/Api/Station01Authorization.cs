@@ -17,10 +17,22 @@ public static class Station01Authorization
     public const string MediaRead = "Media.Read";
     public static IServiceCollection AddStation01Api(this IServiceCollection services, IConfiguration config)
     {
-        if (string.IsNullOrWhiteSpace(config["Gaode:Tokens:Operator"]))
-            throw new InvalidOperationException("必须显式配置本地Test令牌");
-        services.AddAuthentication("Station01Test")
-            .AddScheme<AuthenticationSchemeOptions, TestAuthenticationHandler>("Station01Test", _ => { });
+        if (config["Gaode:Mode"] == "RealDeviceCommissioning")
+        {
+            services.AddSingleton(new CommissioningIdentityRegistry(config));
+            services.AddAuthentication("Station01Commissioning")
+                .AddScheme<AuthenticationSchemeOptions, CommissioningAuthenticationHandler>("Station01Commissioning", _ => { });
+            services.AddCors(cors => cors.AddPolicy("Station01CommissioningPage", p => p.WithOrigins("https://appassets.local")
+                .WithMethods("GET","POST","PUT","DELETE").WithHeaders("Authorization","Content-Type","If-Match","If-None-Match","X-Requested-With","X-SignalR-User-Agent")
+                .WithExposedHeaders("ETag","Location")));
+        }
+        else
+        {
+            if (string.IsNullOrWhiteSpace(config["Gaode:Tokens:Operator"]))
+                throw new InvalidOperationException("必须显式配置本地Test令牌");
+            services.AddAuthentication("Station01Test")
+                .AddScheme<AuthenticationSchemeOptions, TestAuthenticationHandler>("Station01Test", _ => { });
+        }
         services.AddAuthorization(options =>
         {
             options.AddPolicy(Read, p => p.RequireClaim("permission", Read));

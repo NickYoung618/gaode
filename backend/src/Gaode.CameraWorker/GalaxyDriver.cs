@@ -1,6 +1,7 @@
 using System.Runtime.InteropServices;
 using GxIAPINET;
 using Gaode.Infrastructure.Devices.Cameras;
+using Gaode.Application.Ports;
 
 namespace Gaode.CameraWorker;
 
@@ -15,6 +16,8 @@ internal sealed class GalaxyDriver(CameraBinding binding, Guid session, string s
     private ulong? previousFrame;
     private long payloadLimit;
     private Dictionary<string, string>? imagingBefore;
+    private readonly Dictionary<string, double> changedFloats = [];
+    private readonly Dictionary<string, string> changedEnums = [];
     public override long MaxBytes => payloadLimit;
     private string Enum(string name) => features!.GetEnumFeature(name).GetValue();
     private void Set(string name, string value)
@@ -87,6 +90,49 @@ internal sealed class GalaxyDriver(CameraBinding binding, Guid session, string s
             if (features!.IsImplemented(name) && features.IsReadable(name)) result[name] = features.GetIntFeature(name).GetValue().ToString();
         return result;
     }
+    public override ActualCameraSettings ApplySettings(CameraImagingSettings settings)
+    {
+        if (features is null) throw new InvalidOperationException("CameraNotReady");
+        var offsetX = checked((int)features.GetIntFeature("OffsetX").GetValue());
+        var offsetY = checked((int)features.GetIntFeature("OffsetY").GetValue());
+        if (settings.RoiPixels is { } roi && !roi.SequenceEqual(new[] { 0, 0, Width, Height }))
+            throw new NotSupportedException("CameraNonFullFrameRoiUnsupported");
+        if (settings.RoiPixels is not null && (offsetX != 0 || offsetY != 0))
+            throw new NotSupportedException("CameraCurrentRoiIsNotFullFrame");
+        void ValidateFloat(string name, double value)
+        {
+            if (!features.IsImplemented(name) || !features.IsReadable(name) || !features.IsWritable(name))
+                throw new NotSupportedException("CameraParameterNotWritable:" + name);
+            var node = features.GetFloatFeature(name);
+            if (!double.IsFinite(value) || value < node.GetMin() || value > node.GetMax())
+                throw new ArgumentOutOfRangeException(name);
+            if (node.HasInc() && (value - node.GetMin()) % node.GetInc() != 0)
+                throw new NotSupportedException("CameraParameterStepUnsupported:" + name);
+        }
+        var unit = features.GetFloatFeature("ExposureTime").GetUnit();
+        if (unit is not ("us" or "µs" or "μs")) throw new NotSupportedException("CameraExposureUnitUnsupported:" + unit);
+        ValidateFloat("ExposureTime", settings.ExposureUs);
+        if (settings.Gain is { } gain) ValidateFloat("Gain", gain);
+        foreach (var name in settings.Gain is null ? new[] { "ExposureAuto" } : new[] { "ExposureAuto", "GainAuto" })
+        {
+            if (!features.IsImplemented(name)) continue;
+            if (!features.IsReadable(name)) throw new NotSupportedException("CameraAutoStateUnreadable:" + name);
+            var old = Enum(name);
+            if (old == "Off") continue;
+            if (!features.IsWritable(name)) throw new NotSupportedException("CameraAutoStateNotWritable:" + name);
+            changedEnums.TryAdd(name, old); Set(name, "Off");
+        }
+        void Apply(string name, double value)
+        {
+            var node = features.GetFloatFeature(name);
+            changedFloats.TryAdd(name, node.GetValue()); node.SetValue(value);
+            if (node.GetValue() != value) throw new InvalidDataException("ParameterReadbackMismatch:" + name);
+        }
+        Apply("ExposureTime", settings.ExposureUs);
+        if (settings.Gain is { } requestedGain) Apply("Gain", requestedGain);
+        Save("imaging-settings-to-restore.json", new { changedFloats, changedEnums });
+        return new(settings.ExposureUs, features.GetFloatFeature("Gain").GetValue(), Width, Height, offsetX, offsetY);
+    }
     public override WorkerFrame Capture()
     {
         if (stream is null || features is null) throw new InvalidOperationException("CameraNotReady");
@@ -121,6 +167,10 @@ internal sealed class GalaxyDriver(CameraBinding binding, Guid session, string s
         if (grabbing) { grabbing = false; Attempt(() => stream!.StopGrab()); }
         if (features is not null)
         {
+            foreach (var pair in changedFloats)
+                Attempt(() => { var node = features.GetFloatFeature(pair.Key); node.SetValue(pair.Value);
+                    if (node.GetValue() != pair.Value) throw new InvalidDataException("RestoredParameterMismatch:" + pair.Key); });
+            foreach (var pair in changedEnums) Attempt(() => Set(pair.Key, pair.Value));
             var triggerReadback = new Dictionary<string, string>();
             if (triggerSnapshot)
             {
@@ -141,7 +191,8 @@ internal sealed class GalaxyDriver(CameraBinding binding, Guid session, string s
             Save("restoration.json", new { restored = errors.Count == 0, errors,
                 triggerReadback, imagingBefore, imagingAfter, comparisons,
                 imagingUnchanged = comparisons is not null && comparisons.All(x => x.equal),
-                imagingComparisonNote = "Read-only comparison; automatic exposure/gain may evolve while acquisition runs. No imaging parameter is restored or written." });
+                changedFloats, changedEnums,
+                imagingComparisonNote = "Only requested imaging parameters and necessary auto modes are restored; automatic values may evolve after auto mode restoration." });
         }
         if (stream is not null) { Attempt(stream.Close); stream = null; }
         if (device is not null) { Attempt(device.Close); device = null; }

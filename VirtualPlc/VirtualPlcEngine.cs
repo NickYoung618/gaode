@@ -61,7 +61,7 @@ public sealed partial class VirtualPlcEngine : BackgroundService
     {
         lock (_gate)
         {
-            if (fault is SimulationFault.AxisResponseDelayed or SimulationFault.AxisWriteResponseLost)
+            if (fault is SimulationFault.AxisResponseDelayed or SimulationFault.AxisWriteResponseLost or SimulationFault.AxisClearWriteResponseLost)
                 return _store.FeedbackFaults.Arm(fault);
             _faults.Add(fault);
             if (fault == SimulationFault.EmergencyAlarm) _latchedAlarms |= AlarmMask("EmergencyStop");
@@ -241,6 +241,8 @@ public sealed partial class VirtualPlcEngine : BackgroundService
         if (command == 0)
         {
             if (_active?.Kind is ActionKind.Flip or ActionKind.PutBack) return;
+            if (lastFlipCommand != 2 || _store.ReadHoldingRegisterByDocumentNumber(_store.Definition[SignalId.FlipUnloadStatus].DocumentNumber) != 2 ||
+                !ClearDue("Flip", now)) return;
             lastFlipCommand = 0;
             _store.SetHoldingRegisterFromPlc(_store.Definition[SignalId.FlipStatus].DocumentNumber, 0);
             _store.SetHoldingRegisterFromPlc(_store.Definition[SignalId.FlipUnloadStatus].DocumentNumber, 0);
@@ -254,6 +256,8 @@ public sealed partial class VirtualPlcEngine : BackgroundService
                 !_store.GetWriteAudit().Any(w => w.Accepted && w.Area == PlcArea.HoldingRegister &&
                     w.DocumentNumber == _store.Definition[SignalId.FlipTargetFace].DocumentNumber)) return;
             if (!Start(new(ActionKind.Flip, DueAt(now, _options.FlipDurationMs), command))) return;
+            completedAxes.Remove(SignalId.ZGrabMoveStart);
+            clearDue.Remove("Flip");
             lastFlipCommand = command;
             _store.SetHoldingRegisterFromPlc(_store.Definition[SignalId.FlipStatus].DocumentNumber, 1);
             if (_faults.Contains(SimulationFault.FlipFeedbackHold)) _active = _active! with { DueAt = long.MaxValue };
@@ -263,6 +267,8 @@ public sealed partial class VirtualPlcEngine : BackgroundService
             if (lastFlipCommand != 1 || _store.ReadHoldingRegisterByDocumentNumber(_store.Definition[SignalId.FlipStatus].DocumentNumber) != 2 ||
                 _options.PutBackDurationMs is null or <= 0 || _options.FlipPutBackSafeZ is not { } safeZ || !float.IsFinite(safeZ)) return;
             if (!Start(new(ActionKind.PutBack, DueAt(now, _options.PutBackDurationMs.Value), command, Z: safeZ))) return;
+            completedAxes.Remove(SignalId.ZGrabMoveStart);
+            clearDue.Remove("Flip");
             lastFlipCommand = command;
             _store.SetHoldingRegisterFromPlc(_store.Definition[SignalId.FlipUnloadStatus].DocumentNumber, 1);
         }
@@ -271,8 +277,18 @@ public sealed partial class VirtualPlcEngine : BackgroundService
     private void ProcessSort(long now)
     {
         var command = _store.ReadHoldingRegisterByDocumentNumber(PlcAddressMap.HoldingRegisters.SortingCmd);
+        if (command == 0)
+        {
+            if (_active?.Kind != ActionKind.Sort && !_sortPicked && lastSortingCommand == 2 &&
+                _store.ReadHoldingRegisterByDocumentNumber(PlcAddressMap.HoldingRegisters.SortingExecStatus) == 2 && ClearDue("Sort", now))
+            {
+                lastSortingCommand = 0;
+                _store.SetHoldingRegisterFromPlc(PlcAddressMap.HoldingRegisters.SortingExecStatus, 0);
+            }
+            return;
+        }
         if (command == lastSortingCommand) return;
-        if (command == 0) { if (_active?.Kind != ActionKind.Sort) lastSortingCommand = 0; return; }
+        clearDue.Remove("Sort");
         if (!CanStartNow(now)) return;
         lastSortingCommand = command;
         if (command is not (1 or 2) || command == 1 && _sortPicked || command == 2 && !_sortPicked ||
@@ -280,7 +296,7 @@ public sealed partial class VirtualPlcEngine : BackgroundService
         { Fail(ActionKind.Sort); return; }
         foreach (var axis in Axes.Where(a => a.Name is "X" or "Y" or "GrabZ"))
             if (!_store.WasFloatWritten(_store.Definition[axis.Target].DocumentNumber) ||
-                _store.ReadHoldingRegisterByDocumentNumber(_store.Definition[axis.Confirmed].DocumentNumber) != 1 ||
+                !completedAxes.Contains(axis.Start) || !float.IsFinite(_store.ReadActualFloat(_store.Definition[axis.Actual].DocumentNumber)) ||
                 Math.Abs(_store.ReadActualFloat(_store.Definition[axis.Actual].DocumentNumber) -
                     _store.ReadFloatByDocumentNumber(_store.Definition[axis.Target].DocumentNumber)) > 0.001)
             { Fail(ActionKind.Sort); return; }
@@ -409,6 +425,9 @@ public sealed partial class VirtualPlcEngine : BackgroundService
         _store.SetFloatFromPlc(PlcAddressMap.HoldingRegisters.MachineCurrentPosX, 0);
         _store.SetFloatFromPlc(PlcAddressMap.HoldingRegisters.MachineCurrentPosY, 0);
         _store.SetFloatFromPlc(PlcAddressMap.HoldingRegisters.MachineCurrentPosZ, 0);
+        ResetAxes();
+        lastFlipCommand = 0;
+        _store.SetHoldingRegisterFromPlc(_store.Definition[SignalId.FlipUnloadStatus].DocumentNumber, 0);
         lastSortingCommand = 0;
         _sortPicked = false;
     }

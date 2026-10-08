@@ -11,7 +11,7 @@ namespace Gaode.Infrastructure.Persistence;
 public sealed class WholeTrayCompletionStore(
     DbContextOptions<Station01DbContext> options,
     TimeProvider? clock = null,
-    Func<string, CancellationToken, Task>? beforeCommit = null) : IWholeTrayCompletionStore
+    Func<string, CancellationToken, Task>? beforeCommit = null, Gaode.Application.Station01.CommandRegistry? commands = null) : IWholeTrayCompletionStore
 {
     private readonly TimeProvider clock = clock ?? TimeProvider.System;
     private static readonly JsonSerializerOptions JsonOptions = new(JsonSerializerDefaults.Web);
@@ -127,6 +127,7 @@ public sealed class WholeTrayCompletionStore(
         if (replay is not null)
         {
             await tx.CommitAsync(cancellationToken);
+            await ReconcileFinalAsync(request.WholeTray.RunId, request.WholeTray.TrayId, cancellationToken);
             return ParseFinal(replay.PayloadJson);
         }
 
@@ -166,7 +167,31 @@ public sealed class WholeTrayCompletionStore(
         if (beforeCommit is not null) await beforeCommit("ManualAndFinal", cancellationToken);
         await db.SaveChangesAsync(cancellationToken);
         await tx.CommitAsync(cancellationToken);
+        await ReconcileFinalAsync(request.WholeTray.RunId, request.WholeTray.TrayId, cancellationToken);
         return final;
+    }
+
+    public async Task<bool> ReconcileFinalAsync(Guid runId, Guid trayId, CancellationToken cancellationToken)
+    {
+        await using var db = new Station01DbContext(options);
+        var run = await db.Runs.AsNoTracking().SingleOrDefaultAsync(x => x.RunId == runId, cancellationToken);
+        if (run is null || run.State != RunState.Completed || run.Terminal != TerminalOutcome.Completed) return false;
+        var facts = await db.StageEvents.AsNoTracking().Where(x => x.RunId == runId && x.TrayId == trayId &&
+            x.Stage == WholeTrayWorkflowStage.ManualTrayRemovalConfirmation.ToString()).ToListAsync(cancellationToken);
+        var finalEvent = facts.LastOrDefault(x => x.EventType == StageEventType.FinalUnloadCompleted.ToString());
+        if (finalEvent is null) return false;
+        var final = ParseFinal(finalEvent.PayloadJson);
+        if (!final.IsValid || final.WholeTray.RunId != runId || final.WholeTray.TrayId != trayId ||
+            !facts.Any(x => x.EventType == StageEventType.ManualTrayRemovalConfirmed.ToString() &&
+                x.PayloadJson == finalEvent.PayloadJson)) return false;
+        var matrix = await db.ComponentEvidenceMatrices.AsNoTracking().SingleOrDefaultAsync(x =>
+            x.MatrixId == final.FinalSourceMatrixId && x.RunId == runId && x.TrayId == trayId, cancellationToken);
+        if (matrix is null || !ParseMatrix(matrix).IsComplete ||
+            ParseMatrix(matrix).Milestone != EvidenceMilestone.FinalUnloadCompletion) return false;
+        commands?.ReleaseAfterCommittedFinal(runId);
+        Gaode.Diagnostics.RuntimeDiagnostics.Record("CompletionAdmission", "CommittedFinalReconciled", runId,
+            new { trayId, final.FinalCompletionId, final.FinalSourceMatrixId });
+        return true;
     }
 
     private static async Task<StageEventEntity> CompletedAsync(Station01DbContext db,

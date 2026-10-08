@@ -1,0 +1,24 @@
+{
+  "schemaVersion": "commissioning-plc-ready-confirmation/1",
+  "recordedUtc": "2026-10-07T23:23:24.1396233+00:00",
+  "sourceQuestion": "PLC的就绪（MB6015）变成1时，是否已经保证复位完成、各轴停稳，并且允许上位机开始流程？",
+  "userAnswer": "是",
+  "signal": "MB6015",
+  "readyValue": 1,
+  "confirms": [
+    "复位完成",
+    "各轴停稳",
+    "允许上位机开始流程"
+  ],
+  "doesNotConfirm": [
+    "MB2007启动请求置位清零时序",
+    "MB2009系统复位请求置位清零时序",
+    "断线行为",
+    "MB2008软停是否回位"
+  ],
+  "existingSafetyAndFreshnessGatesRetained": true,
+  "unknownActionAutomaticReplayAllowed": false,
+  "hardwareConnected": false,
+  "productCodeChanged": false,
+  "fieldValidationPassed": false
+}

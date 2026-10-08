@@ -55,6 +55,7 @@ public sealed record RecipeCodeRule(bool Enabled, string? RepresentativeMaterial
 }
 public sealed record RecipeDisposition(string Ok, string Ng, string Pending,
     string PhysicalUnit);
+public sealed record CommissioningFPosition(string SchemaVersion, double? X, double? Y);
 public sealed record RecipeDefinition(string RecipeId, string Version, string ReleaseStatus,
     string ScenarioId, string Model, string FCode, string UnitKind, string PrimaryMaterial,
     string LayoutProfile, int Capacity, IReadOnlyList<RecipePosition> Positions,
@@ -66,6 +67,8 @@ public sealed record RecipeDefinition(string RecipeId, string Version, string Re
     string CatalogDigest,
     int? PlcRecipeId = null, int? NgCapacity = null, int? PendingCapacity = null)
 {
+    [JsonIgnore(Condition = JsonIgnoreCondition.WhenWritingNull)]
+    public CommissioningFPosition? CommissioningFPosition { get; init; }
     public required string SchemaVersion { get; init; }
     [JsonIgnore(Condition = JsonIgnoreCondition.WhenWritingNull)]
     public int? SortingGripperId { get; init; }
@@ -81,6 +84,8 @@ public sealed record RecipeDefinition(string RecipeId, string Version, string Re
     public RotationWorkstationInputs? RotationWorkstation { get; init; }
     [JsonIgnore(Condition = JsonIgnoreCondition.WhenWritingNull)]
     public IReadOnlyDictionary<string, HandlingPoint>? SortingTargets { get; init; }
+    [System.Text.Json.Serialization.JsonIgnore(Condition = System.Text.Json.Serialization.JsonIgnoreCondition.WhenWritingNull)]
+    public Gaode.Domain.Configuration.LightExecutionConfiguration? LightExecution { get; init; }
     public required string DefinitionDigest { get; init; }
     public required ApprovalScope Approval { get; init; }
     public required IReadOnlyDictionary<string, AlgorithmRequirement> AlgorithmRequirements { get; init; }
@@ -186,6 +191,8 @@ public sealed record RecipeRunPlan(string TrayRunId, string ScenarioId, string F
     public RotationWorkstationInputs? RotationWorkstation { get; init; }
     [JsonIgnore(Condition = JsonIgnoreCondition.WhenWritingNull)]
     public IReadOnlyDictionary<string, OriginalSlotReference>? OriginalSlots { get; init; }
+    [System.Text.Json.Serialization.JsonIgnore(Condition = System.Text.Json.Serialization.JsonIgnoreCondition.WhenWritingNull)]
+    public Gaode.Domain.Configuration.LightExecutionConfiguration? LightExecution { get; init; }
     public required string DefinitionDigest { get; init; }
     public required RecipeCodeRule ECode { get; init; }
     public required ApprovalScope Approval { get; init; }

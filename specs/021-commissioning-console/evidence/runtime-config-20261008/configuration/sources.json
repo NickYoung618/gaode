@@ -1,0 +1,55 @@
+{
+  "schemaVersion": "commissioning-runtime-sources/1",
+  "scope": "single-part AB flip CD OK; seven real cameras; virtual algorithm and lights",
+  "source": "User-confirmed 2026-10-08 mm/XY0..100/Z0..10/startupXYZ0; existing successful local recipe sha256:a898bc7001febf8e0d626f0542bacdac7ae7a8c493c80b3dd4d7202c81ff9a75",
+  "networkAccess": false,
+  "deviceDispatches": 0,
+  "fieldValidated": false,
+  "differences": [
+    "I/O timeout reduced from old tool 2000ms to formal maximum 1000ms; no retry",
+    "Motion deadline 30s sourced; camera timeout 30s existing driver default; remaining software allowances are engineering commissioning settings",
+    "Whole-tray bounds constrained to confirmed XY envelope; virtual single cell only; no physical tray geometry/calibration claim",
+    "F/3D exposures and payload capacities from actual historical captures; 3D SDK ms converted to us",
+    "Sorting safety absent; NG/Pending must remain blocked; E not in current recipe; no automatic homing"
+  ],
+  "files": [
+    {
+      "path": "D:\\Gaode-Station01\\commissioning-021-final-3\\data\\config\\runtime-r1\\budget.json",
+      "sha256": "3DC4E8404D535114C02CE30DB4804CEC78B5423738F022F0BC5A9C516D9FF484"
+    },
+    {
+      "path": "D:\\Gaode-Station01\\commissioning-021-final-3\\data\\config\\runtime-r1\\hostsettings.json",
+      "sha256": "7746B55B8E43AAFC7781A80D3D721E18FA5FE508A0AABB9E82E634A819B32D8A"
+    },
+    {
+      "path": "D:\\Gaode-Station01\\commissioning-021-final-3\\data\\config\\runtime-r1\\plc-field.json",
+      "sha256": "56C692DC57256FBEE02989207FBF73A6DEF038AFADBA6F3C97EBDF834DD55BEB"
+    },
+    {
+      "path": "D:\\Gaode-Station01\\commissioning-021-final-3\\data\\config\\runtime-r1\\plc-mechanics.json",
+      "sha256": "1F4200C30660F95C6C3F9DBB8E4CA77906602F4937A56D595AD5896CAAD8108C"
+    },
+    {
+      "path": "D:\\Gaode-Station01\\commissioning-021-final-3\\data\\config\\runtime-r1\\public.json",
+      "sha256": "57F46C15EAFFC243E5CC28FB3C9F8064A16148EAFD048BD93EF8A47D9B5DA6D6"
+    },
+    {
+      "path": "D:\\Gaode-Station01\\commissioning-021-final-3\\data\\config\\runtime-r1\\schemas\\budget.schema.json",
+      "sha256": "75AD4FC4F0F15F1EF9283F89539E3B3B1EB0E19456855F0DA1627E412BFCAC46"
+    },
+    {
+      "path": "D:\\Gaode-Station01\\commissioning-021-final-3\\data\\config\\runtime-r1\\schemas\\public-config.schema.json",
+      "sha256": "B50103A9CDC6AFE6B5D4FEFD1851E5E8222A120CD6DA6B17E04E2FF435D09CF2"
+    },
+    {
+      "path": "D:\\Gaode-Station01\\commissioning-021-final-3\\data\\config\\runtime-r1\\schemas\\simulation.schema.json",
+      "sha256": "12AC6A80264E87AEE9EC19BCEC5E76BCF03C909314EF0EE2C66D7DAB72F46898"
+    },
+    {
+      "path": "D:\\Gaode-Station01\\commissioning-021-final-3\\data\\config\\runtime-r1\\schemas\\test-media-fixture.schema.json",
+      "sha256": "698782789BFFF7D213D9DBBF81E261623D0774578A3B43778EFDAE32F91C7F3F"
+    }
+  ],
+  "baseSourceCommit": "639549ff6da58ed1804e37bc85e282d28af188e0",
+  "configurationOverlay": "runtime-r1; added after source commit; original release ZIP and patch preserved"
+}

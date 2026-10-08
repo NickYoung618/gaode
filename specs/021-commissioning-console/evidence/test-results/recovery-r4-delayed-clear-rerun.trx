@@ -1,0 +1,59 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<TestRun id="a1ffb11a-18ba-4370-a6ae-764ffe65dffb" name="Administrator@DEMO 2026-10-08 15:48:25" runUser="demo\Administrator" xmlns="http://microsoft.com/schemas/VisualStudio/TeamTest/2010">
+  <Times creation="2026-10-08T15:48:25.6907670+08:00" queuing="2026-10-08T15:48:25.6907671+08:00" start="2026-10-08T15:48:19.3155083+08:00" finish="2026-10-08T15:48:25.6941887+08:00" />
+  <TestSettings name="default" id="f47cc2ce-fa31-49e1-9d32-d1d999d606ab">
+    <Deployment runDeploymentRoot="Administrator_DEMO_2026-10-08_15_48_25" />
+  </TestSettings>
+  <Results>
+    <UnitTestResult executionId="545fc42e-8f15-4b45-b1db-4c535ee2f678" testId="2dd942b7-93ed-b025-8709-5ea78f33b167" testName="Gaode.Communication.Tests.Devices.HandshakeClosureTests.DelayedClearHoldsOwnershipAndPreservesArrivalEvidence" computerName="DEMO" duration="00:00:04.6268534" startTime="2026-10-08T15:48:20.9870582+08:00" endTime="2026-10-08T15:48:25.6213731+08:00" testType="13cdc9d9-ddb5-4fa4-a97d-d965ccfc6d4b" outcome="Failed" testListId="8c84fa94-04c1-424b-9868-57a2d4851a1d" relativeResultsDirectory="545fc42e-8f15-4b45-b1db-4c535ee2f678">
+      <Output>
+        <ErrorInfo>
+          <Message>Assert.Equal() Failure: Values differ&#xD;
+Expected: Completed&#xD;
+Actual:   Failed</Message>
+          <StackTrace>   at Gaode.Communication.Tests.Devices.HandshakeClosureTests.DelayedClearHoldsOwnershipAndPreservesArrivalEvidence() in D:\gaode\backend\tests\Gaode.Communication.Tests\HandshakeClosureTests.cs:line 103&#xD;
+   at Gaode.Communication.Tests.Devices.HandshakeClosureTests.DelayedClearHoldsOwnershipAndPreservesArrivalEvidence() in D:\gaode\backend\tests\Gaode.Communication.Tests\HandshakeClosureTests.cs:line 105&#xD;
+   at Gaode.Communication.Tests.Devices.HandshakeClosureTests.DelayedClearHoldsOwnershipAndPreservesArrivalEvidence() in D:\gaode\backend\tests\Gaode.Communication.Tests\HandshakeClosureTests.cs:line 105&#xD;
+--- End of stack trace from previous location ---</StackTrace>
+        </ErrorInfo>
+      </Output>
+    </UnitTestResult>
+  </Results>
+  <TestDefinitions>
+    <UnitTest name="Gaode.Communication.Tests.Devices.HandshakeClosureTests.DelayedClearHoldsOwnershipAndPreservesArrivalEvidence" storage="d:\gaode\backend\tests\gaode.communication.tests\bin\debug\net10.0\gaode.communication.tests.dll" id="2dd942b7-93ed-b025-8709-5ea78f33b167">
+      <Execution id="545fc42e-8f15-4b45-b1db-4c535ee2f678" />
+      <TestMethod codeBase="D:\gaode\backend\tests\Gaode.Communication.Tests\bin\Debug\net10.0\Gaode.Communication.Tests.dll" adapterTypeName="executor://xunit/VsTestRunner3/netcore/" className="Gaode.Communication.Tests.Devices.HandshakeClosureTests" name="DelayedClearHoldsOwnershipAndPreservesArrivalEvidence" />
+    </UnitTest>
+  </TestDefinitions>
+  <TestEntries>
+    <TestEntry testId="2dd942b7-93ed-b025-8709-5ea78f33b167" executionId="545fc42e-8f15-4b45-b1db-4c535ee2f678" testListId="8c84fa94-04c1-424b-9868-57a2d4851a1d" />
+  </TestEntries>
+  <TestLists>
+    <TestList name="列表中未列出的结果" id="8c84fa94-04c1-424b-9868-57a2d4851a1d" />
+    <TestList name="所有已加载的结果" id="19431567-8539-422a-85d7-44ee4e166bda" />
+  </TestLists>
+  <ResultSummary outcome="Failed">
+    <Counters total="1" executed="1" passed="0" failed="1" error="0" timeout="0" aborted="0" inconclusive="0" passedButRunAborted="0" notRunnable="0" notExecuted="0" disconnected="0" warning="0" completed="0" inProgress="0" pending="0" />
+    <Output>
+      <StdOut>[xUnit.net 00:00:00.00] xUnit.net VSTest Adapter v3.1.5+1b188a7b0a (64-bit .NET 10.0.12)&#xD;
+[xUnit.net 00:00:00.68]   Discovering: Gaode.Communication.Tests&#xD;
+[xUnit.net 00:00:00.72]   Discovered:  Gaode.Communication.Tests&#xD;
+[xUnit.net 00:00:00.73]   Starting:    Gaode.Communication.Tests&#xD;
+[xUnit.net 00:00:05.38]       Assert.Equal() Failure: Values differ&#xD;
+[xUnit.net 00:00:05.38]       Expected: Completed&#xD;
+[xUnit.net 00:00:05.38]       Actual:   Failed&#xD;
+[xUnit.net 00:00:05.38]       Stack Trace:&#xD;
+[xUnit.net 00:00:05.38]         D:\gaode\backend\tests\Gaode.Communication.Tests\HandshakeClosureTests.cs(103,0): at Gaode.Communication.Tests.Devices.HandshakeClosureTests.DelayedClearHoldsOwnershipAndPreservesArrivalEvidence()&#xD;
+[xUnit.net 00:00:05.38]         D:\gaode\backend\tests\Gaode.Communication.Tests\HandshakeClosureTests.cs(105,0): at Gaode.Communication.Tests.Devices.HandshakeClosureTests.DelayedClearHoldsOwnershipAndPreservesArrivalEvidence()&#xD;
+[xUnit.net 00:00:05.38]         D:\gaode\backend\tests\Gaode.Communication.Tests\HandshakeClosureTests.cs(105,0): at Gaode.Communication.Tests.Devices.HandshakeClosureTests.DelayedClearHoldsOwnershipAndPreservesArrivalEvidence()&#xD;
+[xUnit.net 00:00:05.38]         --- End of stack trace from previous location ---&#xD;
+[xUnit.net 00:00:05.39]   Finished:    Gaode.Communication.Tests&#xD;
+</StdOut>
+    </Output>
+    <RunInfos>
+      <RunInfo computerName="DEMO" outcome="Error" timestamp="2026-10-08T15:48:25.6231313+08:00">
+        <Text>[xUnit.net 00:00:05.38]     Gaode.Communication.Tests.Devices.HandshakeClosureTests.DelayedClearHoldsOwnershipAndPreservesArrivalEvidence [FAIL]</Text>
+      </RunInfo>
+    </RunInfos>
+  </ResultSummary>
+</TestRun>

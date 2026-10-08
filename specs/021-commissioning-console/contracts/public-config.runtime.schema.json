@@ -1,0 +1,738 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "title": "Station01 Public Configuration (design 1.0)",
+  "type": "object",
+  "additionalProperties": false,
+  "required": [
+    "schemaVersion",
+    "id",
+    "version",
+    "purpose",
+    "source",
+    "bindings",
+    "motion",
+    "capture3d",
+    "captureF",
+    "algorithms",
+    "parser",
+    "stopAfter",
+    "qualityState"
+  ],
+  "properties": {
+    "schemaVersion": {
+      "const": "1.0"
+    },
+    "id": {
+      "type": "string",
+      "minLength": 1
+    },
+    "version": {
+      "type": "string",
+      "minLength": 1
+    },
+    "purpose": {
+      "enum": [
+        "Test",
+        "Production",
+        "RealDeviceCommissioning"
+      ]
+    },
+    "source": {
+      "type": "string",
+      "minLength": 1
+    },
+    "bindings": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "additionalProperties": false,
+        "required": [
+          "id",
+          "provider",
+          "role"
+        ],
+        "properties": {
+          "id": {
+            "type": "string",
+            "minLength": 1
+          },
+          "provider": {
+            "enum": [
+              "Simulated",
+              "Real",
+              "Replay",
+              "Virtual"
+            ]
+          },
+          "role": {
+            "enum": [
+              "PLC",
+              "Camera3D",
+              "CameraF",
+              "Light3D",
+              "LightF",
+              "HeightAlgorithm",
+              "FDecode",
+              "TrayPose"
+            ]
+          }
+        }
+      },
+      "minItems": 5,
+      "maxItems": 7
+    },
+    "motion": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "capability",
+        "axes",
+        "frame",
+        "unit",
+        "limits",
+        "points"
+      ],
+      "properties": {
+        "capability": {
+          "type": "object",
+          "additionalProperties": false,
+          "required": [
+            "id",
+            "contractVersion"
+          ],
+          "properties": {
+            "id": {
+              "type": "string",
+              "minLength": 1
+            },
+            "contractVersion": {
+              "const": "1.0"
+            }
+          }
+        },
+        "axes": {
+          "enum": [
+            [
+              "X",
+              "Y"
+            ],
+            [
+              "X",
+              "Y",
+              "Z"
+            ]
+          ]
+        },
+        "frame": {
+          "type": "string",
+          "minLength": 1
+        },
+        "unit": {
+          "const": "mm"
+        },
+        "limits": {
+          "type": "object",
+          "additionalProperties": false,
+          "required": [
+            "xMin",
+            "xMax",
+            "yMin",
+            "yMax"
+          ],
+          "properties": {
+            "xMin": {
+              "type": "number"
+            },
+            "xMax": {
+              "type": "number"
+            },
+            "yMin": {
+              "type": "number"
+            },
+            "yMax": {
+              "type": "number"
+            },
+            "zMin": {
+              "type": "number"
+            },
+            "zMax": {
+              "type": "number"
+            }
+          }
+        },
+        "points": {
+          "type": "object",
+          "additionalProperties": false,
+          "required": [
+            "threeD",
+            "f"
+          ],
+          "properties": {
+            "threeD": {
+              "type": "object",
+              "additionalProperties": false,
+              "required": [
+                "id",
+                "version",
+                "x",
+                "y",
+                "unit",
+                "frame"
+              ],
+              "properties": {
+                "id": {
+                  "type": "string",
+                  "minLength": 1
+                },
+                "version": {
+                  "type": "string",
+                  "minLength": 1
+                },
+                "x": {
+                  "type": "number"
+                },
+                "y": {
+                  "type": "number"
+                },
+                "unit": {
+                  "const": "mm"
+                },
+                "frame": {
+                  "type": "string",
+                  "minLength": 1
+                },
+                "z": {
+                  "type": "number"
+                }
+              }
+            },
+            "unload": {
+              "type": "object",
+              "additionalProperties": false,
+              "required": [
+                "id",
+                "version",
+                "x",
+                "y",
+                "z",
+                "unit",
+                "frame"
+              ],
+              "properties": {
+                "id": {
+                  "type": "string",
+                  "minLength": 1
+                },
+                "version": {
+                  "type": "string",
+                  "minLength": 1
+                },
+                "x": {
+                  "type": "number"
+                },
+                "y": {
+                  "type": "number"
+                },
+                "z": {
+                  "type": "number"
+                },
+                "unit": {
+                  "const": "mm"
+                },
+                "frame": {
+                  "type": "string",
+                  "minLength": 1
+                }
+              }
+            },
+            "f": {
+              "type": "object",
+              "additionalProperties": false,
+              "required": [
+                "id",
+                "version",
+                "x",
+                "y",
+                "unit",
+                "frame"
+              ],
+              "properties": {
+                "id": {
+                  "type": "string",
+                  "minLength": 1
+                },
+                "version": {
+                  "type": "string",
+                  "minLength": 1
+                },
+                "x": {
+                  "type": "number"
+                },
+                "y": {
+                  "type": "number"
+                },
+                "unit": {
+                  "const": "mm"
+                },
+                "frame": {
+                  "type": "string",
+                  "minLength": 1
+                },
+                "z": {
+                  "type": "number"
+                }
+              }
+            }
+          }
+        },
+        "positionTolerance": {
+          "type": "number",
+          "minimum": 0
+        },
+        "coordinateDigest": {
+          "type": "string"
+        },
+        "coordinateSource": {
+          "type": "string"
+        }
+      }
+    },
+    "capture3d": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "capability",
+        "bindingId",
+        "lightBindingId",
+        "scope",
+        "parameters",
+        "maxCaptureBytes"
+      ],
+      "properties": {
+        "capability": {
+          "type": "object",
+          "additionalProperties": false,
+          "required": [
+            "id",
+            "contractVersion"
+          ],
+          "properties": {
+            "id": {
+              "type": "string",
+              "minLength": 1
+            },
+            "contractVersion": {
+              "const": "1.0"
+            }
+          }
+        },
+        "bindingId": {
+          "type": "string",
+          "minLength": 1
+        },
+        "lightBindingId": {
+          "type": "string",
+          "minLength": 1
+        },
+        "scope": {
+          "type": "object",
+          "additionalProperties": false,
+          "required": [
+            "id",
+            "version",
+            "kind",
+            "unit",
+            "frame",
+            "bounds"
+          ],
+          "properties": {
+            "id": {
+              "type": "string",
+              "minLength": 1
+            },
+            "version": {
+              "type": "string",
+              "minLength": 1
+            },
+            "kind": {
+              "const": "WholeTray"
+            },
+            "unit": {
+              "const": "mm"
+            },
+            "frame": {
+              "type": "string",
+              "minLength": 1
+            },
+            "bounds": {
+              "type": "object",
+              "additionalProperties": false,
+              "required": [
+                "xMin",
+                "xMax",
+                "yMin",
+                "yMax"
+              ],
+              "properties": {
+                "xMin": {
+                  "type": "number"
+                },
+                "xMax": {
+                  "type": "number"
+                },
+                "yMin": {
+                  "type": "number"
+                },
+                "yMax": {
+                  "type": "number"
+                }
+              }
+            }
+          }
+        },
+        "parameters": {
+          "type": "object",
+          "additionalProperties": false,
+          "required": [
+            "exposureUs"
+          ],
+          "properties": {
+            "exposureUs": {
+              "type": "integer",
+              "minimum": 1
+            },
+            "lightLevel": {
+              "type": "integer",
+              "minimum": 0,
+              "maximum": 100
+            }
+          }
+        },
+        "maxCaptureBytes": {
+          "type": "integer",
+          "minimum": 1
+        }
+      }
+    },
+    "captureF": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "capability",
+        "bindingId",
+        "lightBindingId",
+        "frameCount",
+        "automaticRetry",
+        "parameters",
+        "maxCaptureBytes"
+      ],
+      "properties": {
+        "capability": {
+          "type": "object",
+          "additionalProperties": false,
+          "required": [
+            "id",
+            "contractVersion"
+          ],
+          "properties": {
+            "id": {
+              "type": "string",
+              "minLength": 1
+            },
+            "contractVersion": {
+              "const": "1.0"
+            }
+          }
+        },
+        "bindingId": {
+          "type": "string",
+          "minLength": 1
+        },
+        "lightBindingId": {
+          "type": "string",
+          "minLength": 1
+        },
+        "frameCount": {
+          "const": 1
+        },
+        "automaticRetry": {
+          "const": false
+        },
+        "parameters": {
+          "type": "object",
+          "additionalProperties": false,
+          "required": [
+            "exposureUs"
+          ],
+          "properties": {
+            "exposureUs": {
+              "type": "integer",
+              "minimum": 1
+            },
+            "lightLevel": {
+              "type": "integer",
+              "minimum": 0,
+              "maximum": 100
+            }
+          }
+        },
+        "maxCaptureBytes": {
+          "type": "integer",
+          "minimum": 1
+        }
+      }
+    },
+    "algorithms": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "fDecode"
+      ],
+      "properties": {
+        "height": {
+          "type": "object",
+          "additionalProperties": false,
+          "required": [
+            "capability",
+            "bindingId",
+            "parametersVersion"
+          ],
+          "properties": {
+            "capability": {
+              "anyOf": [
+                {
+                  "type": "object",
+                  "additionalProperties": false,
+                  "required": [
+                    "id",
+                    "contractVersion"
+                  ],
+                  "properties": {
+                    "id": {
+                      "type": "string",
+                      "minLength": 1
+                    },
+                    "contractVersion": {
+                      "const": "1.0"
+                    }
+                  }
+                },
+                {
+                  "type": "null"
+                }
+              ]
+            },
+            "bindingId": {
+              "anyOf": [
+                {
+                  "type": "string",
+                  "minLength": 1
+                },
+                {
+                  "type": "null"
+                }
+              ]
+            },
+            "parametersVersion": {
+              "anyOf": [
+                {
+                  "type": "string",
+                  "minLength": 1
+                },
+                {
+                  "type": "null"
+                }
+              ]
+            }
+          },
+          "description": "Historical height input only; current execution uses trayPose and never falls back."
+        },
+        "fDecode": {
+          "type": "object",
+          "additionalProperties": false,
+          "required": [
+            "capability",
+            "bindingId",
+            "parametersVersion"
+          ],
+          "properties": {
+            "capability": {
+              "anyOf": [
+                {
+                  "type": "object",
+                  "additionalProperties": false,
+                  "required": [
+                    "id",
+                    "contractVersion"
+                  ],
+                  "properties": {
+                    "id": {
+                      "type": "string",
+                      "minLength": 1
+                    },
+                    "contractVersion": {
+                      "const": "1.0"
+                    }
+                  }
+                },
+                {
+                  "type": "null"
+                }
+              ]
+            },
+            "bindingId": {
+              "anyOf": [
+                {
+                  "type": "string",
+                  "minLength": 1
+                },
+                {
+                  "type": "null"
+                }
+              ]
+            },
+            "parametersVersion": {
+              "anyOf": [
+                {
+                  "type": "string",
+                  "minLength": 1
+                },
+                {
+                  "type": "null"
+                }
+              ]
+            }
+          }
+        },
+        "trayPose": {
+          "type": "object",
+          "additionalProperties": false,
+          "required": [
+            "capability",
+            "bindingId",
+            "parametersVersion"
+          ],
+          "properties": {
+            "capability": {
+              "anyOf": [
+                {
+                  "type": "object",
+                  "additionalProperties": false,
+                  "required": [
+                    "id",
+                    "contractVersion"
+                  ],
+                  "properties": {
+                    "id": {
+                      "type": "string",
+                      "minLength": 1
+                    },
+                    "contractVersion": {
+                      "const": "1.0"
+                    }
+                  }
+                },
+                {
+                  "type": "null"
+                }
+              ]
+            },
+            "bindingId": {
+              "anyOf": [
+                {
+                  "type": "string",
+                  "minLength": 1
+                },
+                {
+                  "type": "null"
+                }
+              ]
+            },
+            "parametersVersion": {
+              "anyOf": [
+                {
+                  "type": "string",
+                  "minLength": 1
+                },
+                {
+                  "type": "null"
+                }
+              ]
+            }
+          }
+        }
+      }
+    },
+    "parser": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "capability",
+        "parametersVersion"
+      ],
+      "properties": {
+        "capability": {
+          "anyOf": [
+            {
+              "type": "object",
+              "additionalProperties": false,
+              "required": [
+                "id",
+                "contractVersion"
+              ],
+              "properties": {
+                "id": {
+                  "type": "string",
+                  "minLength": 1
+                },
+                "contractVersion": {
+                  "const": "1.0"
+                }
+              }
+            },
+            {
+              "type": "null"
+            }
+          ]
+        },
+        "parametersVersion": {
+          "anyOf": [
+            {
+              "type": "string",
+              "minLength": 1
+            },
+            {
+              "type": "null"
+            }
+          ]
+        }
+      }
+    },
+    "stopAfter": {
+      "const": "PublicHandoff"
+    },
+    "qualityState": {
+      "const": "NotEvaluated"
+    },
+    "lightExecution": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "schemaVersion",
+        "mode"
+      ],
+      "properties": {
+        "schemaVersion": {
+          "const": "light-execution/1"
+        },
+        "mode": {
+          "type": "string",
+          "enum": [
+            "Simulated",
+            "Real"
+          ]
+        }
+      }
+    }
+  }
+}

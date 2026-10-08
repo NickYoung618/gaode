@@ -238,7 +238,7 @@ public sealed partial class RecipeDetectionExecutor(ICapturePort camera, IAlgori
                     step.MemberId ?? step.UnitId, request.PlanRevision, step.SlotId,
                     request.PlanRevision, step.Camera ?? throw new InvalidDataException("CaptureCameraMissing"), settings.LightChannel,
                     captureIntent.WriteId,
-                    maxCaptureBytes) { DetectionSettings = settings };
+                    maxCaptureBytes) { DetectionSettings = settings, LightExecution = request.Plan.LightExecution };
                 var finished = new TaskCompletionSource<bool>(
                     TaskCreationOptions.RunContinuationsAsynchronously);
                 var captureGate = new CaptureEvidenceGate();
@@ -255,7 +255,6 @@ public sealed partial class RecipeDetectionExecutor(ICapturePort camera, IAlgori
                 RuntimeDiagnostics.Record("DetectionCapture", "Requesting", request.RunId,
                     new { request.OperationId, captureOperation, captureId, step.Sequence, step.Camera,
                         settings, request.DeadlineUtc, maximumWaitMs = request.Inputs!.CostProfile.CaptureWaitMs });
-                await Task.Delay(TimeSpan.FromMilliseconds(settings.SettleMs), cancellationToken);
                 using var captureDeadline = CancellationTokenSource.CreateLinkedTokenSource(cancellationToken);
                 captureDeadline.CancelAfter(request.Inputs!.CostProfile.CaptureWaitMs);
                 var received = await new CameraAcquisitionService(camera, media).ReceiveAsync(capture, captureDeadline.Token, OnCapture);
@@ -602,8 +601,10 @@ public sealed partial class RecipeDetectionExecutor(ICapturePort camera, IAlgori
         var settings = profile.Settings;
         var roi = settings.RoiPixels;
         if (settings.ExposureUs <= 0 || !double.IsFinite(settings.Gain) || settings.Gain <= 0 ||
-            roi.Length != 4 || roi.Any(x => x < 0) || settings.LightChannel.Length == 0 ||
-            settings.BrightnessPercent is < 0 or > 100 || settings.SettleMs is < 0 or > 1000)
+            roi.Length != 4 || roi.Any(x => x < 0) ||
+            plan.LightExecution is not null && !plan.LightExecution.IsValid ||
+            plan.LightExecution?.IsSimulated != true && (string.IsNullOrWhiteSpace(settings.LightChannel) ||
+                settings.BrightnessPercent is null or < 0 or > 100 || settings.SettleMs is null or < 0 or > 1000))
             throw new InvalidDataException("DetectionCaptureProfileInvalid");
         return settings;
     }

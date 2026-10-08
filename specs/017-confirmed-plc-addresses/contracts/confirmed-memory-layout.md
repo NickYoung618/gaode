@@ -1,3 +1,5 @@
+> 020阶段B当前实施（2026-10-08）：按用户确认，Alarm_Code明确映射AlarmBits，Alarm_Level映射AlarmSeverity且0无报警；MB6056 Bit0光栅/Bit2门，PLC写PC只读。Model_Number用独立Float32语义，不转旧Words。现场Required集合不依赖退役Teach/ManualZoneOccupied，缺失安全含义返回Unconfirmed并拒绝相关运动；F XY/E扫码Z。[SP-020](../../020-real-device-commissioning/contracts/site-plc-adaptation.md)优先于下述历史未映射说明，软件证据见[验证](../../020-real-device-commissioning/validation-stage-b.md)。
+
 # 确定内存布局与访问合同
 
 本合同为 009/011/014 中已知点位的现场布局增补，以及 015/016 联调模板更新依据，不更改配方动作顺序或前端原型。

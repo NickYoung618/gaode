@@ -331,3 +331,12 @@ ManualTrayRemovalConfirmed单独保留本次操作者事实：明确Test来源�
   生产/消费与010实施承接：RunExecution/StageHandoffBuilder→ITraceWriter/RunWrite/ITraceQuery/consumer→独立绑定/历史/状态API；T008/T015/T016/T019/T020/T028/T029。
 
 完整字段和判据见[IB](../../010-recipe-execution-isolation/contracts/input-boundaries.md)、[CE](../../010-recipe-execution-isolation/contracts/common-execution.md)、[VG](../../010-recipe-execution-isolation/contracts/verification.md)。原反馈、真实保存、取消、期限、未知占用、来源真实性及生产局部限制保持。不新增页面/真实SDK/工艺/历史数据库升级。
+
+
+## 021受控联调用途增量（2026-10-08）
+
+本次仅定向更新021消费者合同，旧用途/历史证据保持原范围。独立规格与设计见[021规格](../../021-commissioning-console/spec.md)、[计划](../../021-commissioning-console/plan.md)、[任务](../../021-commissioning-console/tasks.md)。新用途为RealDeviceCommissioning，运行purpose为Commissioning。
+
+预配置单身份由后台核权，Operator运行/ProcessEngineer编辑，不用Test令牌或客户端角色授权；identity GET、固定appassets.local来源、头认证和宿主内存凭据按[IH合同](../../021-commissioning-console/contracts/identity-host.md)。按主体/requestId只读启动查询、Final持久提交后同Run普通释放及只读start-admission按[SC合同](../../021-commissioning-console/contracts/start-and-completion.md)；未知不重发，保留原故障恢复。
+
+七格显示已由用户确认C/D/A/B/E/3D/F；本新用途的对应问题关闭，旧Test临时映射证据不改。当前Run已提交图像/结果、未参与不补图和三页既有承载按[RM合同](../../021-commissioning-console/contracts/recipe-media-ui.md)，不改变采集工艺/硬件绑定或原型布局。

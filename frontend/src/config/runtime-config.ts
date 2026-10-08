@@ -1,6 +1,6 @@
 export const PROTOTYPE_SHA256 = '3DC791C1F8AB5EEDFA037F5DBAE450B2D20522FED654F86EA700C0284945E1E0';
 
-export type RuntimeMode = 'Test' | 'Simulation' | 'Production';
+export type RuntimeMode = 'Test' | 'Simulation' | 'Production' | 'RealDeviceCommissioning';
 export type RuntimeConfig = {
   apiBaseUrl: string;
   signalrUrl: string;
@@ -21,7 +21,7 @@ function safeUrl(value: unknown, field: string): string {
 
 export function createRuntimeConfig(raw: Partial<RuntimeConfig>): RuntimeConfig {
   const mode = raw.mode ?? 'Test';
-  if (!['Test', 'Simulation', 'Production'].includes(mode)) throw new Error('Unsupported runtime mode');
+  if (!['Test', 'Simulation', 'Production', 'RealDeviceCommissioning'].includes(mode)) throw new Error('Unsupported runtime mode');
   if (raw.prototypeSha256 !== PROTOTYPE_SHA256) throw new Error('Prototype hash does not match approved baseline');
   return {
     apiBaseUrl: safeUrl(raw.apiBaseUrl, 'apiBaseUrl'),

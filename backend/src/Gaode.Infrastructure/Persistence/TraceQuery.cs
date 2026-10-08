@@ -21,6 +21,17 @@ public sealed class TraceQuery : ITraceQuery, IStageHandoffQuery
         this.queryBudgetMs = queryBudgetMs;
     }
 
+    public async Task<StartReceipt?> GetStartReceiptAsync(string subject, string requestId, CancellationToken cancellationToken)
+    {
+        using var budget = Budget(cancellationToken);
+        await using var ctx = new Station01DbContext(options);
+        var rows = await ctx.Commands.AsNoTracking().Where(x => x.SubjectId == subject && x.RequestId == requestId &&
+            x.Kind == "Start" && x.Scope == "Station01").Take(2).ToListAsync(budget.Token);
+        if (rows.Count > 1) throw new InvalidOperationException("StartRequestRecordsInconsistent");
+        var row = rows.SingleOrDefault();
+        return row is null ? null : new(row.CommandId, row.RunId, row.ReceiptState,
+            $"/api/v1/station01/runs/{row.RunId:D}", true);
+    }
     public async Task<IReadOnlyList<PersistedRun>> GetUnfinishedRunsAsync(CancellationToken cancellationToken)
     {
         using var budget = Budget(cancellationToken);

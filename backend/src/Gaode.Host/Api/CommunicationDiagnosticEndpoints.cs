@@ -13,7 +13,7 @@ public static class CommunicationDiagnosticEndpoints
             DbContextOptions<Station01DbContext> options, Station01RuntimeOptions runtime,
             HttpContext http, CancellationToken token) =>
         {
-            var store = StoreCompatibilityProbe.Inspect(runtime.TestRoot);
+            var store = StoreCompatibilityProbe.Inspect(runtime.TestRoot, runtime.StoreProfile);
             if (!store.Compatible || store.StoreId is not { } storeId)
                 return Station01ApiResults.Error(http, StatusCodes.Status503ServiceUnavailable,
                     "DiagnosticStoreUnavailable", "通信证据存储当前不可读取", "Storage");

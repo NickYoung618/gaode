@@ -134,11 +134,17 @@ public sealed partial class LatestProtocolPlcDevice
         BeginEvidence(request.Correlation);
         using var deadline = LimitTo(request.Window, token);
         await EnsureAdmissionObservationsAsync(true, deadline.Token);
-        var observed = await ExecuteTransitionCommandAsync(request.Correlation, request.Window, false, deadline.Token);
-        var result = await CompleteEvidenceAsync(request.Correlation, DeviceCompletionMeaning.FlipCompleted,
-            request.Window, deadline.Token, sampledObservation: observed);
-        lock (sync) awaitingPutBack = request;
-        return result with { TransitionId = request.TransitionId };
+        var ownsStage = false;
+        try
+        {
+            var observed = await ExecuteTransitionCommandAsync(request.Correlation, request.Window, false, deadline.Token, () => ownsStage = true);
+            var result = await CompleteEvidenceAsync(request.Correlation, DeviceCompletionMeaning.FlipCompleted,
+                request.Window, deadline.Token, sampledObservation: observed);
+            lock (sync) awaitingPutBack = request;
+            return result with { TransitionId = request.TransitionId };
+        }
+        catch (Exception error) { if (ownsStage) HoldUnknownStageAction(request.Correlation.ConnectionEpoch, error.Message); throw; }
+        finally { if (ownsStage) EndStageAction(); }
     }
     public async Task<DeviceActionEvidence> PutBackAsync(PutBackRequest request, CancellationToken token)
     {
@@ -156,10 +162,17 @@ public sealed partial class LatestProtocolPlcDevice
         BeginEvidence(request.Correlation);
         using var deadline = LimitTo(request.Window, token);
         await EnsureAdmissionObservationsAsync(true, deadline.Token);
-        var observed = await ExecuteTransitionCommandAsync(request.Correlation, request.Window, true, deadline.Token);
-        var result = await CompleteEvidenceAsync(request.Correlation, DeviceCompletionMeaning.PutBackCompleted,
-            request.Window, deadline.Token, sampledObservation: observed);
-        lock (sync) { awaitingPutBack = null; putBackPositionActionId = null; }
-        return result with { TransitionId = request.TransitionId };
+        var ownsStage = false;
+        try
+        {
+            var observed = await ExecuteTransitionCommandAsync(request.Correlation, request.Window, true, deadline.Token, () => ownsStage = true);
+            var result = await CompleteEvidenceAsync(request.Correlation, DeviceCompletionMeaning.PutBackCompleted,
+                request.Window, deadline.Token, sampledObservation: observed);
+            lock (sync) { awaitingPutBack = null; putBackPositionActionId = null; }
+            return result with { TransitionId = request.TransitionId };
+        }
+        catch (Exception error) { if (ownsStage) HoldUnknownStageAction(request.Correlation.ConnectionEpoch, error.Message); throw; }
+        finally { if (ownsStage) EndStageAction(); }
+
     }
 }

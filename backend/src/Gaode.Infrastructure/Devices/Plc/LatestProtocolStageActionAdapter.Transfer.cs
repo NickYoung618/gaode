@@ -71,7 +71,7 @@ public sealed partial class LatestProtocolStageActionAdapter
         await WriteAsync(request, SignalId.SortingCmd, Code(SignalId.SortingCmd, "Place"), ct);
         var placed = await WaitTransferAsync(request, true, ct);
         var safe = await MoveAxesAsync(request, device.SortingSafetyTarget(request.SortingTarget!, request.TargetPurpose!), true, ct);
-        await WriteAsync(request, SignalId.SortingCmd, Code(SignalId.SortingCmd, "Idle"), ct);
+        await device.ClearSortingAsync(request, ct);
         return await CompleteAsync(request, DeviceCompletionMeaning.MaterialTransferred,
             [picked.Reached, placed.Reached], safe.Actual.Identity, ct, safe);
     }
@@ -101,7 +101,7 @@ public sealed partial class LatestProtocolStageActionAdapter
             // Before completion the prior feedback is retained. There is no new
             // Executing code in this protocol and no ACK inferred from a write.
             if (placing ? sample.Status != Code(SignalId.SortingExecStatus, "Picked") :
-                sample.Status != Code(SignalId.SortingExecStatus, "Idle") && sample.Status != Code(SignalId.SortingExecStatus, "Placed"))
+                sample.Status != Code(SignalId.SortingExecStatus, "Idle"))
                 throw new IOException("TransferUnrecognizedFeedback");
             after = sample.Ended + 1;
         }

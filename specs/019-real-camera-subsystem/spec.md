@@ -165,3 +165,5 @@
 本轮明确边界：审查阶段“模拟worker启动正式Host进行HTTP复验”曾被自动审批拒绝，仅blocked by policy；不重试或改写同一被拒动作。与旧实机极短超时注入拒绝分别记录。允许的离线进程/正式服务验证继续，HTTP受阻项保持未验证，不冒充最终收敛。
 
 2026-10-07续办授权取代上述本轮禁止重试的范围限制：用户明确授权隔离fixture＋正式Host、仅127.0.0.1、新目录/SQLite的HTTP复验；已完成HTTP409/503/新会话200验证，见evidence/http-fault-20261007/。原APR-002历史记录不删除，无新的系统拒绝。实机两项仅制定hardware-fault-acceptance-plan.md，待确认执行。
+
+020阶段B共享实施前置（2026-10-08）：当前worker升级v2，新增原子设置/读回/触发及逐组件事实；无设置CaptureOnly保持参数；历史v1证据不改。精确增量以[020合同](../020-real-device-commissioning/contracts/camera-parameters.md)及[任务T031–T060](../020-real-device-commissioning/tasks.md)为准；只承接本次已授权接口，不扩大页面。保留原正文/勾选及历史验收时点。

@@ -27,24 +27,33 @@ public sealed partial class LatestProtocolPlcDevice
         }
     }
     private ExecutionOrigin Origin => new(options.Provider == "Real" ? DeviceProvider.Real : DeviceProvider.Virtual,
-        $"{options.Provider}:{PlcAddressMap.Contract}", options.Provider == "Real" ? EvidenceQuality.Measured : EvidenceQuality.Derived);
+        $"{options.Provider}:{definitionAdmission.Definition.SourceReference}", options.Provider == "Real" ? EvidenceQuality.Measured : EvidenceQuality.Derived);
     // Called under sync with the epoch captured before the first read of this sample.
     private ProtocolSample Sample(SignalValues values, long sampledEpoch, DateTimeOffset started)
     {
         var alarm = values.Word(SignalId.AlarmBits);
         var severity = values.Word(SignalId.AlarmSeverity);
-        var safe = values.Bit(SignalId.PlcModeAuto) && !values.Bit(SignalId.PlcSystemFault) &&
-            !values.Bit(SignalId.ManualZoneOccupied) && alarm == 0 && (severity == 0 || severity == SignalCodes.Value(SignalId.AlarmSeverity, "Warning"));
+        var site = definitionAdmission.Definition.IsSiteLayout;
+        var independentFaults = site ? ConfirmedMemoryLayout.IndependentSafetySignals.Values.Where(values.Bit).Select(id => id.ToString()).ToArray() : [];
+        var independentFault = independentFaults.Length > 0;
+        var manualOccupied = site ? (alarm & 1) != 0 : values.Bit(SignalId.ManualZoneOccupied);
+        var explicitlyUnsafe = values.Bit(SignalId.PlcSystemFault) || independentFault || manualOccupied || alarm != 0 ||
+            severity != 0 && severity != SignalCodes.Value(SignalId.AlarmSeverity, "Warning");
+        var semanticsConfirmed = !site || options.SiteOperations is { IsValid: true };
+        var safe = semanticsConfirmed && values.Bit(SignalId.PlcModeAuto) && !explicitlyUnsafe;
         return new(true, values.Bit(SignalId.PlcModeAuto), safe,
             values.Float(SignalId.MachineCurrentPosX), values.Float(SignalId.MachineCurrentPosY), sampledEpoch,
             unknown ? "Unknown" : AxisMotion(values),
             DateTimeOffset.UtcNow, values.Float(SignalId.MachineCurrentPosZ), options.Provider,
-            alarm, severity, values.Bit(SignalId.PlcSystemFault), values.Bit(SignalId.PlcReadyState),
+            alarm, severity, values.Bit(SignalId.PlcSystemFault) || independentFault, values.Bit(SignalId.PlcReadyState),
             unknown ? observation.DiagnosticCode : null, unknown ? observation.FailureOrigin : null,
-            values.Bit(SignalId.ManualZoneOccupied))
+            manualOccupied)
         { ObservationId = Guid.NewGuid(), SampleStartedUtc = started, SampleConnectionEpoch = sampledEpoch,
             ScanZ = values.Float(SignalId.ScanCurrentPosZ), GrabZ = values.Float(SignalId.FlipGrapCurrentPosZ),
-            PositionIdentity = new(Guid.NewGuid(), sampledEpoch, started, DateTimeOffset.UtcNow, DeviceReliability.Reliable) };
+            PositionIdentity = new(Guid.NewGuid(), sampledEpoch, started, DateTimeOffset.UtcNow, DeviceReliability.Reliable),
+            SafetyUnconfirmed = !semanticsConfirmed && !explicitlyUnsafe,
+            ManualAreaUnconfirmed = !semanticsConfirmed && !manualOccupied,
+            IndependentSafetyFaults = independentFaults };
     }
     private static string AxisMotion(SignalValues values)
     {
@@ -78,16 +87,19 @@ public sealed partial class LatestProtocolPlcDevice
         if ((sample.AlarmBits & ~knownMask) != 0) alarms.Add(new("UnrecognizedAlarm", AlarmLevel.Unknown, reliability));
         var reasons = new List<string>();
         if (sample.DiagnosticCode is not null) reasons.Add(sample.DiagnosticCode);
-        var safety = !reliable ? SafetyAssessment.Unconfirmed : sample.SafetyClear ? SafetyAssessment.Clear : SafetyAssessment.ExplicitUnsafe;
+        reasons.AddRange(sample.IndependentSafetyFaults.Select(name => "PlcIndependentSafetyActive:" + name));
+        var safety = !reliable || sample.SafetyUnconfirmed ? SafetyAssessment.Unconfirmed : sample.SafetyClear ? SafetyAssessment.Clear : SafetyAssessment.ExplicitUnsafe;
+        if (sample.SafetyUnconfirmed) reasons.Add("SiteSafetyAndInitialAdmissionUnconfirmed:PLC-Q3/Q4");
         var observedPosition = sample.PositionIdentity ?? new(Guid.Empty, sample.SampleConnectionEpoch,
             sample.SampleStartedUtc, sample.ObservedUtc, DeviceReliability.Unavailable);
         var positionReliability = observedPosition.ConnectionEpoch != sample.ConnectionEpoch || unknown
             ? DeviceReliability.Unavailable : DateTimeOffset.UtcNow - observedPosition.SampleStartedUtc >
                 TimeSpan.FromMilliseconds(Math.Max(500, options.IoTimeoutMs * 5)) ? DeviceReliability.Stale : observedPosition.Reliability;
         var position = new PositionObservation(sample.X, sample.Y, sample.Z,
-            options.Provider == "Virtual" ? "TestMachineAxes" : null,
-            options.Provider == "Virtual" ? "SIM_MACHINE" : null,
-            options.Provider == "Virtual" ? "Test/InjectedXYZ:mm" : null, observedPosition with { Reliability = positionReliability }, Origin);
+            options.Provider == "Virtual" ? "TestMachineAxes" : options.PositionBasis is null ? null : "MachineAxes",
+            options.Provider == "Virtual" ? "SIM_MACHINE" : options.PositionBasis?.Frame,
+            options.Provider == "Virtual" ? "Test/InjectedXYZ:mm" : options.PositionBasis is { } basis ? basis.SourceReference + ":" + basis.Unit : null,
+            observedPosition with { Reliability = positionReliability }, Origin);
         var clamp = ClampState.Unconfirmed; // New protocol has no clamp observation.
         var unavailable = unknown || !reliable || sample.MotionStatus == "Unknown";
         var motion = unavailable ? MotionAvailability.HeldUnknown :
@@ -98,7 +110,7 @@ public sealed partial class LatestProtocolPlcDevice
             sample.ConnectionEpoch, !reliable ? OperatingMode.Unconfirmed : sample.Automatic ? OperatingMode.Automatic : OperatingMode.NonAutomatic,
             !reliable ? DeviceReadiness.Unconfirmed : sample.PlcReady ? DeviceReadiness.Ready : DeviceReadiness.NotReady,
             safety, clamp, motion, acquisition,
-            !reliable ? ManualAreaState.Unconfirmed : sample.ManualZoneOccupied ? ManualAreaState.Occupied : ManualAreaState.Clear,
+            !reliable || sample.ManualAreaUnconfirmed ? ManualAreaState.Unconfirmed : sample.ManualZoneOccupied ? ManualAreaState.Occupied : ManualAreaState.Clear,
             ManualHandlingState.Unconfirmed,
             position, lastFace, alarms, reasons, Origin, identity,
             referencedObservation == sample.ObservationId ? lastReference : null)
@@ -110,7 +122,7 @@ public sealed partial class LatestProtocolPlcDevice
         if (!checks["Connected"]) result.Add("DeviceObservationUnavailable");
         if (!checks["Automatic"] || !checks["Ready"]) result.Add("DeviceNotReady");
         if (!checks["SafetyClear"] || !checks["AlarmsCleared"]) result.Add("DeviceSafetyNotClear");
-        if (!checks["NoManualOccupancy"]) result.Add("DeviceOccupied");
+        if (checks.TryGetValue("NoManualOccupancy", out var noManualOccupancy) && !noManualOccupancy) result.Add("DeviceOccupied");
         if (!checks["FinitePosition"]) result.Add("PositionUnconfirmed");
         if (!checks["RecoveryProtocolConfigured"]) result.Add("RecoveryProtocolNotConfigured");
         if (checks.Where(p => p.Key is not ("Connected" or "Automatic" or "Ready" or "SafetyClear" or "AlarmsCleared" or "NoManualOccupancy" or "FinitePosition" or "RecoveryProtocolConfigured")).Any(p => !p.Value))
@@ -189,13 +201,13 @@ public sealed partial class LatestProtocolPlcDevice
     private async Task EmitCompletionAsync(Pending action, CancellationToken token)
     {
         var correlation = Correlation(action, epoch);
-        var actual = Observe();
+        var actual = action.Move is null ? Observe() : completedMoveObservation ?? throw new IOException("MoveCompletionObservationMissing");
         var target = action.Move?.Target;
         PositionReachedEvidence[] positions = target is null ? Array.Empty<PositionReachedEvidence>() :
             [new PositionReachedEvidence(correlation, target, actual.PositionForPurpose(AxisPurpose(action.Move!.Role)) ?? throw new IOException("PositionUnconfirmed"), PositionTolerance)];
         if (positions.Any(p => !p.Matched)) throw new IOException("ActualPositionDoesNotMatch");
         var evidence = await CompleteEvidenceAsync(correlation, target is null ? DeviceCompletionMeaning.RequestSubmitted :
-            DeviceCompletionMeaning.PositionReached, Window(action.Envelope), token, positions);
+            DeviceCompletionMeaning.PositionReached, Window(action.Envelope), token, positions, sampledObservation: positions.FirstOrDefault()?.Actual.Identity);
         lock (sync)
         {
             if (pending != action || unknown || action.Cancellation.IsCancellationRequested ||

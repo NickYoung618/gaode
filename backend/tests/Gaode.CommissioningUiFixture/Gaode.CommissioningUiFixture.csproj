@@ -1,0 +1,5 @@
+<Project Sdk="Microsoft.NET.Sdk.Web">
+ <PropertyGroup><OutputType>Exe</OutputType></PropertyGroup>
+ <ItemGroup><ProjectReference Include="../Gaode.Communication.Tests/Gaode.Communication.Tests.csproj" /></ItemGroup>
+ <Target Name="CopyOfflineCameraFixture" AfterTargets="Build"><ItemGroup><OfflineCameraFiles Include="../Gaode.CameraWorkerFixture/bin/$(Configuration)/net10.0/*" /></ItemGroup><Copy SourceFiles="@(OfflineCameraFiles)" DestinationFolder="$(OutDir)CameraWorkerFixture" /></Target>
+</Project>

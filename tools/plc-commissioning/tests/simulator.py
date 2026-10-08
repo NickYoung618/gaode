@@ -21,13 +21,18 @@ class Simulator:
         self.requests=[]
         self.stale_axes=set()
         self.motion={}
+        self.completed_axes=set()
+        self.clear_delay=0
+        self.hold_clear=set()
+        self.clear_due={}
+
         self.fail_function=None
         self.bad_tid=False
         self.silent=False
         self.server=None
         self.writers=set()
         for axis,(_,target,start,feedback,actual) in AXES.items():
-            self.set(feedback,1)
+            self.set(feedback,0)
         self.set(6015,1)
         self.set(6016,1)
 
@@ -59,10 +64,18 @@ class Simulator:
                 self.set(actual,target)
                 self.set(feedback,1)
                 del self.motion[axis]
+                self.completed_axes.add(axis)
+
+        for axis in self.completed_axes:
+            _,_,start,feedback,_=AXES[axis]
+            if self.get(start)==0 and axis not in self.motion:
+                self.clear_due.setdefault(axis,time.monotonic()+self.clear_delay)
+                if axis not in self.hold_clear and time.monotonic()>=self.clear_due[axis]:self.set(feedback,0)
 
     def start_edges(self,before):
         for axis,(_,target,start,feedback,actual) in AXES.items():
             if before[axis]==0 and self.get(start)==1 and axis not in self.stale_axes:
+                self.completed_axes.discard(axis);self.clear_due.pop(axis,None)
                 self.motion[axis]=(time.monotonic(),self.get(actual),self.get(target))
                 self.set(feedback,0)
 

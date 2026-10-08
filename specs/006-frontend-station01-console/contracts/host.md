@@ -37,3 +37,12 @@
 009历史增量沿既有runtime.js/notification-reducer及正式动态绑定保留有效义务；当前另承接012授权配方弹窗及011真实阶段/异常槽号，代码未因文档同步而完成。原型ZIP SHA256=3dc791c1f8ab5eedfa037f5dbae450b2d20522fed654f86ea700c0284945e1e0，原只读核对覆盖当时页面；当前实现副本的012配方弹窗及新016顶部公共位置/异常弹窗按已授权映射调整，归档、无关结构/布局/文字/控件/导航保持保护，不新增页面。现有来源区域显示真实executionOrigin，不能硬写Test/Simulated；未知保留未知。新后端元数据不自动获得新页面区域。实现归006范围，由009 T046执行并留接口验收证据，006历史勾选不变；T046未实交前009 T061不得签完整基线。
 
 宿主只注入既有后端地址/认证/运行显示/资源版本，不注入raw解释能力或数据库桥接。
+
+
+## 021受控联调用途增量（2026-10-08）
+
+本次仅定向更新021消费者合同，旧用途/历史证据保持原范围。独立规格与设计见[021规格](../../021-commissioning-console/spec.md)、[计划](../../021-commissioning-console/plan.md)、[任务](../../021-commissioning-console/tasks.md)。新用途为RealDeviceCommissioning，运行purpose为Commissioning。
+
+预配置单身份由后台核权，Operator运行/ProcessEngineer编辑，不用Test令牌或客户端角色授权；identity GET、固定appassets.local来源、头认证和宿主内存凭据按[IH合同](../../021-commissioning-console/contracts/identity-host.md)。按主体/requestId只读启动查询、Final持久提交后同Run普通释放及只读start-admission按[SC合同](../../021-commissioning-console/contracts/start-and-completion.md)；未知不重发，保留原故障恢复。
+
+七格显示已由用户确认C/D/A/B/E/3D/F；本新用途的对应问题关闭，旧Test临时映射证据不改。当前Run已提交图像/结果、未参与不补图和三页既有承载按[RM合同](../../021-commissioning-console/contracts/recipe-media-ui.md)，不改变采集工艺/硬件绑定或原型布局。

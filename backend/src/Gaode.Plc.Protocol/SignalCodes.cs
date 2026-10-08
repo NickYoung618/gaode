@@ -23,11 +23,12 @@ public static class SignalCodes
             [SignalId.FlipStatus] = Codes(("Idle",0),("Executing",1),("Completed",2),("Failed",3)),
             [SignalId.SortingCmd] = Codes(("Idle",0),("Pick",1),("Place",2)),
             [SignalId.SortingExecStatus] = Codes(("Idle",0),("Picked",1),("Placed",2),("GrabFailed",3)),
-            [SignalId.AlarmSeverity] = Codes(("Warning",1),("Fault",2),("Severe",3)),
+            [SignalId.AlarmSeverity] = Codes(("Normal",0),("Warning",1),("Fault",2),("Severe",3)),
         }.ToFrozenDictionary();
     private static readonly FrozenDictionary<string, ushort> Boolean = Codes(("False",0),("True",1));
     public static IReadOnlyDictionary<string, ushort>? For(SignalId id) =>
-        ConfirmedProtocol.RequiredFields[id].ValueType is PlcValueType.Bool or PlcValueType.BoolWord ? Boolean : Tables.GetValueOrDefault(id);
+        ConfirmedProtocol.RequiredFields.TryGetValue(id, out var field) && field.ValueType is PlcValueType.Bool or PlcValueType.BoolWord
+            ? Boolean : Tables.GetValueOrDefault(id);
     public static ushort Value(SignalId id, string label) => For(id)?[label] ?? throw new ArgumentException("Signal has no enumerated code table.", nameof(id));
     // Confirmed clear/unset representations, not a business state-machine abstraction.
     public static ushort ResetWord(SignalId id) => id switch

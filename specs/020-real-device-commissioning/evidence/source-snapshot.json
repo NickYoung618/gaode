@@ -1,0 +1,53 @@
+{
+  "head": "253324492a3ffe9ea5a62b605b5dd812d04b267c",
+  "branch": "020-real-device-commissioning",
+  "release": false,
+  "purpose": "Test/loopback only",
+  "sources": {
+    "VirtualPlc/SimulationModels.cs": "dcdd624abd3bbe3d306ffb7310dfe3b6e76b7847aeea2e786afc6489420aa84c",
+    "VirtualPlc/TestFeedbackFaults.cs": "04879d79d80743d9867d5a9920138f0c4d4e3378ea6e79ff16224f0883ac6dc7",
+    "VirtualPlc/VirtualPlcEngine.Axes.cs": "3c1fd6d84c0e2f8b477edb0f56da83c15ea7d18b3b55b99261c17a3924dbb318",
+    "VirtualPlc/VirtualPlcEngine.cs": "74f4eba940a6397eb367f9146dcefa56099dc82409bfacb7bc1e447d1a57a198",
+    "backend/src/Gaode.Infrastructure/Devices/Plc/LatestProtocolPlcDevice.Acquisition.cs": "d8d773b0afdf47ed84c52da04f8fa0a73987e9b8bb7b038d01c3c2d0079faecf",
+    "backend/src/Gaode.Infrastructure/Devices/Plc/LatestProtocolPlcDevice.Axes.cs": "c6cbfbac9a82f4ae9b7a930bfcb3151f00e61217d3d75c9b2b636a6a96c798cd",
+    "backend/src/Gaode.Infrastructure/Devices/Plc/LatestProtocolPlcDevice.FailureEvidence.cs": "b59e6d92904d1a596aa8ba8756b72b3df9bcfe88b20c206304402a527f592802",
+    "backend/src/Gaode.Infrastructure/Devices/Plc/LatestProtocolPlcDevice.Handshakes.cs": "4d595b9711a8eb44e9c93c903030118cd9addba957f13d55958a38d676a88263",
+    "backend/src/Gaode.Infrastructure/Devices/Plc/LatestProtocolPlcDevice.Polling.cs": "44346603b393c8c68839dec6721e8d6f4272a15876fc017ee67bcadce31d339b",
+    "backend/src/Gaode.Infrastructure/Devices/Plc/LatestProtocolPlcDevice.Semantics.cs": "39d8aca046e0ca8486d1d72a51c6f3f3c223fc986e5f34c9742ba59358335167",
+    "backend/src/Gaode.Infrastructure/Devices/Plc/LatestProtocolPlcDevice.Stages.cs": "377d54083189e959a768361682551215604ded2366a6803d5be2c46d9f34a36e",
+    "backend/src/Gaode.Infrastructure/Devices/Plc/LatestProtocolPlcDevice.cs": "57fcc2416afb6070918b7cfe29b9d51bb8364429048969da2acf5f452972c5a0",
+    "backend/src/Gaode.Infrastructure/Devices/Plc/LatestProtocolStageActionAdapter.Transfer.cs": "9271672df3f73419a2bb3766e2a366bea992db6eab7b1d329294d33e99d18a14",
+    "backend/src/Gaode.Infrastructure/Devices/Plc/LatestProtocolStageActionAdapter.cs": "f408c52698c7d1a009526e2f40692ee2a24c7b78be442f8d9f25540cff605c48",
+    "backend/src/Gaode.Infrastructure/Devices/Plc/PreparedPlcReadPlans.cs": "da8596d47c8313042a4b885b51254b3ae585c1955a798083be5bbeca24ae0639",
+    "backend/tests/Gaode.Communication.Tests/HandshakeClosureTests.cs": "62448ebfb96033ca18ca166373d4580b5959ad2a025b169310b721edc9288bed",
+    "backend/tests/Gaode.Communication.Tests/ProtocolTcpFixture.cs": "44f528a0ba0ad88bbc293533d10ec04c093fca127e5d9f11c6542da78dc106d7",
+    "backend/tests/Gaode.Communication.Tests/SamePositionTests.cs": "15ed97a2d4a1e507db90e3f114da650b84208073f06824ee002d201a184b2d7a",
+    "tools/plc-commissioning/src/app.py": "ce84293a8bbed38ad7529df5628428d879371eb75d5e6e679c4d05c2365f664b",
+    "tools/plc-commissioning/src/recipe.py": "19f250487d7c8da295c5b00c89246316b34f36ee3d0ad65d013a45d81e01053c",
+    "tools/plc-commissioning/tests/simulator.py": "bd840e8d902774b36962de4179dbcef2937e86ac97f93ed7595f39a83aaa5600",
+    "tools/plc-commissioning/tests/test_commissioning.py": "bc9ed5aafe6eb860853ee651c22c7ab58abd5a82f358bf1b9856fabf89f222cb",
+    "tools/plc-commissioning/tests/test_recipe.py": "4f6b9c09020b77289138c55207f87d5ab23c317daf05cd36f74144fa5bbc9aea",
+    "tools/plc-commissioning/tests/test_same_position.py": "83b0548ed4e6d264c7e003f02a241a44765a7f351fea4107a3512837dcd7af55"
+  },
+  "configurationFiles": {
+    "tools/plc-commissioning/config/default.json": "0c0b95094aac3c5c60f4d265e346b38171247798c1bc794ff13ede46ec35c364",
+    "tools/plc-commissioning/sources/protocol.json": "d66cf8eef82667024b40dda8138aa722fb00c3f1391aa448ad2f674b47a72e82",
+    "backend/Directory.Build.props": "bbd79c4431c7b84c83d6d26b0b2df012a9ac2ce42177abec3f843792a03afd75"
+  },
+  "rollbackTags": [
+    "before-real-device-commissioning-2533244",
+    "camera-baseline-20261007-0f91f95",
+    "camera-review-baseline-67e4a57",
+    "rollback-before-member-gripper-20261007",
+    "rollback-before-same-position-20261007"
+  ],
+  "verification": {
+    "formalPassed": 26,
+    "toolPassed": 57,
+    "hostBuild": "passed, 0 warnings, 0 errors",
+    "environment": "Test/loopback only",
+    "hardwareRun": false,
+    "packaged": false,
+    "pushed": false
+  }
+}

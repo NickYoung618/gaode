@@ -46,7 +46,10 @@ internal sealed class TestFeedbackFaults
                 BinaryPrimitives.ReadUInt16BigEndian(request.AsSpan(1, 2)) == PlcAddressMap.ToPduOffset(PlcAddressMap.Coils.XMoveStart) &&
                 BinaryPrimitives.ReadUInt16BigEndian(request.AsSpan(3, 2)) == 0xFF00;
             if (axisTrigger) axisConnection = connection;
-            var result = armed == SimulationFault.AxisWriteResponseLost && axisTrigger ? TestResponseDisposition.Close :
+            var axisClear=request.Length==5 && request[0]==5 &&
+                BinaryPrimitives.ReadUInt16BigEndian(request.AsSpan(1,2))==PlcAddressMap.ToPduOffset(PlcAddressMap.Coils.XMoveStart) &&
+                BinaryPrimitives.ReadUInt16BigEndian(request.AsSpan(3,2))==0;
+            var result = armed==SimulationFault.AxisClearWriteResponseLost && axisClear ? TestResponseDisposition.Close : armed == SimulationFault.AxisWriteResponseLost && axisTrigger ? TestResponseDisposition.Close :
                 armed == SimulationFault.AxisResponseDelayed && connection == axisConnection && request[0] == 3
                     ? TestResponseDisposition.Delay : TestResponseDisposition.Normal;
             if (result == TestResponseDisposition.Normal) return result;

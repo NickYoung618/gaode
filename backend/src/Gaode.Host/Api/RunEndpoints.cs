@@ -14,22 +14,28 @@ public static class RunEndpoints
     public static IEndpointRouteBuilder MapStation01Api(this IEndpointRouteBuilder app)
     {
         var group = app.MapGroup("/api/v1/station01");
-        group.MapPost("/runs", (StartPublicRequest request, StartPublicPreparation start,
-            StructuredStageDiagnostics diagnostics, ClaimsPrincipal user, HttpContext http) =>
+        group.MapIdentityEndpoints();
+        group.MapPost("/runs", async (StartPublicRequest request, StartPublicPreparation start,
+            StructuredStageDiagnostics diagnostics, ClaimsPrincipal user, HttpContext http, IServiceProvider services,
+            CancellationToken ct) =>
         {
             try
             {
+                if (request.CommissioningRestartFrom is { } from)
+                    await (services.GetService<CommissioningRecoveryService>() ??
+                        throw new InvalidOperationException("CommissioningRecoveryUnavailable"))
+                        .ValidateRestartAsync(user.FindFirstValue(ClaimTypes.NameIdentifier)!, from, ct);
                 var receipt = start.Start(user.FindFirstValue(ClaimTypes.NameIdentifier)!, request);
                 diagnostics.Record(request.RequestId, receipt.CommandId, receipt.RunId,
                     "HttpStart", "Accepted", "ReceiptOnly_NotCompletion", source: http.TraceIdentifier);
                 return Results.Accepted(receipt.StatusUrl, receipt);
             }
-            catch (InvalidOperationException e) when (e.Message is "RequestConflict" or "PhysicalRunHeld")
+            catch (InvalidOperationException e) when (e.Message is "RequestConflict" or "PhysicalRunHeld" or "RecoveryInProgress")
             {
                 diagnostics.Record(request.RequestId, null, null, "Admission", e.Message,
                     "RejectedNoRunCreated", exception: e);
                 return Station01ApiResults.Error(http, 409, e.Message,
-                    "请求冲突或设备仍被当前运行占用", "Admission", details: new
+                    "请求冲突、正在恢复或设备仍被当前运行占用", "Admission", details: new
                     { requestId = request.RequestId, runCreated = false, action = "查询当前运行并由授权人员核查" });
             }
             catch (InvalidOperationException e) when (e.Message is "RunCapacityUnavailable")
@@ -108,6 +114,8 @@ public static class RunEndpoints
             if (manualEvents.LastOrDefault(x => x.EventType == StageEventType.FinalUnloadCompleted &&
                     x.IdempotencyKey == replayKey) is { } replay)
             {
+                if (whole is null || !await completions.ReconcileFinalAsync(runId, whole.Reference.TrayId, ct))
+                    return Station01ApiResults.Error(http, 409, "FinalProofUnavailable", "最终保存证明不完整，继续保持占用", "Storage");
                 return Results.Accepted($"/api/v1/station01/runs/{runId:D}", new
                 {
                     finalEventId = replay.EventId,
@@ -178,14 +186,20 @@ public static class RunEndpoints
             }
         }).RequireAuthorization(Station01Authorization.Start);
         group.MapConfigurationEndpoints();
-        group.MapPost("/reset", async (IPlcResetPort reset, IServiceProvider services, CancellationToken ct) =>
+        group.MapPost("/reset", async (IPlcResetPort reset, IServiceProvider services, ClaimsPrincipal user, CancellationToken ct) =>
         {
             try
             {
+                if (services.GetService<CommissioningRecoveryService>() is { } commissioningRecovery)
+                    return Results.Ok(await commissioningRecovery.ResetAsync(user.FindFirstValue(ClaimTypes.NameIdentifier)!, ct));
                 if (services.GetService<FixedMoveRecoveryInteraction>()?.HasFaults == true)
                     throw new InvalidOperationException("FaultRequiresScopedReset");
                 await reset.ResetAsync(ct);
                 return Results.Ok(new { reset = true, manualStartRequired = true });
+            }
+            catch (OperationCanceledException) when (!ct.IsCancellationRequested)
+            {
+                return Results.Conflict(new { error = "PlcResetFailed", message = "RecoveryResetDeadlineExceeded" });
             }
             catch (Exception e) when (e is InvalidOperationException or IOException or TimeoutException)
             {

@@ -34,6 +34,35 @@ public sealed class CaptureEvidenceGate
         {
             if (!_ended || !_taken || _fact is null || !AcquisitionContract.MatchesFact(_fact, request, epoch))
                 throw new InvalidOperationException("CurrentCaptureFactMissingOrMismatched");
+            if (request.Envelope.Purpose == Gaode.Domain.Configuration.RuntimePurposes.RealDeviceCommissioning)
+            {
+                var actual = _fact.ActualCameraSettings;
+                var detection = request.DetectionSettings; var publicSettings = request.PublicSettings;
+                var skipped = request.LightExecution?.IsSimulated == true;
+                var invalid = request.LightExecution != _fact.LightExecution ||
+                    request.LightExecution is not null && !request.LightExecution.IsValid || detection is not null && publicSettings is not null || detection is null && publicSettings is null ||
+                    _fact.CameraApplicationState != CaptureApplicationState.Applied || actual is null ||
+                    !_fact.CameraOrigin.IsKnown || _fact.ActualPublicSettings != publicSettings ||
+                    detection is not null && (_fact.ActualSettings is not { } applied ||
+                        applied.ProfileId != detection.ProfileId || applied.LightChannel != detection.LightChannel ||
+                        applied.BrightnessPercent != detection.BrightnessPercent || applied.SettleMs != detection.SettleMs) ||
+                    actual.ExposureUs != (detection?.ExposureUs ?? publicSettings!.ExposureUs) ||
+                    detection is not null && (actual.Gain != detection.Gain ||
+                        !detection.RoiPixels.SequenceEqual(new[] { actual.OffsetX, actual.OffsetY, actual.Width, actual.Height })) ||
+                    (skipped ? _fact.LightApplicationState != CaptureApplicationState.NotApplied || _fact.PhysicalLightApplied
+                        : _fact.LightApplicationState is not (CaptureApplicationState.Applied or CaptureApplicationState.ConfiguredOnly)) ||
+                    request.LightExecution?.Mode == "Real" &&
+                        (_fact.LightOrigin.Source != Gaode.Domain.Station01.ComponentEvidenceSource.Real || !_fact.PhysicalLightApplied) ||
+                    !_fact.LightOrigin.IsKnown ||
+                    _fact.LightOrigin.Source == Gaode.Domain.Station01.ComponentEvidenceSource.Simulated && _fact.PhysicalLightApplied;
+                if (invalid)
+                {
+                    Gaode.Diagnostics.RuntimeDiagnostics.Record("CaptureEvidence", "SettingsEvidenceRejected", request.Envelope.RunId,
+                        new { request.CaptureId, request.Envelope.OperationId, request.IntentWriteId,
+                            _fact.CameraApplicationState, _fact.LightApplicationState, _fact.RequestedSettingsDigest }, warning: true);
+                    throw new InvalidOperationException("CaptureSettingsEvidenceMissingOrMismatched");
+                }
+            }
             return _fact;
         }
     }

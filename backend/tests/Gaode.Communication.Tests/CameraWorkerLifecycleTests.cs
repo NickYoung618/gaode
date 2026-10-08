@@ -12,6 +12,93 @@ namespace Gaode.Communication.Tests;
 
 public sealed class CameraWorkerLifecycleTests(ITestOutputHelper output)
 {
+    private static string ReadDiagnostic(string path)
+    {
+        using var stream = new FileStream(path, FileMode.Open, FileAccess.Read, FileShare.ReadWrite);
+        using var reader = new StreamReader(stream);
+        return reader.ReadToEnd();
+    }
+    [Fact]
+    public async Task ConfiguredCapturePersistsSeparateCameraAndSimulatedLightFacts()
+    {
+        await using var fixture = new Fixture("A");
+        await fixture.Gateway.StartAsync(default);
+        var root = Path.Combine(fixture.Root, "configured-store");
+        var journal = new CameraCaptureJournal(CameraCaptureJournal.Prepare(root));
+        var media = new MediaStore(root, new MediaCapacity(65536, 0, 65536, 65536), new MediaLeaseRegistry(), 1);
+        var light = new SimulatedLightGateway();
+        var camera = new CameraCaptureAdapter(fixture.Gateway, light);
+        var initial = Request("A");
+        var request = initial with { Envelope = initial.Envelope with { Purpose = "RealDeviceCommissioning" },
+            LightBindingId = "fixture-light", DetectionSettings = new("fixture", 1000, 1, [0, 0, 2, 2], "channel-a", 50, 1) };
+        var reference = await new CameraAcquisitionService(camera, media).CaptureAsync(request, journal, default);
+        Assert.Equal("FileCompleted", reference.StorageState);
+        var state = light.State("fixture-light")!;
+        Assert.Equal("channel-a", state.Channel); Assert.Equal(50, state.BrightnessPercent); Assert.False(state.Enabled);
+        var sidecar = Assert.Single(Directory.GetFiles(root, "*.metadata.json", SearchOption.AllDirectories));
+        var stored = JsonDocument.Parse(File.ReadAllText(sidecar)).RootElement;
+        var fact = stored.GetProperty("fact").Deserialize<CorrelatedCaptureFact>(new JsonSerializerOptions(JsonSerializerDefaults.Web))!;
+        Assert.Equal(CaptureApplicationState.Applied, fact.CameraApplicationState);
+        Assert.Equal(CaptureApplicationState.ConfiguredOnly, fact.LightApplicationState);
+        Assert.Equal(Gaode.Domain.Station01.ComponentEvidenceSource.Simulated, fact.LightOrigin.Source);
+        Assert.False(fact.PhysicalLightApplied);
+        Assert.Equal(1000, fact.ActualCameraSettings!.ExposureUs);
+        Assert.Equal(AcquisitionContract.RequestedSettingsDigest(request), fact.RequestedSettingsDigest);
+        // Removing new fields from a historical record must never fabricate Applied.
+        var historical = System.Text.Json.Nodes.JsonNode.Parse(JsonSerializer.Serialize(fact))!.AsObject();
+        historical.Remove("CameraApplicationState"); historical.Remove("LightApplicationState"); historical.Remove("ActualCameraSettings");
+        var old = historical.Deserialize<CorrelatedCaptureFact>()!;
+        Assert.Equal(CaptureApplicationState.Unknown, old.CameraApplicationState);
+        Assert.Equal(CaptureApplicationState.Unknown, old.LightApplicationState);
+    }
+    [Fact]
+    public async Task AtomicSettingsHaveSeparateReadbacksAndFreshFramesAndNormalRestoration()
+    {
+        await using var fixture = new Fixture("A");
+        await fixture.Gateway.StartAsync(default);
+        var a = await fixture.Gateway.CaptureConfiguredAsync("A", "1", new(1000, 1, [0, 0, 2, 2]), "settings-a");
+        var b = await fixture.Gateway.CaptureConfiguredAsync("A", "2", new(2000, 2, [0, 0, 2, 2]), "settings-b");
+        Assert.Equal(1000, a.ActualSettings!.ExposureUs); Assert.Equal(1, a.ActualSettings.Gain);
+        Assert.Equal(2000, b.ActualSettings!.ExposureUs); Assert.Equal(2, b.ActualSettings.Gain);
+        Assert.True(b.Metadata!.FrameId > a.Metadata!.FrameId);
+        Assert.Equal(a.Metadata.WorkerSessionId, b.Metadata.WorkerSessionId);
+        Assert.Equal("1000", a.Metadata.ActualParameters["ExposureTime"]);
+        Assert.Equal("2000", b.Metadata.ActualParameters["ExposureTime"]);
+        await fixture.Gateway.DisposeAsync();
+        Assert.True(JsonDocument.Parse(File.ReadAllText(Path.Combine(fixture.Root, "restoration.json"))).RootElement.GetProperty("restored").GetBoolean());
+        Assert.Equal(2, File.ReadAllLines(Path.Combine(fixture.Root, "triggers.txt")).Length);
+    }
+
+    [Theory]
+    [InlineData("settings-unsupported")]
+    [InlineData("settings-readback-fail")]
+    public async Task SettingsRejectedBeforeTriggerFaultSessionAndNeverReplay(string mode)
+    {
+        await using var fixture = new Fixture("A");
+        await fixture.Mode(mode); await fixture.Gateway.StartAsync(default);
+        var logger = new ControlledCommissioningTests.FileLogger(Path.Combine(fixture.Root, "capture-failure.log"));
+        using var diagnostics = new Gaode.Infrastructure.Diagnostics.RuntimeDiagnosticLogging(logger);
+        var root = Path.Combine(fixture.Root, "store");
+        var journal = new CameraCaptureJournal(CameraCaptureJournal.Prepare(root));
+        var media = new MediaStore(root, new MediaCapacity(65536, 0, 65536, 65536), new MediaLeaseRegistry(), 1);
+        var service = new CameraAcquisitionService(new CameraCaptureAdapter(fixture.Gateway, new SimulatedLightGateway()), media);
+        var initial = Request("A");
+        var request = initial with { Envelope = initial.Envelope with { Purpose = "RealDeviceCommissioning" },
+            LightBindingId = "fixture-light", DetectionSettings = new("fixture", 1000, 1, [0, 0, 2, 2], "channel-a", 50, 1) };
+        await Assert.ThrowsAsync<IOException>(() => service.CaptureAsync(request, journal, default));
+        Assert.Empty(await journal.ListCommittedAsync(default));
+        Assert.False(File.Exists(Path.Combine(fixture.Root, "triggers.txt")));
+        Assert.Equal("Faulted", Assert.Single(fixture.Gateway.Status).State);
+        await Assert.ThrowsAsync<InvalidOperationException>(() => fixture.Gateway.CaptureConfiguredAsync("A", "1", new(1000, 1), "settings"));
+        var log = ReadDiagnostic(Path.Combine(fixture.Root, "state", "A.host.jsonl"));
+        Assert.Contains("Faulted_NoAutomaticReplay", log);
+        Assert.Contains(mode == "settings-readback-fail" ? "ParameterReadbackMismatch" : "CameraParameterUnsupported", log);
+        File.WriteAllText(Path.Combine(ControlledCommissioningTests.Inputs.RepoRoot(), "specs", "020-real-device-commissioning", "evidence", "stage-b", "software", mode + ".jsonl"), log);
+        var failure = File.ReadAllText(logger.Path);
+        Assert.Contains("FailedOrUnknown_NoReplay", failure); Assert.Contains("Error", failure);
+        Assert.Contains(request.Envelope.RunId.ToString(), failure); Assert.Contains(request.CaptureId.ToString(), failure);
+        File.WriteAllText(Path.Combine(ControlledCommissioningTests.Inputs.RepoRoot(), "specs", "020-real-device-commissioning", "evidence", "stage-b", "software", mode + ".log"), failure);
+    }
     [Fact]
     public async Task ActualWorkerExitRevokesReadyAndRecoveryRequiresFaultAndNewSession()
     {
@@ -25,10 +112,10 @@ public sealed class CameraWorkerLifecycleTests(ITestOutputHelper output)
         using var deadline = new CancellationTokenSource(5000);
         // Do not poll Snapshot: prove that the Exited event itself persists the fault.
         var log = Path.Combine(fixture.Root, "state", "A.host.jsonl");
-        while (!File.ReadAllText(log).Contains("CameraWorkerExitedUnexpectedly")) await Task.Delay(20, deadline.Token);
+        while (!ReadDiagnostic(log).Contains("CameraWorkerExitedUnexpectedly")) await Task.Delay(20, deadline.Token);
         var failed = Assert.Single(gateway.Status);
         Assert.Equal("Faulted", failed.State); Assert.Null(failed.ProcessId); Assert.NotNull(failed.Error); Assert.Equal(0, failed.MaxBytes);
-        output.WriteLine("Offline actual process exit evidence: " + File.ReadAllText(log));
+        output.WriteLine("Offline actual process exit evidence: " + ReadDiagnostic(log));
         await Assert.ThrowsAsync<InvalidOperationException>(() => gateway.TriggerAsync("A", "1"));
         Assert.False(File.Exists(Path.Combine(fixture.Root,"triggers.txt")));
         File.Delete(Path.Combine(fixture.Root, "exit"));
@@ -84,7 +171,15 @@ public sealed class CameraWorkerLifecycleTests(ITestOutputHelper output)
         var capacity=new MediaCapacity(8192,0,4096,4096);
         var store=new MediaStore(root,capacity,new MediaLeaseRegistry(),1);
         var service=new CameraAcquisitionService(new CameraCaptureAdapter(fixture.Gateway),store);
-        await Assert.ThrowsAsync<DbUpdateException>(()=>service.CaptureAsync(Request("A"),journal,default));
+        var logger = new ControlledCommissioningTests.FileLogger(Path.Combine(fixture.Root, "save-failure.log"));
+        using var diagnostics = new Gaode.Infrastructure.Diagnostics.RuntimeDiagnosticLogging(logger);
+        var request = Request("A");
+        await Assert.ThrowsAsync<DbUpdateException>(()=>service.CaptureAsync(request,journal,default));
+        var failure = File.ReadAllText(logger.Path);
+        Assert.Contains("CameraCapture", failure); Assert.Contains("FailedOrUnknown_NoReplay", failure);
+        Assert.Contains("Error", failure); Assert.Contains("review service index failure", failure);
+        Assert.Contains(request.Envelope.RunId.ToString(), failure); Assert.Contains(request.CaptureId.ToString(), failure);
+        File.WriteAllText(Path.Combine(ControlledCommissioningTests.Inputs.RepoRoot(), "specs", "020-real-device-commissioning", "evidence", "stage-b", "software", "save-failure.log"), failure);
         Assert.Equal(4,capacity.FilesUsed); Assert.Equal(0,capacity.MemoryUsed);
         Assert.Empty(await journal.ListCommittedAsync(default));
         var reference=Assert.Single(Directory.GetFiles(Path.Combine(root,"media"),"*.GalaxyRaw",SearchOption.AllDirectories));
