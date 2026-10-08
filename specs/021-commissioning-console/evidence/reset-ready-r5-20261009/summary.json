@@ -1,0 +1,1415 @@
+{
+  "environment": "OFFLINE_LOOPBACK_AND_REAL_SQLITE",
+  "protocol": "SC-021-PLC-R5",
+  "userConfirmation": "流程就是我们pc发送复位请求，plc执行相应动作，完成之后将mb6015置1，pc读取mb6015置1之后确认复位完成，并将复位请求复位",
+  "command": "dotnet test backend/tests/Gaode.Communication.Tests/Gaode.Communication.Tests.csproj -c Release --no-restore --filter FullyQualifiedName~CommissioningRecoveryTests|FullyQualifiedName~SiteOperationHandshakeTests",
+  "counters": {
+    "total": "23",
+    "executed": "23",
+    "passed": "23",
+    "failed": "0",
+    "error": "0",
+    "timeout": "0",
+    "aborted": "0",
+    "inconclusive": "0",
+    "passedButRunAborted": "0",
+    "notRunnable": "0",
+    "notExecuted": "0",
+    "disconnected": "0",
+    "warning": "0",
+    "completed": "0",
+    "inProgress": "0",
+    "pending": "0"
+  },
+  "scriptSyntax": "PASS",
+  "configurationJson": "PASS",
+  "sourceBaseline": "6ec469638cce01a3d05d2f05afb80a4dbabb883d",
+  "testedWorkingTreeChanges": true,
+  "sourceSha256": {
+    "backend/src/Gaode.Infrastructure/Devices/Plc/LatestProtocolPlcDevice.SiteOperations.cs": "95e3d3109c9e66a4a7272291302236d7971b2bcb417c286af57e9bdc65287ce0",
+    "backend/tests/Gaode.Communication.Tests/SiteOperationHandshakeTests.cs": "493f4bfb1b0ebc1a5d8695bba764648c06c43ce60b59b803b24fe7382026503a",
+    "backend/tests/Gaode.Communication.Tests/CommissioningRecoveryTests.cs": "3d64a0db143419ded8d7c05508fac42c39f6a10f5337bb08aa6526f9873d6cc3",
+    "backend/tests/Gaode.Communication.Tests/SiteProtocolTcpFixture.cs": "e2a0db79b60dcc02b5e9ad9413406d0a111c57d7fd8a7769956818a4778aae2d",
+    "scripts/Reset-CommissioningConsole.ps1": "4bcc82e9622a8900bd18ede36a7eb321f16c405e6bfa485da9deb45b98538a78",
+    "configuration/commissioning/site-operations-confirmed-20261008.json": "7408a5ae0aea4b60ca5cd52a87f711f0672b30ffe0da817f7934ef58b54e14a9"
+  },
+  "hardwareConnected": false,
+  "installedDeploymentChanged": false,
+  "siteCases": [
+    {
+      "environment": "OFFLINE_LOOPBACK",
+      "result": "Ready stays zero; timeout blocks start and does not clear or replay",
+      "ResetEdges": 1,
+      "StartEdges": 0,
+      "ResetReadyZeroReads": 445,
+      "ResetReadyOneReads": 0,
+      "MotionEdges": 0,
+      "writes": [
+        {
+          "Offset": 1003,
+          "Words": [
+            1
+          ],
+          "Accepted": true
+        },
+        {
+          "Offset": 1004,
+          "Words": [
+            0
+          ],
+          "Accepted": true
+        },
+        {
+          "Offset": 1004,
+          "Words": [
+            256
+          ],
+          "Accepted": true
+        },
+        {
+          "Offset": 1005,
+          "Words": [
+            256
+          ],
+          "Accepted": true
+        },
+        {
+          "Offset": 1005,
+          "Words": [
+            0
+          ],
+          "Accepted": true
+        }
+      ],
+      "resetPreconditions": [
+        {
+          "PcReady": 1,
+          "SoftStop": 0,
+          "Readbacks": 1
+        }
+      ],
+      "startClears": []
+    },
+    {
+      "environment": "OFFLINE_LOOPBACK",
+      "result": "PLC completion acknowledged; real nonzero XYZ still blocks startup",
+      "ResetEdges": 1,
+      "StartEdges": 0,
+      "ResetReadyZeroReads": 0,
+      "ResetReadyOneReads": 1,
+      "MotionEdges": 0,
+      "writes": [
+        {
+          "Offset": 1003,
+          "Words": [
+            1
+          ],
+          "Accepted": true
+        },
+        {
+          "Offset": 1004,
+          "Words": [
+            0
+          ],
+          "Accepted": true
+        },
+        {
+          "Offset": 1004,
+          "Words": [
+            256
+          ],
+          "Accepted": true
+        },
+        {
+          "Offset": 1004,
+          "Words": [
+            0
+          ],
+          "Accepted": true
+        }
+      ],
+      "resetPreconditions": [
+        {
+          "PcReady": 1,
+          "SoftStop": 0,
+          "Readbacks": 1
+        }
+      ],
+      "startClears": []
+    },
+    {
+      "environment": "OFFLINE_LOOPBACK",
+      "result": "Confirmed semantics never override active or unknown alarms",
+      "ResetEdges": 0,
+      "StartEdges": 0,
+      "ResetReadyZeroReads": 0,
+      "ResetReadyOneReads": 0,
+      "MotionEdges": 0,
+      "writes": [],
+      "resetPreconditions": [],
+      "startClears": []
+    },
+    {
+      "environment": "OFFLINE_LOOPBACK",
+      "result": "Full XYZ closure before startup clear; second same-target action reused",
+      "ResetEdges": 0,
+      "StartEdges": 1,
+      "ResetReadyZeroReads": 0,
+      "ResetReadyOneReads": 0,
+      "MotionEdges": 3,
+      "writes": [
+        {
+          "Offset": 1003,
+          "Words": [
+            1
+          ],
+          "Accepted": true
+        },
+        {
+          "Offset": 1003,
+          "Words": [
+            257
+          ],
+          "Accepted": true
+        },
+        {
+          "Offset": 1012,
+          "Words": [
+            0,
+            16256
+          ],
+          "Accepted": true
+        },
+        {
+          "Offset": 1014,
+          "Words": [
+            0,
+            16384
+          ],
+          "Accepted": true
+        },
+        {
+          "Offset": 1000,
+          "Words": [
+            256
+          ],
+          "Accepted": true
+        },
+        {
+          "Offset": 1001,
+          "Words": [
+            1
+          ],
+          "Accepted": true
+        },
+        {
+          "Offset": 1005,
+          "Words": [
+            256
+          ],
+          "Accepted": true
+        },
+        {
+          "Offset": 1005,
+          "Words": [
+            0
+          ],
+          "Accepted": true
+        },
+        {
+          "Offset": 1000,
+          "Words": [
+            0
+          ],
+          "Accepted": true
+        },
+        {
+          "Offset": 1001,
+          "Words": [
+            0
+          ],
+          "Accepted": true
+        },
+        {
+          "Offset": 1016,
+          "Words": [
+            0,
+            16448
+          ],
+          "Accepted": true
+        },
+        {
+          "Offset": 1001,
+          "Words": [
+            256
+          ],
+          "Accepted": true
+        },
+        {
+          "Offset": 1005,
+          "Words": [
+            256
+          ],
+          "Accepted": true
+        },
+        {
+          "Offset": 1005,
+          "Words": [
+            0
+          ],
+          "Accepted": true
+        },
+        {
+          "Offset": 1001,
+          "Words": [
+            0
+          ],
+          "Accepted": true
+        },
+        {
+          "Offset": 1003,
+          "Words": [
+            1
+          ],
+          "Accepted": true
+        }
+      ],
+      "resetPreconditions": [],
+      "startClears": [
+        {
+          "ZLow": 0,
+          "ZHigh": 16448,
+          "ZRequest": 0,
+          "ZFeedback": 0
+        }
+      ]
+    },
+    {
+      "environment": "OFFLINE_LOOPBACK",
+      "result": "Fast PLC completion read after request clears it without an observed zero",
+      "ResetEdges": 1,
+      "StartEdges": 0,
+      "ResetReadyZeroReads": 0,
+      "ResetReadyOneReads": 1,
+      "MotionEdges": 0,
+      "writes": [
+        {
+          "Offset": 1003,
+          "Words": [
+            1
+          ],
+          "Accepted": true
+        },
+        {
+          "Offset": 1004,
+          "Words": [
+            0
+          ],
+          "Accepted": true
+        },
+        {
+          "Offset": 1004,
+          "Words": [
+            256
+          ],
+          "Accepted": true
+        },
+        {
+          "Offset": 1004,
+          "Words": [
+            0
+          ],
+          "Accepted": true
+        },
+        {
+          "Offset": 1003,
+          "Words": [
+            1
+          ],
+          "Accepted": true
+        },
+        {
+          "Offset": 1004,
+          "Words": [
+            0
+          ],
+          "Accepted": true
+        },
+        {
+          "Offset": 1003,
+          "Words": [
+            1
+          ],
+          "Accepted": true
+        }
+      ],
+      "resetPreconditions": [
+        {
+          "PcReady": 1,
+          "SoftStop": 0,
+          "Readbacks": 1
+        }
+      ],
+      "startClears": []
+    },
+    {
+      "environment": "OFFLINE_LOOPBACK",
+      "result": "Confirmed semantics never override active or unknown alarms",
+      "ResetEdges": 0,
+      "StartEdges": 0,
+      "ResetReadyZeroReads": 0,
+      "ResetReadyOneReads": 0,
+      "MotionEdges": 0,
+      "writes": [],
+      "resetPreconditions": [],
+      "startClears": []
+    },
+    {
+      "environment": "OFFLINE_LOOPBACK",
+      "result": "Fresh Ready after dispatch required; pre-dispatch Ready never completes reset",
+      "ResetEdges": 1,
+      "StartEdges": 0,
+      "ResetReadyZeroReads": 107,
+      "ResetReadyOneReads": 1,
+      "MotionEdges": 0,
+      "writes": [
+        {
+          "Offset": 1003,
+          "Words": [
+            1
+          ],
+          "Accepted": true
+        },
+        {
+          "Offset": 1004,
+          "Words": [
+            0
+          ],
+          "Accepted": true
+        },
+        {
+          "Offset": 1004,
+          "Words": [
+            256
+          ],
+          "Accepted": true
+        },
+        {
+          "Offset": 1005,
+          "Words": [
+            256
+          ],
+          "Accepted": true
+        },
+        {
+          "Offset": 1004,
+          "Words": [
+            0
+          ],
+          "Accepted": true
+        },
+        {
+          "Offset": 1003,
+          "Words": [
+            1
+          ],
+          "Accepted": true
+        },
+        {
+          "Offset": 1004,
+          "Words": [
+            0
+          ],
+          "Accepted": true
+        },
+        {
+          "Offset": 1003,
+          "Words": [
+            1
+          ],
+          "Accepted": true
+        }
+      ],
+      "resetPreconditions": [
+        {
+          "PcReady": 1,
+          "SoftStop": 0,
+          "Readbacks": 1
+        }
+      ],
+      "startClears": []
+    },
+    {
+      "environment": "OFFLINE_LOOPBACK",
+      "result": "Soft stop dispatched; no automatic reset/homing/resume; physical stop not fabricated",
+      "ResetEdges": 0,
+      "StartEdges": 0,
+      "ResetReadyZeroReads": 0,
+      "ResetReadyOneReads": 0,
+      "MotionEdges": 0,
+      "writes": [
+        {
+          "Offset": 1004,
+          "Words": [
+            1
+          ],
+          "Accepted": true
+        }
+      ],
+      "resetPreconditions": [],
+      "startClears": []
+    },
+    {
+      "environment": "OFFLINE_LOOPBACK",
+      "result": "Confirmed semantics never override active or unknown alarms",
+      "ResetEdges": 0,
+      "StartEdges": 0,
+      "ResetReadyZeroReads": 0,
+      "ResetReadyOneReads": 0,
+      "MotionEdges": 0,
+      "writes": [
+        {
+          "Offset": 1005,
+          "Words": [
+            256
+          ],
+          "Accepted": true
+        }
+      ],
+      "resetPreconditions": [],
+      "startClears": []
+    },
+    {
+      "environment": "OFFLINE_LOOPBACK",
+      "result": "Unconfirmed soft-stop readback blocks reset/start/motion despite accepted writes",
+      "ResetEdges": 0,
+      "StartEdges": 0,
+      "ResetReadyZeroReads": 0,
+      "ResetReadyOneReads": 0,
+      "MotionEdges": 0,
+      "writes": [
+        {
+          "Offset": 1003,
+          "Words": [
+            1
+          ],
+          "Accepted": true
+        },
+        {
+          "Offset": 1004,
+          "Words": [
+            0
+          ],
+          "Accepted": true
+        }
+      ],
+      "resetPreconditions": [],
+      "startClears": []
+    },
+    {
+      "environment": "OFFLINE_LOOPBACK",
+      "result": "Nonzero startup position rejected without start or automatic homing",
+      "ResetEdges": 0,
+      "StartEdges": 0,
+      "ResetReadyZeroReads": 0,
+      "ResetReadyOneReads": 0,
+      "MotionEdges": 0,
+      "writes": [
+        {
+          "Offset": 1003,
+          "Words": [
+            1
+          ],
+          "Accepted": true
+        }
+      ],
+      "resetPreconditions": [],
+      "startClears": []
+    },
+    {
+      "environment": "OFFLINE_LOOPBACK",
+      "result": "Pending old reset is not cleared or retriggered",
+      "ResetEdges": 0,
+      "StartEdges": 0,
+      "ResetReadyZeroReads": 0,
+      "ResetReadyOneReads": 0,
+      "MotionEdges": 0,
+      "writes": [],
+      "resetPreconditions": [],
+      "startClears": []
+    },
+    {
+      "environment": "OFFLINE_LOOPBACK",
+      "result": "Fresh Ready after dispatch required; pre-dispatch Ready never completes reset",
+      "ResetEdges": 1,
+      "StartEdges": 0,
+      "ResetReadyZeroReads": 109,
+      "ResetReadyOneReads": 1,
+      "MotionEdges": 0,
+      "writes": [
+        {
+          "Offset": 1003,
+          "Words": [
+            1
+          ],
+          "Accepted": true
+        },
+        {
+          "Offset": 1004,
+          "Words": [
+            0
+          ],
+          "Accepted": true
+        },
+        {
+          "Offset": 1004,
+          "Words": [
+            256
+          ],
+          "Accepted": true
+        },
+        {
+          "Offset": 1004,
+          "Words": [
+            0
+          ],
+          "Accepted": true
+        },
+        {
+          "Offset": 1003,
+          "Words": [
+            1
+          ],
+          "Accepted": true
+        },
+        {
+          "Offset": 1004,
+          "Words": [
+            0
+          ],
+          "Accepted": true
+        },
+        {
+          "Offset": 1003,
+          "Words": [
+            1
+          ],
+          "Accepted": true
+        }
+      ],
+      "resetPreconditions": [
+        {
+          "PcReady": 1,
+          "SoftStop": 0,
+          "Readbacks": 1
+        }
+      ],
+      "startClears": []
+    }
+  ],
+  "recoveryCases": [
+    {
+      "environment": "OFFLINE_LOOPBACK",
+      "result": {
+        "activeExecution": true,
+        "resetDispatched": false
+      },
+      "ResetEdges": 0,
+      "StartEdges": 0,
+      "MotionEdges": 0,
+      "writes": [
+        {
+          "Offset": 1005,
+          "Words": [
+            0
+          ],
+          "Accepted": true
+        }
+      ]
+    },
+    {
+      "environment": "OFFLINE_LOOPBACK",
+      "result": {
+        "policyMissing": true,
+        "released": false
+      },
+      "ResetEdges": 1,
+      "StartEdges": 0,
+      "MotionEdges": 0,
+      "writes": [
+        {
+          "Offset": 1005,
+          "Words": [
+            0
+          ],
+          "Accepted": true
+        },
+        {
+          "Offset": 1003,
+          "Words": [
+            1
+          ],
+          "Accepted": true
+        },
+        {
+          "Offset": 1004,
+          "Words": [
+            0
+          ],
+          "Accepted": true
+        },
+        {
+          "Offset": 1004,
+          "Words": [
+            256
+          ],
+          "Accepted": true
+        },
+        {
+          "Offset": 1005,
+          "Words": [
+            256
+          ],
+          "Accepted": true
+        },
+        {
+          "Offset": 1004,
+          "Words": [
+            0
+          ],
+          "Accepted": true
+        },
+        {
+          "Offset": 1003,
+          "Words": [
+            1
+          ],
+          "Accepted": true
+        },
+        {
+          "Offset": 1004,
+          "Words": [
+            0
+          ],
+          "Accepted": true
+        },
+        {
+          "Offset": 1003,
+          "Words": [
+            1
+          ],
+          "Accepted": true
+        }
+      ]
+    },
+    {
+      "environment": "OFFLINE_LOOPBACK",
+      "result": {
+        "cancelRequest": true,
+        "facts": {
+          "resetId": "7611c030-0fe2-42ce-8efb-3c002355f491",
+          "actor": "operator",
+          "phase": "PlcReset",
+          "resetBudgetMs": 1500,
+          "requestCancellationObserved": true,
+          "resetBudgetExpired": false,
+          "cancellationObservation": "Request",
+          "automaticRetry": false
+        },
+        "released": false
+      },
+      "ResetEdges": 1,
+      "StartEdges": 0,
+      "MotionEdges": 0,
+      "writes": [
+        {
+          "Offset": 1005,
+          "Words": [
+            256
+          ],
+          "Accepted": true
+        },
+        {
+          "Offset": 1003,
+          "Words": [
+            1
+          ],
+          "Accepted": true
+        },
+        {
+          "Offset": 1004,
+          "Words": [
+            0
+          ],
+          "Accepted": true
+        },
+        {
+          "Offset": 1004,
+          "Words": [
+            256
+          ],
+          "Accepted": true
+        }
+      ]
+    },
+    {
+      "environment": "OFFLINE_LOOPBACK",
+      "result": {
+        "rehydrated": false,
+        "result": {
+          "Reset": true,
+          "ManualStartRequired": true,
+          "RecoveryClosed": true,
+          "RunId": "473baf03-a825-4af3-a856-18e336d76fa7",
+          "RecoveryWriteId": "eeaa9dfd-4e2f-44b2-bd5d-9f050d74bd4a"
+        },
+        "Terminal": 3,
+        "proof": {
+          "RecoveryWriteId": "eeaa9dfd-4e2f-44b2-bd5d-9f050d74bd4a",
+          "ResetId": "ba6e26e1-b5d2-4a5e-85d0-c6fa1cf66363",
+          "Status": "ClosedAfterVerifiedReset"
+        },
+        "RunId": "4c106c34-89e2-4f94-9c8e-aa768f300c87",
+        "automaticStart": false
+      },
+      "ResetEdges": 1,
+      "StartEdges": 0,
+      "MotionEdges": 0,
+      "writes": [
+        {
+          "Offset": 1005,
+          "Words": [
+            0
+          ],
+          "Accepted": true
+        },
+        {
+          "Offset": 1003,
+          "Words": [
+            1
+          ],
+          "Accepted": true
+        },
+        {
+          "Offset": 1004,
+          "Words": [
+            0
+          ],
+          "Accepted": true
+        },
+        {
+          "Offset": 1004,
+          "Words": [
+            256
+          ],
+          "Accepted": true
+        },
+        {
+          "Offset": 1004,
+          "Words": [
+            0
+          ],
+          "Accepted": true
+        },
+        {
+          "Offset": 1003,
+          "Words": [
+            1
+          ],
+          "Accepted": true
+        },
+        {
+          "Offset": 1004,
+          "Words": [
+            0
+          ],
+          "Accepted": true
+        },
+        {
+          "Offset": 1003,
+          "Words": [
+            1
+          ],
+          "Accepted": true
+        },
+        {
+          "Offset": 1000,
+          "Words": [
+            0
+          ],
+          "Accepted": true
+        },
+        {
+          "Offset": 1001,
+          "Words": [
+            0
+          ],
+          "Accepted": true
+        },
+        {
+          "Offset": 1001,
+          "Words": [
+            0
+          ],
+          "Accepted": true
+        },
+        {
+          "Offset": 1002,
+          "Words": [
+            0
+          ],
+          "Accepted": true
+        },
+        {
+          "Offset": 1002,
+          "Words": [
+            0
+          ],
+          "Accepted": true
+        },
+        {
+          "Offset": 1000,
+          "Words": [
+            0
+          ],
+          "Accepted": true
+        },
+        {
+          "Offset": 1007,
+          "Words": [
+            0
+          ],
+          "Accepted": true
+        },
+        {
+          "Offset": 1008,
+          "Words": [
+            0
+          ],
+          "Accepted": true
+        }
+      ]
+    },
+    {
+      "environment": "OFFLINE_LOOPBACK",
+      "result": {
+        "activeExecution": false,
+        "resetDispatched": false
+      },
+      "ResetEdges": 0,
+      "StartEdges": 0,
+      "MotionEdges": 0,
+      "writes": [
+        {
+          "Offset": 1005,
+          "Words": [
+            0
+          ],
+          "Accepted": true
+        }
+      ]
+    },
+    {
+      "environment": "OFFLINE_LOOPBACK",
+      "result": {
+        "cancelRequest": false,
+        "facts": {
+          "resetId": "f1b3c6de-8864-45e5-9578-80a891b1571b",
+          "actor": "operator",
+          "phase": "PlcReset",
+          "resetBudgetMs": 1500,
+          "requestCancellationObserved": false,
+          "resetBudgetExpired": true,
+          "cancellationObservation": "ResetBudget",
+          "automaticRetry": false
+        },
+        "released": false
+      },
+      "ResetEdges": 1,
+      "StartEdges": 0,
+      "MotionEdges": 0,
+      "writes": [
+        {
+          "Offset": 1005,
+          "Words": [
+            256
+          ],
+          "Accepted": true
+        },
+        {
+          "Offset": 1003,
+          "Words": [
+            1
+          ],
+          "Accepted": true
+        },
+        {
+          "Offset": 1004,
+          "Words": [
+            0
+          ],
+          "Accepted": true
+        },
+        {
+          "Offset": 1004,
+          "Words": [
+            256
+          ],
+          "Accepted": true
+        },
+        {
+          "Offset": 1005,
+          "Words": [
+            0
+          ],
+          "Accepted": true
+        },
+        {
+          "Offset": 1005,
+          "Words": [
+            256
+          ],
+          "Accepted": true
+        }
+      ]
+    },
+    {
+      "environment": "OFFLINE_LOOPBACK",
+      "result": {
+        "rehydrated": true,
+        "result": {
+          "Reset": true,
+          "ManualStartRequired": true,
+          "RecoveryClosed": true,
+          "RunId": "fde2cd09-20f0-477b-9bfc-8c865bbd58e0",
+          "RecoveryWriteId": "501fec73-d8ae-449f-99d8-6af1f674c9db"
+        },
+        "Terminal": 3,
+        "proof": {
+          "RecoveryWriteId": "501fec73-d8ae-449f-99d8-6af1f674c9db",
+          "ResetId": "d4a0ee9c-af6f-44c7-b076-3cf87e68e231",
+          "Status": "ClosedAfterVerifiedReset"
+        },
+        "RunId": "4cd7429e-fed3-4c76-8d36-8fb6eabef32f",
+        "automaticStart": false
+      },
+      "ResetEdges": 1,
+      "StartEdges": 0,
+      "MotionEdges": 0,
+      "writes": [
+        {
+          "Offset": 1005,
+          "Words": [
+            0
+          ],
+          "Accepted": true
+        },
+        {
+          "Offset": 1003,
+          "Words": [
+            1
+          ],
+          "Accepted": true
+        },
+        {
+          "Offset": 1004,
+          "Words": [
+            0
+          ],
+          "Accepted": true
+        },
+        {
+          "Offset": 1004,
+          "Words": [
+            256
+          ],
+          "Accepted": true
+        },
+        {
+          "Offset": 1004,
+          "Words": [
+            0
+          ],
+          "Accepted": true
+        },
+        {
+          "Offset": 1003,
+          "Words": [
+            1
+          ],
+          "Accepted": true
+        },
+        {
+          "Offset": 1004,
+          "Words": [
+            0
+          ],
+          "Accepted": true
+        },
+        {
+          "Offset": 1003,
+          "Words": [
+            1
+          ],
+          "Accepted": true
+        },
+        {
+          "Offset": 1000,
+          "Words": [
+            0
+          ],
+          "Accepted": true
+        },
+        {
+          "Offset": 1001,
+          "Words": [
+            0
+          ],
+          "Accepted": true
+        },
+        {
+          "Offset": 1001,
+          "Words": [
+            0
+          ],
+          "Accepted": true
+        },
+        {
+          "Offset": 1002,
+          "Words": [
+            0
+          ],
+          "Accepted": true
+        },
+        {
+          "Offset": 1002,
+          "Words": [
+            0
+          ],
+          "Accepted": true
+        },
+        {
+          "Offset": 1000,
+          "Words": [
+            0
+          ],
+          "Accepted": true
+        },
+        {
+          "Offset": 1007,
+          "Words": [
+            0
+          ],
+          "Accepted": true
+        },
+        {
+          "Offset": 1008,
+          "Words": [
+            0
+          ],
+          "Accepted": true
+        }
+      ]
+    },
+    {
+      "environment": "OFFLINE_LOOPBACK",
+      "result": {
+        "staleFlipFeedback": true,
+        "released": false
+      },
+      "ResetEdges": 1,
+      "StartEdges": 0,
+      "MotionEdges": 0,
+      "writes": [
+        {
+          "Offset": 1005,
+          "Words": [
+            256
+          ],
+          "Accepted": true
+        },
+        {
+          "Offset": 1003,
+          "Words": [
+            1
+          ],
+          "Accepted": true
+        },
+        {
+          "Offset": 1004,
+          "Words": [
+            0
+          ],
+          "Accepted": true
+        },
+        {
+          "Offset": 1004,
+          "Words": [
+            256
+          ],
+          "Accepted": true
+        },
+        {
+          "Offset": 1005,
+          "Words": [
+            0
+          ],
+          "Accepted": true
+        },
+        {
+          "Offset": 1004,
+          "Words": [
+            0
+          ],
+          "Accepted": true
+        },
+        {
+          "Offset": 1003,
+          "Words": [
+            1
+          ],
+          "Accepted": true
+        },
+        {
+          "Offset": 1004,
+          "Words": [
+            0
+          ],
+          "Accepted": true
+        },
+        {
+          "Offset": 1003,
+          "Words": [
+            1
+          ],
+          "Accepted": true
+        },
+        {
+          "Offset": 1000,
+          "Words": [
+            0
+          ],
+          "Accepted": true
+        },
+        {
+          "Offset": 1001,
+          "Words": [
+            0
+          ],
+          "Accepted": true
+        },
+        {
+          "Offset": 1001,
+          "Words": [
+            0
+          ],
+          "Accepted": true
+        },
+        {
+          "Offset": 1002,
+          "Words": [
+            0
+          ],
+          "Accepted": true
+        },
+        {
+          "Offset": 1002,
+          "Words": [
+            0
+          ],
+          "Accepted": true
+        },
+        {
+          "Offset": 1000,
+          "Words": [
+            0
+          ],
+          "Accepted": true
+        },
+        {
+          "Offset": 1007,
+          "Words": [
+            0
+          ],
+          "Accepted": true
+        },
+        {
+          "Offset": 1008,
+          "Words": [
+            0
+          ],
+          "Accepted": true
+        },
+        {
+          "Offset": 1005,
+          "Words": [
+            256
+          ],
+          "Accepted": true
+        },
+        {
+          "Offset": 1005,
+          "Words": [
+            0
+          ],
+          "Accepted": true
+        },
+        {
+          "Offset": 1005,
+          "Words": [
+            256
+          ],
+          "Accepted": true
+        }
+      ]
+    },
+    {
+      "environment": "OFFLINE_LOOPBACK",
+      "result": {
+        "failedSave": true,
+        "released": false
+      },
+      "ResetEdges": 1,
+      "StartEdges": 0,
+      "MotionEdges": 0,
+      "writes": [
+        {
+          "Offset": 1005,
+          "Words": [
+            256
+          ],
+          "Accepted": true
+        },
+        {
+          "Offset": 1003,
+          "Words": [
+            1
+          ],
+          "Accepted": true
+        },
+        {
+          "Offset": 1004,
+          "Words": [
+            0
+          ],
+          "Accepted": true
+        },
+        {
+          "Offset": 1004,
+          "Words": [
+            256
+          ],
+          "Accepted": true
+        },
+        {
+          "Offset": 1005,
+          "Words": [
+            0
+          ],
+          "Accepted": true
+        },
+        {
+          "Offset": 1004,
+          "Words": [
+            0
+          ],
+          "Accepted": true
+        },
+        {
+          "Offset": 1003,
+          "Words": [
+            1
+          ],
+          "Accepted": true
+        },
+        {
+          "Offset": 1004,
+          "Words": [
+            0
+          ],
+          "Accepted": true
+        },
+        {
+          "Offset": 1003,
+          "Words": [
+            1
+          ],
+          "Accepted": true
+        },
+        {
+          "Offset": 1000,
+          "Words": [
+            0
+          ],
+          "Accepted": true
+        },
+        {
+          "Offset": 1001,
+          "Words": [
+            0
+          ],
+          "Accepted": true
+        },
+        {
+          "Offset": 1001,
+          "Words": [
+            0
+          ],
+          "Accepted": true
+        },
+        {
+          "Offset": 1002,
+          "Words": [
+            0
+          ],
+          "Accepted": true
+        },
+        {
+          "Offset": 1002,
+          "Words": [
+            0
+          ],
+          "Accepted": true
+        },
+        {
+          "Offset": 1000,
+          "Words": [
+            0
+          ],
+          "Accepted": true
+        },
+        {
+          "Offset": 1007,
+          "Words": [
+            0
+          ],
+          "Accepted": true
+        },
+        {
+          "Offset": 1008,
+          "Words": [
+            0
+          ],
+          "Accepted": true
+        }
+      ]
+    }
+  ],
+  "formalHostRestart": {
+    "environment": "OFFLINE_LOOPBACK",
+    "oldRun": "b20fd38c-d52a-451f-8eda-8614fc92bd00",
+    "result": {
+      "Reset": true,
+      "ManualStartRequired": true,
+      "RecoveryClosed": true,
+      "RunId": "b20fd38c-d52a-451f-8eda-8614fc92bd00",
+      "RecoveryWriteId": "a9c3d4d8-250b-4b18-8a2f-b462905d744b"
+    },
+    "hostInstances": 3,
+    "cancelledRunNotRehydrated": true,
+    "cameraWorkersStarted": false,
+    "ResetEdges": 1,
+    "StartEdges": 0,
+    "MotionEdges": 0
+  }
+}

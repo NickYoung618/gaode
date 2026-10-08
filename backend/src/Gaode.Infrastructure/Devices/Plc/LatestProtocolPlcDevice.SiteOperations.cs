@@ -57,10 +57,10 @@ public sealed partial class LatestProtocolPlcDevice
         SiteOperationLog("ResetRequestWriteStarted", new { resetEpoch, request = "MB2009", value = true });
         await signals.WriteBitAsync(SignalId.SystemResetCmd, true, token);
         SiteOperationLog("ResetRequested", new { request = "MB2009", feedback = "MB6015", resetEpoch });
+        var after = Stopwatch.GetTimestamp();
         lock (sync) acquisitionPaused = false;
         WakeSampling(); EnsureLoops();
-        var after = Stopwatch.GetTimestamp();
-        var sawNotReady = false;
+        var notReadyObserved = false;
         while (true)
         {
             token.ThrowIfCancellationRequested();
@@ -69,12 +69,18 @@ public sealed partial class LatestProtocolPlcDevice
                 if (epoch != resetEpoch || unknown) throw new IOException("ResetObservationEpochLost");
             if (!sample.Values.Bit(SignalId.PlcReadyState))
             {
-                if (!sawNotReady) SiteOperationLog("ResetNotReadyObserved", new { resetEpoch });
-                sawNotReady = true;
+                if (!notReadyObserved) SiteOperationLog("ResetNotReadyObserved", new { resetEpoch });
+                notReadyObserved = true;
             }
-            else if (sawNotReady)
+            else
             {
-                SiteOperationLog("ResetReadyObserved", new { resetEpoch, readyFallingThenRisingObserved = true });
+                // SC-021-PLC-R5: a fresh Ready=1 after the request confirms PLC
+                // completion; observing a preceding zero is no longer required.
+                SiteOperationLog("ResetReadyObserved", new { resetEpoch, readyReadAfterRequest = true, notReadyObserved });
+                await signals.WriteBitAsync(SignalId.SystemResetCmd, false, token);
+                SiteOperationLog("ResetRequestClearWriteResponded", new { resetEpoch, readbackConfirmed = false });
+                // Acknowledge completion before the separate checks for allowing
+                // another run. Failed checks still leave the run blocked.
                 var started = DateTimeOffset.UtcNow;
                 var values = await signals.ReadAsync([.. PreparedPlcReadPlans.Base, .. PreparedPlcReadPlans.Position], token);
                 lock (sync)
@@ -87,8 +93,6 @@ public sealed partial class LatestProtocolPlcDevice
                 if (!safetyClear || !values.Bit(SignalId.PlcReadyState))
                     throw new IOException("ResetCompletionSafetyUnconfirmed");
                 RequireSafeZero(values);
-                await signals.WriteBitAsync(SignalId.SystemResetCmd, false, token);
-                SiteOperationLog("ResetRequestClearWriteResponded", new { resetEpoch, readbackConfirmed = false });
                 // An explicit completed system reset releases the prior start/stop commands.
                 await signals.WriteBitAsync(SignalId.PcStartCmd, false, token);
                 await signals.WriteBitAsync(SignalId.SoftStopCmd, false, token);
@@ -106,7 +110,7 @@ public sealed partial class LatestProtocolPlcDevice
                     if (epoch != resetEpoch || unknown) throw new IOException("ResetObservationEpochLost");
                     pcReady = true; startupRequestEpoch = null; verifiedSystemResetEpoch = resetEpoch;
                 }
-                SiteOperationLog("ResetCompleted", new { resetEpoch, readyFallingThenRisingObserved = true });
+                SiteOperationLog("ResetCompleted", new { resetEpoch, readyReadAfterRequest = true, notReadyObserved });
                 return;
             }
             after = sample.Ended + 1;

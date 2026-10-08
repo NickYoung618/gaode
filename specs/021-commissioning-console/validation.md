@@ -1,5 +1,13 @@
 # 021软件实施记录
 
+## 2026-10-09 最新增量：SC-021-PLC-R5复位确认
+
+用户确认发出MB2009后，由PLC完成动作并置MB6015=1，PC新读1后清MB2009。本轮按此取代历史先0再1要求，并将清MB2009前移至后续安全/位置核验之前。未新增信号或延时；现有旧高请求拒绝、真实安全/位置/反馈核验及旧Run持久取消条件仍有效。
+
+实际验证：`dotnet test backend/tests/Gaode.Communication.Tests/Gaode.Communication.Tests.csproj -c Release --no-restore --filter 'FullyQualifiedName~CommissioningRecoveryTests|FullyQualifiedName~SiteOperationHandshakeTests'`通过23/23、零跳过，测试耗时42秒。脚本PowerShell语法解析、配置JSON解析及`git -c core.whitespace=cr-at-eol diff --check`通过。新用例实证：零次未就绪读取、一次完成读取即可清请求；请求前的缓存1不替代发令后的真实0读取；持续0超时保持请求且不重发；收到1后已清请求，XYZ仍为1.25时阻断启动。SQLite及Host三次构建实例重启恢复、保存失败、残留翻转反馈、请求取消/预算到期等回归通过。
+
+可审阅证据：[汇总与源码摘要](evidence/reset-ready-r5-20261009/summary.json)、[关键运行事件](evidence/reset-ready-r5-20261009/runtime-events.json)、[测试结果](evidence/reset-ready-r5-20261009/reset-ready-r5.trx)。构建基线6ec4696加本次工作区差异；完整本机证据在artifacts/reset-ready-r5-20261009/run-626ac4ef6c9644b3a27b1c6d7ac64616。仅使用127.0.0.1模拟PLC及真实SQLite，未连接设备、未更新中控机安装，不代表现场PLC动作及完整恢复验收通过。
+
 2026-10-08；实施开始，尚无本功能运行验收结论。分支020、feature指向021。T001已核基线，原型摘要一致，既有修改及五个回退标签保留。PLC/相机连通为用户报告，不代替流程证据。T055/T056现场Blocked。
 
 本轮仅软件/离线验证，不连接硬件、不打包部署或提交推送。requirements只读。

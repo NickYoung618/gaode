@@ -31,7 +31,7 @@ public sealed class CommissioningRecoveryTests
     {
         using var inputs = new ControlledCommissioningTests.Inputs();
         await inputs.PrepareStore();
-        await using var plc = new SiteProtocolTcpFixture { ExerciseConfirmedOperations = true };
+        await using var plc = new SiteProtocolTcpFixture { ExerciseConfirmedOperations = true, ReadyOnReset = 1 };
         foreach (var mb in new[] { 6064, 6076, 6084, 6088, 6092 }) { plc.SetWord(mb, 0); plc.SetWord(mb + 2, 0); }
         var mechanics = JsonSerializer.Deserialize<PlcMechanicalConfiguration>(File.ReadAllText(inputs.Options.PlcMechanicsPath!),
             new JsonSerializerOptions(JsonSerializerDefaults.Web))!;
@@ -63,10 +63,7 @@ public sealed class CommissioningRecoveryTests
             Assert.Equal(RunState.RecoveryRequired, coordinator.Query(oldRun)!.State);
             Assert.Equal(oldRun, second.GetRequiredService<CommandRegistry>().PhysicalOwner);
             var device = second.GetRequiredService<LatestProtocolPlcDevice>(); await device.StartAsync(budget.Token);
-            var reset = second.GetRequiredService<CommissioningRecoveryService>().ResetAsync("operator", budget.Token);
-            while (plc.Byte(2009) == 0) await Task.Delay(10, budget.Token);
-            plc.SetByte(6015, 0); await Task.Delay(300, budget.Token); plc.SetByte(6015, 1);
-            result = await reset;
+            result = await second.GetRequiredService<CommissioningRecoveryService>().ResetAsync("operator", budget.Token);
             Assert.True(result.RecoveryClosed); Assert.Equal(RunState.Cancelled, coordinator.Query(oldRun)!.State);
             await coordinator.StopConsumerAsync(budget.Token);
         }
@@ -90,7 +87,7 @@ public sealed class CommissioningRecoveryTests
     {
         internal string Root { get; } = Path.Combine(Environment.GetEnvironmentVariable("GAODE_RECOVERY_EVIDENCE") ??
             Path.GetTempPath(), "recovery-" + Guid.NewGuid().ToString("N"));
-        internal SiteProtocolTcpFixture Plc { get; } = new() { ExerciseConfirmedOperations = true };
+        internal SiteProtocolTcpFixture Plc { get; } = new() { ExerciseConfirmedOperations = true, ReadyOnReset = 0 };
         internal LatestProtocolPlcDevice Device { get; }
         internal TraceWriter Writer { get; }
         internal TraceQuery Query { get; }
@@ -165,8 +162,10 @@ public sealed class CommissioningRecoveryTests
     {
         using var budget = new CancellationTokenSource(15000);
         await using var f = new Fixture(); await f.Seed(rehydrated, budget.Token);
-        var operation = f.Recovery.ResetAsync("operator", budget.Token);
-        await f.CompleteReset(budget.Token); var result = await operation;
+        f.Plc.ReadyOnReset = 1;
+        var result = await f.Recovery.ResetAsync("operator", budget.Token);
+        Assert.Equal(0, f.Plc.ResetReadyZeroReads); Assert.True(f.Plc.ResetReadyOneReads > 0);
+        Assert.Equal(0, f.Plc.Byte(2009));
         Assert.True(result.Reset && result.RecoveryClosed && result.ManualStartRequired);
         var stored = await f.Query.GetRunAsync(f.RunId, budget.Token); Assert.Equal(TerminalOutcome.Cancelled, stored!.Terminal);
         var proof = CommissioningRecoveryService.ReadProof(stored, await f.Query.GetWritesAsync(f.RunId, budget.Token)); Assert.NotNull(proof);

@@ -23,6 +23,9 @@ internal sealed class SiteProtocolTcpFixture : IAsyncDisposable
     internal int StartEdges { get; private set; }
     internal int MotionEdges { get; private set; }
     internal bool KeepSoftStopAsserted { get; set; }
+    internal byte? ReadyOnReset { get; set; }
+    internal int ResetReadyZeroReads { get; private set; }
+    internal int ResetReadyOneReads { get; private set; }
     internal ConcurrentQueue<(byte PcReady, byte SoftStop, int Readbacks)> ResetPreconditions { get; } = new();
     private int resetPreconditionReadbacks;
     internal ConcurrentQueue<(ushort ZLow, ushort ZHigh, byte ZRequest, ushort ZFeedback)> StartClears { get; } = new();
@@ -99,6 +102,11 @@ internal sealed class SiteProtocolTcpFixture : IAsyncDisposable
         {
             if (function == 3)
             {
+                if (ResetEdges > 0 && Byte(2009) == 1 && offset <= 6015 / 2 && offset + value > 6015 / 2)
+                {
+                    if (Byte(6015) == 0) ResetReadyZeroReads++;
+                    else if (Byte(6015) == 1) ResetReadyOneReads++;
+                }
                 if (Byte(2006) == 1 && Byte(2008) == 0 && offset <= 2006 / 2 && offset + value > 2008 / 2)
                     resetPreconditionReadbacks++;
                 var response = new byte[2 + value * 2]; response[0] = 3; response[1] = checked((byte)(value * 2));
@@ -121,6 +129,7 @@ internal sealed class SiteProtocolTcpFixture : IAsyncDisposable
                 {
                     ResetEdges++;
                     ResetPreconditions.Enqueue((Byte(2006), Byte(2008), resetPreconditionReadbacks));
+                    if (ReadyOnReset is { } ready) SetByte(6015, ready);
                 }
                 if (priorStart == 0 && Byte(2007) != 0) StartEdges++;
                 if (priorStart != 0 && Byte(2007) == 0)

@@ -1,5 +1,15 @@
 # 技术方案：正式桌面与页面的受控设备联调入口
 
+## 2026-10-09 当前增量：按新读Ready=1确认复位（SC-021-PLC-R5）
+
+采用spec及start-and-completion最新R5，替代本文历史Ready下降/上升判据。先同步spec/contracts/plan/tasks，再改实现。
+
+1. LatestProtocolPlcDevice.SiteOperations保留请求前置读回、写请求后时间边界和WaitGroupAsync同代次新鲜读取，移除sawNotReady作为完成门槛；是否见过0仅作低频诊断事实。
+2. 发令后新读Ready=1立即清SystemResetCmd并记录写应答，然后执行原安全/当前Ready/XYZ检查和旧请求清理。ResetCompleted只在适配器核验通过后记录；后续完整初始状态及SQLite持久收尾保持现有真实路径。
+3. Reset-CommissioningConsole仅修正文案，区分PLC完成反馈已收到、复位请求已清但后续检查未通过；不加Modbus写点或重试逻辑。同步configuration/commissioning/site-operations-confirmed-20261008.json的来源说明，记录R5替代旧下降沿规则；配置字段及机械参数不变。
+4. 使用独立loopback PLC：请求前Ready=1、收到请求时立即变0以验证旧缓存不能完成；收到请求时已完成并保持1以验证不必看到0；另验证持续0超时、完成后XYZ不通过仍已清请求且不启动。原恢复/SQLite/资源/保存失败回归继续执行。
+5. 本轮只做离线验证，不连接真实设备、不制作或应用部署包；待交付记录说明旧高请求仍不自动清除。PLC源程序与实际动作完成后置1由现场实现并联调。
+
 **功能标识**：021-commissioning-console  
 **日期**：2026-10-08  
 **规格**：[spec.md](spec.md)  

@@ -1,0 +1,246 @@
+[
+  {
+    "source": "recovery\\recovery-009b793d42b94cdb8c187b34ee936d0d\\runtime.log",
+    "line": "Error RuntimeFlow {\"schema\":\"station01-runtime/1\",\"utc\":\"2026-10-08T18:40:28.8708022+00:00\",\"tick\":49835481940744,\"tickFrequency\":10000000,\"processId\":13220,\"step\":\"CommissioningRecovery\",\"category\":\"Workflow\",\"outcome\":\"Blocked\",\"runId\":\"067a95f8-17cf-4793-9f0a-c0b9d7b50438\",\"spanId\":null,\"elapsedMs\":0.0925,\"facts\":{\"resetId\":\"3fd5a714-289c-49ac-9185-5632cabc5c0b\",\"actor\":\"operator\",\"phase\":\"Admission\",\"resetBudgetMs\":2000,\"requestCancellationObserved\":false,\"resetBudgetExpired\":false,\"cancellationObservation\":\"NotCancelled\",\"automaticRetry\":false},\"level\":\"Error\",\"exceptionType\":\"System.InvalidOperationException\"} exception=System.InvalidOperationException: RecoveryExecutionStillActive"
+  },
+  {
+    "source": "recovery\\recovery-009b793d42b94cdb8c187b34ee936d0d\\runtime.log",
+    "line": "   at Gaode.Application.Station01.CommissioningRecoveryService.ResetAsync(String actor, CancellationToken ct) in E:\\dzk\\gaode-1\\backend\\src\\Gaode.Application\\Station01\\CommissioningRecoveryService.cs:line 64"
+  },
+  {
+    "source": "recovery\\recovery-07497e314f11442d92d5e316fb7de163\\runtime.log",
+    "line": "Information RuntimeFlow {\"schema\":\"station01-runtime/1\",\"utc\":\"2026-10-08T18:40:24.1595211+00:00\",\"tick\":49835434828209,\"tickFrequency\":10000000,\"processId\":13220,\"step\":\"CommissioningRecovery\",\"category\":\"Workflow\",\"outcome\":\"ResetRequested\",\"runId\":\"b9ec06f2-a1ad-4a1b-84f4-f540f885c5c2\",\"spanId\":null,\"elapsedMs\":null,\"facts\":{\"resetId\":\"d20edaa9-2ee6-4382-985a-45b6dff4cc9d\",\"actor\":\"operator\",\"failedEpoch\":1,\"resetBudgetMs\":2000},\"level\":\"Information\",\"exceptionType\":null}"
+  },
+  {
+    "source": "recovery\\recovery-07497e314f11442d92d5e316fb7de163\\runtime.log",
+    "line": "Information RuntimeFlow {\"schema\":\"station01-runtime/1\",\"utc\":\"2026-10-08T18:40:24.7398624+00:00\",\"tick\":49835440631588,\"tickFrequency\":10000000,\"processId\":13220,\"step\":\"PlcSiteHandshake\",\"category\":\"Workflow\",\"outcome\":\"ResetReadyObserved\",\"runId\":null,\"spanId\":null,\"elapsedMs\":null,\"facts\":{\"epoch\":2,\"source\":\"User:R4;OFFLINE-fixture\",\"detail\":{\"resetEpoch\":2,\"readyReadAfterRequest\":true,\"notReadyObserved\":true}},\"level\":\"Information\",\"exceptionType\":null}"
+  },
+  {
+    "source": "recovery\\recovery-07497e314f11442d92d5e316fb7de163\\runtime.log",
+    "line": "Information RuntimeFlow {\"schema\":\"station01-runtime/1\",\"utc\":\"2026-10-08T18:40:24.7408234+00:00\",\"tick\":49835440641196,\"tickFrequency\":10000000,\"processId\":13220,\"step\":\"PlcSiteHandshake\",\"category\":\"Workflow\",\"outcome\":\"ResetRequestClearWriteResponded\",\"runId\":null,\"spanId\":null,\"elapsedMs\":null,\"facts\":{\"epoch\":2,\"source\":\"User:R4;OFFLINE-fixture\",\"detail\":{\"resetEpoch\":2,\"readbackConfirmed\":false}},\"level\":\"Information\",\"exceptionType\":null}"
+  },
+  {
+    "source": "recovery\\recovery-07497e314f11442d92d5e316fb7de163\\runtime.log",
+    "line": "Information RuntimeFlow {\"schema\":\"station01-runtime/1\",\"utc\":\"2026-10-08T18:40:24.7429867+00:00\",\"tick\":49835440662857,\"tickFrequency\":10000000,\"processId\":13220,\"step\":\"PlcSiteHandshake\",\"category\":\"Workflow\",\"outcome\":\"ResetVerificationObserved\",\"runId\":null,\"spanId\":null,\"elapsedMs\":null,\"facts\":{\"epoch\":2,\"source\":\"User:R4;OFFLINE-fixture\",\"detail\":{\"resetEpoch\":2,\"safetyClear\":true,\"ready\":true,\"positionTolerance\":0.1,\"x\":0,\"y\":0,\"z\":0}},\"level\":\"Information\",\"exceptionType\":null}"
+  },
+  {
+    "source": "recovery\\recovery-07497e314f11442d92d5e316fb7de163\\runtime.log",
+    "line": "Information RuntimeFlow {\"schema\":\"station01-runtime/1\",\"utc\":\"2026-10-08T18:40:24.7445826+00:00\",\"tick\":49835440678788,\"tickFrequency\":10000000,\"processId\":13220,\"step\":\"PlcSiteHandshake\",\"category\":\"Workflow\",\"outcome\":\"ResetCompleted\",\"runId\":null,\"spanId\":null,\"elapsedMs\":null,\"facts\":{\"epoch\":2,\"source\":\"User:R4;OFFLINE-fixture\",\"detail\":{\"resetEpoch\":2,\"readyReadAfterRequest\":true,\"notReadyObserved\":true}},\"level\":\"Information\",\"exceptionType\":null}"
+  },
+  {
+    "source": "recovery\\recovery-07497e314f11442d92d5e316fb7de163\\runtime.log",
+    "line": "Error RuntimeFlow {\"schema\":\"station01-runtime/1\",\"utc\":\"2026-10-08T18:40:24.7476062+00:00\",\"tick\":49835440709026,\"tickFrequency\":10000000,\"processId\":13220,\"step\":\"CommissioningRecovery\",\"category\":\"Workflow\",\"outcome\":\"Blocked\",\"runId\":\"b9ec06f2-a1ad-4a1b-84f4-f540f885c5c2\",\"spanId\":null,\"elapsedMs\":644.2666,\"facts\":{\"resetId\":\"d20edaa9-2ee6-4382-985a-45b6dff4cc9d\",\"actor\":\"operator\",\"phase\":\"InitialStateVerification\",\"resetBudgetMs\":2000,\"requestCancellationObserved\":false,\"resetBudgetExpired\":false,\"cancellationObservation\":\"NotCancelled\",\"automaticRetry\":false},\"level\":\"Error\",\"exceptionType\":\"System.InvalidOperationException\"} exception=System.InvalidOperationException: RecoveryInitialStateIncomplete:RecoveryProtocolNotConfigured"
+  },
+  {
+    "source": "recovery\\recovery-07497e314f11442d92d5e316fb7de163\\runtime.log",
+    "line": "   at Gaode.Application.Station01.CommissioningRecoveryService.ResetAsync(String actor, CancellationToken ct) in E:\\dzk\\gaode-1\\backend\\src\\Gaode.Application\\Station01\\CommissioningRecoveryService.cs:line 94"
+  },
+  {
+    "source": "recovery\\recovery-322320c07ef742d3a37f42647c67eefc\\runtime.log",
+    "line": "Information RuntimeFlow {\"schema\":\"station01-runtime/1\",\"utc\":\"2026-10-08T18:40:27.6124111+00:00\",\"tick\":49835469356899,\"tickFrequency\":10000000,\"processId\":13220,\"step\":\"CommissioningRecovery\",\"category\":\"Workflow\",\"outcome\":\"ResetRequested\",\"runId\":\"85c43b25-1e73-4c47-9f04-4568809bc487\",\"spanId\":null,\"elapsedMs\":null,\"facts\":{\"resetId\":\"7611c030-0fe2-42ce-8efb-3c002355f491\",\"actor\":\"operator\",\"failedEpoch\":1,\"resetBudgetMs\":1500},\"level\":\"Information\",\"exceptionType\":null}"
+  },
+  {
+    "source": "recovery\\recovery-322320c07ef742d3a37f42647c67eefc\\runtime.log",
+    "line": "Warning RuntimeFlow {\"schema\":\"station01-runtime/1\",\"utc\":\"2026-10-08T18:40:27.7729755+00:00\",\"tick\":49835470962531,\"tickFrequency\":10000000,\"processId\":13220,\"step\":\"CommissioningRecovery\",\"category\":\"Workflow\",\"outcome\":\"Blocked\",\"runId\":\"85c43b25-1e73-4c47-9f04-4568809bc487\",\"spanId\":null,\"elapsedMs\":205.3514,\"facts\":{\"resetId\":\"7611c030-0fe2-42ce-8efb-3c002355f491\",\"actor\":\"operator\",\"phase\":\"PlcReset\",\"resetBudgetMs\":1500,\"requestCancellationObserved\":true,\"resetBudgetExpired\":false,\"cancellationObservation\":\"Request\",\"automaticRetry\":false},\"level\":\"Warning\",\"exceptionType\":\"System.Threading.Tasks.TaskCanceledException\"} exception=System.Threading.Tasks.TaskCanceledException: A task was canceled."
+  },
+  {
+    "source": "recovery\\recovery-322320c07ef742d3a37f42647c67eefc\\runtime.log",
+    "line": "   at Gaode.Application.Station01.CommissioningRecoveryService.ResetAsync(String actor, CancellationToken ct) in E:\\dzk\\gaode-1\\backend\\src\\Gaode.Application\\Station01\\CommissioningRecoveryService.cs:line 86"
+  },
+  {
+    "source": "recovery\\recovery-70369554f5034c88a409b0879fbddd0d\\runtime.log",
+    "line": "Information RuntimeFlow {\"schema\":\"station01-runtime/1\",\"utc\":\"2026-10-08T18:40:22.3361393+00:00\",\"tick\":49835416594504,\"tickFrequency\":10000000,\"processId\":13220,\"step\":\"CommissioningRecovery\",\"category\":\"Workflow\",\"outcome\":\"ResetRequested\",\"runId\":\"473baf03-a825-4af3-a856-18e336d76fa7\",\"spanId\":null,\"elapsedMs\":null,\"facts\":{\"resetId\":\"ba6e26e1-b5d2-4a5e-85d0-c6fa1cf66363\",\"actor\":\"operator\",\"failedEpoch\":1,\"resetBudgetMs\":2000},\"level\":\"Information\",\"exceptionType\":null}"
+  },
+  {
+    "source": "recovery\\recovery-70369554f5034c88a409b0879fbddd0d\\runtime.log",
+    "line": "Information RuntimeFlow {\"schema\":\"station01-runtime/1\",\"utc\":\"2026-10-08T18:40:22.3440617+00:00\",\"tick\":49835416673725,\"tickFrequency\":10000000,\"processId\":13220,\"step\":\"PlcSiteHandshake\",\"category\":\"Workflow\",\"outcome\":\"ResetReadyObserved\",\"runId\":null,\"spanId\":null,\"elapsedMs\":null,\"facts\":{\"epoch\":2,\"source\":\"User:R4;OFFLINE-fixture\",\"detail\":{\"resetEpoch\":2,\"readyReadAfterRequest\":true,\"notReadyObserved\":false}},\"level\":\"Information\",\"exceptionType\":null}"
+  },
+  {
+    "source": "recovery\\recovery-70369554f5034c88a409b0879fbddd0d\\runtime.log",
+    "line": "Information RuntimeFlow {\"schema\":\"station01-runtime/1\",\"utc\":\"2026-10-08T18:40:22.3447275+00:00\",\"tick\":49835416680382,\"tickFrequency\":10000000,\"processId\":13220,\"step\":\"PlcSiteHandshake\",\"category\":\"Workflow\",\"outcome\":\"ResetRequestClearWriteResponded\",\"runId\":null,\"spanId\":null,\"elapsedMs\":null,\"facts\":{\"epoch\":2,\"source\":\"User:R4;OFFLINE-fixture\",\"detail\":{\"resetEpoch\":2,\"readbackConfirmed\":false}},\"level\":\"Information\",\"exceptionType\":null}"
+  },
+  {
+    "source": "recovery\\recovery-70369554f5034c88a409b0879fbddd0d\\runtime.log",
+    "line": "Information RuntimeFlow {\"schema\":\"station01-runtime/1\",\"utc\":\"2026-10-08T18:40:22.346536+00:00\",\"tick\":49835416698468,\"tickFrequency\":10000000,\"processId\":13220,\"step\":\"PlcSiteHandshake\",\"category\":\"Workflow\",\"outcome\":\"ResetVerificationObserved\",\"runId\":null,\"spanId\":null,\"elapsedMs\":null,\"facts\":{\"epoch\":2,\"source\":\"User:R4;OFFLINE-fixture\",\"detail\":{\"resetEpoch\":2,\"safetyClear\":true,\"ready\":true,\"positionTolerance\":0.1,\"x\":0,\"y\":0,\"z\":0}},\"level\":\"Information\",\"exceptionType\":null}"
+  },
+  {
+    "source": "recovery\\recovery-70369554f5034c88a409b0879fbddd0d\\runtime.log",
+    "line": "Information RuntimeFlow {\"schema\":\"station01-runtime/1\",\"utc\":\"2026-10-08T18:40:22.3507491+00:00\",\"tick\":49835416740599,\"tickFrequency\":10000000,\"processId\":13220,\"step\":\"PlcSiteHandshake\",\"category\":\"Workflow\",\"outcome\":\"ResetCompleted\",\"runId\":null,\"spanId\":null,\"elapsedMs\":null,\"facts\":{\"epoch\":2,\"source\":\"User:R4;OFFLINE-fixture\",\"detail\":{\"resetEpoch\":2,\"readyReadAfterRequest\":true,\"notReadyObserved\":false}},\"level\":\"Information\",\"exceptionType\":null}"
+  },
+  {
+    "source": "recovery\\recovery-70369554f5034c88a409b0879fbddd0d\\runtime.log",
+    "line": "Information RuntimeFlow {\"schema\":\"station01-runtime/1\",\"utc\":\"2026-10-08T18:40:22.3735258+00:00\",\"tick\":49835416968365,\"tickFrequency\":10000000,\"processId\":13220,\"step\":\"CommissioningRecovery\",\"category\":\"Workflow\",\"outcome\":\"ClosedAfterVerifiedReset\",\"runId\":\"473baf03-a825-4af3-a856-18e336d76fa7\",\"spanId\":null,\"elapsedMs\":71.0049,\"facts\":{\"resetId\":\"ba6e26e1-b5d2-4a5e-85d0-c6fa1cf66363\",\"recoveryWriteId\":\"eeaa9dfd-4e2f-44b2-bd5d-9f050d74bd4a\",\"initial\":{\"Readiness\":\"Ready\",\"Observation\":{\"Reliability\":\"Reliable\",\"Connection\":\"Connected\",\"ConnectionEpoch\":2,\"OperatingMode\":\"Automatic\",\"Readiness\":\"Ready\",\"SafetyAssessment\":\"Clear\",\"Clamp\":\"Unconfirmed\",\"MotionAvailability\":\"Available\",\"AcquisitionReadiness\":\"Available\",\"ManualArea\":\"Clear\",\"ManualHandling\":\"Unconfirmed\",\"Position\":{\"ActualX\":0,\"ActualY\":0,\"ActualZ\":0,\"AxisPurpose\":\"MachineAxes\",\"CoordinateFrame\":\"OFFLINE_ONLY\",\"UnitBasis\":\"OFFLINE:recovery-fixture:mm\",\"Identity\":{\"ObservationId\":\"8d6efdb2-b88b-4885-a99b-f90abd454e86\",\"ConnectionEpoch\":2,\"SampleStartedUtc\":\"2026-10-08T18:40:22.3512503+00:00\",\"SampleEndedUtc\":\"2026-10-08T18:40:22.3532163+00:00\",\"Reliability\":\"Reliable\",\"IsValid\":true},\"Origin\":{\"Provider\":\"Real\",\"ComponentVersion\":\"Real:confirmed-20261006-v2;sources/PC.xls:37095748a61574d9a1c9bf17ad0ac9118d554fa73ac8f5e10003718b6627511d;sources/PLC(2).xls:8e846d0f71351f87b42db1bf40790f40766a392fd0a9e0968201f8c2056eb476;field:Offline:XLS-address-convention-fixture\",\"Quality\":\"Measured\"},\"IsReliable\":true},\"Face\":null,\"Alarms\":[],\"ReasonCodes\":[],\"ExecutionOrigin\":{\"Provider\":\"Real\",\"ComponentVersion\":\"Real:confirmed-20261006-v2;sources/PC.xls:37095748a61574d9a1c9bf17ad0ac9118d554fa73ac8f5e10003718b6627511d;sources/PLC(2).xls:8e846d0f71351f87b42db1bf40790f40766a392fd0a9e0968201f8c2056eb476;field:Offline:XLS-address-convention-fixture\",\"Quality\":\"Measured\"},\"Identity\":{\"ObservationId\":\"c4913285-62cb-4324-a2bf-f8fc31c3c559\",\"ConnectionEpoch\":2,\"SampleStartedUtc\":\"2026-10-08T18:40:22.3512503+00:00\",\"SampleEndedUtc\":\"2026-10-08T18:40:22.3532115+00:00\",\"Reliability\":\"Reliable\",\"IsValid\":true},\"DiagnosticEvidenceReference\":null,\"SchemaVersion\":\"device-semantics/1\",\"AxisPositions\":{\"X\":0,\"Y\":0,\"DetectionZ\":0,\"ScanZ\":0,\"GrabZ\":0},\"HasReliableObservation\":true},\"BlockedReasons\":[],\"ResetGeneration\":2,\"Passed\":true},\"manualStartRequired\":true},\"level\":\"Information\",\"exceptionType\":null}"
+  },
+  {
+    "source": "recovery\\recovery-749d3a92de9c43678818eb4417361e17\\runtime.log",
+    "line": "Error RuntimeFlow {\"schema\":\"station01-runtime/1\",\"utc\":\"2026-10-08T18:40:29.3314905+00:00\",\"tick\":49835486547588,\"tickFrequency\":10000000,\"processId\":13220,\"step\":\"CommissioningRecovery\",\"category\":\"Workflow\",\"outcome\":\"Blocked\",\"runId\":\"40d0b2aa-f0aa-4f0d-ba4e-64d35118c5fc\",\"spanId\":null,\"elapsedMs\":10.3303,\"facts\":{\"resetId\":\"d4e75602-f0fc-4f9b-8d80-0045874a43c3\",\"actor\":\"operator\",\"phase\":\"Admission\",\"resetBudgetMs\":2000,\"requestCancellationObserved\":false,\"resetBudgetExpired\":false,\"cancellationObservation\":\"NotCancelled\",\"automaticRetry\":false},\"level\":\"Error\",\"exceptionType\":\"System.InvalidOperationException\"} exception=System.InvalidOperationException: RecoverySoftwareResourcesNotReleased"
+  },
+  {
+    "source": "recovery\\recovery-749d3a92de9c43678818eb4417361e17\\runtime.log",
+    "line": "   at Gaode.Application.Station01.CommissioningRecoveryService.RequireReleased(Nullable`1 owner) in E:\\dzk\\gaode-1\\backend\\src\\Gaode.Application\\Station01\\CommissioningRecoveryService.cs:line 152"
+  },
+  {
+    "source": "recovery\\recovery-749d3a92de9c43678818eb4417361e17\\runtime.log",
+    "line": "   at Gaode.Application.Station01.CommissioningRecoveryService.ResetAsync(String actor, CancellationToken ct) in E:\\dzk\\gaode-1\\backend\\src\\Gaode.Application\\Station01\\CommissioningRecoveryService.cs:line 71"
+  },
+  {
+    "source": "recovery\\recovery-94159bd947e34f1d9871a7cf19ff3927\\runtime.log",
+    "line": "Information RuntimeFlow {\"schema\":\"station01-runtime/1\",\"utc\":\"2026-10-08T18:40:25.2255091+00:00\",\"tick\":49835445488026,\"tickFrequency\":10000000,\"processId\":13220,\"step\":\"CommissioningRecovery\",\"category\":\"Workflow\",\"outcome\":\"ResetRequested\",\"runId\":\"82f13bb1-0fc6-4395-b674-e14ec6880050\",\"spanId\":null,\"elapsedMs\":null,\"facts\":{\"resetId\":\"f1b3c6de-8864-45e5-9578-80a891b1571b\",\"actor\":\"operator\",\"failedEpoch\":1,\"resetBudgetMs\":1500},\"level\":\"Information\",\"exceptionType\":null}"
+  },
+  {
+    "source": "recovery\\recovery-94159bd947e34f1d9871a7cf19ff3927\\runtime.log",
+    "line": "Warning RuntimeFlow {\"schema\":\"station01-runtime/1\",\"utc\":\"2026-10-08T18:40:26.7663131+00:00\",\"tick\":49835460895968,\"tickFrequency\":10000000,\"processId\":13220,\"step\":\"CommissioningRecovery\",\"category\":\"Workflow\",\"outcome\":\"Blocked\",\"runId\":\"82f13bb1-0fc6-4395-b674-e14ec6880050\",\"spanId\":null,\"elapsedMs\":1577.0931,\"facts\":{\"resetId\":\"f1b3c6de-8864-45e5-9578-80a891b1571b\",\"actor\":\"operator\",\"phase\":\"PlcReset\",\"resetBudgetMs\":1500,\"requestCancellationObserved\":false,\"resetBudgetExpired\":true,\"cancellationObservation\":\"ResetBudget\",\"automaticRetry\":false},\"level\":\"Warning\",\"exceptionType\":\"System.Threading.Tasks.TaskCanceledException\"} exception=System.Threading.Tasks.TaskCanceledException: A task was canceled."
+  },
+  {
+    "source": "recovery\\recovery-94159bd947e34f1d9871a7cf19ff3927\\runtime.log",
+    "line": "   at Gaode.Application.Station01.CommissioningRecoveryService.ResetAsync(String actor, CancellationToken ct) in E:\\dzk\\gaode-1\\backend\\src\\Gaode.Application\\Station01\\CommissioningRecoveryService.cs:line 86"
+  },
+  {
+    "source": "recovery\\recovery-b8861c8f62f748a5a4c558cdce14a0a1\\runtime.log",
+    "line": "Information RuntimeFlow {\"schema\":\"station01-runtime/1\",\"utc\":\"2026-10-08T18:40:21.1341776+00:00\",\"tick\":49835404574962,\"tickFrequency\":10000000,\"processId\":13220,\"step\":\"CommissioningRecovery\",\"category\":\"Workflow\",\"outcome\":\"ResetRequested\",\"runId\":\"fde2cd09-20f0-477b-9bfc-8c865bbd58e0\",\"spanId\":null,\"elapsedMs\":null,\"facts\":{\"resetId\":\"d4a0ee9c-af6f-44c7-b076-3cf87e68e231\",\"actor\":\"operator\",\"failedEpoch\":1,\"resetBudgetMs\":2000},\"level\":\"Information\",\"exceptionType\":null}"
+  },
+  {
+    "source": "recovery\\recovery-b8861c8f62f748a5a4c558cdce14a0a1\\runtime.log",
+    "line": "Information RuntimeFlow {\"schema\":\"station01-runtime/1\",\"utc\":\"2026-10-08T18:40:21.1453299+00:00\",\"tick\":49835404686481,\"tickFrequency\":10000000,\"processId\":13220,\"step\":\"PlcSiteHandshake\",\"category\":\"Workflow\",\"outcome\":\"ResetReadyObserved\",\"runId\":null,\"spanId\":null,\"elapsedMs\":null,\"facts\":{\"epoch\":2,\"source\":\"User:R4;OFFLINE-fixture\",\"detail\":{\"resetEpoch\":2,\"readyReadAfterRequest\":true,\"notReadyObserved\":false}},\"level\":\"Information\",\"exceptionType\":null}"
+  },
+  {
+    "source": "recovery\\recovery-b8861c8f62f748a5a4c558cdce14a0a1\\runtime.log",
+    "line": "Information RuntimeFlow {\"schema\":\"station01-runtime/1\",\"utc\":\"2026-10-08T18:40:21.1460722+00:00\",\"tick\":49835404693902,\"tickFrequency\":10000000,\"processId\":13220,\"step\":\"PlcSiteHandshake\",\"category\":\"Workflow\",\"outcome\":\"ResetRequestClearWriteResponded\",\"runId\":null,\"spanId\":null,\"elapsedMs\":null,\"facts\":{\"epoch\":2,\"source\":\"User:R4;OFFLINE-fixture\",\"detail\":{\"resetEpoch\":2,\"readbackConfirmed\":false}},\"level\":\"Information\",\"exceptionType\":null}"
+  },
+  {
+    "source": "recovery\\recovery-b8861c8f62f748a5a4c558cdce14a0a1\\runtime.log",
+    "line": "Information RuntimeFlow {\"schema\":\"station01-runtime/1\",\"utc\":\"2026-10-08T18:40:21.1479231+00:00\",\"tick\":49835404712412,\"tickFrequency\":10000000,\"processId\":13220,\"step\":\"PlcSiteHandshake\",\"category\":\"Workflow\",\"outcome\":\"ResetVerificationObserved\",\"runId\":null,\"spanId\":null,\"elapsedMs\":null,\"facts\":{\"epoch\":2,\"source\":\"User:R4;OFFLINE-fixture\",\"detail\":{\"resetEpoch\":2,\"safetyClear\":true,\"ready\":true,\"positionTolerance\":0.1,\"x\":0,\"y\":0,\"z\":0}},\"level\":\"Information\",\"exceptionType\":null}"
+  },
+  {
+    "source": "recovery\\recovery-b8861c8f62f748a5a4c558cdce14a0a1\\runtime.log",
+    "line": "Information RuntimeFlow {\"schema\":\"station01-runtime/1\",\"utc\":\"2026-10-08T18:40:21.1672274+00:00\",\"tick\":49835404905459,\"tickFrequency\":10000000,\"processId\":13220,\"step\":\"PlcSiteHandshake\",\"category\":\"Workflow\",\"outcome\":\"ResetCompleted\",\"runId\":null,\"spanId\":null,\"elapsedMs\":null,\"facts\":{\"epoch\":2,\"source\":\"User:R4;OFFLINE-fixture\",\"detail\":{\"resetEpoch\":2,\"readyReadAfterRequest\":true,\"notReadyObserved\":false}},\"level\":\"Information\",\"exceptionType\":null}"
+  },
+  {
+    "source": "recovery\\recovery-b8861c8f62f748a5a4c558cdce14a0a1\\runtime.log",
+    "line": "Information RuntimeFlow {\"schema\":\"station01-runtime/1\",\"utc\":\"2026-10-08T18:40:21.5553722+00:00\",\"tick\":49835408786882,\"tickFrequency\":10000000,\"processId\":13220,\"step\":\"CommissioningRecovery\",\"category\":\"Workflow\",\"outcome\":\"ClosedAfterVerifiedReset\",\"runId\":\"fde2cd09-20f0-477b-9bfc-8c865bbd58e0\",\"spanId\":null,\"elapsedMs\":631.061,\"facts\":{\"resetId\":\"d4a0ee9c-af6f-44c7-b076-3cf87e68e231\",\"recoveryWriteId\":\"501fec73-d8ae-449f-99d8-6af1f674c9db\",\"initial\":{\"Readiness\":\"Ready\",\"Observation\":{\"Reliability\":\"Reliable\",\"Connection\":\"Connected\",\"ConnectionEpoch\":2,\"OperatingMode\":\"Automatic\",\"Readiness\":\"Ready\",\"SafetyAssessment\":\"Clear\",\"Clamp\":\"Unconfirmed\",\"MotionAvailability\":\"Available\",\"AcquisitionReadiness\":\"Available\",\"ManualArea\":\"Clear\",\"ManualHandling\":\"Unconfirmed\",\"Position\":{\"ActualX\":0,\"ActualY\":0,\"ActualZ\":0,\"AxisPurpose\":\"MachineAxes\",\"CoordinateFrame\":\"OFFLINE_ONLY\",\"UnitBasis\":\"OFFLINE:recovery-fixture:mm\",\"Identity\":{\"ObservationId\":\"1d3a7ed7-2906-41ad-83aa-9bac62fe3fbd\",\"ConnectionEpoch\":2,\"SampleStartedUtc\":\"2026-10-08T18:40:21.1719957+00:00\",\"SampleEndedUtc\":\"2026-10-08T18:40:21.1756996+00:00\",\"Reliability\":\"Reliable\",\"IsValid\":true},\"Origin\":{\"Provider\":\"Real\",\"ComponentVersion\":\"Real:confirmed-20261006-v2;sources/PC.xls:37095748a61574d9a1c9bf17ad0ac9118d554fa73ac8f5e10003718b6627511d;sources/PLC(2).xls:8e846d0f71351f87b42db1bf40790f40766a392fd0a9e0968201f8c2056eb476;field:Offline:XLS-address-convention-fixture\",\"Quality\":\"Measured\"},\"IsReliable\":true},\"Face\":null,\"Alarms\":[],\"ReasonCodes\":[],\"ExecutionOrigin\":{\"Provider\":\"Real\",\"ComponentVersion\":\"Real:confirmed-20261006-v2;sources/PC.xls:37095748a61574d9a1c9bf17ad0ac9118d554fa73ac8f5e10003718b6627511d;sources/PLC(2).xls:8e846d0f71351f87b42db1bf40790f40766a392fd0a9e0968201f8c2056eb476;field:Offline:XLS-address-convention-fixture\",\"Quality\":\"Measured\"},\"Identity\":{\"ObservationId\":\"2b7a22b8-b5e3-4342-ac75-47c1f97ee895\",\"ConnectionEpoch\":2,\"SampleStartedUtc\":\"2026-10-08T18:40:21.1719957+00:00\",\"SampleEndedUtc\":\"2026-10-08T18:40:21.1756927+00:00\",\"Reliability\":\"Reliable\",\"IsValid\":true},\"DiagnosticEvidenceReference\":null,\"SchemaVersion\":\"device-semantics/1\",\"AxisPositions\":{\"X\":0,\"Y\":0,\"DetectionZ\":0,\"ScanZ\":0,\"GrabZ\":0},\"HasReliableObservation\":true},\"BlockedReasons\":[],\"ResetGeneration\":2,\"Passed\":true},\"manualStartRequired\":true},\"level\":\"Information\",\"exceptionType\":null}"
+  },
+  {
+    "source": "recovery\\recovery-c15d31c3a0374747b71a371415745c71\\runtime.log",
+    "line": "Information RuntimeFlow {\"schema\":\"station01-runtime/1\",\"utc\":\"2026-10-08T18:40:29.7882447+00:00\",\"tick\":49835491115101,\"tickFrequency\":10000000,\"processId\":13220,\"step\":\"CommissioningRecovery\",\"category\":\"Workflow\",\"outcome\":\"ResetRequested\",\"runId\":\"04f13889-a01c-4f1e-937f-bec7f8e0c6cf\",\"spanId\":null,\"elapsedMs\":null,\"facts\":{\"resetId\":\"b54e8bf1-4206-47ee-a774-1b6406b30521\",\"actor\":\"operator\",\"failedEpoch\":1,\"resetBudgetMs\":2000},\"level\":\"Information\",\"exceptionType\":null}"
+  },
+  {
+    "source": "recovery\\recovery-c15d31c3a0374747b71a371415745c71\\runtime.log",
+    "line": "Information RuntimeFlow {\"schema\":\"station01-runtime/1\",\"utc\":\"2026-10-08T18:40:30.21447+00:00\",\"tick\":49835495377331,\"tickFrequency\":10000000,\"processId\":13220,\"step\":\"PlcSiteHandshake\",\"category\":\"Workflow\",\"outcome\":\"ResetReadyObserved\",\"runId\":null,\"spanId\":null,\"elapsedMs\":null,\"facts\":{\"epoch\":2,\"source\":\"User:R4;OFFLINE-fixture\",\"detail\":{\"resetEpoch\":2,\"readyReadAfterRequest\":true,\"notReadyObserved\":true}},\"level\":\"Information\",\"exceptionType\":null}"
+  },
+  {
+    "source": "recovery\\recovery-c15d31c3a0374747b71a371415745c71\\runtime.log",
+    "line": "Information RuntimeFlow {\"schema\":\"station01-runtime/1\",\"utc\":\"2026-10-08T18:40:30.215456+00:00\",\"tick\":49835495387190,\"tickFrequency\":10000000,\"processId\":13220,\"step\":\"PlcSiteHandshake\",\"category\":\"Workflow\",\"outcome\":\"ResetRequestClearWriteResponded\",\"runId\":null,\"spanId\":null,\"elapsedMs\":null,\"facts\":{\"epoch\":2,\"source\":\"User:R4;OFFLINE-fixture\",\"detail\":{\"resetEpoch\":2,\"readbackConfirmed\":false}},\"level\":\"Information\",\"exceptionType\":null}"
+  },
+  {
+    "source": "recovery\\recovery-c15d31c3a0374747b71a371415745c71\\runtime.log",
+    "line": "Information RuntimeFlow {\"schema\":\"station01-runtime/1\",\"utc\":\"2026-10-08T18:40:30.2178072+00:00\",\"tick\":49835495410701,\"tickFrequency\":10000000,\"processId\":13220,\"step\":\"PlcSiteHandshake\",\"category\":\"Workflow\",\"outcome\":\"ResetVerificationObserved\",\"runId\":null,\"spanId\":null,\"elapsedMs\":null,\"facts\":{\"epoch\":2,\"source\":\"User:R4;OFFLINE-fixture\",\"detail\":{\"resetEpoch\":2,\"safetyClear\":true,\"ready\":true,\"positionTolerance\":0.1,\"x\":0,\"y\":0,\"z\":0}},\"level\":\"Information\",\"exceptionType\":null}"
+  },
+  {
+    "source": "recovery\\recovery-c15d31c3a0374747b71a371415745c71\\runtime.log",
+    "line": "Information RuntimeFlow {\"schema\":\"station01-runtime/1\",\"utc\":\"2026-10-08T18:40:30.2213658+00:00\",\"tick\":49835495446287,\"tickFrequency\":10000000,\"processId\":13220,\"step\":\"PlcSiteHandshake\",\"category\":\"Workflow\",\"outcome\":\"ResetCompleted\",\"runId\":null,\"spanId\":null,\"elapsedMs\":null,\"facts\":{\"epoch\":2,\"source\":\"User:R4;OFFLINE-fixture\",\"detail\":{\"resetEpoch\":2,\"readyReadAfterRequest\":true,\"notReadyObserved\":true}},\"level\":\"Information\",\"exceptionType\":null}"
+  },
+  {
+    "source": "recovery\\recovery-c15d31c3a0374747b71a371415745c71\\runtime.log",
+    "line": "Warning RuntimeFlow {\"schema\":\"station01-runtime/1\",\"utc\":\"2026-10-08T18:40:31.7892918+00:00\",\"tick\":49835511125453,\"tickFrequency\":10000000,\"processId\":13220,\"step\":\"CommissioningRecovery\",\"category\":\"Workflow\",\"outcome\":\"Blocked\",\"runId\":\"04f13889-a01c-4f1e-937f-bec7f8e0c6cf\",\"spanId\":null,\"elapsedMs\":2034.671,\"facts\":{\"resetId\":\"b54e8bf1-4206-47ee-a774-1b6406b30521\",\"actor\":\"operator\",\"phase\":\"InitialStateVerification\",\"resetBudgetMs\":2000,\"requestCancellationObserved\":false,\"resetBudgetExpired\":true,\"cancellationObservation\":\"ResetBudget\",\"automaticRetry\":false},\"level\":\"Warning\",\"exceptionType\":\"System.Threading.Tasks.TaskCanceledException\"} exception=System.Threading.Tasks.TaskCanceledException: A task was canceled."
+  },
+  {
+    "source": "recovery\\recovery-c15d31c3a0374747b71a371415745c71\\runtime.log",
+    "line": "   at Gaode.Application.Station01.CommissioningRecoveryService.ResetAsync(String actor, CancellationToken ct) in E:\\dzk\\gaode-1\\backend\\src\\Gaode.Application\\Station01\\CommissioningRecoveryService.cs:line 96"
+  },
+  {
+    "source": "recovery\\recovery-c1a61097dec64c5d809e5e07c5032677\\runtime.log",
+    "line": "Information RuntimeFlow {\"schema\":\"station01-runtime/1\",\"utc\":\"2026-10-08T18:40:22.9222721+00:00\",\"tick\":49835422455797,\"tickFrequency\":10000000,\"processId\":13220,\"step\":\"CommissioningRecovery\",\"category\":\"Workflow\",\"outcome\":\"ResetRequested\",\"runId\":\"7651035f-da1c-45c1-a418-16a045c73933\",\"spanId\":null,\"elapsedMs\":null,\"facts\":{\"resetId\":\"6e590972-01ff-4e15-a674-08a9f09ee709\",\"actor\":\"operator\",\"failedEpoch\":1,\"resetBudgetMs\":2000},\"level\":\"Information\",\"exceptionType\":null}"
+  },
+  {
+    "source": "recovery\\recovery-c1a61097dec64c5d809e5e07c5032677\\runtime.log",
+    "line": "Information RuntimeFlow {\"schema\":\"station01-runtime/1\",\"utc\":\"2026-10-08T18:40:23.3237201+00:00\",\"tick\":49835426470252,\"tickFrequency\":10000000,\"processId\":13220,\"step\":\"PlcSiteHandshake\",\"category\":\"Workflow\",\"outcome\":\"ResetReadyObserved\",\"runId\":null,\"spanId\":null,\"elapsedMs\":null,\"facts\":{\"epoch\":2,\"source\":\"User:R4;OFFLINE-fixture\",\"detail\":{\"resetEpoch\":2,\"readyReadAfterRequest\":true,\"notReadyObserved\":true}},\"level\":\"Information\",\"exceptionType\":null}"
+  },
+  {
+    "source": "recovery\\recovery-c1a61097dec64c5d809e5e07c5032677\\runtime.log",
+    "line": "Information RuntimeFlow {\"schema\":\"station01-runtime/1\",\"utc\":\"2026-10-08T18:40:23.3246921+00:00\",\"tick\":49835426479971,\"tickFrequency\":10000000,\"processId\":13220,\"step\":\"PlcSiteHandshake\",\"category\":\"Workflow\",\"outcome\":\"ResetRequestClearWriteResponded\",\"runId\":null,\"spanId\":null,\"elapsedMs\":null,\"facts\":{\"epoch\":2,\"source\":\"User:R4;OFFLINE-fixture\",\"detail\":{\"resetEpoch\":2,\"readbackConfirmed\":false}},\"level\":\"Information\",\"exceptionType\":null}"
+  },
+  {
+    "source": "recovery\\recovery-c1a61097dec64c5d809e5e07c5032677\\runtime.log",
+    "line": "Information RuntimeFlow {\"schema\":\"station01-runtime/1\",\"utc\":\"2026-10-08T18:40:23.5484645+00:00\",\"tick\":49835428717682,\"tickFrequency\":10000000,\"processId\":13220,\"step\":\"PlcSiteHandshake\",\"category\":\"Workflow\",\"outcome\":\"ResetVerificationObserved\",\"runId\":null,\"spanId\":null,\"elapsedMs\":null,\"facts\":{\"epoch\":2,\"source\":\"User:R4;OFFLINE-fixture\",\"detail\":{\"resetEpoch\":2,\"safetyClear\":true,\"ready\":true,\"positionTolerance\":0.1,\"x\":0,\"y\":0,\"z\":0}},\"level\":\"Information\",\"exceptionType\":null}"
+  },
+  {
+    "source": "recovery\\recovery-c1a61097dec64c5d809e5e07c5032677\\runtime.log",
+    "line": "Information RuntimeFlow {\"schema\":\"station01-runtime/1\",\"utc\":\"2026-10-08T18:40:23.5526247+00:00\",\"tick\":49835428759284,\"tickFrequency\":10000000,\"processId\":13220,\"step\":\"PlcSiteHandshake\",\"category\":\"Workflow\",\"outcome\":\"ResetCompleted\",\"runId\":null,\"spanId\":null,\"elapsedMs\":null,\"facts\":{\"epoch\":2,\"source\":\"User:R4;OFFLINE-fixture\",\"detail\":{\"resetEpoch\":2,\"readyReadAfterRequest\":true,\"notReadyObserved\":true}},\"level\":\"Information\",\"exceptionType\":null}"
+  },
+  {
+    "source": "recovery\\recovery-c1a61097dec64c5d809e5e07c5032677\\runtime.log",
+    "line": "Error RuntimeFlow {\"schema\":\"station01-runtime/1\",\"utc\":\"2026-10-08T18:40:23.6166417+00:00\",\"tick\":49835429399449,\"tickFrequency\":10000000,\"processId\":13220,\"step\":\"CommissioningRecovery\",\"category\":\"Workflow\",\"outcome\":\"Blocked\",\"runId\":\"7651035f-da1c-45c1-a418-16a045c73933\",\"spanId\":null,\"elapsedMs\":729.0351,\"facts\":{\"resetId\":\"6e590972-01ff-4e15-a674-08a9f09ee709\",\"actor\":\"operator\",\"phase\":\"SaveRecoveryClosure\",\"resetBudgetMs\":2000,\"requestCancellationObserved\":false,\"resetBudgetExpired\":false,\"cancellationObservation\":\"NotCancelled\",\"automaticRetry\":false},\"level\":\"Error\",\"exceptionType\":\"System.InvalidOperationException\"} exception=System.InvalidOperationException: RecoveryCommitNotConfirmed:ConditionRejected"
+  },
+  {
+    "source": "recovery\\recovery-c1a61097dec64c5d809e5e07c5032677\\runtime.log",
+    "line": "   at Gaode.Application.Station01.CommissioningRecoveryService.SaveAsync(PersistedRun run, WriteKind kind, Object payload, CancellationToken ct) in E:\\dzk\\gaode-1\\backend\\src\\Gaode.Application\\Station01\\CommissioningRecoveryService.cs:line 164"
+  },
+  {
+    "source": "recovery\\recovery-c1a61097dec64c5d809e5e07c5032677\\runtime.log",
+    "line": "   at Gaode.Application.Station01.CommissioningRecoveryService.ResetAsync(String actor, CancellationToken ct) in E:\\dzk\\gaode-1\\backend\\src\\Gaode.Application\\Station01\\CommissioningRecoveryService.cs:line 106"
+  },
+  {
+    "source": "site\\site-operations-3696ab13f9644046a7800b7cf54208d2\\runtime.log",
+    "line": "Information RuntimeFlow {\"schema\":\"station01-runtime/1\",\"utc\":\"2026-10-08T18:39:55.9485659+00:00\",\"tick\":49835152720380,\"tickFrequency\":10000000,\"processId\":13220,\"step\":\"PlcSiteHandshake\",\"category\":\"Workflow\",\"outcome\":\"ResetReadyObserved\",\"runId\":null,\"spanId\":null,\"elapsedMs\":null,\"facts\":{\"epoch\":2,\"source\":\"User:2026-10-09-R5-ready-one-after-reset-request\",\"detail\":{\"resetEpoch\":2,\"readyReadAfterRequest\":true,\"notReadyObserved\":false}},\"level\":\"Information\",\"exceptionType\":null}"
+  },
+  {
+    "source": "site\\site-operations-3696ab13f9644046a7800b7cf54208d2\\runtime.log",
+    "line": "Information RuntimeFlow {\"schema\":\"station01-runtime/1\",\"utc\":\"2026-10-08T18:39:55.9524327+00:00\",\"tick\":49835152759048,\"tickFrequency\":10000000,\"processId\":13220,\"step\":\"PlcSiteHandshake\",\"category\":\"Workflow\",\"outcome\":\"ResetRequestClearWriteResponded\",\"runId\":null,\"spanId\":null,\"elapsedMs\":null,\"facts\":{\"epoch\":2,\"source\":\"User:2026-10-09-R5-ready-one-after-reset-request\",\"detail\":{\"resetEpoch\":2,\"readbackConfirmed\":false}},\"level\":\"Information\",\"exceptionType\":null}"
+  },
+  {
+    "source": "site\\site-operations-3696ab13f9644046a7800b7cf54208d2\\runtime.log",
+    "line": "Information RuntimeFlow {\"schema\":\"station01-runtime/1\",\"utc\":\"2026-10-08T18:39:55.9575243+00:00\",\"tick\":49835152809963,\"tickFrequency\":10000000,\"processId\":13220,\"step\":\"PlcSiteHandshake\",\"category\":\"Workflow\",\"outcome\":\"ResetVerificationObserved\",\"runId\":null,\"spanId\":null,\"elapsedMs\":null,\"facts\":{\"epoch\":2,\"source\":\"User:2026-10-09-R5-ready-one-after-reset-request\",\"detail\":{\"resetEpoch\":2,\"safetyClear\":true,\"ready\":true,\"positionTolerance\":0.01,\"x\":1.25,\"y\":1.25,\"z\":1.25}},\"level\":\"Information\",\"exceptionType\":null}"
+  },
+  {
+    "source": "site\\site-operations-3696ab13f9644046a7800b7cf54208d2\\runtime.log",
+    "line": "Information RuntimeFlow {\"schema\":\"station01-runtime/1\",\"utc\":\"2026-10-08T18:39:55.9711737+00:00\",\"tick\":49835152946459,\"tickFrequency\":10000000,\"processId\":13220,\"step\":\"PlcHandshake\",\"category\":\"Workflow\",\"outcome\":\"FailureBoundary\",\"runId\":null,\"spanId\":null,\"elapsedMs\":null,\"facts\":{\"correlation\":null,\"reason\":\"reset:StartupSafeZeroUnconfirmed:MachineCurrentPosX\",\"handshakeDiagnostic\":{\"phase\":\"ResetVerificationObserved\",\"epoch\":2,\"detail\":{\"resetEpoch\":2,\"safetyClear\":true,\"ready\":true,\"positionTolerance\":0.01,\"x\":1.25,\"y\":1.25,\"z\":1.25}},\"authorizesAction\":false},\"level\":\"Information\",\"exceptionType\":null}"
+  },
+  {
+    "source": "site\\site-operations-439489dc4f304356ade6fb275b5934ae\\runtime.log",
+    "line": "Information RuntimeFlow {\"schema\":\"station01-runtime/1\",\"utc\":\"2026-10-08T18:39:59.3627183+00:00\",\"tick\":49835186861696,\"tickFrequency\":10000000,\"processId\":13220,\"step\":\"PlcSiteHandshake\",\"category\":\"Workflow\",\"outcome\":\"ResetReadyObserved\",\"runId\":null,\"spanId\":null,\"elapsedMs\":null,\"facts\":{\"epoch\":2,\"source\":\"User:2026-10-09-R5-ready-one-after-reset-request\",\"detail\":{\"resetEpoch\":2,\"readyReadAfterRequest\":true,\"notReadyObserved\":false}},\"level\":\"Information\",\"exceptionType\":null}"
+  },
+  {
+    "source": "site\\site-operations-439489dc4f304356ade6fb275b5934ae\\runtime.log",
+    "line": "Information RuntimeFlow {\"schema\":\"station01-runtime/1\",\"utc\":\"2026-10-08T18:39:59.364667+00:00\",\"tick\":49835186881180,\"tickFrequency\":10000000,\"processId\":13220,\"step\":\"PlcSiteHandshake\",\"category\":\"Workflow\",\"outcome\":\"ResetRequestClearWriteResponded\",\"runId\":null,\"spanId\":null,\"elapsedMs\":null,\"facts\":{\"epoch\":2,\"source\":\"User:2026-10-09-R5-ready-one-after-reset-request\",\"detail\":{\"resetEpoch\":2,\"readbackConfirmed\":false}},\"level\":\"Information\",\"exceptionType\":null}"
+  },
+  {
+    "source": "site\\site-operations-439489dc4f304356ade6fb275b5934ae\\runtime.log",
+    "line": "Information RuntimeFlow {\"schema\":\"station01-runtime/1\",\"utc\":\"2026-10-08T18:39:59.369333+00:00\",\"tick\":49835186927840,\"tickFrequency\":10000000,\"processId\":13220,\"step\":\"PlcSiteHandshake\",\"category\":\"Workflow\",\"outcome\":\"ResetVerificationObserved\",\"runId\":null,\"spanId\":null,\"elapsedMs\":null,\"facts\":{\"epoch\":2,\"source\":\"User:2026-10-09-R5-ready-one-after-reset-request\",\"detail\":{\"resetEpoch\":2,\"safetyClear\":true,\"ready\":true,\"positionTolerance\":0.01,\"x\":0,\"y\":0,\"z\":0}},\"level\":\"Information\",\"exceptionType\":null}"
+  },
+  {
+    "source": "site\\site-operations-439489dc4f304356ade6fb275b5934ae\\runtime.log",
+    "line": "Information RuntimeFlow {\"schema\":\"station01-runtime/1\",\"utc\":\"2026-10-08T18:39:59.4110275+00:00\",\"tick\":49835187344789,\"tickFrequency\":10000000,\"processId\":13220,\"step\":\"PlcSiteHandshake\",\"category\":\"Workflow\",\"outcome\":\"ResetCompleted\",\"runId\":null,\"spanId\":null,\"elapsedMs\":null,\"facts\":{\"epoch\":2,\"source\":\"User:2026-10-09-R5-ready-one-after-reset-request\",\"detail\":{\"resetEpoch\":2,\"readyReadAfterRequest\":true,\"notReadyObserved\":false}},\"level\":\"Information\",\"exceptionType\":null}"
+  },
+  {
+    "source": "site\\site-operations-a42ddf13b3e74c83b0896d3b9eb847bb\\runtime.log",
+    "line": "Information RuntimeFlow {\"schema\":\"station01-runtime/1\",\"utc\":\"2026-10-08T18:40:11.1784618+00:00\",\"tick\":49835305018412,\"tickFrequency\":10000000,\"processId\":13220,\"step\":\"PlcSiteHandshake\",\"category\":\"Workflow\",\"outcome\":\"ResetReadyObserved\",\"runId\":null,\"spanId\":null,\"elapsedMs\":null,\"facts\":{\"epoch\":2,\"source\":\"User:2026-10-09-R5-ready-one-after-reset-request\",\"detail\":{\"resetEpoch\":2,\"readyReadAfterRequest\":true,\"notReadyObserved\":true}},\"level\":\"Information\",\"exceptionType\":null}"
+  },
+  {
+    "source": "site\\site-operations-a42ddf13b3e74c83b0896d3b9eb847bb\\runtime.log",
+    "line": "Information RuntimeFlow {\"schema\":\"station01-runtime/1\",\"utc\":\"2026-10-08T18:40:11.1796793+00:00\",\"tick\":49835305030584,\"tickFrequency\":10000000,\"processId\":13220,\"step\":\"PlcSiteHandshake\",\"category\":\"Workflow\",\"outcome\":\"ResetRequestClearWriteResponded\",\"runId\":null,\"spanId\":null,\"elapsedMs\":null,\"facts\":{\"epoch\":2,\"source\":\"User:2026-10-09-R5-ready-one-after-reset-request\",\"detail\":{\"resetEpoch\":2,\"readbackConfirmed\":false}},\"level\":\"Information\",\"exceptionType\":null}"
+  },
+  {
+    "source": "site\\site-operations-a42ddf13b3e74c83b0896d3b9eb847bb\\runtime.log",
+    "line": "Information RuntimeFlow {\"schema\":\"station01-runtime/1\",\"utc\":\"2026-10-08T18:40:11.1823904+00:00\",\"tick\":49835305057695,\"tickFrequency\":10000000,\"processId\":13220,\"step\":\"PlcSiteHandshake\",\"category\":\"Workflow\",\"outcome\":\"ResetVerificationObserved\",\"runId\":null,\"spanId\":null,\"elapsedMs\":null,\"facts\":{\"epoch\":2,\"source\":\"User:2026-10-09-R5-ready-one-after-reset-request\",\"detail\":{\"resetEpoch\":2,\"safetyClear\":true,\"ready\":true,\"positionTolerance\":0.01,\"x\":0,\"y\":0,\"z\":0}},\"level\":\"Information\",\"exceptionType\":null}"
+  },
+  {
+    "source": "site\\site-operations-a42ddf13b3e74c83b0896d3b9eb847bb\\runtime.log",
+    "line": "Information RuntimeFlow {\"schema\":\"station01-runtime/1\",\"utc\":\"2026-10-08T18:40:11.1845482+00:00\",\"tick\":49835305079273,\"tickFrequency\":10000000,\"processId\":13220,\"step\":\"PlcSiteHandshake\",\"category\":\"Workflow\",\"outcome\":\"ResetCompleted\",\"runId\":null,\"spanId\":null,\"elapsedMs\":null,\"facts\":{\"epoch\":2,\"source\":\"User:2026-10-09-R5-ready-one-after-reset-request\",\"detail\":{\"resetEpoch\":2,\"readyReadAfterRequest\":true,\"notReadyObserved\":true}},\"level\":\"Information\",\"exceptionType\":null}"
+  },
+  {
+    "source": "site\\site-operations-d4c288a250914cd682290cfd4569ad81\\runtime.log",
+    "line": "Information RuntimeFlow {\"schema\":\"station01-runtime/1\",\"utc\":\"2026-10-08T18:40:09.0267608+00:00\",\"tick\":49835283501532,\"tickFrequency\":10000000,\"processId\":13220,\"step\":\"PlcSiteHandshake\",\"category\":\"Workflow\",\"outcome\":\"ResetReadyObserved\",\"runId\":null,\"spanId\":null,\"elapsedMs\":null,\"facts\":{\"epoch\":2,\"source\":\"User:2026-10-09-R5-ready-one-after-reset-request\",\"detail\":{\"resetEpoch\":2,\"readyReadAfterRequest\":true,\"notReadyObserved\":true}},\"level\":\"Information\",\"exceptionType\":null}"
+  },
+  {
+    "source": "site\\site-operations-d4c288a250914cd682290cfd4569ad81\\runtime.log",
+    "line": "Information RuntimeFlow {\"schema\":\"station01-runtime/1\",\"utc\":\"2026-10-08T18:40:09.028037+00:00\",\"tick\":49835283514292,\"tickFrequency\":10000000,\"processId\":13220,\"step\":\"PlcSiteHandshake\",\"category\":\"Workflow\",\"outcome\":\"ResetRequestClearWriteResponded\",\"runId\":null,\"spanId\":null,\"elapsedMs\":null,\"facts\":{\"epoch\":2,\"source\":\"User:2026-10-09-R5-ready-one-after-reset-request\",\"detail\":{\"resetEpoch\":2,\"readbackConfirmed\":false}},\"level\":\"Information\",\"exceptionType\":null}"
+  },
+  {
+    "source": "site\\site-operations-d4c288a250914cd682290cfd4569ad81\\runtime.log",
+    "line": "Information RuntimeFlow {\"schema\":\"station01-runtime/1\",\"utc\":\"2026-10-08T18:40:09.0310962+00:00\",\"tick\":49835283544883,\"tickFrequency\":10000000,\"processId\":13220,\"step\":\"PlcSiteHandshake\",\"category\":\"Workflow\",\"outcome\":\"ResetVerificationObserved\",\"runId\":null,\"spanId\":null,\"elapsedMs\":null,\"facts\":{\"epoch\":2,\"source\":\"User:2026-10-09-R5-ready-one-after-reset-request\",\"detail\":{\"resetEpoch\":2,\"safetyClear\":true,\"ready\":true,\"positionTolerance\":0.01,\"x\":0,\"y\":0,\"z\":0}},\"level\":\"Information\",\"exceptionType\":null}"
+  },
+  {
+    "source": "site\\site-operations-d4c288a250914cd682290cfd4569ad81\\runtime.log",
+    "line": "Information RuntimeFlow {\"schema\":\"station01-runtime/1\",\"utc\":\"2026-10-08T18:40:09.0331318+00:00\",\"tick\":49835283565238,\"tickFrequency\":10000000,\"processId\":13220,\"step\":\"PlcSiteHandshake\",\"category\":\"Workflow\",\"outcome\":\"ResetCompleted\",\"runId\":null,\"spanId\":null,\"elapsedMs\":null,\"facts\":{\"epoch\":2,\"source\":\"User:2026-10-09-R5-ready-one-after-reset-request\",\"detail\":{\"resetEpoch\":2,\"readyReadAfterRequest\":true,\"notReadyObserved\":true}},\"level\":\"Information\",\"exceptionType\":null}"
+  }
+]

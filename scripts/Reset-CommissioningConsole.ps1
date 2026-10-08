@@ -45,12 +45,12 @@ try{
     $detail=switch -Wildcard ($code) {
         'PreviousResetRequestNotReleased' {'上次复位请求MB2009仍为1，结果未核定。本次没有再次发送复位；需要核对上次复位记录和PLC状态，不能直接清0再重发。'}
         'ResetPreconditionsNotConfirmed*' {'未读回确认PC就绪MB2006=1及软停MB2008=0，本次未发送PLC复位请求。'}
-        'ResetCompletionSafetyUnconfirmed' {'PLC就绪变化已出现，但安全状态未通过，复位未获完整确认。'}
+        'ResetCompletionSafetyUnconfirmed' {'已收到PLC复位完成反馈并发送清除复位请求，但后续就绪或安全状态核验未通过，不能放行。'}
         'RecoveryExecutionStillActive' {'旧流程尚未退出，不允许执行复位恢复。请等待流程停止后查询状态。'}
         'RecoverySoftwareResourcesNotReleased' {'旧采集、算法或媒体资源尚未释放，不能复位恢复放行。请查看后台诊断。'}
         'RecoveryInitialStateIncomplete*' {'本次复位后的安全/请求/反馈核验未通过，旧任务保持阻断。请查看后台具体缺项。'}
         'RecoveryResetDeadlineExceeded' {'等待本次PLC复位或恢复核验超时，旧任务未放行；结果未确认，不会自动重试。'}
-        'StartupSafeZeroUnconfirmed*' {'PLC就绪变化已出现，但实际XYZ尚未通过安全零位检查，不能放行。'}
+        'StartupSafeZeroUnconfirmed*' {'已收到PLC复位完成反馈并发送清除复位请求，但实际XYZ尚未通过安全零位检查，不能放行。'}
         default { if($code){$code}else{'调用失败或超时，复位结果尚未确认；不要反复点击。'} }
     }
     Record-Reset 'FailedOrUnknown' @{errorType=$_.Exception.GetType().Name;code=$code;automaticRetry=$false}

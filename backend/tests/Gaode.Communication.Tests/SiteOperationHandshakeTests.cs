@@ -41,6 +41,7 @@ public sealed class SiteOperationHandshakeTests
         }
         internal void Save(SiteProtocolTcpFixture fixture, string result) => File.WriteAllText(Path.Combine(Root, "wire-audit.json"),
             JsonSerializer.Serialize(new { environment = "OFFLINE_LOOPBACK", result, fixture.ResetEdges, fixture.StartEdges,
+                fixture.ResetReadyZeroReads, fixture.ResetReadyOneReads,
                 fixture.MotionEdges, writes = fixture.Writes.Select(w => new { w.Offset, w.Words, w.Accepted }),
                 resetPreconditions = fixture.ResetPreconditions.Select(p => new { p.PcReady, p.SoftStop, p.Readbacks }),
                 startClears = fixture.StartClears.Select(s => new { s.ZLow, s.ZHigh, s.ZRequest, s.ZFeedback }) },
@@ -53,7 +54,7 @@ public sealed class SiteOperationHandshakeTests
         Host = "127.0.0.1", Port = plc.Port, IoTimeoutMs = 1000, HeartbeatTimeoutMs = 3000,
         Definition = ConfirmedMemoryLayout.Load().CreateDefinition(SiteProtocolAdaptationTests.Profile()),
         PositionBasis = new("OFFLINE_ONLY", "mm", RuntimePurposes.RealDeviceCommissioning, "Offline:confirmed-sequence-fixture"),
-        SiteOperations = new("plc-site-operations/1", "User:2026-10-08-ready-edge-start-stop-zero")
+        SiteOperations = new("plc-site-operations/1", "User:2026-10-09-R5-ready-one-after-reset-request")
     }, .01, recorder: evidence.Recorder);
     private static void Zero(SiteProtocolTcpFixture plc)
     { foreach (var mb in new[] { 6064, 6076, 6084, 6088, 6092 }) { plc.SetWord(mb, 0); plc.SetWord(mb + 2, 0); } }
@@ -74,11 +75,11 @@ public sealed class SiteOperationHandshakeTests
     [Theory]
     [InlineData(false)]
     [InlineData(true)]
-    public async Task ResetWaitsForThisReadyFallingAndRisingEdgeBeforeClearingRequest(bool initiallySoftStopped)
+    public async Task ResetWaitsForFreshReadyAfterRequestInsteadOfUsingEarlierReady(bool initiallySoftStopped)
     {
         using var deadline = new CancellationTokenSource(15000);
         await using var evidence = new Evidence();
-        await using var plc = new SiteProtocolTcpFixture { ExerciseConfirmedOperations = true }; Zero(plc);
+        await using var plc = new SiteProtocolTcpFixture { ExerciseConfirmedOperations = true, ReadyOnReset = 0 }; Zero(plc);
         await using var device = Device(plc, evidence);
         await device.StartAsync(deadline.Token);
         plc.SetByte(2006, 0); plc.SetByte(2008, initiallySoftStopped ? (byte)1 : (byte)0);
@@ -88,18 +89,61 @@ public sealed class SiteOperationHandshakeTests
         Assert.Equal(1, preconditions.PcReady); Assert.Equal(0, preconditions.SoftStop);
         Assert.True(preconditions.Readbacks > 0);
         Assert.Equal(0, plc.StartEdges); Assert.Equal(0, plc.MotionEdges);
-        await Task.Delay(300, deadline.Token); // PLC holds old Ready=1; must not count as this reset.
-        Assert.False(reset.IsCompleted); Assert.Equal(1, plc.Byte(2009));
-        plc.SetByte(6015, 0); await Task.Delay(300, deadline.Token);
+        // Ready was 1 before dispatch; the PLC now reports 0, so cached Ready cannot complete it.
+        await Until(() => plc.ResetReadyZeroReads > 0, deadline.Token);
+        await Task.Delay(100, deadline.Token);
         Assert.False(reset.IsCompleted); Assert.Equal(1, plc.Byte(2009));
         plc.SetByte(6015, 1); await reset;
         Assert.Equal(0, plc.Byte(2009)); Assert.Equal(1, plc.ResetEdges);
+        Assert.True(plc.ResetReadyOneReads > 0);
         var log = File.ReadAllText(Path.Combine(evidence.Root, "runtime.log"));
         Assert.Contains("ResetNotReadyObserved", log); Assert.Contains("ResetCompleted", log);
         Assert.Contains("ResetPreconditionsConfirmed", log);
         Assert.Contains("ResetRequestObserved", log); Assert.Contains("ResetReadyObserved", log);
         Assert.Contains("ResetVerificationObserved", log); Assert.Contains("ResetRequestClearWriteResponded", log);
-        evidence.Save(plc, "Reset edge and persistent log verified");
+        evidence.Save(plc, "Fresh Ready after dispatch required; pre-dispatch Ready never completes reset");
+    }
+    [Fact]
+    public async Task ResetCompletesFromFreshReadyOneWithoutObservingZero()
+    {
+        using var deadline = new CancellationTokenSource(10000);
+        await using var evidence = new Evidence();
+        // The simulated PLC finishes while accepting the request, before its write response.
+        await using var plc = new SiteProtocolTcpFixture { ExerciseConfirmedOperations = true, ReadyOnReset = 1 }; Zero(plc);
+        await using var device = Device(plc, evidence); await device.StartAsync(deadline.Token);
+        await device.ResetAsync(deadline.Token);
+        Assert.Equal(1, plc.ResetEdges); Assert.Equal(0, plc.Byte(2009));
+        Assert.Equal(0, plc.ResetReadyZeroReads); Assert.True(plc.ResetReadyOneReads > 0);
+        Assert.Equal(0, plc.StartEdges); Assert.Equal(0, plc.MotionEdges);
+        var log = File.ReadAllText(Path.Combine(evidence.Root, "runtime.log"));
+        Assert.DoesNotContain("ResetNotReadyObserved", log);
+        Assert.DoesNotContain("readyFallingThenRisingObserved", log);
+        Assert.Contains("\"readyReadAfterRequest\":true", log);
+        Assert.Contains("\"notReadyObserved\":false", log);
+        Assert.Contains("ResetCompleted", log);
+        Assert.True(log.IndexOf("ResetRequestClearWriteResponded", StringComparison.Ordinal) <
+            log.IndexOf("ResetVerificationObserved", StringComparison.Ordinal));
+        evidence.Save(plc, "Fast PLC completion read after request clears it without an observed zero");
+    }
+    [Fact]
+    public async Task ReadyCompletionClearsResetRequestEvenWhenPositionVerificationBlocks()
+    {
+        using var deadline = new CancellationTokenSource(10000);
+        await using var evidence = new Evidence();
+        // Actual XYZ remains 1.25: acknowledging PLC completion must not release startup.
+        await using var plc = new SiteProtocolTcpFixture { ExerciseConfirmedOperations = true, ReadyOnReset = 1 };
+        await using var device = Device(plc, evidence); await device.StartAsync(deadline.Token);
+        var error = await Assert.ThrowsAsync<IOException>(() => device.ResetAsync(deadline.Token));
+        Assert.Contains("StartupSafeZeroUnconfirmed", error.Message);
+        Assert.Equal(0, plc.Byte(2009)); Assert.Equal(1, plc.ResetEdges);
+        await Assert.ThrowsAsync<InvalidOperationException>(() => Start(device, deadline.Token));
+        Assert.Equal(0, plc.StartEdges); Assert.Equal(0, plc.MotionEdges);
+        var log = File.ReadAllText(Path.Combine(evidence.Root, "runtime.log"));
+        Assert.Contains("ResetRequestClearWriteResponded", log);
+        Assert.Contains("ResetVerificationObserved", log);
+        Assert.Contains("StartupSafeZeroUnconfirmed", log);
+        Assert.DoesNotContain("\"outcome\":\"ResetCompleted\"", log);
+        evidence.Save(plc, "PLC completion acknowledged; real nonzero XYZ still blocks startup");
     }
     [Fact]
     public async Task ResetPreconditionReadbackFailureNeverSendsResetOrStart()
@@ -129,18 +173,21 @@ public sealed class SiteOperationHandshakeTests
         evidence.Save(plc, "Pending old reset is not cleared or retriggered");
     }
     [Fact]
-    public async Task ResetOldReadyOneTimesOutWithoutClearingOrReplaying()
+    public async Task ResetReadyZeroTimesOutWithoutClearingOrReplaying()
     {
         using var deadline = new CancellationTokenSource(10000);
         await using var evidence = new Evidence();
-        await using var plc = new SiteProtocolTcpFixture { ExerciseConfirmedOperations = true }; Zero(plc);
+        await using var plc = new SiteProtocolTcpFixture { ExerciseConfirmedOperations = true, ReadyOnReset = 0 }; Zero(plc);
         await using var device = Device(plc, evidence); await device.StartAsync(deadline.Token);
         using var resetDeadline = new CancellationTokenSource(700);
         await Assert.ThrowsAnyAsync<OperationCanceledException>(() => device.ResetAsync(resetDeadline.Token));
         Assert.Equal(1, plc.Byte(2009)); Assert.Equal(1, plc.ResetEdges);
         await Assert.ThrowsAsync<InvalidOperationException>(() => Start(device, deadline.Token));
         Assert.Equal(0, plc.StartEdges);
-        evidence.Save(plc, "Old Ready is not completion; timeout blocks start and does not replay");
+        var log = File.ReadAllText(Path.Combine(evidence.Root, "runtime.log"));
+        Assert.Contains("ResetNotReadyObserved", log);
+        Assert.DoesNotContain("ResetRequestClearWriteResponded", log);
+        evidence.Save(plc, "Ready stays zero; timeout blocks start and does not clear or replay");
     }
     [Fact]
     public async Task StartClearsAfterFullActualXYAndZClosureAndSameCoordinateReuseStillWorks()
