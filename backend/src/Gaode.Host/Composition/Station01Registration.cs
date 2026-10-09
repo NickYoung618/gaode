@@ -306,11 +306,19 @@ public static class Station01Registration
                 sp.GetRequiredService<CommandRegistry>(), sp.GetRequiredService<Station01Coordinator>(),
                 sp.GetRequiredService<ITraceWriter>(), sp.GetRequiredService<ITraceQuery>(),
                 id => !sp.GetRequiredService<StartPublicPreparation>().IsExecuting(id),
-                () => sp.GetRequiredService<AlgorithmRuntime>().ActiveExecutions == 0 &&
-                    sp.GetRequiredService<MediaStore>().ActiveJobs == 0 &&
-                    sp.GetRequiredService<MediaStore>().ActiveReservations == 0 &&
-                    sp.GetRequiredService<MediaStore>().ActiveLeases == 0 &&
-                    sp.GetRequiredService<PersistentCameraGateway>().Status.All(s => s.State is "Ready" or "Stopped"),
+                () => {
+                    var algorithms = sp.GetRequiredService<AlgorithmRuntime>().ActiveExecutions;
+                    var media = sp.GetRequiredService<MediaStore>();
+                    var cameras = sp.GetRequiredService<PersistentCameraGateway>().RecoveryResources;
+                    var released = algorithms == 0 && media.ActiveJobs == 0 && media.ActiveReservations == 0 &&
+                        media.ActiveLeases == 0 && cameras.All(s => s.Released);
+                    sp.GetRequiredService<ILoggerFactory>().CreateLogger("RecoverySoftwareResources").Log(
+                        released ? LogLevel.Information : LogLevel.Warning,
+                        "RecoveryResources released={Released} runId={RunId} algorithms={Algorithms} mediaJobs={MediaJobs} reservations={Reservations} leases={Leases} cameras={Cameras}",
+                        released, sp.GetRequiredService<CommandRegistry>().PhysicalOwner, algorithms, media.ActiveJobs,
+                        media.ActiveReservations, media.ActiveLeases, System.Text.Json.JsonSerializer.Serialize(cameras));
+                    return released;
+                },
                 budget.Value.BusinessMs.XyCompletion, budget.Value.BusinessMs.CriticalSave));
         services.AddSingleton<IReservedIntegration>(new NotIntegratedPort("ModelManagement"));
         services.AddSingleton<IReservedIntegration>(new NotIntegratedPort("SampleManagement"));

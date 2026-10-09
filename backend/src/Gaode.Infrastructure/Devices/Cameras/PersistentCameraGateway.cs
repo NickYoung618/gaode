@@ -13,6 +13,9 @@ public sealed record CameraWorkerStatus(string Role, string Serial, string Expec
     string State, int? ProcessId, Guid SessionId, long Epoch, long MaxBytes,
     int OpenCount, string? Error, CaptureFrameMetadata? Metadata);
 
+public sealed record CameraRecoveryResourceState(string Role, string State, bool OperationActive, bool ProcessRunning,
+    bool PipePresent, bool CleanupConfirmed, bool Released);
+
 public sealed class CameraRecoveryRejectedException(CameraWorkerStatus status)
     : InvalidOperationException("CameraRecoveryNotAllowed:" + status.State)
 { public CameraWorkerStatus Status { get; } = status; }
@@ -53,6 +56,7 @@ public sealed class PersistentCameraGateway : ICameraSdkGateway
     public long GetConnectionEpoch(string binding) => Find(binding).Epoch;
     public long GetMaxCaptureBytes(string binding, long fallback) => Find(binding).Snapshot() is { State: "Ready", MaxBytes: > 0 } status
         ? status.MaxBytes : throw new InvalidOperationException("CameraNotReady:" + binding);
+    public IReadOnlyList<CameraRecoveryResourceState> RecoveryResources => _workers.Values.Select(x => x.RecoveryResource()).ToArray();
     public IReadOnlyList<CameraWorkerStatus> Status => _workers.Values.Select(x => x.Snapshot()).ToArray();
     public async Task StartAsync(CancellationToken ct)
     {
@@ -100,6 +104,7 @@ public sealed class PersistentCameraGateway : ICameraSdkGateway
         private Process? _process;
         private NamedPipeServerStream? _pipe;
         private string _state = "Stopped";
+        private bool _cleanupConfirmed = true;
         private string? _error;
         private Guid _session;
         public long Epoch { get; private set; }
@@ -123,6 +128,23 @@ public sealed class PersistentCameraGateway : ICameraSdkGateway
                 return new(binding.Role, binding.Serial, binding.ExpectedNicMac,
                     _state, _process is { HasExited: false } ? _process.Id : null, _session, Epoch, MaxBytes, _openCount, _error, _metadata);
             }
+        }
+        public CameraRecoveryResourceState RecoveryResource()
+        {
+            var idle = _gate.Wait(0);
+            try
+            {
+                lock (_stateGate)
+                {
+                    ReconcileExit();
+                    var running = _process is { HasExited: false };
+                    var pipe = _pipe is not null;
+                    var released = idle && (_state == "Ready" && running && pipe ||
+                        _state is "Faulted" or "Stopped" && !running && !pipe && _cleanupConfirmed);
+                    return new(binding.Role, _state, !idle, running, pipe, _cleanupConfirmed, released);
+                }
+            }
+            finally { if (idle) _gate.Release(); }
         }
         private void ReconcileExit()
         {
@@ -157,6 +179,7 @@ public sealed class PersistentCameraGateway : ICameraSdkGateway
             {
                 if (Volatile.Read(ref _stopRequested) != 0) throw new CameraRecoveryRejectedException(Snapshot());
                 if (_state == "Ready") return;
+                _cleanupConfirmed = false;
                 _state = "Starting"; _error = null; MaxBytes = 0; _lastFrame = null; _lastTrigger = 0;
                 _session = Guid.NewGuid(); Epoch = DateTime.UtcNow.Ticks;
             }
@@ -199,7 +222,10 @@ public sealed class PersistentCameraGateway : ICameraSdkGateway
             }
             catch (Exception e)
             {
-                Fault(e); await StopCoreAsync(); lock (_stateGate) _state = "Faulted";
+                var neverOpened = e is IOException && e.Data["CameraDeviceOpenAttempted"] is false;
+                Fault(e); await StopCoreAsync();
+                lock (_stateGate) { _state = "Faulted"; _cleanupConfirmed |= neverOpened && _process is null && _pipe is null; }
+                Log("RecoveryResourceObserved", new { neverOpened, _cleanupConfirmed, processReleased = _process is null, pipeReleased = _pipe is null });
             }
         }
         private async Task<(CameraWireMessage Header, byte[] Data)> ExchangeAsync(CameraWireMessage request,
@@ -311,6 +337,7 @@ public sealed class PersistentCameraGateway : ICameraSdkGateway
                 lock (_stateGate)
                 {
                     _process?.Dispose(); _process = null; _normalClosing = null;
+                    _cleanupConfirmed |= restored;
                     _state = "Stopped"; Log(restored ? "Stopped_ParametersRestored" : "Stopped_ParameterRestorationUnconfirmed");
                 }
             }

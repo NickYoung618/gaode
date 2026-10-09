@@ -184,16 +184,24 @@ public sealed partial class LatestProtocolPlcDevice : IPlcStatePort, IPlcActionP
             // Site safety comes from the confirmed alarm/independent interlocks,
             // not the absent legacy ManualZoneOccupied point.
             checks.Remove("NoManualOccupancy");
+            checks.Remove("Automatic"); // Recovery may finish in manual mode; start/motion still require automatic.
             checks["ThisSystemResetObserved"] = verifiedSystemResetEpoch == sampledEpoch && !unknown;
             checks["PcReadyAndStartClear"] = C(SignalId.PcSystemReady) && !C(SignalId.PcStartCmd);
-            checks["AxisFeedbackCleared"] = PreparedPlcReadPlans.Axes.All(id => R(id) == 0) &&
-                !C(SignalId.RotateStart) && R(SignalId.RPosConfirmed) == 0;
+            checks["AxisResetFeedbackValid"] = PreparedPlcReadPlans.Axes.All(id => R(id) == 1) &&
+                !C(SignalId.RotateStart) && R(SignalId.RPosConfirmed) == 1;
             checks["FlipFeedbackCleared"] = R(SignalId.FlipStatus) == 0 && R(SignalId.FlipUnloadStatus) == 0;
             checks["AllLinearAxesAtSafeZero"] = PreparedPlcReadPlans.Position.All(id =>
-                float.IsFinite(words.Float(id)) && Math.Abs(words.Float(id)) <= PositionTolerance);
+                float.IsFinite(words.Float(id)) && Math.Abs(words.Float(id)) <= (float)SafeZeroTolerance);
         }
         RuntimeDiagnostics.Record("RecoveryInitialObservation", checks.Values.All(x => x) ? "Passed" : "Blocked", null,
-            new { actual, checks, protocol = PlcAddressMap.Contract }, warning: checks.Values.Any(x => !x));
+            new { actual, checks, safeZeroToleranceMm = SafeZeroTolerance, protocol = PlcAddressMap.Contract,
+                axes = PreparedPlcReadPlans.Starts.Select((start, i) => new {
+                    request = start.ToString(), requestRaw = words.Word(start),
+                    feedback = PreparedPlcReadPlans.Axes[i].ToString(), feedbackRaw = words.Word(PreparedPlcReadPlans.Axes[i]),
+                    position = PreparedPlcReadPlans.Position[i].ToString(), actual = words.Float(PreparedPlcReadPlans.Position[i]),
+                    expectedZero = 0 }),
+                rotation = new { request = C(SignalId.RotateStart), feedback = R(SignalId.RPosConfirmed),
+                    actual = words.Float(SignalId.MachineCurrentPosR) } }, warning: checks.Values.Any(x => !x));
         var interpreted = Interpret(actual);
         var blocked = InitialBlockedReasons(checks);
         return new(blocked.Count == 0 ? InitialReadiness.Ready : InitialReadiness.Blocked, interpreted, blocked,
@@ -218,7 +226,7 @@ public sealed partial class LatestProtocolPlcDevice : IPlcStatePort, IPlcActionP
             unknown = false;
             failure = null;
             pcReady = false;
-            verifiedSystemResetEpoch = null;
+            verifiedSystemResetEpoch = null; axisClosures.Clear();
             stopRequested = false;
             epoch++;
             resetting = true;

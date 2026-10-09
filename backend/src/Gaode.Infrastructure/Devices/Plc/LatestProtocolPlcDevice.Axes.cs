@@ -71,7 +71,7 @@ public sealed partial class LatestProtocolPlcDevice
         token.ThrowIfCancellationRequested();
         if (!window.Contains(Stopwatch.GetTimestamp())) throw new TimeoutException("AxisWindowClosed");
         var sample = ReadProtocolSample();
-        if (!sample.Connected || !sample.SafetyClear || sample.ConnectionEpoch != expectedEpoch || unknown)
+        if (!sample.Connected || !sample.Automatic || !sample.SafetyClear || sample.ConnectionEpoch != expectedEpoch || unknown)
             { lock (sync) axisClosures.Clear(); throw new IOException("AxisObservationOrSafetyLost"); }
     }
 
@@ -108,7 +108,9 @@ public sealed partial class LatestProtocolPlcDevice
         {
             CheckAxisWindow(window, expectedEpoch, token);
             lock (sync) axisClosures.Remove(axis.Start);
-            if (baseline.Word(axis.Confirmed) != 0) throw new IOException("PreviousAxisNotCleared:" + axis.Confirmed);
+            if (baseline.Word(axis.Confirmed) != 1) throw new IOException("AxisNotArrived:" + axis.Confirmed);
+            if (Math.Abs(baseline.Float(axis.Actual) - (float)axis.Value) <= PositionTolerance)
+                throw new IOException("AxisSameTargetWithoutCompletedAction:" + axis.Confirmed);
             await signals.WriteFloatAsync(axis.Target, (float)axis.Value, token);
         }
         var dispatchClocks = axes.ToDictionary(a => a.Confirmed, _ => new PlcExchangeClock());
@@ -161,12 +163,14 @@ public sealed partial class LatestProtocolPlcDevice
                     if (axes.Any(a => !float.IsFinite(actual.Values.Float(a.Actual)) ||
                         Math.Abs(actual.Values.Float(a.Actual) - (float)a.Value) > PositionTolerance))
                         throw new IOException("AxisActualPositionMismatch");
-                    var completedObservation = Observe(); // Preserve arrival/coordinate identity before feedback reset.
+                    var completedObservation = Observe(); // Preserve this action arrival and coordinate identity before clearing the PC request.
+                    logger.LogInformation("AxisMotionCompleted action={Action} epoch={Epoch} axes={Axes}; actual coordinates verified; PC requests pending release",
+                        pending?.Id, expectedEpoch, string.Join(",", axes.Select(a => a.Confirmed)));
                     foreach (var axis in axes)
                     {
                         CheckAxisWindow(window, expectedEpoch, token);
                         await ClearAndConfirmAsync(axis.Confirmed.ToString(), "B", axis.Start, true,
-                            [axis.Start, axis.Confirmed], window, expectedEpoch, token);
+                            [axis.Start], window, expectedEpoch, token);
                         lock (sync) axisClosures[axis.Start] = new(expectedEpoch, actual.Values.Float(axis.Actual));
                     }
                     CheckAxisWindow(window, expectedEpoch, token);
@@ -194,8 +198,8 @@ public sealed partial class LatestProtocolPlcDevice
         {
             if (current.Bit(axis.Start) || !float.IsFinite(current.Float(axis.Actual)) ||
                 Math.Abs(current.Float(axis.Actual) - (float)axis.Value) > PositionTolerance ||
-                current.Word(axis.Confirmed) != 0)
-                { lock (sync) axisClosures.Remove(axis.Start); throw new IOException("AxisFinalPositionUnconfirmed:" + axis.Confirmed); }
+                current.Word(axis.Confirmed) != 1)
+                { lock (sync) axisClosures.Remove(axis.Start); logger.LogError("AxisFinalPositionUnconfirmed action={Action} epoch={Epoch} axis={Axis} request={Request} feedback={Feedback} actual={Actual} target={Target}", pending?.Id, expectedEpoch, axis.Confirmed, current.Word(axis.Start), current.Word(axis.Confirmed), current.Float(axis.Actual), axis.Value); throw new IOException("AxisFinalPositionUnconfirmed:" + axis.Confirmed); }
         }
         var identity = new GroupObservation("P", 0, expectedEpoch, SelectValues(current, PreparedPlcReadPlans.Position), 0, 0, 0).Identity;
         completedMoveObservation = Interpret(Sample(current, expectedEpoch, identity.SampleStartedUtc) with { PositionIdentity = identity });
@@ -207,7 +211,7 @@ public sealed partial class LatestProtocolPlcDevice
         PlcScheduledTransport.Eligibility.Value = () =>
         {
             lock (sync) return !token.IsCancellationRequested && window.Contains(Stopwatch.GetTimestamp()) &&
-                epoch == expectedEpoch && !unknown && !stopRequested && ReadProtocolSample().SafetyClear;
+                epoch == expectedEpoch && !unknown && !stopRequested && ReadProtocolSample().Automatic && ReadProtocolSample().SafetyClear;
         };
         return new DispatchScope(previous);
     }

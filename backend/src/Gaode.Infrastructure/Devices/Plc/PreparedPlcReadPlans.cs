@@ -25,6 +25,9 @@ internal sealed class PreparedPlcReadPlans
     internal static readonly SignalId[] FlipClear = [SignalId.FlipSorting, SignalId.FlipStatus, SignalId.FlipUnloadStatus];
     internal static readonly SignalId[] Rotation = [SignalId.RotateStart, SignalId.RPosConfirmed, SignalId.MachineCurrentPosR];
     internal static readonly SignalId[] ResetPreconditions = [SignalId.PcSystemReady, SignalId.SoftStopCmd, SignalId.SystemResetCmd];
+    internal static readonly SignalId[] ResetActionBits = [.. Starts, SignalId.RotateStart, SignalId.PcStartCmd];
+    internal static readonly SignalId[] ResetActionWords = [SignalId.FlipSorting, SignalId.SortingCmd];
+    internal static readonly SignalId[] ResetActionRequests = [.. ResetActionBits, .. ResetActionWords];
     private readonly Dictionary<UInt128, PreparedPlcReadPlan> plans = [];
     internal Guid AdmissionId { get; } = Guid.NewGuid();
     internal int Count => plans.Count;
@@ -33,7 +36,7 @@ internal sealed class PreparedPlcReadPlans
         foreach (var field in definition.Fields) Add([field.Id]);
         Add(definition.Fields.Select(f => f.Id)); Add(Base); Add(BaseWithoutAxes); Add(BaseWithoutGripper); Add(BaseWithoutAxesOrGripper); Add(Position); Add(Transfer); Add(Gripper); Add(Rotation); Add(FlipClear);
         Add([.. Base, .. Position]);
-        if (definition.IsSiteLayout) Add(ResetPreconditions);
+        if (definition.IsSiteLayout) { Add(ResetPreconditions); Add(ResetActionRequests); }
         Add([SignalId.PlcReadyState, SignalId.PlcModeAuto, SignalId.PlcSystemFault]);
         // Current axis batches are finite. Include every legal subset once at admission.
         for (var mask = 1; mask < 32; mask++)

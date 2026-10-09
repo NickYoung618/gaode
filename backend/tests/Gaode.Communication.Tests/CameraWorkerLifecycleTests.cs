@@ -207,6 +207,35 @@ public sealed class CameraWorkerLifecycleTests(ITestOutputHelper output)
         Assert.DoesNotContain("CameraWorkerExitedUnexpectedly",File.ReadAllText(Path.Combine(fixture.Root,"state","A.host.jsonl")));
     }
 
+    [Theory]
+    [InlineData("init-before-open-fail", true)]
+    [InlineData("init-fail", false)]
+    public async Task FaultedInitializationRequiresExplicitNeverOpenedAndExitedResources(string mode, bool released)
+    {
+        await using var fixture = new Fixture("3D"); await fixture.Mode(mode);
+        await fixture.Gateway.StartAsync(default);
+        Assert.Equal("Faulted", Assert.Single(fixture.Gateway.Status).State);
+        using var settled = new CancellationTokenSource(5000);
+        while (Assert.Single(fixture.Gateway.RecoveryResources).OperationActive) await Task.Delay(10, settled.Token);
+        var proof = Assert.Single(fixture.Gateway.RecoveryResources);
+        Assert.True(released == proof.Released, JsonSerializer.Serialize(proof) + File.ReadAllText(Path.Combine(fixture.Root,"state","3D.host.jsonl"))); Assert.False(proof.OperationActive);
+        Assert.False(proof.ProcessRunning); Assert.False(proof.PipePresent);
+        await Assert.ThrowsAsync<InvalidOperationException>(() => fixture.Gateway.TriggerAsync("3D", "no-trigger"));
+        Assert.False(File.Exists(Path.Combine(fixture.Root, "triggers.txt")));
+    }
+    [Fact]
+    public async Task InFlightCaptureIsNotReleasedAndNormalCloseConfirmsCleanup()
+    {
+        await using var fixture = new Fixture("A"); await fixture.Gateway.StartAsync(default);
+        Assert.True(Assert.Single(fixture.Gateway.RecoveryResources).Released);
+        await fixture.Mode("hold"); var capture = fixture.Gateway.TriggerAsync("A", "1");
+        using var deadline = new CancellationTokenSource(5000);
+        while (!File.Exists(Path.Combine(fixture.Root, "triggers.txt"))) await Task.Delay(10, deadline.Token);
+        Assert.False(Assert.Single(fixture.Gateway.RecoveryResources).Released);
+        await capture; await fixture.Gateway.DisposeAsync();
+        var proof = Assert.Single(fixture.Gateway.RecoveryResources);
+        Assert.True(proof.Released); Assert.True(proof.CleanupConfirmed); Assert.False(proof.ProcessRunning);
+    }
     private static CaptureRequest Request(string role) => new(new PortEnvelope(Guid.NewGuid(),Guid.NewGuid(),1,Guid.NewGuid(),"fixture","1","Test",1,long.MaxValue,"fixture-clock"),
         Guid.NewGuid(),role=="3D"?CaptureRole.ThreeD:CaptureRole.Detection,"fixture","1",null,null,role,null,Guid.NewGuid(),4096);
 

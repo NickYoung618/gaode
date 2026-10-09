@@ -23,6 +23,14 @@ internal sealed class SiteProtocolTcpFixture : IAsyncDisposable
     internal int StartEdges { get; private set; }
     internal int MotionEdges { get; private set; }
     internal bool KeepSoftStopAsserted { get; set; }
+    internal bool RetainArrivalAfterAction { get; set; } = true;
+    internal bool SuppressMotionTransition { get; set; }
+    internal bool KeepXRequestAsserted { get; set; }
+    internal ConcurrentQueue<ushort[]> ResetActionRequests { get; } = new();
+    internal bool RetainArrivalOnSystemReset { get; set; } = true;
+    internal byte? ReadyOnReset { get; set; }
+    internal int ResetReadyZeroReads { get; private set; }
+    internal int ResetReadyOneReads { get; private set; }
     internal ConcurrentQueue<(byte PcReady, byte SoftStop, int Readbacks)> ResetPreconditions { get; } = new();
     private int resetPreconditionReadbacks;
     internal ConcurrentQueue<(ushort ZLow, ushort ZHigh, byte ZRequest, ushort ZFeedback)> StartClears { get; } = new();
@@ -31,6 +39,7 @@ internal sealed class SiteProtocolTcpFixture : IAsyncDisposable
     internal SiteProtocolTcpFixture()
     {
         SetByte(6015, 1); SetByte(6016, 1);
+        foreach (var mb in new[] {6040,6042,6044,6046,6048,6060}) registers[mb / 2] = 1;
         // Fixture coordinates only. Raw CDAB encoding of 1.25 = 0000 3FA0.
         foreach (var mb in new[] { 6064, 6076, 6084, 6088, 6092 })
         { registers[mb / 2] = 0; registers[mb / 2 + 1] = 0x3fa0; }
@@ -99,6 +108,11 @@ internal sealed class SiteProtocolTcpFixture : IAsyncDisposable
         {
             if (function == 3)
             {
+                if (ResetEdges > 0 && Byte(2009) == 1 && offset <= 6015 / 2 && offset + value > 6015 / 2)
+                {
+                    if (Byte(6015) == 0) ResetReadyZeroReads++;
+                    else if (Byte(6015) == 1) ResetReadyOneReads++;
+                }
                 if (Byte(2006) == 1 && Byte(2008) == 0 && offset <= 2006 / 2 && offset + value > 2008 / 2)
                     resetPreconditionReadbacks++;
                 var response = new byte[2 + value * 2]; response[0] = 3; response[1] = checked((byte)(value * 2));
@@ -110,21 +124,36 @@ internal sealed class SiteProtocolTcpFixture : IAsyncDisposable
             var accepted = words.Length > 0 && offset >= 1000 && offset + words.Length <= 1028;
             Writes.Enqueue((offset, words, accepted));
             if (!accepted) return [(byte)(function | 0x80), 2];
-            var priorReset = Byte(2009); var priorStart = Byte(2007);
+            var priorReset = Byte(2009); var priorStart = Byte(2007); var priorRotate = Byte(2000);
             var priorAxes = new[] { 2001, 2002, 2003, 2004, 2005 }.ToDictionary(mb => mb, Byte);
             for (var i = 0; i < words.Length; i++) registers[offset + i] = words[i];
             if (KeepSoftStopAsserted && offset <= 2008 / 2 && offset + words.Length > 2008 / 2)
                 SetByte(2008, 1);
+            if (KeepXRequestAsserted && offset <= 2001 / 2 && offset + words.Length > 2001 / 2) SetByte(2001, 1);
             if (ExerciseConfirmedOperations)
             {
                 if (priorReset == 0 && Byte(2009) != 0)
                 {
                     ResetEdges++;
+                    ResetActionRequests.Enqueue([.. new[] { 2000, 2001, 2002, 2003, 2004, 2005, 2007 }.Select(mb => (ushort)Byte(mb)), Word(2014), Word(2016)]);
+                    if (RetainArrivalOnSystemReset)
+                        foreach (var mb in new[] { 6040, 6042, 6044, 6046, 6048, 6060 }) registers[mb / 2] = 1;
                     ResetPreconditions.Enqueue((Byte(2006), Byte(2008), resetPreconditionReadbacks));
+                    if (ReadyOnReset is { } ready) SetByte(6015, ready);
                 }
                 if (priorStart == 0 && Byte(2007) != 0) StartEdges++;
                 if (priorStart != 0 && Byte(2007) == 0)
                     StartClears.Enqueue((registers[6084 / 2], registers[6084 / 2 + 1], Byte(2003), registers[6044 / 2]));
+            }
+            if (ExerciseConfirmedOperations && offset <= 2000 / 2 && offset + words.Length > 2000 / 2)
+            {
+                if (Byte(2000) != 0 && priorRotate == 0 &&
+                    (registers[2044 / 2] != registers[6068 / 2] || registers[2044 / 2 + 1] != registers[6068 / 2 + 1]))
+                {
+                    MotionEdges++; registers[6060 / 2] = 0;
+                    _ = CompleteMotionAsync(2000, 6060, 6068, [registers[2044 / 2], registers[2044 / 2 + 1]]);
+                }
+                else if (Byte(2000) == 0 && !RetainArrivalAfterAction) registers[6060 / 2] = 0;
             }
             // Confirmed axis request/feedback relations. This fixture does not
             // invent the initial/reset/soft-stop safety admission in PLC-Q4.
@@ -132,13 +161,18 @@ internal sealed class SiteProtocolTcpFixture : IAsyncDisposable
                 if (mb / 2 >= offset && mb / 2 < offset + words.Length)
                 {
                     var requested = Byte(mb) != 0;
-                    registers[feedback / 2] = requested && !ExerciseConfirmedOperations ? (ushort)1 : (ushort)0;
-                    if (ExerciseConfirmedOperations && requested && priorAxes[mb] == 0)
+                    var target = new[] { 2024, 2028, 2032, 2036, 2040 }[mb - 2001];
+                    var actual = new[] { 6064, 6076, 6084, 6088, 6092 }[mb - 2001];
+                    var sameTarget = registers[target / 2] == registers[actual / 2] && registers[target / 2 + 1] == registers[actual / 2 + 1];
+                    if (!SuppressMotionTransition && !sameTarget && (requested && priorAxes[mb] == 0 || !requested &&
+                        (priorAxes[mb] != 0 || !RetainArrivalOnSystemReset) &&
+                        (!RetainArrivalAfterAction || registers[feedback / 2] != 1)))
+                        registers[feedback / 2] = requested && !ExerciseConfirmedOperations ? (ushort)1 : (ushort)0;
+                    if (ExerciseConfirmedOperations && requested && priorAxes[mb] == 0 && !sameTarget)
                     {
                         MotionEdges++;
-                        var target = new[] { 2024, 2028, 2032, 2036, 2040 }[mb - 2001];
-                        var actual = new[] { 6064, 6076, 6084, 6088, 6092 }[mb - 2001];
                         var targetWords = new[] { registers[target / 2], registers[target / 2 + 1] };
+                        if (SuppressMotionTransition) { registers[actual / 2] = targetWords[0]; registers[actual / 2 + 1] = targetWords[1]; }
                         _ = CompleteMotionAsync(mb, feedback, actual, targetWords);
                     }
                 }

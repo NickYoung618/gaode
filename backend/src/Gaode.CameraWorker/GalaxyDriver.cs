@@ -39,6 +39,7 @@ internal sealed class GalaxyDriver(CameraBinding binding, Guid session, string s
         var matches = list.Where(x => x.GetSN() == Binding.Serial).ToArray();
         if (matches.Length != 1) throw new InvalidDataException($"SerialDiscoveryNotUnique: serial={Binding.Serial}, matches={matches.Length}, discovered={list.Count}; see discovery.json");
         var info = matches[0]; ValidateNic(info.GetNICIP(), info.GetIP(), info.GetNICMAC());
+        DeviceOpenAttempted = true;
         device = factory.OpenDeviceBySN(Binding.Serial, GX_ACCESS_MODE.GX_ACCESS_CONTROL);
         features = device.GetRemoteFeatureControl();
         foreach (var name in new[] { "AcquisitionMode", "TriggerSelector", "TriggerMode", "TriggerSource", "PixelFormat", "ExposureAuto", "GainAuto" })

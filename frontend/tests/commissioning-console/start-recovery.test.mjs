@@ -22,3 +22,20 @@ assert.match(api.recoveryNotice({runId:'retained',state:'RecoveryRequired',allow
 assert.match(api.recoveryNotice({state:'RecoveryRequired',allowedActions:['RecoveryCheck']}),/旧任务仍待核验/);
 assert.match(api.recoveryNotice({state:'Blocked',faultRestart:{status:'InitialReady'},allowedActions:[]}),/显式点击启动/);
 });
+
+// Same JSON field types as the field GET response: state=24, executionState="Cancelled".
+test('actual numeric state projection releases only a durably recovered run with available admission',()=>{
+const run=JSON.parse(readFileSync(new URL('./fixtures/recovered-run-r8.json',import.meta.url),'utf8'));
+assert.equal(typeof run.state,'number');
+assert.equal(run.executionState,'Cancelled');
+assert.equal(api.canStartAfterRecovery(run,{state:'Available'}),true);
+assert.equal(api.canStartAfterRecovery(run,{state:'Held'}),false);
+assert.equal(api.canStartAfterRecovery({...run,commissioningRecovery:null},{state:'Available'}),false);
+assert.equal(api.canStartAfterRecovery({...run,commissioningRecovery:{...run.commissioningRecovery,recoveryWriteId:null}},{state:'Available'}),false);
+assert.equal(api.canStartAfterRecovery({...run,executionState:'RecoveryRequired'},{state:'Available'}),false);
+assert.equal(api.canStartAfterRecovery({...run,executionState:undefined},{state:'Available'}),false);
+assert.match(api.recoveryNotice(run),/\u65e7\u4efb\u52a1\u5df2\u7ed3\u675f/);
+});
+test('numeric recovery state uses the existing executionState for recovery instructions',()=>{
+assert.match(api.recoveryNotice({state:22,executionState:'RecoveryRequired',allowedActions:['CommissioningRecoveryReset']}),/\u590d\u4f4d\u5e76\u7ed3\u675f\u65e7\u4efb\u52a1/);
+});

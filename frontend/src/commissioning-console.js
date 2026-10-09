@@ -48,21 +48,26 @@
     const key = item.role === 'Detection' ? 'Detection:'+item.businessCamera : item.role;
     return new Map([['Detection:C',0],['Detection:D',1],['Detection:A',2],['Detection:B',3],['E',4],['ThreeD',5],['F',6]]).get(key);
   }
+  // Query JSON exposes the business state as executionState; state is a numeric enum.
+  function executionState(run) {
+    return run?.executionState || (typeof run?.state === 'string' ? run.state : null);
+  }
   function recoveryNotice(run) {
+    const state = executionState(run);
     if (run?.commissioningRecovery?.status === 'ClosedAfterVerifiedReset')
       return 'PLC复位及旧任务恢复核验已通过，旧任务已结束；核对配方后手动点击启动，开启完整新一轮，不继续旧动作。';
-    if (!run || !['RecoveryRequired', 'Blocked', 'Restricted'].includes(run.state)) return null;
+    if (!run || !['RecoveryRequired', 'Blocked', 'Restricted'].includes(state)) return null;
     const actions = run.allowedActions || [];
     if (actions.includes('CommissioningRecoveryReset')) return '旧任务待恢复：排除现场故障后，点击“复位并结束旧任务”或一键复位；后台会核验本次复位、旧反馈清零和资源退出，成功后才允许手动开始新一轮。';
     if (actions.includes('RecoveryReset')) return '旧任务待恢复：先排除故障，填写原因并执行复位；复位成功后仍须初始核验。';
     if (actions.includes('RecoveryCheck')) return 'PLC复位已观察，旧任务仍待核验：核对料盘、零件和冻结配置，填写依据并执行初始核验。';
     if (run.faultRestart?.status === 'InitialReady') return '旧任务初始核验已通过；请显式点击启动，开启完整新轮，不继续旧动作。';
-    if (run.state === 'RecoveryRequired' || run.action === 'Unknown')
+    if (state === 'RecoveryRequired' || run.action === 'Unknown')
       return `旧任务 ${run.runId || '编号未提供'} 待恢复核验，当前身份没有可用的恢复操作入口。请由具备运行权限的操作员使用一键复位完成恢复核验；若仍无入口，请维护人员核对安装及确认配置。重开程序或重复点击启动无效，不要删除原任务。`;
     return null;
   }
   function canStartAfterRecovery(run, admission) {
-    return run?.state === 'Cancelled' && run?.commissioningRecovery?.status === 'ClosedAfterVerifiedReset' &&
+    return executionState(run) === 'Cancelled' && run?.commissioningRecovery?.status === 'ClosedAfterVerifiedReset' &&
       !!run.commissioningRecovery.recoveryWriteId && admission?.state === 'Available';
   }
   function resetFailure(message) {

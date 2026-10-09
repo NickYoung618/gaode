@@ -55,8 +55,10 @@ public sealed class PlcRuntimeOptions
 public sealed record PlcSiteOperations(string SchemaVersion, string SourceReference)
 {
     public bool RestoresWorkpieceAndMechanisms { get; init; }
+    public double? SafeZeroToleranceMm { get; init; }
     [System.Text.Json.Serialization.JsonIgnore]
-    public bool IsValid => SchemaVersion == "plc-site-operations/1" && !string.IsNullOrWhiteSpace(SourceReference);
+    public bool IsValid => SchemaVersion == "plc-site-operations/1" && !string.IsNullOrWhiteSpace(SourceReference) &&
+        (SafeZeroToleranceMm is null || double.IsFinite(SafeZeroToleranceMm.Value) && SafeZeroToleranceMm.Value > 0);
 }
 
 public sealed record PlcGrabSafetyPosition(double GrabZ, string Unit, string Frame, string Purpose, string SourceReference);

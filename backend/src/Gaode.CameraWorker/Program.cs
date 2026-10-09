@@ -84,7 +84,7 @@ internal static class Program
         catch (Exception error)
         {
             Log("error", new { error = error.ToString(), request = request?.RequestId });
-            try { await CameraWorkerProtocol.WriteAsync(pipe, new("error", session, request?.RequestId ?? Guid.Empty) { Error = error.Message }, ReadOnlyMemory<byte>.Empty, CancellationToken.None); }
+            try { await CameraWorkerProtocol.WriteAsync(pipe, new("error", session, request?.RequestId ?? Guid.Empty) { Error = error.Message, DeviceOpenAttempted = driver?.DeviceOpenAttempted }, ReadOnlyMemory<byte>.Empty, CancellationToken.None); }
             catch (IOException) { }
             return 2;
         }

@@ -17,6 +17,7 @@ public sealed record CameraWireMessage(string Kind, Guid SessionId, Guid Request
     public string? Format { get; init; }
     public string? ContentType { get; init; }
     public string? Error { get; init; }
+    public bool? DeviceOpenAttempted { get; init; }
 }
 
 public static class CameraWorkerProtocol
@@ -29,7 +30,12 @@ public static class CameraWorkerProtocol
     {
         if (response.Version != 2 || response.SessionId != request.SessionId || response.RequestId != request.RequestId)
             throw new InvalidDataException("CameraOldSessionOrRequestRejected");
-        if (response.Kind == "error") throw new IOException("CameraSdkError:" + response.Error);
+        if (response.Kind == "error")
+        {
+            var error = new IOException("CameraSdkError:" + response.Error);
+            if (response.DeviceOpenAttempted is { } attempted) error.Data["CameraDeviceOpenAttempted"] = attempted;
+            throw error;
+        }
         if (response.Kind != expectedKind) throw new InvalidDataException("CameraUnexpectedMessage:" + response.Kind);
     }
 
