@@ -6,8 +6,13 @@ public sealed class AlgorithmLeaseSupervisor(IMediaStore media)
 {
     public IDisposable HoldInputs(IReadOnlyList<MediaRef> inputs, string consumer)
     {
-        var leases = inputs.Select(x => media.Lease(x.MediaId, consumer)).ToArray();
-        return new Group(leases);
+        var leases = new List<IDisposable>();
+        try
+        {
+            foreach (var input in inputs) leases.Add(media.Lease(input.MediaId, consumer));
+            return new Group(leases.ToArray());
+        }
+        catch { foreach (var lease in leases) lease.Dispose(); throw; }
     }
 
     private sealed class Group(IDisposable[] leases) : IDisposable

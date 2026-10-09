@@ -16,31 +16,51 @@ public sealed record AlgorithmOutcome(Guid CallId, Guid OperationId, Guid Captur
     public ComponentExecutionOrigin Origin { get; init; } = ComponentExecutionOrigin.Unknown;
 }
 
-public sealed class AlgorithmRuntime
+public sealed partial class AlgorithmRuntime
 {
     private readonly ConcurrentDictionary<Guid, IsolatedAlgorithmCall> active = new();
     private readonly ConcurrentQueue<AlgorithmExecutionEvidence> completed = new();
     public IReadOnlyList<AlgorithmExecutionEvidence> ExecutionEvidence =>
         active.Values.Select(x => x.Snapshot()).Concat(completed.ToArray()).ToArray();
     public int ActiveExecutions => active.Count;
-    public Task WaitForIdleAsync(CancellationToken token) =>
-        Task.WhenAll(active.Values.Select(x => x.Reclaimed)).WaitAsync(token);
+    public async Task WaitForIdleAsync(CancellationToken token)
+    {
+        await Task.WhenAll(active.Values.Select(x => x.Reclaimed)).WaitAsync(token);
+        if (resources is not null) await resources.FlushAsync(token);
+    }
+
+    // Host waits each original resource window independently; it does not abandon ownership.
+    public async Task<bool> WaitForShutdownAsync(CancellationToken token)
+    {
+        async Task WaitCallAsync(Guid id, IsolatedAlgorithmCall call)
+        {
+            var remaining = resources?.RemainingReleaseWait(id) ?? TimeSpan.Zero;
+            try { await call.Reclaimed.WaitAsync(remaining, token); }
+            catch (TimeoutException) { }
+        }
+        await Task.WhenAll(active.ToArray().Select(x => WaitCallAsync(x.Key, x.Value)));
+        if (resources is not null) await resources.FlushAsync(token);
+        return active.IsEmpty && resources?.HasUnreclaimedResources != true;
+    }
 
     private readonly IAlgorithmPort algorithm;
     private readonly IMediaStore media;
     private readonly OperationIngress ingress;
     private readonly AlgorithmLeaseSupervisor leases;
+    private readonly AlgorithmResourceSupervisor? resources;
     private readonly SemaphoreSlim _pose, _decode, _poseAdmission, _decodeAdmission;
+    private readonly SemaphoreSlim synchronousDetection = new(1, 1);
 
     public AlgorithmRuntime(IAlgorithmPort algorithm, IMediaStore media,
         OperationIngress ingress, AlgorithmLeaseSupervisor leases,
-        int queuePerRole = 1, int workerPerRole = 1)
+        int queuePerRole = 1, int workerPerRole = 1, AlgorithmResourceSupervisor? resources = null)
     {
         if (queuePerRole < 0 || workerPerRole <= 0) throw new ArgumentOutOfRangeException(nameof(queuePerRole));
         this.algorithm = algorithm;
         this.media = media;
         this.ingress = ingress;
         this.leases = leases;
+        this.resources = resources;
         _pose = new(workerPerRole, workerPerRole);
         _decode = new(workerPerRole, workerPerRole);
         _poseAdmission = new(queuePerRole + workerPerRole, queuePerRole + workerPerRole);
@@ -77,6 +97,26 @@ public sealed class AlgorithmRuntime
             AlgorithmRole.FDecode => run.Config.Public.Algorithms.FDecode,
             _ => throw new InvalidOperationException("PublicAlgorithmRoleUnsupported")
         };
+        Gaode.Application.Configuration.AlgorithmModuleReference? module = null;
+        if(run.Config.RealAlgorithm is { } descriptor)
+        {
+            if(algorithm.Origin.Source != ComponentEvidenceSource.Real) throw new InvalidOperationException("RealAlgorithmNotIntegratedOrNotReady");
+            module = AlgorithmInputPolicy.RequireModule(descriptor,role,inputs.Count,config.ParametersVersion!,config.Capability!.Id,config.Capability.ContractVersion);
+        }
+        if(run.Config.RealAlgorithm is not null || algorithm.InputRepresentation(role) != AlgorithmInputRepresentation.NativeMedia)
+        {
+            var prepared = new List<MediaRef>();
+            foreach(var original in inputs)
+            {
+                var converted = await media.PrepareAlgorithmInputAsync(original,cancellationToken);
+                var expected = role == AlgorithmRole.TrayPose ? "ply" : "png";
+                if(converted.Format!=expected) throw new InvalidDataException("AlgorithmInputRepresentationMismatch");
+                await run.SaveAsync(WriteKind.Media,converted,cancellationToken:cancellationToken);
+                await media.MarkCommittedAsync(converted,cancellationToken);
+                prepared.Add(converted);
+            }
+            inputs = prepared;
+        }
         var budget = role == AlgorithmRole.TrayPose ? run.Config.Budget.BusinessMs.TrayPoseAlgorithm : run.Config.Budget.BusinessMs.FDecode;
         var key = new OperationKey(run.RunId, operationId, 1, OperationPhase.Result);
         RuntimeDiagnostics.Record("Algorithm", "Admission", run.RunId,
@@ -143,14 +183,24 @@ public sealed class AlgorithmRuntime
         var request = new AlgorithmRequest(envelope, callId, captureId, role, inputs,
             config.ParametersVersion ?? "NotConfigured", config.Capability.Id,
             config.Capability.ContractVersion, intentReceipt.WriteId, payload.InvocationBasis)
-            { ObservationContext = observationContext };
+            { ObservationContext = observationContext, FrozenModule = module, AlgorithmConfigurationDigest = run.Config.RealAlgorithmDigest };
+        if (resources is not null)
+        {
+            try
+            {
+                await resources.RegisterAsync(new(run.RunId, StartRunContextParser.Parse(run.ContextJson).TrayId,
+                    callId, operationId, run.ClockId, run.Config.SnapshotId, inputs,
+                    run.Config.Budget.BusinessMs.WorkerReleaseGrace) { Request = request }, cancellationToken);
+            }
+            catch { inputLease.Dispose(); slot.Release(); admission.Release(); throw; }
+        }
         var execution = new IsolatedAlgorithmCall(request, inputLease, () => run.Timestamp, finished =>
         {
             completed.Enqueue(finished.Snapshot());
             while (completed.Count > 64) completed.TryDequeue(out _);
             active.TryRemove(callId, out _);
             slot.Release(); admission.Release();
-        });
+        }, resources is null ? null : resources.Observe);
         active[callId] = execution;
         var feedbackLogs = 0;
         void OnEvent(AlgorithmEvent e)
@@ -166,16 +216,18 @@ public sealed class AlgorithmRuntime
             if (!execution.Observe(e)) return;
             if (e.Kind is AlgorithmEventKind.Result or AlgorithmEventKind.Failed)
             {
-                // Only the winning original ingress decision supplies business data.
+                // Only the winning original ingress decision supplies business data or its terminal projection.
                 var decision = ingress.Receive(key, e.Kind == AlgorithmEventKind.Failed ? e.ErrorCode : "AlgorithmResult");
-                if (decision.Outcome == IngressOutcome.Accepted) returned.TrySetResult(e);
+                if (decision.Outcome == IngressOutcome.Accepted)
+                { resources?.Terminal(callId, e.Kind.ToString()); returned.TrySetResult(e); }
+                else if (decision.Outcome == IngressOutcome.Late) resources?.Terminal(callId, "TimedOut");
             }
         }
         var cancelOnEnd = true;
         try
         {
             execution.Start(algorithm, OnEvent, () => !cancellationToken.IsCancellationRequested &&
-                !window.Completion.IsCompleted && !ingress.ReceiveIfExpired(window));
+                !window.Completion.IsCompleted && !ingress.ReceiveIfExpired(window) && resources?.AdmissionClosed != true);
             var controlSignal = new TaskCompletionSource(TaskCreationOptions.RunContinuationsAsynchronously);
             using var registration = cancellationToken.Register(() => controlSignal.TrySetResult());
             var first = await Task.WhenAny(execution.Dispatched, window.Completion, controlSignal.Task);
@@ -185,6 +237,7 @@ public sealed class AlgorithmRuntime
                 var dispatch = await execution.Dispatched;
                 if (dispatch.Error is { } failure)
                 {
+                    resources?.Terminal(callId, "DispatchError");
                     RuntimeDiagnostics.Record("AlgorithmDispatch", "Failed", run.RunId,
                         new { callId, operationId, dispatch.NotDispatched,
                             disposition = "PreserveIngressDecisionAndResourceOwnership" }, failure);
@@ -210,6 +263,7 @@ public sealed class AlgorithmRuntime
             var evidence = execution.Snapshot();
             if (terminal.Outcome != IngressOutcome.Accepted)
             {
+                resources?.Terminal(callId, "TimedOut");
                 await run.ReportAsync(algorithm: AlgorithmState.TimedOut);
                 return new(callId, operationId, captureId, AlgorithmState.TimedOut,
                     null, intentReceipt.WriteId, window.StartTick, window.DueTick, "DeadlineExceeded",
@@ -218,6 +272,16 @@ public sealed class AlgorithmRuntime
                     evidence.DispatchTick, evidence.AcceptedTick, evidence.WorkerSessionId);
             }
             var result = await returned.Task;
+            resources?.StartObservation(callId, "Result");
+            var releaseWait = resources?.RemainingReleaseWait(callId) ??
+                TimeSpan.FromMilliseconds(run.Config.Budget.BusinessMs.WorkerReleaseGrace);
+            try { await execution.InputAndExecutionEnded.WaitAsync(releaseWait, cancellationToken); }
+            catch (TimeoutException)
+            {
+                RuntimeDiagnostics.Record("AlgorithmRelease", "Unknown", run.RunId,
+                    new { callId, operationId, disposition = "BlockDependentSteps;PreserveOwnership" }, warning: true);
+                throw new InvalidOperationException("AlgorithmResourcesUnconfirmed");
+            }
             await run.ReportAsync(algorithm: result.Kind == AlgorithmEventKind.Failed
                 ? AlgorithmState.Error : AlgorithmState.Success);
             cancelOnEnd = false;
@@ -227,11 +291,22 @@ public sealed class AlgorithmRuntime
                 terminal.Reason ?? "AlgorithmResult", evidence.AcceptedTick is null ? "Requested" : "Accepted",
                 evidence.DispatchTick, evidence.AcceptedTick, evidence.WorkerSessionId);
         }
+        catch (OperationCanceledException)
+        {
+            resources?.Terminal(callId, "Cancelled");
+            throw;
+        }
         finally
         {
             // Business completion is not resource completion. The isolated execution owns
             // admission, its role slot, cancellation source and inputs until reliable release.
             execution.EndBusiness(cancelOnEnd);
+            resources?.StartObservation(callId, cancellationToken.IsCancellationRequested ? "Cancelled" : "BusinessEnded");
+            if (resources is not null)
+            {
+                using var saveLimit = new CancellationTokenSource(TimeSpan.FromMilliseconds(run.Config.Budget.BusinessMs.CriticalSave), run.Clock);
+                await resources.FlushAsync(saveLimit.Token);
+            }
         }
     }
 }

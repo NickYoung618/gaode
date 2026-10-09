@@ -25,8 +25,7 @@ public sealed partial class LatestProtocolPlcDevice
     public Task<CaptureCycleResult> FinishCaptureWindowAsync(AcquisitionSession session, CaptureWorkCommit work,
         ActionWindow releaseWindow, CancellationToken token)
     {
-        if (work.RunId != session.Request.Correlation.RunId || work.OperationId != session.Request.Correlation.OperationId ||
-            !work.MediaReleased || work.WriteIds.Count == 0 || work.WriteIds.Any(id => id == Guid.Empty))
+        if (!work.IsFor(session))
             throw new InvalidOperationException("CaptureWorkCommitInvalid");
         return ReleaseCaptureAsync(session, releaseWindow, null, token);
     }

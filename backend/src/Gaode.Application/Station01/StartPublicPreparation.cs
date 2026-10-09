@@ -63,7 +63,9 @@ public sealed class StartPublicPreparation(IPublicConfiguration configurations,
     Func<Guid, RecipeExecutionDeadlines?, CancellationToken, Task>? beforeRecipeContinuationForTest = null,
     TrayAnomalyDecisionService? anomalyDecisions = null,
     LoadedConfiguration<CommissioningConfiguration>? commissioningConfiguration = null,
-    ICommissioningRunInputs? commissioningInputs = null)
+    ICommissioningRunInputs? commissioningInputs = null,
+    LoadedConfiguration<RealAlgorithmConfiguration>? realAlgorithmConfiguration = null,
+    Func<bool>? algorithmResourcesUnconfirmed = null)
 {
     private readonly ConcurrentDictionary<Guid, ActiveRun> _active = new();
     private int _admissionClosed;
@@ -79,6 +81,7 @@ public sealed class StartPublicPreparation(IPublicConfiguration configurations,
             throw new InvalidOperationException("本Host的模拟配置版本不可运行中切换");
         var canonical = JsonSerializer.Serialize(request, new JsonSerializerOptions(JsonSerializerDefaults.Web));
         if (commands.Replay(subject, request.RequestId, canonical) is { } replay) return replay;
+        if (algorithmResourcesUnconfirmed?.Invoke() == true) throw new InvalidOperationException("AlgorithmResourcesUnconfirmed");
         var startContext = StartRunContextParser.Parse(request.ContextJson);
         if (request.RestartFrom is { } restart) (recovery ?? throw new InvalidOperationException("FaultRestartUnavailable")).ValidateRestart(restart);
         var receipt = commands.Register(subject, request.RequestId, canonical, request.RestartFrom?.FaultRunId);
@@ -149,8 +152,8 @@ public sealed class StartPublicPreparation(IPublicConfiguration configurations,
             var validation = validator.Validate(publicConfig.Value, budget.Value, simulation?.Value,
                 fullSimulation: !externalVirtualPlc && !commissioning, externalVirtualPlc: externalVirtualPlc,
                 externalPlcProvider: externalPlcProvider, realDeviceCommissioning: commissioning,
-                commissioning: commissioningConfiguration?.Value);
-            var frozen = ConfigurationFreezer.Freeze(publicConfig, budget, simulation, capabilities.Versions, commissioningConfiguration);
+                commissioning: commissioningConfiguration?.Value, realAlgorithm: realAlgorithmConfiguration?.Value);
+            var frozen = ConfigurationFreezer.Freeze(publicConfig, budget, simulation, capabilities.Versions, commissioningConfiguration, realAlgorithmConfiguration);
             RuntimeDiagnostics.Record("Configuration", validation.CanStart ? "Frozen" : "Blocked", receipt.RunId,
                 new { frozen.SnapshotId, frozen.PublicDigest, frozen.BudgetDigest, frozen.SimulationDigest,
                     validation.BlockingControlErrors, validation.AlgorithmIssues,
@@ -175,6 +178,7 @@ public sealed class StartPublicPreparation(IPublicConfiguration configurations,
                 frozen.PublicJson, frozen.BudgetJson, frozen.SimulationJson,
                 frozen.PublicDigest, frozen.BudgetDigest, frozen.SimulationDigest, frozen.CommissioningJson,
                 frozen.CommissioningDigest, frozen.CommissioningSourceFile,
+                frozen.RealAlgorithmJson, frozen.RealAlgorithmDigest, frozen.RealAlgorithmSourceFile,
                 frozen.CapabilityVersions
             });
             await coordinator.SetAsync(receipt.RunId, s => s with
@@ -184,12 +188,13 @@ public sealed class StartPublicPreparation(IPublicConfiguration configurations,
                 PersistedRevision = run.PersistedRevision, Save = SaveState.Committed,
                 ObservedRevision = s.ObservedRevision + 1
             });
-            if (!validation.CanStart)
+            var realAlgorithmNotReady = realAlgorithmConfiguration is not null && validation.AlgorithmIssues.Count > 0;
+            if (!validation.CanStart || realAlgorithmNotReady)
             {
                 await run.SaveAsync(WriteKind.Audit, new { validation.BlockingControlErrors,
                     validation.AlgorithmIssues, disposition = "ConfigurationBlocked" },
                     RunState.ConfigurationBlocked);
-                await Stage(receipt.RunId, RunState.ConfigurationBlocked, "PublicConfigurationInvalid");
+                await Stage(receipt.RunId, RunState.ConfigurationBlocked, realAlgorithmNotReady ? "RealAlgorithmNotReady" : "PublicConfigurationInvalid");
                 diagnostics?.Record(request.RequestId, receipt.CommandId, receipt.RunId,
                     "ConfigurationValidation", "ConfigurationBlocked", "NoDeviceAction");
                 return;
@@ -198,7 +203,7 @@ public sealed class StartPublicPreparation(IPublicConfiguration configurations,
             {
                 await recovery!.LinkNewRunAsync(restart, receipt.RunId, receipt.CommandId, request.RequestId, run, cancellationToken);
             }
-            if (commissioning)
+            if (commissioning && realAlgorithmConfiguration is null)
             {
                 FLocation? selectedFLocation = null;
                 if (startContext.ExpectedRecipeRef is { } selected)
@@ -318,7 +323,7 @@ public sealed class StartPublicPreparation(IPublicConfiguration configurations,
                 RecipeRunPlanner.BuildExecutable(selectedForF, startContext.TrayId.ToString("D"), occupiedSlots, run.Config.Public.Purpose));
             run.ExecutionInputs = RecipeAdmission.Freeze(run.RunId, startContext.TrayId, plan,
                 capabilities, executionCosts.Resolve(frozen), run.Config.Public.Purpose, run.Config.Public.Algorithms.TrayPose);
-            if (commissioning) commissioningInputs!.BindRecipe(run.RunId, run.ExecutionInputs);
+            if (commissioning && realAlgorithmConfiguration is null) commissioningInputs!.BindRecipe(run.RunId, run.ExecutionInputs);
             var planRevision = RecipePlanRevision.Compute(plan);
             var routeDeadlines = startContext.ExpectedRecipeRef is null ? null :
                 RecipeExecutionBudget.Freeze(plan, budget.Value, clock.GetUtcNow(), run.ExecutionInputs.CostProfile);
@@ -384,7 +389,8 @@ public sealed class StartPublicPreparation(IPublicConfiguration configurations,
                 motionConfiguration: run.Config.Public,
                 recipeApplicationReceipt: binding.Receipt);
             detectionRequest = detectionRequest with { CriticalSaveBudgetMs = run.Config.Budget.BusinessMs.CriticalSave,
-                FrozenBusinessDurations = run.Config.Budget.BusinessMs };
+                FrozenBusinessDurations = run.Config.Budget.BusinessMs, AlgorithmConfiguration = run.Config.RealAlgorithm,
+                AlgorithmConfigurationDigest = run.Config.RealAlgorithmDigest };
             RuntimeDiagnostics.Record("DetectionHandoff", "RequestPrepared", run.RunId,
                 new { operationId = detectionRequest.OperationId, planRevision,
                     stageStartedAtUtc = detectionRequest.StageStartedAtUtc,

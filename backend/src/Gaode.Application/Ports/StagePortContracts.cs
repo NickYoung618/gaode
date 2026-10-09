@@ -96,6 +96,8 @@ public sealed record DetectionRequest(
     IReadOnlyList<DetectionStepTarget>? Targets = null)
 {
     public FrozenExecutionInputs? Inputs { get; init; }
+    public Gaode.Application.Configuration.RealAlgorithmConfiguration? AlgorithmConfiguration { get; init; }
+    public string? AlgorithmConfigurationDigest { get; init; }
     [System.Text.Json.Serialization.JsonIgnore(Condition = System.Text.Json.Serialization.JsonIgnoreCondition.WhenWritingNull)]
     public DetectionExecutionScope? Scope { get; init; }
     public Guid SessionId { get; init; }
@@ -151,6 +153,8 @@ public sealed record DetectionPortResult(
     DateTimeOffset ObservedAtUtc,
     IReadOnlyList<string>? EvidenceReferences = null)
 {
+    // Adapter assertion: no capture, algorithm call or mechanical action was dispatched.
+    public bool NoWorkStarted { get; init; }
     public string? EndBasisReference { get; init; }
     public IReadOnlyList<PosePendingHandling> PosePending { get; init; } = [];
     public DetectionEvidenceBasis EvidenceBasis { get; init; }

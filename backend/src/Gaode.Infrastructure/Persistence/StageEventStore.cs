@@ -7,8 +7,47 @@ using Gaode.Diagnostics;
 namespace Gaode.Infrastructure.Persistence;
 
 public sealed class StageEventStore(DbContextOptions<Station01DbContext> options, TimeProvider? clock = null)
-    : IStageEventStore
+    : IStageEventStore, IAlgorithmResourceStore
 {
+    public async Task AppendResourceAsync(AlgorithmResourceState state, CancellationToken token)
+    {
+        if (!state.IsValid) throw new InvalidDataException("AlgorithmResourceFactInvalid");
+        var payload = JsonSerializer.Serialize(state, JsonOptions);
+        var hash = Convert.ToHexString(System.Security.Cryptography.SHA256.HashData(System.Text.Encoding.UTF8.GetBytes(payload)));
+        var eventId = new Guid(System.Security.Cryptography.SHA256.HashData(
+            System.Text.Encoding.UTF8.GetBytes($"{state.RunId:D}/{state.CallId:D}/{state.Revision}"))[..16]);
+        var saved = await AppendAsync(new(eventId, state.RunId, state.TrayId, "Station01", "Station01",
+            WholeTrayWorkflowStage.Detection, state.OperationId, 1, 0, StageEventType.AlgorithmLifecycleRecorded,
+            clock.GetUtcNow(), ResultSource.HostDerived, ResultQuality.Derived, null, hash, payload,
+            $"algorithm-resource:{state.RunId:N}:{state.CallId:N}:{state.Revision}"), token);
+        if (!saved.IsCommitted) throw new InvalidDataException("AlgorithmResourceCommitConflict");
+    }
+
+    public async Task<IReadOnlyList<AlgorithmResourceState>> GetUnreclaimedResourcesAsync(int offset, int limit, CancellationToken token)
+    {
+        if (offset < 0 || limit is < 1 or > 256) throw new ArgumentOutOfRangeException(nameof(limit));
+        await using var db = new Station01DbContext(options);
+        // Filter before paging. No join to Runs and no business-terminal filter.
+        var kind = nameof(StageEventType.AlgorithmLifecycleRecorded);
+        var rows = await db.StageEvents.FromSqlInterpolated($"""
+            SELECT e.* FROM StageEvents e
+            WHERE e.EventType = {kind}
+              AND NOT EXISTS (SELECT 1 FROM StageEvents n WHERE n.EventType = {kind}
+                AND n.RunId = e.RunId
+                AND json_extract(n.PayloadJson, '$.callId') = json_extract(e.PayloadJson, '$.callId')
+                AND n.Sequence > e.Sequence)
+              AND COALESCE(json_extract(e.PayloadJson, '$.reclaimed'), 0) = 0
+            ORDER BY e.RunId, e.OperationId, json_extract(e.PayloadJson, '$.callId') LIMIT {limit} OFFSET {offset}
+            """).AsNoTracking().ToArrayAsync(token);
+        var states = rows.Select(e => {
+            var state = JsonSerializer.Deserialize<AlgorithmResourceState>(e.PayloadJson, JsonOptions)
+                ?? throw new InvalidDataException("AlgorithmResourceFactMissing");
+            if (!state.IsValid || state.RunId != e.RunId || state.TrayId != e.TrayId || state.OperationId != e.OperationId)
+                throw new InvalidDataException("AlgorithmResourceFactIdentityMismatch");
+            return state;
+        }).ToArray();
+        return states;
+    }
     private readonly TimeProvider clock = clock ?? TimeProvider.System;
     private static readonly JsonSerializerOptions JsonOptions = new(JsonSerializerDefaults.Web);
     public event Action<Guid>? RunCommitted;
@@ -41,6 +80,7 @@ public sealed class StageEventStore(DbContextOptions<Station01DbContext> options
         CancellationToken cancellationToken = default)
     {
         if (!request.IsValid) throw new ArgumentException("阶段事件合同不完整", nameof(request));
+        using var commit = await Gaode.Application.Station01.RunFactCommitCoordinator.Shared.EnterAsync(request.RunId, cancellationToken);
         await using var db = new Station01DbContext(options);
         await using var tx = await db.Database.BeginTransactionAsync(cancellationToken);
         var commitStarted = false;
@@ -53,19 +93,48 @@ public sealed class StageEventStore(DbContextOptions<Station01DbContext> options
             var state = existing.PayloadDigest == request.PayloadDigest && existing.RunId == request.RunId
                 ? StageEventCommitState.Replay : StageEventCommitState.Conflict;
             var existingEvent = await db.StageEvents.SingleAsync(x => x.EventId == existing.EventId, cancellationToken);
-            var projection = await db.StageProjections.SingleAsync(x =>
+            var projection = await db.StageProjections.SingleOrDefaultAsync(x =>
                 x.RunId == existing.RunId && x.TrayId == existing.TrayId && x.Stage == existing.Stage,
                 cancellationToken);
             commitStarted = true;
             await tx.CommitAsync(cancellationToken);
-            return new(state, ToEvent(existingEvent), ToProjection(projection),
+            return new(state, ToEvent(existingEvent), projection is null ?
+                StageEventProjection.Apply(StageEventProjection.Initial(ToEvent(existingEvent)), ToEvent(existingEvent)) : ToProjection(projection),
                 state == StageEventCommitState.Conflict ? "IdempotencyConflict" : null);
+        }
+
+        if (request.EventType == StageEventType.AlgorithmLifecycleRecorded)
+        {
+            var next = JsonSerializer.Deserialize<AlgorithmResourceState>(request.PayloadJson, JsonOptions)
+                ?? throw new InvalidDataException("AlgorithmResourceFactMissing");
+            if (!next.IsValid || next.RunId != request.RunId || next.TrayId != request.TrayId || next.OperationId != request.OperationId)
+                throw new InvalidDataException("AlgorithmResourceFactIdentityMismatch");
+            var priorRows = await db.StageEvents.FromSqlInterpolated($"""
+                SELECT * FROM StageEvents WHERE RunId = {request.RunId}
+                AND EventType = {nameof(StageEventType.AlgorithmLifecycleRecorded)}
+                AND json_extract(PayloadJson, '$.callId') = {next.CallId.ToString()}
+                ORDER BY Sequence DESC LIMIT 1
+                """).AsNoTracking().ToArrayAsync(cancellationToken);
+            var prior = priorRows.Length == 0 ? null : JsonSerializer.Deserialize<AlgorithmResourceState>(priorRows[0].PayloadJson, JsonOptions);
+            if (prior is null ? next.Revision != 1 :
+                next.Revision != prior.Revision + 1 || next.OperationId != prior.OperationId || next.TrayId != prior.TrayId ||
+                next.ClockId != prior.ClockId || next.SnapshotId != prior.SnapshotId || next.ReleaseBudgetMs != prior.ReleaseBudgetMs ||
+                !next.Inputs.SequenceEqual(prior.Inputs) || prior.BusinessEnded && !next.BusinessEnded ||
+                JsonSerializer.Serialize(next.Request,JsonOptions) != JsonSerializer.Serialize(prior.Request,JsonOptions) ||
+                prior.InputsReleased && !next.InputsReleased || prior.ExecutionEnded && !next.ExecutionEnded ||
+                prior.DispatchReturned && !next.DispatchReturned || prior.ObservationExpired && !next.ObservationExpired ||
+                prior.WorkerSessionId.HasValue && next.WorkerSessionId != prior.WorkerSessionId ||
+                prior.TechnicalTerminal is not null && next.TechnicalTerminal != prior.TechnicalTerminal ||
+                prior.ReleaseStartUtc.HasValue && (next.ReleaseStartUtc != prior.ReleaseStartUtc || next.ReleaseDueUtc != prior.ReleaseDueUtc ||
+                    next.ReleaseStartTick != prior.ReleaseStartTick || next.ReleaseDueTick != prior.ReleaseDueTick || next.ReleaseTrigger != prior.ReleaseTrigger))
+                throw new InvalidDataException("AlgorithmResourceRevisionOrImmutableFactConflict");
         }
 
         var previous = await db.StageProjections.SingleOrDefaultAsync(x =>
             x.RunId == request.RunId && x.TrayId == request.TrayId && x.Stage == request.Stage.ToString(),
             cancellationToken);
-        var sequence = (previous?.Revision ?? 0) + 1;
+        var sequence = (await db.StageEvents.Where(x => x.RunId == request.RunId && x.TrayId == request.TrayId &&
+            x.Stage == request.Stage.ToString()).MaxAsync(x => (long?)x.Sequence, cancellationToken) ?? 0) + 1;
         var now = clock.GetUtcNow();
         var entity = new StageEventEntity
         {
@@ -91,14 +160,14 @@ public sealed class StageEventStore(DbContextOptions<Station01DbContext> options
             RunId = request.RunId, TrayId = request.TrayId, Stage = request.Stage.ToString(),
             OperationId = request.OperationId, EventId = request.EventId, CreatedUtc = now
         });
-        if (previous is null)
+        if (previous is null && request.EventType != StageEventType.AlgorithmLifecycleRecorded)
             db.StageProjections.Add(ToEntity(projected));
-        else
+        else if (previous is not null)
         {
             previous.Revision = projected.Revision; previous.Status = projected.Status.ToString();
             previous.CurrentOperationId = projected.CurrentOperationId;
             previous.ConnectionEpoch = projected.ConnectionEpoch; previous.DeviceHeld = projected.DeviceHeld;
-            previous.NeedsManualReview = projected.NeedsManualReview; previous.LastEventId = projected.LastEventId;
+            previous.NeedsManualReview = projected.NeedsManualReview; previous.LastEventId = projected.LastEventId!.Value;
             previous.UpdatedUtc = projected.UpdatedAt; previous.RetainUntilUtc = projected.RetainUntil;
         }
         try
@@ -142,12 +211,13 @@ public sealed class StageEventStore(DbContextOptions<Station01DbContext> options
         if (existing is null) return null;
         var existingEvent = await lookup.StageEvents.AsNoTracking().SingleAsync(x =>
             x.EventId == existing.EventId, cancellationToken);
-        var projection = await lookup.StageProjections.AsNoTracking().SingleAsync(x =>
+        var projection = await lookup.StageProjections.AsNoTracking().SingleOrDefaultAsync(x =>
             x.RunId == existing.RunId && x.TrayId == existing.TrayId && x.Stage == existing.Stage,
             cancellationToken);
         var state = existing.PayloadDigest == request.PayloadDigest && existing.RunId == request.RunId
             ? StageEventCommitState.Replay : StageEventCommitState.Conflict;
-        return new(state, ToEvent(existingEvent), ToProjection(projection),
+        return new(state, ToEvent(existingEvent), projection is null ?
+            StageEventProjection.Apply(StageEventProjection.Initial(ToEvent(existingEvent)), ToEvent(existingEvent)) : ToProjection(projection),
             state == StageEventCommitState.Conflict ? "IdempotencyConflict" : null);
     }
 
@@ -167,7 +237,9 @@ public sealed class StageEventStore(DbContextOptions<Station01DbContext> options
         await using var db = new Station01DbContext(options);
         var row = await db.StageProjections.AsNoTracking().SingleOrDefaultAsync(x =>
             x.RunId == runId && x.TrayId == trayId && x.Stage == stage.ToString(), cancellationToken);
-        return row is null ? null : ToProjection(row);
+        if (row is not null) return ToProjection(row);
+        var events = await ReadAsync(runId, trayId, stage, cancellationToken);
+        return events.Count == 0 ? null : events.Aggregate(StageEventProjection.Initial(events[0]), StageEventProjection.Apply);
     }
 
     public async Task<StageProjection> RecoverAsync(Guid runId, Guid trayId, WholeTrayWorkflowStage stage,
@@ -191,7 +263,7 @@ public sealed class StageEventStore(DbContextOptions<Station01DbContext> options
             return assignments.Any(a => !events.Any(e =>
                 e.OperationId == a.GetProperty("operationId").GetGuid() && e.EventType == StageEventType.Completed));
         }
-        var open = events.GroupBy(x => x.OperationId).Where(g =>
+        var open = events.Where(x => x.EventType != StageEventType.AlgorithmLifecycleRecorded).GroupBy(x => x.OperationId).Where(g =>
             g.Any(x => x.EventType is StageEventType.Started or StageEventType.Accepted or
                 StageEventType.Executing || UnclosedIntent(x)) &&
             !g.Any(x => StageEventProjection.IsTerminal(x.EventType))).ToArray();
@@ -228,7 +300,7 @@ public sealed class StageEventStore(DbContextOptions<Station01DbContext> options
         ProjectionId = Guid.NewGuid(), RunId = x.RunId, TrayId = x.TrayId, StationId = x.StationId,
         LineId = x.LineId, Stage = x.Stage.ToString(), Revision = x.Revision, Status = x.Status.ToString(),
         CurrentOperationId = x.CurrentOperationId, ConnectionEpoch = x.ConnectionEpoch,
-        DeviceHeld = x.DeviceHeld, NeedsManualReview = x.NeedsManualReview, LastEventId = x.LastEventId,
+        DeviceHeld = x.DeviceHeld, NeedsManualReview = x.NeedsManualReview, LastEventId = x.LastEventId!.Value,
         UpdatedUtc = x.UpdatedAt, RetainUntilUtc = x.RetainUntil
     };
 }

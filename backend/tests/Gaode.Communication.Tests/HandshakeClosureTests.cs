@@ -68,8 +68,9 @@ public sealed class HandshakeClosureTests
             Assert.Equal(DeviceEventKind.Completed,f.Kind);
             var fp=Assert.Single(f.Evidence!.Positions);
             var capture=await device.OpenCaptureWindowAsync(new(fp.Correlation,CaptureRole.F,fp.Target,fp,Window()),ct);
+            using var captureEvidence = await CaptureWorkFixture.CreateAsync(capture);
             Assert.Equal(AcquisitionState.Released,(await device.FinishCaptureWindowAsync(capture,
-                new(fp.Correlation.RunId,fp.Correlation.OperationId,[Guid.NewGuid()],true),Window(),ct)).State);
+                captureEvidence.Work,Window(),ct)).State);
         }
         for(var round=0;round<2;round++)
         {

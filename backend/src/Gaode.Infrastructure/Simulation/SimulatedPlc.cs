@@ -164,8 +164,7 @@ public sealed class SimulatedPlc : IPlcStatePort, IPlcActionPort, IMotionPort,
     public Task<CaptureCycleResult> FinishCaptureWindowAsync(AcquisitionSession session, CaptureWorkCommit work,
         ActionWindow window, CancellationToken token)
     {
-        if (work.RunId != session.Request.Correlation.RunId || work.OperationId != session.Request.Correlation.OperationId ||
-            work.WriteIds.Count == 0 || work.WriteIds.Any(id => id == Guid.Empty) || !work.MediaReleased)
+        if (!work.IsFor(session))
             throw new InvalidOperationException("CaptureWorkNotCommitted");
         return ReleaseAsync(session, window, null, token);
     }

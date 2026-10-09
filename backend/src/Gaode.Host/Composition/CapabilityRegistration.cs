@@ -10,7 +10,7 @@ namespace Gaode.Host.Composition;
 public static class CapabilityRegistration
 {
     public static CapabilityRegistry RegisterStation01(IAlgorithmPort provider, string approvedPurpose,
-        CommissioningConfiguration? commissioning = null)
+        CommissioningConfiguration? commissioning = null, RealAlgorithmConfiguration? realAlgorithm = null)
     {
         var registry = Station01Policies.Create();
         registry.Register(new FixedCapabilityPolicy("code.test-tray-format", "1.0", "Parser",
@@ -18,8 +18,9 @@ public static class CapabilityRegistration
         registry.RegisterDecoder("code.test-tray-format", "1.0", RecipeEnvironmentDecoder.DecodeTrayCode);
         if (approvedPurpose == RuntimePurposes.RealDeviceCommissioning)
         {
-            if (commissioning is null || commissioning.Purpose != approvedPurpose ||
-                commissioning.CodeRule is not { Id: "decoded-content-exact", Version: "1.0" } rule || string.IsNullOrWhiteSpace(rule.Source))
+            var rule = realAlgorithm?.CodeRule ?? commissioning?.CodeRule;
+            if ((realAlgorithm?.Purpose ?? commissioning?.Purpose) != approvedPurpose ||
+                rule is not { Id: "decoded-content-exact", Version: "1.0" } || string.IsNullOrWhiteSpace(rule.Source))
                 throw new InvalidOperationException("CommissioningCodeRuleSourceRequired");
             registry.Register(new FixedCapabilityPolicy(rule.Id, rule.Version, "Parser", new HashSet<string> { approvedPurpose }));
             registry.RegisterDecoder(rule.Id, rule.Version, RecipeEnvironmentDecoder.DecodeTrayCode);

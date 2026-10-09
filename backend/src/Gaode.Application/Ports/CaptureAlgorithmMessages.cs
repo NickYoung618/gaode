@@ -15,6 +15,8 @@ public sealed record CaptureRequest(PortEnvelope Envelope, Guid CaptureId, Captu
     string PointId, string PointVersion, string? ScopeId, string? ScopeVersion,
     string CameraBindingId, string? LightBindingId, Guid IntentWriteId, long MaxBytes)
 {
+    public Guid? AcquisitionSessionId { get; init; }
+    public Guid? AcquisitionOperationId { get; init; }
     [System.Text.Json.Serialization.JsonIgnore(Condition = System.Text.Json.Serialization.JsonIgnoreCondition.WhenWritingNull)]
     public Gaode.Domain.Configuration.LightExecutionConfiguration? LightExecution { get; init; }
     public DetectionCaptureSettings? DetectionSettings { get; init; }
@@ -41,9 +43,15 @@ public sealed record MediaRef(Guid MediaId, Guid RunId, Guid CaptureId, string K
         _ => "application/octet-stream"
     };
     public string? Purpose { get; init; }
+    public AlgorithmInputProvenance? AlgorithmInput { get; init; }
     public string Readiness => StorageState == "FileCompleted" ? "Ready" : "NotReady";
     public string ETag => $"\"media-{MediaId:N}-{ByteLength}-{StorageState}\"";
 }
+
+public sealed record AlgorithmInputProvenance(string SchemaVersion, Guid RawMediaId, string RawRelativeKey,
+    string RawFormat, string RawSha256, string InputSha256, string ConverterId, string ConverterVersion,
+    int Width, int Height, string PixelFormat, long? PointCount,
+    string? PointUnitSource, string? CoordinateSource);
 
 public enum CaptureApplicationState { Unknown, Applied, ConfiguredOnly, NotApplied }
 public sealed record CorrelatedCaptureFact(Guid RunId, Guid CaptureId, Guid OperationId,
@@ -75,6 +83,8 @@ public sealed record AlgorithmRequest(PortEnvelope Envelope, Guid CallId, Guid C
     string CapabilityId, string CapabilityVersion, Guid IntentWriteId,
     string InvocationBasis, WorkerTargetIdentity? TargetIdentity = null)
 {
+    public Gaode.Application.Configuration.AlgorithmModuleReference? FrozenModule { get; init; }
+    public string? AlgorithmConfigurationDigest { get; init; }
     public TrayObservationContext? ObservationContext { get; init; }
     public IReadOnlyList<WorkerTargetIdentity>? InputIdentities { get; init; }
 }
@@ -117,5 +127,13 @@ public static class AcquisitionContract
         value.Request.CaptureId == expected.CaptureId &&
         value.Request.Envelope.RunId == expected.Envelope.RunId &&
         value.Request.Envelope.OperationId == expected.Envelope.OperationId &&
-        value.Request.Envelope.SessionId == expected.Envelope.SessionId;
+        value.Request.Envelope == expected.Envelope && value.Request.Role == expected.Role &&
+        value.Request.ParametersVersion == expected.ParametersVersion && value.Request.CapabilityId == expected.CapabilityId &&
+        value.Request.CapabilityVersion == expected.CapabilityVersion && value.Request.IntentWriteId == expected.IntentWriteId &&
+        value.Request.InvocationBasis == expected.InvocationBasis && value.Request.Inputs.SequenceEqual(expected.Inputs) &&
+        value.Request.TargetIdentity == expected.TargetIdentity && value.Request.ObservationContext == expected.ObservationContext &&
+        value.Request.AlgorithmConfigurationDigest == expected.AlgorithmConfigurationDigest &&
+        value.Request.FrozenModule == expected.FrozenModule &&
+        ((value.Request.InputIdentities is null && expected.InputIdentities is null) ||
+         (value.Request.InputIdentities is not null && expected.InputIdentities is not null && value.Request.InputIdentities.SequenceEqual(expected.InputIdentities)));
 }

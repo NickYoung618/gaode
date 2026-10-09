@@ -24,8 +24,33 @@ public sealed class Station01HostedService(StoreAccessGuard guard, TraceWriter w
     StartPublicPreparation starts, MediaStore media, ResourceLease motionLease,
     ILogger<Station01HostedService> logger, AlgorithmRuntime algorithms,
     DbContextOptions<Station01DbContext> databaseOptions,
-    ThreeStageRecoveryService threeStageRecovery) : IHostedService
+    ThreeStageRecoveryService threeStageRecovery, AlgorithmResourceSupervisor? resources = null,
+    IHostApplicationLifetime? lifetime = null, Microsoft.Extensions.Options.IOptions<HostOptions>? hostOptions = null,
+    TimeProvider? lifecycleClock = null) : IHostedService, IDisposable
 {
+    private readonly object shutdownGate = new();
+    private readonly TimeProvider shutdownClock = lifecycleClock ?? TimeProvider.System;
+    private CancellationTokenSource? shutdownLimit;
+    private ITimer? shutdownTimer;
+    private CancellationTokenRegistration stopping;
+    public DateTimeOffset? ShutdownStartedUtc { get; private set; }
+    public DateTimeOffset? ShutdownDueUtc { get; private set; }
+    public void NotifyStopping()
+    {
+        lock(shutdownGate)
+        {
+            if (ShutdownStartedUtc.HasValue) return;
+            var duration = hostOptions?.Value.ShutdownTimeout ?? new HostOptions().ShutdownTimeout;
+            if (duration <= TimeSpan.Zero || duration == Timeout.InfiniteTimeSpan)
+                throw new InvalidOperationException("HostShutdownBudgetInvalid");
+            ShutdownStartedUtc = shutdownClock.GetUtcNow();
+            ShutdownDueUtc = ShutdownStartedUtc + duration;
+            shutdownLimit = new();
+            shutdownTimer = shutdownClock.CreateTimer(_ => shutdownLimit.Cancel(), null, duration, Timeout.InfiniteTimeSpan);
+            coordinator.BeginShutdown();
+            resources?.BeginShutdown(ShutdownStartedUtc, ShutdownDueUtc);
+        }
+    }
     private readonly SemaphoreSlim _stopGate = new(1, 1);
     private Task? persistenceInitialization;
     public Station01ShutdownSnapshot? LastShutdown { get; private set; }
@@ -42,6 +67,29 @@ public sealed class Station01HostedService(StoreAccessGuard guard, TraceWriter w
         _ = guard.Root;
         _ = writer;
         await new CameraCaptureJournal(databaseOptions).RestoreAsync(media, cancellationToken);
+        if (lifetime is not null) stopping = lifetime.ApplicationStopping.Register(NotifyStopping);
+        if (resources is not null)
+        {
+            for (var offset = 0; ; offset += 128)
+            {
+                var page = await query.GetUnreclaimedResourcesAsync(offset, 128, cancellationToken);
+                foreach (var state in page)
+                {
+                    var retained = new List<IDisposable>();
+                    try
+                    {
+                        if(!state.InputsReleased)
+                            foreach(var input in state.Inputs)
+                                if(media.IsReady(input.MediaId)) retained.Add(media.Lease(input.MediaId,"restored-algorithm:"+state.CallId));
+                                else logger.LogWarning("RestoredAlgorithmInputUnconfirmed Run={Run} Call={Call} Media={Media}",state.RunId,state.CallId,input.MediaId);
+                        resources.Restore(state,new RestoredInputOwnership(retained));
+                    }
+                    catch { foreach(var lease in retained) lease.Dispose(); throw; }
+                }
+                if (page.Count < 128) break;
+            }
+            logger.LogInformation("StartupAlgorithmResources count={Count}; reconciliationOnly=true", resources.States.Count);
+        }
         coordinator.Start();
         await using (var startupDb = new Station01DbContext(databaseOptions))
         {
@@ -79,6 +127,9 @@ public sealed class Station01HostedService(StoreAccessGuard guard, TraceWriter w
 
     public async Task StopAsync(CancellationToken cancellationToken)
     {
+        NotifyStopping();
+        using var boundedStop = CancellationTokenSource.CreateLinkedTokenSource(cancellationToken, shutdownLimit!.Token);
+        cancellationToken = boundedStop.Token;
         // Closing admission is unconditional, including an already exhausted host budget.
         var unfinished = coordinator.BeginShutdown();
         var motionUnknown = motionLease.PreserveForShutdown();
@@ -107,14 +158,19 @@ public sealed class Station01HostedService(StoreAccessGuard guard, TraceWriter w
             try
             {
                 flowsStopped = await Attempt("Runs", () => starts.StopAsync(cancellationToken));
-                writesDrained = await Attempt("Writes", () => writer.WaitForIdleAsync(cancellationToken));
                 await Attempt("Resources", async () =>
                 {
-                    var mediaDrain = media.WaitForIdleAsync(cancellationToken);
-                    await Task.WhenAll(mediaDrain, algorithms.WaitForIdleAsync(cancellationToken));
-                    resourcesDrained = await mediaDrain;
-                    if (!resourcesDrained) throw new OperationCanceledException(cancellationToken);
+                    using var mediaWait = CancellationTokenSource.CreateLinkedTokenSource(cancellationToken);
+                    var mediaDrain = media.WaitForIdleAsync(mediaWait.Token);
+                    var algorithmsDrained = await algorithms.WaitForShutdownAsync(cancellationToken);
+                    // Unknown algorithm leases cannot drain media. Stop observing them at
+                    // their original call deadline, while retaining ownership and facts.
+                    if (!algorithmsDrained) await mediaWait.CancelAsync();
+                    resourcesDrained = await mediaDrain && algorithmsDrained;
+                    if (!resourcesDrained) throw new InvalidOperationException("AlgorithmResourcesUnconfirmed");
                 });
+                if (resources is not null) await Attempt("AlgorithmResourceFacts", () => resources.FlushAsync(cancellationToken));
+                writesDrained = await Attempt("Writes", () => writer.WaitForIdleAsync(cancellationToken));
             }
             finally { await Attempt("Consumer", () => coordinator.StopConsumerAsync(cancellationToken)); }
             LastShutdown = new(true, flowsStopped && coordinator.ConsumerStopped, writesDrained, resourcesDrained,
@@ -129,5 +185,14 @@ public sealed class Station01HostedService(StoreAccessGuard guard, TraceWriter w
                 LastShutdown.RemainingAlgorithmExecutions, false, false);
         }
         finally { _stopGate.Release(); }
+    }
+    private sealed class RestoredInputOwnership(IReadOnlyList<IDisposable> leases) : IDisposable
+    { public void Dispose() { foreach(var lease in leases) lease.Dispose(); } }
+    public void Dispose()
+    {
+        stopping.Dispose();
+        shutdownTimer?.Dispose();
+        // Cancellation callbacks may still be using the shared token; disposing this
+        // owner never proves resource release or physical stop.
     }
 }

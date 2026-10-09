@@ -8,23 +8,23 @@ using Gaode.Diagnostics;
 namespace Gaode.Application.Acquisition;
 
 public sealed class AcquisitionCoordinator(ICapturePort camera, IMediaStore media,
-    OperationIngress ingress)
+    OperationIngress ingress, ITraceQuery traces)
 {
-    public Task<MediaRef> CaptureAsync(RunExecution run, CaptureRole role,
+    public Task<PersistedCapture> CaptureAsync(RunExecution run, CaptureRole role,
         FixedPoint point, string? scopeId, string? scopeVersion,
         string cameraBinding, string lightBinding, long maxBytes,
-        CancellationToken cancellationToken) => RuntimeDiagnostics.ObserveAsync(
+        CancellationToken cancellationToken, AcquisitionSession? acquisitionSession = null) => RuntimeDiagnostics.ObserveAsync(
             "Capture", run.RunId, new { run.RequestId, role = role.ToString(), point.Id,
                 point.Version, scopeId, scopeVersion, cameraBinding, lightBinding, maxBytes,
                 connectionEpoch = camera.ConnectionEpoch },
             () => CaptureCoreAsync(run, role, point, scopeId, scopeVersion, cameraBinding,
-                lightBinding, maxBytes, cancellationToken),
-            r => new { r.MediaId, r.CaptureId, r.RelativeKey, disposition = "MediaSaved" });
+                lightBinding, maxBytes, cancellationToken, acquisitionSession),
+            r => new { r.Media.MediaId, r.Media.CaptureId, r.Media.RelativeKey, disposition = "MediaSaved" });
 
-    private async Task<MediaRef> CaptureCoreAsync(RunExecution run, CaptureRole role,
+    private async Task<PersistedCapture> CaptureCoreAsync(RunExecution run, CaptureRole role,
         FixedPoint point, string? scopeId, string? scopeVersion,
         string cameraBinding, string lightBinding, long maxBytes,
-        CancellationToken cancellationToken)
+        CancellationToken cancellationToken, AcquisitionSession? acquisitionSession)
     {
         if (role == CaptureRole.F) run.ReserveSingleFCapture();
         maxBytes = camera.GetMaxCaptureBytes(cameraBinding, maxBytes);
@@ -45,6 +45,8 @@ public sealed class AcquisitionCoordinator(ICapturePort camera, IMediaStore medi
         var request = new CaptureRequest(envelope, captureId, role, point.Id, point.Version,
             scopeId, scopeVersion, cameraBinding, lightBinding, intentReceipt.WriteId, maxBytes)
         {
+            AcquisitionSessionId = acquisitionSession?.SessionId,
+            AcquisitionOperationId = acquisitionSession?.Request.Correlation.OperationId,
             LightExecution = run.Config.Public.LightExecution,
             PublicSettings = new(run.Config.Public.Id, run.Config.Public.Version,
                 role == CaptureRole.ThreeD ? run.Config.Public.Capture3d.Parameters.ExposureUs : run.Config.Public.CaptureF.Parameters.ExposureUs,
@@ -100,7 +102,7 @@ public sealed class AcquisitionCoordinator(ICapturePort camera, IMediaStore medi
         reference = reference with { Purpose = run.Config.Public.Purpose };
         RuntimeDiagnostics.Record("MediaFileSave", "Returned", run.RunId,
             new { operationId, captureId, reference.MediaId, reference.RelativeKey });
-        await run.SaveAsync(WriteKind.Media, reference, cancellationToken: cancellationToken);
+        var mediaCommit = await run.SaveAsync(WriteKind.Media, reference, cancellationToken: cancellationToken);
         var captureCommit = await run.SaveAsync(WriteKind.CaptureFact,
             new { captureId, operationId, role = role.ToString(), ended = true,
                 mediaTaken = true, mediaId = reference.MediaId, reference.RelativeKey,
@@ -113,6 +115,6 @@ public sealed class AcquisitionCoordinator(ICapturePort camera, IMediaStore medi
             run.InitialThreeDCaptureWriteId = captureCommit.WriteId;
         }
         await run.ReportAsync(capture: CaptureState.MediaTaken);
-        return reference;
+        return new(reference,await CaptureCompletionEvidence.FromCommittedAsync(traces,media,request,received,reference,mediaCommit,captureCommit,cancellationToken));
     }
 }

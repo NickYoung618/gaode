@@ -76,6 +76,7 @@ public sealed partial class RecipeDetectionExecutor
                 point.Id, point.Version, config.Scope.Id, config.Scope.Version, config.BindingId,
                 config.LightBindingId, intent.WriteId, maxBytes)
             {
+                AcquisitionSessionId = moved.Session!.SessionId, AcquisitionOperationId = moved.Session.Request.Correlation.OperationId,
                 LightExecution = configuration.LightExecution,
                 PublicSettings = new(configuration.Id, configuration.Version, config.Parameters.ExposureUs, config.Parameters.LightLevel)
             };
@@ -100,9 +101,20 @@ public sealed partial class RecipeDetectionExecutor
             var saved = await media.SaveCaptureAsync(request.RunId, captureId, "3D", config.Scope.Version, point.Version,
                 buffer, format, captureFact.MediaSource, captureFact, token);
             saved = saved with { Purpose = request.Purpose };
-            await SaveTraceAsync(request, WriteKind.Media, saved, token);
-            await SaveTraceAsync(request, WriteKind.CaptureFact, new { kind = "PostPlacementCaptureCompleted",
+            var mediaCommit = await SaveTraceAsync(request, WriteKind.Media, saved, token);
+            var captureCommit = await SaveTraceAsync(request, WriteKind.CaptureFact, new { kind = "PostPlacementCaptureCompleted",
                 transitionId, step.Sequence, captureId, saved.MediaId, captureFact }, token);
+            await media.MarkCommittedAsync(saved, token);
+            var captureCompletion = await CaptureCompletionEvidence.FromCommittedAsync(traces,media,capture,received,saved,mediaCommit,captureCommit,token);
+            var frozenModule = request.AlgorithmConfiguration is null ? null : Gaode.Application.Algorithms.AlgorithmInputPolicy.RequireModule(
+                request.AlgorithmConfiguration,AlgorithmRole.TrayPose,1,bound.Requirement.ParametersVersion,bound.CapabilityId,bound.CapabilityVersion);
+            if(frozenModule is not null || algorithm.InputRepresentation(AlgorithmRole.TrayPose) != AlgorithmInputRepresentation.NativeMedia)
+            {
+                saved = await media.PrepareAlgorithmInputAsync(saved,token);
+                if(saved.Format!="ply") throw new InvalidDataException("TrayPoseAlgorithmPlyRequired");
+                await SaveTraceAsync(request,WriteKind.Media,saved,token);
+                await media.MarkCommittedAsync(saved,token);
+            }
 
             var call = Guid.NewGuid();
             operation = Guid.NewGuid();
@@ -112,25 +124,18 @@ public sealed partial class RecipeDetectionExecutor
                     configuration.Version, config.Scope.Version, bound.Requirement.ParametersVersion, bound.CapabilityId,
                     bound.CapabilityVersion, bound.ProviderVersion, request.SessionId, request.ClockId, envelope.StartTick,
                     envelope.DueTick, poseBudget.Value, "AllRelatedPutBackCommitted+MediaCommitted"), token);
-            await media.MarkCommittedAsync(saved, token);
             var context = new TrayObservationContext(request.TrayId, TrayObservationPurpose.PostPlacementCheck,
                 step.CoordinateEpoch, transitionId);
             var command = new AlgorithmRequest(envelope, call, captureId, AlgorithmRole.TrayPose, [saved],
                 bound.Requirement.ParametersVersion, bound.CapabilityId, bound.CapabilityVersion,
-                algorithmIntent.WriteId, "AllRelatedPutBackCommitted+MediaCommitted") { ObservationContext = context };
-            var returned = new TaskCompletionSource<AlgorithmEvent>(TaskCreationOptions.RunContinuationsAsynchronously);
-            void OnResult(AlgorithmEvent result)
-            {
-                if (AcquisitionContract.Matches(result, command) && result.Request.Envelope.Attempt == request.Attempt &&
-                    result.Kind is AlgorithmEventKind.Result or AlgorithmEventKind.Failed) returned.TrySetResult(result);
-            }
+                algorithmIntent.WriteId, "AllRelatedPutBackCommitted+MediaCommitted") { ObservationContext = context,
+                    FrozenModule = frozenModule, AlgorithmConfigurationDigest = request.AlgorithmConfigurationDigest };
             using var algorithmCancellation = CancellationTokenSource.CreateLinkedTokenSource(token);
-            algorithmCancellation.CancelAfter(Remaining(request.DeadlineUtc - DateTimeOffset.UtcNow,
-                TimeSpan.FromMilliseconds(poseBudget.Value)));
             var origin = algorithm.Origin;
-            var dispatch = await algorithm.RequestAsync(command, OnResult, algorithmCancellation.Token);
+            await using var dispatch = await synchronousAlgorithms.DispatchSynchronousAsync(command,request.TrayId,
+                poseBudget.Value,inputs.CostProfile.InputReleaseWaitMs,request.CriticalSaveBudgetMs,_ => {},algorithmCancellation.Token);
             AlgorithmEvent result;
-            try { result = await returned.Task.WaitAsync(algorithmCancellation.Token); }
+            try { result = await dispatch.Result.WaitAsync(algorithmCancellation.Token); }
             catch
             {
                 await algorithmCancellation.CancelAsync();
@@ -138,7 +143,7 @@ public sealed partial class RecipeDetectionExecutor
                 throw;
             }
             await dispatch.Exited.WaitAsync(Remaining(request.DeadlineUtc - DateTimeOffset.UtcNow,
-                TimeSpan.FromMilliseconds(inputs.CostProfile.InputReleaseWaitMs)), token);
+                dispatch.RemainingReleaseWait), token);
             var observation = result.Observation;
             var valid = result.Kind == AlgorithmEventKind.Result && observation is { HasCompleteCoverage: true } &&
                 request.InitialObservation is { } initial && observation.HasSamePhysicalMapping(initial) &&
@@ -150,8 +155,7 @@ public sealed partial class RecipeDetectionExecutor
                 valid ? AlgorithmState.Success : AlgorithmState.InvalidResult, true, JsonSerializer.Serialize(observation),
                 valid ? "PostPlacementObserved" : result.ErrorCode ?? "ObservationInvalid", "Dispatched",
                 WorkerSessionId: result.WorkerSessionId) { Origin = origin, RunId = request.RunId, CaptureId = captureId }, token);
-            await motion.FinishCaptureWindowAsync(moved.Session!, new(request.RunId, moved.Session!.Request.Correlation.OperationId,
-                [fact.WriteId], true), false, ActionWindows.FromUtc(TimeProvider.System, DateTimeOffset.UtcNow,
+            await motion.FinishCaptureWindowAsync(moved.Session!, captureCompletion.ForWindow(moved.Session!,request.TrayId), false, ActionWindows.FromUtc(TimeProvider.System, DateTimeOffset.UtcNow,
                     DateTimeOffset.UtcNow + Remaining(request.DeadlineUtc - DateTimeOffset.UtcNow,
                         TimeSpan.FromMilliseconds(inputs.CostProfile.AcquisitionReleaseMs)), request.ClockId), token);
             motion.ConfirmCompleted(moved.ActionId);

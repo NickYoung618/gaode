@@ -95,7 +95,8 @@ public sealed class SamePositionTests
         var position = Assert.Single(completion.Evidence!.Positions);
         var window = new ActionWindow(Stopwatch.GetTimestamp(), Stopwatch.GetTimestamp()+Stopwatch.Frequency*5, "Stopwatch", DateTimeOffset.UtcNow, DateTimeOffset.UtcNow.AddSeconds(5));
         var capture = await device.OpenCaptureWindowAsync(new(position.Correlation, CaptureRole.Detection, target, position, window), token);
-        var closed = await device.FinishCaptureWindowAsync(capture, new(position.Correlation.RunId, position.Correlation.OperationId, [Guid.NewGuid()], true), window, token);
+        using var captureEvidence = await CaptureWorkFixture.CreateAsync(capture);
+        var closed = await device.FinishCaptureWindowAsync(capture, captureEvidence.Work, window, token);
         Assert.Equal(AcquisitionState.Released, closed.State);
         return completion;
     }

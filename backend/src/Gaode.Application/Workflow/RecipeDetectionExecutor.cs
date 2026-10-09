@@ -20,8 +20,11 @@ public sealed partial class RecipeDetectionExecutor(ICapturePort camera, IAlgori
     ITraceQuery traces, MotionCoordinator motion, IPhysicalHandlingPort? handling = null,
     NormalPauseBoundary? pause = null, IPlcStageActionPort? stageActions = null,
     RotationExecutionConfiguration? rotationConfiguration = null,
-    TrayAnomalyDecisionService? anomalyDecisions = null, Station01Coordinator? coordinator = null) : IDetectionPort
+    TrayAnomalyDecisionService? anomalyDecisions = null, Station01Coordinator? coordinator = null,
+    Gaode.Application.Algorithms.AlgorithmRuntime? algorithms = null) : IDetectionPort
 {
+    private readonly Gaode.Application.Algorithms.AlgorithmRuntime synchronousAlgorithms = algorithms ?? new(algorithm, media,
+        new OperationIngress(new DeadlineScheduler(TimeProvider.System,"synchronous-detection")), new Gaode.Application.Algorithms.AlgorithmLeaseSupervisor(media));
     private static ResultSource SourceOf(ComponentExecutionOrigin origin) => origin.Source switch {
         ComponentEvidenceSource.Real => ResultSource.Real, ComponentEvidenceSource.Virtual => ResultSource.Virtual,
         ComponentEvidenceSource.Simulated => ResultSource.Simulated, ComponentEvidenceSource.Test => ResultSource.Test,
@@ -42,6 +45,8 @@ public sealed partial class RecipeDetectionExecutor(ICapturePort camera, IAlgori
         if (!request.IsValid || request.Plan is null ||
             RecipePlanRevision.Compute(request.Plan) != request.PlanRevision)
             return NotStarted(request, "FrozenDetectionPlanMissing");
+        if(request.AlgorithmConfiguration is not null && algorithm.Origin.Source != ComponentEvidenceSource.Real)
+            return NotStarted(request,"RealAlgorithmNotIntegratedOrNotReady");
         if (request.Plan.InspectionKind == RecipeInspectionKind.SpecialRotation && request.Plan.Steps.Any(s =>
                 (request.Scope is null || request.Scope.Includes(s)) && request.InitialObservation?.Slots.Any(o =>
                     o.PhysicalSlotIndex == s.PhysicalSlotIndex && o.Presence == TrayPresence.Present && o.Pose == TrayPose.Normal) == true) &&
@@ -238,7 +243,8 @@ public sealed partial class RecipeDetectionExecutor(ICapturePort camera, IAlgori
                     step.MemberId ?? step.UnitId, request.PlanRevision, step.SlotId,
                     request.PlanRevision, step.Camera ?? throw new InvalidDataException("CaptureCameraMissing"), settings.LightChannel,
                     captureIntent.WriteId,
-                    maxCaptureBytes) { DetectionSettings = settings, LightExecution = request.Plan.LightExecution };
+                    maxCaptureBytes) { DetectionSettings = settings, LightExecution = request.Plan.LightExecution,
+                    AcquisitionSessionId = inspection?.SessionId, AcquisitionOperationId = inspection?.Request.Correlation.OperationId };
                 var finished = new TaskCompletionSource<bool>(
                     TaskCreationOptions.RunContinuationsAsynchronously);
                 var captureGate = new CaptureEvidenceGate();
@@ -269,13 +275,14 @@ public sealed partial class RecipeDetectionExecutor(ICapturePort camera, IAlgori
                     request.PlanRevision, request.PlanRevision, buffer, format,
                     captureFact.MediaSource, captureFact, cancellationToken);
                 saved = saved with { Purpose = request.Purpose };
-                await SaveTraceAsync(request, WriteKind.Media, saved, cancellationToken);
-                await SaveTraceAsync(request, WriteKind.CaptureFact,
+                var mediaCommit = await SaveTraceAsync(request, WriteKind.Media, saved, cancellationToken);
+                var captureCommit = await SaveTraceAsync(request, WriteKind.CaptureFact,
                     new { kind = "ConfiguredCaptureCompleted", captureId, saved.MediaId,
                         step.Sequence, objectId = step.MemberId ?? step.UnitId, step.LocalFace,
                         step.Camera, step.CaptureProfile, requestedCaptureSettings = settings,
                         captureEnded = true, captureFact, requestedCapture = capture }, cancellationToken);
                 await media.MarkCommittedAsync(saved, cancellationToken);
+                var captureCompletion = await CaptureCompletionEvidence.FromCommittedAsync(traces,media,capture,received,saved,mediaCommit,captureCommit,cancellationToken);
                 var digest = Convert.ToHexString(SHA256.HashData(buffer));
                 references.Add($"media://{saved.MediaId:D}");
                 await AppendAsync(request, captureOperation, step, StageEventType.Executing,
@@ -295,6 +302,17 @@ public sealed partial class RecipeDetectionExecutor(ICapturePort camera, IAlgori
                         step.AlgorithmProfile }, cancellationToken);
                 var algorithmEnvelope = Envelope(request, algorithmOperation);
                 var bound = Bound(request, step, fusion: false);
+                var frozenModule = request.AlgorithmConfiguration is null ? null : Gaode.Application.Algorithms.AlgorithmInputPolicy.RequireModule(
+                    request.AlgorithmConfiguration,isECode ? AlgorithmRole.EDecode : AlgorithmRole.Detection,1,
+                    bound.Requirement.ParametersVersion,bound.CapabilityId,bound.CapabilityVersion);
+                if(frozenModule is not null || algorithm.InputRepresentation(isECode ? AlgorithmRole.EDecode : AlgorithmRole.Detection) != AlgorithmInputRepresentation.NativeMedia)
+                {
+                    saved = await media.PrepareAlgorithmInputAsync(saved,cancellationToken);
+                    if(saved.Format!="png") throw new InvalidDataException("DetectionAlgorithmPngRequired");
+                    await SaveTraceAsync(request,WriteKind.Media,saved,cancellationToken);
+                    await media.MarkCommittedAsync(saved,cancellationToken);
+                    references.Add($"media://{saved.MediaId:D}");
+                }
                 var producer = algorithm.Origin;
                 var algorithmIntent = await SaveTraceAsync(request,
                     WriteKind.AlgorithmIntent, new AlgorithmIntentPayload(callId,
@@ -305,26 +323,20 @@ public sealed partial class RecipeDetectionExecutor(ICapturePort camera, IAlgori
                         algorithmEnvelope.ClockId, algorithmEnvelope.StartTick, algorithmEnvelope.DueTick, request.Inputs!.CostProfile.AlgorithmWaitMs,
                         "FrozenRecipeCaptureStep+MediaFileCompleted+MediaMetadataCommitted"),
                     cancellationToken);
-                var response = new TaskCompletionSource<AlgorithmEvent>(
-                    TaskCreationOptions.RunContinuationsAsynchronously);
                 var algorithmRequest = new AlgorithmRequest(algorithmEnvelope,
                     callId, captureId, isECode ? AlgorithmRole.EDecode : AlgorithmRole.Detection, [saved],
                     bound.Requirement.ParametersVersion, bound.CapabilityId,
                     bound.CapabilityVersion, algorithmIntent.WriteId, "FrozenRecipeCaptureStep",
                     new WorkerTargetIdentity(step.MemberId ?? step.UnitId,
-                        step.LocalFace ?? 0, step.CoordinateEpoch, step.Camera ?? "") { StageId = step.StageId });
-                void OnAlgorithm(AlgorithmEvent value)
-                {
-                    if (!AcquisitionContract.Matches(value, algorithmRequest) || value.Request.Envelope.Attempt != request.Attempt) return;
-                    if (value.Kind is AlgorithmEventKind.Result or AlgorithmEventKind.Failed)
-                        response.TrySetResult(value);
-                }
+                        step.LocalFace ?? 0, step.CoordinateEpoch, step.Camera ?? "") { StageId = step.StageId })
+                    { FrozenModule = frozenModule, AlgorithmConfigurationDigest = request.AlgorithmConfigurationDigest };
                 phase = "AlgorithmRequestAndWait";
                 RuntimeDiagnostics.Record("DetectionAlgorithm", "Requesting", request.RunId,
                     new { request.OperationId, algorithmOperation, callId, captureId, step.Sequence,
                         request.DeadlineUtc, maximumWaitMs = request.Inputs!.CostProfile.AlgorithmWaitMs });
-                var dispatch = await algorithm.RequestAsync(algorithmRequest, OnAlgorithm,
-                    cancellationToken);
+                await using var dispatch = await synchronousAlgorithms.DispatchSynchronousAsync(algorithmRequest,request.TrayId,
+                    request.Inputs!.CostProfile.AlgorithmWaitMs,request.Inputs.CostProfile.InputReleaseWaitMs,
+                    request.CriticalSaveBudgetMs,_ => {},cancellationToken);
                 dispatchedOrigin = producer;
                 wait = request.DeadlineUtc - DateTimeOffset.UtcNow;
                 AlgorithmEvent result;
@@ -332,23 +344,23 @@ public sealed partial class RecipeDetectionExecutor(ICapturePort camera, IAlgori
                 if (isECode)
                 {
                     timedOut = false;
-                    try { result = await response.Task.WaitAsync(Remaining(wait, TimeSpan.FromMilliseconds(request.Inputs!.CostProfile.AlgorithmWaitMs)), cancellationToken); }
+                    try { result = await dispatch.Result.WaitAsync(cancellationToken); }
                     catch (TimeoutException) when (DateTimeOffset.UtcNow < request.DeadlineUtc)
                     {
                         await dispatch.Exited.WaitAsync(Remaining(request.DeadlineUtc - DateTimeOffset.UtcNow,
-                            TimeSpan.FromMilliseconds(request.Inputs!.CostProfile.InputReleaseWaitMs)), cancellationToken);
+                            dispatch.RemainingReleaseWait), cancellationToken);
                         result = new AlgorithmEvent(algorithmRequest, AlgorithmEventKind.Failed, ErrorCode: "EDecodeTimedOut");
                         timedOut = true;
                     }
                 }
                 else (result, timedOut) = await AwaitDetectionResultAsync(request, step,
-                    algorithmOperation, algorithmRequest, response.Task, dispatch.Exited, cancellationToken);
+                    algorithmOperation, algorithmRequest, dispatch.Result, dispatch.Exited, cancellationToken, () => dispatch.RemainingReleaseWait, dispatch.LateResult);
                 if (!isECode && (result.Kind != AlgorithmEventKind.Result ||
                     result.DetectionDisposition is not ("OK" or "NG" or "Pending"))
                     )
                     return Failure(result.ErrorCode ?? "DetectionAlgorithmInvalid");
                 phase = "AlgorithmInputReleaseWait";
-                await dispatch.Exited.WaitAsync(TimeSpan.FromMilliseconds(request.Inputs!.CostProfile.InputReleaseWaitMs), cancellationToken);
+                await dispatch.Exited.WaitAsync(dispatch.RemainingReleaseWait, cancellationToken);
                 phase = "AlgorithmFactSave";
                 var imageCommit = await SaveTraceAsync(request, WriteKind.AlgorithmFact,
                     new AlgorithmFactPayload(callId, timedOut ? AlgorithmState.TimedOut :
@@ -356,6 +368,7 @@ public sealed partial class RecipeDetectionExecutor(ICapturePort camera, IAlgori
                         true, JsonSerializer.Serialize(new { result.DetectionDisposition, result.RawCodes, result.ErrorCode }),
                         timedOut ? "DetectionTimedOut" : "WorkerResult", timedOut ? "FinitePending" : "Accepted", WorkerSessionId: result.WorkerSessionId) { Origin = producer, RunId = request.RunId, CaptureId = result.Request.CaptureId },
                     cancellationToken);
+                await dispatch.DisposeAsync(); // this single-call business consumer ended; fusion owns a separate call
                 var evidence = $"worker://{result.WorkerSessionId:D}/{callId:D}";
                 references.Add(evidence);
                 await AppendAsync(request, algorithmOperation, step, StageEventType.Executing,
@@ -371,8 +384,7 @@ public sealed partial class RecipeDetectionExecutor(ICapturePort camera, IAlgori
                     phase = "AcquisitionRelease";
                     var remaining = Remaining(request.DeadlineUtc - DateTimeOffset.UtcNow,
                         TimeSpan.FromMilliseconds(request.Inputs!.CostProfile.AcquisitionReleaseMs));
-                    await motion.FinishCaptureWindowAsync(inspection, new(request.RunId, inspection.Request.Correlation.OperationId,
-                        [imageCommit.WriteId], true), false, ActionWindows.FromUtc(TimeProvider.System, DateTimeOffset.UtcNow,
+                    await motion.FinishCaptureWindowAsync(inspection, captureCompletion.ForWindow(inspection,request.TrayId), false, ActionWindows.FromUtc(TimeProvider.System, DateTimeOffset.UtcNow,
                         DateTimeOffset.UtcNow + remaining, request.ClockId), cancellationToken);
                     await SaveTraceAsync(request, WriteKind.ActionFact,
                         new { schemaVersion = "device-semantics/1", kind = "AcquisitionReleased", inspection.Request.Correlation.OperationId,
@@ -706,6 +718,8 @@ public sealed partial class RecipeDetectionExecutor(ICapturePort camera, IAlgori
             cancellationToken);
         var algorithmEnvelope = Envelope(request, operationId);
         var bound = Bound(request, step, fusion: true);
+        var frozenModule = request.AlgorithmConfiguration is null ? null : Gaode.Application.Algorithms.AlgorithmInputPolicy.RequireModule(
+            request.AlgorithmConfiguration,AlgorithmRole.Detection,2,bound.Requirement.ParametersVersion,bound.CapabilityId,bound.CapabilityVersion);
         var producer = algorithm.Origin;
         var intent = await SaveTraceAsync(request, WriteKind.AlgorithmIntent,
             new AlgorithmIntentPayload(callId, operationId, request.Attempt, request.RunId,
@@ -715,32 +729,27 @@ public sealed partial class RecipeDetectionExecutor(ICapturePort camera, IAlgori
                 algorithmEnvelope.ClockId, algorithmEnvelope.StartTick, algorithmEnvelope.DueTick, request.Inputs!.CostProfile.AlgorithmWaitMs,
                 "FrozenRecipeFacePair+BothMediaFileCompleted+BothSingleFactsCommitted"),
             cancellationToken);
-        var response = new TaskCompletionSource<AlgorithmEvent>(
-            TaskCreationOptions.RunContinuationsAsynchronously);
         var identities = new[] { pair.First.Camera, pair.Second.Camera }
             .Select(camera => new WorkerTargetIdentity(pair.Key.ObjectId,
                 pair.Key.LocalFace, pair.Key.HeightRound, camera) { StageId = pair.Key.StageId }).ToArray();
         var fusionRequest = new AlgorithmRequest(algorithmEnvelope, callId,
             pair.Second.Media.CaptureId, AlgorithmRole.Detection, inputs,
             bound.Requirement.ParametersVersion, bound.CapabilityId, bound.CapabilityVersion,
-            intent.WriteId, "FrozenRecipeFaceFusion") { InputIdentities = identities };
-        void OnResult(AlgorithmEvent value)
-        {
-            if (AcquisitionContract.Matches(value, fusionRequest) && value.Request.Envelope.Attempt == request.Attempt &&
-                value.Kind is AlgorithmEventKind.Result or AlgorithmEventKind.Failed)
-                response.TrySetResult(value);
-        }
+            intent.WriteId, "FrozenRecipeFaceFusion") { InputIdentities = identities, FrozenModule = frozenModule,
+                AlgorithmConfigurationDigest = request.AlgorithmConfigurationDigest };
         RuntimeDiagnostics.Record("FaceFusion", "Requesting", request.RunId,
             new { request.OperationId, operationId, callId, pair.Key,
                 mediaIds = inputs.Select(x => x.MediaId), request.DeadlineUtc });
-        var dispatch = await algorithm.RequestAsync(fusionRequest, OnResult, cancellationToken);
+        await using var dispatch = await synchronousAlgorithms.DispatchSynchronousAsync(fusionRequest,request.TrayId,
+            request.Inputs!.CostProfile.AlgorithmWaitMs,request.Inputs.CostProfile.InputReleaseWaitMs,
+            request.CriticalSaveBudgetMs,_ => {},cancellationToken);
         var wait = request.DeadlineUtc - DateTimeOffset.UtcNow;
         var (result, timedOut) = await AwaitDetectionResultAsync(request, step,
-            operationId, fusionRequest, response.Task, dispatch.Exited, cancellationToken);
+            operationId, fusionRequest, dispatch.Result, dispatch.Exited, cancellationToken, () => dispatch.RemainingReleaseWait, dispatch.LateResult);
         if (result.Kind != AlgorithmEventKind.Result ||
             result.DetectionDisposition is not ("OK" or "NG" or "Pending"))
             throw new InvalidDataException(result.ErrorCode ?? "FaceFusionWorkerInvalid");
-        await dispatch.Exited.WaitAsync(TimeSpan.FromMilliseconds(request.Inputs!.CostProfile.InputReleaseWaitMs), cancellationToken);
+        await dispatch.Exited.WaitAsync(dispatch.RemainingReleaseWait, cancellationToken);
         await SaveTraceAsync(request, WriteKind.AlgorithmFact,
             new AlgorithmFactPayload(callId, timedOut ? AlgorithmState.TimedOut : AlgorithmState.Success,
                 true, JsonSerializer.Serialize(new { result.DetectionDisposition,
@@ -766,22 +775,21 @@ public sealed partial class RecipeDetectionExecutor(ICapturePort camera, IAlgori
 
     private async Task<(AlgorithmEvent Result, bool TimedOut)> AwaitDetectionResultAsync(
         DetectionRequest request, RecipeStep step, Guid operationId, AlgorithmRequest call,
-        Task<AlgorithmEvent> response, Task released, CancellationToken token)
+        Task<AlgorithmEvent> response, Task released, CancellationToken token, Func<TimeSpan> releaseRemaining, Task<AlgorithmEvent> lateResponse)
     {
         try
         {
-            return (await response.WaitAsync(Remaining(request.DeadlineUtc - DateTimeOffset.UtcNow,
-                TimeSpan.FromMilliseconds(request.Inputs!.CostProfile.AlgorithmWaitMs)), token), false);
+            return (await response.WaitAsync(token), false);
         }
         catch (TimeoutException) when (DateTimeOffset.UtcNow < request.DeadlineUtc)
         {
             // A late algorithm is not an unknown mechanical action. Require actual
             // input release before recording finite Pending and completing Z reset.
             await released.WaitAsync(Remaining(request.DeadlineUtc - DateTimeOffset.UtcNow,
-                TimeSpan.FromMilliseconds(request.Inputs!.CostProfile.InputReleaseWaitMs)), token);
-            if (!response.IsCompletedSuccessfully)
+                releaseRemaining()), token);
+            if (!lateResponse.IsCompletedSuccessfully)
                 throw new InvalidDataException("DetectionAlgorithmNoResultAfterInputRelease");
-            var late = await response;
+            var late = await lateResponse;
             if (late.Kind != AlgorithmEventKind.Result ||
                 late.DetectionDisposition is not ("OK" or "NG" or "Pending"))
                 throw new InvalidDataException(late.ErrorCode ?? "DetectionAlgorithmInvalid");
@@ -846,6 +854,7 @@ public sealed partial class RecipeDetectionExecutor(ICapturePort camera, IAlgori
     {
         var (window, saveLimit) = SaveWindow(request, token);
         using var limit = saveLimit;
+        using var commit = await Gaode.Application.Station01.RunFactCommitCoordinator.Shared.EnterAsync(request.RunId, limit.Token);
         Guid? attemptedWriteId = null;
         try
         {
@@ -911,6 +920,6 @@ public sealed partial class RecipeDetectionExecutor(ICapturePort camera, IAlgori
 
     private static DetectionPortResult NotStarted(DetectionRequest request, string error) =>
         new(request, DetectionResultKind.Failed, null, [], ResultSource.Fallback, ResultQuality.Unknown,
-            error, DateTimeOffset.UtcNow, [$"detection-error://{error}"]);
+            error, DateTimeOffset.UtcNow, [$"detection-error://{error}"]) { NoWorkStarted = true };
 
 }

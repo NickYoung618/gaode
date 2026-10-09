@@ -14,7 +14,8 @@ public sealed record Station01RuntimeOptions(string Mode, string TestRoot,
     string? TestPersistenceFaultCase = null, string? PlcMechanicsPath = null,
     string? PlcFieldProfilePath = null,
     Gaode.Infrastructure.Devices.Cameras.RealCameraOptions? Cameras = null,
-    string? CommissioningPath = null, string? CommissioningSha256 = null)
+    string? CommissioningPath = null, string? CommissioningSha256 = null,
+    string? RealAlgorithmConfigPath = null, string? RealAlgorithmConfigSha256 = null)
 {
     public string StoreProfile => Mode == RuntimePurposes.RealDeviceCommissioning ? RuntimePurposes.RealDeviceCommissioning : "Test";
 }

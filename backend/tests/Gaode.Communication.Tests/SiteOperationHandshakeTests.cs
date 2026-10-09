@@ -293,7 +293,8 @@ public sealed class SiteOperationHandshakeTests
             var tick = Stopwatch.GetTimestamp(); var utc = DateTimeOffset.UtcNow;
             var window = new ActionWindow(tick, tick + 5 * Stopwatch.Frequency, "Stopwatch", utc, utc.AddSeconds(5));
             var capture = await device.OpenCaptureWindowAsync(new(position.Correlation, CaptureRole.Detection, target, position, window), deadline.Token);
-            await device.FinishCaptureWindowAsync(capture, new(position.Correlation.RunId, position.Correlation.OperationId, [Guid.NewGuid()], true), window, deadline.Token);
+            using var captureEvidence = await CaptureWorkFixture.CreateAsync(capture);
+            await device.FinishCaptureWindowAsync(capture, captureEvidence.Work, window, deadline.Token);
         }
         var clear = Assert.Single(plc.StartClears);
         Assert.Equal(0, clear.ZLow); Assert.Equal(0x4040, clear.ZHigh); // independent CDAB 3.0
@@ -330,7 +331,8 @@ public sealed class SiteOperationHandshakeTests
             var position = Assert.Single(result.Evidence!.Positions);
             var window = Devices.HandshakeClosureTests.Window();
             var capture = await device.OpenCaptureWindowAsync(new(position.Correlation,CaptureRole.Detection,target,position,window),deadline.Token);
-            await device.FinishCaptureWindowAsync(capture,new(position.Correlation.RunId,position.Correlation.OperationId,[Guid.NewGuid()],true),window,deadline.Token);
+            using var captureEvidence = await CaptureWorkFixture.CreateAsync(capture);
+            await device.FinishCaptureWindowAsync(capture,captureEvidence.Work,window,deadline.Token);
             foreach (var mb in new[] {2001,2002,2003}) Assert.Equal(0,plc.Byte(mb));
             foreach (var mb in new[] {6040,6042,6044}) Assert.Equal(1,plc.Word(mb));
         }
@@ -394,7 +396,8 @@ public sealed class SiteOperationHandshakeTests
             Assert.True(result.Kind==DeviceEventKind.Completed,result.ErrorCode??device.Failure);
             var position=Assert.Single(result.Evidence!.Positions);var window=Devices.HandshakeClosureTests.Window();
             var capture=await device.OpenCaptureWindowAsync(new(position.Correlation,CaptureRole.E,target,position,window),deadline.Token);
-            await device.FinishCaptureWindowAsync(capture,new(position.Correlation.RunId,position.Correlation.OperationId,[Guid.NewGuid()],true),window,deadline.Token);
+            using var captureEvidence = await CaptureWorkFixture.CreateAsync(capture);
+            await device.FinishCaptureWindowAsync(capture,captureEvidence.Work,window,deadline.Token);
             Assert.Equal(0,plc.Byte(2004));Assert.Equal(1,plc.Word(6046));
         }
         foreach(var z in new[]{1,2,2})

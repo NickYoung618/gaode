@@ -24,6 +24,14 @@ public sealed partial class CameraBusinessRegressionTests
     [Theory]
     [InlineData(false)]
     [InlineData(true)]
+    public Task FormalTestRecipeUsesPngThroughManagedSingleFusionSqliteAndOriginalSynchronousCompletion(bool eCode) =>
+        Execute(eCode?4:2,eCode,false,false,eCode?8:4,eCode?4:1,"OK",false,false,false,false,false,png:true);
+    [Fact]
+    public Task TimedOutSingleResultIsDiagnosticOnlyAndActualRecipePersistsFinitePending() =>
+        Execute(2,false,false,false,4,1,"Pending",false,false,false,false,false,png:true,lateResult:true);
+    [Theory]
+    [InlineData(false)]
+    [InlineData(true)]
     public Task TwoFacesDetectionPlacementObservationAndCancellation(bool cancelled) =>
         Execute(2,false,false,false,4,1,"OK",cancelled,false,false,false,false);
     internal Task ExecuteSavedCommissioningRecipe(RecipeDefinition recipe, string fieldTrace, Func<Task>? afterFreeze = null) =>
@@ -31,7 +39,7 @@ public sealed partial class CameraBusinessRegressionTests
     private async Task Execute(int faces, bool extraE, bool missingCode, bool abnormalRecheck, int captureCount,
         int flips, string? disposition, bool cancelAfterPutBack, bool initiallyExcluded, bool omitInitialCapture,
         bool holdMoveAcceptance, bool localParameters, RecipeDefinition? savedRecipe = null, string? fieldTrace = null,
-        Func<Task>? afterFreeze = null)
+        Func<Task>? afterFreeze = null, bool png = false, bool lateResult = false)
     {
         var workerCapacity=Gaode.Infrastructure.Diagnostics.HostWorkerCapacity.Ensure();
         var workspace = Path.GetTempPath();
@@ -80,7 +88,7 @@ public sealed partial class CameraBusinessRegressionTests
             { FlipCompletion = 1000, PutBackCompletion = 1000, TrayPoseAlgorithm = 1000 } };
         if (holdMoveAcceptance) budget = budget with { BusinessMs = budget.BusinessMs with { PlcAcceptance = 50 } };
         using var cancellation = new CancellationTokenSource();
-        var ports = new DeclaredPorts(abnormalRecheck, missingCode, cancelAfterPutBack ? cancellation.Cancel : null, holdMoveAcceptance, savedRecipe);
+        var ports = new DeclaredPorts(abnormalRecheck, missingCode, cancelAfterPutBack ? cancellation.Cancel : null, holdMoveAcceptance, savedRecipe,png,lateResult);
         var registry = new CapabilityRegistry();
         foreach (var req in recipe.AlgorithmRequirements.Values)
             registry.RegisterAlgorithm(req.Purpose, req.Id, "1", req.ResultContract, req.InputCount,
@@ -89,7 +97,7 @@ public sealed partial class CameraBusinessRegressionTests
             "declared-component", ports.Origin.VersionRef!, purpose, "DeclaredComponentOnly");
         var cost = new ExecutionCostProfile("component", "1", purpose, "Declared component timing",
             $"{budget.Id}/{budget.Version}", "component-budget", 5000, 10000, 5000, 3000, 0)
-            { CaptureWaitMs = 8000, AlgorithmWaitMs = 15000, InputReleaseWaitMs = 2000 };
+            { CaptureWaitMs = 8000, AlgorithmWaitMs = lateResult ? 1000 : 15000, InputReleaseWaitMs = 2000 };
         var inputs = RecipeAdmission.Freeze(run, tray, plan, registry, cost, purpose,
             new(new("tray-pose", "1"), "component", "1"));
         var positions = plan.ExecutionPositions["s1"].PhysicalEntity;
@@ -171,11 +179,19 @@ public sealed partial class CameraBusinessRegressionTests
                 ActionState.NotRequested,CaptureState.NotRequested,AlgorithmState.NotRequested,SaveState.NotQueued,HandoffState.NotReady,null,null,null,[])));
         }
         var decisions=decisionCoordinator is null?null:new TrayAnomalyDecisionService(decisionCoordinator,TimeProvider.System);
+        var supervisor = new Gaode.Application.Algorithms.AlgorithmResourceSupervisor(events,TimeProvider.System,budget.BusinessMs.CriticalSave);
+        var managed = new Gaode.Application.Algorithms.AlgorithmRuntime(ports,media,new Gaode.Application.Timing.OperationIngress(new Gaode.Application.Timing.DeadlineScheduler(TimeProvider.System,"system-component")),new(media),resources:supervisor);
         var executor = new RecipeDetectionExecutor(ports, ports, media, events, writer,
-            new TraceQuery(options, TimeProvider.System, 2000), motion, ports,anomalyDecisions:decisions,coordinator:decisionCoordinator);
+            new TraceQuery(options, TimeProvider.System, 2000), motion, ports,anomalyDecisions:decisions,coordinator:decisionCoordinator,algorithms:managed);
         async Task<DetectionPortResult> ExecuteAndDecide() {
             try {
                 var executing=executor.ExecuteAsync(request,cancellation.Token).AsTask();
+                if(lateResult)
+                {
+                    var delayed=await ports.LateEntered.Task.WaitAsync(TimeSpan.FromSeconds(5));
+                    await ProtocolTcpFixture.UntilAsync(()=>supervisor.States.Any(x=>x.CallId==delayed.CallId && x.TechnicalTerminal=="TimedOut"),new CancellationTokenSource(5000).Token);
+                    ports.ReleaseLate.TrySetResult();
+                }
                 if(decisionCoordinator is not null) {
                     var until=DateTimeOffset.UtcNow.AddSeconds(30);
                     while(decisionCoordinator.Query(run)?.TrayAnomalyDecision is null&&!executing.IsCompleted&&DateTimeOffset.UtcNow<until)await Task.Delay(10);
@@ -234,6 +250,22 @@ public sealed partial class CameraBusinessRegressionTests
             return;
         }
         Assert.True(result.Kind == DetectionResultKind.Completed, $"{result.ErrorCode}; evidence={root}");
+        if(lateResult)
+        {
+            await supervisor.FlushAsync(default);
+            var rows=await new StageEventStore(options).ReadAsync(run,tray,WholeTrayWorkflowStage.Detection);
+            var timedOut=rows.Where(x=>x.EventType==StageEventType.AlgorithmLifecycleRecorded)
+                .Select(x=>JsonSerializer.Deserialize<AlgorithmResourceState>(x.PayloadJson,new JsonSerializerOptions(JsonSerializerDefaults.Web))!)
+                .Where(x=>x.TechnicalTerminal=="TimedOut").GroupBy(x=>x.CallId).Select(x=>x.MaxBy(y=>y.Revision)!).Single();
+            Assert.True(timedOut.Reclaimed);Assert.NotNull(timedOut.ReleaseDueUtc);
+            var written=await new TraceQuery(options).GetWritesAsync(run,default);
+            var fact=written.Where(x=>x.Kind==WriteKind.AlgorithmFact).Select(x=>JsonSerializer.Deserialize<AlgorithmFactPayload>(x.PayloadJson)!).Single(x=>x.CallId==timedOut.CallId);
+            Assert.Equal(AlgorithmState.TimedOut,fact.State);Assert.Equal("FinitePending",fact.DispatchEvidence);
+            Assert.All(result.Objects,x=>Assert.Equal("Pending",x.Disposition));
+            await File.WriteAllTextAsync(Path.Combine(root,"late-arbitration.json"),JsonSerializer.Serialize(new{timedOut,fact,result}));
+            var evidence=Environment.GetEnvironmentVariable("GAODE_COMMISSIONING_EVIDENCE_ROOT");
+            if(evidence is not null) File.WriteAllText(Path.Combine(evidence,"late-arbitration-source.json"),JsonSerializer.Serialize(new{root}));
+        }
         Assert.Equal(captureCount, ports.TriggerCount(CaptureRole.Detection));
         if (localParameters)
         {
@@ -280,7 +312,7 @@ public sealed partial class CameraBusinessRegressionTests
             Assert.True(ports.Order.IndexOf("put:" + flip.TransitionId) < ports.Order.IndexOf("observe:" + flip.TransitionId));
         }
         await using var db = new Station01DbContext(options);
-        Assert.Equal(captureCount + flips + (extraE ? 1 : 0), await db.Media.CountAsync(m => m.RunId == run));
+        Assert.Equal(captureCount + flips + (extraE ? 1 : 0) + (png ? captureCount + (extraE ? 1 : 0) : 0), await db.Media.CountAsync(m => m.RunId == run));
         var index=new CameraCaptureJournal(options); var references=await index.ListCommittedAsync(default);
         var restarted=new MediaStore(root,new(33554432,0,33554432,33554432),new MediaLeaseRegistry(),1);
         await index.RestoreAsync(restarted,default);
@@ -331,10 +363,12 @@ public sealed partial class CameraBusinessRegressionTests
         }
     }
 
-    private sealed class DeclaredPorts(bool abnormal, bool missingCode, Action? afterPutBack, bool holdMoveAcceptance, RecipeDefinition? savedRecipe = null) : IPlcStatePort, IPlcActionPort,
+    private sealed class DeclaredPorts(bool abnormal, bool missingCode, Action? afterPutBack, bool holdMoveAcceptance, RecipeDefinition? savedRecipe = null,bool png=false,bool lateResult=false) : IPlcStatePort, IPlcActionPort,
         IMotionPort, IPhysicalHandlingPort, IAcquisitionCyclePort, ICapturePort, IAlgorithmPort
     {
         public ComponentExecutionOrigin Origin => new(ComponentEvidenceSource.Test, "DeclaredSemanticComponent/1", "DeclaredInput");
+        public AlgorithmInputRepresentation InputRepresentation(AlgorithmRole role) => png && role is AlgorithmRole.Detection or AlgorithmRole.EDecode
+            ? AlgorithmInputRepresentation.Png : AlgorithmInputRepresentation.NativeMedia;
         public ComponentExecutionOrigin CameraOrigin => Origin;
         public ComponentExecutionOrigin LightOrigin => Origin;
         public string MediaSource => "Test";
@@ -346,6 +380,9 @@ public sealed partial class CameraBusinessRegressionTests
         public List<MoveRequest> Moves { get; } = [];
         private readonly List<CaptureRole> captures = [];
         private readonly List<AlgorithmRole> calls = [];
+        private int delayedResult;
+        public TaskCompletionSource<AlgorithmRequest> LateEntered=new(TaskCreationOptions.RunContinuationsAsynchronously);
+        public TaskCompletionSource ReleaseLate=new(TaskCreationOptions.RunContinuationsAsynchronously);
         private DeviceObservation observation = SemanticDeviceFixture.Ready(ClampState.Unconfirmed);
         public CancellationToken MoveToken { get; private set; }
         public DeviceObservation Observe() => observation;
@@ -377,15 +414,21 @@ public sealed partial class CameraBusinessRegressionTests
         public ValueTask<AcquisitionSession> OpenCaptureWindowAsync(CaptureWindowRequest r, CancellationToken token) =>
             ValueTask.FromResult(new AcquisitionSession(Guid.NewGuid(), r, AcquisitionState.CaptureAllowed, Evidence(r.Correlation, DeviceCompletionMeaning.CaptureAllowed)));
         public Task<CaptureCycleResult> FinishCaptureWindowAsync(AcquisitionSession s, CaptureWorkCommit w, ActionWindow window, CancellationToken token)
-        { Assert.True(w.MediaReleased); Assert.NotEmpty(w.WriteIds); return Task.FromResult(new CaptureCycleResult(s, AcquisitionState.Released, Evidence(s.Request.Correlation, DeviceCompletionMeaning.CaptureReleased), null)); }
+        { Assert.True(w.IsFor(s)); return Task.FromResult(new CaptureCycleResult(s, AcquisitionState.Released, Evidence(s.Request.Correlation, DeviceCompletionMeaning.CaptureReleased), null)); }
         public ValueTask RequestCaptureAsync(CaptureRequest r, Action<CaptureEvent> onEvent, CancellationToken token)
         {
             token.ThrowIfCancellationRequested(); Assert.NotEqual(Guid.Empty, r.IntentWriteId); captures.Add(r.Role); Requests.Add(r); Order.Add("capture:" + r.Role);
             onEvent(new(r, CaptureEventKind.Ended, 1));
-            onEvent(new(r, CaptureEventKind.MediaTaken, 1, [1, 2, 3, 4], "bin") { Fact = new(r.Envelope.RunId, r.CaptureId,
+            var encoded=png && r.Role!=CaptureRole.ThreeD;
+            var at=DateTimeOffset.UtcNow;
+            var frame=encoded ? new CaptureFrameMetadata("Test:declared-Mono8",r.CameraBindingId,"Test","","","",r.Envelope.SessionId,
+                (ulong)captures.Count,0,captures.Count,at,at,2,2,"Mono8",4,
+                new Dictionary<string,string> { ["Width"]="2",["Height"]="2",["PayloadSize"]="4",["PixelFormat"]="Mono8" },
+                [new("frame.raw",4,1,4,Convert.ToHexString(System.Security.Cryptography.SHA256.HashData(new byte[]{1,2,3,4})))]) : null;
+            onEvent(new(r, CaptureEventKind.MediaTaken, 1, [1, 2, 3, 4], encoded ? "GalaxyRaw" : "bin") { Fact = new(r.Envelope.RunId, r.CaptureId,
                 r.Envelope.OperationId, 1, AcquisitionContract.RequestedSettingsDigest(r), "Test", Origin, Origin,
                 CaptureApplicationState.ConfiguredOnly, r.DetectionSettings, false, ["DeclaredComponentBuffer;no-SDK-evidence"]) {
-                    LightExecution = r.LightExecution, CameraApplicationState = CaptureApplicationState.Applied, LightApplicationState = r.LightExecution?.IsSimulated == true ? CaptureApplicationState.NotApplied : CaptureApplicationState.ConfiguredOnly,
+                    FrameMetadata=frame,LightExecution = r.LightExecution, CameraApplicationState = CaptureApplicationState.Applied, LightApplicationState = r.LightExecution?.IsSimulated == true ? CaptureApplicationState.NotApplied : CaptureApplicationState.ConfiguredOnly,
                     ActualPublicSettings = r.PublicSettings,
                     ActualCameraSettings = new(r.DetectionSettings?.ExposureUs ?? r.PublicSettings?.ExposureUs ?? 1,
                         r.DetectionSettings?.Gain ?? 0, r.DetectionSettings?.RoiPixels[2] ?? 1, r.DetectionSettings?.RoiPixels[3] ?? 1,
@@ -401,11 +444,16 @@ public sealed partial class CameraBusinessRegressionTests
         public ValueTask<AlgorithmDispatch> RequestAsync(AlgorithmRequest r, Action<AlgorithmEvent> onEvent, CancellationToken token)
         {
             token.ThrowIfCancellationRequested(); calls.Add(r.Role);
+            if(png && r.Role!=AlgorithmRole.TrayPose)
+            { Assert.Equal("Test",r.Envelope.Purpose);Assert.All(r.Inputs,image=>{Assert.Equal("png",image.Format);Assert.NotNull(image.AlgorithmInput);}); }
             var result = new AlgorithmEvent(r, AlgorithmEventKind.Result, RawCodes: r.Role == AlgorithmRole.EDecode && !missingCode ? ["component-code"] : [],
                 WorkerSessionId: Guid.NewGuid(), DetectionDisposition: "OK");
             if (r.Role == AlgorithmRole.TrayPose)
             { Order.Add("observe:" + r.ObservationContext!.RelatedTransitionId); result = result with { Observation = Observation(r.Envelope.RunId, r.ObservationContext.TrayId, r.CaptureId, r.CallId, r.ObservationContext) }; }
+            if(lateResult && r.Role==AlgorithmRole.Detection && r.Inputs.Count==1 && Interlocked.Exchange(ref delayedResult,1)==0)
+                return ValueTask.FromResult(new AlgorithmDispatch(EmitLate()));
             onEvent(result); return ValueTask.FromResult(new AlgorithmDispatch(Task.CompletedTask));
+            async Task EmitLate(){LateEntered.TrySetResult(r);await ReleaseLate.Task;onEvent(result with {DetectionDisposition="NG"});}
         }
         public ValueTask RequestStartAsync(PortEnvelope e, Guid a, Guid i, Action<DeviceEvent> callback, CancellationToken token) => throw new NotSupportedException("No startup in this component");
         public ValueTask RequestStopAsync(PortEnvelope e, Action<DeviceEvent> callback, CancellationToken token) => throw new NotSupportedException();

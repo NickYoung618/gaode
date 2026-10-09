@@ -131,6 +131,7 @@ public sealed class WholeTrayCompletionStore(
             return ParseFinal(replay.PayloadJson);
         }
 
+        await RequireAlgorithmResourcesAsync(db, request.WholeTray.RunId, cancellationToken);
         var readyEntity = await db.ComponentEvidenceMatrices.AsNoTracking().SingleAsync(x =>
             x.MatrixId == completion.SourceMatrixId, cancellationToken);
         var ready = ParseMatrix(readyEntity);
@@ -176,6 +177,7 @@ public sealed class WholeTrayCompletionStore(
         await using var db = new Station01DbContext(options);
         var run = await db.Runs.AsNoTracking().SingleOrDefaultAsync(x => x.RunId == runId, cancellationToken);
         if (run is null || run.State != RunState.Completed || run.Terminal != TerminalOutcome.Completed) return false;
+        await RequireAlgorithmResourcesAsync(db, runId, cancellationToken);
         var facts = await db.StageEvents.AsNoTracking().Where(x => x.RunId == runId && x.TrayId == trayId &&
             x.Stage == WholeTrayWorkflowStage.ManualTrayRemovalConfirmation.ToString()).ToListAsync(cancellationToken);
         var finalEvent = facts.LastOrDefault(x => x.EventType == StageEventType.FinalUnloadCompleted.ToString());
@@ -192,6 +194,21 @@ public sealed class WholeTrayCompletionStore(
         Gaode.Diagnostics.RuntimeDiagnostics.Record("CompletionAdmission", "CommittedFinalReconciled", runId,
             new { trayId, final.FinalCompletionId, final.FinalSourceMatrixId });
         return true;
+    }
+
+    private static async Task RequireAlgorithmResourcesAsync(Station01DbContext db, Guid runId, CancellationToken token)
+    {
+        var kind = nameof(StageEventType.AlgorithmLifecycleRecorded);
+        var unknown = await db.StageEvents.FromSqlInterpolated($"""
+            SELECT e.* FROM StageEvents e
+            WHERE e.RunId = {runId} AND e.EventType = {kind}
+              AND NOT EXISTS (SELECT 1 FROM StageEvents n WHERE n.EventType = {kind}
+                AND n.RunId = e.RunId
+                AND json_extract(n.PayloadJson, '$.callId') = json_extract(e.PayloadJson, '$.callId')
+                AND n.Sequence > e.Sequence)
+              AND COALESCE(json_extract(e.PayloadJson, '$.reclaimed'), 0) = 0
+            """).AsNoTracking().AnyAsync(token);
+        if (unknown) throw new InvalidOperationException("AlgorithmResourcesUnconfirmed");
     }
 
     private static async Task<StageEventEntity> CompletedAsync(Station01DbContext db,

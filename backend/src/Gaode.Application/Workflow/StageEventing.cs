@@ -25,7 +25,8 @@ public enum StageEventType
     ManualTrayRemovalConfirmed,
     FinalUnloadCompleted,
     UnknownHeld,
-    ManualRemovalAllowed
+    ManualRemovalAllowed,
+    AlgorithmLifecycleRecorded
 }
 
 public enum StageProjectionStatus
@@ -103,7 +104,7 @@ public sealed record StageProjection(
     long ConnectionEpoch,
     bool DeviceHeld,
     bool NeedsManualReview,
-    Guid LastEventId,
+    Guid? LastEventId,
     DateTimeOffset UpdatedAt,
     DateTimeOffset RetainUntil)
 {
@@ -183,12 +184,17 @@ public sealed class StageDispatchGate(IStageEventStore store)
 public static class StageEventProjection
 {
     public static StageProjection Initial(StageEvent e) => new(e.RunId, e.TrayId, e.StationId,
-        e.LineId, e.Stage, 0, StageProjectionStatus.NotStarted, null, e.ConnectionEpoch,
-        false, false, e.EventId, e.PersistedAt, e.RetainUntil);
+        e.LineId, e.Stage, 0, StageProjectionStatus.NotStarted, null,
+        e.EventType == StageEventType.AlgorithmLifecycleRecorded ? 0 : e.ConnectionEpoch,
+        false, false, e.EventType == StageEventType.AlgorithmLifecycleRecorded ? null : e.EventId,
+        e.EventType == StageEventType.AlgorithmLifecycleRecorded ? default : e.PersistedAt, e.RetainUntil);
 
     public static StageProjection Apply(StageProjection current, StageEvent e)
     {
         if (e.Sequence <= current.Revision) return current;
+        if (e.EventType == StageEventType.AlgorithmLifecycleRecorded)
+            return current with { Revision = e.Sequence,
+                RetainUntil = current.RetainUntil > e.RetainUntil ? current.RetainUntil : e.RetainUntil };
         var status = e.EventType switch
         {
             StageEventType.Started => StageProjectionStatus.Started,

@@ -8,4 +8,5 @@
   </ItemGroup>
   <ItemGroup><ProjectReference Include="../Gaode.Plc.Protocol/Gaode.Plc.Protocol.csproj" /></ItemGroup>
   <ItemGroup><InternalsVisibleTo Include="Gaode.Communication.Tests" /><InternalsVisibleTo Include="Gaode.Integration.Tests" /></ItemGroup>
+  <ItemGroup><EmbeddedResource Include="../../../specs/022-real-algorithm-pipeline/contracts/real-algorithm-host.schema.json" LogicalName="Gaode.RealAlgorithmHostSchema" /></ItemGroup>
 </Project>

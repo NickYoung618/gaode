@@ -7,6 +7,12 @@ namespace Gaode.Infrastructure.Persistence;
 
 public sealed class TraceQuery : ITraceQuery, IStageHandoffQuery
 {
+    public async Task<IReadOnlyList<AlgorithmResourceState>> GetUnreclaimedResourcesAsync(int offset, int limit,
+        CancellationToken cancellationToken)
+    {
+        using var budget = Budget(cancellationToken);
+        return await new StageEventStore(options, clock).GetUnreclaimedResourcesAsync(offset, limit, budget.Token);
+    }
     private static readonly JsonSerializerOptions JsonOptions = new(JsonSerializerDefaults.Web);
     private readonly DbContextOptions<Station01DbContext> options;
     private readonly TimeProvider clock;

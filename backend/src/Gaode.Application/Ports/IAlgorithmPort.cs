@@ -16,6 +16,7 @@ public sealed class AlgorithmNotDispatchedException(Guid callId, string evidence
 
 public interface IAlgorithmPort
 {
+    AlgorithmInputRepresentation InputRepresentation(AlgorithmRole role) => AlgorithmInputRepresentation.NativeMedia;
     Gaode.Domain.Station01.ComponentExecutionOrigin Origin => Gaode.Domain.Station01.ComponentExecutionOrigin.Unknown;
     // Runs behind a bounded per-role isolation boundary, including the synchronous prefix.
     // Cancellation is a request, not execution-end/input-release evidence. Ordinary throws
@@ -25,3 +26,4 @@ public interface IAlgorithmPort
         CancellationToken cancellationToken);
     int CallCount(AlgorithmRole role);
 }
+public enum AlgorithmInputRepresentation { NativeMedia, Png, Ply }
