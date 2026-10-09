@@ -9,6 +9,7 @@ namespace Gaode.Infrastructure.Devices.Plc;
 public sealed partial class LatestProtocolPlcDevice
 {
     private sealed record AxisClosure(long Epoch, float Actual);
+    private static bool AxisFeedbackMatchesProof(AxisClosure proof, ushort value) => value == 1;
     private readonly Dictionary<SignalId, AxisClosure> axisClosures = [];
     private DeviceObservation? completedMoveObservation;
     private object? handshakeDiagnostic;
@@ -31,7 +32,7 @@ public sealed partial class LatestProtocolPlcDevice
         lock (sync)
         {
             if (!axisClosures.TryGetValue(axis.Start, out var closed)) return false;
-            if (closed.Epoch != expectedEpoch || values.Bit(axis.Start) || values.Word(axis.Confirmed) != 0 ||
+            if (closed.Epoch != expectedEpoch || values.Bit(axis.Start) || !AxisFeedbackMatchesProof(closed, values.Word(axis.Confirmed)) ||
                 !float.IsFinite(values.Float(axis.Actual)) ||
                 Math.Abs(values.Float(axis.Actual) - closed.Actual) > PositionTolerance)
             { axisClosures.Remove(axis.Start); return false; }
@@ -42,7 +43,8 @@ public sealed partial class LatestProtocolPlcDevice
     private void ObserveAxisClosures(SignalValues values, long sampledEpoch)
     {
         if (values.Words.ContainsKey(SignalId.PlcReadyState) && (!values.Bit(SignalId.PlcReadyState) ||
-            !values.Bit(SignalId.PlcModeAuto) || values.Bit(SignalId.PlcSystemFault) ||
+            !values.Bit(SignalId.PlcModeAuto) ||
+            values.Bit(SignalId.PlcSystemFault) ||
             definitionAdmission.Definition.IsSiteLayout && (options.SiteOperations is not { IsValid: true } ||
                 ConfirmedMemoryLayout.IndependentSafetySignals.Values.Any(values.Bit)) ||
             (!definitionAdmission.Definition.IsSiteLayout && values.Bit(SignalId.ManualZoneOccupied)) ||
@@ -55,8 +57,9 @@ public sealed partial class LatestProtocolPlcDevice
         {
             if (!axisClosures.TryGetValue(starts[i], out var closed)) continue;
             if (closed.Epoch != sampledEpoch ||
+                values.Words.ContainsKey(SignalId.PlcModeAuto) && !values.Bit(SignalId.PlcModeAuto) ||
                 values.Words.ContainsKey(starts[i]) && values.Word(starts[i]) != 0 ||
-                values.Words.ContainsKey(feedbacks[i]) && values.Word(feedbacks[i]) != 0 ||
+                values.Words.ContainsKey(feedbacks[i]) && !AxisFeedbackMatchesProof(closed, values.Word(feedbacks[i])) ||
                 values.Words.ContainsKey(positions[i]) && (!float.IsFinite(values.Float(positions[i])) ||
                     Math.Abs(values.Float(positions[i]) - closed.Actual) > PositionTolerance))
                 axisClosures.Remove(starts[i]);
@@ -68,6 +71,7 @@ public sealed partial class LatestProtocolPlcDevice
         SignalId[] fields, ActionWindow window, long expectedEpoch, CancellationToken token)
     {
         var cycle = Guid.NewGuid();
+        var confirmationKind = fields.Length == 1 && fields[0] == request ? "PcRequestReleased" : "CycleIdle";
         using var eligibility = ActionDispatchEligibility(window, expectedEpoch, token);
         var clock = new PlcExchangeClock();
         var previous = PlcExchangeClock.Current.Value;
@@ -88,7 +92,7 @@ public sealed partial class LatestProtocolPlcDevice
         logger.LogInformation("PlcClearWaiting resource={Resource} cycle={Cycle} epoch={Epoch} action={Action} writeEnded={WriteEnded} due={Due}",
             resource, cycle, expectedEpoch, evidenceCorrelation?.ActionId, clock.Ended, window.DueTick);
         handshakeDiagnostic = new { resource, cycle, expectedEpoch, action=evidenceCorrelation, writeEnded=clock.Ended,
-            due=window.DueTick, phase="Waiting" };
+            due=window.DueTick, confirmationKind, phase="Waiting" };
         Gaode.Diagnostics.RuntimeDiagnostics.Record("PlcHandshake", "Waiting", evidenceCorrelation?.RunId, handshakeDiagnostic);
         var after = clock.Ended + 1;
         var demandRead = true;
@@ -106,7 +110,7 @@ public sealed partial class LatestProtocolPlcDevice
                 var proof=ConfirmClearance(cycle,expectedEpoch,sample.Epoch,clock.Ended,sample.Values,fields,
                     DateTimeOffset.UtcNow,Math.Max(500,options.IoTimeoutMs*5));
                 handshakeDiagnostic = new { resource, cycle, expectedEpoch, action=evidenceCorrelation, writeEnded=clock.Ended,
-                    due=window.DueTick, fields=fields.Select(id=>new { signal=id.ToString(),raw=sample.Values.Word(id),read=sample.Values.Stamps[id] }).ToArray() };
+                    due=window.DueTick, confirmationKind, fields=fields.Select(id=>new { signal=id.ToString(),raw=sample.Values.Word(id),read=sample.Values.Stamps[id] }).ToArray() };
                 if (proof is not null)
                 {
                     logger.LogInformation("PlcClearConfirmed resource={Resource} cycle={Cycle} epoch={Epoch} action={Action} writeEnded={WriteEnded} readStarted={ReadStarted} readEnded={ReadEnded} fields={Fields}",

@@ -99,7 +99,7 @@ public sealed class CommissioningRecoveryTests
         internal bool Exited = true, Resources = true;
         private readonly DbContextOptions<Station01DbContext> options;
         private readonly IDisposable logging;
-        internal Fixture(bool rejectCancel = false, bool confirmed = true, int resetBudgetMs = 2000)
+        internal Fixture(bool rejectCancel = false, bool confirmed = true, int resetBudgetMs = 2000, Func<bool>? resourceCheck = null)
         {
             Directory.CreateDirectory(Root);
             options = new DbContextOptionsBuilder<Station01DbContext>().UseSqlite($"Data Source={Path.Combine(Root, "run.db")};Pooling=False").Options;
@@ -123,7 +123,7 @@ public sealed class CommissioningRecoveryTests
             }, .1);
             foreach (var mb in new[] { 6064, 6076, 6084, 6088, 6092 }) { Plc.SetWord(mb, 0); Plc.SetWord(mb + 2, 0); }
             Recovery = new(Device, new(Device, Device, Device, Device, Lease), Commands, Coordinator, Writer, Query,
-                _ => Exited, () => Resources, resetBudgetMs, 2000);
+                _ => Exited, () => Resources && (resourceCheck?.Invoke() ?? true), resetBudgetMs, 2000);
             Coordinator.Start();
         }
         internal async Task Seed(bool rehydrated, CancellationToken ct)
@@ -181,6 +181,74 @@ public sealed class CommissioningRecoveryTests
         Assert.Contains("ClosedAfterVerifiedReset", File.ReadAllText(Path.Combine(f.Root, "runtime.log")));
         f.Evidence(new { rehydrated, result, stored.Terminal, proof, next.RunId, automaticStart = false });
     }
+    [Fact]
+    public async Task ResidualActionRequestsClearBeforeResetAndOldRunClosesDurably()
+    {
+        using var budget = new CancellationTokenSource(15000);
+        await using var f = new Fixture(); await f.Seed(true, budget.Token);
+        foreach (var mb in new[] { 2000, 2001, 2002, 2003, 2004, 2005, 2007 }) f.Plc.SetByte(mb, 1);
+        f.Plc.SetWord(2014, 2); f.Plc.SetWord(2016, 1); f.Plc.ReadyOnReset = 1;
+        var result = await f.Recovery.ResetAsync("operator", budget.Token);
+        Assert.True(result.RecoveryClosed);
+        Assert.All(Assert.Single(f.Plc.ResetActionRequests), value => Assert.Equal(0, value));
+        Assert.Equal(TerminalOutcome.Cancelled, (await f.Query.GetRunAsync(f.RunId, budget.Token))!.Terminal);
+        Assert.Equal("Available", JsonSerializer.SerializeToElement(f.Commands.StartAdmission()).GetProperty("state").GetString());
+        Assert.Equal(0, f.Plc.StartEdges); Assert.Equal(0, f.Plc.MotionEdges);
+        f.Evidence(new { result, residualRequestsClearedBeforeReset = true, automaticStart = false });
+    }
+    [Fact]
+    public async Task FaultedNeverOpenedCameraCanCloseOldRunWithoutBecomingCaptureReady()
+    {
+        using var budget = new CancellationTokenSource(15000);
+        var root = Path.Combine(Path.GetTempPath(), "camera-reset-resource-" + Guid.NewGuid().ToString("N"));
+        Directory.CreateDirectory(root);
+        var site = Path.Combine(root, "site.json");
+        File.WriteAllText(site, JsonSerializer.Serialize(new { Cameras = new[] {
+            new Gaode.Infrastructure.Devices.Cameras.CameraBinding("3D", "3D", "fixture-serial", "001122334455") } }));
+        File.WriteAllText(Path.Combine(root, "mode.txt"), "init-before-open-fail");
+        await using var gateway = new Gaode.Infrastructure.Devices.Cameras.PersistentCameraGateway(new(site,
+            Path.Combine(AppContext.BaseDirectory, "CameraWorkerFixture", "Gaode.CameraWorkerFixture.exe"), root, root,
+            Path.Combine(root, "state"), 5000, 5000, 3000));
+        try
+        {
+            await gateway.StartAsync(budget.Token);
+            Assert.Equal("Faulted", Assert.Single(gateway.Status).State);
+            await using var f = new Fixture(resourceCheck: () => gateway.RecoveryResources.All(x => x.Released));
+            await f.Seed(true, budget.Token); f.Plc.ReadyOnReset = 1;
+            var result = await f.Recovery.ResetAsync("operator", budget.Token);
+            Assert.True(result.RecoveryClosed);
+            Assert.Equal(TerminalOutcome.Cancelled, (await f.Query.GetRunAsync(f.RunId, budget.Token))!.Terminal);
+            Assert.Equal("Faulted", Assert.Single(gateway.Status).State);
+            await Assert.ThrowsAsync<InvalidOperationException>(() => gateway.TriggerAsync("3D", "blocked"));
+            Assert.Equal(0, f.Plc.StartEdges); Assert.Equal(0, f.Plc.MotionEdges);
+        }
+        finally { await gateway.DisposeAsync(); Directory.Delete(root, true); }
+    }
+    [Fact]
+    public async Task ManualResetWithRetainedAxisArrivalsClosesOldRunButCannotStartMotion()
+    {
+        using var budget = new CancellationTokenSource(15000);
+        await using var f = new Fixture(); await f.Seed(true, budget.Token);
+        f.Plc.SetByte(6016, 0); f.Plc.SetByte(2001, 1); f.Plc.ReadyOnReset = 1; f.Plc.RetainArrivalOnSystemReset = true;
+        var result = await f.Recovery.ResetAsync("operator", budget.Token);
+        Assert.True(result.RecoveryClosed);
+        Assert.Equal(TerminalOutcome.Cancelled, (await f.Query.GetRunAsync(f.RunId, budget.Token))!.Terminal);
+        Assert.Equal(0, f.Plc.Byte(2009)); Assert.Equal(0, f.Plc.StartEdges); Assert.Equal(0, f.Plc.MotionEdges);
+        Assert.Equal(0, f.Plc.Byte(6016));
+        Assert.True((await f.Device.ReadInitialStateAsync(budget.Token)).Passed);
+        f.Evidence(new { manualReset = true, retainedAxisArrivals = true, result });
+    }
+    [Fact]
+    public async Task RetainedPutBackCompletionStillBlocksRecovery()
+    {
+        using var budget = new CancellationTokenSource(10000);
+        await using var f = new Fixture(); await f.Seed(true, budget.Token);
+        f.Plc.ReadyOnReset = 1; f.Plc.RetainArrivalOnSystemReset = true; f.Plc.SetWord(6052, 2);
+        await Assert.ThrowsAnyAsync<OperationCanceledException>(() => f.Recovery.ResetAsync("operator", budget.Token));
+        Assert.Equal(TerminalOutcome.None, (await f.Query.GetRunAsync(f.RunId, budget.Token))!.Terminal);
+        Assert.Equal(f.RunId, f.Commands.PhysicalOwner); Assert.Equal(0, f.Plc.MotionEdges);
+        f.Evidence(new { putBackMustClear = true, released = false });
+    }
     [Theory]
     [InlineData(false)]
     [InlineData(true)]
@@ -204,6 +272,24 @@ public sealed class CommissioningRecoveryTests
         Assert.Equal(TerminalOutcome.None, (await f.Query.GetRunAsync(f.RunId, budget.Token))!.Terminal);
         Assert.True(f.Lease.Unknown); Assert.Equal(f.RunId, f.Commands.PhysicalOwner);
         Assert.Equal(0, f.Plc.StartEdges); f.Evidence(new { failedSave = true, released = false });
+    }
+    [Theory]
+    [InlineData(true)]
+    [InlineData(false)]
+    public async Task InvalidResetAxisStateReportsSpecificCheckInsteadOfResetTimeout(bool wrongPosition)
+    {
+        using var budget=new CancellationTokenSource(10000);
+        await using var f=new Fixture();await f.Seed(true,budget.Token);
+        f.Plc.ReadyOnReset=1;
+        if (wrongPosition) f.Plc.SetWord(6090,0x4200); // CDAB Float32 scan Z=32, low word already zero.
+        else f.Plc.RetainArrivalOnSystemReset=false;
+        if (!wrongPosition) f.Plc.SetWord(6040,0);
+        var error=await Assert.ThrowsAsync<InvalidOperationException>(()=>f.Recovery.ResetAsync("operator",budget.Token));
+        Assert.Contains(wrongPosition?"ResetSafeZeroUnconfirmed":"ResetAxisFeedbackUnconfirmed",error.Message);
+        Assert.Equal(0,f.Plc.Byte(2009));Assert.Equal(1,f.Plc.ResetEdges);Assert.Equal(0,f.Plc.StartEdges);
+        Assert.Equal(f.RunId,f.Commands.PhysicalOwner);
+        Assert.Equal(TerminalOutcome.None,(await f.Query.GetRunAsync(f.RunId,budget.Token))!.Terminal);
+        f.Evidence(new {wrongPosition,error=error.Message,resetCompleted=true,initialCheckPassed=false,noRetry=true});
     }
     [Fact]
     public async Task StaleFlipFeedbackBlocksRecoveryAndNewRun()

@@ -23,7 +23,7 @@ public sealed partial class CameraBusinessRegressionTests
             await using var writer=new TraceWriter(options,TimeProvider.System,32);
             var ports=new DeclaredPorts(false,false,null,false);
             var media=new MediaStore(root,new(65536,0,65536,65536),new MediaLeaseRegistry(),1);
-            var coordinator=new AcquisitionCoordinator(ports,media,new OperationIngress(new DeadlineScheduler(TimeProvider.System,"review-clock")));
+            var coordinator=new AcquisitionCoordinator(ports,media,new OperationIngress(new DeadlineScheduler(TimeProvider.System,"review-clock")),new TraceQuery(options));
             var budget=ReviewBusinessData.Budget();
             var config=new FrozenConfiguration(ReviewBusinessData.Motion(),budget,ReviewBusinessData.Read<SimulationProfile>("simulation.normal.json"),
                 "{}","{}","{}","test-public","test-budget","test-simulation",new Dictionary<string,string>(),"review-snapshot");
@@ -44,7 +44,7 @@ public sealed partial class CameraBusinessRegressionTests
             var index=new CameraCaptureJournal(options);
             var restored=new MediaStore(root,new(65536,0,65536,65536),new MediaLeaseRegistry(),1);
             await index.RestoreAsync(restored,default);
-            foreach(var reference in new[]{a,b,c})
+            foreach(var reference in new[]{a.Media,b.Media,c.Media})
             {
                 Assert.True(media.IsReady(reference.MediaId));Assert.True(restored.IsReady(reference.MediaId));
                 Assert.Equal("Test",reference.Source);

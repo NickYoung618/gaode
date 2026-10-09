@@ -10,14 +10,14 @@ namespace Gaode.Contracts.Tests.Simulation;
 public sealed class SimulatedPlcTests
 {
     [Fact]
-    public async Task StartCausesInternalClampWithoutHostButtonOrClampEvent()
+    public async Task StartConfirmsReadinessWithoutInventingClampOrHostButtonEvents()
     {
         var (_, budget, profile) = TestConfiguration.Normal();
         var clock = new FakeTimeProvider(profile.VirtualStartUtc);
         using var plc = new SimulatedPlc(profile,
             new SimulationEventScheduler(clock, budget.Limits.MaxPendingTimerEvents));
         var events = new List<DeviceEventKind>();
-        var envelope = Envelope();
+        var envelope = Envelope(clock);
         await plc.RequestStartAsync(envelope, Guid.NewGuid(), Guid.NewGuid(),
             e => events.Add(e.Kind), CancellationToken.None);
         clock.Advance(TimeSpan.FromMilliseconds(profile.Stages.PlcAcceptance.DelayMs));
@@ -26,25 +26,26 @@ public sealed class SimulatedPlcTests
         Assert.Equal(ClampState.Released, plc.Observe().Clamp);
         clock.Advance(TimeSpan.FromMilliseconds(profile.Stages.ClampCompletion.DelayMs));
         await Drain();
-        Assert.Equal(ClampState.Secured, plc.Observe().Clamp);
-        Assert.Equal(ClampState.Secured, plc.Observe().Clamp);
+        Assert.Equal(ClampState.Released, plc.Observe().Clamp);
+        Assert.Equal(DeviceReadiness.Ready, plc.Observe().Readiness);
         Assert.DoesNotContain(DeviceEventKind.ButtonPressed, events);
         Assert.DoesNotContain(DeviceEventKind.ClampStarted, events);
         Assert.DoesNotContain(DeviceEventKind.ClampCompleted, events);
     }
 
     [Fact]
-    public async Task ZonePreparationPublishesAcknowledgementBeforeMotionCanProceed()
+    public async Task StartReadinessDoesNotInventZoneConfiguration()
     {
         await using var harness = Station01StepHarness.Create();
         await harness.CompleteStartAsync();
-        Assert.Equal(ClampState.Secured, harness.Plc.Observe().Clamp);
+        Assert.Equal(DeviceReadiness.Ready, harness.Plc.Observe().Readiness);
+        Assert.Equal(ClampState.Released, harness.Plc.Observe().Clamp);
         Assert.False(harness.Motion.Unknown);
-        Assert.Equal(1, harness.Plc.ZoneConfigurations);
+        Assert.Equal(0, harness.Plc.ZoneConfigurations);
     }
 
     [Fact]
-    public async Task InternalClampFailureReportsStatusTwoWithoutHostCommand()
+    public async Task UnusedClampProfileCannotOverrideReadinessObservation()
     {
         var (_, budget, source) = TestConfiguration.Normal();
         var profile = source with { Stages = source.Stages with
@@ -54,13 +55,14 @@ public sealed class SimulatedPlcTests
         var clock = new FakeTimeProvider(profile.VirtualStartUtc);
         using var plc = new SimulatedPlc(profile,
             new SimulationEventScheduler(clock, budget.Limits.MaxPendingTimerEvents));
-        await plc.RequestStartAsync(Envelope(), Guid.NewGuid(), Guid.NewGuid(), _ => { }, CancellationToken.None);
+        await plc.RequestStartAsync(Envelope(clock), Guid.NewGuid(), Guid.NewGuid(), _ => { }, CancellationToken.None);
         clock.Advance(TimeSpan.FromMilliseconds(profile.Stages.PlcAcceptance.DelayMs));
         await Drain();
         clock.Advance(TimeSpan.FromMilliseconds(profile.Stages.ClampCompletion.DelayMs));
         await Drain();
-        Assert.Equal(ClampState.Unconfirmed, plc.Observe().Clamp);
-        Assert.Contains("ClampFailed", plc.Observe().ReasonCodes);
+        Assert.Equal(ClampState.Released, plc.Observe().Clamp);
+        Assert.Equal(DeviceReadiness.Ready, plc.Observe().Readiness);
+        Assert.DoesNotContain("ClampFailed", plc.Observe().ReasonCodes);
         Assert.Equal(0, plc.MoveCommands);
     }
 
@@ -73,7 +75,7 @@ public sealed class SimulatedPlcTests
             new SimulationEventScheduler(clock, budget.Limits.MaxPendingTimerEvents),
             budget.BusinessMs.HeartbeatFlip);
         var initialHeartbeat = plc.HeartbeatCount;
-        await plc.RequestStartAsync(Envelope(), Guid.NewGuid(), Guid.NewGuid(), _ => { },
+        await plc.RequestStartAsync(Envelope(clock), Guid.NewGuid(), Guid.NewGuid(), _ => { },
             CancellationToken.None);
         clock.Advance(TimeSpan.FromMilliseconds(budget.BusinessMs.HeartbeatFlip));
         await Drain();
@@ -81,7 +83,7 @@ public sealed class SimulatedPlcTests
         Assert.Equal(1, plc.StartCommands);
 
         var stopEvents = new List<DeviceEventKind>();
-        await plc.RequestStopAsync(Envelope(), e => stopEvents.Add(e.Kind), CancellationToken.None);
+        await plc.RequestStopAsync(Envelope(clock), e => stopEvents.Add(e.Kind), CancellationToken.None);
         clock.Advance(TimeSpan.FromMilliseconds(profile.Stop.AcceptedDelayMs));
         await Drain();
         Assert.Contains(DeviceEventKind.Accepted, stopEvents);
@@ -128,15 +130,16 @@ public sealed class SimulatedPlcTests
         var capture = await h.DriveAsync(h.Plc.OpenCaptureWindowAsync(new(evidence.Correlation, CaptureRole.ThreeD,
             request.Target, position, window), default).AsTask());
         Assert.Equal(AcquisitionState.CaptureAllowed, capture.State);
-        var release = await h.DriveAsync(h.Plc.FinishCaptureWindowAsync(capture,
-            new(envelope.RunId, envelope.OperationId, [Guid.NewGuid()], true), window, default));
+        using var saved = await Gaode.Communication.Tests.CaptureWorkFixture.CreateAsync(capture);
+        var release = await h.DriveAsync(h.Plc.FinishCaptureWindowAsync(capture, saved.Work, window, default));
         Assert.Equal(AcquisitionState.Released, release.State);
         Assert.Equal(new[] { AcquisitionState.CaptureAllowed, AcquisitionState.Released }, h.Plc.AcquisitionTransitions);
         Assert.Equal(AcquisitionReadiness.Available, h.Plc.Observe().AcquisitionReadiness);
         Assert.True(release.Evidence!.IsCorrelated);
     }
 
-    private static PortEnvelope Envelope() => new(Guid.NewGuid(), Guid.NewGuid(), 1,
-        Guid.NewGuid(), "snapshot", "1.0.0", "Test", 1, 100000, "clock");
+    private static PortEnvelope Envelope(TimeProvider clock) => new(Guid.NewGuid(), Guid.NewGuid(), 1,
+        Guid.NewGuid(), "snapshot", "1.0.0", "Test", clock.GetTimestamp(),
+        clock.GetTimestamp() + clock.TimestampFrequency * 5, "clock");
     private static async Task Drain() { for (var i = 0; i < 8; i++) await Task.Yield(); }
 }

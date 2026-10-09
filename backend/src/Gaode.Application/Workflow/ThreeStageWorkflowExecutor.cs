@@ -454,6 +454,14 @@ public sealed class ThreeStageWorkflowExecutor(
                     { EndBasisReference = intervention });
             algorithmOrigin = result.AlgorithmOrigin;
             captureFacts = result.CaptureFacts;
+            if (result.Kind is DetectionResultKind.TimedOut or DetectionResultKind.Disconnected && !result.NoWorkStarted)
+            {
+                await AppendAsync(request,WholeTrayWorkflowStage.Detection,request.Detection.OperationId,
+                    attempt,StageEventType.Failed,"DetectionExecutionUnknownNoReplay",$"detection:{attempt}:no-replay",
+                    result.Source,result.Quality,cancellationToken);
+                return Terminal(new(ThreeStageExecutionStatus.Failed,WholeTrayWorkflowStage.Detection,
+                    "DetectionExecutionUnknownNoReplay",[],await ProjectionAsync(request,WholeTrayWorkflowStage.Detection,cancellationToken)));
+            }
             if (clock.GetUtcNow() >= deadline && result.Kind is not (DetectionResultKind.Failed or DetectionResultKind.UnknownHeld))
                 return await PendingAsync(request, attempt, "StageDeadlineExceeded", deadline,
                     cancellationToken, algorithmOrigin, captureFacts, lastResult);

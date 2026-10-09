@@ -33,7 +33,18 @@ internal sealed class CameraProDriver(CameraBinding binding, Guid session, strin
         Check(discoveryCode, "DiscoverCameras");
         var matches = devices.Cast<CameraInfo>().Where(x => x.serialNum == Binding.Serial).ToArray();
         if (matches.Length != 1) throw new InvalidDataException($"SerialDiscoveryNotUnique: serial={Binding.Serial}, matches={matches.Length}, discovered={devices.Count}; see discovery.json");
-        info = matches[0]; ValidateNic(info.userIP, info.cameraIP);
+        info = matches[0];
+        var discoveredHost = info.userIP;
+        if (System.Net.IPAddress.TryParse(discoveredHost, out var discovered) && System.Net.IPAddress.IsLoopback(discovered))
+        {
+            var verified = CameraNetworkBinding.ResolveLoopback(Binding.ExpectedNicMac, info.cameraIP);
+            Save("host-address-resolution.json", new { utc = DateTimeOffset.UtcNow, rawSdkUserIp = discoveredHost,
+                verified.Address, verified.InterfaceIndex, verified.Mac, basis = "Configured MAC + unique local IPv4/subnet + Windows best route" });
+            CameraProPINVOKE.CameraInfo_userIP_set(CameraInfo.getCPtr(info), verified.Address);
+            if (info.userIP != verified.Address) throw new InvalidDataException("CameraProHostAddressReadbackMismatch");
+        }
+        ValidateNic(info.userIP, info.cameraIP);
+        DeviceOpenAttempted = true;
         Check(camera.Open(info, 15000), "Open"); opened = true;
         foreach (var param in new[] { ParamType.Capture_WorkMode, ParamType.Capture_Delay, ParamType.IR_Exposure,
             ParamType.IR_Gain, ParamType.IR_HDRCnt, ParamType.IR_PixelType, ParamType.Algo_DepthMapType })

@@ -28,6 +28,11 @@ public static class Station01Registration
         Station01RuntimeOptions options)
     {
         var commissioningMode = options.Mode == RuntimePurposes.RealDeviceCommissioning;
+        var realAlgorithmSelected = options.RealAlgorithmConfigPath is not null || options.RealAlgorithmConfigSha256 is not null;
+        if (options.Mode == "Production") throw new InvalidOperationException("ProductionNotApproved");
+        if (realAlgorithmSelected && (!commissioningMode || string.IsNullOrWhiteSpace(options.RealAlgorithmConfigPath) ||
+            string.IsNullOrWhiteSpace(options.RealAlgorithmConfigSha256)))
+            throw new InvalidOperationException("RealAlgorithmConfigurationRequiresExplicitCommissioningPair");
         if (options.Mode is not ("FullSimulation" or "VirtualPlcIntegration" or "Production" or RuntimePurposes.RealDeviceCommissioning))
             throw new InvalidOperationException("未知运行模式");
         if (options.Cameras is not null && options.Mode != "Production" && !commissioningMode)
@@ -37,7 +42,7 @@ public static class Station01Registration
             !double.IsFinite(options.PositionTolerance) || options.PositionTolerance <= 0 ||
             options.PlcMechanicsPath is null || !Path.IsPathFullyQualified(options.PlcMechanicsPath) ||
             options.PlcFieldProfilePath is null || !Path.IsPathFullyQualified(options.PlcFieldProfilePath) ||
-            options.CommissioningPath is null || options.CommissioningSha256 is null))
+            !realAlgorithmSelected && (options.CommissioningPath is null || options.CommissioningSha256 is null)))
             throw new InvalidOperationException("CommissioningRealDevicesAndExplicitConfigurationRequired");
         if (!commissioningMode && (options.CommissioningPath is not null || options.CommissioningSha256 is not null))
             throw new InvalidOperationException("CommissioningConfigurationRequiresCommissioningMode");
@@ -69,7 +74,9 @@ public static class Station01Registration
         var publicConfig = loader.LoadPublic(options.PublicReference);
         var budget = loader.LoadBudget(options.BudgetReference);
         var simulation = commissioningMode ? null : loader.LoadSimulation(options.SimulationReference);
-        var commissioning = commissioningMode
+        var realAlgorithm = realAlgorithmSelected ? RealAlgorithmConfigurationLoader.Load(options.RealAlgorithmConfigPath!,
+            options.RealAlgorithmConfigSha256!, options.SimulationReference, options.PublicReference, options.BudgetReference) : null;
+        var commissioning = commissioningMode && !realAlgorithmSelected
             ? CommissioningAlgorithmInputs.Load(options.CommissioningPath!, options.CommissioningSha256!) : null;
         if (!commissioningMode && (publicConfig.Value.Purpose != "Test" || budget.Value.Purpose != "Test" ||
             simulation!.Value.Purpose != "Test" ||
@@ -78,17 +85,31 @@ public static class Station01Registration
             throw new InvalidOperationException("Test配置不得用于真实设备绑定");
         if (commissioningMode)
         {
-            if (options.SimulationReference != new ConfigReference(commissioning!.Value.Id, commissioning.Value.Version))
+            if (!realAlgorithmSelected && options.SimulationReference != new ConfigReference(commissioning!.Value.Id, commissioning.Value.Version))
                 throw new InvalidOperationException("CommissioningFixedReferenceMismatch");
             var validation = new PublicConfigurationValidator(Station01Policies.Create()).Validate(
-                publicConfig.Value, budget.Value, null, false, false, options.PlcProvider, true, commissioning.Value);
+                publicConfig.Value, budget.Value, null, false, false, options.PlcProvider, true, commissioning?.Value, realAlgorithm?.Configuration.Value);
             if (!validation.CanStart) throw new InvalidOperationException(string.Join(";", validation.BlockingControlErrors));
-            services.AddSingleton(commissioning);
+            if (commissioning is not null) services.AddSingleton(commissioning);
+            if (realAlgorithm is not null)
+            {
+                var descriptor = realAlgorithm.Configuration.Value;
+                foreach (var pair in new[] { ("TrayPose", publicConfig.Value.Algorithms.TrayPose), ("FDecode", publicConfig.Value.Algorithms.FDecode) })
+                {
+                    var module = descriptor.Modules.SingleOrDefault(x => x.Module == pair.Item1);
+                    var binding = pair.Item2;
+                    if (module is null || binding is null || module.BindingId != binding.BindingId || module.CapabilityId != binding.Capability?.Id ||
+                        module.CapabilityVersion != binding.Capability.ContractVersion || module.ParametersVersion != binding.ParametersVersion)
+                        throw new InvalidOperationException("AlgorithmCapabilityMismatch:" + pair.Item1);
+                }
+                services.AddSingleton(realAlgorithm);
+                services.AddSingleton(realAlgorithm.Configuration);
+            }
         }
         services.AddSingleton(options);
         services.AddSingleton<IPublicConfiguration>(loader);
         services.AddSingleton<PublicPositionTeaching>();
-        services.AddSingleton(sp => CapabilityRegistration.RegisterStation01(sp.GetRequiredService<IAlgorithmPort>(), publicConfig.Value.Purpose, commissioning?.Value));
+        services.AddSingleton(sp => CapabilityRegistration.RegisterStation01(sp.GetRequiredService<IAlgorithmPort>(), publicConfig.Value.Purpose, commissioning?.Value, realAlgorithm?.Configuration.Value));
         services.AddSingleton<PublicConfigurationValidator>();
         services.AddSingleton<Gaode.Application.Recipes.IExecutionCostProvider, ApprovedExecutionCostProvider>();
         if (options.Mode == "FullSimulation")
@@ -126,10 +147,14 @@ public static class Station01Registration
                 if (commissioningMode)
                 {
                     services.AddSingleton<ILightGateway, SimulatedLightGateway>();
-                    services.AddRealCameras(options.Cameras!, commissioning!.Value.PublicLightChannels, requireSeven: true, publicConfig.Value);
-                    services.AddSingleton(sp => new CommissioningAlgorithm(commissioning, sp.GetRequiredService<MediaStore>()));
-                    services.AddSingleton<IAlgorithmPort>(sp => sp.GetRequiredService<CommissioningAlgorithm>());
-                    services.AddSingleton<ICommissioningRunInputs>(sp => sp.GetRequiredService<CommissioningAlgorithm>());
+                    services.AddRealCameras(options.Cameras!, commissioning?.Value.PublicLightChannels, requireSeven: true, publicConfig.Value);
+                    if (realAlgorithm is not null) services.AddSingleton<IAlgorithmPort, NotIntegratedAlgorithm>();
+                    else
+                    {
+                        services.AddSingleton(sp => new CommissioningAlgorithm(commissioning!, sp.GetRequiredService<MediaStore>()));
+                        services.AddSingleton<IAlgorithmPort>(sp => sp.GetRequiredService<CommissioningAlgorithm>());
+                        services.AddSingleton<ICommissioningRunInputs>(sp => sp.GetRequiredService<CommissioningAlgorithm>());
+                    }
                 }
                 else
                 {
@@ -229,6 +254,9 @@ public static class Station01Registration
             sp.GetRequiredService<DbContextOptions<Station01DbContext>>(),
             sp.GetRequiredService<TimeProvider>()));
         services.AddSingleton<IStageEventStore>(sp => sp.GetRequiredService<StageEventStore>());
+        services.AddSingleton<IAlgorithmResourceStore>(sp => sp.GetRequiredService<StageEventStore>());
+        services.AddSingleton(sp => new AlgorithmResourceSupervisor(sp.GetRequiredService<IAlgorithmResourceStore>(),
+            sp.GetRequiredService<TimeProvider>(), budget.Value.BusinessMs.CriticalSave));
         services.AddSingleton<IWholeTrayCompletionStore>(sp => new WholeTrayCompletionStore(
             sp.GetRequiredService<DbContextOptions<Station01DbContext>>(),
             sp.GetRequiredService<TimeProvider>(), commands: sp.GetRequiredService<CommandRegistry>()));
@@ -266,7 +294,8 @@ public static class Station01Registration
         services.AddSingleton(sp => new AlgorithmRuntime(
             sp.GetRequiredService<IAlgorithmPort>(), sp.GetRequiredService<IMediaStore>(),
             sp.GetRequiredService<OperationIngress>(), sp.GetRequiredService<AlgorithmLeaseSupervisor>(),
-            budget.Value.Limits.AlgorithmQueuePerRole, budget.Value.Limits.WorkerPerRole));
+            budget.Value.Limits.AlgorithmQueuePerRole, budget.Value.Limits.WorkerPerRole,
+            sp.GetRequiredService<AlgorithmResourceSupervisor>()));
         services.AddSingleton<FixedMoveStep>();
         services.AddSingleton<StartPreparationStep>();
         services.AddSingleton<ThreeDStep>();
@@ -298,7 +327,8 @@ public static class Station01Registration
             sp.GetService<ControlledTestPersistenceFault>() is { } continuationSchedule
                 ? continuationSchedule.BeforeRecipeContinuationAsync : null,
             sp.GetRequiredService<TrayAnomalyDecisionService>(), commissioning,
-            sp.GetService<ICommissioningRunInputs>()));
+            sp.GetService<ICommissioningRunInputs>(), realAlgorithm?.Configuration,
+            () => sp.GetRequiredService<AlgorithmResourceSupervisor>().HasUnreclaimedResources));
         services.AddSingleton<IReservedIntegration>(new NotIntegratedPort("MES"));
         if (commissioningMode)
             services.AddSingleton(sp => new CommissioningRecoveryService(
@@ -306,11 +336,20 @@ public static class Station01Registration
                 sp.GetRequiredService<CommandRegistry>(), sp.GetRequiredService<Station01Coordinator>(),
                 sp.GetRequiredService<ITraceWriter>(), sp.GetRequiredService<ITraceQuery>(),
                 id => !sp.GetRequiredService<StartPublicPreparation>().IsExecuting(id),
-                () => sp.GetRequiredService<AlgorithmRuntime>().ActiveExecutions == 0 &&
-                    sp.GetRequiredService<MediaStore>().ActiveJobs == 0 &&
-                    sp.GetRequiredService<MediaStore>().ActiveReservations == 0 &&
-                    sp.GetRequiredService<MediaStore>().ActiveLeases == 0 &&
-                    sp.GetRequiredService<PersistentCameraGateway>().Status.All(s => s.State is "Ready" or "Stopped"),
+                () => {
+                    var algorithms = sp.GetRequiredService<AlgorithmRuntime>().ActiveExecutions;
+                    var media = sp.GetRequiredService<MediaStore>();
+                    var cameras = sp.GetRequiredService<PersistentCameraGateway>().RecoveryResources;
+                    var released = algorithms == 0 && !sp.GetRequiredService<AlgorithmResourceSupervisor>().HasUnreclaimedResources &&
+                        media.ActiveJobs == 0 && media.ActiveReservations == 0 &&
+                        media.ActiveLeases == 0 && cameras.All(s => s.Released);
+                    sp.GetRequiredService<ILoggerFactory>().CreateLogger("RecoverySoftwareResources").Log(
+                        released ? LogLevel.Information : LogLevel.Warning,
+                        "RecoveryResources released={Released} runId={RunId} algorithms={Algorithms} mediaJobs={MediaJobs} reservations={Reservations} leases={Leases} cameras={Cameras}",
+                        released, sp.GetRequiredService<CommandRegistry>().PhysicalOwner, algorithms, media.ActiveJobs,
+                        media.ActiveReservations, media.ActiveLeases, System.Text.Json.JsonSerializer.Serialize(cameras));
+                    return released;
+                },
                 budget.Value.BusinessMs.XyCompletion, budget.Value.BusinessMs.CriticalSave));
         services.AddSingleton<IReservedIntegration>(new NotIntegratedPort("ModelManagement"));
         services.AddSingleton<IReservedIntegration>(new NotIntegratedPort("SampleManagement"));

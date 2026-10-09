@@ -11,8 +11,10 @@ public sealed record CaptureWindowRequest(ActionCorrelation Correlation, Capture
     FixedPoint Target, PositionReachedEvidence PositionEvidence, ActionWindow Window);
 public sealed record AcquisitionSession(Guid SessionId, CaptureWindowRequest Request,
     AcquisitionState State, DeviceActionEvidence Evidence);
-public sealed record CaptureWorkCommit(Guid RunId, Guid OperationId, IReadOnlyList<Guid> WriteIds,
-    bool MediaReleased);
+public sealed record CaptureWorkCommit(CaptureCompletionEvidence Completion)
+{
+    public bool IsFor(AcquisitionSession session) => Completion.IsFor(session);
+}
 public sealed record CaptureCycleResult(AcquisitionSession Session, AcquisitionState State,
     DeviceActionEvidence? Evidence, string? FailureReason);
 

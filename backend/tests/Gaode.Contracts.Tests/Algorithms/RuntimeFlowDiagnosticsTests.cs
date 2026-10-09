@@ -81,22 +81,23 @@ public sealed partial class AlgorithmRuntimeTests
     }
 
     [Fact]
-    public async Task RuntimeLogShowsCaptureFailureAndCapsMismatchedCallbackNoise()
+    public async Task RuntimeLogShowsCaptureFailureWithoutLoggingMismatchedCallbacks()
     {
         var log = new RuntimeLogCapture();
         using var sink = new RuntimeDiagnosticLogging(log);
         var harness = Create(new ImmediateWriter(CommitState.Committed));
         var capture = new AcquisitionCoordinator(new FailedCapture(), harness.Store,
-            new OperationIngress(new DeadlineScheduler(harness.Clock, "capture-diagnostics")));
-        await Assert.ThrowsAsync<InvalidOperationException>(() => capture.CaptureAsync(harness.Run,
+            new OperationIngress(new DeadlineScheduler(harness.Clock, "capture-diagnostics")),
+            new TraceQuery(new DbContextOptionsBuilder<Station01DbContext>().UseSqlite("Data Source=:memory:").Options));
+        await Assert.ThrowsAsync<IOException>(() => capture.CaptureAsync(harness.Run,
             CaptureRole.ThreeD, harness.Config.Public.Motion.Points.ThreeD, null, null,
             "test-camera", "test-light", 1024, CancellationToken.None));
         var saved = log.SaveEvidence("capture-failure", harness.Run.RunId);
         Assert.Contains("InjectedCaptureFailure", saved);
-        Assert.Contains("IgnoredMismatch", saved);
-        Assert.Contains("callbackCount", saved);
+        // CameraAcquisitionService filters unrelated callbacks before notifying the coordinator.
+        Assert.DoesNotContain("IgnoredMismatch", saved);
         var feedback = log.Documents(harness.Run.RunId).Where(x => x.GetProperty("step").GetString() == "CaptureFeedback");
-        Assert.Equal(16, feedback.Count());
+        Assert.Equal("Failed", Assert.Single(feedback).GetProperty("facts").GetProperty("kind").GetString());
         Assert.DoesNotContain(log.Documents(harness.Run.RunId), x => x.GetProperty("step").GetString() == "MediaFileSave");
     }
 

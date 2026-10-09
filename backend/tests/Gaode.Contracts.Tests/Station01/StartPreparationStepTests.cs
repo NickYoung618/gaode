@@ -13,7 +13,9 @@ public sealed class StartPreparationStepTests
     {
         await using var h = Station01StepHarness.Create();
         var task = h.Start.ExecuteAsync(h.Run, h.Control, _ => Task.CompletedTask, default);
-        Assert.Equal(1, h.Plc.StartCommands);
+        // The real intent commit is asynchronous; pause only after dispatch.
+        using var timeout = new CancellationTokenSource(TimeSpan.FromSeconds(8));
+        while (h.Plc.StartCommands == 0) await Task.Delay(1, timeout.Token);
         h.Control.RequestStop();
         var evidence = await h.DriveAsync(task);
         Assert.True(evidence.DeviceReady);

@@ -68,8 +68,9 @@ public sealed class HandshakeClosureTests
             Assert.Equal(DeviceEventKind.Completed,f.Kind);
             var fp=Assert.Single(f.Evidence!.Positions);
             var capture=await device.OpenCaptureWindowAsync(new(fp.Correlation,CaptureRole.F,fp.Target,fp,Window()),ct);
+            using var captureEvidence = await CaptureWorkFixture.CreateAsync(capture);
             Assert.Equal(AcquisitionState.Released,(await device.FinishCaptureWindowAsync(capture,
-                new(fp.Correlation.RunId,fp.Correlation.OperationId,[Guid.NewGuid()],true),Window(),ct)).State);
+                captureEvidence.Work,Window(),ct)).State);
         }
         for(var round=0;round<2;round++)
         {
@@ -84,13 +85,13 @@ public sealed class HandshakeClosureTests
             (SignalId.ZGrabMoveStart,SignalId.ZGrapPosConfirmed),(SignalId.RotateStart,SignalId.RPosConfirmed)})
         {
             Assert.False(plc.Store.ReadCoilByDocumentNumber(plc.Store.Definition[start].DocumentNumber));
-            Assert.Equal(0,plc.Store.ReadHoldingRegisterByDocumentNumber(plc.Store.Definition[feedback].DocumentNumber));
+            Assert.Equal(1,plc.Store.ReadHoldingRegisterByDocumentNumber(plc.Store.Definition[feedback].DocumentNumber));
         }
         Assert.Contains(plc.DeviceLogs,x=>x.Contains("PlcClearConfirmed"));
     }
 
     [Fact]
-    public async Task DelayedClearHoldsOwnershipAndPreservesArrivalEvidence()
+    public async Task AxisArrivalRetentionDoesNotWaitForFeedbackClearDelay()
     {
         using var timeout=new CancellationTokenSource(TimeSpan.FromSeconds(20));var ct=timeout.Token;
         await using var plc=new CommissioningProtocolTcpFixture(150);await plc.StartAsync(ct);
@@ -106,18 +107,15 @@ public sealed class HandshakeClosureTests
     }
 
     [Fact]
-    public async Task NoClearTimeoutAndLateZeroNeverAuthorizeAnotherRequest()
+    public async Task AxisRetainedArrivalDoesNotRequireFeedbackClear()
     {
         using var timeout=new CancellationTokenSource(TimeSpan.FromSeconds(15));var ct=timeout.Token;
         await using var plc=new CommissioningProtocolTcpFixture(150);await plc.StartAsync(ct);
         await using var device=plc.Device();await Ready(device,ct);plc.Engine.HoldFeedbackClear=true;
         var result=await Move(device,new("p","1",1,2,"mm","SIM_MACHINE",3),"Detection",ct,1.5);
-        Assert.NotEqual(DeviceEventKind.Completed,result.Kind);Assert.Contains("PlcClearUnconfirmed",device.Failure);
-        plc.Engine.HoldFeedbackClear=false;
-        await CommissioningProtocolTcpFixture.UntilAsync(()=>plc.Store.ReadHoldingRegisterByDocumentNumber(plc.Store.Definition[SignalId.XPosConfirmed].DocumentNumber)==0,ct);
-        var before=plc.Store.GetWriteAudit().Count;
-        await Assert.ThrowsAsync<InvalidOperationException>(()=>device.RequestMoveAsync(new(Envelope(),Guid.NewGuid(),new("next","1",5,5,"mm","SIM_MACHINE"),Guid.NewGuid(),"test"),_=>{},ct).AsTask());
-        Assert.DoesNotContain(plc.Store.GetWriteAudit().Skip(before),w=>w.DocumentNumber==plc.Store.Definition[SignalId.XMoveStart].DocumentNumber&&w.Value==1);
+        Assert.Equal(DeviceEventKind.Completed,result.Kind);
+        Assert.Equal(1,plc.Store.ReadHoldingRegisterByDocumentNumber(plc.Store.Definition[SignalId.XPosConfirmed].DocumentNumber));
+        Assert.False(plc.Store.ReadCoilByDocumentNumber(plc.Store.Definition[SignalId.XMoveStart].DocumentNumber));
         Assert.Single(plc.Engine.GetActionAudit().Actions,a=>a.AxisRole=="X"&&a.Phase=="accepted");
     }
 

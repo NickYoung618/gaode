@@ -16,9 +16,9 @@ var init = (await CameraWorkerProtocol.ReadAsync(pipe, 0, default)).Header;
 var binding = init.Binding!;
 var previousSessionPath=Path.Combine(root,"previous-session.txt");
 var previousSession=File.Exists(previousSessionPath)?Guid.Parse(File.ReadAllText(previousSessionPath)):Guid.NewGuid();
-if (Mode() == "init-fail")
+if (Mode() is "init-fail" or "init-before-open-fail")
 {
-    await CameraWorkerProtocol.WriteAsync(pipe, new("error", session, init.RequestId) { Error = "InjectedOpenFailure" }, ReadOnlyMemory<byte>.Empty, default);
+    await CameraWorkerProtocol.WriteAsync(pipe, new("error", session, init.RequestId) { Error = "InjectedOpenFailure", DeviceOpenAttempted = Mode() == "init-before-open-fail" ? false : null }, ReadOnlyMemory<byte>.Empty, default);
     return;
 }
 var parameters = new Dictionary<string, string> { ["Width"] = "2", ["Height"] = "2", ["PayloadSize"] = "4", ["PixelFormat"] = "Mono8",

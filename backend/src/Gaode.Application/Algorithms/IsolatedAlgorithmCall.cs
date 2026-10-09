@@ -13,12 +13,14 @@ internal sealed record DispatchCompletion(AlgorithmDispatch? Dispatch, Exception
 // Exactly one instance per acquired execution slot. No replacement slot is released until
 // dispatch, actual execution and the (at most one) cancellation callback job have ended.
 internal sealed class IsolatedAlgorithmCall(AlgorithmRequest request, IDisposable inputLease,
-    Func<long> timestamp, Action<IsolatedAlgorithmCall> reclaim)
+    Func<long> timestamp, Action<IsolatedAlgorithmCall> reclaim,
+    Action<AlgorithmExecutionEvidence>? observeResources = null)
 {
     private readonly object gate = new();
     private readonly CancellationTokenSource cancellation = new(); // Never linked to a caller.
     private readonly TaskCompletionSource<DispatchCompletion> dispatched = new(TaskCreationOptions.RunContinuationsAsynchronously);
     private readonly TaskCompletionSource reclaimed = new(TaskCreationOptions.RunContinuationsAsynchronously);
+    private readonly TaskCompletionSource actualEnded = new(TaskCreationOptions.RunContinuationsAsynchronously);
     private bool inputsReleased, executionEnded, dispatchReturned, businessEnded, released;
     private bool inputObserved, cancelRequested, cancelFinished;
     private string dispatchState = "Scheduled", cancellationState = "NotRequested";
@@ -29,6 +31,7 @@ internal sealed class IsolatedAlgorithmCall(AlgorithmRequest request, IDisposabl
 
     public Task<DispatchCompletion> Dispatched => dispatched.Task;
     public Task Reclaimed => reclaimed.Task;
+    public Task InputAndExecutionEnded => actualEnded.Task;
     public AlgorithmExecutionEvidence Snapshot()
     {
         lock (gate) return new(request.Envelope.RunId, request.CallId, request.Role,
@@ -50,6 +53,7 @@ internal sealed class IsolatedAlgorithmCall(AlgorithmRequest request, IDisposabl
             {
                 if (!mayEnter()) throw new AlgorithmNotDispatchedException(request.CallId, "OriginalWindowClosedBeforeEntry");
                 lock (gate) { dispatchState = "Entered"; dispatchTick = timestamp(); }
+                observeResources?.Invoke(Snapshot());
                 result = await port.RequestAsync(request, onEvent, cancellation.Token).ConfigureAwait(false);
                 lock (gate) dispatchState = "Returned";
                 _ = ObserveExitAsync(result.Exited);
@@ -79,8 +83,9 @@ internal sealed class IsolatedAlgorithmCall(AlgorithmRequest request, IDisposabl
     {
         lock (gate)
         {
-            if (workerSession is not null && value.WorkerSessionId is not null &&
+            if (workerSession is not null &&
                 workerSession != value.WorkerSessionId) return false;
+            workerSession ??= value.WorkerSessionId;
             if (released) return true; // Late evidence may still be recorded by ingress.
             switch (value.Kind)
             {
@@ -119,6 +124,7 @@ internal sealed class IsolatedAlgorithmCall(AlgorithmRequest request, IDisposabl
         catch (Exception failure)
         {
             lock (gate) error = "ExitUnconfirmed:" + failure.GetType().Name;
+            observeResources?.Invoke(Snapshot());
         }
     }
 
@@ -168,11 +174,14 @@ internal sealed class IsolatedAlgorithmCall(AlgorithmRequest request, IDisposabl
 
     private void TryReclaim()
     {
+        observeResources?.Invoke(Snapshot());
+        if (inputsReleased && executionEnded && dispatchReturned && (!cancelRequested || cancelFinished)) actualEnded.TrySetResult();
         if (released || !businessEnded || !dispatchReturned || !executionEnded ||
             (cancelRequested && !cancelFinished)) return;
         released = true;
         cancellation.Dispose();
         reclaim(this);
         reclaimed.TrySetResult();
+        observeResources?.Invoke(Snapshot());
     }
 }

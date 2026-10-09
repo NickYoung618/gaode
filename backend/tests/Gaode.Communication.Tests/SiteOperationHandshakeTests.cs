@@ -42,19 +42,21 @@ public sealed class SiteOperationHandshakeTests
         internal void Save(SiteProtocolTcpFixture fixture, string result) => File.WriteAllText(Path.Combine(Root, "wire-audit.json"),
             JsonSerializer.Serialize(new { environment = "OFFLINE_LOOPBACK", result, fixture.ResetEdges, fixture.StartEdges,
                 fixture.ResetReadyZeroReads, fixture.ResetReadyOneReads,
-                fixture.MotionEdges, writes = fixture.Writes.Select(w => new { w.Offset, w.Words, w.Accepted }),
+                fixture.MotionEdges, resetActionRequests = fixture.ResetActionRequests.ToArray(), writes = fixture.Writes.Select(w => new { w.Offset, w.Words, w.Accepted }),
                 resetPreconditions = fixture.ResetPreconditions.Select(p => new { p.PcReady, p.SoftStop, p.Readbacks }),
                 startClears = fixture.StartClears.Select(s => new { s.ZLow, s.ZHigh, s.ZRequest, s.ZFeedback }) },
                 new JsonSerializerOptions { WriteIndented = true }));
         public async ValueTask DisposeAsync() { await writer.DisposeAsync(); logging.Dispose(); }
     }
-    private static LatestProtocolPlcDevice Device(SiteProtocolTcpFixture plc, Evidence evidence) => new(new PlcRuntimeOptions
+    private static LatestProtocolPlcDevice Device(SiteProtocolTcpFixture plc, Evidence evidence, double? safeZeroToleranceMm = null) => new(new PlcRuntimeOptions
     {
         Provider = "Real", Purpose = RuntimePurposes.RealDeviceCommissioning,
         Host = "127.0.0.1", Port = plc.Port, IoTimeoutMs = 1000, HeartbeatTimeoutMs = 3000,
         Definition = ConfirmedMemoryLayout.Load().CreateDefinition(SiteProtocolAdaptationTests.Profile()),
         PositionBasis = new("OFFLINE_ONLY", "mm", RuntimePurposes.RealDeviceCommissioning, "Offline:confirmed-sequence-fixture"),
         SiteOperations = new("plc-site-operations/1", "User:2026-10-09-R5-ready-one-after-reset-request")
+        { SafeZeroToleranceMm = safeZeroToleranceMm, RestoresWorkpieceAndMechanisms = safeZeroToleranceMm is not null },
+        RotationBasis = new(.01, RuntimePurposes.RealDeviceCommissioning, "OFFLINE-ROTATION")
     }, .01, recorder: evidence.Recorder);
     private static void Zero(SiteProtocolTcpFixture plc)
     { foreach (var mb in new[] { 6064, 6076, 6084, 6088, 6092 }) { plc.SetWord(mb, 0); plc.SetWord(mb + 2, 0); } }
@@ -71,6 +73,86 @@ public sealed class SiteOperationHandshakeTests
         var completion = new TaskCompletionSource<DeviceEvent>(TaskCreationOptions.RunContinuationsAsynchronously);
         await device.RequestStartAsync(Envelope(), Guid.NewGuid(), Guid.NewGuid(), e => completion.TrySetResult(e), token);
         return await completion.Task.WaitAsync(token);
+    }
+    private static string ReadLiveLog(string root)
+    {
+        using var stream = new FileStream(Path.Combine(root, "runtime.log"), FileMode.Open, FileAccess.Read, FileShare.ReadWrite);
+        using var reader = new StreamReader(stream);
+        return reader.ReadToEnd();
+    }
+    [Theory]
+    [InlineData(.15085936, true)]
+    [InlineData(-.2, true)]
+    [InlineData(.2, true)]
+    [InlineData(.21, false)]
+    public async Task SafeZeroToleranceIsIndependentOfMotionTolerance(double y, bool accepted)
+    {
+        using var deadline=new CancellationTokenSource(10000);
+        await using var evidence=new Evidence();
+        await using var plc=new SiteProtocolTcpFixture {ExerciseConfirmedOperations=true,ReadyOnReset=1};Zero(plc);
+        var raw=BitConverter.SingleToInt32Bits((float)y);plc.SetWord(6076,(ushort)(raw&0xffff));plc.SetWord(6078,(ushort)((uint)raw>>16));
+        await using var device=Device(plc,evidence,.2);await device.StartAsync(deadline.Token);
+        Assert.Equal(.01,device.PositionTolerance);
+        if (accepted)
+        {
+            await device.ResetAsync(deadline.Token);
+            Assert.Equal(InitialReadiness.Ready,(await device.ReadInitialStateAsync(deadline.Token)).Readiness);
+            Assert.Equal(DeviceEventKind.Accepted,(await Start(device,deadline.Token)).Kind);
+            Assert.Contains("safeZeroToleranceMm",ReadLiveLog(evidence.Root));
+        }
+        else
+        {
+            var error=await Assert.ThrowsAsync<IOException>(()=>device.ResetAsync(deadline.Token));
+            Assert.Equal("StartupSafeZeroUnconfirmed:MachineCurrentPosY",error.Message);
+            Assert.Equal(0,plc.StartEdges);
+        }
+        Assert.Equal(0,plc.Byte(2009));Assert.Equal(0,plc.MotionEdges);
+        evidence.Save(plc,"Safe zero tolerance independently applies to reset, recovery and start; motion tolerance unchanged");
+    }
+    [Fact]
+    public async Task ReleasedRequestWithMovingFeedbackIsNotReportedIdle()
+    {
+        using var deadline=new CancellationTokenSource(10000);
+        await using var evidence=new Evidence();
+        await using var plc=new SiteProtocolTcpFixture {ExerciseConfirmedOperations=true,ReadyOnReset=1};Zero(plc);
+        await using var device=Device(plc,evidence);await device.StartAsync(deadline.Token);await device.ResetAsync(deadline.Token);
+        plc.SetWord(6040,0);
+        await Until(()=>device.Observe().MotionAvailability==MotionAvailability.InUse,deadline.Token);
+        Assert.Equal(0,plc.Byte(2001));
+        evidence.Save(plc,"Request zero plus feedback moving is never interpreted as stationary");
+    }
+    [Fact]
+    public async Task ResidualPcRequestsAreClearedAndReadBeforeSystemResetEdge()
+    {
+        using var deadline = new CancellationTokenSource(10000);
+        await using var evidence = new Evidence();
+        await using var plc = new SiteProtocolTcpFixture { ExerciseConfirmedOperations = true, ReadyOnReset = 1 }; Zero(plc);
+        await using var device = Device(plc, evidence); await device.StartAsync(deadline.Token);
+        foreach (var mb in new[] { 2000, 2001, 2002, 2003, 2004, 2005, 2007 }) plc.SetByte(mb, 1);
+        plc.SetWord(2014, 2); plc.SetWord(2016, 1); plc.SetByte(2008, 1);
+        await device.ResetAsync(deadline.Token);
+        Assert.All(Assert.Single(plc.ResetActionRequests), value => Assert.Equal(0, value));
+        Assert.Equal(1, plc.ResetEdges); Assert.Equal(0, plc.StartEdges); Assert.Equal(0, plc.MotionEdges);
+        Assert.All(plc.Writes, w => Assert.InRange(w.Offset, 1000, 1027));
+        var log = ReadLiveLog(evidence.Root);
+        Assert.Contains("ResetPcRequestsReadback", log);
+        Assert.True(log.IndexOf("ResetPcRequestsConfirmed", StringComparison.Ordinal) < log.IndexOf("ResetRequestWriteStarted", StringComparison.Ordinal));
+        evidence.Save(plc, "All nine PC action requests zero and freshly read before system reset; PLC feedback never written");
+    }
+    [Fact]
+    public async Task AcknowledgedClearWithoutZeroReadbackBlocksSystemReset()
+    {
+        using var deadline = new CancellationTokenSource(10000);
+        await using var evidence = new Evidence();
+        await using var plc = new SiteProtocolTcpFixture { ExerciseConfirmedOperations = true, ReadyOnReset = 1 }; Zero(plc);
+        await using var device = Device(plc, evidence); await device.StartAsync(deadline.Token);
+        plc.SetByte(2001, 1); plc.KeepXRequestAsserted = true;
+        var error = await Assert.ThrowsAsync<IOException>(() => device.ResetAsync(deadline.Token));
+        Assert.Equal("ResetPcRequestsNotCleared:XMoveStart", error.Message);
+        Assert.Equal(0, plc.ResetEdges); Assert.Equal(0, plc.StartEdges); Assert.Equal(0, plc.MotionEdges);
+        Assert.Equal(0, plc.Byte(2009)); Assert.Equal(1, plc.Byte(2001));
+        Assert.Contains("ResetPcRequestsFailed", ReadLiveLog(evidence.Root));
+        evidence.Save(plc, "Acknowledged zero write with actual residual X request blocks before reset dispatch");
     }
     [Theory]
     [InlineData(false)]
@@ -165,10 +247,11 @@ public sealed class SiteOperationHandshakeTests
         await using var evidence = new Evidence();
         await using var plc = new SiteProtocolTcpFixture { ExerciseConfirmedOperations = true }; Zero(plc);
         await using var device = Device(plc, evidence); await device.StartAsync(deadline.Token);
-        plc.SetByte(2009, 1); plc.SetByte(2008, 1);
+        plc.SetByte(2009, 1); plc.SetByte(2008, 1); plc.SetByte(2001, 1);
         var error = await Assert.ThrowsAsync<IOException>(() => device.ResetAsync(deadline.Token));
         Assert.Equal("PreviousResetRequestNotReleased", error.Message);
-        Assert.Equal(1, plc.Byte(2009)); Assert.Equal(1, plc.Byte(2008));
+        Assert.Equal(1, plc.Byte(2009)); Assert.Equal(1, plc.Byte(2008)); Assert.Equal(1, plc.Byte(2001));
+        Assert.DoesNotContain("ResetPcRequestsObserved", ReadLiveLog(evidence.Root));
         Assert.Equal(0, plc.ResetEdges); Assert.Equal(0, plc.StartEdges); Assert.Equal(0, plc.MotionEdges);
         evidence.Save(plc, "Pending old reset is not cleared or retriggered");
     }
@@ -210,14 +293,134 @@ public sealed class SiteOperationHandshakeTests
             var tick = Stopwatch.GetTimestamp(); var utc = DateTimeOffset.UtcNow;
             var window = new ActionWindow(tick, tick + 5 * Stopwatch.Frequency, "Stopwatch", utc, utc.AddSeconds(5));
             var capture = await device.OpenCaptureWindowAsync(new(position.Correlation, CaptureRole.Detection, target, position, window), deadline.Token);
-            await device.FinishCaptureWindowAsync(capture, new(position.Correlation.RunId, position.Correlation.OperationId, [Guid.NewGuid()], true), window, deadline.Token);
+            using var captureEvidence = await CaptureWorkFixture.CreateAsync(capture);
+            await device.FinishCaptureWindowAsync(capture, captureEvidence.Work, window, deadline.Token);
         }
         var clear = Assert.Single(plc.StartClears);
         Assert.Equal(0, clear.ZLow); Assert.Equal(0x4040, clear.ZHigh); // independent CDAB 3.0
-        Assert.Equal(0, clear.ZRequest); Assert.Equal(0, clear.ZFeedback);
+        Assert.Equal(0, clear.ZRequest); Assert.Equal(1, clear.ZFeedback);
         Assert.Equal(0, plc.Byte(2007)); Assert.Equal(1, plc.StartEdges);
         Assert.Equal(3, plc.MotionEdges); // X, Y, Z only once; shared-register preservation is not another edge.
         evidence.Save(plc, "Full XYZ closure before startup clear; second same-target action reused");
+    }
+    [Fact]
+    public async Task ResetArrivalCannotSubstituteForCompletedSameCoordinateAction()
+    {
+        using var deadline = new CancellationTokenSource(10000);
+        await using var evidence = new Evidence();
+        await using var plc = new SiteProtocolTcpFixture {ExerciseConfirmedOperations=true,ReadyOnReset=1};Zero(plc);
+        await using var device=Device(plc,evidence);await device.StartAsync(deadline.Token);await device.ResetAsync(deadline.Token);await Start(device,deadline.Token);
+        var result=await Devices.HandshakeClosureTests.Move(device,new("zero","1",0,0,"mm","OFFLINE_ONLY",0),"3D",deadline.Token);
+        Assert.NotEqual(DeviceEventKind.Completed,result.Kind);Assert.Contains("AxisSameTargetWithoutCompletedAction",device.Failure);
+        Assert.Equal(0,plc.MotionEdges);
+        evidence.Save(plc,"System reset permits recovery but cannot create same-coordinate motion completion proof");
+    }
+    [Fact]
+    public async Task RetainedArrivalAllowsChangedXThenSameYAndDetectionZAndFullReuse()
+    {
+        using var deadline = new CancellationTokenSource(20000);
+        await using var evidence = new Evidence();
+        await using var plc = new SiteProtocolTcpFixture { ExerciseConfirmedOperations = true, ReadyOnReset = 1, RetainArrivalOnSystemReset = true }; Zero(plc);
+        await using var device = Device(plc, evidence); await device.StartAsync(deadline.Token); await device.ResetAsync(deadline.Token);
+        await Start(device, deadline.Token);
+        foreach (var target in new[] { new FixedPoint("first","1",1,2,"mm","OFFLINE_ONLY",3),
+            new FixedPoint("next","1",4,2,"mm","OFFLINE_ONLY",3), new FixedPoint("same","1",4,2,"mm","OFFLINE_ONLY",3) })
+        {
+            var result = await Devices.HandshakeClosureTests.Move(device,target,"Detection",deadline.Token);
+            Assert.True(result.Kind == DeviceEventKind.Completed, result.ErrorCode ?? device.Failure);
+            var position = Assert.Single(result.Evidence!.Positions);
+            var window = Devices.HandshakeClosureTests.Window();
+            var capture = await device.OpenCaptureWindowAsync(new(position.Correlation,CaptureRole.Detection,target,position,window),deadline.Token);
+            using var captureEvidence = await CaptureWorkFixture.CreateAsync(capture);
+            await device.FinishCaptureWindowAsync(capture,captureEvidence.Work,window,deadline.Token);
+            foreach (var mb in new[] {2001,2002,2003}) Assert.Equal(0,plc.Byte(mb));
+            foreach (var mb in new[] {6040,6042,6044}) Assert.Equal(1,plc.Word(mb));
+        }
+        Assert.Equal(4,plc.MotionEdges); // initial X/Y/Z, then X only, then no motion.
+        evidence.Save(plc,"Retained arrival: changed X, reused Y/detection Z, repeated target; fresh completion evidence and PC request zero");
+    }
+    [Fact]
+    public async Task OldArrivalAndEvenTargetCoordinatesCannotCompleteWithoutNewMoving()
+    {
+        using var deadline = new CancellationTokenSource(10000);
+        await using var evidence = new Evidence();
+        await using var plc = new SiteProtocolTcpFixture { ExerciseConfirmedOperations=true,ReadyOnReset=1,RetainArrivalOnSystemReset=true };Zero(plc);
+        await using var device=Device(plc,evidence);await device.StartAsync(deadline.Token);await device.ResetAsync(deadline.Token);await Start(device,deadline.Token);
+        plc.SuppressMotionTransition=true;
+        var result=await Devices.HandshakeClosureTests.Move(device,new("target","1",1,2,"mm","OFFLINE_ONLY",0),"3D",deadline.Token,seconds:1);
+        Assert.NotEqual(DeviceEventKind.Completed,result.Kind);
+        Assert.Equal(1,plc.Word(6040));Assert.Equal(1,plc.Byte(2001));
+        evidence.Save(plc,"Stale Arrived=1 and matching coordinates do not replace observing this action Moving -> Arrived");
+    }
+    [Fact]
+    public async Task RotationRetainsArrivalAcrossTwoChangedAngles()
+    {
+        using var deadline=new CancellationTokenSource(15000);
+        await using var evidence=new Evidence();
+        await using var plc=new SiteProtocolTcpFixture {ExerciseConfirmedOperations=true,ReadyOnReset=1,RetainArrivalOnSystemReset=true};Zero(plc);
+        await using var device=Device(plc,evidence);await device.StartAsync(deadline.Token);await device.ResetAsync(deadline.Token);await Start(device,deadline.Token);
+        foreach(var angle in new[]{10,20})
+        {
+            var request=Devices.HandshakeClosureTests.Stage(device,PlcWorkflowStage.Rotate) with {
+                TargetPurpose=RuntimePurposes.RealDeviceCommissioning,RotationTarget=new(angle,"R",.01,"OFFLINE-ROTATION")};
+            var result=await device.RotateStageAsync(request,deadline.Token);
+            Assert.True(result.Angle.Matched);Assert.Equal(0,plc.Byte(2000));Assert.Equal(1,plc.Word(6060));
+        }
+        Assert.Equal(2,plc.MotionEdges);
+        evidence.Save(plc,"Rotation request cleared with arrival retained; next angle and same-angle reuse verified");
+    }
+    [Fact]
+    public async Task PcRequestNotClearedStillBlocksEvenWhenArrivalIsCorrect()
+    {
+        using var deadline=new CancellationTokenSource(10000);
+        await using var evidence=new Evidence();
+        await using var plc=new SiteProtocolTcpFixture {ExerciseConfirmedOperations=true,ReadyOnReset=1,RetainArrivalOnSystemReset=true};Zero(plc);
+        await using var device=Device(plc,evidence);await device.StartAsync(deadline.Token);await device.ResetAsync(deadline.Token);await Start(device,deadline.Token);
+        plc.KeepXRequestAsserted=true;
+        var result=await Devices.HandshakeClosureTests.Move(device,new("target","1",1,2,"mm","OFFLINE_ONLY",0),"3D",deadline.Token,seconds:2);
+        Assert.NotEqual(DeviceEventKind.Completed,result.Kind);Assert.Equal(1,plc.Byte(2001));Assert.Equal(1,plc.Word(6040));
+        Assert.Equal(2,plc.MotionEdges);
+        evidence.Save(plc,"PC request staying one blocks completion; no action replay despite correct retained arrival");
+    }
+    [Fact]
+    public async Task ScanAndGrabAxesRetainArrivalAcrossChangedAndSameTargets()
+    {
+        using var deadline=new CancellationTokenSource(20000);
+        await using var evidence=new Evidence();
+        await using var plc=new SiteProtocolTcpFixture {ExerciseConfirmedOperations=true,ReadyOnReset=1,RetainArrivalOnSystemReset=true};Zero(plc);
+        await using var device=Device(plc,evidence);await device.StartAsync(deadline.Token);await device.ResetAsync(deadline.Token);await Start(device,deadline.Token);
+        foreach(var z in new[]{1,2,2})
+        {
+            var target=new FixedPoint("scan","1",1,2,"mm","OFFLINE_ONLY",z);
+            var result=await Devices.HandshakeClosureTests.Move(device,target,"E",deadline.Token);
+            Assert.True(result.Kind==DeviceEventKind.Completed,result.ErrorCode??device.Failure);
+            var position=Assert.Single(result.Evidence!.Positions);var window=Devices.HandshakeClosureTests.Window();
+            var capture=await device.OpenCaptureWindowAsync(new(position.Correlation,CaptureRole.E,target,position,window),deadline.Token);
+            using var captureEvidence = await CaptureWorkFixture.CreateAsync(capture);
+            await device.FinishCaptureWindowAsync(capture,captureEvidence.Work,window,deadline.Token);
+            Assert.Equal(0,plc.Byte(2004));Assert.Equal(1,plc.Word(6046));
+        }
+        foreach(var z in new[]{1,2,2})
+        {
+            var stage=Devices.HandshakeClosureTests.Stage(device,PlcWorkflowStage.UnloadPreparation);
+            var result=await device.MoveStageAxesAsync(stage,new("grab","1",1,2,"mm","OFFLINE_ONLY",z),true,deadline.Token);
+            Assert.True(result.Matched);Assert.Equal(0,plc.Byte(2005));Assert.Equal(1,plc.Word(6048));
+        }
+        Assert.Equal(6,plc.MotionEdges);
+        evidence.Save(plc,"ScanZ and GrabZ changed targets and same-coordinate reuse preserve arrival with PC requests zero");
+    }
+    [Fact]
+    public async Task ManualResetDoesNotPermitStart()
+    {
+        using var deadline = new CancellationTokenSource(10000);
+        await using var evidence = new Evidence();
+        await using var plc = new SiteProtocolTcpFixture { ExerciseConfirmedOperations = true, ReadyOnReset = 1 }; Zero(plc);
+        plc.SetByte(6016, 0);
+        await using var device = Device(plc, evidence); await device.StartAsync(deadline.Token);
+        await device.ResetAsync(deadline.Token);
+        await Assert.ThrowsAsync<InvalidOperationException>(() => Start(device, deadline.Token));
+        Assert.Equal(0, plc.StartEdges); Assert.Equal(0, plc.MotionEdges);
+        evidence.Save(plc, "Manual reset succeeds but automatic start remains blocked");
     }
     [Fact]
     public async Task StartupAwayFromSafeZeroDoesNotSendStartOrMotion()

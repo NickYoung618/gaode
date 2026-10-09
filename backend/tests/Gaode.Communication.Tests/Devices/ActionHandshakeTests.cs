@@ -59,11 +59,12 @@ public sealed partial class ActionHandshakeTests
         var session = await device.OpenCaptureWindowAsync(request, watchdog.Token);
         Assert.Equal(AcquisitionState.CaptureAllowed, session.State);
         Assert.True(session.Evidence.IsCorrelated);
-        // Explicit component input only; actual media/algorithm saves remain a business obligation.
-        var work = new CaptureWorkCommit(evidence.Correlation.RunId, evidence.Correlation.OperationId, [Guid.NewGuid()], true);
-        foreach (var invalid in new[] { work with { MediaReleased = false }, work with { WriteIds = [] },
-            work with { OperationId = Guid.NewGuid() } })
-            await Assert.ThrowsAsync<InvalidOperationException>(() => device.FinishCaptureWindowAsync(session, invalid, request.Window, watchdog.Token));
+        // Build the typed completion from real media/SQLite; the fixture rejects invalid save receipts.
+        using var saved = await CaptureWorkFixture.CreateAsync(session);
+        var work = saved.Work;
+        foreach (var invalid in new[] { session with { SessionId = Guid.NewGuid() },
+            session with { Request = request with { Correlation = request.Correlation with { OperationId = Guid.NewGuid() } } } })
+            await Assert.ThrowsAsync<InvalidOperationException>(() => device.FinishCaptureWindowAsync(invalid, work, request.Window, watchdog.Token));
         if (loseObservation)
         {
             await plc.Server.StopAsync(watchdog.Token);
@@ -109,8 +110,8 @@ public sealed partial class ActionHandshakeTests
             await device.StageSignals.ReadAsync([Gaode.Plc.Protocol.SignalId.XPosConfirmed], watchdog.Token);
         Assert.True(device.BusinessExchanges.Last().Sequence > lastOpening + 8192);
         Assert.True(device.HeartbeatEdges > 0);
-        var release = await device.FinishCaptureWindowAsync(session,
-            new(moved.Correlation.RunId, moved.Correlation.OperationId, [Guid.NewGuid()], true), request.Window, watchdog.Token);
+        using var saved = await CaptureWorkFixture.CreateAsync(session);
+        var release = await device.FinishCaptureWindowAsync(session, saved.Work, request.Window, watchdog.Token);
         Assert.True(release.State == AcquisitionState.Released, release.FailureReason);
         Assert.All(session.Evidence.DiagnosticEvidenceReferences, r => Assert.Contains(r, release.Evidence!.DiagnosticEvidenceReferences));
         var refs = release.Evidence!.DiagnosticEvidenceReferences;

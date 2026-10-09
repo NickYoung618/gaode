@@ -405,7 +405,7 @@ public sealed class ConfiguredDetectionExecutionTests
         public ValueTask<AcquisitionSession> OpenCaptureWindowAsync(CaptureWindowRequest r, CancellationToken token) =>
             ValueTask.FromResult(new AcquisitionSession(Guid.NewGuid(), r, AcquisitionState.CaptureAllowed, Evidence(r.Correlation, DeviceCompletionMeaning.CaptureAllowed)));
         public Task<CaptureCycleResult> FinishCaptureWindowAsync(AcquisitionSession s, CaptureWorkCommit w, ActionWindow window, CancellationToken token)
-        { Assert.True(w.MediaReleased); Assert.NotEmpty(w.WriteIds); return Task.FromResult(new CaptureCycleResult(s, AcquisitionState.Released, Evidence(s.Request.Correlation, DeviceCompletionMeaning.CaptureReleased), null)); }
+        { Assert.True(w.IsFor(s)); Assert.True(w.Completion.CaptureResourcesEnded && w.Completion.DurableInputOwned); return Task.FromResult(new CaptureCycleResult(s, AcquisitionState.Released, Evidence(s.Request.Correlation, DeviceCompletionMeaning.CaptureReleased), null)); }
         public ValueTask RequestCaptureAsync(CaptureRequest r, Action<CaptureEvent> onEvent, CancellationToken token)
         {
             token.ThrowIfCancellationRequested(); Assert.NotEqual(Guid.Empty, r.IntentWriteId); captures.Add(r.Role); Requests.Add(r); Order.Add("capture:" + r.Role);

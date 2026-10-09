@@ -27,7 +27,7 @@ public sealed class CameraAcquisitionService(ICapturePort camera, IMediaStore me
                 var (bytes, format) = gate.Take();
                 var fact = gate.TakeFact(request, epoch);
                 if (bytes.LongLength > request.MaxBytes) throw new InvalidDataException("MediaOverLimit");
-                completion.TrySetResult(new(bytes, format, fact));
+                completion.TrySetResult(new(bytes, format, fact) { ReliableCompletion = true });
             }
             catch (Exception error) { completion.TrySetException(error); }
         }

@@ -11,6 +11,7 @@
   <ItemGroup>
     <ProjectReference Include="../Gaode.Application/Gaode.Application.csproj" />
     <Compile Include="../Gaode.Infrastructure/Devices/Cameras/CameraWorkerProtocol.cs" Link="CameraWorkerProtocol.cs" />
+    <Compile Include="../Gaode.Infrastructure/Devices/Cameras/CameraNetworkBinding.cs" Link="CameraNetworkBinding.cs" />
     <Reference Include="GxIAPINET"><HintPath>$(GalaxyWrapperPath)</HintPath><Private>true</Private></Reference>
     <Compile Include="$(CameraProIncludeRoot)/*.cs" Link="Vendor/CameraPro/%(Filename)%(Extension)" />
   </ItemGroup>

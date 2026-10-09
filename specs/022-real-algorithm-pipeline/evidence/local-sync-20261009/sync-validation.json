@@ -1,0 +1,242 @@
+{
+  "schemaVersion": "local-source-sync/1",
+  "date": "2026-10-09",
+  "sourceSync": {
+    "localBefore": "6acbbecb52ea66dba5f6c975346265287e74c739",
+    "incoming": "7cbba95df40c2f09293c053cf445bed7bbf0681b",
+    "branch": "sync/022-real-algorithm-pipeline-20261009",
+    "retainedLocalOnlyTrackedFiles": 1757,
+    "removedTrackedFiles": 0,
+    "backendVirtualPlcAndConfigurationMatchIncoming": true,
+    "featureDirectory": "specs/022-real-algorithm-pipeline",
+    "uploadsUntouched": [
+      ".upload-api-20261009-2210/",
+      "接口接入/"
+    ],
+    "independentT045Worktree": "E:/dzk/gaode-022-t045",
+    "t045Merged": false
+  },
+  "scope": "Merge the committed field 022 baseline into the complete local workspace; retain local-only files and migrate retained tests. Product backend, virtual PLC and configuration bytes match incoming 7cbba95.",
+  "testMigration": [
+    "Use typed capture completion backed by actual temporary media and SQLite records; reject mismatched sessions and operations.",
+    "Keep distinct commissioning and legacy TCP fixture names.",
+    "Persist component-harness runs and writes, supply TraceQuery, and emit declared tray-observation/2 mapping.",
+    "Observe actual asynchronous start dispatch; assert readiness instead of invented clamp and zone events; use the test clock for action deadlines.",
+    "Verify persisted capture failure and discard unrelated callbacks according to the current camera service."
+  ],
+  "build": {
+    "command": "dotnet build backend/Gaode.slnx -c Release --no-restore -v minimal",
+    "result": "Passed",
+    "warnings": 0,
+    "errors": 0,
+    "localLog": "artifacts/local-sync-022-20261009/build-migrated-tests.log",
+    "subsequentTestEditsCompiledByContractsTestRun": true
+  },
+  "frontend": {
+    "command": "node --test frontend/tests/commissioning-console/start-recovery.test.mjs frontend/tests/commissioning-console/start-recovery-runtime.test.mjs",
+    "passed": 8,
+    "failed": 0
+  },
+  "backendLatestExecutedCases": {
+    "total": 127,
+    "passed": 126,
+    "failed": 1,
+    "failures": [
+      {
+        "name": "Gaode.Communication.Tests.RealAlgorithmPipelineLifecycleTests.ActualHostInitializationAndStoppingDiscoverTerminalUnknownWithoutReplaying(activeExpired: True)",
+        "outcome": "Failed",
+        "message": "System.Threading.Tasks.TaskCanceledException : A task was canceled.",
+        "resultFile": "sync-algorithm-host-isolated.trx"
+      }
+    ]
+  },
+  "runs": [
+    {
+      "localArtifact": "artifacts/local-sync-022-20261009/sync-contracts-final.trx",
+      "sha256": "3f907b4c907d9c0200bcb8a71b3d9ad63f1427c01236ffff1b6e788707177952",
+      "outcome": "Completed",
+      "counters": {
+        "total": "37",
+        "executed": "37",
+        "passed": "37",
+        "failed": "0",
+        "error": "0",
+        "timeout": "0",
+        "aborted": "0",
+        "inconclusive": "0",
+        "passedButRunAborted": "0",
+        "notRunnable": "0",
+        "notExecuted": "0",
+        "disconnected": "0",
+        "warning": "0",
+        "completed": "0",
+        "inProgress": "0",
+        "pending": "0"
+      },
+      "failures": []
+    },
+    {
+      "localArtifact": "artifacts/local-sync-022-20261009/sync-plc.trx",
+      "sha256": "b0998a021a93aec1025cd60c9482770f17fec9df72255f919d50672fb3c0feac",
+      "outcome": "Failed",
+      "counters": {
+        "total": "72",
+        "executed": "72",
+        "passed": "69",
+        "failed": "3",
+        "error": "0",
+        "timeout": "0",
+        "aborted": "0",
+        "inconclusive": "0",
+        "passedButRunAborted": "0",
+        "notRunnable": "0",
+        "notExecuted": "0",
+        "disconnected": "0",
+        "warning": "0",
+        "completed": "0",
+        "inProgress": "0",
+        "pending": "0"
+      },
+      "failures": [
+        {
+          "name": "Gaode.Communication.Tests.Devices.HandshakeClosureTests.SixAxisMappingsClearIndependentlyAndRepeat",
+          "outcome": "Failed",
+          "message": "Assert.Equal() Failure: Values differ\r\nExpected: Completed\r\nActual:   Failed"
+        },
+        {
+          "name": "Gaode.Communication.Tests.Devices.SamePositionTests.RepeatedTargetsReuseOnlySatisfiedAxes(x: 11, y: 23, z: 34, expected: \"Y,DetectionZ\")",
+          "outcome": "Failed",
+          "message": "AxisWindowClosed"
+        },
+        {
+          "name": "Gaode.Communication.Tests.Devices.HandshakeClosureTests.TransitionOwnsDeviceUntilRealSqliteSaveReceipt(failReceipt: False, puttingBack: True)",
+          "outcome": "Failed",
+          "message": "System.NullReferenceException : Object reference not set to an instance of an object."
+        }
+      ]
+    },
+    {
+      "localArtifact": "artifacts/local-sync-022-20261009/sync-plc-recheck.trx",
+      "sha256": "ac45762732573e9ce708f8373ac396791c18b2d6cf9bdd85c5e2934eb2be13cf",
+      "outcome": "Completed",
+      "counters": {
+        "total": "8",
+        "executed": "8",
+        "passed": "8",
+        "failed": "0",
+        "error": "0",
+        "timeout": "0",
+        "aborted": "0",
+        "inconclusive": "0",
+        "passedButRunAborted": "0",
+        "notRunnable": "0",
+        "notExecuted": "0",
+        "disconnected": "0",
+        "warning": "0",
+        "completed": "0",
+        "inProgress": "0",
+        "pending": "0"
+      },
+      "failures": []
+    },
+    {
+      "localArtifact": "artifacts/local-sync-022-20261009/sync-algorithm-configuration.trx",
+      "sha256": "d2b32d95007592a4e057f9a62866f7edc82a214e440cd01c74dd507c78e7e3c6",
+      "outcome": "Completed",
+      "counters": {
+        "total": "9",
+        "executed": "9",
+        "passed": "9",
+        "failed": "0",
+        "error": "0",
+        "timeout": "0",
+        "aborted": "0",
+        "inconclusive": "0",
+        "passedButRunAborted": "0",
+        "notRunnable": "0",
+        "notExecuted": "0",
+        "disconnected": "0",
+        "warning": "0",
+        "completed": "0",
+        "inProgress": "0",
+        "pending": "0"
+      },
+      "failures": []
+    },
+    {
+      "localArtifact": "artifacts/local-sync-022-20261009/sync-algorithm-lifecycle-recheck.trx",
+      "sha256": "acce714f56884afaa4fd87726c44dd405092ef099861afbdb95af04370b40447",
+      "outcome": "Failed",
+      "counters": {
+        "total": "9",
+        "executed": "9",
+        "passed": "8",
+        "failed": "1",
+        "error": "0",
+        "timeout": "0",
+        "aborted": "0",
+        "inconclusive": "0",
+        "passedButRunAborted": "0",
+        "notRunnable": "0",
+        "notExecuted": "0",
+        "disconnected": "0",
+        "warning": "0",
+        "completed": "0",
+        "inProgress": "0",
+        "pending": "0"
+      },
+      "failures": [
+        {
+          "name": "Gaode.Communication.Tests.RealAlgorithmPipelineLifecycleTests.ActualHostInitializationAndStoppingDiscoverTerminalUnknownWithoutReplaying(activeExpired: True)",
+          "outcome": "Failed",
+          "message": "System.IO.IOException : The process cannot access the file 'station01.test.db' because it is being used by another process."
+        }
+      ]
+    },
+    {
+      "localArtifact": "artifacts/local-sync-022-20261009/sync-algorithm-host-isolated.trx",
+      "sha256": "0f41542bd1656c9bcb2c1fc8e6edc671c92e4c1709c7a6e01ef9afbbfb8d732a",
+      "outcome": "Failed",
+      "counters": {
+        "total": "2",
+        "executed": "2",
+        "passed": "1",
+        "failed": "1",
+        "error": "0",
+        "timeout": "0",
+        "aborted": "0",
+        "inconclusive": "0",
+        "passedButRunAborted": "0",
+        "notRunnable": "0",
+        "notExecuted": "0",
+        "disconnected": "0",
+        "warning": "0",
+        "completed": "0",
+        "inProgress": "0",
+        "pending": "0"
+      },
+      "failures": [
+        {
+          "name": "Gaode.Communication.Tests.RealAlgorithmPipelineLifecycleTests.ActualHostInitializationAndStoppingDiscoverTerminalUnknownWithoutReplaying(activeExpired: True)",
+          "outcome": "Failed",
+          "message": "System.Threading.Tasks.TaskCanceledException : A task was canceled."
+        }
+      ]
+    }
+  ],
+  "limits": [
+    "This is not a full-suite or hardware acceptance result. The broad PLC run exceeded its 180-second session budget after reporting 72 cases (69 passed, 3 failed); the 8-case focused rerun passed all three prior failures without product changes.",
+    "The initial combined algorithm/PLC run was interrupted after timeout failures; complete later runs above provide final per-case results.",
+    "The upstream activeExpired=true algorithm lifecycle test still cancels before dispatch in its 100 ms request window (line 94), reproduced in an isolated run. A preceding rerun also reported temporary SQLite-file cleanup contention. No production timeout or lifecycle code was changed here to make the test pass.",
+    "RealAlgorithmMediaTests requires camera samples under D:/gaode/artifacts/camera-runtime, unavailable here; not run.",
+    "T045 is being implemented in E:/dzk/gaode-022-t045. Its uncommitted source/spec changes and algorithm-package uploads were not included or edited; recheck lifecycle timing after that independent change is committed.",
+    "No deployment, live PLC/camera operation, production database modification or algorithm-bridge completion is claimed."
+  ],
+  "followup": [
+    {
+      "scope": "022 T045 validation",
+      "test": "Gaode.Communication.Tests.RealAlgorithmPipelineLifecycleTests.ActualHostInitializationAndStoppingDiscoverTerminalUnknownWithoutReplaying(activeExpired: True)",
+      "action": "After the independent T045 commit, recheck the activeExpired host lifecycle test and distinguish pre-dispatch budget exhaustion from intended post-dispatch expiration; retain the original test failure evidence."
+    }
+  ]
+}

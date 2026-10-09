@@ -16,7 +16,7 @@ public sealed class MediaCommitTests : IDisposable
     public async Task FullPayloadQuotaSurvivesRestartAndRepeatedIndexRestoreWithoutMemoryReservation()
     {
         var journal = new CameraCaptureJournal(CameraCaptureJournal.Prepare(_root));
-        var capacity = new MediaCapacity(1024,0,4,4);
+        var capacity = new MediaCapacity(1024,0,65536,65536);
         var store = new MediaStore(_root,capacity,new MediaLeaseRegistry(),1);
         var (request,fact,data)=Capture();
         await journal.RecordIntentAsync(request,default);
@@ -27,11 +27,12 @@ public sealed class MediaCommitTests : IDisposable
             await journal.CommitAsync(request,reference,fact,default);
             await store.MarkCommittedAsync(reference,default);
         }
-        Assert.Equal(4,capacity.FilesUsed); Assert.Equal(0,capacity.MemoryUsed);
-        var restoredCapacity=new MediaCapacity(1024,0,4,4);
+        var retained = Directory.GetFiles(Path.Combine(_root,"media"),"*",SearchOption.AllDirectories).Sum(p => new FileInfo(p).Length);
+        Assert.Equal(retained,capacity.FilesUsed); Assert.Equal(0,capacity.MemoryUsed);
+        var restoredCapacity=new MediaCapacity(1024,0,retained,retained);
         var restored=new MediaStore(_root,restoredCapacity,new MediaLeaseRegistry(),1);
         await journal.RestoreAsync(restored,default); await journal.RestoreAsync(restored,default);
-        Assert.Equal(4,restoredCapacity.FilesUsed); Assert.Equal(0,restoredCapacity.MemoryUsed);
+        Assert.Equal(retained,restoredCapacity.FilesUsed); Assert.Equal(0,restoredCapacity.MemoryUsed);
         Assert.Throws<InvalidOperationException>(()=>restored.ReserveCapture(Guid.NewGuid(),"A",4));
         Assert.True(restored.IsReady(reference.MediaId));
         await using var stream=await restored.OpenReadAsync(reference.MediaId,default);

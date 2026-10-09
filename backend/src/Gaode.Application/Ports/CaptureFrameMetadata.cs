@@ -10,7 +10,10 @@ public sealed record CaptureFrameMetadata(string Schema, string Role, string Ser
     string PixelFormat, long PayloadBytes, IReadOnlyDictionary<string, string> ActualParameters,
     IReadOnlyList<FramePayload> Payloads);
 
-public sealed record ReceivedCapture(byte[] Bytes, string Format, CorrelatedCaptureFact Fact);
+public sealed record ReceivedCapture(byte[] Bytes, string Format, CorrelatedCaptureFact Fact)
+{
+    public bool ReliableCompletion { get; internal init; }
+}
 
 public interface ICameraCaptureJournal
 {

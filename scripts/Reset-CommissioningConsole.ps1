@@ -30,7 +30,7 @@ try{
     Write-Output '后台已确认PLC复位完成；未发送运行启动指令。'
     if($result.recoveryClosed -eq $true){
         Record-Reset 'OldRunRecoveryClosed' @{runId=$result.runId;recoveryWriteId=$result.recoveryWriteId;manualStartRequired=$true}
-        Write-Output ('旧任务 '+$result.runId+' 已经恢复核验并结束，历史记录保留。请刷新页面并核对配方，手动开始完整新一轮。')
+        Write-Output ('旧任务 '+$result.runId+' 已经恢复核验并结束，历史记录保留。请刷新页面并核对配方；切到自动模式并通过启动检查后，手动开始完整新一轮。')
     }
     $admission=Invoke-RestMethod -Uri ($base+'/api/v1/station01/start-admission') -Headers $headers -NoProxy -TimeoutSec 5
     Record-Reset 'AdmissionObserved' @{state=$admission.state;ownerRunId=$admission.ownerRunId;reasonCodes=$admission.reasonCodes}
@@ -44,6 +44,7 @@ try{
     try { $body=$_.ErrorDetails.Message|ConvertFrom-Json; $code=[string]$body.message } catch { }
     $detail=switch -Wildcard ($code) {
         'PreviousResetRequestNotReleased' {'上次复位请求MB2009仍为1，结果未核定。本次没有再次发送复位；需要核对上次复位记录和PLC状态，不能直接清0再重发。'}
+        'ResetPcRequestsNotCleared*' {'PC残留动作请求未读回为0，本次没有发送PLC系统复位。请查看后台ResetPcRequestsReadback中仍非0的请求；不要强制清PLC反馈或重复启动。'}
         'ResetPreconditionsNotConfirmed*' {'未读回确认PC就绪MB2006=1及软停MB2008=0，本次未发送PLC复位请求。'}
         'ResetCompletionSafetyUnconfirmed' {'已收到PLC复位完成反馈并发送清除复位请求，但后续就绪或安全状态核验未通过，不能放行。'}
         'RecoveryExecutionStillActive' {'旧流程尚未退出，不允许执行复位恢复。请等待流程停止后查询状态。'}

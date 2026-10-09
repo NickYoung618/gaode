@@ -49,24 +49,29 @@ public sealed class SamePositionTests
     [InlineData("initial")]
     [InlineData("reset")]
     [InlineData("drift")]
-    public async Task StaticPositionWithoutCurrentClosureMustActuallyDispatch(string cause)
+    public async Task StaticPositionWithoutCurrentClosureCannotReuse(string cause)
     {
         using var timeout=new CancellationTokenSource(TimeSpan.FromSeconds(20));var ct=timeout.Token;
         await using var plc=new CommissioningProtocolTcpFixture(150);await plc.StartAsync(ct);
         await using var device=plc.Device();await HandshakeClosureTests.Ready(device,ct);
-        var point=new FixedPoint("p","1",0,0,"mm","SIM_MACHINE",0);
-        if(cause!="initial")await Move(device,point,ct);
-        if(cause=="reset")await HandshakeClosureTests.Ready(device,ct,false);
+        var point=new FixedPoint("p","1",1,2,"mm","SIM_MACHINE",3);
+        if(cause=="initial") {
+            plc.Store.SetFloatFromPlc(plc.Store.Definition[SignalId.MachineCurrentPosX].DocumentNumber,1);
+            plc.Store.SetFloatFromPlc(plc.Store.Definition[SignalId.MachineCurrentPosY].DocumentNumber,2);
+            plc.Store.SetFloatFromPlc(plc.Store.Definition[SignalId.MachineCurrentPosZ].DocumentNumber,3);
+        } else await Move(device,point,ct);
+        if(cause=="reset") { await HandshakeClosureTests.Ready(device,ct,false); point=point with {X=0,Y=0,Z=0}; }
         if(cause=="drift")
         {
             plc.Store.SetFloatFromPlc(plc.Store.Definition[SignalId.MachineCurrentPosX].DocumentNumber,10);
             await CommissioningProtocolTcpFixture.UntilAsync(()=>device.Observe().Position!.ActualX==10,ct);
-            plc.Store.SetFloatFromPlc(plc.Store.Definition[SignalId.MachineCurrentPosX].DocumentNumber,0);
+            plc.Store.SetFloatFromPlc(plc.Store.Definition[SignalId.MachineCurrentPosX].DocumentNumber,1);
         }
         var before=plc.Engine.GetActionAudit().Actions.Count;
-        await Move(device,point,ct);
-        var dispatched=plc.Engine.GetActionAudit().Actions.Skip(before).Where(a=>a.Kind=="AxisMove"&&a.Phase=="accepted").Select(a=>a.AxisRole).ToArray();
-        Assert.Equal(cause=="drift"?new[]{"X"}:new[]{"X","Y","DetectionZ"},dispatched);
+        var result=await HandshakeClosureTests.Move(device,point,"Detection",ct);
+        Assert.NotEqual(DeviceEventKind.Completed,result.Kind);
+        Assert.Contains("AxisSameTargetWithoutCompletedAction",device.Failure);
+        Assert.DoesNotContain(plc.Engine.GetActionAudit().Actions.Skip(before),a=>a.Kind=="AxisMove"&&a.Phase=="accepted");
     }
 
     private static PortEnvelope Envelope()
@@ -90,7 +95,8 @@ public sealed class SamePositionTests
         var position = Assert.Single(completion.Evidence!.Positions);
         var window = new ActionWindow(Stopwatch.GetTimestamp(), Stopwatch.GetTimestamp()+Stopwatch.Frequency*5, "Stopwatch", DateTimeOffset.UtcNow, DateTimeOffset.UtcNow.AddSeconds(5));
         var capture = await device.OpenCaptureWindowAsync(new(position.Correlation, CaptureRole.Detection, target, position, window), token);
-        var closed = await device.FinishCaptureWindowAsync(capture, new(position.Correlation.RunId, position.Correlation.OperationId, [Guid.NewGuid()], true), window, token);
+        using var captureEvidence = await CaptureWorkFixture.CreateAsync(capture);
+        var closed = await device.FinishCaptureWindowAsync(capture, captureEvidence.Work, window, token);
         Assert.Equal(AcquisitionState.Released, closed.State);
         return completion;
     }

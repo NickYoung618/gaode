@@ -173,7 +173,7 @@ public sealed partial class LatestProtocolPlcDevice
             lock (sync)
             {
                 if (!Current()) return; // Completed old exchange remains raw evidence, never a new observation.
-                if (group.Name is "X" or "B") activeAxisMoving?.Observe(values, sampledEpoch);
+                if (group.Name is "X" or "B" or "R") activeAxisMoving?.Observe(values, sampledEpoch);
                 ObserveAxisClosures(values, sampledEpoch);
                 foreach (var pair in values.Words) sampledWords[pair.Key] = pair.Value;
                 foreach (var pair in values.Stamps) sampledStamps[pair.Key] = pair.Value;
@@ -260,7 +260,7 @@ public sealed partial class LatestProtocolPlcDevice
         if (!unknown)
             observation = Sample(combined, epoch, identity.SampleStartedUtc) with
             { ObservedUtc = identity.SampleEndedUtc, ObservationId = identity.ObservationId, PositionIdentity = positionIdentity };
-        if (!observation.SafetyClear && (pcReady || pending is not null)) LatchFailure("SafetyInterlockLost");
+        if ((!observation.SafetyClear && (pcReady || pending is not null)) || (!observation.Automatic && pending is not null)) LatchFailure("SafetyInterlockLost");
     }
     private async Task<GroupObservation> WaitGroupAsync(string name, long after, bool demand, CancellationToken token)
     {

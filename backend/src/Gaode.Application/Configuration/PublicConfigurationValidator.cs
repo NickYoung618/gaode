@@ -14,7 +14,7 @@ public sealed class PublicConfigurationValidator(CapabilityRegistry capabilities
     public ConfigurationValidation Validate(PublicConfiguration config, BusinessBudget budget,
         SimulationProfile? simulation, bool fullSimulation, bool externalVirtualPlc = false,
         string externalPlcProvider = "Virtual", bool realDeviceCommissioning = false,
-        CommissioningConfiguration? commissioning = null)
+        CommissioningConfiguration? commissioning = null, RealAlgorithmConfiguration? realAlgorithm = null)
     {
         var blocks = new List<string>();
         var algorithms = new List<string>();
@@ -75,12 +75,16 @@ public sealed class PublicConfigurationValidator(CapabilityRegistry capabilities
             Require(config.Algorithms.TrayPose?.BindingId ?? "", "TrayPose");
             if (fullSimulation || externalVirtualPlc || simulation is not null ||
                 config.Purpose != RuntimePurposes.RealDeviceCommissioning || externalPlcProvider != "Real" ||
-                config.Bindings.Any(b => b.Provider != (b.Role == "PLC" || b.Role.StartsWith("Camera", StringComparison.Ordinal) ? "Real" : "Simulated")))
+                config.Bindings.Any(b => b.Provider != (b.Role == "PLC" || b.Role.StartsWith("Camera", StringComparison.Ordinal) ||
+                    realAlgorithm is not null && b.Role is "TrayPose" or "FDecode" or "EDecode" or "Detection" ? "Real" : "Simulated")))
                 blocks.Add("CommissioningProviderMatrixInvalid");
-            if (commissioning is null || commissioning.Purpose != config.Purpose ||
+            if (realAlgorithm is not null ? realAlgorithm.Purpose != config.Purpose ||
+                realAlgorithm.PublicRef != new ConfigReference(config.Id,config.Version) || realAlgorithm.BudgetRef != new ConfigReference(budget.Id,budget.Version) :
+                commissioning is null || commissioning.Purpose != config.Purpose ||
                 commissioning.PublicConfigRef != new ConfigReference(config.Id, config.Version) ||
                 commissioning.BudgetRef != new ConfigReference(budget.Id, budget.Version))
                 blocks.Add("CommissioningConfigurationReferenceMismatch");
+            if (realAlgorithm is not null && config.LightExecution?.IsSimulated != true) blocks.Add("RealAlgorithmExplicitSimulatedLightRequired");
             if (budget.RecipeExecution is not { IsValid: true }) blocks.Add("CommissioningRecipeExecutionBudgetMissingOrInvalid");
         }
         else if (config.Purpose == RuntimePurposes.RealDeviceCommissioning) blocks.Add("CommissioningModeRequired");

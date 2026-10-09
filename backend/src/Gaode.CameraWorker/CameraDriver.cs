@@ -20,6 +20,7 @@ internal abstract class CameraDriver(CameraBinding binding, Guid session, string
     protected long Sequence;
     public Dictionary<string, string> Parameters { get; } = [];
     public virtual long MaxBytes => CameraWorkerProtocol.MaxPayloadBytes;
+    public bool DeviceOpenAttempted { get; protected set; }
     public abstract void Open();
     public abstract WorkerFrame Capture();
     public abstract ActualCameraSettings ApplySettings(CameraImagingSettings settings);

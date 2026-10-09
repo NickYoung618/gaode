@@ -92,10 +92,8 @@ public sealed class IndependentAxisTests
             var session = await device.OpenCaptureWindowAsync(new(reached.Correlation,
                 role == "3D" ? CaptureRole.ThreeD : role == "E" ? CaptureRole.E : CaptureRole.Detection,
                 target, position, ActionHandshakeTests.Window(ProtocolTcpFixture.Envelope())), token);
-            // Explicit port component commit input; actual media/algorithm saves are
-            // covered by the common handoff components, not fabricated here as a run.
-            var result = await device.FinishCaptureWindowAsync(session,
-                new(reached.Correlation.RunId, reached.Correlation.OperationId, [Guid.NewGuid()], true),
+            using var saved = await CaptureWorkFixture.CreateAsync(session);
+            var result = await device.FinishCaptureWindowAsync(session, saved.Work,
                 ActionHandshakeTests.Window(ProtocolTcpFixture.Envelope()), token);
             Assert.True(result.State == AcquisitionState.Released, JsonSerializer.Serialize(result));
             Assert.DoesNotContain(fixture.Store.GetWriteAudit().Where(w => w.Sequence > before), w =>

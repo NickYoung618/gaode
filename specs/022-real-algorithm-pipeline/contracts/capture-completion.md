@@ -1,0 +1,20 @@
+# C022-ACQ：采集保存、窗口释放与输入交接
+
+A阶段保原同步算法等待位置；本合同类型化采集/保存/窗口证据及消费者衔接仍必需。C才利用这些证据提前结束窗口并推进下一许可步骤。PNG/PLY转换在采集/媒体适配层，转换结果不能替代Ended/MediaTaken或正式窗口Released；算法事实与转换事实分别保存。
+
+状态：022内部业务合同，依据FR-004/005/006/007/018；替代本功能受影响路径以AlgorithmFact证明采集可释放的直接依赖。PLC点位和握手仍引用020/021有效契约；无新PLC协议。
+
+1. 采集前在原设备准入之外取得有限任务/媒体接管预约。预约不足时等待原准入期限，不派发将制造无法接管输入的采集；满载不产生产品Pending或软停。
+2. 按原顺序完成定位、窗口打开、CaptureIntent提交和真实采集。仅当前请求的Ended及MediaTaken齐备、关联帧与实际设置有效，才可形成采集结束事实。
+3. MediaStore保存原文件/sidecar及摘要，Media、CaptureFact取得实际Committed且可用回执，MarkCommitted后可由任务按真实引用读取。只有FileCompleted/内存路径存在不够。
+4. CaptureCompletionEvidence必须包含Run/Tray/当前步骤、WindowSessionId/WindowOperationId、CaptureOperationId/CaptureId、会话/连接代次、实际帧/设置/来源、Media/CaptureFact提交类型和身份、文件键/长度/摘要、缓冲/相机释放及持久文件接管证据。
+5. 构造与核验职责在Application采集/持久证据边界；必须按真实保存返回的记录类型和关联内容核验，不能由调用者任填ID。通信适配器核验类型化输入、当前窗口关联及必要可信回执，不查询原始业务JSON推断算法规则。错误Run/窗口/采集、缺回执、未知提交、无人持有输入均拒绝放行。
+6. 以类型化证据替换CaptureWorkCommit的WriteIds/MediaReleased歧义；不存在“算法文件已释放”才可关窗口的条件。无需等待AlgorithmFact。新接口不得保留仅凭非空ID的生产重载。
+7. MotionCoordinator将证据送IAcquisitionCyclePort，适配层执行正式窗口结束/请求释放/完整周期核验，返回Released或原Blocked/HeldUnknown语义。此操作不改变复位、轴到位、同坐标或完整周期规则。
+8. 业务保存AcquisitionReleased及必要阶段事实后才开放下一相关动作。可靠结束前，保存证据只允许请求释放，不能自行写Released；失败/未知继续保持原占用，无自动重发。
+9. C后台任务提交顺序：采集/保存/接管及窗口结束事实先可靠成立，再持久AlgorithmIntent与受管登记并入队。预约持有者负责这段交接；意图提交失败不派发算法，不删除已保存文件，保现场状态。
+10. 3D/F及同步E仍等待各自算法结果/处理/必要保存和原可靠输入释放；相机窗口可结束不意味着依赖这些结果的动作被批准。保既有公共3D失败清理唯一适用范围，不新增清理放行路径。
+
+直接消费者：IAcquisitionCyclePort、MotionCoordinator、RecipeDetectionExecutor及Observation、ThreeDStep/FScanStep、CaptureEvidenceGate/AcquisitionCoordinator、LatestProtocolPlcDevice.Acquisition、SimulatedPlc及明确测试夹具。全部同步后删除错误旧调用形态；与020/021握手有效规则的实质冲突先报告。
+A具体证据构造：AcquisitionCoordinator返回PersistedCapture（RawMedia及私有构造的采集保存证据），不返回任填WriteIds。CaptureCompletionEvidence通过真实ITraceQuery重读Media/CaptureFact、验证回执类型/WriteId/Run/摘要及实际ReceivedCapture可靠结束，绑定当前WindowSession/WindowOperation后生成CaptureWorkCommit。原有同步结果等待仍保留，但释放依据换成原始采集证据；转换Media不能冒充原帧。无旧非空ID重载；明确Test夹具生成其自己的Test保存事实。
+CaptureRequest新增可空AcquisitionSessionId/AcquisitionOperationId，由打开窗口的实际消费者派发采集前赋值；无窗口的独立采集可为空但不得据此关闭任意窗口。ForWindow必须与原CaptureRequest记录的窗口身份一致，并核同Run/Session/Snapshot/Attempt，避免同Run旧保存证据复用到下一窗口。

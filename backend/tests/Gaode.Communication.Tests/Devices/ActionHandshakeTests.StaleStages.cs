@@ -97,10 +97,11 @@ public sealed partial class ActionHandshakeTests
             Assert.Single(moved.Positions), Window(ProtocolTcpFixture.Envelope()));
         var session = await device.OpenCaptureWindowAsync(request, timeout.Token);
         var before = plc.Store.GetWriteAudit().Last().Sequence;
+        using var saved = await CaptureWorkFixture.CreateAsync(session);
         var shortWindow = Window(ProtocolTcpFixture.Envelope(1));
         await Task.Delay(10, timeout.Token);
         await Assert.ThrowsAsync<TimeoutException>(() => device.FinishCaptureWindowAsync(session,
-            new(moved.Correlation.RunId, moved.Correlation.OperationId, [Guid.NewGuid()], true), shortWindow, timeout.Token));
+            saved.Work, shortWindow, timeout.Token));
         Assert.DoesNotContain(plc.Store.GetWriteAudit(), w => w.Sequence > before && w.Area == PlcArea.HoldingRegister);
     }
 

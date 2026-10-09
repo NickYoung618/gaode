@@ -2,6 +2,7 @@
   <PropertyGroup><IsTestProject>true</IsTestProject></PropertyGroup>
   <ItemGroup>
     <Compile Include="../Shared/ApprovedTestRoot.cs" Link="Support/ApprovedTestRoot.cs" />
+    <Compile Include="../Gaode.Communication.Tests/CaptureWorkFixture.cs" Link="Support/CaptureWorkFixture.cs" />
     <ProjectReference Include="../../src/Gaode.Application/Gaode.Application.csproj" />
     <ProjectReference Include="../../src/Gaode.Infrastructure/Gaode.Infrastructure.csproj" />
     <ProjectReference Include="../../../VirtualPlc/VirtualPlc.csproj" />

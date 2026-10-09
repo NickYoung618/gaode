@@ -40,7 +40,7 @@ public sealed partial class LatestProtocolPlcDevice
         var explicitlyUnsafe = values.Bit(SignalId.PlcSystemFault) || independentFault || manualOccupied || alarm != 0 ||
             severity != 0 && severity != SignalCodes.Value(SignalId.AlarmSeverity, "Warning");
         var semanticsConfirmed = !site || options.SiteOperations is { IsValid: true };
-        var safe = semanticsConfirmed && values.Bit(SignalId.PlcModeAuto) && !explicitlyUnsafe;
+        var safe = semanticsConfirmed && (site || values.Bit(SignalId.PlcModeAuto)) && !explicitlyUnsafe;
         return new(true, values.Bit(SignalId.PlcModeAuto), safe,
             values.Float(SignalId.MachineCurrentPosX), values.Float(SignalId.MachineCurrentPosY), sampledEpoch,
             unknown ? "Unknown" : AxisMotion(values),
@@ -55,14 +55,14 @@ public sealed partial class LatestProtocolPlcDevice
             ManualAreaUnconfirmed = !semanticsConfirmed && !manualOccupied,
             IndependentSafetyFaults = independentFaults };
     }
-    private static string AxisMotion(SignalValues values)
+    private string AxisMotion(SignalValues values)
     {
         var axes = new[] { (SignalId.XMoveStart, SignalId.XPosConfirmed),
             (SignalId.YMoveStart, SignalId.YPosConfirmed), (SignalId.ZCameraMoveStart, SignalId.ZCameraPosConfirmed),
             (SignalId.ZScanMoveStart, SignalId.ZScanPosConfirmed), (SignalId.ZGrabMoveStart, SignalId.ZGrapPosConfirmed) };
         if (axes.Any(a => values.Word(a.Item2) != SignalCodes.Value(a.Item2, "Moving") &&
             values.Word(a.Item2) != SignalCodes.Value(a.Item2, "Arrived"))) return "Unknown";
-        return axes.Any(a => values.Bit(a.Item1) && values.Word(a.Item2) == SignalCodes.Value(a.Item2, "Moving"))
+        return axes.Any(a => values.Word(a.Item2) == SignalCodes.Value(a.Item2, "Moving"))
             ? "Moving" : "Idle";
     }
     private DeviceObservation Interpret(ProtocolSample sample)
@@ -105,7 +105,7 @@ public sealed partial class LatestProtocolPlcDevice
         var motion = unavailable ? MotionAvailability.HeldUnknown :
             pending is not null || auxiliary || sample.MotionStatus == "Moving" ? MotionAvailability.InUse : MotionAvailability.Available;
         var acquisition = !reliable ? AcquisitionReadiness.Unconfirmed :
-            sample.PlcReady && sample.SafetyClear && !unknown ? AcquisitionReadiness.Available : AcquisitionReadiness.Unavailable;
+            sample.PlcReady && sample.Automatic && sample.SafetyClear && !unknown ? AcquisitionReadiness.Available : AcquisitionReadiness.Unavailable;
         return new(reliability, sample.Connected ? DeviceConnection.Connected : DeviceConnection.Disconnected,
             sample.ConnectionEpoch, !reliable ? OperatingMode.Unconfirmed : sample.Automatic ? OperatingMode.Automatic : OperatingMode.NonAutomatic,
             !reliable ? DeviceReadiness.Unconfirmed : sample.PlcReady ? DeviceReadiness.Ready : DeviceReadiness.NotReady,
@@ -120,12 +120,16 @@ public sealed partial class LatestProtocolPlcDevice
     {
         var result = new List<string>();
         if (!checks["Connected"]) result.Add("DeviceObservationUnavailable");
-        if (!checks["Automatic"] || !checks["Ready"]) result.Add("DeviceNotReady");
+        if (checks.TryGetValue("Automatic", out var automatic) && !automatic || !checks["Ready"]) result.Add("DeviceNotReady");
         if (!checks["SafetyClear"] || !checks["AlarmsCleared"]) result.Add("DeviceSafetyNotClear");
         if (checks.TryGetValue("NoManualOccupancy", out var noManualOccupancy) && !noManualOccupancy) result.Add("DeviceOccupied");
         if (!checks["FinitePosition"]) result.Add("PositionUnconfirmed");
         if (!checks["RecoveryProtocolConfigured"]) result.Add("RecoveryProtocolNotConfigured");
-        if (checks.Where(p => p.Key is not ("Connected" or "Automatic" or "Ready" or "SafetyClear" or "AlarmsCleared" or "NoManualOccupancy" or "FinitePosition" or "RecoveryProtocolConfigured")).Any(p => !p.Value))
+        if (checks.TryGetValue("AxisResetFeedbackValid", out var axisFeedback) && !axisFeedback)
+            result.Add("ResetAxisFeedbackUnconfirmed");
+        if (checks.TryGetValue("AllLinearAxesAtSafeZero", out var safeZero) && !safeZero)
+            result.Add("ResetSafeZeroUnconfirmed");
+        if (checks.Where(p => p.Key is not ("Connected" or "Automatic" or "Ready" or "SafetyClear" or "AlarmsCleared" or "NoManualOccupancy" or "FinitePosition" or "RecoveryProtocolConfigured" or "AxisResetFeedbackValid" or "AllLinearAxesAtSafeZero")).Any(p => !p.Value))
             result.Add("DeviceWorkNotReleased");
         return result;
     }

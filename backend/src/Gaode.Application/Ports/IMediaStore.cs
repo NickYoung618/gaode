@@ -9,6 +9,8 @@ public interface IMediaStore
     ValueTask<Stream> OpenReadAsync(Guid mediaId, CancellationToken cancellationToken);
     IDisposable Lease(Guid mediaId, string consumer);
     bool IsReady(Guid mediaId);
+    ValueTask<MediaRef> PrepareAlgorithmInputAsync(MediaRef raw, CancellationToken cancellationToken) =>
+        ValueTask.FromException<MediaRef>(new NotSupportedException("AlgorithmMediaConversionNotIntegrated"));
     ValueTask<MediaRef> SaveCaptureAsync(Guid runId, Guid captureId, string role,
         string pointVersion, string scopeVersion, byte[] buffer, string format,
         string source, CorrelatedCaptureFact fact, CancellationToken cancellationToken) =>

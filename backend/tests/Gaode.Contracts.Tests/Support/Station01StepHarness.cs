@@ -142,14 +142,21 @@ public sealed class Station01StepHarness : IAsyncDisposable
                 config.Budget.Limits.RunMediaQuotaBytes,
                 config.Budget.Limits.DataQuotaBytes), new MediaLeaseRegistry(),
             config.Budget.Limits.MediaJobs);
-        var writer = new RecordingWriter();
+        var writer = new RecordingWriter(evidenceWriter);
         var run = new RunExecution(Guid.NewGuid(), Guid.NewGuid(), "step-contract", "test:Operator",
             JsonSerializer.Serialize(new { schemaVersion = StartRunContext.CurrentSchemaVersion, trayId = Guid.NewGuid(),
                 stationId = "S01", lineId = "Component", scenarioId = "component", occupiedSlots = new[] { "s1", "s3" }, purpose = "Test" }),
             config, writer, clock, Guid.NewGuid(), "step-contract");
+        using (var db = new Station01DbContext(options))
+        {
+            db.Runs.Add(new() { RunId = run.RunId, RequestId = run.RequestId, SubjectId = run.SubjectId,
+                ContextJson = run.ContextJson, State = Gaode.Domain.Station01.RunState.Created,
+                Revision = 1, CreatedUtc = clock.GetUtcNow() });
+            db.SaveChanges();
+        }
         run.AdoptInitialRevision(1);
         var fixedMove = new FixedMoveStep(motion, ingress);
-        var acquisition = new AcquisitionCoordinator(mediaSourceOverride is null ? capture : new MediaSourceOverride(capture, mediaSourceOverride), media, ingress);
+        var acquisition = new AcquisitionCoordinator(mediaSourceOverride is null ? capture : new MediaSourceOverride(capture, mediaSourceOverride), media, ingress, new TraceQuery(options));
         var runtime = new AlgorithmRuntime(algorithmOrigin is null ? algorithm : new OriginOverride(algorithm, algorithmOrigin), media, ingress,
             new AlgorithmLeaseSupervisor(media), 1, 1);
         return new(config, writer, run, plc, capture, algorithm,
@@ -179,9 +186,13 @@ public sealed class Station01StepHarness : IAsyncDisposable
             var ended = scheduler.RespondTracked(timing, () => {
                 var observation = new Gaode.Domain.Station01.TrayObservation(Guid.NewGuid(), request.Envelope.RunId, context.TrayId,
                     request.CaptureId, request.CallId, clock.GetUtcNow(), context.Purpose, context.CheckRound, context.RelatedTransitionId,
-                    [new(1, Gaode.Domain.Station01.TrayPresence.Present, Gaode.Domain.Station01.TrayPose.Normal),
-                     new(3, Gaode.Domain.Station01.TrayPresence.Present, Gaode.Domain.Station01.TrayPose.Abnormal)],
-                    new(205, 105, "mm", "SIM_MACHINE", "DeclaredComponentOnly"), Origin, ["DeclaredComponentOnly"]);
+                    [new(1, Gaode.Domain.Station01.TrayPresence.Present, Gaode.Domain.Station01.TrayPose.Normal)
+                        { CellId = "r1:c1", Region = "Pending", Row = 1, Column = 1 },
+                     new(3, Gaode.Domain.Station01.TrayPresence.Present, Gaode.Domain.Station01.TrayPose.Abnormal)
+                        { CellId = "r1:c3", Region = "Pending", Row = 1, Column = 3 }],
+                    new(205, 105, "mm", "SIM_MACHINE", "DeclaredComponentOnly"), Origin, ["DeclaredComponentOnly"])
+                    { SchemaVersion = "tray-observation/2", MappingSourceReference = "DeclaredComponentOnly",
+                      ExpectedPhysicalSlotIndices = [1, 3] };
                 callback(new(request, AlgorithmEventKind.Result) { Observation = observation });
                 callback(new(request, AlgorithmEventKind.InputReleased));
             }, token);
@@ -222,7 +233,7 @@ public sealed class Station01StepHarness : IAsyncDisposable
                 ? value with { Observation = observed with { Source = origin } } : value), token);
     }
 
-    public sealed class RecordingWriter : ITraceWriter
+    public sealed class RecordingWriter(ITraceWriter inner) : ITraceWriter
     {
         private readonly object gate = new();
         private readonly List<WriteBatch> batches = [];
@@ -233,12 +244,9 @@ public sealed class Station01StepHarness : IAsyncDisposable
         {
             if (batch.Kind == FailOnKind) throw new IOException("InjectedNecessarySaveFailure");
             lock (gate) batches.Add(batch);
-            var receipt = new CommitReceipt(batch.WriteId, batch.RunId, CommitState.Committed,
-                batch.ExpectedRevision + 1, batch.CandidateTerminal, null);
-            return new(new(batch.WriteId, batch.RunId, CommitState.Queued, null,
-                Gaode.Domain.Station01.TerminalOutcome.None, null), Task.FromResult(receipt));
+            return inner.SubmitCritical(batch, cancellationToken, window);
         }
         public Task<CommitReceipt?> ReconcileAsync(Guid writeId, CancellationToken cancellationToken) =>
-            Task.FromResult<CommitReceipt?>(null);
+            inner.ReconcileAsync(writeId, cancellationToken);
     }
 }

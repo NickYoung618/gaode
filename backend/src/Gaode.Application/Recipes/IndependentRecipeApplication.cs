@@ -41,21 +41,7 @@ public sealed class IndependentRecipeApplication(ITraceQuery traces, IStageHando
         if (!f.TryGetProperty("snapshotId", out var snapshot) || snapshot.ValueKind != JsonValueKind.String ||
             string.IsNullOrWhiteSpace(snapshot.GetString()))
             throw new InvalidOperationException("FrozenBindingSnapshotNotRecorded");
-        LoadedConfiguration<T> Read<T>(string field)
-        {
-            var json = f.GetProperty(field + "Json").GetString()!;
-            var digest = f.GetProperty(field + "Digest").GetString()!;
-            if (!StringComparer.OrdinalIgnoreCase.Equals(digest, Convert.ToHexString(SHA256.HashData(Encoding.UTF8.GetBytes(json)))))
-                throw new InvalidOperationException("FrozenBindingConfigurationDigestMismatch");
-            return new(JsonSerializer.Deserialize<T>(json, Json) ?? throw new InvalidDataException("FrozenConfigurationMissing"),
-                json, digest, $"audit://{frozenFact.WriteId:D}");
-        }
-        var publicConfig = Read<PublicConfiguration>("public");
-        var commissioning = publicConfig.Value.Purpose == RuntimePurposes.RealDeviceCommissioning;
-        var config = ConfigurationFreezer.Freeze(publicConfig, Read<BusinessBudget>("budget"),
-            commissioning ? null : Read<SimulationProfile>("simulation"),
-            f.GetProperty("capabilityVersions").Deserialize<Dictionary<string,string>>(Json)!,
-            commissioning ? Read<CommissioningConfiguration>("commissioning") : null);
+        var config = ConfigurationFreezer.RestoreAudit(f, $"audit://{frozenFact.WriteId:D}");
         if (config.SnapshotId != snapshot.GetString() || config.Public.Purpose != frozenInputs.CostProfile.Purpose ||
             !RecipeAdmission.MatchesRunPurpose(frozenInputs, v2.Handoff.Identity.Purpose))
             throw new InvalidOperationException("FrozenBindingSnapshotMismatch");

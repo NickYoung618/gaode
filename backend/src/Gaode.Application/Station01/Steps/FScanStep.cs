@@ -33,11 +33,13 @@ public sealed class FScanStep(FixedMoveStep move, AcquisitionCoordinator acquisi
         var inspection = await motion.OpenCaptureWindowAsync(new(moved.Evidence.Correlation, CaptureRole.F,
             point, moved.Evidence.Positions.Single(), moved.Window), false, cancellationToken);
         CommitReceipt? captureCommit = null;
+        PersistedCapture? captured = null;
         try
         {
-            var media = await acquisition.CaptureAsync(run, CaptureRole.F, point,
+            captured = await acquisition.CaptureAsync(run, CaptureRole.F, point,
                 null, null, config.CaptureF.BindingId, config.CaptureF.LightBindingId,
-                config.CaptureF.MaxCaptureBytes, cancellationToken);
+                config.CaptureF.MaxCaptureBytes, cancellationToken, inspection);
+            var media = captured.Media;
             var outcome = await algorithms.InvokeAsync(run, AlgorithmRole.FDecode,
                 media.CaptureId, [media], "NotApplicable", cancellationToken);
             AlgorithmOutcomePolicy.RequireFinite(outcome.State);
@@ -73,7 +75,7 @@ public sealed class FScanStep(FixedMoveStep move, AcquisitionCoordinator acquisi
         {
             if (captureCommit is { State: CommitState.Committed } && !control.CancelRequested && !control.SafetyFault && !cancellationToken.IsCancellationRequested)
                 await motion.FinishCaptureWindowAsync(inspection,
-                    new(run.RunId, moved.OperationId, [captureCommit.WriteId], true), false,
+                    captured!.Completion.ForWindow(inspection, StartRunContextParser.Parse(run.ContextJson).TrayId), false,
                     ActionWindows.Start(run.Clock, run.Config.Budget.BusinessMs.XyCompletion, run.ClockId), cancellationToken);
         }
     }

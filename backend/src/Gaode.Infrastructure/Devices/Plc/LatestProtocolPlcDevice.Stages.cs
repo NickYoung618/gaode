@@ -48,25 +48,33 @@ public sealed partial class LatestProtocolPlcDevice
         if (options.RotationBasis is not { } basis || basis.Purpose != request.TargetPurpose ||
             basis.SourceReference != target.MechanicalEvidenceReference || basis.AngleToleranceDeg != target.AngleToleranceDeg)
             throw new InvalidOperationException("RotationMechanicalBasisMissingOrMismatched");
-        using (var eligibility = ActionDispatchEligibility(request.Window, request.ConnectionEpoch, token))
-        {
-            var baseline = await signals.ReadAsync(PreparedPlcReadPlans.Rotation, token);
-            if (baseline.Bit(SignalId.RotateStart) || baseline.Word(SignalId.RPosConfirmed) != 0)
-                throw new IOException("PreviousRotationNotCleared");
-            await signals.WriteFloatAsync(SignalId.RotateTargetR, checked((float)target.AngleDeg), token);
-            await signals.WriteBitAsync(SignalId.RotateStart, true, token);
-        }
-        var after = System.Diagnostics.Stopwatch.GetTimestamp(); var movingObserved = false;
-        SetFeedback("R", true, true);
+        var clock = new PlcExchangeClock();
+        var watch = new AxisMovingWatch(request.ConnectionEpoch,
+            new Dictionary<SignalId, PlcExchangeClock> { [SignalId.RPosConfirmed] = clock });
         try
         {
+            using (var eligibility = ActionDispatchEligibility(request.Window, request.ConnectionEpoch, token))
+            {
+                var baseline = await signals.ReadAsync(PreparedPlcReadPlans.Rotation, token);
+                CheckAxisWindow(request.Window, request.ConnectionEpoch, token);
+                if (baseline.Bit(SignalId.RotateStart) || baseline.Word(SignalId.RPosConfirmed) != 1)
+                    throw new IOException("RotationNotArrivedOrRequestUnreleased");
+                await signals.WriteFloatAsync(SignalId.RotateTargetR, checked((float)target.AngleDeg), token);
+                lock (sync) activeAxisMoving = watch;
+                SetFeedback("R", true, true);
+                var previous = PlcExchangeClock.Current.Value;
+                try { PlcExchangeClock.Current.Value = clock; await signals.WriteBitAsync(SignalId.RotateStart, true, token); }
+                finally { PlcExchangeClock.Current.Value = previous; }
+            }
+            var after = clock.Ended;
             while (true)
             {
                 CheckAxisWindow(request.Window, request.ConnectionEpoch, token);
                 var sample = await WaitGroupAsync("R", after, false, token);
                 if (sample.Epoch != request.ConnectionEpoch) throw new IOException("RotationEpochChanged");
                 var status = sample.Values.Word(SignalId.RPosConfirmed);
-                if (status == SignalCodes.Value(SignalId.RPosConfirmed, "Moving")) movingObserved = true;
+                bool movingObserved; lock (sync) movingObserved = watch.SawMoving(SignalId.RPosConfirmed);
+                if (status == SignalCodes.Value(SignalId.RPosConfirmed, "Moving")) { }
                 else if (status == SignalCodes.Value(SignalId.RPosConfirmed, "Arrived") && movingObserved)
                 {
                     var angle = new AngleReachedEvidence(request.Correlation, target.AngleDeg,
@@ -74,14 +82,27 @@ public sealed partial class LatestProtocolPlcDevice
                     if (!angle.Matched) throw new IOException("RotationActualAngleMismatch");
                     using var eligibility = ActionDispatchEligibility(request.Window, request.ConnectionEpoch, token);
                     await ClearAndConfirmAsync("R", "R", SignalId.RotateStart, true,
-                        [SignalId.RotateStart, SignalId.RPosConfirmed], request.Window, request.ConnectionEpoch, token);
+                        [SignalId.RotateStart], request.Window, request.ConnectionEpoch, token);
+                    {
+                        var final = await signals.ReadAsync(PreparedPlcReadPlans.Rotation, token);
+                        CheckAxisWindow(request.Window, request.ConnectionEpoch, token);
+                        if (final.Bit(SignalId.RotateStart) || final.Word(SignalId.RPosConfirmed) != 1 ||
+                            !float.IsFinite(final.Float(SignalId.MachineCurrentPosR)) ||
+                            Math.Abs(final.Float(SignalId.MachineCurrentPosR) - target.AngleDeg) > target.AngleToleranceDeg)
+                            throw new IOException("RotationFinalPositionUnconfirmed");
+
+                    }
                     return (angle, sample.Identity);
                 }
                 else if (status != SignalCodes.Value(SignalId.RPosConfirmed, "Arrived")) throw new IOException("RotationFeedbackFailure");
-                SetFeedback("R", true); after = sample.Ended + 1;
+                SetFeedback("R", true, !movingObserved); after = sample.Ended + 1;
             }
         }
-        finally { SetFeedback("R", false); }
+        finally
+        {
+            lock (sync) { if (ReferenceEquals(activeAxisMoving, watch)) activeAxisMoving = null; }
+            SetFeedback("R", false);
+        }
     }
     internal PlcSignalAccessor StageSignals => signals;
     internal ExecutionOrigin StageOrigin => Origin;

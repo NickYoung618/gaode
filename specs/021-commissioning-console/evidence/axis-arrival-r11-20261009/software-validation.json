@@ -1,0 +1,26 @@
+{
+  "date": "2026-10-09",
+  "environment": "OFFLINE_LOOPBACK_ONLY",
+  "passed": 61,
+  "failed": 0,
+  "frontendRecoveryPassed": 8,
+  "realDeviceCommandsIssued": false,
+  "priorPatchesPreserved": [
+    "R6 reset/recovery",
+    "R7 camera binding",
+    "R8 restart",
+    "R9 PC request release",
+    "R10 retained arrival, corrected by R11"
+  ],
+  "excluded": [
+    "private identities",
+    "images",
+    "runtime databases",
+    "raw field logs"
+  ],
+  "pending": [
+    "Formal committed-source publish and installation digest check",
+    "Real device recipe full cycle",
+    "020 T055/T056"
+  ]
+}

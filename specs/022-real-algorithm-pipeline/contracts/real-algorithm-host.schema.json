@@ -1,0 +1,499 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "type": "object",
+  "additionalProperties": false,
+  "required": [
+    "schemaVersion",
+    "id",
+    "version",
+    "purpose",
+    "source",
+    "commissioningRef",
+    "publicRef",
+    "budgetRef",
+    "codeRule",
+    "provider",
+    "modules",
+    "inputs",
+    "layoutFile",
+    "calibrationFile"
+  ],
+  "properties": {
+    "schemaVersion": {
+      "const": "real-algorithm-host/1"
+    },
+    "id": {
+      "type": "string",
+      "minLength": 1
+    },
+    "version": {
+      "type": "string",
+      "minLength": 1
+    },
+    "purpose": {
+      "const": "RealDeviceCommissioning"
+    },
+    "source": {
+      "type": "string",
+      "minLength": 1
+    },
+    "commissioningRef": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "id",
+        "version"
+      ],
+      "properties": {
+        "id": {
+          "type": "string",
+          "minLength": 1
+        },
+        "version": {
+          "type": "string",
+          "minLength": 1
+        }
+      }
+    },
+    "publicRef": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "id",
+        "version"
+      ],
+      "properties": {
+        "id": {
+          "type": "string",
+          "minLength": 1
+        },
+        "version": {
+          "type": "string",
+          "minLength": 1
+        }
+      }
+    },
+    "budgetRef": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "id",
+        "version"
+      ],
+      "properties": {
+        "id": {
+          "type": "string",
+          "minLength": 1
+        },
+        "version": {
+          "type": "string",
+          "minLength": 1
+        }
+      }
+    },
+    "codeRule": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "id",
+        "version",
+        "source"
+      ],
+      "properties": {
+        "id": {
+          "const": "decoded-content-exact"
+        },
+        "version": {
+          "const": "1.0"
+        },
+        "source": {
+          "type": "string",
+          "minLength": 1
+        }
+      }
+    },
+    "provider": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "implementationId",
+        "algorithmVersion",
+        "deliveryKind",
+        "artifact",
+        "entryPoint",
+        "arguments",
+        "dependencies"
+      ],
+      "properties": {
+        "implementationId": {
+          "type": "string",
+          "minLength": 1
+        },
+        "algorithmVersion": {
+          "type": "string",
+          "minLength": 1
+        },
+        "deliveryKind": {
+          "type": "string",
+          "enum": [
+            "PythonPackage",
+            "Exe",
+            "Dll"
+          ]
+        },
+        "artifact": {
+          "type": "object",
+          "additionalProperties": false,
+          "required": [
+            "path",
+            "version",
+            "sha256"
+          ],
+          "properties": {
+            "path": {
+              "type": "string",
+              "minLength": 1
+            },
+            "version": {
+              "type": "string",
+              "minLength": 1
+            },
+            "sha256": {
+              "type": "string",
+              "minLength": 64,
+              "maxLength": 64
+            }
+          }
+        },
+        "entryPoint": {
+          "type": "string",
+          "minLength": 1
+        },
+        "arguments": {
+          "type": "array",
+          "items": {
+            "type": "string"
+          },
+          "minItems": 0,
+          "maxItems": 256
+        },
+        "dependencies": {
+          "type": "array",
+          "items": {
+            "type": "object",
+            "additionalProperties": false,
+            "required": [
+              "path",
+              "version",
+              "sha256"
+            ],
+            "properties": {
+              "path": {
+                "type": "string",
+                "minLength": 1
+              },
+              "version": {
+                "type": "string",
+                "minLength": 1
+              },
+              "sha256": {
+                "type": "string",
+                "minLength": 64,
+                "maxLength": 64
+              }
+            }
+          },
+          "minItems": 0,
+          "maxItems": 256
+        }
+      }
+    },
+    "modules": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "additionalProperties": false,
+        "required": [
+          "module",
+          "bindingId",
+          "capabilityId",
+          "capabilityVersion",
+          "resultContract",
+          "inputCount",
+          "modelId",
+          "modelVersion",
+          "parametersVersion",
+          "modelFiles",
+          "parametersFile"
+        ],
+        "properties": {
+          "module": {
+            "type": "string",
+            "enum": [
+              "TrayPose",
+              "FDecode",
+              "EDecode",
+              "DefectSingle",
+              "DefectFusion"
+            ]
+          },
+          "bindingId": {
+            "type": "string",
+            "minLength": 1
+          },
+          "capabilityId": {
+            "type": "string",
+            "minLength": 1
+          },
+          "capabilityVersion": {
+            "type": "string",
+            "minLength": 1
+          },
+          "resultContract": {
+            "type": "string",
+            "minLength": 1
+          },
+          "inputCount": {
+            "type": "integer"
+          },
+          "modelId": {
+            "type": "string",
+            "minLength": 1
+          },
+          "modelVersion": {
+            "type": "string",
+            "minLength": 1
+          },
+          "parametersVersion": {
+            "type": "string",
+            "minLength": 1
+          },
+          "modelFiles": {
+            "type": "array",
+            "items": {
+              "type": "object",
+              "additionalProperties": false,
+              "required": [
+                "path",
+                "version",
+                "sha256"
+              ],
+              "properties": {
+                "path": {
+                  "type": "string",
+                  "minLength": 1
+                },
+                "version": {
+                  "type": "string",
+                  "minLength": 1
+                },
+                "sha256": {
+                  "type": "string",
+                  "minLength": 64,
+                  "maxLength": 64
+                }
+              }
+            },
+            "minItems": 1,
+            "maxItems": 256
+          },
+          "parametersFile": {
+            "type": "object",
+            "additionalProperties": false,
+            "required": [
+              "path",
+              "version",
+              "sha256"
+            ],
+            "properties": {
+              "path": {
+                "type": "string",
+                "minLength": 1
+              },
+              "version": {
+                "type": "string",
+                "minLength": 1
+              },
+              "sha256": {
+                "type": "string",
+                "minLength": 64,
+                "maxLength": 64
+              }
+            }
+          }
+        }
+      },
+      "minItems": 1,
+      "maxItems": 5
+    },
+    "inputs": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "pngBitDepths",
+        "pngColorTypes",
+        "plyEncoding",
+        "plyRgbRequired",
+        "trayPosePng"
+      ],
+      "properties": {
+        "pngBitDepths": {
+          "type": "array",
+          "items": {
+            "type": "integer",
+            "enum": [
+              8,
+              16
+            ]
+          },
+          "minItems": 1,
+          "maxItems": 256
+        },
+        "pngColorTypes": {
+          "type": "array",
+          "items": {
+            "type": "string",
+            "enum": [
+              "Gray",
+              "Rgb"
+            ]
+          },
+          "minItems": 1,
+          "maxItems": 256
+        },
+        "plyEncoding": {
+          "anyOf": [
+            {
+              "type": "string",
+              "enum": [
+                "ascii",
+                "binary_little_endian"
+              ]
+            },
+            {
+              "type": "null"
+            }
+          ]
+        },
+        "plyRgbRequired": {
+          "anyOf": [
+            {
+              "type": "boolean"
+            },
+            {
+              "type": "null"
+            }
+          ]
+        },
+        "trayPosePng": {
+          "type": "object",
+          "additionalProperties": false,
+          "required": [
+            "required",
+            "plane",
+            "bitDepth"
+          ],
+          "properties": {
+            "required": {
+              "anyOf": [
+                {
+                  "type": "boolean"
+                },
+                {
+                  "type": "null"
+                }
+              ]
+            },
+            "plane": {
+              "anyOf": [
+                {
+                  "type": "string",
+                  "minLength": 1
+                },
+                {
+                  "type": "null"
+                }
+              ]
+            },
+            "bitDepth": {
+              "anyOf": [
+                {
+                  "type": "integer",
+                  "enum": [
+                    8,
+                    16
+                  ]
+                },
+                {
+                  "type": "null"
+                }
+              ]
+            }
+          }
+        }
+      }
+    },
+    "layoutFile": {
+      "anyOf": [
+        {
+          "type": "object",
+          "additionalProperties": false,
+          "required": [
+            "path",
+            "version",
+            "sha256"
+          ],
+          "properties": {
+            "path": {
+              "type": "string",
+              "minLength": 1
+            },
+            "version": {
+              "type": "string",
+              "minLength": 1
+            },
+            "sha256": {
+              "type": "string",
+              "minLength": 64,
+              "maxLength": 64
+            }
+          }
+        },
+        {
+          "type": "null"
+        }
+      ]
+    },
+    "calibrationFile": {
+      "anyOf": [
+        {
+          "type": "object",
+          "additionalProperties": false,
+          "required": [
+            "path",
+            "version",
+            "sha256"
+          ],
+          "properties": {
+            "path": {
+              "type": "string",
+              "minLength": 1
+            },
+            "version": {
+              "type": "string",
+              "minLength": 1
+            },
+            "sha256": {
+              "type": "string",
+              "minLength": 64,
+              "maxLength": 64
+            }
+          }
+        },
+        {
+          "type": "null"
+        }
+      ]
+    }
+  }
+}

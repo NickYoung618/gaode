@@ -158,6 +158,7 @@ public sealed class RunExecution(Guid runId, Guid commandId, string requestId, s
         CancellationToken cancellationToken = default)
     {
         var json = JsonSerializer.Serialize(payload, JsonOptions);
+        using var commit = await RunFactCommitCoordinator.Shared.EnterAsync(RunId, cancellationToken);
         var digest = Convert.ToHexString(SHA256.HashData(Encoding.UTF8.GetBytes(json)));
         var writeId = Guid.NewGuid();
         var batch = new WriteBatch(writeId, RunId, PersistedRevision, kind, json, digest,
@@ -215,6 +216,7 @@ public sealed class RunExecution(Guid runId, Guid commandId, string requestId, s
     private async Task<PublicPreparationHandoffV2> SaveHandoffV2CoreAsync(
         PublicPreparationHandoffV2 draft, CancellationToken cancellationToken = default)
     {
+        using var commit = await RunFactCommitCoordinator.Shared.EnterAsync(RunId, cancellationToken);
         if (draft.Identity.RunId != RunId || draft.Identity.TrayId == Guid.Empty ||
             draft.HandoffId == Guid.Empty)
             throw new ArgumentException("HandoffV2IdentityInvalid", nameof(draft));

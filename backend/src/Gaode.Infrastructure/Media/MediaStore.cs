@@ -7,7 +7,7 @@ using Gaode.Domain.Station01;
 
 namespace Gaode.Infrastructure.Media;
 
-public sealed class MediaStore : IMediaStore
+public sealed partial class MediaStore : IMediaStore
 {
     private readonly string _root;
     private readonly MediaCapacity _capacity;
@@ -49,8 +49,6 @@ public sealed class MediaStore : IMediaStore
             {
                 if ((File.GetAttributes(file) & FileAttributes.ReparsePoint) != 0)
                     throw new UnauthorizedAccessException("媒体存量文件不允许链接");
-                if (file.EndsWith(".metadata.json", StringComparison.OrdinalIgnoreCase) ||
-                    file.EndsWith(".metadata.json.partial", StringComparison.OrdinalIgnoreCase)) continue;
                 bytes = checked(bytes + new FileInfo(file).Length);
             }
         }
@@ -144,16 +142,26 @@ public sealed class MediaStore : IMediaStore
     private sealed record StoredEvidence(MediaRef Reference, CorrelatedCaptureFact? Fact, string Sha256);
     private static readonly JsonSerializerOptions JsonOptions = new(JsonSerializerDefaults.Web);
 
-    private static async Task WriteEvidenceAsync(string path, StoredEvidence evidence, CancellationToken ct)
+    private async Task WriteEvidenceAsync(string path, StoredEvidence evidence, CancellationToken ct)
     {
+        var bytes = JsonSerializer.SerializeToUtf8Bytes(evidence, JsonOptions);
+        using var disk = _capacity.ReserveFile(bytes.LongLength);
+        try
+        {
         await using (var stream = new FileStream(path + ".partial", FileMode.CreateNew, FileAccess.Write,
             FileShare.None, 65536, FileOptions.Asynchronous | FileOptions.WriteThrough))
         {
-            await JsonSerializer.SerializeAsync(stream, evidence, JsonOptions, ct);
+            await stream.WriteAsync(bytes, ct);
             await stream.FlushAsync(ct);
             stream.Flush(true);
         }
         File.Move(path + ".partial", path);
+        }
+        finally
+        {
+            var retained = File.Exists(path) ? new FileInfo(path).Length : File.Exists(path + ".partial") ? new FileInfo(path + ".partial").Length : 0;
+            if (retained > 0) disk.Commit(retained);
+        }
     }
 
     public ValueTask MarkCommittedAsync(MediaRef reference, CancellationToken cancellationToken) =>
@@ -178,8 +186,22 @@ public sealed class MediaStore : IMediaStore
             await using var data = File.OpenRead(full);
             var hash = Convert.ToHexString(await SHA256.HashDataAsync(data, cancellationToken));
             if (hash != evidence.Sha256) throw new InvalidDataException("媒体摘要不符");
+            if (reference.AlgorithmInput is { } provenance)
+            {
+                if (provenance.SchemaVersion != "algorithm-input/1" || provenance.InputSha256 != hash ||
+                    !_ready.TryGetValue(provenance.RawMediaId, out var original) || original.RunId != reference.RunId ||
+                    original.CaptureId != reference.CaptureId || original.AlgorithmInput is not null ||
+                    original.RelativeKey != provenance.RawRelativeKey || original.Format != provenance.RawFormat ||
+                    original.Source != reference.Source || evidence.Fact?.FrameMetadata is not { } frame ||
+                    evidence.Fact.RunId != reference.RunId || evidence.Fact.CaptureId != reference.CaptureId ||
+                    frame.Width != provenance.Width || frame.Height != provenance.Height || frame.PixelFormat != provenance.PixelFormat)
+                    throw new InvalidDataException("AlgorithmInputProvenanceMismatch");
+                await using var originalData = File.OpenRead(Resolve(original.RelativeKey));
+                if (Convert.ToHexString(await SHA256.HashDataAsync(originalData, cancellationToken)) != provenance.RawSha256)
+                    throw new InvalidDataException("AlgorithmInputOriginalDigestMismatch");
+            }
             if (evidence.Fact?.CameraOrigin.Source == ComponentEvidenceSource.Real &&
-                (evidence.Fact.FrameMetadata is null || evidence.Fact.FrameMetadata.PayloadBytes != reference.ByteLength))
+                (evidence.Fact.FrameMetadata is null || reference.AlgorithmInput is null && evidence.Fact.FrameMetadata.PayloadBytes != reference.ByteLength))
                 throw new InvalidDataException("真实帧元数据不完整");
             if (reference.Source.StartsWith("Real", StringComparison.OrdinalIgnoreCase) && evidence.Fact?.FrameMetadata is null)
                 throw new InvalidDataException("真实媒体缺少帧元数据");
@@ -215,8 +237,15 @@ public sealed class MediaStore : IMediaStore
 
     public IDisposable Lease(Guid mediaId, string consumer)
     {
-        if (!_ready.ContainsKey(mediaId)) throw new FileNotFoundException("媒体未完成或未知");
-        return _leases.Lease(mediaId, consumer);
+        if (!_ready.TryGetValue(mediaId, out var reference)) throw new FileNotFoundException("媒体未完成或未知");
+        var work = _capacity.RetainWorking(reference.ByteLength);
+        try { return new WorkingLease(_leases.Lease(mediaId, consumer), work); }
+        catch { work.Dispose(); throw; }
+    }
+    private sealed class WorkingLease(IDisposable lease, IDisposable work) : IDisposable
+    {
+        private int done;
+        public void Dispose() { if (Interlocked.Exchange(ref done, 1) == 0) { lease.Dispose(); work.Dispose(); } }
     }
     public bool IsReady(Guid mediaId) => _ready.ContainsKey(mediaId);
 

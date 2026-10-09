@@ -25,13 +25,15 @@ public sealed class ThreeDStep(FixedMoveStep move, AcquisitionCoordinator acquis
         var inspection = await motion.OpenCaptureWindowAsync(new(moved.Evidence.Correlation, CaptureRole.ThreeD,
             point, moved.Evidence.Positions.Single(), moved.Window), false, cancellationToken);
         CommitReceipt? work = null;
+        PersistedCapture? captured = null;
         string? failureReason = null;
         try
         {
-            var media = await acquisition.CaptureAsync(run, CaptureRole.ThreeD, point,
+            captured = await acquisition.CaptureAsync(run, CaptureRole.ThreeD, point,
                 config.Capture3d.Scope.Id, config.Capture3d.Scope.Version,
                 config.Capture3d.BindingId, config.Capture3d.LightBindingId,
-                config.Capture3d.MaxCaptureBytes, cancellationToken);
+                config.Capture3d.MaxCaptureBytes, cancellationToken, inspection);
+            var media = captured.Media;
             var context = new TrayObservationContext(StartRunContextParser.Parse(run.ContextJson).TrayId,
                 TrayObservationPurpose.InitialPreparation, 1, null);
             var outcome = await algorithms.InvokeAsync(run, AlgorithmRole.TrayPose,
@@ -71,7 +73,7 @@ public sealed class ThreeDStep(FixedMoveStep move, AcquisitionCoordinator acquis
                 var release = ActionWindows.Start(run.Clock, run.Config.Budget.BusinessMs.XyCompletion, run.ClockId);
                 if (work is { State: CommitState.Committed })
                     await motion.FinishCaptureWindowAsync(inspection,
-                        new(run.RunId, moved.OperationId, [work.WriteId], true), false, release, cancellationToken);
+                        captured!.Completion.ForWindow(inspection, StartRunContextParser.Parse(run.ContextJson).TrayId), false, release, cancellationToken);
                 else
                 {
                     try { await motion.CloseFailedCaptureWindowAsync(inspection,

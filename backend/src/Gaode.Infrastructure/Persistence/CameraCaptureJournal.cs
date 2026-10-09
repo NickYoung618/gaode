@@ -170,11 +170,11 @@ public sealed class CameraCaptureJournal(DbContextOptions<Station01DbContext> op
 
     public async Task RestoreAsync(MediaStore store, CancellationToken cancellationToken)
     {
-        foreach (var reference in await ListCommittedAsync(cancellationToken))
+        foreach (var reference in (await ListCommittedAsync(cancellationToken)).OrderBy(x => x.AlgorithmInput is not null))
         {
             try
             {
-                var fact = await GetFactAsync(reference.MediaId, cancellationToken);
+                var fact = await GetFactAsync(reference.AlgorithmInput?.RawMediaId ?? reference.MediaId, cancellationToken);
                 if (reference.Source.StartsWith("Real", StringComparison.OrdinalIgnoreCase) && fact?.FrameMetadata is null)
                     throw new InvalidDataException("真实媒体缺少已提交帧事实");
                 await store.RestoreCommittedAsync(reference, fact, cancellationToken);

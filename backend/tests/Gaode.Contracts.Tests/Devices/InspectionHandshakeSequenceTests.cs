@@ -44,9 +44,11 @@ public sealed class InspectionHandshakeSequenceTests
         Assert.Equal(next, nextSession.Request);
         Assert.NotEqual(session.SessionId, nextSession.SessionId);
     }
-    private static Task<CaptureCycleResult> Release(Station01StepHarness h, AcquisitionSession session) =>
-        h.DriveAsync(h.Plc.FinishCaptureWindowAsync(session, new(session.Request.Correlation.RunId,
-            session.Request.Correlation.OperationId, [Guid.NewGuid()], true), session.Request.Window, default));
+    private static async Task<CaptureCycleResult> Release(Station01StepHarness h, AcquisitionSession session)
+    {
+        using var saved = await Gaode.Communication.Tests.CaptureWorkFixture.CreateAsync(session);
+        return await h.DriveAsync(h.Plc.FinishCaptureWindowAsync(session, saved.Work, session.Request.Window, default));
+    }
     private static async Task<CaptureWindowRequest> Move(Station01StepHarness h, CaptureRole role)
     {
         var tick = h.Clock.GetTimestamp();

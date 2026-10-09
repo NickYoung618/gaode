@@ -186,8 +186,8 @@ public sealed partial class ActionHandshakeTests
         var envelope = ProtocolTcpFixture.Envelope();
         var request = new CaptureWindowRequest(move.Correlation, CaptureRole.F, target, Assert.Single(move.Positions), Window(envelope));
         var session = await device.OpenCaptureWindowAsync(request, token);
-        var released = await device.FinishCaptureWindowAsync(session,
-            new(move.Correlation.RunId, move.Correlation.OperationId, [Guid.NewGuid()], true), request.Window, token);
+        using var saved = await CaptureWorkFixture.CreateAsync(session);
+        var released = await device.FinishCaptureWindowAsync(session, saved.Work, request.Window, token);
         Assert.Equal(AcquisitionState.Released, released.State);
     }
 
