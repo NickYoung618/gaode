@@ -227,7 +227,7 @@ public sealed partial class AlgorithmRuntime
         try
         {
             execution.Start(algorithm, OnEvent, () => !cancellationToken.IsCancellationRequested &&
-                !window.Completion.IsCompleted && !ingress.ReceiveIfExpired(window) && resources?.AdmissionClosed != true);
+                !window.Completion.IsCompleted && !ingress.ReceiveIfExpired(window), resources);
             var controlSignal = new TaskCompletionSource(TaskCreationOptions.RunContinuationsAsynchronously);
             using var registration = cancellationToken.Register(() => controlSignal.TrySetResult());
             var first = await Task.WhenAny(execution.Dispatched, window.Completion, controlSignal.Task);

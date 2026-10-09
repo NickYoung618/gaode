@@ -21,6 +21,7 @@ using System.Net;
 using System.Net.Http.Headers;
 using System.Net.Http.Json;
 using Microsoft.Extensions.Hosting;
+using Microsoft.Extensions.Logging;
 
 namespace Gaode.Communication.Tests;
 
@@ -47,7 +48,8 @@ public sealed class CommissioningWorkflowTests
         Gaode.Infrastructure.Diagnostics.HostWorkerCapacity.Ensure();
         var diagnosticPath = EvidencePath("legacy-workflow.log");
         File.WriteAllText(diagnosticPath, "");
-        using var diagnostics = new Gaode.Infrastructure.Diagnostics.RuntimeDiagnosticLogging(new ControlledCommissioningTests.FileLogger(diagnosticPath));
+        using var fileLogger = new WorkflowFileLogger(diagnosticPath);
+        using var diagnostics = new Gaode.Infrastructure.Diagnostics.RuntimeDiagnosticLogging(fileLogger);
         using var inputs = new ControlledCommissioningTests.Inputs();
         await inputs.PrepareStore("Test");
         var recipe = special ? Recipe011Data.ForSlots(2, 1, 2) : Recipe011Data.ForSlots(2, 1);
@@ -95,9 +97,10 @@ public sealed class CommissioningWorkflowTests
             SimulationReference = new(simulation.Id, simulation.Version), CommissioningPath = null, CommissioningSha256 = null,
             PlcMechanicsPath = null, PlcFieldProfilePath = null, Cameras = null };
         var builder = WebApplication.CreateBuilder();
+        builder.Logging.ClearProviders(); // Isolated file logging; no machine EventLog write permission required.
         builder.Configuration["Gaode:Tokens:Operator"] = "OFFLINE-operator";
         var services = builder.Services;
-        services.AddSingleton<Microsoft.Extensions.Logging.ILoggerProvider>(new FileProvider(diagnosticPath));
+        services.AddSingleton<Microsoft.Extensions.Logging.ILoggerProvider>(new FileProvider(fileLogger));
         var existingHosted = services.Where(s => s.ServiceType == typeof(IHostedService)).ToArray();
         services.AddStation01(options);
         // Device and persistence lifecycle are driven explicitly by this offline fixture.
@@ -146,7 +149,7 @@ public sealed class CommissioningWorkflowTests
         app.UseAuthentication(); app.UseAuthorization(); app.MapStation01Api();
         app.Urls.Add("http://127.0.0.1:0"); await app.StartAsync(timeout.Token);
         var provider = app.Services;
-        using var client = new HttpClient { BaseAddress = new Uri(app.Urls.Single()) };
+        using var client = new HttpClient(new HttpClientHandler { UseProxy = false }) { BaseAddress = new Uri(app.Urls.Single()) };
         client.DefaultRequestHeaders.Authorization = new AuthenticationHeaderValue("Bearer", "OFFLINE-operator");
         var lifecycle = provider.GetRequiredService<Gaode.Host.Lifecycle.Station01HostedService>();
         await lifecycle.InitializePersistenceAsync(timeout.Token);
@@ -398,9 +401,17 @@ public sealed class CommissioningWorkflowTests
         public void Save(RecipeDefinition recipe)=>File.WriteAllText(path,RecipeDefinitionSerialization.Serialize(recipe));
         public RecipeCatalogSnapshot GetSnapshot(){var saved=RecipeDefinitionSerialization.Deserialize(File.ReadAllText(path));return new(RecipeCatalogSnapshot.CurrentSchema,saved.CatalogDigest,[saved]);}
     }
-    private sealed class FileProvider(string path) : Microsoft.Extensions.Logging.ILoggerProvider
+    private sealed class WorkflowFileLogger(string path) : ILogger, IDisposable
     {
-        private readonly ControlledCommissioningTests.FileLogger logger = new(path);
+        private readonly StreamWriter writer = new(path, append: true) { AutoFlush = true };
+        public IDisposable? BeginScope<TState>(TState state) where TState : notnull => null;
+        public bool IsEnabled(LogLevel level) => true;
+        public void Log<TState>(LogLevel level, EventId id, TState state, Exception? error, Func<TState, Exception?, string> format)
+        { lock (writer) writer.WriteLine(level + " " + format(state, error) + (error is null ? "" : " exception=" + error)); }
+        public void Dispose() { lock (writer) writer.Dispose(); }
+    }
+    private sealed class FileProvider(WorkflowFileLogger logger) : Microsoft.Extensions.Logging.ILoggerProvider
+    {
         public Microsoft.Extensions.Logging.ILogger CreateLogger(string categoryName) => logger;
         public void Dispose() { }
     }

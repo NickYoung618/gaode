@@ -48,3 +48,13 @@ T039消费者核对：公共3D/F、产品单图、同步E、融合和复查均�
 无新增PLC地址/反馈解释进入业务层，无SDK/格式解析挪到配方，无按测试名/GUID/fixture/环境变量变更产品行为，无测试端口注册假Real Ready；所有控制探针/固定结果仅在测试。原同步await、机械/分拣/人工Final顺序、模式及存储保护保持；T017及C入口没有启用。原媒体、内存/工作/磁盘额度逻辑未改，Unknown租约保占用，取消媒体“等待”不释放其租约/文件。四项范围内未发现剩余确定软件缺陷；实际算法桥/接口联调后续单独授权，不把精度/模型验收当本轮前置。可再次converge，不表示真实算法接入或现场通过。
 
 证据补强（仅测试导出，无产品变更）：host-resource-evidence/host-resources-*.json保存实际Host每次SQLite新读取的Unknown清单、原截止及关闭快照，对这两个已有初始化/停止用例复验2/2，不计新增覆盖。late-recipe保存对应已通过迟到用例的隔离Test SQLite/媒体副本；late-recipe-readback.json再次内存读取数据库/WAL完整性ok、7个调用全部Reclaimed、唯一TimedOut及9份媒体，绝非现场库。
+
+## 2026-10-09 T045范围内实现审查
+
+基线7cbba95，隔离工作树gaode-022-t045，Spec Kit实际FEATURE_DIR为本022目录；requirements 34/34只读且SHA256保持2D80B4CEE4D4DD4F684AA6C456B795B8488B5AB616907DCD895466019298F3F7，扩展hooks为空。先更新spec/contracts/plan/tasks，再修改四个受管算法文件。
+
+TryEnter与BeginShutdown共用admissionGate，门内仅读关闭标记和MarkEntered内存状态；日志、观察/数据库保存、RequestAsync及取消均在门外。登记首次保存的完成任务先入表，门外启动数据库写入，后续修订等待首次保存，避免关闭保存倒序。公共3D/F和产品同步均传同一Supervisor；成功许可后不重新读关闭标记否定派发。取消/唯一结果裁决/未知资源管理和T041–T044逻辑未撤回；释放起点/截止由既有Start维护不重开。生产Host装配Supervisor，无Test端口注册真实Ready。
+
+六项可控屏障验证先关闭端口0、先许可端口1并保未知租约，可靠退出才回收；重读SQLite UTC/tick截止不变。原组件12项与Host7项分批通过，包括普通/特殊两轮、同步释放、取消/超时唯一裁决、Host退出；无新增大规模异常矩阵。仅HTTP测试日志/loopback代理装配另作环境隔离，持续文件写入保原日志/预算/断言。失败尝试详见证据索引，不隐藏或追溯改写。
+
+本范围未发现剩余确定软件缺口，可交下一轮独立只读复核/converge；不自行宣称整022或真实算法完成。B交付待核，C/T017未启用；PLC/虚拟PLC/前端/现场配置、数据库及部署包未修改；上传目录不纳入提交。详见t045-handoff-20261009.md和evidence/t045-20261009。
