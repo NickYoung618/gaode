@@ -1,10 +1,13 @@
 # 功能任务清单：真实算法接入与采集检测流水线
 
+现行执行范围见末尾2026-10-10子范围与T046–T050；前部旧阶段及阻断说明保留历史追溯，旧勾选不变。仅022增量及021必要绑定规划，本轮不实现。
+
+
 **输入**：[spec.md](spec.md)、[plan.md](plan.md)、[data-model.md](data-model.md)、[research.md](research.md)、[quickstart.md](quickstart.md)及[contracts/](contracts/)  
 **宪章版本**：9.0.0；Q1=A、Q2=B、Q3=A保持  
 **日期**：2026-10-09（Asia/Shanghai）  
 **工作树/基准**：D:/gaode-022-real-algorithm-pipeline；022-real-algorithm-pipeline；eb85aa4b2985e61171b9d1d749af346207282d9f  
-**本轮状态**：2026-10-09按后续speckit-tasks授权仅定向修订本任务文档，保留先前plan修订及原任务ID；任务均未执行、未勾选，未写产品/测试代码、运行软件/硬件或迁移数据库。
+**历史生成状态**：2026-10-09按后续speckit-tasks授权仅定向修订本任务文档，保留先前plan修订及原任务ID；任务均未执行、未勾选，未写产品/测试代码、运行软件/硬件或迁移数据库。
 
 ## 拆解规则
 
@@ -78,11 +81,11 @@ requirements只读，旧34项需求质量勾选不代表新目标/PNG-PLY/R1-R3�
 
 - [ ] T010 [P] [US1] 验证模式/版本引用和缺真实提供者明确受限，确认原Test/模拟Commissioning无静默改变；核用途/Profile/隔离根/维护闩及未知Real拒绝，Production拒绝且无Test库读写；真实用途正向验收另受真实交付/Ready及A证据限制；路径：`backend/tests/Gaode.Communication.Tests/RealAlgorithmPipelineConfigurationTests.cs（拟新增）`；追溯：FR-001/FR-003/FR-023；U1-2；P02/P05；依赖：T009/T031-A；验收：仅解析/校验和离线装配，禁止连接设备；分别记录旧两种Test与旧模拟联调的解析/准入、用途/Profile/根/维护错配拒绝、未知Real/未Ready局部拒绝及Production拒绝且存储打开次数0；缺能力不返回Real成功，不用伪装Ready证明真实正向准入。 本次阶段：A拒绝与消费链；B真实正向；通过Program提取的共享读取方法（拟Station01RuntimeOptionsReader，若提取则Program必须实际调用）或实际配置入口构造Options/AddStation01，不能仅new DTO验证。断言实际注册/Freezer/能力及就绪消费者；成对键缺一、错误摘要/字段/未知属性、缺组件、能力错配、未Ready拒绝及Production存储打开次数0。该读取方法不得创建第二套Host或测试专用行为。正向Real能力/模型通过须真实交付，不用Test伪Ready。
 
-- [ ] T011 [P] [US1] ExternalDependency（当前真实交付Blocked）：核对实际算法交付并定稿真实联调对接补充，逐项记录启动身份、输入格式/规则、版本应用、取消/释放/执行结束及资源依据；未交付就保Blocked；路径：`specs/022-real-algorithm-pipeline/contracts/algorithm-provider.md；specs/022-real-algorithm-pipeline/review.md`；追溯：FR-001/FR-002/FR-018/FR-019；P05/P10；依赖：T002；真内容依DEP-ALG-01/FMT-02/CAL-03/RULE-04/VER-05/CAP-06；验收：不猜wire、单位或SDK；缺项不阻断T009/T015–T034。 本次阶段：B（资料核对可先A）；核V0.3实际交付形式/入口、PNG8位灰度支持、PLY编码/RGB/同capture配套PNG、标定/单位/无效点/槽位/F设备定位；只联签必要核心与IPC桥字段，未提供保持逐模块ExternalDependency。不将已有离线像素/XYZ一致证据改称算法验收。
+- [ ] T011 [P] [US1] 交付前历史Blocked（现已交付、逐模块待验证，子范围见2026-10-10表）：核对实际算法交付并定稿真实联调对接补充，逐项记录启动身份、输入格式/规则、版本应用、取消/释放/执行结束及资源依据；未交付就保Blocked；路径：`specs/022-real-algorithm-pipeline/contracts/algorithm-provider.md；specs/022-real-algorithm-pipeline/review.md`；追溯：FR-001/FR-002/FR-018/FR-019；P05/P10；依赖：T002；真内容依DEP-ALG-01/FMT-02/CAL-03/RULE-04/VER-05/CAP-06；验收：不猜wire、单位或SDK；缺项不阻断T009/T015–T034。 本次阶段：B（资料核对可先A）；核V0.3实际交付形式/入口、PNG8位灰度支持、PLY编码/RGB/同capture配套PNG、标定/单位/无效点/槽位/F设备定位；只联签必要核心与IPC桥字段，未提供保持逐模块ExternalDependency。不将已有离线像素/XYZ一致证据改称算法验收。
 
-- [ ] T012 [US1] ExternalDependency（当前真实交付Blocked）：交付齐备后实现真实IAlgorithmPort适配及本机进程/SDK监督、消费媒体适配层已保存PNG/PLY、实际模型版本绑定/应用核验和可靠退出；接入Host真实装配；路径：`backend/src/Gaode.Infrastructure/Algorithms/RealAlgorithmAdapter.cs（拟新增）；backend/src/Gaode.Infrastructure/Algorithms/WorkerProcessSupervisor.cs；backend/src/Gaode.Infrastructure/Algorithms/WorkerProtocolCodec.cs；backend/src/Gaode.Host/Composition/Station01Registration.cs`；追溯：FR-001/FR-002/FR-003/FR-018/FR-019；P02/P05/P06；依赖：T009/T011对应模块交付/T015-A/T016-A/T026/T027/T031；依实际交付；端口适配子项与Host激活子项分开；真实Host激活另需T010/T031启用前证据、已批准RealDeviceCommissioning用途及对应真实就绪，Production不在本轮支持范围；验收：IPC/SDK留算法适配层，原始媒体转换留媒体适配层，常驻复用；InputReleased不等执行结束、EOF不等OS退出；Test白名单/来源不放宽。 本次阶段：A桥接契约/未集成拒绝；B具体真实桥接/激活；V0.3不是Worker/2.0；保IAlgorithmPort及现五Purpose，按交付形式仅实现实际需要的核心到端口映射/IPC监督，不把测试worker改Real或引入插件平台。Host激活除正文前置还需T024-A/T035-A/T036-A/T037-A软件证据；每模块按实际文件/能力/预算/加载状态受限，Production拒绝。
+- [ ] T012 [US1] 交付前历史Blocked（现已交付、逐模块待验证，子范围见2026-10-10表）：交付齐备后实现真实IAlgorithmPort适配及本机进程/SDK监督、消费媒体适配层已保存PNG/PLY、实际模型版本绑定/应用核验和可靠退出；接入Host真实装配；路径：`backend/src/Gaode.Infrastructure/Algorithms/RealAlgorithmAdapter.cs（拟新增）；backend/src/Gaode.Infrastructure/Algorithms/WorkerProcessSupervisor.cs；backend/src/Gaode.Infrastructure/Algorithms/WorkerProtocolCodec.cs；backend/src/Gaode.Host/Composition/Station01Registration.cs`；追溯：FR-001/FR-002/FR-003/FR-018/FR-019；P02/P05/P06；依赖：T009/T011对应模块交付/T015-A/T016-A/T026/T027/T031；依实际交付；端口适配子项与Host激活子项分开；真实Host激活另需T010/T031启用前证据、已批准RealDeviceCommissioning用途及对应真实就绪，Production不在本轮支持范围；验收：IPC/SDK留算法适配层，原始媒体转换留媒体适配层，常驻复用；InputReleased不等执行结束、EOF不等OS退出；Test白名单/来源不放宽。 本次阶段：A桥接契约/未集成拒绝；B具体真实桥接/激活；V0.3原生API与可选Worker/2.0外壳分层；保IAlgorithmPort及现五Purpose，按交付形式仅实现实际需要的核心到端口映射/IPC监督，不把测试worker改Real或引入插件平台。Host激活除正文前置还需T024-A/T035-A/T036-A/T037-A软件证据；每模块按实际文件/能力/预算/加载状态受限，Production拒绝。
 
-- [ ] T013 [US1] ExternalDependency（当前真实交付Blocked）：交付后验证真实程序读取提供的合法真实文件、实际计算/版本应用、结果落库重读及可靠释放、连续常驻复用；无设备连接；路径：`backend/tests/Gaode.Communication.Tests/RealAlgorithmProviderIntegrationTests.cs（拟新增）；specs/022-real-algorithm-pipeline/validation.md`；追溯：FR-001/FR-002/FR-019；SC-007；P02/P08/P13；依赖：T012适配子项/T031；真实用途正向另依T012 Host激活子项及真实就绪/A必要证据；真实输入和程序交付，执行范围授权；验收：实际提供者不能用Test替代；记录冷/稳态资源，仅真算法专项结论，不勾实机T055/T056。 本次阶段：B；核同RealDeviceCommissioning独立根/原Profile/显式虚拟光源的实际配置读取及真实算法正向装配/模型应用；有预期样本覆盖实际交付3D/F/E/单图及必要融合的结果、SQLite重读与释放。离线算法可调用文件，真实设备运行需另行授权；不启动现场程序。
+- [ ] T013 [US1] 交付前历史Blocked（现已交付、逐模块待验证，子范围见2026-10-10表）：交付后验证真实程序读取提供的合法真实文件、实际计算/版本应用、结果落库重读及可靠释放、连续常驻复用；无设备连接；路径：`backend/tests/Gaode.Communication.Tests/RealAlgorithmProviderIntegrationTests.cs（拟新增）；specs/022-real-algorithm-pipeline/validation.md`；追溯：FR-001/FR-002/FR-019；SC-007；P02/P08/P13；依赖：T012适配子项/T031；真实用途正向另依T012 Host激活子项及真实就绪/A必要证据；真实输入和程序交付，执行范围授权；验收：实际提供者不能用Test替代；记录冷/稳态资源，仅真算法专项结论，不勾实机T055/T056。 本次阶段：B；核同RealDeviceCommissioning独立根/原Profile/显式虚拟光源的实际配置读取及真实算法正向装配/模型应用；有预期样本覆盖实际交付3D/F/E/单图及必要融合的结果、SQLite重读与释放。离线算法可调用文件，真实设备运行需另行授权；不启动现场程序。
 
 - [ ] T014 [US1] 分别审查US1软件配置出口和真实交付分支，记录可完成/Blocked清单及真实准入状态；路径：`specs/022-real-algorithm-pipeline/review.md；specs/022-real-algorithm-pipeline/validation.md`；追溯：FR-001/FR-023/FR-024；P10/P13；依赖：软件审查T010；真实审查另依T013；验收：可先关闭软件审查，真实子项保未完成；T011–T013未交付不得卡住其他US。 本次阶段：A软件审查/B真实分栏；部分软件通过不勾有B子项的整任务。
 
@@ -395,3 +398,32 @@ T041：公共InvokeAsync等待InputAndExecutionEnded及原剩余额度，ThreeDS
 ### T045实施与验证完成（2026-10-09）
 
 已实现两入口与Host关闭的共同准入裁决，门外保存并保原释放窗口。六项确定交接、原组件12项和实际Host7项分批通过，共25个不同用例；全部失败尝试保留，证据见validation/review及t045-handoff-20261009.md。只勾选T045；B/C及其他旧任务勾选不变，真实算法桥接仍未完成，T017/C未启用。
+
+## 2026-10-10 speckit-tasks定向增量（现行US6）
+setup-tasks解析本022目录；不重生成历史任务。原T001–T045所有勾选保持，含B/C混合任务只报告子范围证据；下表S1是现有编号的子范围名称，不另建重复任务。包“已交付、逐模块待验证”替代统一未交付Blocked，Ready和运行验收仍未做。
+
+| 既有任务子范围 | 本轮后续责任/完成依据 | 依赖 |
+| --- | --- | --- |
+| T011-S1 | 独立CPython/GPU/依赖锁定、交付模块/入口/权重路径与实际加载、项目侧配置；首切片DefectSingle所需Ready及限制记录。静态核对已做，任务仍未完成 | 既有T002；contracts/stage-integration.md |
+| T012-S1 | 包外gaode_real_bridge.py及RealAlgorithmAdapter真实调用AlgorithmService、所需Host/Loader/能力装配，gaode-real-bridge/1明确结果及可靠CallEnded；不改包、Test协议或算法识别 | T011-S1、既有A受管/冻结消费者；T046在实际设备Host激活前 |
+| T016-S1 | 复用已保存转换/来源/租约，核本次相机PNG输入和所需PLY元数据，未知格式拒绝；只补与包真实输入的差异，不重建已有媒体软件 | T011-S1、既有T016-A |
+| T031-S1 | 冻结真实模块/模型参数与实际应用摘要、首切片配方/对象/点/相机/面/轮版本；后续策略冻结同一入口 | T012-S1/T016-S1 |
+| T013-S1 | 首个已确认实际检测位、一台对应相机、一次DefectSingle真调用和完整回复/错误保存、SQLite重读及可信结束；非全盘Final | T012-S1/T016-S1/T031-S1/T047-S1 |
+| T023/T024-S | 只迁移阶段策略涉及的3D/F/同步E等直接消费者并复用必要屏障回归；不重建原T041–T045，原机械/安全/释放均保持 | T048，已存在软件证据 |
+| T035/T036/T037/T040-S | 复用原必要主流程、范围内记录/审查/收敛，真实模块和阶段/最终责任分栏；不因文档或首切片通过勾整项 | T049；不依赖T017/C |
+
+### 场景US4：保留的生命周期核验缺口
+- [ ] T046 [US4] 核验activeExpired=true真正进入后超时的Host生命周期，保留原100ms入场前过期TRX及断言，使用可控入场/时钟顺序保证先取得真实受管进入证据再推进原期限，不提高预算或删除断言；路径：backend/tests/Gaode.Communication.Tests/RealAlgorithmPipelineLifecycleTests.cs、specs/022-real-algorithm-pipeline/validation.md、review.md；追溯FR-032/FR-017/FR-018、SC-006；依赖T045及既有T027-A；验收SQLite原UTC/tick期限不重置、Unknown保占用、Host等待有限且可靠迟到结束才回收；必要时先定位夹具原因再按共享契约修最小范围。不阻独立桥源代码/保存工作，实际设备Host激活及宣称生命周期全绿前必须闭合。本轮不改代码。
+
+### 场景US6：真实调用、分轨记录及阶段路线（P1）
+- [ ] T047 [US6] 在现事实/查询链保存完整native成功或错误与真实输入/版本，补技术/质量/完整性/流程/目标的stage-result/1投影；路径：backend/src/Gaode.Application/Ports/CaptureAlgorithmMessages.cs、backend/src/Gaode.Application/Ports/PersistenceMessages.cs（现AlgorithmFactPayload定义）、Workflow/RecipeDetectionExecutor.cs、backend/src/Gaode.Infrastructure/Persistence/TraceQuery.cs、backend/src/Gaode.Host/Api/QueryEndpoints.cs及CommittedResultProjection.cs；依赖T012-S1/T031-S1及既有持久协调；追溯FR-025/FR-027/FR-029/FR-030/FR-031、SC-008；S1先补首切片RawPayloadJson/结果文件及技术终态保存，S2再供既有页面查询；验收SQLite重读原Pending/错误/几何/双图明细不丢，失败/缺回复不补成功，保存未知不推进，前端实现只归021:T083。
+- [ ] T048 [US6] 落实显式阶段策略配置/冻结/校验与当前确认路线，保真实质量且不让其决定目标，公共准备只有独立确认依据才可继续；路径：backend/src/Gaode.Infrastructure/Configuration/RealAlgorithmConfigurationLoader.cs及对应schema、backend/src/Gaode.Application/Configuration/ConfigurationFreezer.cs、Station01/StartPublicPreparation.cs、Station01/Steps/ThreeDStep.cs及FScanStep.cs、Workflow/RecipeSortingMapper.cs及现编排直接消费者；依赖T047、021:T083、T031-S1、T046（设备Host激活前）；追溯FR-026/FR-028/FR-030/FR-033、SC-009；验收配置目标不写死G、NG/Pending仍真记，策略不可偷换/误用于最终模式，资源未知/保存未知/PLC互锁/必要定位缺失均阻断。不增加新引擎或C重叠。
+- [ ] T049 [US6] 按已确认配方运动顺序验证阶段主链及记录限制，先单点再所需普通/特殊/组/整体与实际角色，复用既有必要回归；路径：backend/tests/Gaode.Communication.Tests/RealAlgorithmProviderIntegrationTests.cs、RealAlgorithmPipelineBarrierTests.cs及现主流程夹具、specs/022-real-algorithm-pipeline/validation.md、review.md；依赖T013所需模块子范围、T048及021:T083、T046；追溯FR-025–032、SC-008/009；验收真实采集/调用/原始结果/页面/配置目标/SQLite及Final分别有证据，代表失败保持问题并只在释放/安全条件成立后继续；未具备的3D/F动作局部受限，不以假观察完成。现场执行另须授权，首切片不替代整机验收。
+- [ ] T050 [US6] 完成最终ResultDriven判定/标定/缺码与完整性、必要真融合规则交付和策略切换验收；路径：specs/022-real-algorithm-pipeline/contracts/stage-integration.md、algorithm-provider.md、backend/src/Gaode.Application/Workflow/RecipeSortingMapper.cs及既有质量规则/快照消费者、backend/tests/Gaode.Communication.Tests/RealAlgorithmResultDrivenTests.cs（拟新增）；依赖T049、所需模块实际规则/标定/融合交付及T013对应真实验收；追溯FR-007/FR-009/FR-010/FR-026/FR-030/FR-033、SC-010；验收按真实结果和确认规则改变目标，NG优先及缺结果处置不默认OK，实际映射/毫米/F定位不猜，策略只对新Run生效、StageFixedRoute不得误用于最终。明确规则由哪方交付，不改算法内部识别；当前待后续授权，不依赖T017或C。
+
+### 最小顺序、并行边界和下一轮范围
+T011-S1 → T012-S1+复用T016-S1/T031-S1 → T047-S1 → T013-S1 → T047-S2/021:T083 → T048 → T049 → T050。
+T046可独立于桥代码推进但不授权未闭合生命周期的实际设备Host激活。共享媒体/接口有依赖，不标推测性并行；不存在多代理或并发平台要求。
+下一轮implement限定T011/T012/T016/T031/T047/T013的S1首切片，不把整任务、全022或真实质量闭环标完成。仅首次对应DefectSingle真实环境/适配/本次输入/原始回复保存与组件证据，不自动做T048路线、T050最终规则或021页面，亦不启用T017/C；T046单独核验保缺口。
+
+T049当前包真实缺陷分支仅Pending，NG目标独立性的明确Test合同用例只作软件证据、不计实测NG；不让精度/当前缺NG输出阻断真实调用与保存。后端结果已提交投影及通知后按原流程推进，不增加前端确认门禁。

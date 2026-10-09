@@ -32,3 +32,13 @@ RealAlgorithmHostSnapshot：schema/id/version/purpose/source，原配置JSON/文
 DerivedAlgorithmInput：RawMediaId→DerivedMediaId，保持同CaptureId及Run/对象/面/阶段/轮次，双长度/摘要、实际raw元数据、转换版本/参数摘要、PNG位深颜色或PLY编码/布局及可用保存引用。转换未完成/保存未知不得成为算法可用输入。租约含转换读原媒体、实际派发产物和待融合独立消费者，工作额度结束不减持久磁盘。
 
 A保原同步Detection整体完成，不产生C的ProductionEnded；I1业务/资源事件隔离、G1终态资源查询和U2一次释放窗口仍必需。R1验收使用实际Host持久/停止消费者，不仅资源实体查询测试。C对象级句柄/批次额度实体保留延期，未标完成。
+
+## 2026-10-10阶段最小增量（拟实现）
+| 实体/投影 | 必要增量 |
+| --- | --- |
+| RunAlgorithmSnapshot | ExecutionPolicy/PolicyVersion/PolicySource、已提交StageRouteRef/RecipeRef/PlanRevision及点/相机/对象/面/轮作用域，目标和依据冻结；不能只存布尔忽略错误 |
+| AlgorithmFact | RawPayloadJson或完整受管回复文件引用/摘要、逐输入身份、native success/error及实际算法/模型/参数版本/AppliedParametersSha256；原技术终态、质量或Unavailable、完整性分别保存 |
+| StageResultProjection（stage-result/1） | Run/Call关联、technicalOutcome、qualityDisposition、completeness、flowOutcome、executionPolicy/版本、configuredTarget及actualDisposition引用、rawResultRef、inputRefs、限制原因；由实际事实投影，不是算法内部新结果 |
+| ResourceEvidence | 逐输入InputReleased和gaode-real-bridge/1的本Call CallEnded，聚合后承接现Exited；Result或Cancel不补该证据 |
+
+native字段原样保存，不把hasDefects推导为NG、Null毫米补0、NotConfigured叫融合成功。旧记录无stage-result字段显示历史缺项，不迁移补成功。复用现事实流/结果查询，是否需要schema字段按实际落点最小判断，本轮不改库。

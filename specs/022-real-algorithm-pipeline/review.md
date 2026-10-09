@@ -68,3 +68,9 @@ TryEnter与BeginShutdown共用admissionGate，门内仅读关闭标记和MarkEnt
 主目录Release完整后端构建通过，0警告0错误。定向测试10项，9通过/1失败：六项T045交接与activeExpired=false通过，普通/特殊Host主链各两轮通过；activeExpired=true仍失败于RealAlgorithmPipelineLifecycleTests.cs:94的DispatchSynchronousAsync，AlgorithmNotDispatchedException: OriginalWindowClosedBeforeEntry。原100ms请求窗口包含资源登记和入场交接，在进入适配器之前已耗尽，未触达目标“已进入后超时退出”情境。未采样各项I/O/调度耗时，不将该失败推断为PLC/算法包或Host关闭故障。没有改预算、断言或产品/测试实现来通过；旧sync-validation.json字节不变，旧失败和本次失败均保留。
 
 证据见evidence/t045-local-merge-20261009/merge-validation.json和两份TRX，原日志/测试导出保留artifacts/t045-local-merge-20261009。此前隔离工作树25个不同用例的证据保持，不能替代本机这次未通过的生命周期用例。可以进入第二步“更新阶段联调规格和任务”，但须显式携带生命周期验证缺口；真实算法接入/退出验收仍需后续核对，不能宣称全绿或真实接入完成。T017/C保持禁用，本轮未提前实施固定路线/算法仅记录阶段。
+
+## 2026-10-10阶段设计复核（仅文档）
+基线519cc8f；现行用户决定为真调用/真保存/现页显示后按确认路线，最终结果驱动独立保留。spec/阶段contract先更新，setup-plan保既有plan并实际定位022，再定向研究/模型/计划/quickstart，setup-tasks定位022后保旧任务、追加T046–T050；021仅必要独立页面规格/契约/计划及T083。扩展hooks为空，未执行implement。
+实际差异：Real配置IsReady恒false且无真端口；包有原生0.3和可选Worker2.0，但没有本Call结束消息；现结果payload丢几何/完整native错误/双图明细；现mapper按判定分目标。最小桥、原始结果增量和显式配置路线分别归T012/T047/T048，原T045/释放/PLC保护保持。Pending/未融合/3D映射与F定位缺项分别阻相应能力，不统一封锁独立DefectSingle真实接入。
+首切片任务为T011/T012/T016/T031/T047/T013的S1，不提前阶段路线/最终规则/页面实施。T046保生命周期缺口，T050保最终条件；C/T017未启用。当前只是设计，不声称Bridge协议已实现、模块已Ready或生命周期已全绿。
+来源/包/原型/两个上传目录只读；项目AGENTS、宪章、022历史证据/旧勾选未改。原型ZIP三页及SHA与021独立规格匹配。只核静态文档与关联路径，不安装/启动算法或设备/改库/跑产品测试。

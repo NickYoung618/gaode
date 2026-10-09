@@ -114,3 +114,8 @@ A软件证据具备范围限定的speckit-converge审查条件，尚不能收敛
 主目录Release完整后端构建通过，0警告0错误。定向测试10项，9通过/1失败：六项T045交接与activeExpired=false通过，普通/特殊Host主链各两轮通过；activeExpired=true仍失败于RealAlgorithmPipelineLifecycleTests.cs:94的DispatchSynchronousAsync，AlgorithmNotDispatchedException: OriginalWindowClosedBeforeEntry。原100ms请求窗口包含资源登记和入场交接，在进入适配器之前已耗尽，未触达目标“已进入后超时退出”情境。未采样各项I/O/调度耗时，不将该失败推断为PLC/算法包或Host关闭故障。没有改预算、断言或产品/测试实现来通过；旧sync-validation.json字节不变，旧失败和本次失败均保留。
 
 证据见evidence/t045-local-merge-20261009/merge-validation.json和两份TRX，原日志/测试导出保留artifacts/t045-local-merge-20261009。此前隔离工作树25个不同用例的证据保持，不能替代本机这次未通过的生命周期用例。可以进入第二步“更新阶段联调规格和任务”，但须显式携带生命周期验证缺口；真实算法接入/退出验收仍需后续核对，不能宣称全绿或真实接入完成。T017/C保持禁用，本轮未提前实施固定路线/算法仅记录阶段。
+
+## 2026-10-10阶段规格更新的验证边界
+本轮仅静态文档复核，不构建或运行产品/算法/设备测试。先前T045六项通过和25用例隔离证据保留；主目录合并复核为10项9通过/1失败，activeExpired=true在原100ms窗内入场前被拒，不能称进入后超时覆盖。原TRX和merge-validation.json不改，T046后续核验不放宽预算。
+算法包已交付仅指目录及说明/接口可读取，逐模块真实环境、加载、输入计算、参数应用、CallEnded及释放验收未执行；权重SHA仅启动配置声明，不是本轮重算验证。声明Pending/NotConfigured/Uncalibrated限制不改写为通过。阶段SC-008/009及最终SC-010均待任务证据，不勾任务。
+静态检查目标：旧45项及021前82项勾选/编号保持；新增5项022和1项021均未完成，任务追溯与依赖、当前/最终目标和局部阻断一致；修改范围只为本需求文档，最终speckit-analyze只读报告在本轮回复中提供。

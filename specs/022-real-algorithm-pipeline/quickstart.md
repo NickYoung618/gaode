@@ -55,3 +55,15 @@ SC-007当前Blocked。DEP-ALG/FMT/CAL/RULE/VER/CAP齐备后再定实际提供者
 ## A已执行证据与安全复验边界
 
 实际命令/38个必要用例分批结果与失败修正见validation.md；最终Host三情境仅Test/环回端口/独立存储。复验时显式将GAODE_022_EVIDENCE_ROOT、GAODE_COMMISSIONING_EVIDENCE_ROOT、GAODE_STAGE_A_EVIDENCE指向新的022证据目录（只由测试导出代码读取），选本次直接相关过滤器并保TRX，不沿用旧SQLite。不得执行真实设备HostedService Start或Production，不连接现场，不将真实选中NotIntegrated改为Ready。T017不启用。
+
+## 2026-10-10下一轮最小接入与验收顺序
+以下仅后续指南，本轮没有运行这些动作。当前包已交付，但无已验证Ready；旧指南“尚未交付”是历史。任何现场Host/PLC/相机或动作仍需对应执行授权；本轮文档不提供该授权。
+1. T011-S1：核独立CPython环境/依赖与GPU、真实模块/权重/入口、项目侧媒体根及模型参数配置；先不连接设备，逐模块Ready记录，不强求无关模块或精度就绪。
+2. T012-S1/T016-S1/T031-S1/T047-S1：真实桥和端口/所需装配、使用同Run已提交实际采集文件及派生PNG、版本/身份冻结、完整native回复及失败保存；不借固定样例或注册Test为真Ready。首切片为已确认配方检测点的一台对应相机→DefectSingle。
+3. T013-S1：实际调用交付模型，核参数应用/输入摘要、SQLite新读取、原始Pending/错误及可靠CallEnded/输入释放；组件通过不提交整盘Final。T046另核原100ms及可控真正入场后超时，保留原失败，不放宽预算。
+4. 021:T083绑定既有页面；T048启用经共同校验和冻结的阶段路线，不把NG改OK。需要3D/F依据的动作没有独立确认配置就阻断。
+5. T049按实际配方运动顺序验证普通/特殊等必要主链和原Final；单点证据不得替代全部流程。T050另行完成最终ResultDriven规则/标定/切换，T017/C不作为前置。
+
+验收只选必要正常主链和直接关系到事实/释放/安全的代表失败；未知资源/保存未知/PLC互锁必须阻断，真实Pending照存，不用“忽略所有错误”。记录Run/Call/输入/原释放UTC与tick期限及来源。当前activeExpired=true缺口见evidence/t045-local-merge-20261009/merge-validation.json，不覆盖或删除。
+
+当前交付缺陷仅Pending，不能为证明NG路线制造真实NG。阶段软件可用明确Test合同结果验证NG不改目标（不注册真Ready、不计真实算法验收）；实际包验收以本次真实Pending/错误为证据，待真包及确认规则能够产出NG后再补该真实分支。页面通知只触发正式重读，不新增浏览器回执作为运动门禁。

@@ -1,5 +1,8 @@
 # 技术方案：真实算法接入与采集检测流水线
 
+现行依据为末尾2026-10-10定向增量；前部2026-10-09的范围、前端不涉及及未交付表述为原计划历史快照，冲突时适用新阶段合同。Git实际分支为sync/022-real-algorithm-pipeline-20261009，逻辑功能仍022。
+
+
 **功能标识**：022-real-algorithm-pipeline  
 **日期**：2026-10-09（Asia/Shanghai）  
 **分支/基准**：022-real-algorithm-pipeline / eb85aa4b2985e61171b9d1d749af346207282d9f  
@@ -19,7 +22,7 @@
 | 完成证据 | 偏序、文件摘要和SQLite重读、必检集合、唯一终态及释放；Test/虚拟/Real分栏 |
 | 延期项 | C重叠优化保设计；真实交付专项局部Blocked；生产/部署/现场不在本轮，非必要异常组合与平台不开展 |
 
-## 2026-10-09最新阶段决定（现行范围）
+## 2026-10-09阶段决定（历史，现行增量见2026-10-10）
 
 本节将先前并发优先目标调整为先接入真实算法；原Q1=A/Q2=B/Q3=A、FR/SC编号、历史审查和回退证据均保留。历史记录中的G2-MODE“待确认”已由本次用户明确授权沿现有RealDeviceCommissioning接入真实算法解决；不代表算法已交付或入口已就绪。
 
@@ -251,3 +254,25 @@ RegisterAsync在门内预置首次保存完成任务并登记，门外启动/等
 仅追加一个可控交接理论用例，覆盖公共3D/F与产品同步以及关闭先/许可先。使用实际Station01HostedService.NotifyStopping/StopAsync和隔离SQLite、媒体、明确Test端口，诊断订阅控制交接；保既有登记阶段CloseBeforeEntry互补用例。复验直接受影响受管/Host和普通特殊主链，不执行真实设备、算法包或C优化。
 T045本机离线验证隔离补充：既有实际HTTP Host夹具不能依赖执行账号的Windows EventLog写权限或机器代理；测试显式仅注册原持久FileProvider，并让HttpClient直连127.0.0.1。此项只改测试装配，不改产品Host、预算、API或部署配置。已出现的EventLog权限异常/响应中断和初始就绪证据超时保留原日志及TRX，按原预算复验。
 T045验证环境补充：既有Host夹具每条日志重复打开同一文件，两个日志入口各自加锁，原700/1000ms算法预算下出现入场前I/O超时。仅该夹具共用一个持续打开、按行刷新的日志写入器；保留全部日志和原预算，不改产品日志/业务流程。
+
+## 2026-10-10 speckit-plan定向增量（现行）
+实际Git分支sync/022-real-algorithm-pipeline-20261009、基线519cc8f；setup-plan解析FEATURE_DIR为022并保留既有plan。以下优先于历史“未交付/结果决定路线/禁止推送”范围；本轮只文档。完整wire、配置和处置唯一来源为[阶段合同](contracts/stage-integration.md)。
+
+| 技术决定 | 最小落点及理由 |
+| --- | --- |
+| 运行环境/逐模块Ready | T011核CPython3.10/3.11、依赖/GPU和实际模型路径/摘要；独立环境与项目侧启动配置，不改包。首切片仅检查其所需DefectSingle模块，仍如实保其他模块NotReady |
+| 真适配 | T012新增RealAlgorithmAdapter和包外gaode_real_bridge.py，真实导入AlgorithmService；保IAlgorithmPort与T045，不扩大Test白名单。一次在途串行/常驻复用；仅复用能核对的进程监督代码，不建并发平台 |
+| 媒体/冻结 | 复用T016的已提交Mono8 PNG、Float32 XYZ PLY、元数据/sidecar/索引；T031冻结本Run模型/参数/转换/策略版本。无新采集SDK或二次采集路径 |
+| 结果保存 | T047在现AlgorithmEvent最小增量RawPayloadJson及实际版本/参数摘要，通过现AlgorithmFact/StageEvents保存完整native成功或错误；结果文件引用与源媒体关联，不另建表平台或舍弃大结果 |
+| 业务投影/查询 | 技术状态、质量/Unavailable、完整性、流程和实际路线分轨，Run/evidence既有后端出口；字段契约为stage-result/1增量，旧记录缺项不反补。Result格式/版本解析留Infrastructure，业务不解wire |
+| 既有页面 | 021 RM-STAGE和T083消费后端查询，在既有区域绑定；022只定义查询事实，不安排页面DOM/布局实现 |
+| 阶段路线 | T048在现配置校验/冻结/StartPublicPreparation及RecipeSortingMapper直接消费者增加显式策略分支；不建新执行引擎。StageFixedRoute从确认配置选源/目标，绝不通过改质量复用mapper；先保存原始事实，再按原序等待必要资源/设备条件继续 |
+| 结束与异常 | 项目桥显式CallEnded才兑现Exited；逐输入释放可信聚合。保未知占用/原期限/Host门；T046补真正入场后过期核验，不把100ms入场前拒绝算退出证据 |
+| 最终切换 | T050完善质量/标定/缺码/完整性/真正融合及ResultDriven验收，策略冻结只作用新Run，不依赖T017/C |
+
+最小顺序：T011-S1环境/包核验 → T012-S1真实端口与所需Host配置（配合T016-S1、T031-S1） → T047-S1完整结果保存 → T013-S1真实首切片核验 → 021:T083现页绑定 → T048阶段路线 → T049必要主流程。T046可与首切片代码工作分开，但对应实际设备Host激活及宣布生命周期全绿前必须闭合；T050最终目标保留未执行，C继续延期。
+首切片选择已保存配方中的首个已确认实际检测位/相机和DefectSingle，不写死坐标、相机A或槽号；范围是组件证据，不冒称完整Detection/Final。扩展由实际配方的1/2/4/更多面和普通/特殊/组/整体运动顺序决定，不新增排列组合矩阵。
+共享payload、Host配置和策略签名均先按本轮spec/contracts/plan/tasks实施；实际字段schema和直接消费者同批修改，禁止兼容层/测试生产特权/新页面参数。
+宪章复核：P01承接最新决定；P02真实核心接入；P03/P04配置来源和原设备屏障；P05前后端/适配边界；P06/T045真实释放；P07/P08完整原始事实和SQLite；P09关联日志；P10范围依赖；P11最小直接消费者改动；P12原型保护；P13分阶段完成。无修改宪章或来源文档，无质量精度或C并发作为首切片前置。
+
+包外桥拟新增路径：backend/src/Gaode.Infrastructure/Algorithms/gaode_real_bridge.py；RealAlgorithmAdapter.cs和必要真实协议解析位于同目录。所有包导入路径由严格Host描述文件提供，不能用当前上传临时路径硬编码为部署路径。已确认路径/权重/参数配置记录而不拷贝其内容进源码。

@@ -323,3 +323,7 @@ CameraPro发现回环userIP时，允许从现有ExpectedNicMac唯一匹配Up物�
 现场：2026-10-09 07:19:26发送复位，07:19:28新读MB6015=1并撤MB2009，安全/XYZ±0.2通过；后续初始检查503轮均AxisResetFeedbackValid及AllLinearAxesAtSafeZero失败，最后07:19:56归为RecoveryResetDeadlineExceeded。扫码Z读值32；07:20:49只读核对MB6040/6042/6046为0，MB6044/6048/6060为1，PC请求均0。
 确定软件修复：将轴反馈检查失败及零位检查失败从通用DeviceWorkNotReleased中分离，返回明确ResetAxisFeedbackUnconfirmed、ResetSafeZeroUnconfirmed，复位握手完成后遇这些条件不反复等待而报InitialStateIncomplete，记录本次新读每轴请求/反馈/实际位置、预期零位和容差，保留真实复位完成事实。不把此类状态误显示为PLC复位超时，不扩大超时、不自动重发、不清未知请求或释放旧任务。
 用户更正：扫码Z实际32毫米意味着未回到复位位置，并非允许的复位安全位置。撤销尚未部署的scanZResetPositionMm配置及相关实现，仍按零位±0.2毫米核验，不用修改允许位置掩盖未复位事实。待用户决定：MB6015=1且PC请求0时X/Y/扫码Z反馈0是否属于正常复位状态。当前不据此放宽轴反馈门禁，其他确定软件修复继续。R12零位±0.2、正常运动精度及R11完整动作证明保持；若需额外现场语义，先补规格契约再实施。
+
+## 2026-10-10 RM-STAGE绑定规划
+只按本功能RM-STAGE及022 stage-result/1消费既有后端查询：运行模型、frontend/src/pages/data-view-bindings.ts及现有数据页/运行绑定消费者。不更改HTML布局、增加控件、配方技术参数或阶段策略开关。
+客户E:/dzk/gaode/原型.zip只读核对：SHA256=3dc791c1f8ab5eedfa037f5dbae450b2d20522fed654f86ea700c0284945e1e0，三页a.html/data-view.html/login.html；读取归档数据页及现RM-02/03映射。T083在022:T047查询落实后实现绑定，验证现页API/数据库结果一致及原型结构保持，不扩全页面测试或历史搜索。

@@ -24,3 +24,7 @@ A阶段保现有检测整体完成→批次映射/原分拣，及特殊本件完
 ## T041 A最终消费者
 
 WholeTrayCompletionStore在首次Final提交以及ReconcileFinalAsync释放任务前，核本Run每Call最新持久pipeline/1生命周期；任一未Reclaimed则以AlgorithmResourcesUnconfirmed拒绝，不提交新Final/Completed或释放CommandRegistry。原允许取盘、人工确认、来源矩阵与机械条件不弱化；仅有历史Final也不能绕过未回收核对。此核查不受Run业务终态过滤、不使用无关Run资源作为屏障。公共成功返回须可靠输入/执行结束并刷新资源保存，使正常原同步链无需额外编排。
+
+## 2026-10-10阶段适用增量
+前述判定决定目标属于ResultDriven及历史C责任。StageFixedRoute按[阶段合同](stage-integration.md)冻结合法配置目标，独立保存质量，不改NG/Pending成OK骗过mapper。
+点位/身份/占用/容量/预约/抓手/设备安全校验保持；缺依据、资源Unknown或保存未知不放行。最终恢复真实结果驱动、NG优先及完整性规则，不以T017/C为前提。

@@ -34,3 +34,12 @@ Decision：独立严格Host描述文件走Program现Gaode读取→Options→Regi
 Decision：PNG/PLY原始媒体转换由采集/媒体适配层提供版本化来源/持有证据，core和IPC分开。Rationale：V0.3要求算法只读PNG/PLY，离线Mono8/XYZ证据支持软件转换但不证明算法接受编码、标定或正式集成。Alternatives considered：core解析raw、伪造RGB、缩放裁剪/删点及预设worker2.0兼容均拒绝。DEP-FMT/CAL/ALG等仍按模块局部阻断，真实协议待交付。
 
 Decision：R1用实际Host InitializePersistenceAsync/停止通知/StopAsync验收，R3在plan/PIPE/tasks保持T010→T017且整体入口延期。Rationale：扫描器单测不能证明Host消费终态资源，后续集成不能替代启用前仲裁/冻结/监管。Alternatives considered：仅靠新增文字/独立manager通过宣布闭合不接受。
+
+## 2026-10-10包与源码定向研究（静态事实，非运行验证）
+Decision：以交付README、requirements、config/worker.production.json和runtime/gaode_worker的worker/service/contract/media/ply/adapters为依据，将“未交付”改为“已交付、逐模块待验证”；保旧结论历史。未运行包、安装依赖或核权重字节摘要。
+Rationale：service.initialize逐模块加载并分开qualityDecisionReady等；infer校验版本和实际参数摘要；媒体只支持8位PNG、有序XYZ PLY；TrayPose未完整标定、缺陷Pending、双图独立实例未去重。CODE与需求差距不是统一缺交付。
+Decision：包外最小常驻桥真实调用AlgorithmService，新增项目gaode-real-bridge/1和显式CallEnded、完整回复文件引用；不改算法识别。
+Rationale：现包Worker2.0发送Result/InputReleased但无独立执行结束；SERVICE_BUSY也无释放承诺，stdout EOF不等进程死亡；64KiB输出上限会拒绝大结果。现Test PythonWorkerAdapter/WorkerMessages不能直接作为真适配，Real配置IsReady恒false。现AlgorithmEvent缺原始回复，RecipeDetectionExecutor只序列化Disposition/RawCodes/ErrorCode，真实几何会丢失。
+Alternatives：只改Test提供者的Real标签、把Result或最后一份释放猜成执行结束、每图重启、修改包内识别或建立通用插件/并发平台，均不采用。实际资源结束仍需真实模块专项证据，桥约定不冒称交付现成支持。
+Decision：StageFixedRoute与ResultDriven显式冻结，原结果/技术/完整性/动作分轨，保原同步顺序；不通过伪造OK/观察沿用旧质量mapper。前端承接021最新RM-02七格映射及RM-03数据页查询，旧006未确认七格的历史描述不覆盖021现行确认。
+Open（有范围的后续证据）：环境/GPU和依赖组合、权重实际加载、首切片真实输入/耗时、CallEnded及取消结束；3D物理映射/姿态/F设备定位、质量规则/毫米/真融合及最终切换。前者T011/T012/T013/T046，后者T050；不阻独立源代码接入与保存，不虚构缺项。

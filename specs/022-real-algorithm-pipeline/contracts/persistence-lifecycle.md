@@ -80,3 +80,8 @@ A资源恢复增量：实际Host恢复未确认输入时，对已Ready的原输�
 T026/T038-A关联修正：已绑定WorkerSession的Call拒绝缺失或不同会话事件，匿名InputReleased/WorkerExited不能解除原占用；本调用的成功Exited任务仍是可靠执行结束证据。结果必须保持原FrozenModule模型/参数文件版本及摘要身份，不只匹配配置摘要。
 
 G1分页实现衔接：未回收结果按RunId、OperationId、CallId稳定排序后进行有限OFFSET/LIMIT；同Operation的不同Call仍独立，过滤最新调用状态及Reclaimed必须在分页之前。不新增业务恢复许可。
+
+## 2026-10-10原始结果和投影
+复用AlgorithmFact/StageEvents/TraceQuery，不建第二数据库。版本化事实保完整native回复、Run/Call/Session/Attempt/每输入Capture/Media/摘要、冻结及实际模型/参数版本、AppliedParametersSha256、技术终态、质量或Unavailable、完整性及原始错误；无回复只存原因，不补Success/OK。
+success=false的error及未加载/未应用字段原样记录；结果文件/提交失败和算法异常分开，CommitUnknown沿原ID核对。冻结策略/来源/版本、配置目标与实际动作/Final独立投影，路线G不等质量OK。
+现代码仅序列化Disposition/RawCodes/ErrorCode会丢原始几何/双图明细，T047补最小共享payload和实际消费者，再供Run/evidence查询；前端只查询。旧缺字段不反补成功。资源投影、唯一释放起点/截止、T045及Final保持。

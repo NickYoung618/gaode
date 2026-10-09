@@ -116,3 +116,7 @@ A稳定输入声明：沿现IAlgorithmPort添加InputRepresentation(role)声明N
 A真实选择准入增量：独立真实描述选中时，实际能力未注册/不匹配或算法未就绪属于RealAlgorithmNotReady控制阻断，公共Start保存ConfigurationBlocked且不派发采集/机械动作；原显式虚拟分支原有算法问题分类保持。配置读入不等真实就绪。
 
 T026/T038-A关联修正：已绑定WorkerSession的Call拒绝缺失或不同会话事件，匿名InputReleased/WorkerExited不能解除原占用；本调用的成功Exited任务仍是可靠执行结束证据。结果必须保持原FrozenModule模型/参数文件版本及摘要身份，不只匹配配置摘要。
+
+## 2026-10-10交付状态及现行合同
+DEP-ALG-01更新为V0.3.1已交付、逐模块待验证；旧“未交付”表保留历史范围。仅核说明/代码，真实加载、推理和释放仍NotExecuted，不提升当前IsReady或注册Test为真实。
+现行细节见[阶段合同](stage-integration.md)。DEP-CAL-03/RULE-04只阻依赖标定/质量的路径与最终验收，不阻DefectSingle真实调用/Pending保存。最终结果驱动不依赖C。
