@@ -1,0 +1,40 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<TestRun id="a1dd5a59-aaa7-486f-8dcd-61fee875fbac" name="codexsandboxonline@10_3_0_13 2026-10-09 23:53:58" runUser="10_3_0_13\CodexSandboxOnline" xmlns="http://microsoft.com/schemas/VisualStudio/TeamTest/2010">
+  <Times creation="2026-10-09T23:53:58.2077863+08:00" queuing="2026-10-09T23:53:58.2077867+08:00" start="2026-10-09T23:53:21.4292385+08:00" finish="2026-10-09T23:54:52.5529209+08:00" />
+  <TestSettings name="default" id="eb14f849-7677-4edd-a6a7-921872587ab3">
+    <Deployment runDeploymentRoot="codexsandboxonline_10_3_0_13_2026-10-09_23_53_58" />
+  </TestSettings>
+  <Results>
+    <UnitTestResult executionId="da966bce-ae12-4681-82fe-30dfcbec5c8c" testId="385fca52-722b-6beb-2afd-7eea81df28cd" testName="Gaode.Communication.Tests.CommissioningWorkflowTests.LegacyTestHostRunsPublicPreparationBindingFlipAndDurableWholeTrayWorkflow(png: True, special: True, probe: &quot;None&quot;)" computerName="10_3_0_13" duration="00:00:54.0759743" startTime="2026-10-09T23:53:58.1920115+08:00" endTime="2026-10-09T23:54:52.2298469+08:00" testType="13cdc9d9-ddb5-4fa4-a97d-d965ccfc6d4b" outcome="Passed" testListId="8c84fa94-04c1-424b-9868-57a2d4851a1d" relativeResultsDirectory="da966bce-ae12-4681-82fe-30dfcbec5c8c" />
+    <UnitTestResult executionId="ed1201b4-b7d1-49c5-8f04-1ebc86ef0d7f" testId="d0e5c9fa-7437-aaca-c386-dcb190785cd8" testName="Gaode.Communication.Tests.CommissioningWorkflowTests.LegacyTestHostRunsPublicPreparationBindingFlipAndDurableWholeTrayWorkflow(png: False, special: False, probe: &quot;None&quot;)" computerName="10_3_0_13" duration="00:00:32.8801789" startTime="2026-10-09T23:53:25.3019827+08:00" endTime="2026-10-09T23:53:58.1354230+08:00" testType="13cdc9d9-ddb5-4fa4-a97d-d965ccfc6d4b" outcome="Passed" testListId="8c84fa94-04c1-424b-9868-57a2d4851a1d" relativeResultsDirectory="ed1201b4-b7d1-49c5-8f04-1ebc86ef0d7f" />
+  </Results>
+  <TestDefinitions>
+    <UnitTest name="Gaode.Communication.Tests.CommissioningWorkflowTests.LegacyTestHostRunsPublicPreparationBindingFlipAndDurableWholeTrayWorkflow(png: True, special: True, probe: &quot;None&quot;)" storage="e:\dzk\gaode-1\backend\tests\gaode.communication.tests\bin\release\net10.0\gaode.communication.tests.dll" id="385fca52-722b-6beb-2afd-7eea81df28cd">
+      <Execution id="da966bce-ae12-4681-82fe-30dfcbec5c8c" />
+      <TestMethod codeBase="E:\dzk\gaode-1\backend\tests\Gaode.Communication.Tests\bin\Release\net10.0\Gaode.Communication.Tests.dll" adapterTypeName="executor://xunit/VsTestRunner3/netcore/" className="Gaode.Communication.Tests.CommissioningWorkflowTests" name="LegacyTestHostRunsPublicPreparationBindingFlipAndDurableWholeTrayWorkflow" />
+    </UnitTest>
+    <UnitTest name="Gaode.Communication.Tests.CommissioningWorkflowTests.LegacyTestHostRunsPublicPreparationBindingFlipAndDurableWholeTrayWorkflow(png: False, special: False, probe: &quot;None&quot;)" storage="e:\dzk\gaode-1\backend\tests\gaode.communication.tests\bin\release\net10.0\gaode.communication.tests.dll" id="d0e5c9fa-7437-aaca-c386-dcb190785cd8">
+      <Execution id="ed1201b4-b7d1-49c5-8f04-1ebc86ef0d7f" />
+      <TestMethod codeBase="E:\dzk\gaode-1\backend\tests\Gaode.Communication.Tests\bin\Release\net10.0\Gaode.Communication.Tests.dll" adapterTypeName="executor://xunit/VsTestRunner3/netcore/" className="Gaode.Communication.Tests.CommissioningWorkflowTests" name="LegacyTestHostRunsPublicPreparationBindingFlipAndDurableWholeTrayWorkflow" />
+    </UnitTest>
+  </TestDefinitions>
+  <TestEntries>
+    <TestEntry testId="385fca52-722b-6beb-2afd-7eea81df28cd" executionId="da966bce-ae12-4681-82fe-30dfcbec5c8c" testListId="8c84fa94-04c1-424b-9868-57a2d4851a1d" />
+    <TestEntry testId="d0e5c9fa-7437-aaca-c386-dcb190785cd8" executionId="ed1201b4-b7d1-49c5-8f04-1ebc86ef0d7f" testListId="8c84fa94-04c1-424b-9868-57a2d4851a1d" />
+  </TestEntries>
+  <TestLists>
+    <TestList name="列表中未列出的结果" id="8c84fa94-04c1-424b-9868-57a2d4851a1d" />
+    <TestList name="所有已加载的结果" id="19431567-8539-422a-85d7-44ee4e166bda" />
+  </TestLists>
+  <ResultSummary outcome="Completed">
+    <Counters total="2" executed="2" passed="2" failed="0" error="0" timeout="0" aborted="0" inconclusive="0" passedButRunAborted="0" notRunnable="0" notExecuted="0" disconnected="0" warning="0" completed="0" inProgress="0" pending="0" />
+    <Output>
+      <StdOut>[xUnit.net 00:00:00.00] xUnit.net VSTest Adapter v3.1.5+1b188a7b0a (64-bit .NET 10.0.12)&#xD;
+[xUnit.net 00:00:00.34]   Discovering: Gaode.Communication.Tests&#xD;
+[xUnit.net 00:00:01.74]   Discovered:  Gaode.Communication.Tests&#xD;
+[xUnit.net 00:00:01.87]   Starting:    Gaode.Communication.Tests&#xD;
+[xUnit.net 00:01:28.97]   Finished:    Gaode.Communication.Tests&#xD;
+</StdOut>
+    </Output>
+  </ResultSummary>
+</TestRun>

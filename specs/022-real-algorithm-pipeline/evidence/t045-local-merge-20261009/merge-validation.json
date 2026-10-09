@@ -1,0 +1,159 @@
+{
+  "scope": "T045 merge and focused offline validation only; no algorithm bridge or devices",
+  "branch": "sync/022-real-algorithm-pipeline-20261009",
+  "before": "009e084c956375a1a409b266407d4df3b061020e",
+  "source": "38918e9e17ae0a3cb5aa9a6643becbb2852c73ed",
+  "mergeCommit": "3281227e750c8ee00022cf229f3686c54ad14fb7",
+  "featureDirectory": "E:/dzk/gaode-1/specs/022-real-algorithm-pipeline",
+  "build": {
+    "command": "dotnet build backend/Gaode.slnx -c Release --no-restore -v minimal",
+    "result": "Passed",
+    "warnings": 0,
+    "errors": 0
+  },
+  "retainedLocalFiles": true,
+  "productSourceMatchesT045": true,
+  "testMigrationRetained": "CommissioningWorkflowTests keeps CommissioningProtocolTcpFixture at all four migrated references",
+  "uploads": {
+    "接口接入": {
+      "exists": true,
+      "trackedFiles": ""
+    },
+    ".upload-api-20261009-2210": {
+      "exists": true,
+      "trackedFiles": ""
+    }
+  },
+  "previousFailureRecord": {
+    "path": "specs/022-real-algorithm-pipeline/evidence/local-sync-20261009/sync-validation.json",
+    "sha256": "e9be0a9edb18a9862ece48995204095979065e9a9235eef6d98d037db269be85",
+    "unchanged": true
+  },
+  "lifecycleFailureAssessment": {
+    "case": "ActualHostInitializationAndStoppingDiscoverTerminalUnknownWithoutReplaying(activeExpired: True)",
+    "observed": "AlgorithmNotDispatchedException: OriginalWindowClosedBeforeEntry at test line 94",
+    "cause": "The original 100 ms request window includes resource registration and dispatch handoff. It expired before adapter entry; the intended post-entry timeout scenario was not reached.",
+    "notEstablished": "Per-operation I/O/scheduling latency breakdown was not sampled; no PLC, algorithm package or Host-shutdown fault is inferred.",
+    "changesToPass": "None: request budget, release budget, assertions and product/test code were not changed in this merge review.",
+    "impact": "Does not block updating stage integration specifications/tasks; lifecycle acceptance remains open before declaring real algorithm activation validated."
+  },
+  "nextStep": {
+    "updateStageSpecificationsAndTasks": "Ready with explicit retained lifecycle verification gap",
+    "realAlgorithmActivation": "Not performed or approved as verified"
+  },
+  "runs": [
+    {
+      "artifact": "artifacts/t045-local-merge-20261009/handoff-and-lifecycle.trx",
+      "sha256": "4607913c8bd4684fd7c612f14e1586cfebd5d1aee60b39e9861ad4523c057234",
+      "counters": {
+        "total": "8",
+        "executed": "8",
+        "passed": "7",
+        "failed": "1",
+        "error": "0",
+        "timeout": "0",
+        "aborted": "0",
+        "inconclusive": "0",
+        "passedButRunAborted": "0",
+        "notRunnable": "0",
+        "notExecuted": "0",
+        "disconnected": "0",
+        "warning": "0",
+        "completed": "0",
+        "inProgress": "0",
+        "pending": "0"
+      },
+      "cases": [
+        {
+          "name": "Gaode.Communication.Tests.AlgorithmAdmissionHandoffTests.ActualHostCloseAndAlgorithmEntryHaveOneOrder(role: TrayPose, permitFirst: True)",
+          "outcome": "Passed",
+          "message": "",
+          "stack": ""
+        },
+        {
+          "name": "Gaode.Communication.Tests.RealAlgorithmPipelineLifecycleTests.ActualHostInitializationAndStoppingDiscoverTerminalUnknownWithoutReplaying(activeExpired: True)",
+          "outcome": "Failed",
+          "message": "Gaode.Application.Ports.AlgorithmNotDispatchedException : 算法未派发且未取得输入：OriginalWindowClosedBeforeEntry",
+          "stack": "   at Gaode.Application.Algorithms.AlgorithmRuntime.DispatchSynchronousAsync(AlgorithmRequest request, Guid trayId, Int32 algorithmWaitMs, Int32 releaseMs, Int32 saveMs, Action`1 consumer, CancellationToken token) in E:\\dzk\\gaode-1\\backend\\src\\Gaode.Application\\Algorithms\\AlgorithmRuntime.Synchronous.cs:line 116\r\n   at Gaode.Application.Algorithms.AlgorithmRuntime.DispatchSynchronousAsync(AlgorithmRequest request, Guid trayId, Int32 algorithmWaitMs, Int32 releaseMs, Int32 saveMs, Action`1 consumer, CancellationToken token) in E:\\dzk\\gaode-1\\backend\\src\\Gaode.Application\\Algorithms\\AlgorithmRuntime.Synchronous.cs:line 125\r\n   at Gaode.Communication.Tests.RealAlgorithmPipelineLifecycleTests.ActualHostInitializationAndStoppingDiscoverTerminalUnknownWithoutReplaying(Boolean activeExpired) in E:\\dzk\\gaode-1\\backend\\tests\\Gaode.Communication.Tests\\RealAlgorithmPipelineLifecycleTests.cs:line 94\r\n   at Gaode.Communication.Tests.RealAlgorithmPipelineLifecycleTests.ActualHostInitializationAndStoppingDiscoverTerminalUnknownWithoutReplaying(Boolean activeExpired) in E:\\dzk\\gaode-1\\backend\\tests\\Gaode.Communication.Tests\\RealAlgorithmPipelineLifecycleTests.cs:line 131\r\n--- End of stack trace from previous location ---"
+        },
+        {
+          "name": "Gaode.Communication.Tests.AlgorithmAdmissionHandoffTests.ActualHostCloseAndAlgorithmEntryHaveOneOrder(role: Detection, permitFirst: False)",
+          "outcome": "Passed",
+          "message": "",
+          "stack": ""
+        },
+        {
+          "name": "Gaode.Communication.Tests.RealAlgorithmPipelineLifecycleTests.ActualHostInitializationAndStoppingDiscoverTerminalUnknownWithoutReplaying(activeExpired: False)",
+          "outcome": "Passed",
+          "message": "",
+          "stack": ""
+        },
+        {
+          "name": "Gaode.Communication.Tests.AlgorithmAdmissionHandoffTests.ActualHostCloseAndAlgorithmEntryHaveOneOrder(role: FDecode, permitFirst: False)",
+          "outcome": "Passed",
+          "message": "",
+          "stack": ""
+        },
+        {
+          "name": "Gaode.Communication.Tests.AlgorithmAdmissionHandoffTests.ActualHostCloseAndAlgorithmEntryHaveOneOrder(role: TrayPose, permitFirst: False)",
+          "outcome": "Passed",
+          "message": "",
+          "stack": ""
+        },
+        {
+          "name": "Gaode.Communication.Tests.AlgorithmAdmissionHandoffTests.ActualHostCloseAndAlgorithmEntryHaveOneOrder(role: FDecode, permitFirst: True)",
+          "outcome": "Passed",
+          "message": "",
+          "stack": ""
+        },
+        {
+          "name": "Gaode.Communication.Tests.AlgorithmAdmissionHandoffTests.ActualHostCloseAndAlgorithmEntryHaveOneOrder(role: Detection, permitFirst: True)",
+          "outcome": "Passed",
+          "message": "",
+          "stack": ""
+        }
+      ]
+    },
+    {
+      "artifact": "artifacts/t045-local-merge-20261009/merged-host-two-paths.trx",
+      "sha256": "a3a498dc137881fff4ff5ffb259012e60890362a113046d7ec6c440a013be950",
+      "counters": {
+        "total": "2",
+        "executed": "2",
+        "passed": "2",
+        "failed": "0",
+        "error": "0",
+        "timeout": "0",
+        "aborted": "0",
+        "inconclusive": "0",
+        "passedButRunAborted": "0",
+        "notRunnable": "0",
+        "notExecuted": "0",
+        "disconnected": "0",
+        "warning": "0",
+        "completed": "0",
+        "inProgress": "0",
+        "pending": "0"
+      },
+      "cases": [
+        {
+          "name": "Gaode.Communication.Tests.CommissioningWorkflowTests.LegacyTestHostRunsPublicPreparationBindingFlipAndDurableWholeTrayWorkflow(png: True, special: True, probe: \"None\")",
+          "outcome": "Passed",
+          "message": "",
+          "stack": ""
+        },
+        {
+          "name": "Gaode.Communication.Tests.CommissioningWorkflowTests.LegacyTestHostRunsPublicPreparationBindingFlipAndDurableWholeTrayWorkflow(png: False, special: False, probe: \"None\")",
+          "outcome": "Passed",
+          "message": "",
+          "stack": ""
+        }
+      ]
+    }
+  ],
+  "limits": [
+    "No full-suite or hardware acceptance",
+    "T017/C disabled; no task marks changed beyond incoming T045",
+    "Previous 25-case evidence retained; this merge only reruns necessary cases"
+  ]
+}

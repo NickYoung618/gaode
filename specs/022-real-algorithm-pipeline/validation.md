@@ -104,3 +104,13 @@ A软件证据具备范围限定的speckit-converge审查条件，尚不能收敛
 失败历史保留：初次测试编译xUnit1031；旧v2夹具缺配方身份；六项新测试末尾误用camelCase日志键名，修正为已有CallId；机器EventLog权限/HTTP代理与文件清理占用；其后特殊配方短预算被重复开关日志文件及前置I/O消耗（分别6/7与0/1）。仅测试宿主移除默认EventLog、直连loopback并共用持续文件写入器，未提高预算或放松断言；最终Host7/7。全部TRX的错误和SHA256保存在attempt-index.json，完整原始日志仍留artifacts/T045。
 
 提交证据：evidence/t045-20261009包含修复前/最终Host TRX、六项重读及关联诊断摘要、全部尝试索引和源文件摘要；不含数据库、媒体、算法包、权重、现场原始数据。只勾选T045；T017/C禁用，B接口/启动/格式/取消释放协议待实际交付核验；不把软件竞态完成计作真实算法或全022完成。下一轮见t045-handoff-20261009.md。
+
+## 2026-10-09 T045合入主目录后的定向复核
+
+主目录E:/dzk/gaode-1，分支sync/022-real-algorithm-pipeline-20261009；从009e084c合入远端已核对一致的38918e9，合并提交3281227，无冲突。保留已迁移CommissioningProtocolTcpFixture四处引用、所有本地历史资料和PLC修复；没有删除已有跟踪文件。算法产品源码与T045来源一致，PLC/Host配置/前端未改；两个上传目录保留且未跟踪，不提交。Spec Kit实际FEATURE_DIR为本022目录（使用既有feature.json），未改任务状态，除合入已有T045完成标记。扩展/算法包/权重/部署包/现场数据库和设备均未操作。
+
+复核共同admissionGate中的TryEnter/BeginShutdown排序、门内仅内存Entered、门外算法/日志/保存和两入口传参；已进入调用保资源归属，Start不重置已有释放UTC/tick起点与截止。新六项可控交接均通过，实际SQLite重新读取、先关闭0次调用、先许可1次调用和可靠退出前不释放断言均保留。
+
+主目录Release完整后端构建通过，0警告0错误。定向测试10项，9通过/1失败：六项T045交接与activeExpired=false通过，普通/特殊Host主链各两轮通过；activeExpired=true仍失败于RealAlgorithmPipelineLifecycleTests.cs:94的DispatchSynchronousAsync，AlgorithmNotDispatchedException: OriginalWindowClosedBeforeEntry。原100ms请求窗口包含资源登记和入场交接，在进入适配器之前已耗尽，未触达目标“已进入后超时退出”情境。未采样各项I/O/调度耗时，不将该失败推断为PLC/算法包或Host关闭故障。没有改预算、断言或产品/测试实现来通过；旧sync-validation.json字节不变，旧失败和本次失败均保留。
+
+证据见evidence/t045-local-merge-20261009/merge-validation.json和两份TRX，原日志/测试导出保留artifacts/t045-local-merge-20261009。此前隔离工作树25个不同用例的证据保持，不能替代本机这次未通过的生命周期用例。可以进入第二步“更新阶段联调规格和任务”，但须显式携带生命周期验证缺口；真实算法接入/退出验收仍需后续核对，不能宣称全绿或真实接入完成。T017/C保持禁用，本轮未提前实施固定路线/算法仅记录阶段。

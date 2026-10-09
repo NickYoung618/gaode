@@ -1,0 +1,99 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<TestRun id="6ab26ac1-d25a-4c91-9c8d-51212cdc56b9" name="codexsandboxonline@10_3_0_13 2026-10-09 23:52:46" runUser="10_3_0_13\CodexSandboxOnline" xmlns="http://microsoft.com/schemas/VisualStudio/TeamTest/2010">
+  <Times creation="2026-10-09T23:52:46.4100788+08:00" queuing="2026-10-09T23:52:46.4100792+08:00" start="2026-10-09T23:52:35.4601942+08:00" finish="2026-10-09T23:52:55.0084639+08:00" />
+  <TestSettings name="default" id="d954468c-3864-4b20-b0fc-af61154c998f">
+    <Deployment runDeploymentRoot="codexsandboxonline_10_3_0_13_2026-10-09_23_52_46" />
+  </TestSettings>
+  <Results>
+    <UnitTestResult executionId="0c67de87-2b7c-454c-b88d-4ba64da4f05f" testId="c0ee3f57-3fcc-aead-313b-6ba2e7a3c655" testName="Gaode.Communication.Tests.AlgorithmAdmissionHandoffTests.ActualHostCloseAndAlgorithmEntryHaveOneOrder(role: TrayPose, permitFirst: True)" computerName="10_3_0_13" duration="00:00:00.9229317" startTime="2026-10-09T23:52:53.8543501+08:00" endTime="2026-10-09T23:52:54.7999482+08:00" testType="13cdc9d9-ddb5-4fa4-a97d-d965ccfc6d4b" outcome="Passed" testListId="8c84fa94-04c1-424b-9868-57a2d4851a1d" relativeResultsDirectory="0c67de87-2b7c-454c-b88d-4ba64da4f05f" />
+    <UnitTestResult executionId="20877ef9-9373-4cf8-951c-64293bb3bb1a" testId="0cb2aa5b-ccc4-c964-fb9e-279e0e0740be" testName="Gaode.Communication.Tests.RealAlgorithmPipelineLifecycleTests.ActualHostInitializationAndStoppingDiscoverTerminalUnknownWithoutReplaying(activeExpired: True)" computerName="10_3_0_13" duration="00:00:01.5159711" startTime="2026-10-09T23:52:46.3943102+08:00" endTime="2026-10-09T23:52:47.9091727+08:00" testType="13cdc9d9-ddb5-4fa4-a97d-d965ccfc6d4b" outcome="Failed" testListId="8c84fa94-04c1-424b-9868-57a2d4851a1d" relativeResultsDirectory="20877ef9-9373-4cf8-951c-64293bb3bb1a">
+      <Output>
+        <ErrorInfo>
+          <Message>Gaode.Application.Ports.AlgorithmNotDispatchedException : 算法未派发且未取得输入：OriginalWindowClosedBeforeEntry</Message>
+          <StackTrace>   at Gaode.Application.Algorithms.AlgorithmRuntime.DispatchSynchronousAsync(AlgorithmRequest request, Guid trayId, Int32 algorithmWaitMs, Int32 releaseMs, Int32 saveMs, Action`1 consumer, CancellationToken token) in E:\dzk\gaode-1\backend\src\Gaode.Application\Algorithms\AlgorithmRuntime.Synchronous.cs:line 116&#xD;
+   at Gaode.Application.Algorithms.AlgorithmRuntime.DispatchSynchronousAsync(AlgorithmRequest request, Guid trayId, Int32 algorithmWaitMs, Int32 releaseMs, Int32 saveMs, Action`1 consumer, CancellationToken token) in E:\dzk\gaode-1\backend\src\Gaode.Application\Algorithms\AlgorithmRuntime.Synchronous.cs:line 125&#xD;
+   at Gaode.Communication.Tests.RealAlgorithmPipelineLifecycleTests.ActualHostInitializationAndStoppingDiscoverTerminalUnknownWithoutReplaying(Boolean activeExpired) in E:\dzk\gaode-1\backend\tests\Gaode.Communication.Tests\RealAlgorithmPipelineLifecycleTests.cs:line 94&#xD;
+   at Gaode.Communication.Tests.RealAlgorithmPipelineLifecycleTests.ActualHostInitializationAndStoppingDiscoverTerminalUnknownWithoutReplaying(Boolean activeExpired) in E:\dzk\gaode-1\backend\tests\Gaode.Communication.Tests\RealAlgorithmPipelineLifecycleTests.cs:line 131&#xD;
+--- End of stack trace from previous location ---</StackTrace>
+        </ErrorInfo>
+      </Output>
+    </UnitTestResult>
+    <UnitTestResult executionId="4ff50078-8b8e-463f-84e2-172c6450c4a3" testId="80c30e05-6aee-0584-7544-09569f6a5947" testName="Gaode.Communication.Tests.AlgorithmAdmissionHandoffTests.ActualHostCloseAndAlgorithmEntryHaveOneOrder(role: Detection, permitFirst: False)" computerName="10_3_0_13" duration="00:00:01.2602179" startTime="2026-10-09T23:52:49.4055393+08:00" endTime="2026-10-09T23:52:50.6841474+08:00" testType="13cdc9d9-ddb5-4fa4-a97d-d965ccfc6d4b" outcome="Passed" testListId="8c84fa94-04c1-424b-9868-57a2d4851a1d" relativeResultsDirectory="4ff50078-8b8e-463f-84e2-172c6450c4a3" />
+    <UnitTestResult executionId="527c7d8c-3e30-46fd-8a5b-ca92b7f6778b" testId="5a3f1d10-7570-cade-d0ea-21e47410c22a" testName="Gaode.Communication.Tests.RealAlgorithmPipelineLifecycleTests.ActualHostInitializationAndStoppingDiscoverTerminalUnknownWithoutReplaying(activeExpired: False)" computerName="10_3_0_13" duration="00:00:07.1330243" startTime="2026-10-09T23:52:39.2577728+08:00" endTime="2026-10-09T23:52:46.3428915+08:00" testType="13cdc9d9-ddb5-4fa4-a97d-d965ccfc6d4b" outcome="Passed" testListId="8c84fa94-04c1-424b-9868-57a2d4851a1d" relativeResultsDirectory="527c7d8c-3e30-46fd-8a5b-ca92b7f6778b" />
+    <UnitTestResult executionId="8e642133-285a-4251-931d-82aabad3f458" testId="b6fb1cca-68c9-4e77-c52e-d6b96a722648" testName="Gaode.Communication.Tests.AlgorithmAdmissionHandoffTests.ActualHostCloseAndAlgorithmEntryHaveOneOrder(role: FDecode, permitFirst: False)" computerName="10_3_0_13" duration="00:00:00.8490270" startTime="2026-10-09T23:52:53.0037938+08:00" endTime="2026-10-09T23:52:53.8533630+08:00" testType="13cdc9d9-ddb5-4fa4-a97d-d965ccfc6d4b" outcome="Passed" testListId="8c84fa94-04c1-424b-9868-57a2d4851a1d" relativeResultsDirectory="8e642133-285a-4251-931d-82aabad3f458" />
+    <UnitTestResult executionId="34f71a29-583d-48dd-bf39-d086c66ed239" testId="e58dae83-50e8-cf3d-45f9-2b251d4f99d8" testName="Gaode.Communication.Tests.AlgorithmAdmissionHandoffTests.ActualHostCloseAndAlgorithmEntryHaveOneOrder(role: TrayPose, permitFirst: False)" computerName="10_3_0_13" duration="00:00:00.9261628" startTime="2026-10-09T23:52:52.0213588+08:00" endTime="2026-10-09T23:52:53.0031872+08:00" testType="13cdc9d9-ddb5-4fa4-a97d-d965ccfc6d4b" outcome="Passed" testListId="8c84fa94-04c1-424b-9868-57a2d4851a1d" relativeResultsDirectory="34f71a29-583d-48dd-bf39-d086c66ed239" />
+    <UnitTestResult executionId="392c440e-093e-4bb9-8b8a-b3c5ca15e7b9" testId="e9544f25-7c72-ee6e-8c1a-d1f899e5fab4" testName="Gaode.Communication.Tests.AlgorithmAdmissionHandoffTests.ActualHostCloseAndAlgorithmEntryHaveOneOrder(role: FDecode, permitFirst: True)" computerName="10_3_0_13" duration="00:00:01.3349989" startTime="2026-10-09T23:52:50.6848668+08:00" endTime="2026-10-09T23:52:52.0203476+08:00" testType="13cdc9d9-ddb5-4fa4-a97d-d965ccfc6d4b" outcome="Passed" testListId="8c84fa94-04c1-424b-9868-57a2d4851a1d" relativeResultsDirectory="392c440e-093e-4bb9-8b8a-b3c5ca15e7b9" />
+    <UnitTestResult executionId="a3e6e169-ff3e-4441-8709-6c9081466ca2" testId="6343bf77-ab56-074a-9d8c-3154884e35de" testName="Gaode.Communication.Tests.AlgorithmAdmissionHandoffTests.ActualHostCloseAndAlgorithmEntryHaveOneOrder(role: Detection, permitFirst: True)" computerName="10_3_0_13" duration="00:00:01.4546653" startTime="2026-10-09T23:52:47.9466215+08:00" endTime="2026-10-09T23:52:49.4033639+08:00" testType="13cdc9d9-ddb5-4fa4-a97d-d965ccfc6d4b" outcome="Passed" testListId="8c84fa94-04c1-424b-9868-57a2d4851a1d" relativeResultsDirectory="a3e6e169-ff3e-4441-8709-6c9081466ca2" />
+  </Results>
+  <TestDefinitions>
+    <UnitTest name="Gaode.Communication.Tests.AlgorithmAdmissionHandoffTests.ActualHostCloseAndAlgorithmEntryHaveOneOrder(role: TrayPose, permitFirst: True)" storage="e:\dzk\gaode-1\backend\tests\gaode.communication.tests\bin\release\net10.0\gaode.communication.tests.dll" id="c0ee3f57-3fcc-aead-313b-6ba2e7a3c655">
+      <Execution id="0c67de87-2b7c-454c-b88d-4ba64da4f05f" />
+      <TestMethod codeBase="E:\dzk\gaode-1\backend\tests\Gaode.Communication.Tests\bin\Release\net10.0\Gaode.Communication.Tests.dll" adapterTypeName="executor://xunit/VsTestRunner3/netcore/" className="Gaode.Communication.Tests.AlgorithmAdmissionHandoffTests" name="ActualHostCloseAndAlgorithmEntryHaveOneOrder" />
+    </UnitTest>
+    <UnitTest name="Gaode.Communication.Tests.AlgorithmAdmissionHandoffTests.ActualHostCloseAndAlgorithmEntryHaveOneOrder(role: FDecode, permitFirst: False)" storage="e:\dzk\gaode-1\backend\tests\gaode.communication.tests\bin\release\net10.0\gaode.communication.tests.dll" id="b6fb1cca-68c9-4e77-c52e-d6b96a722648">
+      <Execution id="8e642133-285a-4251-931d-82aabad3f458" />
+      <TestMethod codeBase="E:\dzk\gaode-1\backend\tests\Gaode.Communication.Tests\bin\Release\net10.0\Gaode.Communication.Tests.dll" adapterTypeName="executor://xunit/VsTestRunner3/netcore/" className="Gaode.Communication.Tests.AlgorithmAdmissionHandoffTests" name="ActualHostCloseAndAlgorithmEntryHaveOneOrder" />
+    </UnitTest>
+    <UnitTest name="Gaode.Communication.Tests.AlgorithmAdmissionHandoffTests.ActualHostCloseAndAlgorithmEntryHaveOneOrder(role: TrayPose, permitFirst: False)" storage="e:\dzk\gaode-1\backend\tests\gaode.communication.tests\bin\release\net10.0\gaode.communication.tests.dll" id="e58dae83-50e8-cf3d-45f9-2b251d4f99d8">
+      <Execution id="34f71a29-583d-48dd-bf39-d086c66ed239" />
+      <TestMethod codeBase="E:\dzk\gaode-1\backend\tests\Gaode.Communication.Tests\bin\Release\net10.0\Gaode.Communication.Tests.dll" adapterTypeName="executor://xunit/VsTestRunner3/netcore/" className="Gaode.Communication.Tests.AlgorithmAdmissionHandoffTests" name="ActualHostCloseAndAlgorithmEntryHaveOneOrder" />
+    </UnitTest>
+    <UnitTest name="Gaode.Communication.Tests.RealAlgorithmPipelineLifecycleTests.ActualHostInitializationAndStoppingDiscoverTerminalUnknownWithoutReplaying(activeExpired: True)" storage="e:\dzk\gaode-1\backend\tests\gaode.communication.tests\bin\release\net10.0\gaode.communication.tests.dll" id="0cb2aa5b-ccc4-c964-fb9e-279e0e0740be">
+      <Execution id="20877ef9-9373-4cf8-951c-64293bb3bb1a" />
+      <TestMethod codeBase="E:\dzk\gaode-1\backend\tests\Gaode.Communication.Tests\bin\Release\net10.0\Gaode.Communication.Tests.dll" adapterTypeName="executor://xunit/VsTestRunner3/netcore/" className="Gaode.Communication.Tests.RealAlgorithmPipelineLifecycleTests" name="ActualHostInitializationAndStoppingDiscoverTerminalUnknownWithoutReplaying" />
+    </UnitTest>
+    <UnitTest name="Gaode.Communication.Tests.RealAlgorithmPipelineLifecycleTests.ActualHostInitializationAndStoppingDiscoverTerminalUnknownWithoutReplaying(activeExpired: False)" storage="e:\dzk\gaode-1\backend\tests\gaode.communication.tests\bin\release\net10.0\gaode.communication.tests.dll" id="5a3f1d10-7570-cade-d0ea-21e47410c22a">
+      <Execution id="527c7d8c-3e30-46fd-8a5b-ca92b7f6778b" />
+      <TestMethod codeBase="E:\dzk\gaode-1\backend\tests\Gaode.Communication.Tests\bin\Release\net10.0\Gaode.Communication.Tests.dll" adapterTypeName="executor://xunit/VsTestRunner3/netcore/" className="Gaode.Communication.Tests.RealAlgorithmPipelineLifecycleTests" name="ActualHostInitializationAndStoppingDiscoverTerminalUnknownWithoutReplaying" />
+    </UnitTest>
+    <UnitTest name="Gaode.Communication.Tests.AlgorithmAdmissionHandoffTests.ActualHostCloseAndAlgorithmEntryHaveOneOrder(role: Detection, permitFirst: True)" storage="e:\dzk\gaode-1\backend\tests\gaode.communication.tests\bin\release\net10.0\gaode.communication.tests.dll" id="6343bf77-ab56-074a-9d8c-3154884e35de">
+      <Execution id="a3e6e169-ff3e-4441-8709-6c9081466ca2" />
+      <TestMethod codeBase="E:\dzk\gaode-1\backend\tests\Gaode.Communication.Tests\bin\Release\net10.0\Gaode.Communication.Tests.dll" adapterTypeName="executor://xunit/VsTestRunner3/netcore/" className="Gaode.Communication.Tests.AlgorithmAdmissionHandoffTests" name="ActualHostCloseAndAlgorithmEntryHaveOneOrder" />
+    </UnitTest>
+    <UnitTest name="Gaode.Communication.Tests.AlgorithmAdmissionHandoffTests.ActualHostCloseAndAlgorithmEntryHaveOneOrder(role: Detection, permitFirst: False)" storage="e:\dzk\gaode-1\backend\tests\gaode.communication.tests\bin\release\net10.0\gaode.communication.tests.dll" id="80c30e05-6aee-0584-7544-09569f6a5947">
+      <Execution id="4ff50078-8b8e-463f-84e2-172c6450c4a3" />
+      <TestMethod codeBase="E:\dzk\gaode-1\backend\tests\Gaode.Communication.Tests\bin\Release\net10.0\Gaode.Communication.Tests.dll" adapterTypeName="executor://xunit/VsTestRunner3/netcore/" className="Gaode.Communication.Tests.AlgorithmAdmissionHandoffTests" name="ActualHostCloseAndAlgorithmEntryHaveOneOrder" />
+    </UnitTest>
+    <UnitTest name="Gaode.Communication.Tests.AlgorithmAdmissionHandoffTests.ActualHostCloseAndAlgorithmEntryHaveOneOrder(role: FDecode, permitFirst: True)" storage="e:\dzk\gaode-1\backend\tests\gaode.communication.tests\bin\release\net10.0\gaode.communication.tests.dll" id="e9544f25-7c72-ee6e-8c1a-d1f899e5fab4">
+      <Execution id="392c440e-093e-4bb9-8b8a-b3c5ca15e7b9" />
+      <TestMethod codeBase="E:\dzk\gaode-1\backend\tests\Gaode.Communication.Tests\bin\Release\net10.0\Gaode.Communication.Tests.dll" adapterTypeName="executor://xunit/VsTestRunner3/netcore/" className="Gaode.Communication.Tests.AlgorithmAdmissionHandoffTests" name="ActualHostCloseAndAlgorithmEntryHaveOneOrder" />
+    </UnitTest>
+  </TestDefinitions>
+  <TestEntries>
+    <TestEntry testId="c0ee3f57-3fcc-aead-313b-6ba2e7a3c655" executionId="0c67de87-2b7c-454c-b88d-4ba64da4f05f" testListId="8c84fa94-04c1-424b-9868-57a2d4851a1d" />
+    <TestEntry testId="0cb2aa5b-ccc4-c964-fb9e-279e0e0740be" executionId="20877ef9-9373-4cf8-951c-64293bb3bb1a" testListId="8c84fa94-04c1-424b-9868-57a2d4851a1d" />
+    <TestEntry testId="80c30e05-6aee-0584-7544-09569f6a5947" executionId="4ff50078-8b8e-463f-84e2-172c6450c4a3" testListId="8c84fa94-04c1-424b-9868-57a2d4851a1d" />
+    <TestEntry testId="5a3f1d10-7570-cade-d0ea-21e47410c22a" executionId="527c7d8c-3e30-46fd-8a5b-ca92b7f6778b" testListId="8c84fa94-04c1-424b-9868-57a2d4851a1d" />
+    <TestEntry testId="b6fb1cca-68c9-4e77-c52e-d6b96a722648" executionId="8e642133-285a-4251-931d-82aabad3f458" testListId="8c84fa94-04c1-424b-9868-57a2d4851a1d" />
+    <TestEntry testId="e58dae83-50e8-cf3d-45f9-2b251d4f99d8" executionId="34f71a29-583d-48dd-bf39-d086c66ed239" testListId="8c84fa94-04c1-424b-9868-57a2d4851a1d" />
+    <TestEntry testId="e9544f25-7c72-ee6e-8c1a-d1f899e5fab4" executionId="392c440e-093e-4bb9-8b8a-b3c5ca15e7b9" testListId="8c84fa94-04c1-424b-9868-57a2d4851a1d" />
+    <TestEntry testId="6343bf77-ab56-074a-9d8c-3154884e35de" executionId="a3e6e169-ff3e-4441-8709-6c9081466ca2" testListId="8c84fa94-04c1-424b-9868-57a2d4851a1d" />
+  </TestEntries>
+  <TestLists>
+    <TestList name="列表中未列出的结果" id="8c84fa94-04c1-424b-9868-57a2d4851a1d" />
+    <TestList name="所有已加载的结果" id="19431567-8539-422a-85d7-44ee4e166bda" />
+  </TestLists>
+  <ResultSummary outcome="Failed">
+    <Counters total="8" executed="8" passed="7" failed="1" error="0" timeout="0" aborted="0" inconclusive="0" passedButRunAborted="0" notRunnable="0" notExecuted="0" disconnected="0" warning="0" completed="0" inProgress="0" pending="0" />
+    <Output>
+      <StdOut>[xUnit.net 00:00:00.00] xUnit.net VSTest Adapter v3.1.5+1b188a7b0a (64-bit .NET 10.0.12)&#xD;
+[xUnit.net 00:00:00.42]   Discovering: Gaode.Communication.Tests&#xD;
+[xUnit.net 00:00:01.96]   Discovered:  Gaode.Communication.Tests&#xD;
+[xUnit.net 00:00:02.06]   Starting:    Gaode.Communication.Tests&#xD;
+[xUnit.net 00:00:10.87]       Gaode.Application.Ports.AlgorithmNotDispatchedException : 算法未派发且未取得输入：OriginalWindowClosedBeforeEntry&#xD;
+[xUnit.net 00:00:10.87]       Stack Trace:&#xD;
+[xUnit.net 00:00:10.87]         E:\dzk\gaode-1\backend\src\Gaode.Application\Algorithms\AlgorithmRuntime.Synchronous.cs(116,0): at Gaode.Application.Algorithms.AlgorithmRuntime.DispatchSynchronousAsync(AlgorithmRequest request, Guid trayId, Int32 algorithmWaitMs, Int32 releaseMs, Int32 saveMs, Action`1 consumer, CancellationToken token)&#xD;
+[xUnit.net 00:00:10.87]         E:\dzk\gaode-1\backend\src\Gaode.Application\Algorithms\AlgorithmRuntime.Synchronous.cs(125,0): at Gaode.Application.Algorithms.AlgorithmRuntime.DispatchSynchronousAsync(AlgorithmRequest request, Guid trayId, Int32 algorithmWaitMs, Int32 releaseMs, Int32 saveMs, Action`1 consumer, CancellationToken token)&#xD;
+[xUnit.net 00:00:10.87]         E:\dzk\gaode-1\backend\tests\Gaode.Communication.Tests\RealAlgorithmPipelineLifecycleTests.cs(94,0): at Gaode.Communication.Tests.RealAlgorithmPipelineLifecycleTests.ActualHostInitializationAndStoppingDiscoverTerminalUnknownWithoutReplaying(Boolean activeExpired)&#xD;
+[xUnit.net 00:00:10.87]         E:\dzk\gaode-1\backend\tests\Gaode.Communication.Tests\RealAlgorithmPipelineLifecycleTests.cs(131,0): at Gaode.Communication.Tests.RealAlgorithmPipelineLifecycleTests.ActualHostInitializationAndStoppingDiscoverTerminalUnknownWithoutReplaying(Boolean activeExpired)&#xD;
+[xUnit.net 00:00:10.87]         --- End of stack trace from previous location ---&#xD;
+[xUnit.net 00:00:17.76]   Finished:    Gaode.Communication.Tests&#xD;
+</StdOut>
+    </Output>
+    <RunInfos>
+      <RunInfo computerName="10_3_0_13" outcome="Error" timestamp="2026-10-09T23:52:47.9188073+08:00">
+        <Text>[xUnit.net 00:00:10.87]     Gaode.Communication.Tests.RealAlgorithmPipelineLifecycleTests.ActualHostInitializationAndStoppingDiscoverTerminalUnknownWithoutReplaying(activeExpired: True) [FAIL]</Text>
+      </RunInfo>
+    </RunInfos>
+  </ResultSummary>
+</TestRun>
