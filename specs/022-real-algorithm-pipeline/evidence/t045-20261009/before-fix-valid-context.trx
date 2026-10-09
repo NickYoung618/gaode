@@ -1,0 +1,135 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<TestRun id="d7f2b14c-a8de-4ffc-a580-9e7a42910325" name="codexsandboxonline@10_3_0_13 2026-10-09 22:52:34" runUser="10_3_0_13\CodexSandboxOnline" xmlns="http://microsoft.com/schemas/VisualStudio/TeamTest/2010">
+  <Times creation="2026-10-09T22:52:34.5158245+08:00" queuing="2026-10-09T22:52:34.5158250+08:00" start="2026-10-09T22:52:21.9174295+08:00" finish="2026-10-09T22:52:40.1912244+08:00" />
+  <TestSettings name="default" id="3c013a0a-69ab-4367-990f-2d9c0d2f8c10">
+    <Deployment runDeploymentRoot="codexsandboxonline_10_3_0_13_2026-10-09_22_52_34" />
+  </TestSettings>
+  <Results>
+    <UnitTestResult executionId="f975ad85-5cb8-4935-ac0e-a7f1cce1e867" testId="b6fb1cca-68c9-4e77-c52e-d6b96a722648" testName="Gaode.Communication.Tests.AlgorithmAdmissionHandoffTests.ActualHostCloseAndAlgorithmEntryHaveOneOrder(role: FDecode, permitFirst: False)" computerName="10_3_0_13" duration="00:00:00.7964717" startTime="2026-10-09T22:52:38.1946474+08:00" endTime="2026-10-09T22:52:38.9940302+08:00" testType="13cdc9d9-ddb5-4fa4-a97d-d965ccfc6d4b" outcome="Failed" testListId="8c84fa94-04c1-424b-9868-57a2d4851a1d" relativeResultsDirectory="f975ad85-5cb8-4935-ac0e-a7f1cce1e867">
+      <Output>
+        <ErrorInfo>
+          <Message>Assert.Equal() Failure: Values differ&#xD;
+Expected: 0&#xD;
+Actual:   1</Message>
+          <StackTrace>   at Gaode.Communication.Tests.AlgorithmAdmissionHandoffTests.ActualHostCloseAndAlgorithmEntryHaveOneOrder(AlgorithmRole role, Boolean permitFirst) in E:\dzk\gaode-022-t045\backend\tests\Gaode.Communication.Tests\AlgorithmAdmissionHandoffTests.cs:line 137&#xD;
+   at Gaode.Communication.Tests.AlgorithmAdmissionHandoffTests.ActualHostCloseAndAlgorithmEntryHaveOneOrder(AlgorithmRole role, Boolean permitFirst) in E:\dzk\gaode-022-t045\backend\tests\Gaode.Communication.Tests\AlgorithmAdmissionHandoffTests.cs:line 169&#xD;
+   at Gaode.Communication.Tests.AlgorithmAdmissionHandoffTests.ActualHostCloseAndAlgorithmEntryHaveOneOrder(AlgorithmRole role, Boolean permitFirst) in E:\dzk\gaode-022-t045\backend\tests\Gaode.Communication.Tests\AlgorithmAdmissionHandoffTests.cs:line 169&#xD;
+--- End of stack trace from previous location ---</StackTrace>
+        </ErrorInfo>
+      </Output>
+    </UnitTestResult>
+    <UnitTestResult executionId="e530fc51-bed5-46a8-acd0-7e0f8ebc85c9" testId="e9544f25-7c72-ee6e-8c1a-d1f899e5fab4" testName="Gaode.Communication.Tests.AlgorithmAdmissionHandoffTests.ActualHostCloseAndAlgorithmEntryHaveOneOrder(role: FDecode, permitFirst: True)" computerName="10_3_0_13" duration="00:00:01.3638094" startTime="2026-10-09T22:52:36.0501971+08:00" endTime="2026-10-09T22:52:37.3918000+08:00" testType="13cdc9d9-ddb5-4fa4-a97d-d965ccfc6d4b" outcome="Passed" testListId="8c84fa94-04c1-424b-9868-57a2d4851a1d" relativeResultsDirectory="e530fc51-bed5-46a8-acd0-7e0f8ebc85c9" />
+    <UnitTestResult executionId="73e10fd1-aa9a-488b-be02-3cd96670ee2d" testId="80c30e05-6aee-0584-7544-09569f6a5947" testName="Gaode.Communication.Tests.AlgorithmAdmissionHandoffTests.ActualHostCloseAndAlgorithmEntryHaveOneOrder(role: Detection, permitFirst: False)" computerName="10_3_0_13" duration="00:00:01.5562424" startTime="2026-10-09T22:52:34.4995511+08:00" endTime="2026-10-09T22:52:36.0279383+08:00" testType="13cdc9d9-ddb5-4fa4-a97d-d965ccfc6d4b" outcome="Failed" testListId="8c84fa94-04c1-424b-9868-57a2d4851a1d" relativeResultsDirectory="73e10fd1-aa9a-488b-be02-3cd96670ee2d">
+      <Output>
+        <ErrorInfo>
+          <Message>Assert.Equal() Failure: Values differ&#xD;
+Expected: 0&#xD;
+Actual:   1</Message>
+          <StackTrace>   at Gaode.Communication.Tests.AlgorithmAdmissionHandoffTests.ActualHostCloseAndAlgorithmEntryHaveOneOrder(AlgorithmRole role, Boolean permitFirst) in E:\dzk\gaode-022-t045\backend\tests\Gaode.Communication.Tests\AlgorithmAdmissionHandoffTests.cs:line 137&#xD;
+   at Gaode.Communication.Tests.AlgorithmAdmissionHandoffTests.ActualHostCloseAndAlgorithmEntryHaveOneOrder(AlgorithmRole role, Boolean permitFirst) in E:\dzk\gaode-022-t045\backend\tests\Gaode.Communication.Tests\AlgorithmAdmissionHandoffTests.cs:line 169&#xD;
+   at Gaode.Communication.Tests.AlgorithmAdmissionHandoffTests.ActualHostCloseAndAlgorithmEntryHaveOneOrder(AlgorithmRole role, Boolean permitFirst) in E:\dzk\gaode-022-t045\backend\tests\Gaode.Communication.Tests\AlgorithmAdmissionHandoffTests.cs:line 169&#xD;
+--- End of stack trace from previous location ---</StackTrace>
+        </ErrorInfo>
+      </Output>
+    </UnitTestResult>
+    <UnitTestResult executionId="21f18443-672b-4edc-8e7f-bbb5f1fd8720" testId="e58dae83-50e8-cf3d-45f9-2b251d4f99d8" testName="Gaode.Communication.Tests.AlgorithmAdmissionHandoffTests.ActualHostCloseAndAlgorithmEntryHaveOneOrder(role: TrayPose, permitFirst: False)" computerName="10_3_0_13" duration="00:00:00.7849734" startTime="2026-10-09T22:52:37.4023631+08:00" endTime="2026-10-09T22:52:38.1907381+08:00" testType="13cdc9d9-ddb5-4fa4-a97d-d965ccfc6d4b" outcome="Failed" testListId="8c84fa94-04c1-424b-9868-57a2d4851a1d" relativeResultsDirectory="21f18443-672b-4edc-8e7f-bbb5f1fd8720">
+      <Output>
+        <ErrorInfo>
+          <Message>Assert.Equal() Failure: Values differ&#xD;
+Expected: 0&#xD;
+Actual:   1</Message>
+          <StackTrace>   at Gaode.Communication.Tests.AlgorithmAdmissionHandoffTests.ActualHostCloseAndAlgorithmEntryHaveOneOrder(AlgorithmRole role, Boolean permitFirst) in E:\dzk\gaode-022-t045\backend\tests\Gaode.Communication.Tests\AlgorithmAdmissionHandoffTests.cs:line 137&#xD;
+   at Gaode.Communication.Tests.AlgorithmAdmissionHandoffTests.ActualHostCloseAndAlgorithmEntryHaveOneOrder(AlgorithmRole role, Boolean permitFirst) in E:\dzk\gaode-022-t045\backend\tests\Gaode.Communication.Tests\AlgorithmAdmissionHandoffTests.cs:line 169&#xD;
+   at Gaode.Communication.Tests.AlgorithmAdmissionHandoffTests.ActualHostCloseAndAlgorithmEntryHaveOneOrder(AlgorithmRole role, Boolean permitFirst) in E:\dzk\gaode-022-t045\backend\tests\Gaode.Communication.Tests\AlgorithmAdmissionHandoffTests.cs:line 169&#xD;
+--- End of stack trace from previous location ---</StackTrace>
+        </ErrorInfo>
+      </Output>
+    </UnitTestResult>
+    <UnitTestResult executionId="f34e78cf-4ca1-42b0-b933-bd4e5b0c49a5" testId="c0ee3f57-3fcc-aead-313b-6ba2e7a3c655" testName="Gaode.Communication.Tests.AlgorithmAdmissionHandoffTests.ActualHostCloseAndAlgorithmEntryHaveOneOrder(role: TrayPose, permitFirst: True)" computerName="10_3_0_13" duration="00:00:00.9414667" startTime="2026-10-09T22:52:38.9971456+08:00" endTime="2026-10-09T22:52:39.9999745+08:00" testType="13cdc9d9-ddb5-4fa4-a97d-d965ccfc6d4b" outcome="Passed" testListId="8c84fa94-04c1-424b-9868-57a2d4851a1d" relativeResultsDirectory="f34e78cf-4ca1-42b0-b933-bd4e5b0c49a5" />
+    <UnitTestResult executionId="bd3f52aa-bfb2-46a2-b6cd-3f4db9e3bcc3" testId="6343bf77-ab56-074a-9d8c-3154884e35de" testName="Gaode.Communication.Tests.AlgorithmAdmissionHandoffTests.ActualHostCloseAndAlgorithmEntryHaveOneOrder(role: Detection, permitFirst: True)" computerName="10_3_0_13" duration="00:00:07.4602027" startTime="2026-10-09T22:52:26.9346648+08:00" endTime="2026-10-09T22:52:34.4462286+08:00" testType="13cdc9d9-ddb5-4fa4-a97d-d965ccfc6d4b" outcome="Passed" testListId="8c84fa94-04c1-424b-9868-57a2d4851a1d" relativeResultsDirectory="bd3f52aa-bfb2-46a2-b6cd-3f4db9e3bcc3" />
+  </Results>
+  <TestDefinitions>
+    <UnitTest name="Gaode.Communication.Tests.AlgorithmAdmissionHandoffTests.ActualHostCloseAndAlgorithmEntryHaveOneOrder(role: TrayPose, permitFirst: True)" storage="e:\dzk\gaode-022-t045\backend\tests\gaode.communication.tests\bin\debug\net10.0\gaode.communication.tests.dll" id="c0ee3f57-3fcc-aead-313b-6ba2e7a3c655">
+      <Execution id="f34e78cf-4ca1-42b0-b933-bd4e5b0c49a5" />
+      <TestMethod codeBase="E:\dzk\gaode-022-t045\backend\tests\Gaode.Communication.Tests\bin\Debug\net10.0\Gaode.Communication.Tests.dll" adapterTypeName="executor://xunit/VsTestRunner3/netcore/" className="Gaode.Communication.Tests.AlgorithmAdmissionHandoffTests" name="ActualHostCloseAndAlgorithmEntryHaveOneOrder" />
+    </UnitTest>
+    <UnitTest name="Gaode.Communication.Tests.AlgorithmAdmissionHandoffTests.ActualHostCloseAndAlgorithmEntryHaveOneOrder(role: FDecode, permitFirst: False)" storage="e:\dzk\gaode-022-t045\backend\tests\gaode.communication.tests\bin\debug\net10.0\gaode.communication.tests.dll" id="b6fb1cca-68c9-4e77-c52e-d6b96a722648">
+      <Execution id="f975ad85-5cb8-4935-ac0e-a7f1cce1e867" />
+      <TestMethod codeBase="E:\dzk\gaode-022-t045\backend\tests\Gaode.Communication.Tests\bin\Debug\net10.0\Gaode.Communication.Tests.dll" adapterTypeName="executor://xunit/VsTestRunner3/netcore/" className="Gaode.Communication.Tests.AlgorithmAdmissionHandoffTests" name="ActualHostCloseAndAlgorithmEntryHaveOneOrder" />
+    </UnitTest>
+    <UnitTest name="Gaode.Communication.Tests.AlgorithmAdmissionHandoffTests.ActualHostCloseAndAlgorithmEntryHaveOneOrder(role: TrayPose, permitFirst: False)" storage="e:\dzk\gaode-022-t045\backend\tests\gaode.communication.tests\bin\debug\net10.0\gaode.communication.tests.dll" id="e58dae83-50e8-cf3d-45f9-2b251d4f99d8">
+      <Execution id="21f18443-672b-4edc-8e7f-bbb5f1fd8720" />
+      <TestMethod codeBase="E:\dzk\gaode-022-t045\backend\tests\Gaode.Communication.Tests\bin\Debug\net10.0\Gaode.Communication.Tests.dll" adapterTypeName="executor://xunit/VsTestRunner3/netcore/" className="Gaode.Communication.Tests.AlgorithmAdmissionHandoffTests" name="ActualHostCloseAndAlgorithmEntryHaveOneOrder" />
+    </UnitTest>
+    <UnitTest name="Gaode.Communication.Tests.AlgorithmAdmissionHandoffTests.ActualHostCloseAndAlgorithmEntryHaveOneOrder(role: Detection, permitFirst: True)" storage="e:\dzk\gaode-022-t045\backend\tests\gaode.communication.tests\bin\debug\net10.0\gaode.communication.tests.dll" id="6343bf77-ab56-074a-9d8c-3154884e35de">
+      <Execution id="bd3f52aa-bfb2-46a2-b6cd-3f4db9e3bcc3" />
+      <TestMethod codeBase="E:\dzk\gaode-022-t045\backend\tests\Gaode.Communication.Tests\bin\Debug\net10.0\Gaode.Communication.Tests.dll" adapterTypeName="executor://xunit/VsTestRunner3/netcore/" className="Gaode.Communication.Tests.AlgorithmAdmissionHandoffTests" name="ActualHostCloseAndAlgorithmEntryHaveOneOrder" />
+    </UnitTest>
+    <UnitTest name="Gaode.Communication.Tests.AlgorithmAdmissionHandoffTests.ActualHostCloseAndAlgorithmEntryHaveOneOrder(role: Detection, permitFirst: False)" storage="e:\dzk\gaode-022-t045\backend\tests\gaode.communication.tests\bin\debug\net10.0\gaode.communication.tests.dll" id="80c30e05-6aee-0584-7544-09569f6a5947">
+      <Execution id="73e10fd1-aa9a-488b-be02-3cd96670ee2d" />
+      <TestMethod codeBase="E:\dzk\gaode-022-t045\backend\tests\Gaode.Communication.Tests\bin\Debug\net10.0\Gaode.Communication.Tests.dll" adapterTypeName="executor://xunit/VsTestRunner3/netcore/" className="Gaode.Communication.Tests.AlgorithmAdmissionHandoffTests" name="ActualHostCloseAndAlgorithmEntryHaveOneOrder" />
+    </UnitTest>
+    <UnitTest name="Gaode.Communication.Tests.AlgorithmAdmissionHandoffTests.ActualHostCloseAndAlgorithmEntryHaveOneOrder(role: FDecode, permitFirst: True)" storage="e:\dzk\gaode-022-t045\backend\tests\gaode.communication.tests\bin\debug\net10.0\gaode.communication.tests.dll" id="e9544f25-7c72-ee6e-8c1a-d1f899e5fab4">
+      <Execution id="e530fc51-bed5-46a8-acd0-7e0f8ebc85c9" />
+      <TestMethod codeBase="E:\dzk\gaode-022-t045\backend\tests\Gaode.Communication.Tests\bin\Debug\net10.0\Gaode.Communication.Tests.dll" adapterTypeName="executor://xunit/VsTestRunner3/netcore/" className="Gaode.Communication.Tests.AlgorithmAdmissionHandoffTests" name="ActualHostCloseAndAlgorithmEntryHaveOneOrder" />
+    </UnitTest>
+  </TestDefinitions>
+  <TestEntries>
+    <TestEntry testId="b6fb1cca-68c9-4e77-c52e-d6b96a722648" executionId="f975ad85-5cb8-4935-ac0e-a7f1cce1e867" testListId="8c84fa94-04c1-424b-9868-57a2d4851a1d" />
+    <TestEntry testId="e9544f25-7c72-ee6e-8c1a-d1f899e5fab4" executionId="e530fc51-bed5-46a8-acd0-7e0f8ebc85c9" testListId="8c84fa94-04c1-424b-9868-57a2d4851a1d" />
+    <TestEntry testId="80c30e05-6aee-0584-7544-09569f6a5947" executionId="73e10fd1-aa9a-488b-be02-3cd96670ee2d" testListId="8c84fa94-04c1-424b-9868-57a2d4851a1d" />
+    <TestEntry testId="e58dae83-50e8-cf3d-45f9-2b251d4f99d8" executionId="21f18443-672b-4edc-8e7f-bbb5f1fd8720" testListId="8c84fa94-04c1-424b-9868-57a2d4851a1d" />
+    <TestEntry testId="c0ee3f57-3fcc-aead-313b-6ba2e7a3c655" executionId="f34e78cf-4ca1-42b0-b933-bd4e5b0c49a5" testListId="8c84fa94-04c1-424b-9868-57a2d4851a1d" />
+    <TestEntry testId="6343bf77-ab56-074a-9d8c-3154884e35de" executionId="bd3f52aa-bfb2-46a2-b6cd-3f4db9e3bcc3" testListId="8c84fa94-04c1-424b-9868-57a2d4851a1d" />
+  </TestEntries>
+  <TestLists>
+    <TestList name="列表中未列出的结果" id="8c84fa94-04c1-424b-9868-57a2d4851a1d" />
+    <TestList name="所有已加载的结果" id="19431567-8539-422a-85d7-44ee4e166bda" />
+  </TestLists>
+  <ResultSummary outcome="Failed">
+    <Counters total="6" executed="6" passed="3" failed="3" error="0" timeout="0" aborted="0" inconclusive="0" passedButRunAborted="0" notRunnable="0" notExecuted="0" disconnected="0" warning="0" completed="0" inProgress="0" pending="0" />
+    <Output>
+      <StdOut>[xUnit.net 00:00:00.00] xUnit.net VSTest Adapter v3.1.5+1b188a7b0a (64-bit .NET 10.0.12)&#xD;
+[xUnit.net 00:00:00.32]   Discovering: Gaode.Communication.Tests&#xD;
+[xUnit.net 00:00:02.70]   Discovered:  Gaode.Communication.Tests&#xD;
+[xUnit.net 00:00:02.88]   Starting:    Gaode.Communication.Tests&#xD;
+[xUnit.net 00:00:12.06]       Assert.Equal() Failure: Values differ&#xD;
+[xUnit.net 00:00:12.06]       Expected: 0&#xD;
+[xUnit.net 00:00:12.06]       Actual:   1&#xD;
+[xUnit.net 00:00:12.06]       Stack Trace:&#xD;
+[xUnit.net 00:00:12.06]         E:\dzk\gaode-022-t045\backend\tests\Gaode.Communication.Tests\AlgorithmAdmissionHandoffTests.cs(137,0): at Gaode.Communication.Tests.AlgorithmAdmissionHandoffTests.ActualHostCloseAndAlgorithmEntryHaveOneOrder(AlgorithmRole role, Boolean permitFirst)&#xD;
+[xUnit.net 00:00:12.06]         E:\dzk\gaode-022-t045\backend\tests\Gaode.Communication.Tests\AlgorithmAdmissionHandoffTests.cs(169,0): at Gaode.Communication.Tests.AlgorithmAdmissionHandoffTests.ActualHostCloseAndAlgorithmEntryHaveOneOrder(AlgorithmRole role, Boolean permitFirst)&#xD;
+[xUnit.net 00:00:12.06]         E:\dzk\gaode-022-t045\backend\tests\Gaode.Communication.Tests\AlgorithmAdmissionHandoffTests.cs(169,0): at Gaode.Communication.Tests.AlgorithmAdmissionHandoffTests.ActualHostCloseAndAlgorithmEntryHaveOneOrder(AlgorithmRole role, Boolean permitFirst)&#xD;
+[xUnit.net 00:00:12.07]         --- End of stack trace from previous location ---&#xD;
+[xUnit.net 00:00:14.21]       Assert.Equal() Failure: Values differ&#xD;
+[xUnit.net 00:00:14.22]       Expected: 0&#xD;
+[xUnit.net 00:00:14.22]       Actual:   1&#xD;
+[xUnit.net 00:00:14.22]       Stack Trace:&#xD;
+[xUnit.net 00:00:14.22]         E:\dzk\gaode-022-t045\backend\tests\Gaode.Communication.Tests\AlgorithmAdmissionHandoffTests.cs(137,0): at Gaode.Communication.Tests.AlgorithmAdmissionHandoffTests.ActualHostCloseAndAlgorithmEntryHaveOneOrder(AlgorithmRole role, Boolean permitFirst)&#xD;
+[xUnit.net 00:00:14.22]         E:\dzk\gaode-022-t045\backend\tests\Gaode.Communication.Tests\AlgorithmAdmissionHandoffTests.cs(169,0): at Gaode.Communication.Tests.AlgorithmAdmissionHandoffTests.ActualHostCloseAndAlgorithmEntryHaveOneOrder(AlgorithmRole role, Boolean permitFirst)&#xD;
+[xUnit.net 00:00:14.22]         E:\dzk\gaode-022-t045\backend\tests\Gaode.Communication.Tests\AlgorithmAdmissionHandoffTests.cs(169,0): at Gaode.Communication.Tests.AlgorithmAdmissionHandoffTests.ActualHostCloseAndAlgorithmEntryHaveOneOrder(AlgorithmRole role, Boolean permitFirst)&#xD;
+[xUnit.net 00:00:14.22]         --- End of stack trace from previous location ---&#xD;
+[xUnit.net 00:00:15.02]       Assert.Equal() Failure: Values differ&#xD;
+[xUnit.net 00:00:15.02]       Expected: 0&#xD;
+[xUnit.net 00:00:15.02]       Actual:   1&#xD;
+[xUnit.net 00:00:15.02]       Stack Trace:&#xD;
+[xUnit.net 00:00:15.02]         E:\dzk\gaode-022-t045\backend\tests\Gaode.Communication.Tests\AlgorithmAdmissionHandoffTests.cs(137,0): at Gaode.Communication.Tests.AlgorithmAdmissionHandoffTests.ActualHostCloseAndAlgorithmEntryHaveOneOrder(AlgorithmRole role, Boolean permitFirst)&#xD;
+[xUnit.net 00:00:15.02]         E:\dzk\gaode-022-t045\backend\tests\Gaode.Communication.Tests\AlgorithmAdmissionHandoffTests.cs(169,0): at Gaode.Communication.Tests.AlgorithmAdmissionHandoffTests.ActualHostCloseAndAlgorithmEntryHaveOneOrder(AlgorithmRole role, Boolean permitFirst)&#xD;
+[xUnit.net 00:00:15.02]         E:\dzk\gaode-022-t045\backend\tests\Gaode.Communication.Tests\AlgorithmAdmissionHandoffTests.cs(169,0): at Gaode.Communication.Tests.AlgorithmAdmissionHandoffTests.ActualHostCloseAndAlgorithmEntryHaveOneOrder(AlgorithmRole role, Boolean permitFirst)&#xD;
+[xUnit.net 00:00:15.02]         --- End of stack trace from previous location ---&#xD;
+[xUnit.net 00:00:16.05]   Finished:    Gaode.Communication.Tests&#xD;
+</StdOut>
+    </Output>
+    <RunInfos>
+      <RunInfo computerName="10_3_0_13" outcome="Error" timestamp="2026-10-09T22:52:36.0381047+08:00">
+        <Text>[xUnit.net 00:00:12.06]     Gaode.Communication.Tests.AlgorithmAdmissionHandoffTests.ActualHostCloseAndAlgorithmEntryHaveOneOrder(role: Detection, permitFirst: False) [FAIL]</Text>
+      </RunInfo>
+      <RunInfo computerName="10_3_0_13" outcome="Error" timestamp="2026-10-09T22:52:38.1917601+08:00">
+        <Text>[xUnit.net 00:00:14.21]     Gaode.Communication.Tests.AlgorithmAdmissionHandoffTests.ActualHostCloseAndAlgorithmEntryHaveOneOrder(role: TrayPose, permitFirst: False) [FAIL]</Text>
+      </RunInfo>
+      <RunInfo computerName="10_3_0_13" outcome="Error" timestamp="2026-10-09T22:52:38.9949478+08:00">
+        <Text>[xUnit.net 00:00:15.02]     Gaode.Communication.Tests.AlgorithmAdmissionHandoffTests.ActualHostCloseAndAlgorithmEntryHaveOneOrder(role: FDecode, permitFirst: False) [FAIL]</Text>
+      </RunInfo>
+    </RunInfos>
+  </ResultSummary>
+</TestRun>

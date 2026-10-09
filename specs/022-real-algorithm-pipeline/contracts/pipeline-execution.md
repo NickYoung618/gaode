@@ -89,3 +89,10 @@ ManagedAlgorithmCall.Result为单次权威结果任务，原due到达先于有�
 Runtime.WaitForShutdownAsync由实际Host消费，逐Call等待=min(Host/外部Token剩余,该Call原释放观察剩余)，返回是否实际全部回收；到期只停止阻塞并Flush Expired/Unknown，不EndBusiness伪释放、不移除占用、不重开预算。Host媒体及事实保存可使用整体剩余预算，其成功不等算法资源排空。
 
 T043唯一裁决消费者补充：产品/E/融合/复查直接等待ManagedAlgorithmCall.Result并保原控制Token，不再以另一结果计时器自行判超时；原due由受管裁决固定并可靠结束Result任务。释放等待仍独立核原Call剩余额度及更早阶段边界。
+## T045：A进入许可与关闭的统一裁决（实施前同步）
+
+公共3D/F及产品同步调用均由IsolatedAlgorithmCall在原控制/截止检查后，经AlgorithmResourceSupervisor的同一admissionGate申请进入许可；BeginShutdown在该门内关闭许可。许可成功时仅同步登记该Call的内存Entered/起点，关闭先成立时记录拒绝并按已证明本地未派发处理。许可先成立后不得因Host随后关闭而假报NotDispatched；无可靠输入/执行结束证据继续保持原输入、执行位及一次释放观察期限。
+
+共享门只保护关闭标志、登记和内存进入状态，不执行适配器RequestAsync、诊断回调、取消回调、数据库保存或完整执行等待。资源首次保存以预置完成任务连接后续更新，实际保存在门外；关闭期间追加状态须等首次保存，不能将后续修订抢到首次登记之前。
+
+许可前后日志使用RunId/CallId/OperationId/Role关联，区分EligibilityObserved、PermissionGranted、Rejected和Entered/Closed。资格检查不是许可。测试可从现有诊断订阅在资格→许可或许可→适配器交接处设置同步屏障，生产不添加测试开关；覆盖两入口及两种先后关系，SQLite新读取和原释放起点/截止保持是必要证据。

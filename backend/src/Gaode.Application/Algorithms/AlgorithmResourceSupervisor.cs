@@ -1,5 +1,6 @@
 using System.Collections.Concurrent;
 using Gaode.Application.Ports;
+using Gaode.Diagnostics;
 
 namespace Gaode.Application.Algorithms;
 
@@ -22,14 +23,34 @@ public sealed class AlgorithmResourceSupervisor(IAlgorithmResourceStore store, T
     public bool HasUnreclaimedResources => calls.Values.Any(e => { lock(e.Gate) return !e.State.Reclaimed || !e.Saved.IsCompletedSuccessfully; });
     public async Task RegisterAsync(AlgorithmResourceState state, CancellationToken token)
     {
-        var entry = new Entry(state);
+        var initialSave = new TaskCompletionSource(TaskCreationOptions.RunContinuationsAsynchronously);
+        var entry = new Entry(state) { Saved = initialSave.Task };
         lock(admissionGate)
         {
             if (AdmissionClosed || !state.IsValid) throw new InvalidOperationException("AlgorithmResourceAdmissionClosedOrInvalid");
             if (!calls.TryAdd(state.CallId, entry)) throw new InvalidOperationException("AlgorithmCallAlreadyRegistered");
-            lock(entry.Gate) entry.Saved = store.AppendResourceAsync(state, token);
         }
-        await entry.Saved;
+        // Updates queued by shutdown wait for revision 1; storage never runs under admissionGate.
+        try
+        {
+            await store.AppendResourceAsync(state, token);
+            initialSave.TrySetResult();
+        }
+        catch (Exception error)
+        {
+            initialSave.TrySetException(error);
+            _ = initialSave.Task.Exception;
+            throw;
+        }
+    }
+    internal bool TryEnter(IsolatedAlgorithmCall call, long tick)
+    {
+        lock(admissionGate)
+        {
+            if (closing != 0) return false;
+            call.MarkEntered(tick); // In-memory only: no diagnostics, storage or adapter callbacks.
+            return true;
+        }
     }
     public void Restore(AlgorithmResourceState state, IDisposable? inputLease = null)
     {
@@ -74,6 +95,11 @@ public sealed class AlgorithmResourceSupervisor(IAlgorithmResourceStore store, T
             if (!entry.Restored) StartObservation(entry.State.CallId, "HostClosing");
             if (start.HasValue && due.HasValue)
                 Update(entry.State.CallId, old => old with { HostShutdownStartUtc = start, HostShutdownDueUtc = due });
+            AlgorithmResourceState observed;
+            lock(entry.Gate) observed = entry.State;
+            RuntimeDiagnostics.Record("AlgorithmAdmission", "Closed", observed.RunId,
+                new { observed.CallId, observed.OperationId, observed.Dispatch, observed.ReleaseStartUtc,
+                    observed.ReleaseDueUtc, disposition = "PreserveOwnershipAndOriginalReleaseWindow" });
         }
     }
     public async Task FlushAsync(CancellationToken token)

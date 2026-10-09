@@ -1,4 +1,5 @@
 using Gaode.Application.Ports;
+using Gaode.Diagnostics;
 
 namespace Gaode.Application.Algorithms;
 
@@ -39,7 +40,13 @@ internal sealed class IsolatedAlgorithmCall(AlgorithmRequest request, IDisposabl
             executionEnded, dispatchReturned, businessEnded, cancellationState, error, released);
     }
 
-    public void Start(IAlgorithmPort port, Action<AlgorithmEvent> onEvent, Func<bool> mayEnter)
+    internal void MarkEntered(long tick)
+    {
+        lock (gate) { dispatchState = "Entered"; dispatchTick = tick; }
+    }
+
+    public void Start(IAlgorithmPort port, Action<AlgorithmEvent> onEvent, Func<bool> mayEnter,
+        AlgorithmResourceSupervisor? resources)
     {
         // Bounded by the already acquired role slot, even when RequestAsync never returns.
         // A dedicated synchronous prefix prevents a blocked adapter from occupying the
@@ -51,9 +58,29 @@ internal sealed class IsolatedAlgorithmCall(AlgorithmRequest request, IDisposabl
             var rejected = false;
             try
             {
-                if (!mayEnter()) throw new AlgorithmNotDispatchedException(request.CallId, "OriginalWindowClosedBeforeEntry");
-                lock (gate) { dispatchState = "Entered"; dispatchTick = timestamp(); }
+                var eligible = mayEnter();
+                RuntimeDiagnostics.Record("AlgorithmAdmission", "EligibilityObserved", request.Envelope.RunId,
+                    new { request.CallId, request.Envelope.OperationId, request.Role, eligible });
+                if (!eligible)
+                {
+                    RuntimeDiagnostics.Record("AlgorithmAdmission", "Rejected", request.Envelope.RunId,
+                        new { request.CallId, request.Envelope.OperationId, request.Role, reason = "OriginalWindowClosedBeforeEntry" }, warning: true);
+                    throw new AlgorithmNotDispatchedException(request.CallId, "OriginalWindowClosedBeforeEntry");
+                }
+                var tick = timestamp();
+                if (resources is null) MarkEntered(tick);
+                else if (!resources.TryEnter(this, tick))
+                {
+                    RuntimeDiagnostics.Record("AlgorithmAdmission", "Rejected", request.Envelope.RunId,
+                        new { request.CallId, request.Envelope.OperationId, request.Role, reason = "HostClosedBeforeEntry" }, warning: true);
+                    throw new AlgorithmNotDispatchedException(request.CallId, "HostClosedBeforeEntry");
+                }
+                RuntimeDiagnostics.Record("AlgorithmAdmission", "PermissionGranted", request.Envelope.RunId,
+                    new { request.CallId, request.Envelope.OperationId, request.Role, dispatchTick });
                 observeResources?.Invoke(Snapshot());
+                RuntimeDiagnostics.Record("AlgorithmDispatch", "Entered", request.Envelope.RunId,
+                    new { request.CallId, request.Envelope.OperationId, request.Role, dispatchTick,
+                        disposition = "AdapterMayOwn;NotAcceptanceOrCompletion" });
                 result = await port.RequestAsync(request, onEvent, cancellation.Token).ConfigureAwait(false);
                 lock (gate) dispatchState = "Returned";
                 _ = ObserveExitAsync(result.Exited);

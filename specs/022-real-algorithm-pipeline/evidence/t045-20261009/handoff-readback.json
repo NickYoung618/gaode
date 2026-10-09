@@ -1,0 +1,746 @@
+[
+  {
+    "source": "artifacts/T045/verified/T045-Detection-False.json",
+    "scope": "Test:actual-Host-close-Runtime-SQLite;no-hardware",
+    "role": 2,
+    "permitFirst": false,
+    "calls": 0,
+    "original": {
+      "runId": "b717aece-0983-4e8a-a6dc-f27b1d68171c",
+      "callId": "8bdce3b5-a74b-4f64-8812-14e758d9f984",
+      "operationId": "ed4e46a0-1cab-4ccf-a8af-42c854b33d26",
+      "dispatch": "Registered",
+      "reclaimed": false,
+      "inputsReleased": false,
+      "executionEnded": false,
+      "releaseStartUtc": "2026-10-09T15:04:35.1103417+00:00",
+      "releaseDueUtc": "2026-10-09T15:04:55.1103417+00:00",
+      "releaseStartTick": 50569939915589,
+      "releaseDueTick": 50570139915589
+    },
+    "final": {
+      "runId": "b717aece-0983-4e8a-a6dc-f27b1d68171c",
+      "callId": "8bdce3b5-a74b-4f64-8812-14e758d9f984",
+      "operationId": "ed4e46a0-1cab-4ccf-a8af-42c854b33d26",
+      "dispatch": "NotDispatched",
+      "reclaimed": true,
+      "inputsReleased": true,
+      "executionEnded": true,
+      "releaseStartUtc": "2026-10-09T15:04:35.1103417+00:00",
+      "releaseDueUtc": "2026-10-09T15:04:55.1103417+00:00",
+      "releaseStartTick": 50569939915589,
+      "releaseDueTick": 50570139915589
+    },
+    "shutdown": {
+      "admissionClosed": true,
+      "resourcesDrained": true,
+      "remainingAlgorithmExecutions": 0,
+      "remainingMediaLeases": 0
+    },
+    "diagnostics": [
+      {
+        "schema": "station01-runtime/1",
+        "utc": "2026-10-09T15:04:35.1100411+00:00",
+        "tick": 50569939912605,
+        "tickFrequency": 10000000,
+        "processId": 2260,
+        "step": "AlgorithmAdmission",
+        "category": "Algorithm",
+        "outcome": "EligibilityObserved",
+        "runId": "b717aece-0983-4e8a-a6dc-f27b1d68171c",
+        "spanId": null,
+        "elapsedMs": null,
+        "facts": {
+          "CallId": "8bdce3b5-a74b-4f64-8812-14e758d9f984",
+          "OperationId": "ed4e46a0-1cab-4ccf-a8af-42c854b33d26",
+          "Role": 2,
+          "eligible": true
+        },
+        "level": "Information",
+        "exceptionType": null
+      },
+      {
+        "schema": "station01-runtime/1",
+        "utc": "2026-10-09T15:04:35.1199069+00:00",
+        "tick": 50569940011244,
+        "tickFrequency": 10000000,
+        "processId": 2260,
+        "step": "AlgorithmAdmission",
+        "category": "Algorithm",
+        "outcome": "Closed",
+        "runId": "b717aece-0983-4e8a-a6dc-f27b1d68171c",
+        "spanId": null,
+        "elapsedMs": null,
+        "facts": {
+          "CallId": "8bdce3b5-a74b-4f64-8812-14e758d9f984",
+          "OperationId": "ed4e46a0-1cab-4ccf-a8af-42c854b33d26",
+          "Dispatch": "Registered",
+          "ReleaseStartUtc": "2026-10-09T15:04:35.1103417+00:00",
+          "ReleaseDueUtc": "2026-10-09T15:04:55.1103417+00:00",
+          "disposition": "PreserveOwnershipAndOriginalReleaseWindow"
+        },
+        "level": "Information",
+        "exceptionType": null
+      },
+      {
+        "schema": "station01-runtime/1",
+        "utc": "2026-10-09T15:04:35.1214822+00:00",
+        "tick": 50569940027002,
+        "tickFrequency": 10000000,
+        "processId": 2260,
+        "step": "AlgorithmAdmission",
+        "category": "Algorithm",
+        "outcome": "Rejected",
+        "runId": "b717aece-0983-4e8a-a6dc-f27b1d68171c",
+        "spanId": null,
+        "elapsedMs": null,
+        "facts": {
+          "CallId": "8bdce3b5-a74b-4f64-8812-14e758d9f984",
+          "OperationId": "ed4e46a0-1cab-4ccf-a8af-42c854b33d26",
+          "Role": 2,
+          "reason": "HostClosedBeforeEntry"
+        },
+        "level": "Warning",
+        "exceptionType": null
+      }
+    ]
+  },
+  {
+    "source": "artifacts/T045/verified/T045-Detection-True.json",
+    "scope": "Test:actual-Host-close-Runtime-SQLite;no-hardware",
+    "role": 2,
+    "permitFirst": true,
+    "calls": 1,
+    "original": {
+      "runId": "3f9d2345-3295-477f-9eb5-5e7383b2a55b",
+      "callId": "0ed97203-c69b-47df-82e2-605ef2521e08",
+      "operationId": "f0c2c5ea-dd98-46f2-9c6e-e3e4cd79a5d5",
+      "dispatch": "Registered",
+      "reclaimed": false,
+      "inputsReleased": false,
+      "executionEnded": false,
+      "releaseStartUtc": "2026-10-09T15:04:33.9327217+00:00",
+      "releaseDueUtc": "2026-10-09T15:04:53.9327217+00:00",
+      "releaseStartTick": 50569928139463,
+      "releaseDueTick": 50570128139463
+    },
+    "final": {
+      "runId": "3f9d2345-3295-477f-9eb5-5e7383b2a55b",
+      "callId": "0ed97203-c69b-47df-82e2-605ef2521e08",
+      "operationId": "f0c2c5ea-dd98-46f2-9c6e-e3e4cd79a5d5",
+      "dispatch": "Returned",
+      "reclaimed": true,
+      "inputsReleased": true,
+      "executionEnded": true,
+      "releaseStartUtc": "2026-10-09T15:04:33.9327217+00:00",
+      "releaseDueUtc": "2026-10-09T15:04:53.9327217+00:00",
+      "releaseStartTick": 50569928139463,
+      "releaseDueTick": 50570128139463
+    },
+    "shutdown": {
+      "admissionClosed": true,
+      "resourcesDrained": true,
+      "remainingAlgorithmExecutions": 0,
+      "remainingMediaLeases": 0
+    },
+    "diagnostics": [
+      {
+        "schema": "station01-runtime/1",
+        "utc": "2026-10-09T15:04:33.9314778+00:00",
+        "tick": 50569928127032,
+        "tickFrequency": 10000000,
+        "processId": 2260,
+        "step": "AlgorithmAdmission",
+        "category": "Algorithm",
+        "outcome": "EligibilityObserved",
+        "runId": "3f9d2345-3295-477f-9eb5-5e7383b2a55b",
+        "spanId": null,
+        "elapsedMs": null,
+        "facts": {
+          "CallId": "0ed97203-c69b-47df-82e2-605ef2521e08",
+          "OperationId": "f0c2c5ea-dd98-46f2-9c6e-e3e4cd79a5d5",
+          "Role": 2,
+          "eligible": true
+        },
+        "level": "Information",
+        "exceptionType": null
+      },
+      {
+        "schema": "station01-runtime/1",
+        "utc": "2026-10-09T15:04:33.9315916+00:00",
+        "tick": 50569928128162,
+        "tickFrequency": 10000000,
+        "processId": 2260,
+        "step": "AlgorithmAdmission",
+        "category": "Algorithm",
+        "outcome": "PermissionGranted",
+        "runId": "3f9d2345-3295-477f-9eb5-5e7383b2a55b",
+        "spanId": null,
+        "elapsedMs": null,
+        "facts": {
+          "CallId": "0ed97203-c69b-47df-82e2-605ef2521e08",
+          "OperationId": "f0c2c5ea-dd98-46f2-9c6e-e3e4cd79a5d5",
+          "Role": 2,
+          "dispatchTick": 50569928128107
+        },
+        "level": "Information",
+        "exceptionType": null
+      },
+      {
+        "schema": "station01-runtime/1",
+        "utc": "2026-10-09T15:04:33.9431088+00:00",
+        "tick": 50569928243338,
+        "tickFrequency": 10000000,
+        "processId": 2260,
+        "step": "AlgorithmAdmission",
+        "category": "Algorithm",
+        "outcome": "Closed",
+        "runId": "3f9d2345-3295-477f-9eb5-5e7383b2a55b",
+        "spanId": null,
+        "elapsedMs": null,
+        "facts": {
+          "CallId": "0ed97203-c69b-47df-82e2-605ef2521e08",
+          "OperationId": "f0c2c5ea-dd98-46f2-9c6e-e3e4cd79a5d5",
+          "Dispatch": "Registered",
+          "ReleaseStartUtc": "2026-10-09T15:04:33.9327217+00:00",
+          "ReleaseDueUtc": "2026-10-09T15:04:53.9327217+00:00",
+          "disposition": "PreserveOwnershipAndOriginalReleaseWindow"
+        },
+        "level": "Information",
+        "exceptionType": null
+      },
+      {
+        "schema": "station01-runtime/1",
+        "utc": "2026-10-09T15:04:34.0812913+00:00",
+        "tick": 50569929625151,
+        "tickFrequency": 10000000,
+        "processId": 2260,
+        "step": "AlgorithmDispatch",
+        "category": "Algorithm",
+        "outcome": "Entered",
+        "runId": "3f9d2345-3295-477f-9eb5-5e7383b2a55b",
+        "spanId": null,
+        "elapsedMs": null,
+        "facts": {
+          "CallId": "0ed97203-c69b-47df-82e2-605ef2521e08",
+          "OperationId": "f0c2c5ea-dd98-46f2-9c6e-e3e4cd79a5d5",
+          "Role": 2,
+          "dispatchTick": 50569928128107,
+          "disposition": "AdapterMayOwn;NotAcceptanceOrCompletion"
+        },
+        "level": "Information",
+        "exceptionType": null
+      }
+    ]
+  },
+  {
+    "source": "artifacts/T045/verified/T045-FDecode-False.json",
+    "scope": "Test:actual-Host-close-Runtime-SQLite;no-hardware",
+    "role": 1,
+    "permitFirst": false,
+    "calls": 0,
+    "original": {
+      "runId": "a6a7cbf6-a4da-4cb5-a856-7f2345ee59f8",
+      "callId": "fbf5f998-3e56-477b-a381-5f7f29e0ccb5",
+      "operationId": "f44438a1-911f-4f7a-8131-bf91711e77e5",
+      "dispatch": "Registered",
+      "reclaimed": false,
+      "inputsReleased": false,
+      "executionEnded": false,
+      "releaseStartUtc": "2026-10-09T15:04:37.193605+00:00",
+      "releaseDueUtc": "2026-10-09T15:04:57.193605+00:00",
+      "releaseStartTick": 50569960748101,
+      "releaseDueTick": 50570160748101
+    },
+    "final": {
+      "runId": "a6a7cbf6-a4da-4cb5-a856-7f2345ee59f8",
+      "callId": "fbf5f998-3e56-477b-a381-5f7f29e0ccb5",
+      "operationId": "f44438a1-911f-4f7a-8131-bf91711e77e5",
+      "dispatch": "NotDispatched",
+      "reclaimed": true,
+      "inputsReleased": true,
+      "executionEnded": true,
+      "releaseStartUtc": "2026-10-09T15:04:37.193605+00:00",
+      "releaseDueUtc": "2026-10-09T15:04:57.193605+00:00",
+      "releaseStartTick": 50569960748101,
+      "releaseDueTick": 50570160748101
+    },
+    "shutdown": {
+      "admissionClosed": true,
+      "resourcesDrained": true,
+      "remainingAlgorithmExecutions": 0,
+      "remainingMediaLeases": 0
+    },
+    "diagnostics": [
+      {
+        "schema": "station01-runtime/1",
+        "utc": "2026-10-09T15:04:37.1933185+00:00",
+        "tick": 50569960745251,
+        "tickFrequency": 10000000,
+        "processId": 2260,
+        "step": "AlgorithmAdmission",
+        "category": "Algorithm",
+        "outcome": "EligibilityObserved",
+        "runId": "a6a7cbf6-a4da-4cb5-a856-7f2345ee59f8",
+        "spanId": null,
+        "elapsedMs": null,
+        "facts": {
+          "CallId": "fbf5f998-3e56-477b-a381-5f7f29e0ccb5",
+          "OperationId": "f44438a1-911f-4f7a-8131-bf91711e77e5",
+          "Role": 1,
+          "eligible": true
+        },
+        "level": "Information",
+        "exceptionType": null
+      },
+      {
+        "schema": "station01-runtime/1",
+        "utc": "2026-10-09T15:04:37.2039841+00:00",
+        "tick": 50569960851890,
+        "tickFrequency": 10000000,
+        "processId": 2260,
+        "step": "AlgorithmAdmission",
+        "category": "Algorithm",
+        "outcome": "Closed",
+        "runId": "a6a7cbf6-a4da-4cb5-a856-7f2345ee59f8",
+        "spanId": null,
+        "elapsedMs": null,
+        "facts": {
+          "CallId": "fbf5f998-3e56-477b-a381-5f7f29e0ccb5",
+          "OperationId": "f44438a1-911f-4f7a-8131-bf91711e77e5",
+          "Dispatch": "Registered",
+          "ReleaseStartUtc": "2026-10-09T15:04:37.193605+00:00",
+          "ReleaseDueUtc": "2026-10-09T15:04:57.193605+00:00",
+          "disposition": "PreserveOwnershipAndOriginalReleaseWindow"
+        },
+        "level": "Information",
+        "exceptionType": null
+      },
+      {
+        "schema": "station01-runtime/1",
+        "utc": "2026-10-09T15:04:37.2247401+00:00",
+        "tick": 50569961059464,
+        "tickFrequency": 10000000,
+        "processId": 2260,
+        "step": "AlgorithmAdmission",
+        "category": "Algorithm",
+        "outcome": "Rejected",
+        "runId": "a6a7cbf6-a4da-4cb5-a856-7f2345ee59f8",
+        "spanId": null,
+        "elapsedMs": null,
+        "facts": {
+          "CallId": "fbf5f998-3e56-477b-a381-5f7f29e0ccb5",
+          "OperationId": "f44438a1-911f-4f7a-8131-bf91711e77e5",
+          "Role": 1,
+          "reason": "HostClosedBeforeEntry"
+        },
+        "level": "Warning",
+        "exceptionType": null
+      },
+      {
+        "schema": "station01-runtime/1",
+        "utc": "2026-10-09T15:04:37.2598359+00:00",
+        "tick": 50569961410436,
+        "tickFrequency": 10000000,
+        "processId": 2260,
+        "step": "AlgorithmDispatch",
+        "category": "Algorithm",
+        "outcome": "Failed",
+        "runId": "a6a7cbf6-a4da-4cb5-a856-7f2345ee59f8",
+        "spanId": null,
+        "elapsedMs": null,
+        "facts": {
+          "callId": "fbf5f998-3e56-477b-a381-5f7f29e0ccb5",
+          "operationId": "f44438a1-911f-4f7a-8131-bf91711e77e5",
+          "NotDispatched": true,
+          "disposition": "PreserveIngressDecisionAndResourceOwnership"
+        },
+        "level": "Error",
+        "exceptionType": "Gaode.Application.Ports.AlgorithmNotDispatchedException"
+      }
+    ]
+  },
+  {
+    "source": "artifacts/T045/verified/T045-FDecode-True.json",
+    "scope": "Test:actual-Host-close-Runtime-SQLite;no-hardware",
+    "role": 1,
+    "permitFirst": true,
+    "calls": 1,
+    "original": {
+      "runId": "540f0286-1593-4006-9776-c829a64bafa2",
+      "callId": "8de1703d-98e9-4a8b-b407-7e539eda7c53",
+      "operationId": "878c3e88-4ed3-4931-a45d-ccf5b4dcb94e",
+      "dispatch": "Registered",
+      "reclaimed": false,
+      "inputsReleased": false,
+      "executionEnded": false,
+      "releaseStartUtc": "2026-10-09T15:04:35.7629932+00:00",
+      "releaseDueUtc": "2026-10-09T15:04:55.7629932+00:00",
+      "releaseStartTick": 50569946442065,
+      "releaseDueTick": 50570146442065
+    },
+    "final": {
+      "runId": "540f0286-1593-4006-9776-c829a64bafa2",
+      "callId": "8de1703d-98e9-4a8b-b407-7e539eda7c53",
+      "operationId": "878c3e88-4ed3-4931-a45d-ccf5b4dcb94e",
+      "dispatch": "Returned",
+      "reclaimed": true,
+      "inputsReleased": true,
+      "executionEnded": true,
+      "releaseStartUtc": "2026-10-09T15:04:35.7629932+00:00",
+      "releaseDueUtc": "2026-10-09T15:04:55.7629932+00:00",
+      "releaseStartTick": 50569946442065,
+      "releaseDueTick": 50570146442065
+    },
+    "shutdown": {
+      "admissionClosed": true,
+      "resourcesDrained": true,
+      "remainingAlgorithmExecutions": 0,
+      "remainingMediaLeases": 0
+    },
+    "diagnostics": [
+      {
+        "schema": "station01-runtime/1",
+        "utc": "2026-10-09T15:04:35.7626308+00:00",
+        "tick": 50569946438458,
+        "tickFrequency": 10000000,
+        "processId": 2260,
+        "step": "AlgorithmAdmission",
+        "category": "Algorithm",
+        "outcome": "EligibilityObserved",
+        "runId": "540f0286-1593-4006-9776-c829a64bafa2",
+        "spanId": null,
+        "elapsedMs": null,
+        "facts": {
+          "CallId": "8de1703d-98e9-4a8b-b407-7e539eda7c53",
+          "OperationId": "878c3e88-4ed3-4931-a45d-ccf5b4dcb94e",
+          "Role": 1,
+          "eligible": true
+        },
+        "level": "Information",
+        "exceptionType": null
+      },
+      {
+        "schema": "station01-runtime/1",
+        "utc": "2026-10-09T15:04:35.7627806+00:00",
+        "tick": 50569946439943,
+        "tickFrequency": 10000000,
+        "processId": 2260,
+        "step": "AlgorithmAdmission",
+        "category": "Algorithm",
+        "outcome": "PermissionGranted",
+        "runId": "540f0286-1593-4006-9776-c829a64bafa2",
+        "spanId": null,
+        "elapsedMs": null,
+        "facts": {
+          "CallId": "8de1703d-98e9-4a8b-b407-7e539eda7c53",
+          "OperationId": "878c3e88-4ed3-4931-a45d-ccf5b4dcb94e",
+          "Role": 1,
+          "dispatchTick": 50569946439897
+        },
+        "level": "Information",
+        "exceptionType": null
+      },
+      {
+        "schema": "station01-runtime/1",
+        "utc": "2026-10-09T15:04:35.7719991+00:00",
+        "tick": 50569946532127,
+        "tickFrequency": 10000000,
+        "processId": 2260,
+        "step": "AlgorithmAdmission",
+        "category": "Algorithm",
+        "outcome": "Closed",
+        "runId": "540f0286-1593-4006-9776-c829a64bafa2",
+        "spanId": null,
+        "elapsedMs": null,
+        "facts": {
+          "CallId": "8de1703d-98e9-4a8b-b407-7e539eda7c53",
+          "OperationId": "878c3e88-4ed3-4931-a45d-ccf5b4dcb94e",
+          "Dispatch": "Registered",
+          "ReleaseStartUtc": "2026-10-09T15:04:35.7629932+00:00",
+          "ReleaseDueUtc": "2026-10-09T15:04:55.7629932+00:00",
+          "disposition": "PreserveOwnershipAndOriginalReleaseWindow"
+        },
+        "level": "Information",
+        "exceptionType": null
+      },
+      {
+        "schema": "station01-runtime/1",
+        "utc": "2026-10-09T15:04:35.7811166+00:00",
+        "tick": 50569946623302,
+        "tickFrequency": 10000000,
+        "processId": 2260,
+        "step": "AlgorithmDispatch",
+        "category": "Algorithm",
+        "outcome": "Entered",
+        "runId": "540f0286-1593-4006-9776-c829a64bafa2",
+        "spanId": null,
+        "elapsedMs": null,
+        "facts": {
+          "CallId": "8de1703d-98e9-4a8b-b407-7e539eda7c53",
+          "OperationId": "878c3e88-4ed3-4931-a45d-ccf5b4dcb94e",
+          "Role": 1,
+          "dispatchTick": 50569946439897,
+          "disposition": "AdapterMayOwn;NotAcceptanceOrCompletion"
+        },
+        "level": "Information",
+        "exceptionType": null
+      }
+    ]
+  },
+  {
+    "source": "artifacts/T045/verified/T045-TrayPose-False.json",
+    "scope": "Test:actual-Host-close-Runtime-SQLite;no-hardware",
+    "role": 4,
+    "permitFirst": false,
+    "calls": 0,
+    "original": {
+      "runId": "59196894-be73-4c87-b850-c17f4bbcfc18",
+      "callId": "c62d4859-452b-4c4f-b818-9b138f848de5",
+      "operationId": "493fac3a-d1be-4eff-9f4f-8106b9cf5b7d",
+      "dispatch": "Registered",
+      "reclaimed": false,
+      "inputsReleased": false,
+      "executionEnded": false,
+      "releaseStartUtc": "2026-10-09T15:04:36.2731366+00:00",
+      "releaseDueUtc": "2026-10-09T15:04:56.2731366+00:00",
+      "releaseStartTick": 50569951543469,
+      "releaseDueTick": 50570151543469
+    },
+    "final": {
+      "runId": "59196894-be73-4c87-b850-c17f4bbcfc18",
+      "callId": "c62d4859-452b-4c4f-b818-9b138f848de5",
+      "operationId": "493fac3a-d1be-4eff-9f4f-8106b9cf5b7d",
+      "dispatch": "NotDispatched",
+      "reclaimed": true,
+      "inputsReleased": true,
+      "executionEnded": true,
+      "releaseStartUtc": "2026-10-09T15:04:36.2731366+00:00",
+      "releaseDueUtc": "2026-10-09T15:04:56.2731366+00:00",
+      "releaseStartTick": 50569951543469,
+      "releaseDueTick": 50570151543469
+    },
+    "shutdown": {
+      "admissionClosed": true,
+      "resourcesDrained": true,
+      "remainingAlgorithmExecutions": 0,
+      "remainingMediaLeases": 0
+    },
+    "diagnostics": [
+      {
+        "schema": "station01-runtime/1",
+        "utc": "2026-10-09T15:04:36.2728639+00:00",
+        "tick": 50569951540760,
+        "tickFrequency": 10000000,
+        "processId": 2260,
+        "step": "AlgorithmAdmission",
+        "category": "Algorithm",
+        "outcome": "EligibilityObserved",
+        "runId": "59196894-be73-4c87-b850-c17f4bbcfc18",
+        "spanId": null,
+        "elapsedMs": null,
+        "facts": {
+          "CallId": "c62d4859-452b-4c4f-b818-9b138f848de5",
+          "OperationId": "493fac3a-d1be-4eff-9f4f-8106b9cf5b7d",
+          "Role": 4,
+          "eligible": true
+        },
+        "level": "Information",
+        "exceptionType": null
+      },
+      {
+        "schema": "station01-runtime/1",
+        "utc": "2026-10-09T15:04:36.2834912+00:00",
+        "tick": 50569951647017,
+        "tickFrequency": 10000000,
+        "processId": 2260,
+        "step": "AlgorithmAdmission",
+        "category": "Algorithm",
+        "outcome": "Closed",
+        "runId": "59196894-be73-4c87-b850-c17f4bbcfc18",
+        "spanId": null,
+        "elapsedMs": null,
+        "facts": {
+          "CallId": "c62d4859-452b-4c4f-b818-9b138f848de5",
+          "OperationId": "493fac3a-d1be-4eff-9f4f-8106b9cf5b7d",
+          "Dispatch": "Registered",
+          "ReleaseStartUtc": "2026-10-09T15:04:36.2731366+00:00",
+          "ReleaseDueUtc": "2026-10-09T15:04:56.2731366+00:00",
+          "disposition": "PreserveOwnershipAndOriginalReleaseWindow"
+        },
+        "level": "Information",
+        "exceptionType": null
+      },
+      {
+        "schema": "station01-runtime/1",
+        "utc": "2026-10-09T15:04:36.2908994+00:00",
+        "tick": 50569951721156,
+        "tickFrequency": 10000000,
+        "processId": 2260,
+        "step": "AlgorithmAdmission",
+        "category": "Algorithm",
+        "outcome": "Rejected",
+        "runId": "59196894-be73-4c87-b850-c17f4bbcfc18",
+        "spanId": null,
+        "elapsedMs": null,
+        "facts": {
+          "CallId": "c62d4859-452b-4c4f-b818-9b138f848de5",
+          "OperationId": "493fac3a-d1be-4eff-9f4f-8106b9cf5b7d",
+          "Role": 4,
+          "reason": "HostClosedBeforeEntry"
+        },
+        "level": "Warning",
+        "exceptionType": null
+      },
+      {
+        "schema": "station01-runtime/1",
+        "utc": "2026-10-09T15:04:36.3080262+00:00",
+        "tick": 50569951892365,
+        "tickFrequency": 10000000,
+        "processId": 2260,
+        "step": "AlgorithmDispatch",
+        "category": "Algorithm",
+        "outcome": "Failed",
+        "runId": "59196894-be73-4c87-b850-c17f4bbcfc18",
+        "spanId": null,
+        "elapsedMs": null,
+        "facts": {
+          "callId": "c62d4859-452b-4c4f-b818-9b138f848de5",
+          "operationId": "493fac3a-d1be-4eff-9f4f-8106b9cf5b7d",
+          "NotDispatched": true,
+          "disposition": "PreserveIngressDecisionAndResourceOwnership"
+        },
+        "level": "Error",
+        "exceptionType": "Gaode.Application.Ports.AlgorithmNotDispatchedException"
+      }
+    ]
+  },
+  {
+    "source": "artifacts/T045/verified/T045-TrayPose-True.json",
+    "scope": "Test:actual-Host-close-Runtime-SQLite;no-hardware",
+    "role": 4,
+    "permitFirst": true,
+    "calls": 1,
+    "original": {
+      "runId": "63487c1d-e7c8-4c0c-99d5-9c569f2f3105",
+      "callId": "fc5b324b-fa55-42ef-955c-7dc5fe61d76d",
+      "operationId": "f7abafee-c2f8-4bda-9ba8-d2b99720ef23",
+      "dispatch": "Registered",
+      "reclaimed": false,
+      "inputsReleased": false,
+      "executionEnded": false,
+      "releaseStartUtc": "2026-10-09T15:04:37.8379391+00:00",
+      "releaseDueUtc": "2026-10-09T15:04:57.8379391+00:00",
+      "releaseStartTick": 50569967191404,
+      "releaseDueTick": 50570167191404
+    },
+    "final": {
+      "runId": "63487c1d-e7c8-4c0c-99d5-9c569f2f3105",
+      "callId": "fc5b324b-fa55-42ef-955c-7dc5fe61d76d",
+      "operationId": "f7abafee-c2f8-4bda-9ba8-d2b99720ef23",
+      "dispatch": "Returned",
+      "reclaimed": true,
+      "inputsReleased": true,
+      "executionEnded": true,
+      "releaseStartUtc": "2026-10-09T15:04:37.8379391+00:00",
+      "releaseDueUtc": "2026-10-09T15:04:57.8379391+00:00",
+      "releaseStartTick": 50569967191404,
+      "releaseDueTick": 50570167191404
+    },
+    "shutdown": {
+      "admissionClosed": true,
+      "resourcesDrained": true,
+      "remainingAlgorithmExecutions": 0,
+      "remainingMediaLeases": 0
+    },
+    "diagnostics": [
+      {
+        "schema": "station01-runtime/1",
+        "utc": "2026-10-09T15:04:37.8375824+00:00",
+        "tick": 50569967187858,
+        "tickFrequency": 10000000,
+        "processId": 2260,
+        "step": "AlgorithmAdmission",
+        "category": "Algorithm",
+        "outcome": "EligibilityObserved",
+        "runId": "63487c1d-e7c8-4c0c-99d5-9c569f2f3105",
+        "spanId": null,
+        "elapsedMs": null,
+        "facts": {
+          "CallId": "fc5b324b-fa55-42ef-955c-7dc5fe61d76d",
+          "OperationId": "f7abafee-c2f8-4bda-9ba8-d2b99720ef23",
+          "Role": 4,
+          "eligible": true
+        },
+        "level": "Information",
+        "exceptionType": null
+      },
+      {
+        "schema": "station01-runtime/1",
+        "utc": "2026-10-09T15:04:37.83776+00:00",
+        "tick": 50569967189619,
+        "tickFrequency": 10000000,
+        "processId": 2260,
+        "step": "AlgorithmAdmission",
+        "category": "Algorithm",
+        "outcome": "PermissionGranted",
+        "runId": "63487c1d-e7c8-4c0c-99d5-9c569f2f3105",
+        "spanId": null,
+        "elapsedMs": null,
+        "facts": {
+          "CallId": "fc5b324b-fa55-42ef-955c-7dc5fe61d76d",
+          "OperationId": "f7abafee-c2f8-4bda-9ba8-d2b99720ef23",
+          "Role": 4,
+          "dispatchTick": 50569967189551
+        },
+        "level": "Information",
+        "exceptionType": null
+      },
+      {
+        "schema": "station01-runtime/1",
+        "utc": "2026-10-09T15:04:37.8499232+00:00",
+        "tick": 50569967311244,
+        "tickFrequency": 10000000,
+        "processId": 2260,
+        "step": "AlgorithmAdmission",
+        "category": "Algorithm",
+        "outcome": "Closed",
+        "runId": "63487c1d-e7c8-4c0c-99d5-9c569f2f3105",
+        "spanId": null,
+        "elapsedMs": null,
+        "facts": {
+          "CallId": "fc5b324b-fa55-42ef-955c-7dc5fe61d76d",
+          "OperationId": "f7abafee-c2f8-4bda-9ba8-d2b99720ef23",
+          "Dispatch": "Registered",
+          "ReleaseStartUtc": "2026-10-09T15:04:37.8379391+00:00",
+          "ReleaseDueUtc": "2026-10-09T15:04:57.8379391+00:00",
+          "disposition": "PreserveOwnershipAndOriginalReleaseWindow"
+        },
+        "level": "Information",
+        "exceptionType": null
+      },
+      {
+        "schema": "station01-runtime/1",
+        "utc": "2026-10-09T15:04:37.8651825+00:00",
+        "tick": 50569967463836,
+        "tickFrequency": 10000000,
+        "processId": 2260,
+        "step": "AlgorithmDispatch",
+        "category": "Algorithm",
+        "outcome": "Entered",
+        "runId": "63487c1d-e7c8-4c0c-99d5-9c569f2f3105",
+        "spanId": null,
+        "elapsedMs": null,
+        "facts": {
+          "CallId": "fc5b324b-fa55-42ef-955c-7dc5fe61d76d",
+          "OperationId": "f7abafee-c2f8-4bda-9ba8-d2b99720ef23",
+          "Role": 4,
+          "dispatchTick": 50569967189551,
+          "disposition": "AdapterMayOwn;NotAcceptanceOrCompletion"
+        },
+        "level": "Information",
+        "exceptionType": null
+      }
+    ]
+  }
+]

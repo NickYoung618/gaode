@@ -92,3 +92,15 @@ A软件证据具备范围限定的speckit-converge审查条件，尚不能收敛
 回退：HEAD仍eb85aa4b2985e61171b9d1d749af346207282d9f，分支022-real-algorithm-pipeline。`C:/Temp/gaode-022-T041-T044-before-7db5b1d250354e8f8dcb56a31eac2307/`有before-files.zip、baseline.json、before.patch及本轮首次修改的原WholeTrayCompletionStore文件。只针对本轮差异在隔离副本逐项恢复，先备份本轮后内容；不能整库reset/clean、覆盖旧A改动、删资源输入或操作现场。本轮差异、源码摘要和验证索引在上述独立证据根，不提交/推送/部署。
 
 证据补强（仅测试导出，无产品变更）：host-resource-evidence/host-resources-*.json保存实际Host每次SQLite新读取的Unknown清单、原截止及关闭快照，对这两个已有初始化/停止用例复验2/2，不计新增覆盖。late-recipe保存对应已通过迟到用例的隔离Test SQLite/媒体副本；late-recipe-readback.json再次内存读取数据库/WAL完整性ok、7个调用全部Reclaimed、唯一TimedOut及9份媒体，绝非现场库。
+
+## 2026-10-09 T045软件竞态修复验证
+
+基线7cbba95，全部在独立工作树E:/dzk/gaode-022-t045离线Test环境实施，无真实设备命令。构建通过Communication.Tests及引用的Host/Application/Infrastructure。先同步设计约定再实现Supervisor.TryEnter/Isolated MarkEntered以及两个入口；初始数据库保存移出准入门，修订保存顺序保持。
+
+修复前有效上下文及诊断屏障复现：before-fix-valid-context.trx为3通过/3失败，TrayPose/FDecode/Detection关闭先均出现端口新增1而期望0。修复后六个确定交接用例全部通过，先许可取消后Input/Execution仍未释放、媒体/执行各占1；可靠退出后才Reclaimed。实际Host关闭能在诊断屏障暂停时完成，证明不将日志/适配器/数据库等待放在准入门内。SQLite新读取与原UTC/tick释放起点、截止一致，关闭先端口0。
+
+有效验证25个不同必要用例分批通过：原组件12项（final/t045-components.trx）；新交接6项（verified/t045-handoff-and-host.trx）；最终实际Host7项（host-stream/t045-host-stream.trx）。Host包括原普通/特殊配方各两轮、版本冻结、公共3D/F释放屏障、释放超期不续算、登记阶段关闭；取消/超时/唯一裁决及退出管理有原必要回归。不是单批25/25或实机验收。
+
+失败历史保留：初次测试编译xUnit1031；旧v2夹具缺配方身份；六项新测试末尾误用camelCase日志键名，修正为已有CallId；机器EventLog权限/HTTP代理与文件清理占用；其后特殊配方短预算被重复开关日志文件及前置I/O消耗（分别6/7与0/1）。仅测试宿主移除默认EventLog、直连loopback并共用持续文件写入器，未提高预算或放松断言；最终Host7/7。全部TRX的错误和SHA256保存在attempt-index.json，完整原始日志仍留artifacts/T045。
+
+提交证据：evidence/t045-20261009包含修复前/最终Host TRX、六项重读及关联诊断摘要、全部尝试索引和源文件摘要；不含数据库、媒体、算法包、权重、现场原始数据。只勾选T045；T017/C禁用，B接口/启动/格式/取消释放协议待实际交付核验；不把软件竞态完成计作真实算法或全022完成。下一轮见t045-handoff-20261009.md。
